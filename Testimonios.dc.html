@@ -44,7 +44,7 @@
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
   <header id="site-nav" style="position:sticky;top:0;z-index:40;background:var(--cream);transition:box-shadow .35s ease,background .35s ease,transform .38s cubic-bezier(.22,1,.36,1);">
     <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
-      <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none;"><img src="uploads/Logo-Patricio-Ruiz-Main.png" alt="Patricio Ruiz" style="height:56px;width:auto;"></a>
+      <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none;"><img src="uploads/Logo-Patricio-Ruiz-Main-removebg-preview.png" alt="Patricio Ruiz" style="height:56px;width:auto;"></a>
       <nav id="nav-links" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
         <a href="Home.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Inicio</a>
         <a href="Sobre-Mi.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Sobre mí</a>
@@ -54,22 +54,22 @@
         <a href="Recursos.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Recursos</a>
         <a href="Red-Inessentia.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Red terapéutica</a>
       </nav>
-      <button id="nav-ham" onclick="document.getElementById('mob-menu').classList.toggle('open')" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:6px;flex:none;">
+      <button id="nav-ham"  style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:6px;flex:none;">
         <svg width="26" height="20" viewBox="0 0 26 20" fill="none"><rect y="0" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="8.75" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="17.5" width="26" height="2.5" rx="1.25" fill="#46276E"></rect></svg>
       </button>
       <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="flex:none;white-space:nowrap;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:13px 26px;border-radius:999px;text-decoration:none;" style-hover="background:var(--purple-d);">Agendar cita</a>
     </div>
   </header>
-  <div id="mob-menu" onclick="if(event.target===this)this.classList.remove('open')">
-    <button id="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')">×</button>
-        <a href="Home.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Inicio</a>
-    <a href="Sobre-Mi.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Sobre mí</a>
-    <a href="Individual.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Individual</a>
-    <a href="Pareja.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Pareja</a>
-    <a href="Familias.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Familias</a>
-    <a href="Recursos.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Recursos</a>
-    <a href="Red-Inessentia.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Red terapéutica</a>
-    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta" onclick="document.getElementById('mob-menu').classList.remove('open')">Agendar cita</a>
+  <div id="mob-menu" >
+    <button id="mob-close" >×</button>
+        <a href="Home.dc.html" >Inicio</a>
+    <a href="Sobre-Mi.dc.html" >Sobre mí</a>
+    <a href="Individual.dc.html" >Individual</a>
+    <a href="Pareja.dc.html" >Pareja</a>
+    <a href="Familias.dc.html" >Familias</a>
+    <a href="Recursos.dc.html" >Recursos</a>
+    <a href="Red-Inessentia.dc.html" >Red terapéutica</a>
+    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta" >Agendar cita</a>
   </div>
 
   <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,8vw,96px) 32px clamp(40px,5vw,64px);">
@@ -116,17 +116,36 @@
 class Component extends DCLogic {
   componentDidMount() {
     const nav = document.getElementById('site-nav');
-    let _lastY = 0;
+    let _lastY = 0, _downStart = null;
+    const NAV_HIDE_PX = 100;
     this._onScroll = () => {
       if (!nav) return;
       const y = window.scrollY;
       nav.style.boxShadow = y > 12 ? '0 6px 26px rgba(40,20,60,.10)' : 'none';
       nav.style.background = y > 12 ? 'rgba(234,229,217,.96)' : '#EAE5D9';
-      if (y > 320) { nav.style.transform = y > _lastY ? 'translateY(-110%)' : 'translateY(0)'; }
-      else { nav.style.transform = 'translateY(0)'; }
+      if (y < 60) {
+        nav.style.transform = 'translateY(0)';
+        _downStart = null;
+      } else if (y > _lastY) {
+        if (_downStart === null) _downStart = y;
+        if (y - _downStart > NAV_HIDE_PX) nav.style.transform = 'translateY(-110%)';
+      } else {
+        _downStart = null;
+        nav.style.transform = 'translateY(0)';
+      }
       _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
+    const ham = document.getElementById('nav-ham');
+    const mobMenu = document.getElementById('mob-menu');
+    const mobClose = document.getElementById('mob-close');
+    if (ham && mobMenu) { this._hamClick = () => mobMenu.classList.toggle('open'); ham.addEventListener('click', this._hamClick); }
+    if (mobClose && mobMenu) { this._closeClick = () => mobMenu.classList.remove('open'); mobClose.addEventListener('click', this._closeClick); }
+    if (mobMenu) {
+      this._overlayClick = (e) => { if (e.target === mobMenu) mobMenu.classList.remove('open'); };
+      mobMenu.addEventListener('click', this._overlayClick);
+      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobMenu.classList.remove('open')));
+    }
 
     // ── TESTIMONIAL CAROUSEL ──────────────────────────────────────────────
     this.T = [

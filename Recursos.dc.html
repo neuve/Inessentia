@@ -35,6 +35,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
 #mob-menu a{font-family:'Mulish',sans-serif;font-weight:700;font-size:20px;letter-spacing:.09em;text-transform:uppercase;color:#46276E;text-decoration:none}
 #mob-menu .mob-cta{background:#46276E;color:#fff!important;padding:16px 38px;border-radius:999px;margin-top:8px}
 #mob-close{position:absolute;top:24px;right:28px;background:none;border:none;cursor:pointer;font-size:28px;color:#46276E;line-height:1}
+#lm-email::placeholder{color:rgba(255,255,255,.6)}
 /* ── MOBILE GENERAL ── */
 @media(max-width:600px){
   .hero-row{flex-direction:column!important}
@@ -50,7 +51,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
   <!-- NAV -->
   <header id="site-nav" style="position:sticky;top:0;z-index:40;background:var(--cream);transition:box-shadow .35s ease,background .35s ease,transform .38s cubic-bezier(.22,1,.36,1);">
     <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
-      <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none;"><img src="uploads/Logo-Patricio-Ruiz-Main.png" alt="Patricio Ruiz" style="height:56px;width:auto;"></a>
+      <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none;"><img src="uploads/Logo-Patricio-Ruiz-Main-removebg-preview.png" alt="Patricio Ruiz" style="height:56px;width:auto;"></a>
       <nav id="nav-links" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
         <a href="Home.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Inicio</a>
         <a href="Sobre-Mi.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Sobre mí</a>
@@ -60,22 +61,22 @@ html,body{margin:0;padding:0;background:#FCFBF6}
         <a href="Recursos.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);text-decoration:none;border-bottom:2px solid var(--wine);padding-bottom:2px;">Recursos</a>
         <a href="Red-Inessentia.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;" style-hover="color:var(--wine);">Red terapéutica</a>
       </nav>
-      <button id="nav-ham" onclick="document.getElementById('mob-menu').classList.toggle('open')" style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:6px;flex:none;">
+      <button id="nav-ham"  style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:6px;flex:none;">
         <svg width="26" height="20" viewBox="0 0 26 20" fill="none"><rect y="0" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="8.75" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="17.5" width="26" height="2.5" rx="1.25" fill="#46276E"></rect></svg>
       </button>
       <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="flex:none;white-space:nowrap;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:13px 26px;border-radius:999px;text-decoration:none;" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(70,39,110,.28);background:var(--purple-d);">Agendar cita</a>
     </div>
   </header>
-  <div id="mob-menu" onclick="if(event.target===this)this.classList.remove('open')">
-    <button id="mob-close" onclick="document.getElementById('mob-menu').classList.remove('open')">×</button>
-        <a href="Home.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Inicio</a>
-    <a href="Sobre-Mi.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Sobre mí</a>
-    <a href="Individual.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Individual</a>
-    <a href="Pareja.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Pareja</a>
-    <a href="Familias.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Familias</a>
-    <a href="Recursos.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Recursos</a>
-    <a href="Red-Inessentia.dc.html" onclick="document.getElementById('mob-menu').classList.remove('open')">Red terapéutica</a>
-    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta" onclick="document.getElementById('mob-menu').classList.remove('open')">Agendar cita</a>
+  <div id="mob-menu" >
+    <button id="mob-close" >×</button>
+        <a href="Home.dc.html" >Inicio</a>
+    <a href="Sobre-Mi.dc.html" >Sobre mí</a>
+    <a href="Individual.dc.html" >Individual</a>
+    <a href="Pareja.dc.html" >Pareja</a>
+    <a href="Familias.dc.html" >Familias</a>
+    <a href="Recursos.dc.html" >Recursos</a>
+    <a href="Red-Inessentia.dc.html" >Red terapéutica</a>
+    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta" >Agendar cita</a>
   </div>
 
   <!-- HERO -->
@@ -97,12 +98,33 @@ html,body{margin:0;padding:0;background:#FCFBF6}
           <span style="font-size:48px;">🧠</span>
         </div>
         <div style="padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:16px;justify-content:center;">
-          <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Proceso terapéutico · Borrador</p>
+          <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Proceso terapéutico</p>
           <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(22px,2.6vw,32px);line-height:1.15;margin:0;text-wrap:balance;">¿Qué esperar de la terapia?</h2>
           <p style="font-size:clamp(14px,1vw,16px);line-height:1.7;color:#4a443f;margin:0;">Cómo se conjugan la relación terapéutica, las técnicas y el tiempo en un proceso real.</p>
           <span style="color:var(--wine);font-weight:700;font-size:14px;align-self:flex-start;">Leer →</span>
         </div>
       </a>
+
+      <!-- LEAD MAGNET · Podcast de regalo -->
+      <div data-reveal class="modal-grid" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);display:grid;grid-template-columns:.82fr 1fr;gap:0;border-radius:22px;overflow:hidden;margin-bottom:28px;background:var(--purple);">
+        <div style="position:relative;min-height:260px;display:flex;align-items:center;justify-content:center;background:radial-gradient(125% 125% at 28% 18%,#5a3787 0%,var(--purple) 62%);">
+          <span style="font-size:92px;line-height:1;">🎧</span>
+          <span style="position:absolute;top:22px;left:22px;background:var(--sand);color:var(--purple-d);font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-radius:999px;">Regalo</span>
+        </div>
+        <div style="padding:clamp(30px,4vw,48px);display:flex;flex-direction:column;gap:16px;justify-content:center;">
+          <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);">Podcast de regalo</p>
+          <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(22px,2.6vw,32px);line-height:1.15;margin:0;text-wrap:balance;">Un episodio para acompañar tu primer paso</h2>
+          <p style="font-size:clamp(14px,1vw,16px);line-height:1.65;color:rgba(255,255,255,.82);margin:0;">Déjame tu correo y te envío de regalo un episodio íntimo sobre cómo empezar terapia con menos miedo y más claridad.</p>
+          <form id="lm-form" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;">
+            <input id="lm-email" type="email" required placeholder="tu@correo.com" style="flex:1 1 220px;min-width:0;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:14px 20px;color:#fff;font-family:'Mulish',sans-serif;font-size:15px;outline:none;">
+            <button type="submit" style="flex:none;background:var(--sand);color:var(--purple-d);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:14px 28px;border:none;border-radius:999px;cursor:pointer;font-family:'Mulish',sans-serif;" style-hover="background:var(--sand-d);">Enviar regalo</button>
+          </form>
+          <p id="lm-note" style="margin:0;font-size:13px;color:rgba(255,255,255,.55);">Sin spam. Cancela cuando quieras.</p>
+          <div id="lm-success" style="display:none;align-items:center;gap:12px;margin-top:4px;">
+            <a id="lm-listen" href="#" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.04em;padding:14px 26px;border-radius:999px;text-decoration:none;" style-hover="transform:translateY(-2px);">▶ Escuchar el episodio</a>
+          </div>
+        </div>
+      </div>
 
       <!-- Entradas 2 + 3 en grid -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;">
@@ -112,7 +134,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
             <span style="font-size:48px;">🤝</span>
           </div>
           <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
-            <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Primera sesión · Borrador</p>
+            <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Primera sesión</p>
             <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2vw,26px);line-height:1.2;margin:0;text-wrap:balance;">¿Cómo suele ser la primera cita?</h2>
             <p style="font-size:15px;line-height:1.65;color:#4a443f;margin:0;flex:1;">Cuando me contactas por primera vez, así arrancamos: qué pasa, cuánto dura, qué llevarte.</p>
             <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer →</span>
@@ -124,9 +146,21 @@ html,body{margin:0;padding:0;background:#FCFBF6}
             <span style="font-size:48px;">⏱</span>
           </div>
           <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
-            <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Bienestar · Borrador</p>
+            <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Bienestar</p>
             <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2vw,26px);line-height:1.2;margin:0;text-wrap:balance;">¿Cuándo es buen momento para empezar terapia?</h2>
             <p style="font-size:15px;line-height:1.65;color:#4a443f;margin:0;flex:1;">Las señales que vale la pena escuchar — y por qué pedir ayuda no requiere tocar fondo.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer →</span>
+          </div>
+        </a>
+
+        <a data-reveal href="Blog: Tipos de terapia.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .24s,transform .8s cubic-bezier(.22,1,.36,1) .24s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;" style-hover="box-shadow:0 20px 48px rgba(70,39,110,.11);transform:translateY(-4px);">
+          <div style="height:200px;background:linear-gradient(135deg,#e2daf0 0%,#cec0e4 100%);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:48px;">🌿</span>
+          </div>
+          <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
+            <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Aproximaciones terapéuticas</p>
+            <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2vw,26px);line-height:1.2;margin:0;text-wrap:balance;">Tipos de terapia: cómo trabajo en sesión</h2>
+            <p style="font-size:15px;line-height:1.65;color:#4a443f;margin:0;flex:1;">SE, IFS, Tapping y Core Energética — qué son, para qué sirven y un video de cada una.</p>
             <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer →</span>
           </div>
         </a>
@@ -172,22 +206,49 @@ html,body{margin:0;padding:0;background:#FCFBF6}
 class Component extends DCLogic {
   componentDidMount() {
     const nav = document.getElementById('site-nav');
-    let _lastY = 0;
+    let _lastY = 0, _downStart = null;
+    const NAV_HIDE_PX = 100;
     this._onScroll = () => {
       if (!nav) return;
       const y = window.scrollY;
-      // shadow + blur
       nav.style.boxShadow = y > 12 ? '0 6px 26px rgba(40,20,60,.10)' : 'none';
       nav.style.background = y > 12 ? 'rgba(234,229,217,.96)' : '#EAE5D9';
-      // hide on scroll down past hero, show on scroll up
-      if (y > 320) {
-        nav.style.transform = y > _lastY ? 'translateY(-110%)' : 'translateY(0)';
+      if (y < 60) {
+        nav.style.transform = 'translateY(0)';
+        _downStart = null;
+      } else if (y > _lastY) {
+        if (_downStart === null) _downStart = y;
+        if (y - _downStart > NAV_HIDE_PX) nav.style.transform = 'translateY(-110%)';
       } else {
+        _downStart = null;
         nav.style.transform = 'translateY(0)';
       }
       _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
+    const ham = document.getElementById('nav-ham');
+    const mobMenu = document.getElementById('mob-menu');
+    const mobClose = document.getElementById('mob-close');
+    if (ham && mobMenu) { this._hamClick = () => mobMenu.classList.toggle('open'); ham.addEventListener('click', this._hamClick); }
+    if (mobClose && mobMenu) { this._closeClick = () => mobMenu.classList.remove('open'); mobClose.addEventListener('click', this._closeClick); }
+    if (mobMenu) {
+      this._overlayClick = (e) => { if (e.target === mobMenu) mobMenu.classList.remove('open'); };
+      mobMenu.addEventListener('click', this._overlayClick);
+      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobMenu.classList.remove('open')));
+    }
+    const lmForm = document.getElementById('lm-form');
+    if (lmForm) {
+      this._lmSubmit = (e) => {
+        e.preventDefault();
+        const f = document.getElementById('lm-form');
+        const note = document.getElementById('lm-note');
+        const succ = document.getElementById('lm-success');
+        if (f) f.style.display = 'none';
+        if (note) { note.textContent = '¡Listo! Revisa tu correo — y mientras, escúchalo aquí:'; note.style.color = '#fff'; }
+        if (succ) succ.style.display = 'flex';
+      };
+      lmForm.addEventListener('submit', this._lmSubmit);
+    }
     this._io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; this._io.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
