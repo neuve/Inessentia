@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#FCFBF6}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+</style>
+</helmet>
+<div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--sand-d:#A8945C;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
+
+  <!-- ============ NAVBAR ============ -->
+  <header id="site-nav" style="position:sticky;top:0;z-index:40;background:var(--cream);transition:box-shadow .35s ease,background .35s ease;">
+    <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+      <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex:none;">
+        <img src="uploads/Logo-Patricio-Ruiz-Main.png" alt="Patricio Ruiz" style="height:56px;width:auto;">
+      </a>
+      <nav style="display:flex;align-items:center;gap:30px;flex-wrap:wrap;">
+        <a href="#top" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Inicio</a>
+        <a href="#que-es" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Sobre mí</a>
+        <a href="#modalidades" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Individual</a>
+        <a href="#modalidades" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Pareja</a>
+        <a href="#modalidades" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Familias</a>
+        <a href="#blog" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Recursos</a>
+        <a href="Red Inessentia.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;white-space:nowrap;transition:color .2s;" style-hover="color:var(--wine);">Red terapéutica</a>
+      </nav>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="flex:none;white-space:nowrap;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:13px 26px;border-radius:999px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(70,39,110,.28);background:var(--purple-d);">Agendar cita</a>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F3EFE5 42%,var(--warm) 100%);">
+    <div style="position:absolute;top:-90px;left:50%;transform:translateX(-50%);width:620px;height:620px;opacity:.55;pointer-events:none;background:repeating-conic-gradient(#dccfb6 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,104px) 32px clamp(64px,9vw,116px);display:flex;gap:clamp(36px,5vw,72px);align-items:center;flex-wrap:wrap;">
+      <div style="flex:1 1 460px;min-width:300px;">
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);">
+          <p style="margin:0 0 20px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Psicoterapia · CDMX y en línea</p>
+          <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(36px,5vw,62px);line-height:1.04;letter-spacing:-.015em;margin:0 0 24px;text-wrap:balance;">Acompañamiento terapéutico con enfoque relacional y psicosomático.</h1>
+          <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:#3f3a36;max-width:48ch;margin:0 0 34px;">Procesos terapéuticos individuales, de pareja y de familia, además de talleres grupales. Presencial en Ciudad de México y online.</p>
+          <div style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:var(--purple);color:#fff;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:17px 32px;border-radius:999px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 12px 28px rgba(70,39,110,.3);background:var(--purple-d);">Agenda tu primera cita</a>
+            <a href="#modalidades" style="color:var(--wine);font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:3px;transition:opacity .2s;" style-hover="opacity:.65;">¿Cómo es una sesión?</a>
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="flex:1 1 420px;min-width:300px;opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.22,1,.36,1) .12s,transform .9s cubic-bezier(.22,1,.36,1) .12s;">
+        <div style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 24px 60px rgba(70,39,110,.16);">
+          <img src="uploads/Patricio-Ruiz-17-scaled-2.jpg" alt="Patricio Ruiz, psicoterapeuta" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ¿QUÉ ES? ============ -->
+  <section id="que-es" style="padding:clamp(64px,9vw,120px) 32px;">
+    <div style="max-width:1000px;margin:0 auto;text-align:center;">
+      <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);margin:0 0 18px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">El enfoque</p>
+      <h2 data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .05s,transform .85s cubic-bezier(.22,1,.36,1) .05s;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(28px,4.2vw,48px);line-height:1.1;letter-spacing:-.01em;margin:0 auto 32px;max-width:18ch;text-wrap:balance;">¿Qué es la terapia con enfoque psicosomático y cómo te puede ayudar?</h2>
+      <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .1s,transform .85s cubic-bezier(.22,1,.36,1) .1s;font-size:clamp(16px,1.2vw,18px);line-height:1.8;color:#3f3a36;margin:0 auto 22px;max-width:68ch;">La terapia con enfoque psicosomático se apoya en la relación entre cuerpo, corazón y mente — y cómo lo que vivimos se queda registrado en nosotros físicamente. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.</p>
+      <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .15s,transform .85s cubic-bezier(.22,1,.36,1) .15s;font-size:clamp(16px,1.2vw,18px);line-height:1.8;color:#3f3a36;margin:0 auto 34px;max-width:68ch;">Mi trabajo te ayuda a alcanzar más claridad de pensamiento, emoción y acción, a reducir tus niveles de ansiedad y a gestionar mejor el estrés que se acumula en tu cuerpo. Mi meta última es empoderarte para que no dependas de la terapia para mantenerte autorregulad@.</p>
+      <a data-reveal href="Sobre-Mi.dc.html#enfoque" style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .2s,transform .85s cubic-bezier(.22,1,.36,1) .2s;display:inline-block;color:var(--wine);font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:3px;" style-hover="opacity:.65;">Conoce las técnicas que utilizo</a>
+    </div>
+  </section>
+
+  <!-- ============ MODALIDADES ============ -->
+  <section id="modalidades" style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,64px);">
+        <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);margin:0 0 16px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Cómo trabajo</p>
+        <h2 data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .05s,transform .85s cubic-bezier(.22,1,.36,1) .05s;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(30px,4.4vw,50px);line-height:1.08;margin:0;">Un espacio para cada vínculo</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;">
+
+        <div data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);background:#fff;border:1px solid #ece6d8;border-radius:22px;padding:38px 32px;display:flex;flex-direction:column;gap:18px;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="position:relative;width:88px;height:88px;">
+            <div style="position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(var(--purple) 0deg 1.2deg,transparent 1.2deg 11deg);-webkit-mask:radial-gradient(circle,transparent 25%,#000 26%,#000 46%,transparent 47%);mask:radial-gradient(circle,transparent 25%,#000 26%,#000 46%,transparent 47%);"></div>
+            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;border:2px solid var(--purple);border-radius:50%;"></div>
+          </div>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">Terapia individual</h3>
+          <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">Adolescentes y adultos. Procesos para reconectar con el cuerpo, escuchar y procesar tus emociones, y apoyarte a decidir y tomar acción desde un lugar más claro.</p>
+          <a href="Individual.dc.html" style="color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;align-self:flex-start;" style-hover="color:var(--wine);">Conoce más →</a>
+        </div>
+
+        <div data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;background:#fff;border:1px solid #ece6d8;border-radius:22px;padding:38px 32px;display:flex;flex-direction:column;gap:18px;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="position:relative;width:88px;height:64px;">
+            <div style="position:absolute;left:6px;top:50%;transform:translateY(-50%);width:52px;height:52px;border:2.5px solid var(--wine);border-radius:50%;"></div>
+            <div style="position:absolute;right:6px;top:50%;transform:translateY(-50%);width:52px;height:52px;border:2.5px solid var(--wine);border-radius:50%;"></div>
+          </div>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">Terapia de pareja</h3>
+          <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">Ayudo a cada miembro a poner atención al vínculo desde la responsabilidad individual, mientras genera apertura para acoger la experiencia emocional —y el dolor— del otro. Un proceso que teje compasión con atención.</p>
+          <a href="Pareja.dc.html" style="color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;align-self:flex-start;" style-hover="color:var(--wine);">Conoce más →</a>
+        </div>
+
+        <div data-reveal style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;background:#fff;border:1px solid #ece6d8;border-radius:22px;padding:38px 32px;display:flex;flex-direction:column;gap:18px;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="position:relative;width:88px;height:64px;">
+            <div style="position:absolute;left:2px;bottom:0;width:42px;height:42px;border:2.5px solid var(--sand-d);border-radius:50%;"></div>
+            <div style="position:absolute;right:2px;bottom:0;width:42px;height:42px;border:2.5px solid var(--sand-d);border-radius:50%;"></div>
+            <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:42px;height:42px;border:2.5px solid var(--sand-d);border-radius:50%;"></div>
+          </div>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">Terapia familiar</h3>
+          <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">Acompaño a las familias para que sus miembros se escuchen de manera más equilibrada y, desde dentro del sistema, puedan surgir nuevas soluciones a los retos compartidos.</p>
+          <a href="Familias.dc.html" style="color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;align-self:flex-start;" style-hover="color:var(--wine);">Conoce más →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIOS ============ -->
+  <section id="experiencias" style="padding:clamp(64px,9vw,120px) 32px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);margin:0 0 16px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Experiencias</p>
+        <h2 data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .05s,transform .85s cubic-bezier(.22,1,.36,1) .05s;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(30px,4.4vw,50px);line-height:1.08;margin:0;">Personas reales, cambios reales</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);background:var(--cream-2);border-radius:20px;padding:34px 32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">“</div>
+          <p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">Me cambió la vida. He aprendido a atravesar mi ansiedad y mis ataques de pánico de una manera mucho más suave, y esto me ha brindado paz y confianza en mi propio poder y autorregulación.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:18px;">Dan Gunter</p>
+        </div>
+
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;background:var(--cream-2);border-radius:20px;padding:34px 32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">“</div>
+          <p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">Mi cuerpo está más equilibrado y recuperando la salud. Hay menos dolor y más energía. La presencia compasiva, paciente y abierta de Pato me ha permitido mirarme más completa.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:18px;"><a href="https://www.youtube.com/@DescubrimientoInterior" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;" style-hover="border-color:var(--purple);">Isabel de la Rosa</a></p>
+        </div>
+
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .12s,transform .8s cubic-bezier(.22,1,.36,1) .12s;background:var(--cream-2);border-radius:20px;padding:34px 32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">“</div>
+          <p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">En mi proceso me he sentido siempre cobijada, respaldada, respetada y sobre todo que no estoy sola y que cuento con un lugar seguro.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:18px;">Valeria Salazar</p>
+        </div>
+
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;background:var(--cream-2);border-radius:20px;padding:34px 32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">“</div>
+          <p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">He desarrollado tolerancia ante asuntos que me hacían saltar, que ahora puedo manejar con más consciencia, bajarles la intensidad y disminuir su duración.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:18px;"><a href="https://www.instagram.com/karellifesherpa/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;" style-hover="border-color:var(--purple);">Kar-El</a> <span style="font-family:'Mulish',sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· Life Sherpa</span></p>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a data-reveal href="#" style="opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);display:inline-block;color:var(--wine);font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:3px;" style-hover="opacity:.65;">Leer más experiencias</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section id="blog" style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,56px);">
+        <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);">
+          <p style="margin:0 0 16px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Recursos</p>
+          <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(30px,4.4vw,50px);line-height:1.08;margin:0;">Antes de tu primera sesión</h2>
+        </div>
+        <a data-reveal href="Recursos.dc.html" style="opacity:0;transform:translateY(20px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .1s,transform .85s cubic-bezier(.22,1,.36,1) .1s;color:var(--wine);font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:3px;white-space:nowrap;" style-hover="opacity:.65;">Ver todas las entradas</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;">
+
+        <a data-reveal href="Blog-Que-Esperar.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="height:184px;background:repeating-linear-gradient(135deg,#e9e2d2 0 16px,#e2dac8 16px 32px);display:flex;align-items:flex-end;padding:12px;"><span style="font-family:monospace;font-size:11px;color:#8c8470;background:rgba(255,255,255,.8);padding:5px 10px;border-radius:6px;">imagen del post</span></div>
+          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Qué esperar de la terapia?</h3>
+            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Cómo se conjugan la relación terapéutica, las técnicas y el tiempo en un proceso real.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer más →</span>
+          </div>
+        </a>
+
+        <a data-reveal href="Blog-Primera-Cita.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="height:184px;background:repeating-linear-gradient(135deg,#e9e2d2 0 16px,#e2dac8 16px 32px);display:flex;align-items:flex-end;padding:12px;"><span style="font-family:monospace;font-size:11px;color:#8c8470;background:rgba(255,255,255,.8);padding:5px 10px;border-radius:6px;">imagen del post</span></div>
+          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cómo suele ser la primera cita?</h3>
+            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Cuando me contactas por primera vez, así arrancamos: qué pasa, cuánto dura, qué llevarte.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer más →</span>
+          </div>
+        </a>
+
+        <a data-reveal href="Blog-Cuando-Empezar.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+          <div style="height:184px;background:repeating-linear-gradient(135deg,#e9e2d2 0 16px,#e2dac8 16px 32px);display:flex;align-items:flex-end;padding:12px;"><span style="font-family:monospace;font-size:11px;color:#8c8470;background:rgba(255,255,255,.8);padding:5px 10px;border-radius:6px;">imagen del post</span></div>
+          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cuándo es buen momento para empezar terapia?</h3>
+            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Las señales que vale la pena escuchar — y por qué pedir ayuda no requiere tocar fondo.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:14px;">Leer más →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+    <div style="position:absolute;top:50%;left:-140px;transform:translateY(-50%);width:460px;height:460px;opacity:.16;pointer-events:none;background:repeating-conic-gradient(#fff 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
+    <div data-reveal style="position:relative;max-width:760px;margin:0 auto;opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">¿Listo para dar el primer paso?</h2>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.82);margin:0 auto 36px;max-width:52ch;">Cada proceso es distinto y empieza con una conversación. Escríbeme y vemos, sin compromiso, si este acompañamiento es para ti.</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:18px 36px;border-radius:999px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.25);">Agenda tu primera cita</a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="position:relative;overflow:hidden;background:var(--purple-d);color:#fff;padding:clamp(56px,8vw,96px) 32px clamp(34px,4vw,48px);">
+    <div style="position:absolute;top:0;left:-180px;width:420px;height:520px;opacity:.22;pointer-events:none;background:repeating-conic-gradient(#cdbce6 0deg .6deg,transparent .6deg 8deg);-webkit-mask:radial-gradient(circle,transparent 28%,#000 29%,#000 48%,transparent 49%);mask:radial-gradient(circle,transparent 28%,#000 29%,#000 48%,transparent 49%);"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;">
+      <div style="display:flex;gap:clamp(36px,6vw,90px);flex-wrap:wrap;justify-content:space-between;">
+        <div style="flex:1 1 360px;min-width:280px;">
+          <h2 style="font-family:'Zilla Slab',serif;font-weight:700;color:var(--sand);font-size:clamp(34px,4.4vw,50px);margin:0 0 22px;">Contacto</h2>
+          <p style="font-size:16px;line-height:1.6;color:rgba(255,255,255,.82);margin:0 0 22px;max-width:42ch;">Si tienes alguna duda o quieres reservar una cita, contáctame. Escríbeme por correo o <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);" style-hover="border-color:var(--sand);">mándame un mensaje de WhatsApp</a>.</p>
+          <a href="/cdn-cgi/l/email-protection#acc4c3c0cdecdccdd8dec5cfc5c3ded9c5d682c1d4" style="display:inline-block;color:#fff;font-size:19px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:3px;margin-bottom:28px;" style-hover="border-color:var(--sand);"><span class="__cf_email__" data-cfemail="046c6b686544746570766d676d6b76716d7e2a697c">[email&#160;protected]</span></a>
+          <div style="display:inline-flex;flex-direction:column;align-items:center;gap:12px;border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:18px 22px;max-width:210px;">
+            <div style="text-align:center;">
+              <p style="margin:0;font-weight:700;font-size:15px;">Patricio Ruiz</p>
+              <p style="margin:2px 0 0;font-size:12px;color:rgba(255,255,255,.65);">WhatsApp Business Account</p>
+            </div>
+            <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="display:block;border-radius:8px;overflow:hidden;width:118px;height:118px;">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=236x236&data=https://wa.me/patriciomx&color=46276E&bgcolor=FFFFFF&margin=6" alt="QR WhatsApp Patricio Ruiz" style="width:118px;height:118px;display:block;border-radius:6px;">
+            </a>
+          </div>
+        </div>
+        <div style="flex:0 1 300px;min-width:240px;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+          <a href="Aviso-de-Privacidad.dc.html" style="color:rgba(255,255,255,.88);font-size:17px;text-decoration:none;" style-hover="color:var(--sand);">Aviso de privacidad</a>
+          <a href="#" style="color:rgba(255,255,255,.88);font-size:17px;text-decoration:none;" style-hover="color:var(--sand);">Aviso sobre derechos de autor</a>
+
+          <div style="display:flex;gap:14px;">
+
+            <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" style="width:38px;height:38px;border-radius:11px;border:1.5px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;transition:background .25s;" style-hover="background:rgba(255,255,255,.12);">
+              <span style="width:16px;height:16px;border:1.5px solid #fff;border-radius:5px;position:relative;display:block;"><span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border:1.5px solid #fff;border-radius:50%;"></span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.18);margin-top:clamp(36px,5vw,56px);padding-top:24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;">
+        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.55);max-width:60ch;">Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.</p>
+        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.55);white-space:nowrap;">Última actualización Julio 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ WHATSAPP FLOAT ============ -->
+  <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" title="Escríbeme por WhatsApp" style="position:fixed;bottom:26px;right:26px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px rgba(0,0,0,.22);animation:waPulse 2.6s infinite;transition:transform .25s ease;" style-hover="transform:scale(1.08);">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C9.6 21 3 14.4 3 6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1l-2.2 2.2z"/></svg>
+  </a>
+
+</div>
+</x-dc>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    const nav = document.getElementById('site-nav');
+    this._onScroll = () => {
+      if (!nav) return;
+      if (window.scrollY > 12) {
+        nav.style.boxShadow = '0 6px 26px rgba(40,20,60,.10)';
+        nav.style.background = 'rgba(234,229,217,.94)';
+      } else {
+        nav.style.boxShadow = 'none';
+        nav.style.background = '#EAE5D9';
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'none';
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+    const init = () => {
+      const els = document.querySelectorAll('[data-reveal]');
+      const vh = window.innerHeight || 800;
+      els.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.95) { reveal(el); }      // already in view -> show now
+        else { this._io.observe(el); }               // below fold -> animate on scroll
+      });
+      // safety net: never let content stay hidden
+      this._fallback = setTimeout(() => { document.querySelectorAll('[data-reveal]').forEach(reveal); }, 2600);
+    };
+    requestAnimationFrame(() => requestAnimationFrame(init));
+  }
+  componentWillUnmount() {
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    if (this._fallback) clearTimeout(this._fallback);
+  }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
