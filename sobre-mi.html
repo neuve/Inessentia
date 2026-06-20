@@ -43,6 +43,9 @@ html,body{margin:0;padding:0;background:#FCFBF6}
   .blog-grid{grid-template-columns:1fr!important}
 }
 </style>
+<script id="ver-badge-script">
+(function(){var M=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];function fmt(){var d=new Date(document.lastModified);if(!d||d.getFullYear()<2020)d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}function run(){document.querySelectorAll('[data-ver-badge]').forEach(function(el){el.textContent=(el.getAttribute('data-ver-badge')||'V1.1')+' · Actualización '+fmt();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();setTimeout(run,400);})();
+</script>
 </helmet>
 
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--sand-d:#A8945C;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
@@ -242,7 +245,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
       </div>
       <div style="border-top:1px solid rgba(255,255,255,.18);margin-top:clamp(32px,4vw,48px);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
         <p style="margin:0;font-size:13px;color:rgba(255,255,255,.55);max-width:60ch;">Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.</p>
-        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.55);">Última actualización Julio 2026</p>
+        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.55);"><span data-ver-badge="V1.1">V1.1 · Actualización 20/JUN/26</span></p>
       </div>
     </div>
   </footer>

@@ -44,6 +44,9 @@ html,body{margin:0;padding:0;background:#FCFBF6}
   .blog-grid{grid-template-columns:1fr!important}
 }
 </style>
+<script id="ver-badge-script">
+(function(){var M=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];function fmt(){var d=new Date(document.lastModified);if(!d||d.getFullYear()<2020)d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}function run(){document.querySelectorAll('[data-ver-badge]').forEach(function(el){el.textContent=(el.getAttribute('data-ver-badge')||'V1.1')+' · Actualización '+fmt();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();setTimeout(run,400);})();
+</script>
 </helmet>
 
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--sand-d:#A8945C;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
@@ -95,8 +98,8 @@ html,body{margin:0;padding:0;background:#FCFBF6}
 
       <!-- Entrada 1 -->
       <a data-reveal href="blog-que-esperar-de-la-terapia.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);display:grid;grid-template-columns:1fr 1fr;gap:0;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:22px;overflow:hidden;margin-bottom:28px;" style-hover="box-shadow:0 20px 48px rgba(70,39,110,.11);transform:translateY(-4px);">
-        <div style="background:repeating-linear-gradient(135deg,#e9e2d2 0 20px,#ddd5c4 20px 40px);min-height:260px;display:flex;align-items:center;justify-content:center;">
-          <span style="font-size:48px;">🧠</span>
+        <div style="position:relative;min-height:260px;overflow:hidden;">
+          <img src="uploads/Que esperar nina corazon AdobeStock_597265661.jpeg" alt="¿Qué esperar de la terapia?" style="width:100%;height:100%;min-height:260px;object-fit:cover;object-position:center 20%;display:block;">
         </div>
         <div style="padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:16px;justify-content:center;">
           <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Proceso terapéutico</p>
@@ -108,8 +111,9 @@ html,body{margin:0;padding:0;background:#FCFBF6}
 
       <!-- LEAD MAGNET · Podcast de regalo -->
       <div data-reveal class="modal-grid" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);display:grid;grid-template-columns:.82fr 1fr;gap:0;border-radius:22px;overflow:hidden;margin-bottom:28px;background:var(--purple);">
-        <div style="position:relative;min-height:260px;display:flex;align-items:center;justify-content:center;background:radial-gradient(125% 125% at 28% 18%,#5a3787 0%,var(--purple) 62%);">
-          <span style="font-size:92px;line-height:1;">🎧</span>
+        <div style="position:relative;min-height:260px;overflow:hidden;">
+          <img src="uploads/Podcast AdobeStock_7a9bf0ad-4c79-4477-8362-658989ff718e.png" alt="Podcast" style="width:100%;height:100%;min-height:260px;object-fit:cover;object-position:center 30%;display:block;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(70,39,110,.52) 0%,rgba(60,31,94,.22) 100%);"></div>
           <span style="position:absolute;top:22px;left:22px;background:var(--sand);color:var(--purple-d);font-weight:800;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:7px 14px;border-radius:999px;">Regalo</span>
         </div>
         <div style="padding:clamp(30px,4vw,48px);display:flex;flex-direction:column;gap:16px;justify-content:center;">
@@ -131,8 +135,8 @@ html,body{margin:0;padding:0;background:#FCFBF6}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:26px;">
 
         <a data-reveal href="blog-primera-cita.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;" style-hover="box-shadow:0 20px 48px rgba(70,39,110,.11);transform:translateY(-4px);">
-          <div style="height:200px;background:repeating-linear-gradient(135deg,#e9e2d2 0 20px,#ddd5c4 20px 40px);display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:48px;">🤝</span>
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="uploads/primera cita AdobeStock_1044963412.jpeg" alt="Primera cita" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;">
           </div>
           <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
             <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Primera sesión</p>
@@ -143,8 +147,8 @@ html,body{margin:0;padding:0;background:#FCFBF6}
         </a>
 
         <a data-reveal href="blog-cuando-es-buen-momento-para-iniciar.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;" style-hover="box-shadow:0 20px 48px rgba(70,39,110,.11);transform:translateY(-4px);">
-          <div style="height:200px;background:repeating-linear-gradient(135deg,#e9e2d2 0 20px,#ddd5c4 20px 40px);display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:48px;">⏱</span>
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="uploads/Buen momento pareja AdobeStock_1656272159.jpeg" alt="¿Cuándo es buen momento?" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;">
           </div>
           <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
             <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Bienestar</p>
@@ -155,8 +159,8 @@ html,body{margin:0;padding:0;background:#FCFBF6}
         </a>
 
         <a data-reveal href="blog-tipos-de-terapia.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .24s,transform .8s cubic-bezier(.22,1,.36,1) .24s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:22px;overflow:hidden;display:flex;flex-direction:column;" style-hover="box-shadow:0 20px 48px rgba(70,39,110,.11);transform:translateY(-4px);">
-          <div style="height:200px;background:linear-gradient(135deg,#e2daf0 0%,#cec0e4 100%);display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:48px;">🌿</span>
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="uploads/tipos terapia AdobeStock_726434433.jpeg" alt="Tipos de terapia" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
           </div>
           <div style="padding:30px 28px 32px;display:flex;flex-direction:column;gap:13px;flex:1;">
             <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Aproximaciones terapéuticas</p>
@@ -193,7 +197,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
       </div>
       <div style="border-top:1px solid rgba(255,255,255,.16);margin-top:clamp(28px,4vw,44px);padding-top:20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;">
         <p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);max-width:58ch;">Si tienes una emergencia o tu vida corre peligro, llama al 911.</p>
-        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);">Última actualización Julio 2026</p>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><p style="margin:0;font-size:12px;color:rgba(255,255,255,.4);">Fotos: © Adobe Stock</p><p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);"><span data-ver-badge="V1.1">V1.1 · Actualización 20/JUN/26</span></p></div>
       </div>
     </div>
   </footer>

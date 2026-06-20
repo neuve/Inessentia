@@ -39,6 +39,9 @@
   .blog-grid{grid-template-columns:1fr!important}
 }
 </style>
+<script id="ver-badge-script">
+(function(){var M=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];function fmt(){var d=new Date(document.lastModified);if(!d||d.getFullYear()<2020)d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}function run(){document.querySelectorAll('[data-ver-badge]').forEach(function(el){el.textContent=(el.getAttribute('data-ver-badge')||'V1.1')+' · Actualización '+fmt();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();setTimeout(run,400);})();
+</script>
 </helmet>
 
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
@@ -104,7 +107,7 @@
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;">
       <a href="mailto:hola@patricioruiz.mx" style="color:#fff;font-size:17px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px;" style-hover="border-color:var(--sand);">hola@patricioruiz.mx</a>
       <a href="https://maps.app.goo.gl/BSemq9JYVCkHCQL47" target="_blank" rel="noopener" style="color:rgba(255,255,255,.88);font-size:15px;font-weight:600;text-decoration:none;text-align:center;" style-hover="color:var(--sand);">Inessentia · Psicoterapia Somática</a>
-      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);">Última actualización Julio 2026</p>
+      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);"><span data-ver-badge="V1.1">V1.1 · Actualización 20/JUN/26</span></p>
     </div>
   </footer>
 

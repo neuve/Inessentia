@@ -39,6 +39,9 @@
   .blog-grid{grid-template-columns:1fr!important}
 }
 </style>
+<script id="ver-badge-script">
+(function(){var M=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];function fmt(){var d=new Date(document.lastModified);if(!d||d.getFullYear()<2020)d=new Date();return String(d.getDate()).padStart(2,'0')+'/'+M[d.getMonth()]+'/'+String(d.getFullYear()).slice(2);}function run(){document.querySelectorAll('[data-ver-badge]').forEach(function(el){el.textContent=(el.getAttribute('data-ver-badge')||'V1.1')+' · Actualización '+fmt();});}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();setTimeout(run,400);})();
+</script>
 </helmet>
 
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
@@ -82,6 +85,12 @@
     </div>
   </section>
 
+  <!-- IMAGEN HERO -->
+  <div style="position:relative;width:100%;height:clamp(240px,38vw,460px);overflow:hidden;">
+    <img src="uploads/Buen momento pareja AdobeStock_1656272159.jpeg" alt="¿Cuándo es buen momento para empezar terapia?" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;">
+
+  </div>
+
   <section style="padding:clamp(40px,6vw,72px) 32px clamp(64px,9vw,120px);">
     <div style="max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:22px;">
       <div style="background:var(--cream-2);border-left:4px solid var(--sand);border-radius:0 12px 12px 0;padding:18px 22px;">
@@ -106,7 +115,7 @@
   <footer style="background:var(--purple-d);color:#fff;padding:clamp(48px,7vw,80px) 32px clamp(28px,3vw,40px);">
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;">
       <a href="mailto:hola@patricioruiz.mx" style="color:#fff;font-size:17px;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px;" style-hover="border-color:var(--sand);">hola@patricioruiz.mx</a>
-      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);">Última actualización Julio 2026</p>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><p style="margin:0;font-size:12px;color:rgba(255,255,255,.4);">Fotos: © Adobe Stock</p><p style="margin:0;font-size:13px;color:rgba(255,255,255,.5);"><span data-ver-badge="V1.1">V1.1 · Actualización 20/JUN/26</span></p></div>
     </div>
   </footer>
 
