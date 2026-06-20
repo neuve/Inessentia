@@ -141,7 +141,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
         <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Evolución</p>
         <h2 data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .05s,transform .85s cubic-bezier(.22,1,.36,1) .05s;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;">Qué cambia conforme avanza el proceso</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;">
         <div data-reveal style="opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
           <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">1</span>
           <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">De la discusión a la escucha relacional</h3>
@@ -216,7 +216,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
         <p data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1),transform .85s cubic-bezier(.22,1,.36,1);margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Aproximaciones</p>
         <h2 data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.22,1,.36,1) .05s,transform .85s cubic-bezier(.22,1,.36,1) .05s;font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;">Cómo trabajo en sesión</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:20px;">
         <div data-reveal style="opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:28px 24px;">
           <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:17px;margin:0 0 10px;">Terapia Familiar Sistémica</h3>
           <p style="font-size:14px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Eje de mi trabajo relacional. Centra la atención en las interacciones como muestra visible del estado del vínculo. Integra recursos de Gottman, Sue Johnson (EFT) y modelos posmodernos.</p>
@@ -280,11 +280,17 @@ class Component extends DCLogic {
     const NAV_HIDE_PX = 100;
     this._onScroll = () => {
       if (!nav) return;
-      const y = window.scrollY;
-      if (window.innerWidth <= 820) { nav.style.transform = 'translateY(0)'; _lastY = y; return; }
+      const y = window.scrollY || document.documentElement.scrollTop;
       nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
       nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
       nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
+      if (window.innerWidth <= 820) { _lastY = y; return; }
+      if (y > _lastY + 8 && y > 80) {
+        nav.style.transform = 'translateY(-100%)';
+      } else if (y < _lastY - 4 || y <= 80) {
+        nav.style.transform = 'translateY(0)';
+      }
+      _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
     document.addEventListener('scroll', this._onScroll, { passive: true });

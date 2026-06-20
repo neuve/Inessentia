@@ -83,7 +83,7 @@
 
   <section style="padding:clamp(40px,6vw,72px) 32px clamp(64px,9vw,120px);">
     <div style="max-width:1100px;margin:0 auto;">
-      <div id="t-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start;">
+      <div id="t-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;align-items:start;">
         <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
         <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
         <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
@@ -120,11 +120,17 @@ class Component extends DCLogic {
     const NAV_HIDE_PX = 100;
     this._onScroll = () => {
       if (!nav) return;
-      const y = window.scrollY;
-      if (window.innerWidth <= 820) { nav.style.transform = 'translateY(0)'; _lastY = y; return; }
+      const y = window.scrollY || document.documentElement.scrollTop;
       nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
       nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
       nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
+      if (window.innerWidth <= 820) { _lastY = y; return; }
+      if (y > _lastY + 8 && y > 80) {
+        nav.style.transform = 'translateY(-100%)';
+      } else if (y < _lastY - 4 || y <= 80) {
+        nav.style.transform = 'translateY(0)';
+      }
+      _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
     document.addEventListener('scroll', this._onScroll, { passive: true });

@@ -154,11 +154,17 @@ class Component extends DCLogic {
     const NAV_HIDE_PX = 100;
     this._onScroll = () => {
       if (!nav) return;
-      const y = window.scrollY;
-      if (window.innerWidth <= 820) { nav.style.transform = 'translateY(0)'; _lastY = y; return; }
+      const y = window.scrollY || document.documentElement.scrollTop;
       nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
       nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
       nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
+      if (window.innerWidth <= 820) { _lastY = y; return; }
+      if (y > _lastY + 8 && y > 80) {
+        nav.style.transform = 'translateY(-100%)';
+      } else if (y < _lastY - 4 || y <= 80) {
+        nav.style.transform = 'translateY(0)';
+      }
+      _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
     document.addEventListener('scroll', this._onScroll, { passive: true });
