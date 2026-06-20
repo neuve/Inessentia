@@ -124,7 +124,6 @@
       <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="flex:none;white-space:nowrap;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:12px 24px;border-radius:999px;text-decoration:none;">Agendar cita</a>
     </div>
   </header>
-  <div style="height:64px;flex:none;"></div>
   <div id="mob-menu" >
     <button id="mob-close" >×</button>
         <a href="index.html" >Inicio</a>
@@ -156,25 +155,25 @@
           Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex:1;flex-wrap:wrap;justify-content:flex-end;">
-          <select class="ri-select" id="filterTipo" onchange="riOnTipoChange()"><option value="">Todas las terapias</option></select>
-          <select class="ri-select" id="filterSubtipo" onchange="riOnSubtipoChange()" style="display:none;"><option value="">Todos los tipos</option></select>
-          <select class="ri-select" id="filterEnfoque" onchange="riApplyFilters()"><option value="">Todos los enfoques</option></select>
+          <select class="ri-select" id="filterTipo"><option value="">Todas las terapias</option></select>
+          <select class="ri-select" id="filterSubtipo" style="display:none;"><option value="">Todos los tipos</option></select>
+          <select class="ri-select" id="filterEnfoque"><option value="">Todos los enfoques</option></select>
           <div class="ri-mod-group">
-            <button class="ri-mod-btn active" id="ri-mod-all"        onclick="riSetModalidad('')">Todas</button>
-            <button class="ri-mod-btn"        id="ri-mod-online"     onclick="riSetModalidad('Online')">Online</button>
-            <button class="ri-mod-btn"        id="ri-mod-presencial" onclick="riSetModalidad('Presencial')">Presencial</button>
+            <button class="ri-mod-btn active" id="ri-mod-all" data-mod="">Todas</button>
+            <button class="ri-mod-btn"        id="ri-mod-online" data-mod="Online">Online</button>
+            <button class="ri-mod-btn"        id="ri-mod-presencial" data-mod="Presencial">Presencial</button>
           </div>
-          <input type="text" class="ri-zona-input" id="filterZona" placeholder="🔍 Zona o CP..." oninput="riApplyFilters()">
+          <input type="text" class="ri-zona-input" id="filterZona" placeholder="🔍 Zona o CP...">
           <span id="ri-counter" style="font-size:.72rem;color:#C2B07E;white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:'DM Sans',sans-serif;">—</span>
         </div>
       </div>
       <div style="padding:6px 22px 8px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:6px;overflow-x:auto;">
         <span style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:'DM Sans',sans-serif;">Atiende</span>
-        <button class="ri-chip" onclick="riToggleCaso('Individual',this)">Individual</button>
-        <button class="ri-chip" onclick="riToggleCaso('Pareja',this)">Pareja</button>
-        <button class="ri-chip" onclick="riToggleCaso('Familia',this)">Familia</button>
-        <button class="ri-chip" onclick="riToggleCaso('Adolescentes',this)">Adolescentes</button>
-        <button class="ri-chip" onclick="riToggleCaso('Niños',this)">Niños</button>
+        <button class="ri-chip" data-caso="Individual">Individual</button>
+        <button class="ri-chip" data-caso="Pareja">Pareja</button>
+        <button class="ri-chip" data-caso="Familia">Familia</button>
+        <button class="ri-chip" data-caso="Adolescentes">Adolescentes</button>
+        <button class="ri-chip" data-caso="Niños">Niños</button>
       </div>
     </div>
 
@@ -367,7 +366,7 @@ class Component extends DCLogic {
     };
     window.riToggleCaso = (caso, el) => {
       activeCasos.has(caso) ? activeCasos.delete(caso) : activeCasos.add(caso);
-      el.classList.toggle('active');
+      if (el) el.classList.toggle('active');
       riApplyFilters();
     };
     window.riOnTipoChange = () => {
@@ -462,6 +461,27 @@ class Component extends DCLogic {
         sel.appendChild(opt);
       });
     }
+
+    // ── BIND EVENT LISTENERS ────────────────────────────────────────────────
+    const _fTipo = document.getElementById('filterTipo');
+    const _fSubtipo = document.getElementById('filterSubtipo');
+    const _fEnfoque = document.getElementById('filterEnfoque');
+    const _fZona = document.getElementById('filterZona');
+    if (_fTipo) _fTipo.addEventListener('change', () => riOnTipoChange());
+    if (_fSubtipo) _fSubtipo.addEventListener('change', () => riOnSubtipoChange());
+    if (_fEnfoque) _fEnfoque.addEventListener('change', () => riApplyFilters());
+    if (_fZona) _fZona.addEventListener('input', () => riApplyFilters());
+    document.querySelectorAll('[data-mod]').forEach(btn => {
+      btn.addEventListener('click', () => riSetModalidad(btn.getAttribute('data-mod')));
+    });
+    document.querySelectorAll('[data-caso]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const caso = btn.getAttribute('data-caso');
+        activeCasos.has(caso) ? activeCasos.delete(caso) : activeCasos.add(caso);
+        btn.classList.toggle('active');
+        riApplyFilters();
+      });
+    });
 
     // ── POPULATE SELECTS ─────────────────────────────────────────────────────
     const tipos = [...new Set(TERAPEUTAS.map(t=>t.tipo).filter(Boolean))];
