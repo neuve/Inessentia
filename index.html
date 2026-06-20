@@ -374,16 +374,20 @@ class Component extends DCLogic {
     if (this._podcastForm) {
       this._podcastSubmit = (e) => {
         e.preventDefault();
+        if (!this._podcastForm.checkValidity()) { this._podcastForm.reportValidity(); return; }
         const btn = this._podcastForm.querySelector('button[type="submit"]');
         if (btn) { btn.disabled = true; btn.textContent = 'Enviando...'; }
         fetch('https://formspree.io/f/mzdqnrka', {
           method: 'POST',
           body: new FormData(this._podcastForm),
           headers: { 'Accept': 'application/json' }
-        }).finally(() => {
+        }).then(r => {
+          if (!r.ok) throw new Error();
           this._podcastForm.style.display = 'none';
           const thanks = document.getElementById('podcast-thanks');
           if (thanks) { thanks.style.display = 'block'; }
+        }).catch(() => {
+          if (btn) { btn.disabled = false; btn.textContent = 'Recibir el podcast →'; }
         });
       };
       this._podcastForm.addEventListener('submit', this._podcastSubmit);
