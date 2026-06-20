@@ -47,7 +47,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
 <div id="top" style="--purple:#46276E;--purple-d:#3C1F5E;--wine:#8E2B5D;--cream:#EAE5D9;--cream-2:#F4F0E6;--sand:#C2B07E;--sand-d:#A8945C;--ink:#262321;--warm:#FCFBF6;font-family:'Mulish',sans-serif;color:var(--ink);background:var(--warm);overflow-x:hidden;">
 
   <!-- ============ NAVBAR ============ -->
-  <header id="site-nav" style="position:sticky;top:0;z-index:40;background:var(--cream);transition:box-shadow .35s ease,background .35s ease,transform .38s cubic-bezier(.22,1,.36,1);">
+  <header id="site-nav" style="position:fixed;top:0;left:0;right:0;width:100%;z-index:40;background:var(--cream);transition:box-shadow .35s ease,background .35s ease;">
     <div style="max-width:1200px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <a href="#top" style="display:flex;align-items:center;text-decoration:none;flex:none;">
         <img src="uploads/Logo-Patricio-Ruiz-Main-removebg-preview.png" alt="Patricio Ruiz" style="height:56px;width:auto;">
@@ -67,6 +67,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
       <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="flex:none;white-space:nowrap;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.07em;text-transform:uppercase;padding:13px 26px;border-radius:999px;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease,background .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 10px 24px rgba(70,39,110,.28);background:var(--purple-d);">Agendar cita</a>
     </div>
   </header>
+  <div style="height:64px;flex:none;"></div>
   <div id="mob-menu" >
     <button id="mob-close" >×</button>
         <a href="#top" >Inicio</a>
@@ -257,7 +258,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;">
 
-        <a data-reveal href="Blog: ¿Qué esperar de la terapia?.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+        <a data-reveal href="blog-que-esperar-de-la-terapia.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
           <div style="height:184px;overflow:hidden;"><img src="uploads/Esperar.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Qué esperar de la terapia?</h3>
@@ -266,7 +267,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
           </div>
         </a>
 
-        <a data-reveal href="Blog-Primera-Cita.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+        <a data-reveal href="blog-primera-cita.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .08s,transform .8s cubic-bezier(.22,1,.36,1) .08s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
           <div style="height:184px;overflow:hidden;"><img src="uploads/primera cita.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cómo suele ser la primera cita?</h3>
@@ -275,7 +276,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
           </div>
         </a>
 
-        <a data-reveal href="Blog-Cuando-Empezar.dc.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
+        <a data-reveal href="blog-cuando-es-buen-momento-para-iniciar.html" style="opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.22,1,.36,1) .16s,transform .8s cubic-bezier(.22,1,.36,1) .16s;text-decoration:none;color:inherit;background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease;" style-hover="transform:translateY(-6px);box-shadow:0 22px 48px rgba(70,39,110,.12);">
           <div style="height:184px;overflow:hidden;"><img src="uploads/buen momento.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cuándo es buen momento para empezar terapia?</h3>
@@ -348,11 +349,6 @@ class Component extends DCLogic {
       nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
       nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
       if (window.innerWidth <= 820) { _lastY = y; return; }
-      if (y > _lastY + 8 && y > 80) {
-        nav.style.transform = 'translateY(-100%)';
-      } else if (y < _lastY - 4 || y <= 80) {
-        nav.style.transform = 'translateY(0)';
-      }
       _lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
