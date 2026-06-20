@@ -146,7 +146,7 @@ html,body{margin:0;padding:0;background:#FCFBF6}
   <section style="background:var(--purple);padding:clamp(56px,8vw,96px) 32px;text-align:center;">
     <div style="max-width:600px;margin:0 auto;">
       <p style="margin:0 0 12px;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">¿Tienes preguntas?</p>
-      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 22px;text-wrap:balance;">Platicemos sobre qué aproximación puede ayudarte</h2>
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 22px;text-wrap:balance;">Podemos explorarlas en una primera entrevista</h2>
       <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--purple);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:16px 32px;border-radius:999px;text-decoration:none;" style-hover="transform:translateY(-2px);box-shadow:0 12px 28px rgba(0,0,0,.2);">Agenda tu primera cita</a>
     </div>
   </section>
@@ -171,23 +171,23 @@ class Component extends DCLogic {
     this._onScroll = () => {
       if (!nav) return;
       const y = window.scrollY;
-      nav.style.boxShadow = y > 12 ? '0 6px 26px rgba(40,20,60,.10)' : 'none';
-      nav.style.background = y > 12 ? 'rgba(234,229,217,.96)' : '#EAE5D9';
-      if (y < 60) { nav.style.transform = 'translateY(0)'; _downStart = null; }
-      else if (y > _lastY) { if (_downStart === null) _downStart = y; if (y - _downStart > 100) nav.style.transform = 'translateY(-110%)'; }
-      else { _downStart = null; nav.style.transform = 'translateY(0)'; }
-      _lastY = y;
+      nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
+      nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
+      nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
+    document.addEventListener('scroll', this._onScroll, { passive: true });
     const ham = document.getElementById('nav-ham');
     const mobMenu = document.getElementById('mob-menu');
     const mobClose = document.getElementById('mob-close');
-    if (ham && mobMenu) { this._hamClick = () => mobMenu.classList.toggle('open'); ham.addEventListener('click', this._hamClick); }
-    if (mobClose && mobMenu) { this._closeClick = () => mobMenu.classList.remove('open'); mobClose.addEventListener('click', this._closeClick); }
+    const openMobMenu = () => { if (mobMenu) mobMenu.style.display = 'flex'; };
+    const closeMobMenu = () => { if (mobMenu) mobMenu.style.display = 'none'; };
+    if (ham) { this._hamClick = openMobMenu; ham.addEventListener('click', this._hamClick); }
+    if (mobClose) { this._closeClick = closeMobMenu; mobClose.addEventListener('click', this._closeClick); }
     if (mobMenu) {
-      this._overlayClick = (e) => { if (e.target === mobMenu) mobMenu.classList.remove('open'); };
+      this._overlayClick = (e) => { if (e.target === mobMenu) closeMobMenu(); };
       mobMenu.addEventListener('click', this._overlayClick);
-      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobMenu.classList.remove('open')));
+      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobMenu));
     }
     this._io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='none'; this._io.unobserve(e.target); } });
@@ -203,7 +203,7 @@ class Component extends DCLogic {
     requestAnimationFrame(() => requestAnimationFrame(init));
   }
   componentWillUnmount() {
-    if (this._onScroll) window.removeEventListener('scroll', this._onScroll);
+    if (this._onScroll) { window.removeEventListener('scroll', this._onScroll); document.removeEventListener('scroll', this._onScroll); }
     if (this._io) this._io.disconnect();
     if (this._fallback) clearTimeout(this._fallback);
   }

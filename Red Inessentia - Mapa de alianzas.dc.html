@@ -111,12 +111,12 @@
       <a href="Home.dc.html" style="display:flex;align-items:center;text-decoration:none;flex:none;"><img src="uploads/Logo-Patricio-Ruiz-Main-removebg-preview.png" alt="Patricio Ruiz" style="height:52px;width:auto;"></a>
       <nav id="nav-links" style="display:flex;align-items:center;gap:28px;flex-wrap:wrap;">
         <a href="Home.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Inicio</a>
-        <a href="Sobre-Mi.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Sobre mí</a>
-        <a href="Individual.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Individual</a>
-        <a href="Pareja.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Pareja</a>
-        <a href="Familias.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Familias</a>
+        <a href="Sobre mi.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Sobre mí</a>
+        <a href="Terapia individual.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Individual</a>
+        <a href="Terapia de pareja.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Pareja</a>
+        <a href="Terapia familiar.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Familias</a>
         <a href="#" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);text-decoration:none;">Recursos</a>
-        <a href="Red-Inessentia.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);text-decoration:none;border-bottom:2px solid var(--wine);padding-bottom:2px;">Red Inessentia</a>
+        <a href="Red Inessentia - Mapa de alianzas.dc.html" style="font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);text-decoration:none;border-bottom:2px solid var(--wine);padding-bottom:2px;">Red Inessentia</a>
       </nav>
       <button id="nav-ham"  style="display:none;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;padding:6px;flex:none;">
         <svg width="26" height="20" viewBox="0 0 26 20" fill="none"><rect y="0" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="8.75" width="26" height="2.5" rx="1.25" fill="#46276E"></rect><rect y="17.5" width="26" height="2.5" rx="1.25" fill="#46276E"></rect></svg>
@@ -127,12 +127,12 @@
   <div id="mob-menu" >
     <button id="mob-close" >×</button>
         <a href="Home.dc.html" >Inicio</a>
-    <a href="Sobre-Mi.dc.html" >Sobre mí</a>
-    <a href="Individual.dc.html" >Individual</a>
-    <a href="Pareja.dc.html" >Pareja</a>
-    <a href="Familias.dc.html" >Familias</a>
-    <a href="#" >Recursos</a>
-    <a href="Red-Inessentia.dc.html" >Red Inessentia</a>
+    <a href="Sobre mi.dc.html" >Sobre mí</a>
+    <a href="Terapia individual.dc.html" >Individual</a>
+    <a href="Terapia de pareja.dc.html" >Pareja</a>
+    <a href="Terapia familiar.dc.html" >Familias</a>
+    <a href="Recursos.dc.html" >Recursos</a>
+    <a href="Red Inessentia - Mapa de alianzas.dc.html" >Red Inessentia</a>
     <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta" >Agendar cita</a>
   </div>
 
@@ -197,6 +197,26 @@ class Component extends DCLogic {
   componentDidMount() {
     const waitLeaflet = (cb) => { if (typeof L !== 'undefined') cb(); else setTimeout(() => waitLeaflet(cb), 60); };
     waitLeaflet(() => this._initMap());
+
+    // ── HAM MENU ──
+    const ham = document.getElementById('nav-ham');
+    const mobMenu = document.getElementById('mob-menu');
+    const mobClose = document.getElementById('mob-close');
+    const openMobMenu = () => { if (mobMenu) mobMenu.style.display = 'flex'; };
+    const closeMobMenu = () => { if (mobMenu) mobMenu.style.display = 'none'; };
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const n = document.getElementById('site-nav') || document.querySelector('header');
+      if (!n) return;
+      n.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
+      n.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
+    }, { passive: true });
+    if (ham) ham.addEventListener('click', openMobMenu);
+    if (mobClose) mobClose.addEventListener('click', closeMobMenu);
+    if (mobMenu) {
+      mobMenu.addEventListener('click', (e) => { if (e.target === mobMenu) closeMobMenu(); });
+      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobMenu));
+    }
   }
 
   _initMap() {

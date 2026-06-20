@@ -123,26 +123,26 @@ class Component extends DCLogic {
     this._onScroll = () => {
       if (!nav) return;
       const y = window.scrollY;
-      nav.style.boxShadow = y > 12 ? '0 6px 26px rgba(40,20,60,.10)' : 'none';
-      nav.style.background = y > 12 ? 'rgba(234,229,217,.96)' : '#EAE5D9';
-      if (y < 60) { nav.style.transform = 'translateY(0)'; _downStart = null; }
-      else if (y > _lastY) { if (_downStart === null) _downStart = y; if (y - _downStart > NAV_HIDE_PX) nav.style.transform = 'translateY(-110%)'; }
-      else { _downStart = null; nav.style.transform = 'translateY(0)'; }
-      _lastY = y;
+      nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
+      nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
+      nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
+    document.addEventListener('scroll', this._onScroll, { passive: true });
     const ham = document.getElementById('nav-ham');
     const mobMenu = document.getElementById('mob-menu');
     const mobClose = document.getElementById('mob-close');
-    if (ham && mobMenu) { this._hamClick = () => mobMenu.classList.toggle('open'); ham.addEventListener('click', this._hamClick); }
-    if (mobClose && mobMenu) { this._closeClick = () => mobMenu.classList.remove('open'); mobClose.addEventListener('click', this._closeClick); }
+    const openMobMenu = () => { if (mobMenu) mobMenu.style.display = 'flex'; };
+    const closeMobMenu = () => { if (mobMenu) mobMenu.style.display = 'none'; };
+    if (ham) { this._hamClick = openMobMenu; ham.addEventListener('click', this._hamClick); }
+    if (mobClose) { this._closeClick = closeMobMenu; mobClose.addEventListener('click', this._closeClick); }
     if (mobMenu) {
-      this._overlayClick = (e) => { if (e.target === mobMenu) mobMenu.classList.remove('open'); };
+      this._overlayClick = (e) => { if (e.target === mobMenu) closeMobMenu(); };
       mobMenu.addEventListener('click', this._overlayClick);
-      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobMenu.classList.remove('open')));
+      mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobMenu));
     }
   }
-  componentWillUnmount() { if (this._onScroll) window.removeEventListener('scroll', this._onScroll); }
+  componentWillUnmount() { if (this._onScroll) { window.removeEventListener('scroll', this._onScroll); document.removeEventListener('scroll', this._onScroll); } }
   renderVals() { return {}; }
 }
 </script>
