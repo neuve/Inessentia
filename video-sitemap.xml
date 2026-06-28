@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://inessentia.mx/terapia-individual.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/9RsAylJtOHM/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>¿Qué es la Experiencia Somática (SE)?</video:title>
+      <video:description>Modelo terapéutico con consciencia de trauma que pone atención a las respuestas del sistema nervioso.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=9RsAylJtOHM</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>¿Qué son los Sistemas Familiares Internos (IFS)?</video:title>
+      <video:description>Trabaja con las distintas partes que coexisten dentro de ti para integrar voces internas en conflicto.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=DdZZ7sTX840</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/4ZDjAhuo_6Y/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>¿Qué es el Tapping (EFT)?</video:title>
+      <video:description>Combina estímulos suaves en puntos del cuerpo con la palabra para destrabar emociones atoradas.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=4ZDjAhuo_6Y</video:content_loc>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://inessentia.mx/blog-tipos-de-terapia.html</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/2lZfFB-dcbA/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Experiencia Somática — explicación completa</video:title>
+      <video:description>Modelo terapéutico con consciencia de trauma que pone atención a las respuestas del sistema nervioso.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=2lZfFB-dcbA</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>¿Qué son los Sistemas Familiares Internos (IFS)?</video:title>
+      <video:description>Trabaja con las distintas partes que coexisten dentro de ti para integrar voces internas en conflicto.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=DdZZ7sTX840</video:content_loc>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/4ZDjAhuo_6Y/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>¿Qué es el Tapping (EFT)?</video:title>
+      <video:description>Combina estímulos suaves en puntos del cuerpo con la palabra para destrabar emociones atoradas.</video:description>
+      <video:content_loc>https://www.youtube.com/watch?v=4ZDjAhuo_6Y</video:content_loc>
+    </video:video>
+  </url>
+</urlset>

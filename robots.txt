@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://inessentia.mx/sitemap.xml
+Sitemap: https://inessentia.mx/video-sitemap.xml
