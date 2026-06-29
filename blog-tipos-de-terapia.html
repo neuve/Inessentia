@@ -228,6 +228,25 @@ html,body{margin:0;padding:0;background:#FCFBF6}
     </div>
   </section>
 
+
+  <!-- Disqus -->
+  <section style="max-width:780px;margin:48px auto 0;padding:0 24px;">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_config = function () {
+      this.page.url = document.querySelector("link[rel=canonical]").href;
+      this.page.identifier = location.pathname;
+    };
+    (function() {
+    var d = document, s = d.createElement("script");
+    s.src = "https://inessentia.disqus.com/embed.js";
+    s.setAttribute("data-timestamp", +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </section>
+
   </main>
   <footer style="background:var(--purple-d);color:#fff;padding:clamp(48px,7vw,80px) 32px clamp(28px,3vw,40px);">
     <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;">
