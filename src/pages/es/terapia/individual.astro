@@ -1,0 +1,206 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../i18n/utils';
+
+const locale = 'es';
+const i = t(locale);
+
+const schema = [
+  {"@context":"https://schema.org","@type":"VideoObject","name":"¿Qué es la Experiencia Somática (SE)?","description":"Modelo terapéutico con consciencia de trauma que pone atención a las respuestas del sistema nervioso.","thumbnailUrl":"https://img.youtube.com/vi/9RsAylJtOHM/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/9RsAylJtOHM","embedUrl":"https://www.youtube.com/embed/9RsAylJtOHM"},
+  {"@context":"https://schema.org","@type":"VideoObject","name":"¿Qué son los Sistemas Familiares Internos (IFS)?","description":"Trabaja con las distintas partes que coexisten dentro de ti para integrar voces internas en conflicto.","thumbnailUrl":"https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/DdZZ7sTX840","embedUrl":"https://www.youtube.com/embed/DdZZ7sTX840"},
+  {"@context":"https://schema.org","@type":"VideoObject","name":"¿Qué es el Tapping (EFT)?","description":"Combina estímulos suaves en puntos del cuerpo con la palabra para destrabar emociones atoradas.","thumbnailUrl":"https://img.youtube.com/vi/4ZDjAhuo_6Y/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/4ZDjAhuo_6Y","embedUrl":"https://www.youtube.com/embed/4ZDjAhuo_6Y"}
+];
+---
+
+<Base
+  title="Terapia individual con enfoque psicosomático | CDMX y en línea"
+  description="Terapia individual para ansiedad, estrés, duelo y autorregulación, con un enfoque psicosomático que integra cuerpo, emoción y mente. Sesiones en CDMX y en línea."
+  altPath="/therapy/individual/"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F0EBE0 50%,var(--warm) 100%);padding:clamp(64px,9vw,120px) 32px clamp(56px,8vw,108px);text-align:center;">
+    <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:560px;height:560px;opacity:.4;pointer-events:none;background:repeating-conic-gradient(#dccfb6 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
+    <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
+      <p style="margin:0 0 18px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Psicoterapia individual</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;">Terapia individual con enfoque psicosomático.</h1>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.6;color:#3f3a36;margin:0 auto 10px;max-width:52ch;">Procesos para adolescentes y adultos.</p>
+      <p style="font-size:15px;color:#8a837a;margin:0 auto 34px;">Presencial en Colonia Nápoles · Online</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;">
+        <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn-primary">Agenda tu primera cita</a>
+        <a href="#primera-sesion" class="link-underline">¿Cómo es la primera sesión?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ¿ES PARA TI? -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p data-reveal class="label-section">Indicaciones</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:40px;">¿Esta terapia es para ti?</h2>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:0 0 20px;">Es para ti si…</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Vives con ansiedad, episodios de pánico, o tu cuerpo está demasiado alerta.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Te sientes deprimid@, atraviesas un duelo o un cambio que no termina de acomodarse.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Cargas con dolor crónico, insomnio, o síntomas físicos sin causa médica clara.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Quieres conocerte mejor, salir del piloto automático o tomar decisiones más alineadas.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Eres adolescente y necesitas un espacio propio para procesar emociones intensas.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Sabes o intuyes que tú tienes el poder de cambiar tu vida.</p></div>
+          </div>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--wine);margin:0 0 20px;">No es para ti si…</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Tienes una emergencia o crisis que requiere atención médica o psiquiátrica primero. En ese caso te oriento al recurso adecuado.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">Buscas recetas de vida ofrecidas por el terapeuta. Aquí partimos de que tú tienes todo lo que necesitas para salir adelante.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;">
+    <div style="max-width:900px;margin:0 auto;">
+      <p data-reveal class="label-section">El proceso</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Ritmo, profundidad y método</h2>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <p data-reveal class="body-text" style="margin:0;">En la primera consulta hacemos una entrevista a manera de historia clínica. Esto me permite indagar en las diferentes aristas que conforman tu experiencia; a ti te permite conocer mi ritmo y mi estilo, y a mí me da información sobre tu perspectiva del mundo.</p>
+        <p data-reveal class="body-text" style="margin:0;">Así vamos conformando un espacio seguro para ir abrazando, deshebrando y procesando tu motivo de consulta y encontrando sus raíces emocionales. En todo momento rastreo la respuesta fisiológica de tu cuerpo, que me señala dónde están las memorias inconscientes que conforman los patrones y creencias que poco a poco iremos deconstruyendo.</p>
+        <p data-reveal class="body-text" style="margin:0;">Lo más común son sesiones quincenales de 50 minutos a una hora. Podemos trabajar indistintamente en línea o presencial en mi oficina de la Colonia Nápoles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 TRANSFORMACIONES -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal class="label-section">Evolución</p>
+        <h2 data-reveal class="heading-section">Qué cambia conforme avanza el proceso</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;">
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">1</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Detenerte y escucharte</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Aprendes a apoyarte en un ritmo más pausado que facilita la escucha interna. Cada vez más fácilmente podrás responder: ¿qué siento en mi cuerpo? La base es siempre la estabilización desde la percepción de seguridad en el momento presente.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">2</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">De la urgencia a la estrategia</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Cada vez llegas más pronto a la sensación de estabilidad. Iremos soltando herramientas para reducir la prisa y la ansiedad y reconociendo los patrones que sostienen tu dolor o confusión. La urgencia da paso a la curiosidad.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">3</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">El autoconocimiento como transformación</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Los problemas se vuelven la puerta a tu autoconocimiento. Reconoces tus fortalezas internas y gestionas más eficientemente el estrés. Tu tolerancia a la frustración aumenta y también tu confianza y conexión con la vida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIMERA SESIÓN + COSTO -->
+  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 32px;">
+    <div class="two-col" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+      <div>
+        <p data-reveal class="label-section">Tu primera sesión</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Paso a paso</h2>
+        <div data-reveal style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">1</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">Me escribes por WhatsApp. Mi asistente aclara cualquier duda sobre agenda y pagos. Recibirás confirmación 48 h antes.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">2</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">La primera sesión es una entrevista mutua: tú me haces las preguntas que necesites y yo explico mi manera de trabajar. Definimos tus objetivos terapéuticos.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">3</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">Las primeras 3 a 6 sesiones son un periodo de ajuste: calibramos comodidad y profundidad.</p>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="flex:none;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">4</span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">Si decidimos seguir, agendamos por periodos bimestrales con objetivos claros y revisamos constantemente el avance.</p>
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;gap:24px;">
+        <div style="background:var(--purple);border-radius:22px;padding:36px 32px;color:#fff;text-align:center;">
+          <p style="margin:0 0 6px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);">Costo por sesión</p>
+          <p style="font-family:'Zilla Slab',serif;font-weight:700;font-size:54px;color:#fff;margin:0 0 6px;line-height:1;">$1,700</p>
+          <p style="margin:0 0 20px;font-size:14px;color:rgba(255,255,255,.75);">MXN · Sesión individual</p>
+          <p style="margin:0;font-size:14px;color:rgba(255,255,255,.82);line-height:1.6;">Pago anticipado por transferencia electrónica, o en efectivo el día de tu sesión.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉCNICAS -->
+  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 32px;background:var(--purple);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Aproximaciones</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;text-wrap:balance;">Cómo trabajo en sesión</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Experiencia Somática (SE)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Modelo terapéutico con consciencia de trauma. Pone atención a las respuestas del sistema nervioso para acompañarte a regular lo que tu cuerpo guarda, respetando el ritmo que tu experiencia física nos va marcando. <a href="https://youtu.be/9RsAylJtOHM?si=s_mhqCOPd4SzzqLO" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Ver video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Sistemas Familiares Internos (IFS)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Trabaja con las distintas "partes" que coexisten dentro de ti. Ayuda a integrar voces internas en conflicto sin que ninguna quede silenciada. <a href="https://youtu.be/DdZZ7sTX840?si=b_vzDwLiZy7Ggwdw" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Ver video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Tapping (EFT)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Combina estímulos suaves en puntos específicos del cuerpo con la palabra. Útil para destrabar emociones "atoradas". Integra acupuntura con terapia de exposición y programación neurolingüística. <a href="https://youtu.be/4ZDjAhuo_6Y?si=L5pS-_N098hjvRP2" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Ver video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Core Energética</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Mira a la persona como integración de cuerpo, emociones, pensamientos e intenciones. Trabaja con el movimiento y la respiración para acceder a niveles profundos. Ofrece una mirada evolutiva y transpersonal. <a href="https://youtube.com/shorts/WUdo-ENIn7U?si=_F1f8UJgIIgjtRM7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Ver video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(36px,4vw,52px);">
+        <p data-reveal class="label-section">Experiencias</p>
+        <h2 data-reveal class="heading-section">Lo que dicen quienes han pasado por aquí</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px;">
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">Le recomendaría a cualquiera probar estas sesiones por acercarse a métodos menos tradicionales y más inclusivos, menos codependientes, más abiertos y diversos.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Anónima</p>
+        </div>
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">Aprendí a escuchar a mi cuerpo, a tomar en serio mis síntomas y a entrar a capas profundas de mi corporalidad. Ha sido un camino de aprender a vivir en mi propio cuerpo.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Renato Picard Álvarez</p>
+        </div>
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">I always recommend you to my friends. For people like me, who are overthinkers and have anxiety, someone like you is perfect.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Chiara V.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + CROSS-SELL -->
+  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 32px;text-align:center;">
+    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">¿Listo para agendar tu primera sesión?</h2>
+      <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn-white">Agenda tu primera cita</a>
+      <p style="margin:32px 0 10px;color:rgba(255,255,255,.7);font-size:15px;">¿Estás pensando en un proceso en pareja?</p>
+      <a href="/es/terapia/pareja/" style="color:var(--sand);font-weight:700;font-size:15px;text-decoration:none;border-bottom:1px solid var(--sand);padding-bottom:2px;">Conoce mi acompañamiento para parejas →</a>
+    </div>
+  </section>
+
+</Base>

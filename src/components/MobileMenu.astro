@@ -1,0 +1,17 @@
+---
+import { t, navLinks, type Locale } from '../i18n/utils';
+
+interface Props { locale: Locale; }
+
+const { locale } = Astro.props;
+const i = t(locale);
+const links = navLinks(locale);
+---
+
+<div id="mob-menu">
+  <button id="mob-close" aria-label={i.nav.closeMenu}>×</button>
+  {links.map(link => (
+    <a href={link.href}>{link.label}</a>
+  ))}
+  <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="mob-cta">{i.nav.cta}</a>
+</div>

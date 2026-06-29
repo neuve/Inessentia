@@ -1,0 +1,97 @@
+{
+  "site": {
+    "title": "Psicoterapia en CDMX y en línea | Patricio Ruiz — enfoque psicosomático",
+    "description": "Terapia individual, de pareja y familiar con enfoque psicosomático y sistémico en la Ciudad de México y en línea. Agenda tu primera cita con Patricio Ruiz Abrín."
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "individual": "Individual",
+    "couples": "Pareja",
+    "family": "Familias",
+    "resources": "Recursos",
+    "network": "Red terapéutica",
+    "cta": "Agendar cita",
+    "openMenu": "Abrir menú de navegación",
+    "closeMenu": "Cerrar menú"
+  },
+  "hero": {
+    "label": "Psicoterapia · CDMX y en línea",
+    "title": "Acompañamiento terapéutico con enfoque relacional y psicosomático.",
+    "subtitle": "Procesos terapéuticos individuales, de pareja y de familia, además de talleres grupales. Presencial en Ciudad de México y online.",
+    "cta": "Agenda tu primera cita",
+    "secondary": "¿Cómo es una sesión?"
+  },
+  "approach": {
+    "label": "El enfoque",
+    "title": "¿Qué es la terapia con enfoque psicosomático y cómo te puede ayudar?",
+    "p1": "La terapia con enfoque psicosomático se apoya en la relación entre cuerpo, corazón y mente — y cómo lo que vivimos se queda registrado en nosotros físicamente. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.",
+    "p2": "Mi trabajo te ayuda a alcanzar más claridad de pensamiento, emoción y acción, a reducir tus niveles de ansiedad y a gestionar mejor el estrés que se acumula en tu cuerpo. Mi meta última es empoderarte para que no dependas de la terapia para mantenerte autorregulad@.",
+    "link": "Conoce las técnicas que utilizo"
+  },
+  "modalities": {
+    "label": "Cómo trabajo",
+    "title": "Un espacio para cada vínculo",
+    "individual": {
+      "title": "Terapia individual",
+      "desc": "Adolescentes y adultos. Procesos para reconectar con el cuerpo, escuchar y procesar tus emociones, y apoyarte a decidir y tomar acción desde un lugar más claro.",
+      "link": "Conoce más →"
+    },
+    "couples": {
+      "title": "Terapia de pareja",
+      "desc": "Ayudo a cada miembro a poner atención al vínculo desde la responsabilidad individual, mientras genera apertura para acoger la experiencia emocional —y el dolor— del otro. Un proceso que teje compasión con atención.",
+      "link": "Conoce más →"
+    },
+    "family": {
+      "title": "Terapia familiar",
+      "desc": "Acompaño a las familias para que sus miembros se escuchen de manera más equilibrada y, desde dentro del sistema, puedan surgir nuevas soluciones a los retos compartidos.",
+      "link": "Conoce más →"
+    }
+  },
+  "testimonials": {
+    "label": "Experiencias",
+    "title": "Personas reales, cambios reales",
+    "more": "Leer más experiencias"
+  },
+  "podcast": {
+    "label": "Regalo para ti",
+    "title": "Escucha mi podcast: de qué va la terapia psicosomática",
+    "desc": "Un episodio que explica a profundidad en qué se enfoca y cómo funciona mi acompañamiento terapéutico.",
+    "namePlaceholder": "¿Cómo te llamas?",
+    "nameLabel": "Tu nombre",
+    "emailLabel": "Tu correo electrónico",
+    "emailPlaceholder": "hola@ejemplo.com",
+    "submit": "Recibir el podcast →",
+    "submitting": "Enviando...",
+    "privacy": "Solo te contactaré con información sobre mi terapia. Puedes darte de baja en cualquier momento.",
+    "privacyLink": "Ver aviso de privacidad",
+    "thanksEmoji": "🎙",
+    "thanksTitle": "¡Listo! Aquí está el podcast",
+    "thanksCta": "▶ Escuchar ahora",
+    "thanksNote": "Te enviamos también el link a tu correo."
+  },
+  "blog": {
+    "label": "Recursos",
+    "title": "Antes de tu primera sesión",
+    "seeAll": "Ver todas las entradas",
+    "readMore": "Leer más →"
+  },
+  "cta": {
+    "title": "¿Listo para dar el primer paso?",
+    "desc": "Cada proceso es distinto y empieza con una conversación. Escríbeme tus inquietudes y revisamos si mi acompañamiento puede serte de ayuda.",
+    "button": "Agenda tu primera cita"
+  },
+  "footer": {
+    "contactTitle": "Contacto",
+    "contactDesc": "Si tienes alguna duda o quieres reservar una cita, contáctame. Escríbeme por correo o",
+    "contactWhatsapp": "mándame un mensaje de WhatsApp",
+    "privacy": "Aviso de privacidad",
+    "copyright": "Aviso sobre derechos de autor",
+    "emergency": "Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.",
+    "stockCredit": "© Adobe Stock"
+  },
+  "langToggle": "EN",
+  "langToggleTitle": "Switch to English",
+  "whatsappTitle": "Escríbeme por WhatsApp",
+  "comments": "Comentarios"
+}

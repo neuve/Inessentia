@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 | Inessentia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&family=Zilla+Slab:wght@500;600&display=swap" rel="stylesheet">
+</head>
+<body style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:32px;">
+  <div style="max-width:520px;">
+    <div style="font-size:120px;line-height:1;margin-bottom:16px;opacity:.15;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);">404</div>
+    <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(26px,4vw,38px);line-height:1.15;margin:0 0 18px;">Oops, parece que nos disociamos de algo por aquí.</h1>
+    <p style="font-size:17px;line-height:1.65;color:#4a443f;margin:0 0 32px;">La página que buscas no existe, se mudó, o simplemente necesita un momento a solas.</p>
+    <a href="/es/" class="btn-primary">Volver a casa</a>
+  </div>
+
+  <script is:inline>
+    // Detect language from referrer or browser
+    var lang = (navigator.language || '').slice(0, 2);
+    if (lang === 'en') {
+      document.querySelector('h1').textContent = "Oops, looks like we dissociated from something here.";
+      document.querySelector('p').textContent = "The page you're looking for doesn't exist, moved away, or just needs a moment alone.";
+      var btn = document.querySelector('.btn-primary');
+      btn.textContent = 'Go back home';
+      btn.href = '/en/';
+      document.documentElement.lang = 'en';
+    }
+  </script>
+</body>
+</html>

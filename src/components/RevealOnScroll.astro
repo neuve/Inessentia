@@ -1,0 +1,36 @@
+<script is:inline>
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+
+  function init() {
+    var els = document.querySelectorAll('[data-reveal]');
+    var vh = window.innerHeight || 800;
+    els.forEach(function(el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.95) { el.style.opacity = '1'; el.style.transform = 'none'; }
+      else { io.observe(el); }
+    });
+    setTimeout(function() {
+      document.querySelectorAll('[data-reveal]').forEach(function(el) {
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+    }, 2600);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      requestAnimationFrame(function() { requestAnimationFrame(init); });
+    });
+  } else {
+    requestAnimationFrame(function() { requestAnimationFrame(init); });
+  }
+})();
+</script>

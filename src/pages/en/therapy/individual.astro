@@ -1,0 +1,206 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+
+const schema = [
+  {"@context":"https://schema.org","@type":"VideoObject","name":"What is Somatic Experiencing (SE)?","description":"A trauma-aware therapeutic model that pays attention to nervous system responses.","thumbnailUrl":"https://img.youtube.com/vi/9RsAylJtOHM/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/9RsAylJtOHM","embedUrl":"https://www.youtube.com/embed/9RsAylJtOHM"},
+  {"@context":"https://schema.org","@type":"VideoObject","name":"What is Internal Family Systems (IFS)?","description":"Works with the different parts that coexist within you to integrate conflicting inner voices.","thumbnailUrl":"https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/DdZZ7sTX840","embedUrl":"https://www.youtube.com/embed/DdZZ7sTX840"},
+  {"@context":"https://schema.org","@type":"VideoObject","name":"What is Tapping (EFT)?","description":"Combines gentle tapping on specific body points with verbal processing to release stuck emotions.","thumbnailUrl":"https://img.youtube.com/vi/4ZDjAhuo_6Y/hqdefault.jpg","uploadDate":"2024-01-01","contentUrl":"https://youtu.be/4ZDjAhuo_6Y","embedUrl":"https://www.youtube.com/embed/4ZDjAhuo_6Y"}
+];
+---
+
+<Base
+  title="Individual therapy with a psychosomatic approach | Mexico City & online"
+  description="Individual therapy for anxiety, stress, grief and self-regulation, with a psychosomatic approach that integrates body, emotion and mind. Sessions in Mexico City and online."
+  altPath="/terapia/individual/"
+  schema={schema}
+>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F0EBE0 50%,var(--warm) 100%);padding:clamp(64px,9vw,120px) 32px clamp(56px,8vw,108px);text-align:center;">
+    <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:560px;height:560px;opacity:.4;pointer-events:none;background:repeating-conic-gradient(#dccfb6 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
+    <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
+      <p style="margin:0 0 18px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Individual psychotherapy</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;">Individual therapy with a psychosomatic approach.</h1>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.6;color:#3f3a36;margin:0 auto 10px;max-width:52ch;">For adolescents and adults.</p>
+      <p style="font-size:15px;color:#8a837a;margin:0 auto 34px;">In-person in Colonia Napoles, Mexico City · Online</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;">
+        <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn-primary">Book your first session</a>
+        <a href="#primera-sesion" class="link-underline">What's the first session like?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IS THIS FOR YOU? -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p data-reveal class="label-section">Who it's for</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:40px;">Is this therapy right for you?</h2>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:0 0 20px;">It's for you if...</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You live with anxiety, panic episodes, or your body is constantly on high alert.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You feel depressed, are going through grief, or navigating a life change that hasn't quite settled.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You carry chronic pain, insomnia, or physical symptoms with no clear medical cause.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You want to know yourself better, break out of autopilot, or make more aligned decisions.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You're a teenager and need your own space to process intense emotions.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You know or sense that you have the power to change your life.</p></div>
+          </div>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--wine);margin:0 0 20px;">It's not for you if...</p>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You have an emergency or crisis that requires medical or psychiatric attention first. In that case, I'll guide you to the right resource.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You're looking for life prescriptions from the therapist. Here, we start from the belief that you have everything you need to move forward.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;">
+    <div style="max-width:900px;margin:0 auto;">
+      <p data-reveal class="label-section">The process</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Rhythm, depth and method</h2>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <p data-reveal class="body-text" style="margin:0;">In the first session, we conduct a clinical interview. This allows me to explore the different facets that make up your experience; it gives you a chance to get to know my pace and style, and gives me insight into your perspective of the world.</p>
+        <p data-reveal class="body-text" style="margin:0;">Together we build a safe space to embrace, unravel and process your reason for seeking therapy, finding its emotional roots. Throughout, I track your body's physiological responses, which point me to the unconscious memories that shape the patterns and beliefs we'll gradually deconstruct.</p>
+        <p data-reveal class="body-text" style="margin:0;">Sessions are typically biweekly, lasting 50 minutes to one hour. We can work interchangeably online or in person at my office in Colonia Napoles, Mexico City.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 TRANSFORMATIONS -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal class="label-section">Evolution</p>
+        <h2 data-reveal class="heading-section">What changes as the process unfolds</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;">
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">1</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Slowing down and listening</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">You learn to settle into a slower rhythm that makes inner listening possible. You'll be able to answer more easily: what do I feel in my body? The foundation is always stabilization through a sense of safety in the present moment.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">2</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">From urgency to strategy</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">You reach a feeling of stability more quickly. We'll develop tools to reduce the rush and anxiety, and we'll recognize the patterns that sustain your pain or confusion. Urgency gives way to curiosity.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">3</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Self-knowledge as transformation</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Problems become a doorway to self-knowledge. You recognize your inner strengths and manage stress more effectively. Your tolerance for frustration grows, and so does your confidence and connection with life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRST SESSION + COST -->
+  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 32px;">
+    <div class="two-col" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+      <div>
+        <p data-reveal class="label-section">Your first session</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Step by step</h2>
+        <div data-reveal style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">1</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">Send me a message on WhatsApp. My assistant will answer any questions about scheduling and payments. You'll receive a confirmation 48 hours before your session.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">2</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">The first session is a mutual interview: you ask any questions you need, and I explain how I work. Together we define your therapeutic goals.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">3</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">The first 3 to 6 sessions are an adjustment period: we calibrate comfort and depth.</p>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <div style="flex:none;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">4</span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">If we decide to continue, we schedule in two-month blocks with clear goals and constantly review progress.</p>
+          </div>
+        </div>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;gap:24px;">
+        <div style="background:var(--purple);border-radius:22px;padding:36px 32px;color:#fff;text-align:center;">
+          <p style="margin:0 0 6px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);">Cost per session</p>
+          <p style="font-family:'Zilla Slab',serif;font-weight:700;font-size:54px;color:#fff;margin:0 0 6px;line-height:1;">$98 USD</p>
+          <p style="margin:0 0 20px;font-size:14px;color:rgba(255,255,255,.75);">USD · Individual session</p>
+          <p style="margin:0;font-size:14px;color:rgba(255,255,255,.82);line-height:1.6;">Payment in advance by bank transfer, or in cash on the day of your session.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNIQUES -->
+  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 32px;background:var(--purple);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Approaches</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;text-wrap:balance;">How I work in session</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Somatic Experiencing (SE)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">A trauma-aware therapeutic model. It pays attention to your nervous system responses to help you regulate what your body holds, respecting the rhythm your physical experience sets for us. <a href="https://youtu.be/9RsAylJtOHM?si=s_mhqCOPd4SzzqLO" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Internal Family Systems (IFS)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Works with the different "parts" that coexist within you. It helps integrate conflicting inner voices without silencing any of them. <a href="https://youtu.be/DdZZ7sTX840?si=b_vzDwLiZy7Ggwdw" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Tapping (EFT)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Combines gentle tapping on specific body points with verbal processing. Useful for releasing "stuck" emotions. It integrates acupuncture with exposure therapy and neuro-linguistic programming. <a href="https://youtu.be/4ZDjAhuo_6Y?si=L5pS-_N098hjvRP2" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:32px 28px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:19px;margin:0 0 12px;">Core Energetics</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Views the person as an integration of body, emotions, thoughts and intentions. Works with movement and breath to access deeper layers. Offers an evolutionary and transpersonal perspective. <a href="https://youtube.com/shorts/WUdo-ENIn7U?si=_F1f8UJgIIgjtRM7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(36px,4vw,52px);">
+        <p data-reveal class="label-section">Testimonials</p>
+        <h2 data-reveal class="heading-section">What people say about working together</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px;">
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">I would recommend anyone to try these sessions for the less traditional, more inclusive approaches -- less codependent, more open and diverse.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Anonymous</p>
+        </div>
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">I learned to listen to my body, to take my symptoms seriously, and to reach deep layers of my physicality. It has been a journey of learning to live in my own body.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Renato Picard Alvarez</p>
+        </div>
+        <div data-reveal style="background:var(--cream-2);border-radius:20px;padding:32px;">
+          <div style="font-family:'Zilla Slab',serif;font-size:50px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 18px;">I always recommend you to my friends. For people like me, who are overthinkers and have anxiety, someone like you is perfect.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Chiara V.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + CROSS-SELL -->
+  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 32px;text-align:center;">
+    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
+      <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn-white">Book your first session</a>
+      <p style="margin:32px 0 10px;color:rgba(255,255,255,.7);font-size:15px;">Considering a couples process?</p>
+      <a href="/en/therapy/couples/" style="color:var(--sand);font-weight:700;font-size:15px;text-decoration:none;border-bottom:1px solid var(--sand);padding-bottom:2px;">Learn about my couples therapy approach →</a>
+    </div>
+  </section>
+
+</Base>

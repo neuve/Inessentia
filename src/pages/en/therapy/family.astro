@@ -1,0 +1,172 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t } from '../../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+---
+
+<Base
+  title="Systemic family therapy | Mexico City & online"
+  description="Family therapy with a systemic approach to improve communication and strengthen bonds at home. In-person sessions in Mexico City and online."
+  altPath="/terapia/familias/"
+>
+
+  <!-- HERO -->
+  <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F0EBE0 50%,var(--warm) 100%);padding:clamp(64px,9vw,120px) 32px clamp(56px,8vw,108px);text-align:center;">
+    <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:560px;height:560px;opacity:.38;pointer-events:none;background:repeating-conic-gradient(#dccfb6 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
+    <div data-reveal style="position:relative;max-width:780px;margin:0 auto;">
+      <p style="margin:0 0 18px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Family psychotherapy</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;">Systemic family therapy.</h1>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.6;color:#3f3a36;margin:0 auto 10px;max-width:54ch;">For families going through changes, crises or transitions who need a space to listen to each other and rebuild.</p>
+      <p style="font-size:15px;color:#8a837a;margin:0 auto 34px;">In-person in Colonia Napoles · Online</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;">
+        <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27d%20like%20to%20know%20more%20about%20family%20therapy.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn-primary">Book a first family session</a>
+        <a href="#primera-sesion" class="link-underline">What is the first session like?</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- IS THIS FOR YOUR FAMILY? -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <p data-reveal class="label-section">Indications</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:40px;">Is this therapy right for your family?</h2>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--purple);margin:0 0 20px;">It is for you if...</p>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">There is a recurring conflict between family members.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You are going through a difficult transition: separations, the arrival of a new member, migration or losses.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">A family member is in crisis -- anxiety, depression, risky behaviors -- and the family wants new ways to support them.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You want to support a teenage son or daughter while also better understanding your role as parents.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--purple);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">The couple wants to work as a parenting team, following up on couples therapy.</p></div>
+          </div>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:20px;padding:34px 32px;">
+          <p style="font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--wine);margin:0 0 20px;">It is not for you if...</p>
+          <div style="display:flex;flex-direction:column;gap:13px;">
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">There is active domestic violence of a structural nature. In those cases I can point you to the right resource.</p></div>
+            <div style="display:flex;gap:12px;"><span style="color:var(--wine);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p style="margin:0;font-size:15px;line-height:1.6;color:#3f3a36;">You are looking to replace psychiatric care. I can work in parallel from the family system perspective when appropriate.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;">
+    <div style="max-width:900px;margin:0 auto;">
+      <p data-reveal class="label-section">The process</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Rhythm, depth and method</h2>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <p data-reveal class="body-text" style="margin:0;">We work as a team and with the family as a system, not as isolated individuals. The focus of each session is on interactions: rather than individual narratives, we look at how you listen to each other, how you respond, what patterns repeat across generations and what beliefs drive these cycles.</p>
+        <p data-reveal class="body-text" style="margin:0;">We seek to understand how the system works and what is sustaining the pain, conflict or disconnection. From there we build a shared map: gradually we identify where the knots worth untangling are, and we open space for the family's own resources to emerge with new solutions.</p>
+        <p data-reveal class="body-text" style="margin:0;">Sessions take place in person at Inessentia (Col. Napoles) and at Instituto Crisol (Col. San Pedro de los Pinos), or by video call. We define the frequency based on the urgency and stage of the process.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 TRANSFORMATIONS -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+        <p data-reveal class="label-section">Evolution</p>
+        <h2 data-reveal class="heading-section">What changes as the process unfolds</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;">
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">1</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Conflict becomes information</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Crises stop being merely a source of exhaustion and begin to reveal what the system needs. We listen to what the conflict is pointing at and seek an integrative vision among all family members.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">2</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Everyone finds their place</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Systems in conflict have fixed roles: the one who always explodes, the one who always gives in, the one who becomes invisible. When the system can see its own interactional pattern, possibilities for change begin to emerge.</p>
+        </div>
+        <div data-reveal style="background:#fff;border-radius:22px;padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+          <span style="font-family:'Zilla Slab',serif;font-weight:700;font-size:48px;color:var(--cream);line-height:1;">3</span>
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:22px;margin:0;">Learning to repair</h3>
+          <p style="font-size:15px;line-height:1.7;color:#4a443f;margin:0;">Every family goes through moments of rupture. What sets a healthy system apart is not the absence of conflict -- it is the capacity to repair. That is what we build together.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRST SESSION + COST -->
+  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 32px;">
+    <div class="two-col" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+      <div>
+        <p data-reveal class="label-section">Your first session</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;">Step by step</h2>
+        <div data-reveal style="display:flex;flex-direction:column;gap:0;">
+          <div style="display:flex;gap:16px;padding-bottom:22px;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">1</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">One family member reaches out via WhatsApp. We clarify any questions about scheduling and payment. Confirmation 48 hours in advance.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">2</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">The first session is a diagnostic conversation: I listen to each person from their perspective and together we begin to build a clearer map of what is happening.</p>
+          </div>
+          <div style="display:flex;gap:16px;padding-bottom:22px;">
+            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">3</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">We define the rhythm, who participates in each session -- sometimes I work with subsystems: only the parents, only the children -- and the goals of the process.</p>
+          </div>
+          <div style="display:flex;gap:16px;">
+            <span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">4</span>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#3f3a36;padding-top:5px;">We constantly review progress in terms of the goals we agreed upon.</p>
+          </div>
+        </div>
+      </div>
+      <div data-reveal>
+        <div style="background:var(--purple);border-radius:22px;padding:36px 32px;color:#fff;text-align:center;margin-bottom:22px;">
+          <p style="margin:0 0 6px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);">Cost per session</p>
+          <p style="font-family:'Zilla Slab',serif;font-weight:700;font-size:54px;color:#fff;margin:0 0 6px;line-height:1;">$98 USD</p>
+          <p style="margin:0 0 18px;font-size:14px;color:rgba(255,255,255,.75);">USD · Family session</p>
+          <p style="margin:0;font-size:14px;color:rgba(255,255,255,.82);line-height:1.6;">Advance payment by bank transfer, or cash on the day of the session.</p>
+        </div>
+        <!-- Testimonial Paloma -->
+        <div style="background:var(--cream-2);border-radius:18px;padding:28px 28px;">
+          <p style="margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sand-d);">Testimonial</p>
+          <p style="font-size:16px;line-height:1.65;color:#34302c;margin:0 0 14px;">While our relationship was generally good, it now has a beautiful openness. Navigating the crises of adolescence with you guiding us has been one of the most beautiful processes we have ever experienced.</p>
+          <p style="margin:0;font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:16px;">Paloma Tovar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNIQUES -->
+  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--purple);">
+    <div style="max-width:1000px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:clamp(40px,5vw,56px);">
+        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Approaches</p>
+        <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;">How I work in session</h2>
+      </div>
+      <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:30px 26px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:18px;margin:0 0 12px;">Systemic Family Therapy</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">It observes the system's interactions -- how members communicate, how hierarchies form, what patterns repeat across generations -- to identify what is sustaining the conflict or disconnection. It integrates tools from various postmodern models.</p>
+        </div>
+        <div data-reveal style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:30px 26px;">
+          <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--sand);font-size:18px;margin:0 0 12px;">Somatic Experiencing (SE)</h3>
+          <p style="font-size:15px;line-height:1.65;color:rgba(255,255,255,.85);margin:0;">Each family member's bodily responses are part of the family dynamic. Tracking those responses in session allows us to work at layers that conversation alone cannot reach, facilitating self-regulation in high-tension processes.</p>
+        </div>
+      </div>
+      <div data-reveal style="margin-top:24px;background:rgba(255,255,255,.07);border-radius:16px;padding:22px 26px;text-align:center;">
+        <p style="font-size:14px;color:rgba(255,255,255,.75);margin:0;line-height:1.6;">Occasionally we hold sessions with my therapeutic supervision team at Instituto Crisol (San Pedro de los Pinos).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + CROSS-SELL -->
+  <section style="padding:clamp(64px,9vw,112px) 32px;background:var(--cream-2);text-align:center;">
+    <div data-reveal style="max-width:700px;margin:0 auto;">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(28px,4vw,48px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to take the first step?</h2>
+      <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27d%20like%20to%20know%20more%20about%20family%20therapy.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn-primary">Book a first family session</a>
+      <p style="margin:30px 0 10px;color:#6a6460;font-size:15px;">Thinking about a couples process?</p>
+      <a href="/en/therapy/couples/" style="color:var(--wine);font-weight:700;font-size:15px;text-decoration:none;border-bottom:2px solid currentColor;padding-bottom:2px;">Learn about my couples therapy →</a>
+    </div>
+  </section>
+
+</Base>

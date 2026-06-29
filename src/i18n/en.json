@@ -1,0 +1,97 @@
+{
+  "site": {
+    "title": "Psychotherapy in Mexico City & Online | Patricio Ruiz — psychosomatic approach",
+    "description": "Individual, couples, and family therapy with a psychosomatic and systemic approach in Mexico City and online. Book your first session with Patricio Ruiz Abrín."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "individual": "Individual",
+    "couples": "Couples",
+    "family": "Families",
+    "resources": "Resources",
+    "network": "Therapist Network",
+    "cta": "Book a Session",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "label": "Psychotherapy · Mexico City & Online",
+    "title": "Therapeutic support with a relational and psychosomatic approach.",
+    "subtitle": "Individual, couples, and family therapy sessions, plus group workshops. In-person in Mexico City and online.",
+    "cta": "Book Your First Session",
+    "secondary": "What's a session like?"
+  },
+  "approach": {
+    "label": "The approach",
+    "title": "What is psychosomatic therapy and how can it help you?",
+    "p1": "Psychosomatic therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
+    "p2": "My work helps you gain clarity of thought, emotion, and action, reduce anxiety levels, and better manage the stress that accumulates in your body. My ultimate goal is to empower you so that you don't depend on therapy to stay self-regulated.",
+    "link": "Learn about the techniques I use"
+  },
+  "modalities": {
+    "label": "How I work",
+    "title": "A space for every bond",
+    "individual": {
+      "title": "Individual Therapy",
+      "desc": "Teens and adults. Processes to reconnect with your body, listen to and process your emotions, and support you in deciding and taking action from a clearer place.",
+      "link": "Learn more →"
+    },
+    "couples": {
+      "title": "Couples Therapy",
+      "desc": "I help each partner pay attention to the bond from a place of individual responsibility, while opening up to embrace the emotional experience — and pain — of the other. A process that weaves compassion with attention.",
+      "link": "Learn more →"
+    },
+    "family": {
+      "title": "Family Therapy",
+      "desc": "I support families so their members can listen to each other more equitably, and from within the system, new solutions to shared challenges can emerge.",
+      "link": "Learn more →"
+    }
+  },
+  "testimonials": {
+    "label": "Experiences",
+    "title": "Real people, real changes",
+    "more": "Read more experiences"
+  },
+  "podcast": {
+    "label": "A gift for you",
+    "title": "Listen to my podcast: what psychosomatic therapy is all about",
+    "desc": "An episode that explains in depth what my therapeutic approach focuses on and how it works.",
+    "namePlaceholder": "What's your name?",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email",
+    "emailPlaceholder": "hello@example.com",
+    "submit": "Get the podcast →",
+    "submitting": "Sending...",
+    "privacy": "I'll only contact you with information about my therapy. You can unsubscribe at any time.",
+    "privacyLink": "See privacy policy",
+    "thanksEmoji": "🎙",
+    "thanksTitle": "Done! Here's the podcast",
+    "thanksCta": "▶ Listen now",
+    "thanksNote": "We also sent the link to your email."
+  },
+  "blog": {
+    "label": "Resources",
+    "title": "Before your first session",
+    "seeAll": "See all posts",
+    "readMore": "Read more →"
+  },
+  "cta": {
+    "title": "Ready to take the first step?",
+    "desc": "Every process is different and begins with a conversation. Share your concerns with me and we'll see if my support can be helpful.",
+    "button": "Book Your First Session"
+  },
+  "footer": {
+    "contactTitle": "Contact",
+    "contactDesc": "If you have any questions or want to book a session, get in touch. Email me or",
+    "contactWhatsapp": "send me a WhatsApp message",
+    "privacy": "Privacy Policy",
+    "copyright": "Copyright Notice",
+    "emergency": "If you have an emergency or your life is in danger, call 911 or your local emergency line.",
+    "stockCredit": "© Adobe Stock"
+  },
+  "langToggle": "ES",
+  "langToggleTitle": "Cambiar a español",
+  "whatsappTitle": "Message me on WhatsApp",
+  "comments": "Comments"
+}

@@ -1,0 +1,226 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'es';
+const i = t(locale);
+---
+
+<Base
+  title="Red Inessentia — Directorio de terapeutas somáticos, psicoterapeutas y terapia física en Latinoamérica"
+  description="Red Inessentia es un directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Encuentra profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendados por Patricio Ruiz."
+  altPath="/therapist-network/"
+>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    .ri-select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 28px 5px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C2B07E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;background-size:10px;transition:border-color .15s}
+    .ri-select option{background:#46276E;color:#fff}
+    .ri-select:focus{border-color:#C2B07E}
+    .ri-mod-group{display:flex;border:1px solid rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
+    .ri-mod-btn{background:transparent;border:none;color:rgba(255,255,255,.5);padding:5px 11px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .ri-mod-btn+.ri-mod-btn{border-left:1px solid rgba(255,255,255,.18)}
+    .ri-mod-btn.active{background:#C2B07E;color:#3C1F5E;font-weight:600}
+    .ri-chip{font-family:'DM Sans',sans-serif;font-size:.72rem;padding:3px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
+    .ri-chip:hover{border-color:#C2B07E;color:#fff}
+    .ri-chip.active{background:#8E2B5D;border-color:#8E2B5D;color:#fff;font-weight:600}
+    .ri-zona-input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.78rem;outline:none;width:140px;transition:border-color .15s}
+    .ri-zona-input::placeholder{color:rgba(255,255,255,.35)}
+    .ri-zona-input:focus{border-color:#C2B07E}
+    .ri-list-container{flex:1;overflow-y:auto;padding:8px 0}
+    .ri-list-container::-webkit-scrollbar{width:4px}
+    .ri-list-container::-webkit-scrollbar-track{background:transparent}
+    .ri-list-container::-webkit-scrollbar-thumb{background:#C2B07E55;border-radius:2px}
+    .therapist-item{padding:12px 20px;border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer;transition:background .15s;border-left:3px solid transparent}
+    .therapist-item:hover{background:#FAF6F0}
+    .therapist-item.active{background:#FFF5FA;border-left-color:#8E2B5D}
+    .therapist-name{font-weight:600;font-size:.85rem;color:#262321;margin-bottom:3px;font-family:'DM Sans',sans-serif}
+    .therapist-location{font-size:.72rem;color:#8B8378;margin-bottom:5px;font-family:'DM Sans',sans-serif}
+    .therapist-tags{display:flex;gap:4px;flex-wrap:wrap}
+    .tag{font-size:.6rem;padding:2px 7px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-family:'DM Sans',sans-serif}
+    .tag-online{background:#E8F0FB;color:#2255AA}
+    .tag-presencial{background:#F8F0E8;color:#8E4A20}
+    .tag-domicilio{background:#F0EBF8;color:#6B3A9E}
+    .tag-idioma{background:#EFF4EF;color:#3A5A3A}
+    .tag-somatica{background:#E8F0EC;color:#3A6858}
+    .tag-transpersonal{background:#EEEbF6;color:#6B5B9A}
+    .tag-psicologica{background:#E8EDF6;color:#3A5A80}
+    .tag-fisica{background:#F8EFE8;color:#8E5030}
+    .tag-psiquiatrica{background:#E8EDF6;color:#3A4A7A}
+    .tag-lista{background:#FFF0E8;color:#8E4A10}
+    .ri-no-results{padding:40px 20px;text-align:center;color:#8B8378;font-size:.85rem;line-height:1.7;font-family:'DM Sans',sans-serif}
+    .leaflet-popup-content-wrapper{border-radius:14px!important;box-shadow:0 8px 32px rgba(70,39,110,.2)!important;border:none!important;padding:0!important;overflow:hidden}
+    .leaflet-popup-content{margin:0!important;width:310px!important}
+    .leaflet-popup-tip{background:white!important}
+    .leaflet-popup-close-button{color:rgba(255,255,255,.75)!important;font-size:18px!important;top:8px!important;right:10px!important;z-index:10}
+    .popup-header{padding:14px 36px 12px 16px;background:#46276E;border-top:3px solid #C2B07E}
+    .popup-tipo{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:#C2B07E;margin-bottom:5px;font-family:'DM Sans',sans-serif;font-weight:600}
+    .popup-name{font-family:'Zilla Slab',serif;font-size:1.15rem;font-weight:600;color:#fff;line-height:1.2}
+    .popup-city{font-size:.7rem;color:rgba(255,255,255,.6);margin-top:4px;font-family:'DM Sans',sans-serif}
+    .popup-body{padding:14px 16px}
+    .popup-section{margin-bottom:10px}
+    .popup-section-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#8B8378;margin-bottom:4px;font-weight:600;font-family:'DM Sans',sans-serif}
+    .popup-section-value{font-size:.8rem;color:#262321;line-height:1.5;font-family:'DM Sans',sans-serif}
+    .popup-tags{display:flex;gap:4px;flex-wrap:wrap}
+    .popup-footer{border-top:1px solid rgba(0,0,0,.07);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .popup-link{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;text-decoration:none;font-weight:500;font-family:'DM Sans',sans-serif;transition:opacity .15s}
+    .popup-link:hover{opacity:.7}
+    .popup-costo{margin-left:auto;font-size:.7rem;color:#8B8378;white-space:nowrap;font-family:'DM Sans',sans-serif}
+    @media(max-width:768px){#ri-sidebar{display:none!important}.ri-zona-input{width:110px}}
+  </style>
+
+  <!-- MAP APP (full-height, replaces normal page flow) -->
+  <div style="height:calc(100vh - 82px);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+
+    <!-- LOADING OVERLAY -->
+    <div id="ri-loading" style="position:absolute;inset:0;background:rgba(60,31,94,.96);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;">
+      <div style="font-family:'Zilla Slab',serif;font-size:1.7rem;color:#fff;font-weight:300;letter-spacing:.06em;">Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span></div>
+      <div id="ri-loading-msg" style="font-size:.78rem;color:#C2B07E;font-family:'DM Sans',sans-serif;">Cargando directorio...</div>
+      <div style="width:240px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;">
+        <div id="ri-loading-bar" style="height:100%;background:#C2B07E;border-radius:2px;transition:width .35s ease;width:0%;"></div>
+      </div>
+    </div>
+
+    <!-- FILTER BAR -->
+    <div style="flex:none;background:#46276E;z-index:50;">
+      <div style="padding:10px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div style="flex:none;max-width:420px;">
+          <div style="font-family:'Zilla Slab',serif;font-weight:600;font-size:1.25rem;color:#fff;letter-spacing:.04em;white-space:nowrap;">
+            Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span>
+          </div>
+          <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;color:rgba(255,255,255,.45);line-height:1.5;margin:4px 0 0;text-align:left;">
+            Directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendadas por Patricio Ruiz.
+          </p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex:1;flex-wrap:wrap;justify-content:flex-end;">
+          <select class="ri-select" id="filterTipo"><option value="">Todas las terapias</option></select>
+          <select class="ri-select" id="filterSubtipo" style="display:none;"><option value="">Todos los tipos</option></select>
+          <select class="ri-select" id="filterEnfoque"><option value="">Todos los enfoques</option></select>
+          <div class="ri-mod-group">
+            <button class="ri-mod-btn active" id="ri-mod-all" data-mod="">Todas</button>
+            <button class="ri-mod-btn" id="ri-mod-online" data-mod="Online">Online</button>
+            <button class="ri-mod-btn" id="ri-mod-presencial" data-mod="Presencial">Presencial</button>
+          </div>
+          <input type="text" class="ri-zona-input" id="filterZona" placeholder="🔍 Zona o CP...">
+          <span id="ri-counter" style="font-size:.72rem;color:#C2B07E;white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:'DM Sans',sans-serif;">—</span>
+        </div>
+      </div>
+      <div style="padding:6px 22px 8px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:6px;overflow-x:auto;">
+        <span style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:'DM Sans',sans-serif;">Atiende</span>
+        <button class="ri-chip" data-caso="Individual">Individual</button>
+        <button class="ri-chip" data-caso="Pareja">Pareja</button>
+        <button class="ri-chip" data-caso="Familia">Familia</button>
+        <button class="ri-chip" data-caso="Adolescentes">Adolescentes</button>
+        <button class="ri-chip" data-caso="Niños">Niños</button>
+      </div>
+    </div>
+
+    <!-- MAP + SIDEBAR -->
+    <div style="flex:1;display:flex;overflow:hidden;min-height:0;">
+      <div id="ri-map" style="flex:1;"><noscript><div style="padding:32px 22px;max-width:760px;margin:0 auto;font-family:'Mulish',sans-serif;color:#262321;"><h2 style="font-family:'Zilla Slab',serif;color:#46276E;">Red Inessentia — terapeutas en México</h2><p>La Red Inessentia reúne a terapeutas de experiencia somática, terapia psicológica, transpersonal y física en México y el extranjero. Activa JavaScript para ver el mapa interactivo y los filtros. Estos son los terapeutas de la red y sus zonas:</p><ul style="line-height:1.9;"><li>Abigail Leija Rosano — Hipódromo Condesa</li><li>Maggie Jamous — Bosques de las Lomas</li><li>Maia Treviño — Colonia Nápoles</li><li>Ximena Ochoa Villalobos — Condesa, Alcaldía Cuauhtémoc</li><li>Kersti Estrada Alcántara — Bosques de Aragón, Zona Norte</li><li>Sandra Casale — Torreón, Coahuila</li><li>Regina Verduzco Gallo — San Ángel, CDMX</li><li>Luz Elena Herrera Castañeda — Alcaldía Coyoacán / Tláhuac</li><li>Adelaida Navaridas — Salamanca, España</li><li>Gerardo Chávez Sierra — Cuauhtémoc, CDMX</li><li>Myr Ojeda — Benito Juárez / Coyoacán, CDMX</li><li>Jeannette Marcos Cattan — Huixquilucan / Bosques de las Lomas</li><li>Marta María Ortiz — Mixco, Guatemala</li><li>Karen Silva — Nápoles, CDMX</li><li>Mayra Fernanda Chávez Leal — San Pedro Garza García, Nuevo León</li><li>Ana Platas de la Mora — Insurgentes Mixcoac, CDMX</li><li>Isabel de la Rosa — Del Valle, CDMX</li><li>Itzel Alejandra González Sánchez — Lomas del Campestre, León, Guanajuato</li><li>Claudia Stepensky — Valle de Bravo, Estado de México</li><li>Hilda Martinez Vega — Tequisquiapan, Querétaro</li></ul></div></noscript></div>
+      <div id="ri-sidebar" style="width:340px;background:#fff;border-left:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;">
+        <div style="padding:14px 20px 10px;border-bottom:1px solid rgba(0,0,0,.07);background:#EAE5D9;">
+          <div style="font-family:'Zilla Slab',serif;font-size:1rem;font-weight:600;color:#262321;">Terapeutas</div>
+          <div id="ri-sidebar-sub" style="font-size:.72rem;color:#8B8378;margin-top:2px;font-family:'DM Sans',sans-serif;">Selecciona un pin o nombre</div>
+        </div>
+        <div class="ri-list-container" id="list-container"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script is:inline>
+  (function() {
+    var TERAPEUTAS = [
+      {"nombre":"Abigail Leija Rosano","tipo":"Psicoterapia","subtipo":"Terapia psicológica","enfoques":["Terapia familiar sistémica","Terapia narrativa","Psicoterapia"],"especialidades":"TDAH, depresión, ansiedad, terapia familiar y de pareja","telefono":"5548219148","webpage":null,"casos":["Individual","Pareja","Familia"],"modalidades":["Online","Presencial"],"zona":"Hipódromo Condesa","cp":"06100","idiomas":[],"costo":1000,"disponibilidad":"Agenda abierta","lat":19.4059,"lng":-99.1789},
+      {"nombre":"Maggie Jamous","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Nueva medicina germánica / 5 Leyes Biológicas","Sanación Bioenergética","Masaje terapéutico"],"especialidades":"Constelaciones familiares","telefono":"5559891798","webpage":"@maggiejamous / @cesam.mx","casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Bosques de las Lomas","cp":"05120","idiomas":["Inglés"],"costo":1800,"disponibilidad":"Agenda abierta","lat":19.3690,"lng":-99.2575},
+      {"nombre":"Maia Treviño","tipo":"Terapia Física","subtipo":null,"enfoques":["Cadenas musculares","Movimiento Terapéutico"],"especialidades":"Movimiento Terapéutico, Rehabilitación, Prevención de lesiones, Readaptación deportiva, Movilidad y consciencia corporal","telefono":"5520790689","webpage":null,"casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Colonia Nápoles","cp":"03840","idiomas":[],"costo":1200,"disponibilidad":"Agenda abierta","lat":19.3949,"lng":-99.1718},
+      {"nombre":"Ximena Ochoa Villalobos","tipo":"Psicoterapia","subtipo":"Terapia psicológica","enfoques":["Terapia familiar sistémica","Terapia narrativa","Terapia cognitivo-conductual","Hipnosis Ericsoniana"],"especialidades":"Acompaño procesos relacionados con ansiedad, manejo emocional, autoestima, duelo, relaciones familiares y de pareja, así como momentos de cambio o crisis personal.","telefono":"5516963474","webpage":null,"casos":["Individual","Pareja","Familia","Adolescentes"],"modalidades":["Online","Presencial"],"zona":"Condesa, Alcaldía Cuauhtémoc","cp":"06170","idiomas":[],"costo":250,"disponibilidad":"Agenda abierta","lat":19.4107,"lng":-99.1759},
+      {"nombre":"Kersti Estrada Alcántara","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Humanismo (Enfoque Centrado a la Persona)","Experiencia somática","Terapia cognitivo-conductual","Constelaciones sistémicas","Bioconstelaciones y descodificación"],"especialidades":"Doctorado en psicoterapia Gestalt. Experiencia somática. Biodescodificación de la enfermedad. Constelaciones familiares.","telefono":"5544484462","webpage":null,"casos":["Individual","Pareja","Familia","Adolescentes","Niños"],"modalidades":["Online","Presencial"],"zona":"Bosques de Aragón, Zona Norte","cp":"57170","idiomas":[],"costo":800,"disponibilidad":"Agenda abierta","lat":19.4700,"lng":-99.0490},
+      {"nombre":"Sandra Casale","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Terapia Craneosacral","Voz y Movimiento"],"especialidades":"Trauma, trauma complejo, ansiedad, enfermedades crónicas y autoinmunes.","telefono":"8712639243","webpage":null,"casos":["Individual","Adolescentes"],"modalidades":["Online","Presencial","A domicilio"],"zona":"Torreón, Coahuila","cp":"27200","idiomas":["Inglés"],"costo":750,"disponibilidad":"Agenda abierta","lat":25.5500,"lng":-103.4200},
+      {"nombre":"Regina Verduzco Gallo","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Terapia Craneosacral"],"especialidades":"Somatic Experiencing® y Terapia Craneosacral. Trauma, consciencia corporal, arteterapia para trauma (en formación).","telefono":"5514522193","webpage":null,"casos":["Individual","Adolescentes","Niños"],"modalidades":["Presencial"],"zona":"San Ángel, CDMX","cp":"01000","idiomas":[],"costo":800,"disponibilidad":"Agenda abierta","lat":19.3525,"lng":-99.1820},
+      {"nombre":"Luz Elena Herrera Castañeda","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Terapia Craneosacral"],"especialidades":"Accidentes, caídas, dolor crónico, cirugías, acompañamiento en embarazo, depresión posparto y bebés.","telefono":"5518441853","webpage":null,"casos":["Individual","Niños"],"modalidades":["Online","Presencial"],"zona":"Alcaldía Coyoacán / Tláhuac","cp":"13360","idiomas":[],"costo":null,"disponibilidad":"Sin espacio / Lista de espera","lat":19.2860,"lng":-99.0100},
+      {"nombre":"Adelaida Navaridas","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Sistema de familia interna (IFS)"],"especialidades":"Apego y trauma. Regulación del sistema nervioso. Terapias sensoriomotoras.","telefono":"+34626748667","webpage":"www.amarepsicologia.es","casos":["Individual"],"modalidades":["Online"],"zona":"Salamanca, España","cp":"37005","idiomas":["Inglés"],"costo":null,"disponibilidad":"Agenda abierta","lat":40.9701,"lng":-5.6635},
+      {"nombre":"Gerardo Chávez Sierra","tipo":"Psicoterapia","subtipo":"Terapia transpersonal","enfoques":["Humanismo (Enfoque Centrado a la Persona)","Transpersonal","Sanación Energética"],"especialidades":"Despertar de la conciencia a través de Psicoterapia Humanista y Transpersonal.","telefono":"5540041419","webpage":"IG: Luna_Creciente_04","casos":["Individual"],"modalidades":["Presencial"],"zona":"Cuauhtémoc, CDMX","cp":"06700","idiomas":[],"costo":1000,"disponibilidad":"Agenda abierta","lat":19.4270,"lng":-99.1560},
+      {"nombre":"Myr Ojeda","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Core energética"],"especialidades":"Autoconocimiento, regulación emocional, ansiedad, autoestima, vínculos, sexualidad consciente.","telefono":"5529665286","webpage":null,"casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Benito Juárez / Coyoacán, CDMX","cp":"03310","idiomas":["Inglés"],"costo":null,"disponibilidad":"Agenda abierta","lat":19.3760,"lng":-99.1560},
+      {"nombre":"Jeannette Marcos Cattan","tipo":"Psicoterapia","subtipo":"Terapia psicológica","enfoques":["Neurofeedback"],"especialidades":"Problemas de sueño, ansiedad, depresión, TDAH, regulación emocional, pensamientos recurrentes, impulsividad.","telefono":"5555077603","webpage":"https://www.instagram.com/neurofeedbackmx","casos":["Individual","Adolescentes","Niños"],"modalidades":["Presencial"],"zona":"Huixquilucan / Bosques de las Lomas","cp":"11700","idiomas":["Inglés"],"costo":null,"disponibilidad":"Agenda abierta","lat":19.3780,"lng":-99.2540},
+      {"nombre":"Marta María Ortiz","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Humanismo (Enfoque Centrado a la Persona)","Experiencia somática"],"especialidades":"Trauma, ansiedad, depresión, regulación del sistema nervioso, sentido de vida.","telefono":"50242171492","webpage":null,"casos":["Individual","Adolescentes"],"modalidades":["Online","Presencial"],"zona":"Mixco, Guatemala","cp":"01057","idiomas":[],"costo":600,"disponibilidad":"Agenda abierta","lat":14.6357,"lng":-90.6073},
+      {"nombre":"Karen Silva","tipo":"Psicoterapia","subtipo":"Terapia transpersonal","enfoques":["Terapia de respuesta espiritual","Canalización","Numerología","Comunicación interespecie"],"especialidades":"Sanación y liberación energética, canalización y guía espiritual.","telefono":"5532407194","webpage":"www.karensilva.mx ig: @s3rconsciencia","casos":["Individual","Pareja"],"modalidades":["Online","Presencial"],"zona":"Nápoles, CDMX","cp":"03810","idiomas":[],"costo":1000,"disponibilidad":"Agenda abierta","lat":19.3962,"lng":-99.1700},
+      {"nombre":"Mayra Fernanda Chávez Leal","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Psicoterapia"],"especialidades":"Psicóloga y psicoterapeuta somática con base psicoanalítica. Trauma y regulación emocional.","telefono":"8118254271","webpage":"mayrachavez.com","casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"San Pedro Garza García, Nuevo León","cp":"66256","idiomas":["Inglés"],"costo":null,"disponibilidad":"Sin espacio / Lista de espera","lat":25.6560,"lng":-100.4016},
+      {"nombre":"Ana Platas de la Mora","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Core energética","Psicoterapia"],"especialidades":"Ansiedad, autoestima, relaciones interpersonales, regulación emocional y procesos de vida complejos.","telefono":"5535225730","webpage":null,"casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Insurgentes Mixcoac, CDMX","cp":"03920","idiomas":[],"costo":700,"disponibilidad":"Agenda abierta","lat":19.3710,"lng":-99.1860},
+      {"nombre":"Isabel de la Rosa","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Humanismo (Enfoque Centrado a la Persona)","Experiencia somática","Terapia narrativa","Mindfulness","Sanación con Rosas"],"especialidades":"Ansiedad, insomnio, sexualidad, pareja, acompañamiento de adolescencia, cuerpo y alimentación consciente.","telefono":"5591955329","webpage":"https://www.youtube.com/@DescubrimientoInterior","casos":["Individual"],"modalidades":["Online","Presencial","A domicilio"],"zona":"Del Valle, CDMX","cp":"03104","idiomas":[],"costo":750,"disponibilidad":"Agenda abierta","lat":19.3850,"lng":-99.1580},
+      {"nombre":"Itzel Alejandra González Sánchez","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Humanismo (Enfoque Centrado a la Persona)","Core energética","Gestalt","Psicoterapia existencial"],"especialidades":"Estrés, ansiedad y depresión. Identidad y diversidad sexual y de género. Trauma. Relaciones sexoafectivas.","telefono":"4776778213","webpage":"https://www.doctoralia.com.mx/z/inaHGg / https://www.psychologytoday.com/profile/1455113","casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Lomas del Campestre, León, Guanajuato","cp":"37150","idiomas":[],"costo":600,"disponibilidad":"Agenda abierta","lat":21.1230,"lng":-101.6640},
+      {"nombre":"Claudia Stepensky","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Terapia familiar sistémica","Experiencia somática","Core energética"],"especialidades":"Ansiedad, depresión, dificultades relacionales, trauma, duelos, crisis. +20 años de experiencia.","telefono":"9988743971","webpage":null,"casos":["Individual","Pareja","Familia"],"modalidades":["Online","Presencial"],"zona":"Valle de Bravo, Estado de México","cp":"51200","idiomas":["Inglés"],"costo":1800,"disponibilidad":"Agenda abierta","lat":19.1927,"lng":-100.1316},
+      {"nombre":"Hilda Martinez Vega","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Osteopatía visceral y neural","Terapia Craneosacral","Medicina Germánica"],"especialidades":"Abuso sexual, accidentes, ansiedad, dolor crónico, enfermedades autoinmunes, fatiga crónica, migrañas, insomnio.","telefono":"5511957245","webpage":null,"casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Tequisquiapan, Querétaro","cp":"76790","idiomas":[],"costo":1000,"disponibilidad":"Agenda abierta","lat":20.5222,"lng":-99.8935}
+    ];
+
+    var TIPO_ORDER = ['Psicoterapia','Terapia Física','Psiquiátrica'];
+    var TIPO_COLOR = {'Psicoterapia':'#3A6858','Terapia Física':'#B97050','Psiquiátrica':'#3D5A8A'};
+    var SUBTIPO_COLOR = {'Terapia somática':'#3A6858','Terapia transpersonal':'#7A6BA0','Terapia psicológica':'#5B8BA0'};
+    var SUBTIPO_TAG = {'Terapia somática':'tag-somatica','Terapia transpersonal':'tag-transpersonal','Terapia psicológica':'tag-psicologica'};
+    var TIPO_TAG = {'Terapia Física':'tag-fisica','Psiquiátrica':'tag-psiquiatrica'};
+
+    var getColor=function(t){return (t.subtipo&&SUBTIPO_COLOR[t.subtipo])||TIPO_COLOR[t.tipo]||'#8B8378';};
+    var getTagClass=function(t){return (t.subtipo&&SUBTIPO_TAG[t.subtipo])||TIPO_TAG[t.tipo]||'tag-somatica';};
+    var getTagLabel=function(t){return t.subtipo||t.tipo;};
+
+    function waitLeaflet(cb){if(typeof L!=='undefined')cb();else setTimeout(function(){waitLeaflet(cb);},60);}
+    waitLeaflet(function(){
+      var mapEl=document.getElementById('ri-map');if(!mapEl)return;
+      var map=L.map('ri-map',{center:[19.39,-99.17],zoom:11});
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap contributors &copy; CARTO',maxZoom:19}).addTo(map);
+
+      // scatter overlapping
+      var grupos={};
+      TERAPEUTAS.forEach(function(t){if(t.lat==null)return;var k=t.lat.toFixed(3)+','+t.lng.toFixed(3);(grupos[k]=grupos[k]||[]).push(t);});
+      Object.keys(grupos).forEach(function(k){var g=grupos[k];if(g.length<2)return;var r=0.002;g.forEach(function(t,i){var a=(2*Math.PI*i)/g.length;t.lat+=r*Math.cos(a);t.lng+=r*Math.sin(a);});});
+
+      function parseWebLinks(raw){if(!raw||!raw.trim())return[];var links=[];var text=raw.replace(/\bIG[:\s]+/gi,'@').replace(/\bInstagram[:\s.]+/gi,'@');var igUrlRe=/https?:\/\/(?:www\.)?instagram\.com\/([^/?#\s]+)/gi;var m;while((m=igUrlRe.exec(text))!==null){var u=m[1].replace(/\/$/,'');if(u)links.push({type:'ig',url:m[0],label:'@'+u});}text=text.replace(/https?:\/\/(?:www\.)?instagram\.com\/[^\s,]*/gi,'');var handleRe=/@([\w.]+)/g;while((m=handleRe.exec(text))!==null){var u2=m[1].replace(/\.+$/,'');if(u2)links.push({type:'ig',url:'https://instagram.com/'+u2,label:'@'+u2});}text=text.replace(/@[\w.]+/g,'');var ytRe=/https?:\/\/(?:www\.)?youtube\.com\/[^\s,]+/g;while((m=ytRe.exec(text))!==null){links.push({type:'yt',url:m[0].replace(/[.,;)]+$/,''),label:'YouTube'});}text=text.replace(/https?:\/\/(?:www\.)?youtube\.com\/[^\s,]*/g,'');var urlRe=/https?:\/\/[^\s,]+|www\.[^\s,]+/g;while((m=urlRe.exec(text))!==null){var url=m[0].replace(/[.,;)]+$/,'');if(!url.startsWith('http'))url='https://'+url;links.push({type:'web',url:url,label:'Sitio web'});}return links;}
+
+      function crearIcono(t){var color=getColor(t);var svg='<svg xmlns="http://www.w3.org/2000/svg" width="30" height="38" viewBox="0 0 30 38"><path d="M15 0C6.716 0 0 6.716 0 15c0 9.375 15 23 15 23S30 24.375 30 15C30 6.716 23.284 0 15 0z" fill="'+color+'" opacity="0.9"/><circle cx="15" cy="15" r="7" fill="white" opacity="0.9"/><circle cx="15" cy="15" r="3.5" fill="'+color+'"/></svg>';return L.divIcon({html:svg,className:'',iconSize:[30,38],iconAnchor:[15,38],popupAnchor:[0,-42]});}
+
+      function modTag(m){var cls=m==='Online'?'tag-online':m==='Presencial'?'tag-presencial':'tag-domicilio';return '<span class="tag '+cls+'">'+m+'</span>';}
+
+      function crearPopup(t){var color=getColor(t);var tipoLabel=t.subtipo?t.tipo+' · '+t.subtipo:t.tipo;var modTags=(t.modalidades||[]).map(modTag).join('');var idiomaTag=t.idiomas&&t.idiomas.length?'<span class="tag tag-idioma">🌐 '+t.idiomas.join(', ')+'</span>':'';var listaTag=t.disponibilidad&&t.disponibilidad!=='Agenda abierta'?'<span class="tag tag-lista">⏳ Lista de espera</span>':'';var webLinks=parseWebLinks(t.webpage);var webHtml=webLinks.map(function(l){var icon=l.type==='ig'?'📸':l.type==='yt'?'▶️':'🌐';return '<a href="'+l.url+'" target="_blank" class="popup-link" style="color:'+color+'">'+icon+' '+l.label+' ↗</a>';}).join('');var ubicacion=t.zona&&t.zona.toLowerCase()!=='solo online'?'📍 '+t.zona+(t.cp?' · CP '+t.cp:''):'🌐 Solo online';return '<div class="popup-header" style="border-top-color:'+color+'"><div class="popup-tipo">'+tipoLabel+'</div><div class="popup-name">'+t.nombre+'</div><div class="popup-city">'+ubicacion+'</div></div><div class="popup-body"><div class="popup-section"><div class="popup-section-label">Enfoques</div><div class="popup-section-value">'+(t.enfoques||[]).join(' · ')+'</div></div>'+(t.especialidades?'<div class="popup-section"><div class="popup-section-label">Especialidades</div><div class="popup-section-value" style="font-size:.76rem;color:#555">'+t.especialidades+'</div></div>':'')+'<div class="popup-section"><div class="popup-section-label">Atiende</div><div class="popup-section-value">'+(t.casos||[]).join(', ')+'</div></div><div class="popup-tags">'+modTags+idiomaTag+listaTag+'</div></div><div class="popup-footer">'+(t.telefono?'<a href="tel:'+t.telefono+'" class="popup-link" style="color:'+color+'">📞 '+t.telefono+'</a>':'')+webHtml+(t.costo?'<span class="popup-costo">$'+t.costo.toLocaleString()+' · 1a sesión</span>':'')+'</div>';}
+
+      var markers=[];var modalidadActiva='';var activeCasos=new Set();
+
+      function activarItem(idx){document.querySelectorAll('.therapist-item').forEach(function(el){el.classList.remove('active');});var item=document.querySelector('[data-idx="'+idx+'"]');if(item){item.classList.add('active');var container=item.closest('.ri-list-container');if(container){var top=item.offsetTop-container.offsetTop;container.scrollTop=top-container.clientHeight/2+item.clientHeight/2;}}}
+
+      function agregarALista(t,idx){var modTags=(t.modalidades||[]).map(modTag).join('');var idiomTag=t.idiomas&&t.idiomas.length?'<span class="tag tag-idioma">🌐 '+t.idiomas.join(', ')+'</span>':'';var listaTag=t.disponibilidad&&t.disponibilidad!=='Agenda abierta'?'<span class="tag tag-lista">⏳ Lista de espera</span>':'';var el=document.createElement('div');el.className='therapist-item';el.setAttribute('data-idx',idx);el.innerHTML='<div class="therapist-name">'+t.nombre+'</div><div class="therapist-location">📍 '+t.zona+'</div><div class="therapist-tags"><span class="tag '+getTagClass(t)+'">'+getTagLabel(t)+'</span>'+modTags+idiomTag+listaTag+'</div>';el.onclick=function(){activarItem(idx);if(markers[idx]){map.setView(markers[idx].getLatLng(),14,{animate:true});markers[idx].openPopup();}};var lc=document.getElementById('list-container');if(lc)lc.appendChild(el);}
+
+      function riPoblarEnfoques(tipoF,subtipoF){var enfoques=new Set();TERAPEUTAS.forEach(function(t){if(tipoF&&t.tipo!==tipoF)return;if(subtipoF&&t.subtipo!==subtipoF)return;(t.enfoques||[]).forEach(function(e){enfoques.add(e);});});var sel=document.getElementById('filterEnfoque');if(!sel)return;var prev=sel.value||'';sel.innerHTML='<option value="">Todos los enfoques</option>';Array.from(enfoques).sort().forEach(function(e){var opt=document.createElement('option');opt.value=e;opt.textContent=e;if(e===prev)opt.selected=true;sel.appendChild(opt);});}
+
+      window.riApplyFilters=function(){var tipo=(document.getElementById('filterTipo')||{}).value||'';var subtipo=(document.getElementById('filterSubtipo')||{}).value||'';var enfoque=(document.getElementById('filterEnfoque')||{}).value||'';var zona=((document.getElementById('filterZona')||{}).value||'').toLowerCase().trim();markers.forEach(function(m){map.removeLayer(m);});markers=[];var lc=document.getElementById('list-container');if(lc)lc.innerHTML='';var visible=0;TERAPEUTAS.forEach(function(t){if(!t.lat||!t.lng)return;if(tipo&&t.tipo!==tipo)return;if(subtipo&&t.subtipo!==subtipo)return;if(enfoque&&!(t.enfoques||[]).includes(enfoque))return;if(modalidadActiva&&!(t.modalidades||[]).includes(modalidadActiva))return;if(activeCasos.size>0&&!Array.from(activeCasos).some(function(c){return(t.casos||[]).includes(c);}))return;if(zona&&!(t.zona||'').toLowerCase().includes(zona)&&!(t.cp||'').includes(zona))return;var idx=markers.length;var marker=L.marker([t.lat,t.lng],{icon:crearIcono(t)}).bindPopup(crearPopup(t),{maxWidth:310}).addTo(map);marker.on('click',function(){activarItem(idx);});markers.push(marker);agregarALista(t,idx);visible++;});if(visible===0&&TERAPEUTAS.length>0&&lc)lc.innerHTML='<div class="ri-no-results">Sin resultados para estos filtros.<br>Intenta con menos criterios.</div>';var ctr=document.getElementById('ri-counter');if(ctr)ctr.textContent=visible+' terapeuta'+(visible!==1?'s':'');};
+
+      // bind events
+      var fTipo=document.getElementById('filterTipo');var fSubtipo=document.getElementById('filterSubtipo');var fEnfoque=document.getElementById('filterEnfoque');var fZona=document.getElementById('filterZona');
+      if(fTipo)fTipo.addEventListener('change',function(){var tipo=fTipo.value;if(fSubtipo)fSubtipo.style.display=tipo==='Psicoterapia'?'inline-block':'none';riPoblarEnfoques(tipo,'');riApplyFilters();});
+      if(fSubtipo)fSubtipo.addEventListener('change',function(){riPoblarEnfoques(fTipo.value,fSubtipo.value);if(fEnfoque)fEnfoque.value='';riApplyFilters();});
+      if(fEnfoque)fEnfoque.addEventListener('change',function(){riApplyFilters();});
+      if(fZona)fZona.addEventListener('input',function(){riApplyFilters();});
+      document.querySelectorAll('[data-mod]').forEach(function(btn){btn.addEventListener('click',function(){modalidadActiva=btn.getAttribute('data-mod');document.querySelectorAll('.ri-mod-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');riApplyFilters();});});
+      document.querySelectorAll('[data-caso]').forEach(function(btn){btn.addEventListener('click',function(){var caso=btn.getAttribute('data-caso');activeCasos.has(caso)?activeCasos.delete(caso):activeCasos.add(caso);btn.classList.toggle('active');riApplyFilters();});});
+
+      // populate selects
+      var tipos=Array.from(new Set(TERAPEUTAS.map(function(t){return t.tipo;}).filter(Boolean)));
+      tipos.sort(function(a,b){var ia=TIPO_ORDER.indexOf(a),ib=TIPO_ORDER.indexOf(b);return(ia===-1?99:ia)-(ib===-1?99:ib);});
+      var tipoSel=document.getElementById('filterTipo');
+      if(tipoSel)tipos.forEach(function(tipo){var o=document.createElement('option');o.value=tipo;o.textContent=tipo;tipoSel.appendChild(o);});
+      var subtipos=Array.from(new Set(TERAPEUTAS.filter(function(t){return t.tipo==='Psicoterapia'&&t.subtipo;}).map(function(t){return t.subtipo;}))).sort();
+      var subSel=document.getElementById('filterSubtipo');
+      if(subSel){subSel.innerHTML='<option value="">Todos los tipos</option>';subtipos.forEach(function(s){var o=document.createElement('option');o.value=s;o.textContent=s;subSel.appendChild(o);});}
+      riPoblarEnfoques('','');
+
+      // done loading
+      var loading=document.getElementById('ri-loading');var lbar=document.getElementById('ri-loading-bar');var lmsg=document.getElementById('ri-loading-msg');
+      if(lbar)lbar.style.width='100%';if(lmsg)lmsg.textContent='20 terapeutas cargados';
+      setTimeout(function(){if(loading)loading.style.display='none';riApplyFilters();},600);
+      setTimeout(function(){map.invalidateSize();},200);
+    });
+  })();
+  </script>
+
+</Base>

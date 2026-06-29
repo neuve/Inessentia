@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+---
+
+<Base
+  title="Privacy notice | Inessentia"
+  description="Privacy notice regarding the processing of personal data on the site of Patricio Ruiz Abrin (Inessentia)."
+  altPath="/privacidad/"
+>
+
+  <!-- HEADER -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 32px clamp(40px,5vw,64px);">
+    <div style="max-width:760px;margin:0 auto;">
+      <p class="label-section">Legal</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">Privacy notice</h1>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section style="padding:clamp(40px,6vw,80px) 32px clamp(64px,9vw,120px);">
+    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:32px;">
+
+      <p style="font-size:clamp(16px,1.1vw,18px);line-height:1.8;color:#3f3a36;margin:0;">Patricio Ruiz Abrin, with domicile at Georgia 114 int. 303, Col. Ampliacion Napoles, Mexico City, is responsible for the use and protection of your personal data, and in this regard we inform you of the following:</p>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">What purposes will we use your personal data for?</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">The personal data we collect from you will be used for the following purposes that are <strong>necessary for the service you request:</strong></p>
+        <ul style="margin:0 0 14px;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;">Telephone contact</li>
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;">Email contact</li>
+        </ul>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Additionally, we will use your personal information for the following purposes that are <strong>not necessary</strong> for the requested service, but that allow us to provide you with better service:</p>
+        <ul style="margin:0;padding-left:24px;">
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;">Sending you information about services, courses, or workshops</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--cream-2);border-left:4px solid var(--purple);border-radius:0 12px 12px 0;padding:22px 26px;">
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;"><strong>If you do not wish your personal data to be processed for these additional purposes,</strong> you may notify us at any time through the email <a href="mailto:patricio@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">patricio@inessentia.mx</a></p>
+      </div>
+
+      <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">Your refusal to allow the use of your personal data for these purposes shall not be grounds for us to deny you the services you request or contract with us.</p>
+
+      <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">For any questions or comments, please write to us at <a href="mailto:patricio@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">patricio@inessentia.mx</a></p>
+
+      <div style="padding-top:16px;border-top:1px solid var(--cream);">
+        <a href="/en/" style="color:var(--purple);font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">&larr; Back to home</a>
+      </div>
+
+    </div>
+  </section>
+
+</Base>

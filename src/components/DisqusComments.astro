@@ -1,0 +1,30 @@
+---
+interface Props {
+  identifier: string;
+  url: string;
+  language?: string;
+}
+
+const { identifier, url, language = 'es' } = Astro.props;
+---
+
+<section class="section" style="padding-top:0;">
+  <div class="container--blog">
+    <div id="disqus_thread"></div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ identifier, url, language }}>
+  var disqus_config = function () {
+    this.page.url = url;
+    this.page.identifier = identifier;
+    this.language = language;
+  };
+  (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://inessentia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

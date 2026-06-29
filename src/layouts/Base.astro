@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import MobileMenu from '../components/MobileMenu.astro';
+import Footer from '../components/Footer.astro';
+import WhatsApp from '../components/WhatsApp.astro';
+import RevealOnScroll from '../components/RevealOnScroll.astro';
+import { getLocale, t, localePath } from '../i18n/utils';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  altPath?: string; // path in the OTHER locale (e.g. /about-me/ when current is /es/sobre-mi/)
+  schema?: object;
+}
+
+const locale = getLocale(Astro.url);
+const i = t(locale);
+const altLocale = locale === 'es' ? 'en' : 'es';
+
+const {
+  title = i.site.title,
+  description = i.site.description,
+  canonical = Astro.url.href,
+  ogImage = '/uploads/logo-patricio-ruiz.webp',
+  altPath,
+  schema,
+} = Astro.props;
+
+const altHref = altPath
+  ? `/${altLocale}${altPath}`
+  : `/${altLocale}/`;
+const altHrefAbsolute = `https://inessentia.mx${altHref}`;
+const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+  <link rel="alternate" hreflang={locale} href={currentHref}>
+  <link rel="alternate" hreflang={altLocale} href={altHrefAbsolute}>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={currentHref}>
+  <meta property="og:image" content={`https://inessentia.mx${ogImage}`}>
+  <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'}>
+  <meta property="og:site_name" content="Inessentia">
+  <meta name="twitter:card" content="summary_large_image">
+  {schema && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWCY1M4Y9T"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LWCY1M4Y9T');
+  </script>
+</head>
+<body>
+  <Navbar locale={locale} altHref={altHref} />
+  <MobileMenu locale={locale} />
+  <main>
+    <slot />
+  </main>
+  <Footer locale={locale} />
+  <WhatsApp locale={locale} />
+  <RevealOnScroll />
+</body>
+</html>

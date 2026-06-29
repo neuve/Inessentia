@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+---
+
+<Base
+  title="Testimonials | Real therapy experiences with Patricio Ruiz"
+  description="Real people share their experience in individual, couples and family therapy with Patricio Ruiz Abrin, from a somatic approach."
+  altPath="/testimonios/"
+>
+
+  <!-- HEADER -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,8vw,96px) 32px clamp(40px,5vw,64px);">
+    <div style="max-width:820px;margin:0 auto;">
+      <a href="/en/" class="link-underline" style="margin-bottom:28px;display:inline-flex;align-items:center;gap:6px;">&larr; Home</a>
+      <p class="label-section">Experiences</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(36px,5vw,62px);line-height:1.05;margin:0 0 22px;text-wrap:balance;">Real people, real change</h1>
+      <p class="body-text" style="margin:0;max-width:54ch;font-size:clamp(16px,1.2vw,20px);">What those who have gone through their process with me have to say. Every story is different -- this is just a sample.</p>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section style="padding:clamp(40px,6vw,72px) 32px clamp(64px,9vw,120px);">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div id="t-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:24px;align-items:start;">
+        <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
+        <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
+        <div class="t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
+      </div>
+      <div id="t-dots" style="display:flex;gap:9px;justify-content:center;margin-top:34px;"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--purple);padding:clamp(56px,8vw,100px) 32px;text-align:center;">
+    <div style="max-width:640px;margin:0 auto;">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(26px,4vw,46px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Your story could be next</h2>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn-white">Book your first session</a>
+    </div>
+  </section>
+
+  <script is:inline>
+  (function() {
+    var T = [
+      { q: 'It changed my life. I have learned to move through my anxiety and panic attacks in a much gentler way, and this has given me peace and confidence in my own power and self-regulation.', name: 'Dan Gunter', link: null, tag: null },
+      { q: 'My body is more balanced and recovering its health. There is less pain and more energy. Pato\'s compassionate, patient and open presence has allowed me to see myself more fully.', name: 'Isabel de la Rosa', link: 'https://www.youtube.com/@DescubrimientoInterior', tag: null },
+      { q: 'Throughout my process I have always felt held, supported, respected, and above all that I am not alone and that I have a safe place.', name: 'Valeria Salazar', link: null, tag: null },
+      { q: 'I have developed tolerance for issues that used to make me jump, which I can now handle with more awareness, bring down the intensity and shorten their duration.', name: 'Kar-El', link: 'https://www.instagram.com/karellifesherpa/', tag: 'Life Sherpa' },
+      { q: 'My teenage daughter and I are in family therapy, and now she opens up beautifully. Walking through the crises of adolescence with you alongside us has been one of the most beautiful processes we have ever lived.', name: 'Paloma Tovar', link: null, tag: 'Family therapy' },
+      { q: 'We came because of a terrible crisis as a couple. We learned to communicate without fear, to express our differences in a civilized way, and to prevent a problem from exploding beyond repair.', name: 'Anonymous', link: null, tag: 'Couples therapy' },
+      { q: 'I learned to prioritize myself and to ask the right questions to find the core, understanding that what I feel is valid. I always felt very safe.', name: 'Thalia Dorronsoro', link: null, tag: null },
+      { q: 'I wanted to reconnect with my emotions through feeling rather than thinking. Today I live more fully, with more calm and peace.', name: 'Renato Picard', link: null, tag: null },
+      { q: 'I like that I step out of the narrative and can feel with more honesty. I have learned to recognize the memories in my body and what they tell me about myself.', name: 'Maru Marquez', link: null, tag: null },
+      { q: 'A very gentle, respectful and loving process, with subtle movements that have helped me free myself from the dysregulation of my nervous system. I learned that less is more.', name: 'Alejandra BM', link: null, tag: null },
+      { q: 'Every session was deeply meaningful: giving myself the moment to breathe and feel myself with awareness. It has been a step of growth far greater than others in my life.', name: 'Jackie Baltazar', link: null, tag: null },
+      { q: 'The most important thing has been the process of self-acceptance and validation of my broken self-esteem, through respect for every expression and the gentleness of the movements.', name: 'Margarita Costa', link: null, tag: null },
+      { q: 'I learned to say things and not keep them inside. It definitely changed my relationship and my view of how I used to do and say things before therapy.', name: 'Nay', link: null, tag: 'Couples therapy' },
+      { q: 'In every session I learn something about myself, my past and my traumas. Most importantly, I overcome traumas that were stuck in me — and slowly I found my way up again.', name: 'Chiara V', link: null, tag: null },
+      { q: 'The process was gentle, loving and deep; it helped me look at my own limits without feeling overwhelmed. It\'s like having a first-aid kit with me at all times.', name: 'Anonymous', link: null, tag: null }
+    ];
+    var start = 0;
+    function cardHTML(t) {
+      var nameInner = t.link
+        ? '<a href="'+t.link+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;">'+t.name+'</a>'
+        : t.name;
+      var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· '+t.tag+'</span>' : '';
+      return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;"><div style="font-family:\'Zilla Slab\',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">"</div><p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">'+t.q+'</p><p style="margin:0;font-family:\'Zilla Slab\',serif;font-weight:600;color:var(--purple);font-size:18px;">'+nameInner+tag+'</p></div>';
+    }
+    function renderSlots(immediate) {
+      var slots = document.querySelectorAll('#t-grid .t-slot');
+      if (!slots.length) return;
+      var set = function() {
+        slots.forEach(function(s, i) { s.innerHTML = cardHTML(T[(start + i) % T.length]); });
+        requestAnimationFrame(function() { slots.forEach(function(s) { s.style.opacity = '1'; }); });
+        syncDots();
+      };
+      if (immediate) { set(); }
+      else { slots.forEach(function(s) { s.style.opacity = '0'; }); setTimeout(set, 380); }
+    }
+    function buildDots() {
+      var wrap = document.getElementById('t-dots');
+      if (!wrap) return;
+      wrap.innerHTML = '';
+      T.forEach(function(_, i) {
+        var d = document.createElement('button');
+        d.style.cssText = 'width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:#d6cdbb;transition:background .3s,transform .3s;';
+        d.onclick = function() { start = i; renderSlots(false); clearInterval(timer); timer = setInterval(function() { start = (start + 1) % T.length; renderSlots(false); }, 4500); };
+        wrap.appendChild(d);
+      });
+    }
+    function syncDots() {
+      var dots = document.querySelectorAll('#t-dots button');
+      dots.forEach(function(d, i) {
+        var active = i === start;
+        d.style.background = active ? 'var(--wine)' : '#d6cdbb';
+        d.style.transform = active ? 'scale(1.35)' : 'scale(1)';
+      });
+    }
+    buildDots();
+    renderSlots(true);
+    var timer = setInterval(function() { start = (start + 1) % T.length; renderSlots(false); }, 4500);
+  })();
+  </script>
+
+</Base>

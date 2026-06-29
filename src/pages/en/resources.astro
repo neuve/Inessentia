@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+---
+
+<Base
+  title="Resources | Inessentia"
+  description="Articles and resources to better understand therapy before your first session."
+  altPath="/recursos/"
+>
+
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,8vw,96px) 32px clamp(40px,5vw,64px);">
+    <div class="container">
+      <p data-reveal class="label-section">{i.blog.label}</p>
+      <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">{i.blog.title}</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <a data-reveal href="/en/blog/what-to-expect/" class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:0;text-decoration:none;color:inherit;margin-bottom:28px;">
+        <div style="height:100%;min-height:260px;overflow:hidden;">
+          <img src="/uploads/que-esperar-terapia.webp" width="1200" height="800" loading="lazy" alt="What to expect from therapy?" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
+        </div>
+        <div style="padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;justify-content:center;gap:14px;">
+          <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Therapeutic process</p>
+          <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(22px,2.5vw,32px);line-height:1.15;margin:0;">What to expect from therapy?</h2>
+          <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;">How the therapeutic relationship, techniques and time come together in a real process.</p>
+          <span style="color:var(--wine);font-weight:700;font-size:14px;">{i.blog.readMore}</span>
+        </div>
+      </a>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;">
+        <a data-reveal href="/en/blog/first-session/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
+          <div style="height:184px;overflow:hidden;"><img src="/uploads/primera-cita-terapia.webp" width="1200" height="800" loading="lazy" alt="First session" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+          <div style="padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <p style="margin:0;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">First session</p>
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:20px;line-height:1.2;margin:0;">What's a first session usually like?</h3>
+            <p style="font-size:14px;line-height:1.6;color:#4a443f;margin:0;flex:1;">What happens, how long it lasts, what to bring.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:13px;">{i.blog.readMore}</span>
+          </div>
+        </a>
+
+        <a data-reveal href="/en/blog/good-time-to-start/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
+          <div style="height:184px;overflow:hidden;"><img src="/uploads/buen-momento-pareja.webp" width="1200" height="800" loading="lazy" alt="When is a good time?" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;display:block;"></div>
+          <div style="padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <p style="margin:0;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Wellbeing</p>
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:20px;line-height:1.2;margin:0;">When is a good time to start therapy?</h3>
+            <p style="font-size:14px;line-height:1.6;color:#4a443f;margin:0;flex:1;">The signs worth listening to.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:13px;">{i.blog.readMore}</span>
+          </div>
+        </a>
+
+        <a data-reveal href="/en/blog/types-of-therapy/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
+          <div style="height:184px;overflow:hidden;"><img src="/uploads/tipos-terapia.webp" width="1200" height="800" loading="lazy" alt="Types of therapy" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;"></div>
+          <div style="padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1;">
+            <p style="margin:0;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">Therapeutic approaches</p>
+            <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:20px;line-height:1.2;margin:0;">Types of therapy: how I work in session</h3>
+            <p style="font-size:14px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Four approaches I integrate.</p>
+            <span style="color:var(--wine);font-weight:700;font-size:13px;">{i.blog.readMore}</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--purple);padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+    <div data-reveal style="max-width:760px;margin:0 auto;">
+      <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.82);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn-white">{i.cta.button}</a>
+    </div>
+  </section>
+
+</Base>
