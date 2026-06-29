@@ -5,6 +5,7 @@ import MobileMenu from '../components/MobileMenu.astro';
 import Footer from '../components/Footer.astro';
 import WhatsApp from '../components/WhatsApp.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import { getLocale, t, localePath } from '../i18n/utils';
 
 interface Props {
@@ -61,14 +62,7 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWCY1M4Y9T"></script>
-  <script is:inline>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LWCY1M4Y9T');
-  </script>
+  <!-- GA loads conditionally via CookieConsent component -->
 </head>
 <body>
   <Navbar locale={locale} altHref={altHref} />
@@ -78,6 +72,7 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   </main>
   <Footer locale={locale} />
   <WhatsApp locale={locale} />
+  <CookieConsent locale={locale} />
   <RevealOnScroll />
 </body>
 </html>
