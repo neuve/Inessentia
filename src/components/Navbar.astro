@@ -40,7 +40,15 @@ const links = navLinks(locale);
 <div style="height:64px;flex:none;"></div>
 
 <!-- Language toggle -->
-<a href={altHref} class="lang-toggle" title={i.langToggleTitle}>{i.langToggle}</a>
+<a href={altHref} id="lang-toggle-btn" class="lang-toggle" title={i.langToggleTitle}>{i.langToggle}</a>
+<script is:inline define:vars={{ altLocale: locale === 'es' ? 'en' : 'es' }}>
+  (function() {
+    var btn = document.getElementById('lang-toggle-btn');
+    if (btn) btn.addEventListener('click', function() {
+      localStorage.setItem('preferred-lang', altLocale);
+    });
+  })();
+</script>
 
 <!-- Search overlay -->
 <div id="search-overlay" class="search-overlay">

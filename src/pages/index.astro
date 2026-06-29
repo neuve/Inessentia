@@ -8,6 +8,14 @@
   <meta http-equiv="refresh" content="0;url=/es/">
   <link rel="canonical" href="https://inessentia.mx/es/">
   <title>Inessentia</title>
+  <script is:inline>
+    (function() {
+      var saved = localStorage.getItem('preferred-lang');
+      var lang = saved || (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
+      var target = lang === 'es' ? '/es/' : '/en/';
+      window.location.replace(target);
+    })();
+  </script>
 </head>
 <body></body>
 </html>
