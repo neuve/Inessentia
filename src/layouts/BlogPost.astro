@@ -3,6 +3,15 @@ import Base from './Base.astro';
 import DisqusComments from '../components/DisqusComments.astro';
 import { t, type Locale } from '../i18n/utils';
 
+interface VideoSchema {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+  embedUrl: string;
+  uploadDate?: string;
+}
+
 interface Props {
   locale: Locale;
   title: string;
@@ -14,6 +23,7 @@ interface Props {
   heroPosition?: string;
   disqusIdentifier: string;
   nextPost?: { href: string; label: string };
+  videos?: VideoSchema[];
 }
 
 const {
@@ -27,6 +37,7 @@ const {
   heroPosition = 'center 20%',
   disqusIdentifier,
   nextPost,
+  videos,
 } = Astro.props;
 
 const i = t(locale);
@@ -55,7 +66,17 @@ const schema = {
 };
 ---
 
-<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} schema={schema}>
+<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} schema={schema} extraSchemas={videos?.map(v => ({
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": v.name,
+  "description": v.description,
+  "thumbnailUrl": v.thumbnailUrl,
+  "uploadDate": v.uploadDate ?? "2024-01-01",
+  "contentUrl": v.contentUrl,
+  "embedUrl": v.embedUrl,
+}))}>
+
 
   <!-- HERO -->
   <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,8vw,96px) 32px clamp(40px,5vw,64px);">

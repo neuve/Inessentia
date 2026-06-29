@@ -15,6 +15,7 @@ interface Props {
   ogImage?: string;
   altPath?: string; // path in the OTHER locale (e.g. /about-me/ when current is /es/sobre-mi/)
   schema?: object;
+  extraSchemas?: object[];
 }
 
 const locale = getLocale(Astro.url);
@@ -28,6 +29,7 @@ const {
   ogImage = '/uploads/logo-patricio-ruiz.webp',
   altPath,
   schema,
+  extraSchemas,
 } = Astro.props;
 
 const altHref = altPath
@@ -58,6 +60,9 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   {schema && (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   )}
+  {extraSchemas && extraSchemas.map(s => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
