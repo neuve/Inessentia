@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'en';
+const i = t(locale);
+---
+
+<Base
+  title="Terms of service | Inessentia"
+  description="Agreements and conditions governing the therapeutic relationship with Patricio Ruiz Abrín, psychotherapist in Mexico City."
+  altPath="/terminos/"
+>
+
+  <!-- HEADER -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 32px clamp(40px,5vw,64px);">
+    <div style="max-width:760px;margin:0 auto;">
+      <p class="label-section">Legal</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">Terms of service</h1>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section style="padding:clamp(40px,6vw,80px) 32px clamp(64px,9vw,120px);">
+    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:32px;">
+
+      <p style="font-size:clamp(16px,1.1vw,18px);line-height:1.8;color:#3f3a36;margin:0;">Transparency is part of care. These terms describe how therapeutic work with me functions, what you can expect, and the basic agreements that make a safe, trustworthy space possible. Read them at your own pace; if you have any questions, write to me at <a href="mailto:hola@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">hola@inessentia.mx</a>.</p>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Scope of service</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">I offer individual, couples, and family psychotherapy, in person in Colonia Nápoles, Mexico City, or online via Zoom or an equivalent platform.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">This service <strong>is not an emergency or acute crisis resource</strong>. If you're experiencing a mental health emergency, please go to your nearest emergency services or contact the <strong>Línea de la Vida: 800 911 2000</strong> (Mexico, available 24/7).</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">Psychotherapy also doesn't replace psychiatric treatment when that's needed. In those cases, I work in coordination with the medical team caring for you.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Frame and service agreements</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Frequency and duration.</strong> Sessions last 50 to 55 minutes. Frequency — weekly or biweekly — is agreed together from the first session, based on your needs and circumstances.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Punctuality.</strong> Session time is fixed. If you arrive late, the session ends at the scheduled time; time is not made up or extended.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Cancellations and rescheduling.</strong> If you need to cancel or change your appointment, let me know at least <strong>24 hours in advance</strong>. Cancellations with less than 24 hours' notice are charged in full, regardless of reason. This protects the time reserved for you and for other clients.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;"><strong>Payments.</strong> Payment is made at the start of each session, or through whatever arrangement we agree on. Available payment methods are confirmed directly with me.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Confidentiality and its exceptions</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Everything you share in session is strictly confidential. I don't share information about your process with anyone without your express authorization.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">The only exceptions to this confidentiality are:</p>
+        <ul style="margin:0 0 14px;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Imminent risk of harm:</strong> if there's a real and immediate danger to your life or someone else's, I may take steps to protect that safety.</li>
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Legal obligation:</strong> situations where the law requires me to report, such as cases of child abuse.</li>
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Court order:</strong> if formally required by a judge.</li>
+        </ul>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">In <strong>couples or family therapy</strong>, everything shared in the joint space is confidential among participants. I don't carry information from individual sessions over to other members of the system without your consent.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Communication outside of session</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">The main channel for coordinating appointments is WhatsApp or email. I don't offer therapeutic support through text messages or email; that space exists in session. If something urgent comes up between appointments, we can arrange an additional meeting.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Changes to these terms</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">I may update these terms from time to time. When I do, I'll let you know in advance. Continuing to use the service after a notification means you accept the changes.</p>
+      </div>
+
+      <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">Have questions? Write to me at <a href="mailto:hola@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">hola@inessentia.mx</a> — happy to sort them out before we begin.</p>
+
+      <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
+        <a href="/en/privacy/" style="color:var(--purple);font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">Privacy notice →</a>
+        <a href="/en/" style="color:var(--purple);font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">&larr; Back to home</a>
+      </div>
+
+    </div>
+  </section>
+
+</Base>

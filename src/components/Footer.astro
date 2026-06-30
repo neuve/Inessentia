@@ -6,7 +6,8 @@ interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const i = t(locale);
 const privacyPath = locale === 'es' ? '/es/privacidad/' : '/en/privacy/';
-const termsPath = locale === 'es' ? '/es/terminos/' : null;
+const termsPath = locale === 'es' ? '/es/terminos/' : '/en/terms/';
+const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service';
 ---
 
 <footer class="footer">
@@ -23,7 +24,7 @@ const termsPath = locale === 'es' ? '/es/terminos/' : null;
       </div>
       <div class="footer__right">
         <a href={privacyPath} class="footer__legal-link">{i.footer.privacy}</a>
-        {termsPath && <a href={termsPath} class="footer__legal-link">Términos de servicio</a>}
+        <a href={termsPath} class="footer__legal-link">{termsLabel}</a>
         <a href={privacyPath} class="footer__legal-link">{i.footer.copyright}</a>
         <div class="footer__social">
           <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
