@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'es';
+const i = t(locale);
+---
+
+<Base
+  title="Términos de servicio | Inessentia"
+  description="Acuerdos y condiciones que rigen la relación terapéutica con Patricio Ruiz Abrín, psicoterapeuta en CDMX."
+  altPath="/terms/"
+>
+
+  <!-- HEADER -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 32px clamp(40px,5vw,64px);">
+    <div style="max-width:760px;margin:0 auto;">
+      <p class="label-section">Legal</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">Términos de servicio</h1>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <section style="padding:clamp(40px,6vw,80px) 32px clamp(64px,9vw,120px);">
+    <div style="max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:32px;">
+
+      <p style="font-size:clamp(16px,1.1vw,18px);line-height:1.8;color:#3f3a36;margin:0;">La transparencia es parte del cuidado. Estos términos describen cómo funciona el trabajo terapéutico conmigo, qué puedes esperar y cuáles son los acuerdos básicos que hacen posible un espacio seguro y confiable. Léelos con calma; si tienes alguna duda, escríbeme a <a href="mailto:hola@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">hola@inessentia.mx</a>.</p>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Alcance del servicio</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Ofrezco psicoterapia individual, de pareja y familiar, en modalidad presencial en Colonia Nápoles, Ciudad de México, o en línea mediante Zoom u otra plataforma equivalente.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Este servicio <strong>no es un recurso de urgencias ni de crisis agudas</strong>. Si estás atravesando una emergencia de salud mental, te pido acudir a los servicios de urgencias más cercanos o comunicarte con la <strong>Línea de la Vida: 800 911 2000</strong>, disponible las 24 horas.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">La psicoterapia tampoco sustituye el tratamiento psiquiátrico cuando éste es necesario. En esos casos, trabajo de forma complementaria con el equipo médico que te atiende.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Encuadre y acuerdos del servicio</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Frecuencia y duración.</strong> Las sesiones tienen una duración de 50 a 55 minutos. La frecuencia —semanal o quincenal— se acuerda juntos desde la primera cita, según tus necesidades y posibilidades.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Puntualidad.</strong> El horario de la sesión es fijo. Si llegas tarde, la sesión termina a la hora acordada; el tiempo no se recupera ni se extiende.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;"><strong>Cancelaciones y reagendas.</strong> Si necesitas cancelar o cambiar tu cita, avísame con al menos <strong>24 horas de anticipación</strong>. Las cancelaciones con menos de 24 horas de aviso se cobran en su totalidad, independientemente del motivo. Esto protege el tiempo reservado para ti y para otros consultantes.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;"><strong>Pagos.</strong> El pago se realiza al inicio de cada sesión, o en la modalidad que acordemos. Los medios de pago disponibles se confirman directamente conmigo.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Confidencialidad y sus excepciones</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Todo lo que compartes en sesión es estrictamente confidencial. No comparto información sobre tu proceso con nadie sin tu autorización expresa.</p>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0 0 14px;">Las únicas excepciones a esta confidencialidad son:</p>
+        <ul style="margin:0 0 14px;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Riesgo inminente de daño:</strong> si existe un peligro real e inmediato para tu vida o la de otra persona, puedo tomar medidas para proteger esa seguridad.</li>
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Obligación legal:</strong> situaciones donde la ley me obliga a reportar, como casos de maltrato infantil.</li>
+          <li style="font-size:clamp(15px,1vw,17px);line-height:1.7;color:#3f3a36;"><strong>Orden judicial:</strong> si un juez lo requiere formalmente.</li>
+        </ul>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">En <strong>terapia de pareja o familiar</strong>, todo lo que se comparte en el espacio conjunto es confidencial entre los participantes. No traslado información de sesiones individuales a otros miembros del sistema sin tu consentimiento.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Comunicación fuera de sesión</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">El canal principal para coordinar citas es WhatsApp o correo electrónico. No ofrezco acompañamiento terapéutico por mensajes de texto o email; ese espacio existe en la sesión. Si surge algo urgente entre citas, podemos coordinar un encuentro adicional.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(20px,2.2vw,26px);margin:0 0 16px;line-height:1.2;">Modificaciones a estos términos</h2>
+        <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">Puedo actualizar estos términos ocasionalmente. Cuando lo haga, te lo haré saber con antelación. Continuar usando el servicio después de una notificación implica la aceptación de los cambios.</p>
+      </div>
+
+      <p style="font-size:clamp(15px,1vw,17px);line-height:1.8;color:#3f3a36;margin:0;">¿Tienes preguntas? Escríbeme a <a href="mailto:hola@inessentia.mx" style="color:var(--wine);font-weight:600;text-decoration:none;border-bottom:1px solid var(--wine);">hola@inessentia.mx</a> — con gusto las resolvemos antes de comenzar.</p>
+
+      <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
+        <a href="/es/privacidad/" style="color:var(--purple);font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">Aviso de privacidad →</a>
+        <a href="/es/" style="color:var(--purple);font-weight:700;font-size:15px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">&larr; Volver al inicio</a>
+      </div>
+
+    </div>
+  </section>
+
+</Base>
