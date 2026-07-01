@@ -219,8 +219,11 @@ body {
 }
 .blog-content a {
   color: var(--wine);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.blog-content a:hover {
+  opacity: .65;
 }
 
 /* Print */
