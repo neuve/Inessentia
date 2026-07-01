@@ -11,14 +11,14 @@
     "family": "Familias",
     "resources": "Recursos",
     "network": "Red terapéutica",
-    "cta": "Agendar cita",
+    "cta": "Agenda cita",
     "openMenu": "Abrir menú de navegación",
     "closeMenu": "Cerrar menú"
   },
   "hero": {
     "label": "Psicoterapia · CDMX y en línea",
-    "title": "Patricio Ruiz — acompañamiento terapéutico en CDMX con enfoque relacional y psicosomático.",
-    "subtitle": "Procesos terapéuticos individuales, de pareja y de familia, además de talleres grupales. Presencial en Ciudad de México y online.",
+    "title": "Patricio Ruiz — un espacio para conocerte, sanar y volver a sentirte en calma, con enfoque relacional y psicosomático en CDMX.",
+    "subtitle": "Te acompaño en procesos individuales, de pareja y de familia, además de talleres grupales — presencial en Ciudad de México y en línea, estés donde estés.",
     "cta": "Agenda tu primera cita",
     "secondary": "¿Cómo es una sesión?"
   },
@@ -51,7 +51,7 @@
   "testimonials": {
     "label": "Experiencias",
     "title": "Personas reales, cambios reales",
-    "more": "Leer más experiencias"
+    "more": "Lee más experiencias"
   },
   "podcast": {
     "label": "Regalo para ti",
@@ -61,20 +61,20 @@
     "nameLabel": "Tu nombre",
     "emailLabel": "Tu correo electrónico",
     "emailPlaceholder": "hola@ejemplo.com",
-    "submit": "Recibir el podcast →",
+    "submit": "Recibe el podcast →",
     "submitting": "Enviando...",
     "privacy": "Solo te contactaré con información sobre mi terapia. Puedes darte de baja en cualquier momento.",
-    "privacyLink": "Ver aviso de privacidad",
+    "privacyLink": "Consulta el aviso de privacidad",
     "thanksEmoji": "🎙",
     "thanksTitle": "¡Listo! Aquí está el podcast",
-    "thanksCta": "▶ Escuchar ahora",
+    "thanksCta": "▶ Escucha ahora",
     "thanksNote": "Te enviamos también el link a tu correo."
   },
   "blog": {
     "label": "Recursos",
     "title": "Antes de tu primera sesión",
-    "seeAll": "Ver todas las entradas",
-    "readMore": "Leer más →"
+    "seeAll": "Descubre todas las entradas",
+    "readMore": "Lee más →"
   },
   "cta": {
     "title": "¿Listo para dar el primer paso?",
@@ -88,7 +88,7 @@
     "privacy": "Aviso de privacidad",
     "copyright": "Aviso sobre derechos de autor",
     "emergency": "Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.",
-    "stockCredit": "© Adobe Stock"
+    "stockCredit": "Algunas imágenes © Adobe Stock"
   },
   "langToggle": "EN",
   "langToggleTitle": "Switch to English",

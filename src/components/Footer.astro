@@ -8,6 +8,7 @@ const i = t(locale);
 const privacyPath = locale === 'es' ? '/es/privacidad/' : '/en/privacy/';
 const termsPath = locale === 'es' ? '/es/terminos/' : '/en/terms/';
 const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service';
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="footer">
@@ -25,7 +26,7 @@ const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service
       <div class="footer__right">
         <a href={privacyPath} class="footer__legal-link">{i.footer.privacy}</a>
         <a href={termsPath} class="footer__legal-link">{termsLabel}</a>
-        <a href={privacyPath} class="footer__legal-link">{i.footer.copyright}</a>
+        <p class="footer__copyright">© 2025–{currentYear} Patricio Ruiz Abrín · <a href={privacyPath}>{i.footer.privacy}</a> · <a href={termsPath}>{termsLabel}</a></p>
         <div class="footer__social">
           <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
             <img src="/uploads/instagram-icon.svg" loading="lazy" alt="Instagram" width="27" height="27" style="display:block;filter:brightness(0) invert(1);">
@@ -37,7 +38,7 @@ const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service
       <p class="footer__emergency">{i.footer.emergency}</p>
       <div class="footer__meta">
         <p class="footer__stock">{i.footer.stockCredit}</p>
-        <p class="footer__version">V1.3</p>
+        <p class="footer__version">V1.4</p>
       </div>
     </div>
   </div>
@@ -87,6 +88,11 @@ const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service
     color: rgba(255,255,255,.88); font-size: 17px; text-decoration: none;
   }
   .footer__legal-link:hover { color: var(--sand); }
+  .footer__copyright {
+    margin: 0; font-size: 13px; color: rgba(255,255,255,.65); text-align: right;
+  }
+  .footer__copyright a { color: rgba(255,255,255,.75); text-decoration: none; }
+  .footer__copyright a:hover { color: var(--sand); }
   .footer__social { display: flex; gap: 14px; }
   .footer__social-link {
     display: flex; align-items: center; justify-content: center;

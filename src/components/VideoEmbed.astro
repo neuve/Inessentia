@@ -1,0 +1,30 @@
+---
+interface Props {
+  videoId: string;
+  title: string;
+  style?: string;
+}
+const { videoId, title, style = '' } = Astro.props;
+---
+
+<div class="video-embed" data-video-id={videoId} style={`position:relative;max-width:320px;border-radius:10px;overflow:hidden;aspect-ratio:16/9;${style}`}>
+  <button type="button" class="video-embed-trigger" aria-label={title} style="all:unset;position:absolute;inset:0;cursor:pointer;display:block;width:100%;height:100%;">
+    <img src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} alt="" width="320" height="180" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);">
+      <span style="width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--purple);padding-left:3px;">▶</span>
+    </span>
+  </button>
+</div>
+
+<script is:inline>
+  if (!window.__videoEmbedBound) {
+    window.__videoEmbedBound = true;
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.video-embed-trigger');
+      if (!btn) return;
+      var wrap = btn.closest('.video-embed');
+      var id = wrap.getAttribute('data-video-id');
+      wrap.innerHTML = '<iframe width="320" height="180" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="YouTube video player" style="width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    });
+  }
+</script>

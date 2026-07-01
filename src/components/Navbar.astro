@@ -14,7 +14,8 @@ const links = navLinks(locale);
 <header id="site-nav" class="navbar">
   <div class="navbar__inner">
     <a href={`/${locale}/`} class="navbar__logo">
-      <img src="/uploads/logo-patricio-ruiz.webp" width="400" height="229" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" style="height:56px;width:auto;">
+      <img src="/uploads/logo-icon.webp" width="214" height="214" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon">
+      <span class="navbar__logo-name">Patricio<br>Ruiz</span>
     </a>
     <nav id="nav-links" class="navbar__links">
       {links.map(link => (
@@ -37,7 +38,7 @@ const links = navLinks(locale);
     <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="navbar__cta">{i.nav.cta}</a>
   </div>
 </header>
-<div style="height:64px;flex:none;"></div>
+<div style="height:88px;flex:none;"></div>
 
 <!-- Language toggle -->
 <a href={altHref} id="lang-toggle-btn" class="lang-toggle" title={i.langToggleTitle}>{i.langToggle}</a>
@@ -67,10 +68,19 @@ const links = navLinks(locale);
     border-bottom: 1px solid transparent;
   }
   .navbar__inner {
-    max-width: 1200px; margin: 0 auto; padding: 13px 32px;
+    max-width: 1200px; margin: 0 auto; padding: 10px 32px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
   }
-  .navbar__logo { display: flex; align-items: center; text-decoration: none; flex: none; }
+  .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: none; }
+  .navbar__logo-icon { height: 68px; width: auto; display: block; }
+  .navbar__logo-name {
+    font-family: 'Zilla Slab', serif; font-weight: 600; color: var(--purple);
+    font-size: 18px; line-height: 1.15; letter-spacing: .01em;
+  }
+  @media (max-width: 500px) {
+    .navbar__logo-icon { height: 54px; }
+    .navbar__logo-name { font-size: 15px; }
+  }
   .navbar__links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
   .navbar__link {
     font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
@@ -193,6 +203,16 @@ const links = navLinks(locale);
       { title: '¿Cómo suele ser la primera cita?', desc: 'Qué pasa, cuánto dura, qué llevarte', href: '/es/blog/primera-cita/' },
       { title: '¿Cuándo empezar terapia?', desc: 'Las señales que vale la pena escuchar', href: '/es/blog/cuando-es-buen-momento/' },
       { title: 'Tipos de terapia', desc: 'SE, IFS, EFT, Core Energética', href: '/es/blog/tipos-de-terapia/' },
+      { title: 'Siento ansiedad en el cuerpo, no solo en la mente', desc: 'Cómo el cuerpo registra la ansiedad', href: '/es/blog/ansiedad-somatica/' },
+      { title: 'Duelo: cuando la pérdida se queda en el cuerpo', desc: 'El duelo no se resuelve — se integra', href: '/es/blog/duelo-somatico/' },
+      { title: 'Qué es el estrés crónico', desc: 'Cómo afecta al cuerpo y por qué no basta con relajarse', href: '/es/blog/estres-cronico/' },
+      { title: 'Mi pareja y yo repetimos siempre el mismo patrón', desc: 'Reconocer el ciclo para poder salir de él', href: '/es/blog/patrones-de-pareja/' },
+      { title: 'Psicólogo, psicoterapeuta o psiquiatra', desc: 'En qué se diferencian estas tres figuras', href: '/es/blog/psicologo-psicoterapeuta-psiquiatra/' },
+      { title: 'Qué es la regulación del sistema nervioso', desc: 'Por qué es la base de todo lo demás', href: '/es/blog/regulacion-sistema-nervioso/' },
+      { title: 'Terapia para adolescentes', desc: 'Cuándo y cómo puede ayudar', href: '/es/blog/terapia-adolescentes/' },
+      { title: '¿Terapia individual o de pareja?', desc: 'La respuesta casi nunca es binaria', href: '/es/blog/terapia-individual-o-pareja/' },
+      { title: 'Terapia presencial vs online', desc: 'Qué dice la evidencia', href: '/es/blog/terapia-presencial-vs-online/' },
+      { title: 'No puedo dejar de pensar en algo que pasó', desc: 'Trauma sin diagnosticar', href: '/es/blog/trauma-sin-diagnosticar/' },
       { title: 'Privacidad', desc: 'Aviso de privacidad', href: '/es/privacidad/' },
     ],
     en: [
@@ -208,6 +228,16 @@ const links = navLinks(locale);
       { title: "What's a first session like?", desc: 'What happens, how long, what to bring', href: '/en/blog/first-session/' },
       { title: 'When to start therapy?', desc: 'Signs worth listening to', href: '/en/blog/good-time-to-start/' },
       { title: 'Types of therapy', desc: 'SE, IFS, EFT, Core Energetics', href: '/en/blog/types-of-therapy/' },
+      { title: 'I feel anxiety in my body, not just my mind', desc: 'How the body registers anxiety', href: '/en/blog/somatic-anxiety/' },
+      { title: 'Grief: when loss stays in the body', desc: "Grief doesn't resolve — it integrates", href: '/en/blog/somatic-grief/' },
+      { title: 'What chronic stress is', desc: 'How it affects the body and why relaxing isn’t enough', href: '/en/blog/chronic-stress/' },
+      { title: 'My partner and I keep repeating the same pattern', desc: 'Recognizing the cycle to get out of it', href: '/en/blog/couples-patterns/' },
+      { title: 'Psychologist, psychotherapist, or psychiatrist?', desc: 'How these three roles differ', href: '/en/blog/psychologist-therapist-psychiatrist/' },
+      { title: 'What nervous system regulation means', desc: 'Why it is the foundation for everything else', href: '/en/blog/nervous-system-regulation/' },
+      { title: 'Therapy for teenagers', desc: 'When and how it can help', href: '/en/blog/teen-therapy/' },
+      { title: 'Individual or couples therapy?', desc: 'The answer is almost never binary', href: '/en/blog/individual-or-couples-therapy/' },
+      { title: 'In-person vs online therapy', desc: 'What the evidence says', href: '/en/blog/in-person-vs-online-therapy/' },
+      { title: "I can't stop thinking about something that happened", desc: 'Undiagnosed trauma', href: '/en/blog/undiagnosed-trauma/' },
       { title: 'Privacy', desc: 'Privacy policy', href: '/en/privacy/' },
     ]
   };

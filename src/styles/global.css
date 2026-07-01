@@ -74,8 +74,6 @@ body {
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  border-bottom: 2px solid currentColor;
-  padding-bottom: 3px;
   transition: opacity .2s;
 }
 .link-underline:hover { opacity: .65; }
