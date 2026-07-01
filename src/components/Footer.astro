@@ -24,8 +24,6 @@ const currentYear = new Date().getFullYear();
         <a href="mailto:patricio@inessentia.mx" class="footer__email">patricio@inessentia.mx</a>
       </div>
       <div class="footer__right">
-        <a href={privacyPath} class="footer__legal-link">{i.footer.privacy}</a>
-        <a href={termsPath} class="footer__legal-link">{termsLabel}</a>
         <p class="footer__copyright">© 2025–{currentYear} Patricio Ruiz Abrín · <a href={privacyPath}>{i.footer.privacy}</a> · <a href={termsPath}>{termsLabel}</a></p>
         <div class="footer__social">
           <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
@@ -84,10 +82,6 @@ const currentYear = new Date().getFullYear();
     flex: 0 1 300px; min-width: 240px; text-align: right;
     display: flex; flex-direction: column; align-items: flex-end; gap: 14px;
   }
-  .footer__legal-link {
-    color: rgba(255,255,255,.88); font-size: 17px; text-decoration: none;
-  }
-  .footer__legal-link:hover { color: var(--sand); }
   .footer__copyright {
     margin: 0; font-size: 13px; color: rgba(255,255,255,.65); text-align: right;
   }
