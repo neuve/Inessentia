@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('duelo-somatico')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Grief: when loss stays in the body"
-  description="Grief isn't a process that gets resolved. It's something that gets integrated. And before that integration is possible, you have to stop pressuring yourself to already 'be fine'."
-  altPath="/blog/duelo-somatico/"
-  category="Wellbeing"
-  heroImage="/uploads/placeholder-duelo-somatico.svg"
-  heroAlt="White feather floating gently in the air"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-somatic-grief.html"
-  nextPost={{ href: "/en/blog/teen-therapy/", label: "Therapy for teenagers: when and how →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There's a phrase I hear often from people going through grief: "I should have gotten over this by now." Sometimes it comes with a timeline attached — six months, a year, "it's already been two years and still." Sometimes it arrives without a timeline, just a diffuse sense that something is wrong, that they're failing at something everyone supposedly knows how to do: lose.</p>
   <p data-reveal>The first thing I want to say is this: you are not failing. Grief has no schedule. And the idea that it should have one has caused more harm than it seems.</p>

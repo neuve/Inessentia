@@ -1,18 +1,23 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('tipos-de-terapia')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Tipos de terapia: cómo trabajo en sesión"
-  description="Cuatro aproximaciones que integro para acompañarte desde el cuerpo, las emociones y la historia que cargas."
-  altPath="/blog/types-of-therapy/"
-  category="Aproximaciones terapéuticas"
-  heroImage="/uploads/tipos-terapia.webp"
-  heroAlt="Tipos de terapia"
-  heroPosition="center 25%"
-  disqusIdentifier="/blog-tipos-de-terapia.html"
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
   videos={[
     { name: "¿Qué es la Experiencia Somática (SE)?", description: "Modelo terapéutico con consciencia de trauma que pone atención a las respuestas del sistema nervioso.", thumbnailUrl: "https://img.youtube.com/vi/2lZfFB-dcbA/hqdefault.jpg", contentUrl: "https://www.youtube.com/watch?v=2lZfFB-dcbA", embedUrl: "https://www.youtube.com/embed/2lZfFB-dcbA" },
     { name: "¿Qué son los Sistemas Familiares Internos (IFS)?", description: "Trabaja con las distintas partes que coexisten dentro de ti para integrar voces internas en conflicto.", thumbnailUrl: "https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg", contentUrl: "https://youtu.be/DdZZ7sTX840", embedUrl: "https://www.youtube.com/embed/DdZZ7sTX840" },

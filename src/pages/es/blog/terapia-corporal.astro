@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-corporal')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="¿Qué es la terapia corporal?"
-  description="El cuerpo guarda lo que la mente no alcanza a procesar. Descubre cómo la terapia corporal trabaja con sensaciones, postura y sistema nervioso para sanar desde adentro."
-  altPath="/blog/terapia-corporal/"
-  category="Aproximaciones terapéuticas"
-  heroImage="/uploads/terapia-corporal.webp"
-  heroAlt="Acercamiento a una mano abierta apoyada sobre una rodilla, luz natural"
-  heroPosition="center 30%"
-  disqusIdentifier="/blog-terapia-corporal.html"
-  nextPost={{ href: "/es/blog/teoria-polivagal/", label: "Teoría Polivagal: el sistema nervioso como brújula →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay algo que noto constantemente en mi consulta: la gente llega con una historia muy bien articulada de lo que le pasa. Sabe nombrar sus patrones, reconoce de dónde vienen, tiene claridad intelectual sobre su ansiedad, su dificultad para conectar, su tendencia a cerrarse cuando alguien se acerca demasiado. Y aun así, nada cambia. La comprensión está ahí, pero la vida sigue siendo la misma.</p>
   <p data-reveal>Eso no es un fracaso del proceso. Es una pista.</p>

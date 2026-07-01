@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-adolescentes')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Therapy for teenagers: when and how"
-  description="Adolescence isn't a difficult phase you just have to get through — it's one of the deepest neurological reorganizations of a lifetime. Here I explore when therapy can help and how it works in practice."
-  altPath="/blog/terapia-adolescentes/"
-  category="Therapeutic process"
-  heroImage="/uploads/placeholder-terapia-adolescentes.svg"
-  heroAlt="Green sprout emerging from the soil, morning light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-teen-therapy.html"
-  nextPost={{ href: "/en/blog/couples-patterns/", label: "My partner and I keep repeating the same pattern →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>When parents reach out asking whether their son or daughter should be in therapy, I notice most of them arrive carrying some underlying guilt — as if seeking professional help were admitting something went wrong. The first thing I tell them is that seeking support for a teenager isn't a sign of failure. It's exactly the opposite: it's recognizing that they're going through something that exceeds what any family can hold alone.</p>
   <p data-reveal>And not because the family isn't enough. But because adolescence is, objectively, one of the most intense processes of transformation that exists.</p>

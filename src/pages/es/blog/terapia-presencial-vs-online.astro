@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-presencial-vs-online')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Terapia presencial vs online: ¿qué funciona mejor?"
-  description="La terapia en línea funciona. Pero hay matices. Te cuento qué dice la evidencia y cómo pienso yo la elección entre modalidad presencial y online según el proceso de cada persona."
-  altPath="/blog/in-person-vs-online-therapy/"
-  category="Proceso terapéutico"
-  heroImage="/uploads/placeholder-terapia-presencial-vs-online.svg"
-  heroAlt="Pantalla iluminada junto a una silla vacía en un espacio cálido"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-terapia-presencial-vs-online.html"
-  nextPost={{ href: "/es/blog/psicologo-psicoterapeuta-psiquiatra/", label: "Diferencia entre psicólogo, psicoterapeuta y psiquiatra →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>La pregunta llega seguido, y tiene sentido que llegue: ¿es lo mismo hacer terapia por Zoom que en persona? ¿Se pierde algo en la pantalla? ¿O la comodidad de hacerlo desde casa compensa lo que se deja de lado?</p>
   <p data-reveal>La respuesta honesta es que depende — no de una preferencia personal mía, sino de lo que cada persona está viviendo, cómo trabaja mejor y qué condiciones tiene disponibles. Lo que quiero hacer aquí es darte elementos reales para que tomes esa decisión de forma informada, no que te venda una modalidad sobre la otra.</p>

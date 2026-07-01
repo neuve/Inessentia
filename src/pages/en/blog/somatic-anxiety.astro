@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('ansiedad-somatica')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="I feel anxiety in my body, not just my mind"
-  description="Somatic anxiety shows up as tension, chest tightness, or a knotted stomach before the mind can put a name to it. Understanding how the body registers anxiety is the first step to working with it from the inside."
-  altPath="/blog/ansiedad-somatica/"
-  category="Wellbeing"
-  heroImage="/uploads/placeholder-ansiedad-somatica.svg"
-  heroAlt="Hands clasped over the chest, conscious breathing"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-somatic-anxiety.html"
-  nextPost={{ href: "/en/blog/nervous-system-regulation/", label: "What nervous system regulation means and why it matters →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There's an image many people carry of anxiety: thoughts that won't stop, worries looping about something that may not have even happened. And yes, that's one face of anxiety. But there's another face that gets overlooked far too often, and that shows up constantly in my work with clients: the anxiety that lives in the body before the mind even knows it's there.</p>
   <p data-reveal>I'm talking about the jaw clenched on waking. The shoulders that creep up toward the ears by mid-afternoon on their own. The chest that feels like it's carrying weight. The stomach that turns before a meeting, or for no apparent reason at all. The heart that races when nothing you're doing justifies it, or the insomnia that arrives even after a calm day.</p>

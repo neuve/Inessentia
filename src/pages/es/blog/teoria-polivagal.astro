@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('teoria-polivagal')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Teoría Polivagal: el sistema nervioso como brújula"
-  description="La Teoría Polivagal de Stephen Porges explica cómo el sistema nervioso autónomo regula nuestra capacidad de conexión, movilización y colapso — y por qué eso transforma la terapia."
-  altPath="/blog/teoria-polivagal/"
-  category="Sistema nervioso"
-  heroImage="/uploads/placeholder-teoria-polivagal.svg"
-  heroAlt="Ondas concéntricas en calma sobre agua quieta, luz dorada"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-teoria-polivagal.html"
-  nextPost={{ href: "/es/blog/experiencia-somatica/", label: "Experiencia Somática (SE) →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay momentos en que reaccionamos de una forma que luego no entendemos. Te "congelas" en medio de una discusión y no puedes pensar. Tu cuerpo colapsa ante un recuerdo aunque racionalmente sabes que ya pasó. Te desconectas en situaciones que deberían sentirse seguras. No es que estés exagerando, ni que seas demasiado sensible. Tu sistema nervioso está haciendo exactamente lo que aprendió a hacer para mantenerte vivo.</p>
   <p data-reveal>La Teoría Polivagal, desarrollada por el neurocientífico Stephen Porges, ofrece un mapa para entender esto — y ese mapa cambia la forma en que uno se ve a sí mismo.</p>

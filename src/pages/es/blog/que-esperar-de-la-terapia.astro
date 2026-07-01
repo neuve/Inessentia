@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('que-esperar-de-la-terapia')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="¿Qué esperar de la terapia?"
-  description="La terapia es un proceso de auto-transformación: revisamos qué versiones de ti siguen respondiendo a un mundo que ya no existe, y las actualizamos."
-  altPath="/blog/what-to-expect/"
-  category="Proceso terapéutico"
-  heroImage="/uploads/que-esperar-terapia.webp"
-  heroAlt="¿Qué esperar de la terapia?"
-  heroPosition="center 20%"
-  disqusIdentifier="/blog-que-esperar-de-la-terapia.html"
-  nextPost={{ href: "/es/blog/primera-cita/", label: "¿Cómo es la primera cita? →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p>Si tuviera que resumir qué es la terapia, diría que es un proceso de auto-transformación con base en la exploración conjunta. Un proceso que, bien llevado, nos ayuda a conocernos de manera profunda y honesta.</p>
   <p>En terapia confrontamos nuestra imagen de quiénes somos: quiénes creemos que somos, quiénes deseamos ser, y quiénes somos realmente. Poco a poco vamos aterrizando en lo que efectivamente está bajo nuestro control, para acercarnos a una versión de nosotros mismos más adecuada a nuestra realidad de hoy.</p>

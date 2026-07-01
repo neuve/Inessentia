@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-corporal')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="What is body-based therapy?"
-  description="The body holds what the mind can't fully process. Discover how body-based therapy works with sensation, posture, and the nervous system to heal from the inside."
-  altPath="/blog/terapia-corporal/"
-  category="Therapeutic approaches"
-  heroImage="/uploads/terapia-corporal.webp"
-  heroAlt="Close-up of a hand resting open on a knee, natural light"
-  heroPosition="center 30%"
-  disqusIdentifier="/en/blog-body-based-therapy.html"
-  nextPost={{ href: "/en/blog/polyvagal-theory/", label: "Polyvagal Theory: the nervous system as a compass →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There's something I notice constantly in my practice: people arrive with a very well-articulated account of what's wrong with them. They can name their patterns, recognize where they come from, have intellectual clarity about their anxiety, their difficulty connecting, their tendency to close off when someone gets too close. And yet, nothing changes. The understanding is there, but life stays the same.</p>
   <p data-reveal>That's not a failure of the process. It's a clue.</p>

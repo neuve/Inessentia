@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('primera-cita')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="What's a first session usually like?"
-  description="Knowing what to expect before and during the first therapy session can ease the uncertainty. Here's how the initial process works in my practice."
-  altPath="/blog/primera-cita/"
-  category="First session"
-  heroImage="/uploads/primera-cita-terapia.webp"
-  heroAlt="Empty therapy room with two armchairs facing each other, warm afternoon light"
-  heroPosition="center 35%"
-  disqusIdentifier="/en/blog-first-session.html"
-  nextPost={{ href: "/en/blog/good-time-to-start/", label: "When is a good time to start? →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Arriving at the first therapy session takes something we don't always name: courage. Not the loud courage of grand gestures, but the quieter kind that Brené Brown describes as the willingness to show up without knowing exactly what's going to happen. If you're reading this, you've probably already taken that step, or you're very close to it. And it makes complete sense that you'd want to know what's ahead.</p>
   <p data-reveal>What I describe here is how the initial process works in my practice. Not because there's a rigid formula, but because I believe reducing uncertainty is part of the care from the very first moment.</p>

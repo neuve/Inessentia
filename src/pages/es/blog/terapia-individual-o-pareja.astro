@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-individual-o-pareja')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="¿Necesito terapia individual o de pareja?"
-  description="Es una de las preguntas que más me hacen antes de la primera sesión. La respuesta casi nunca es binaria — y explorarla juntos suele ser el mejor punto de partida."
-  altPath="/blog/individual-or-couples-therapy/"
-  category="Proceso terapéutico"
-  heroImage="/uploads/placeholder-terapia-individual-o-pareja.svg"
-  heroAlt="Dos caminos que se bifurcan en un bosque claro"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-terapia-individual-o-pareja.html"
-  nextPost={{ href: "/es/blog/terapia-presencial-vs-online/", label: "Terapia presencial vs online: ¿qué funciona mejor? →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Es una de las preguntas que más recibo antes de la primera sesión — a veces en el mensaje inicial, a veces en la primera llamada, a veces formulada con una duda que se oye debajo: "no sé si el problema soy yo o si el problema somos los dos". La pregunta me parece muy honesta. Y la respuesta, casi siempre, es más matizada de lo que esperan.</p>
   <p data-reveal>No existe una regla universal. Lo que sí existe es una forma de pensar el problema que puede ayudarte a orientarte — y una primera conversación donde podemos explorarlo juntos.</p>

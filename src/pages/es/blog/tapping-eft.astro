@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('tapping-eft')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Tapping / EFT: cuando el cuerpo recibe la señal de que ya estás a salvo"
-  description="Qué es la Técnica de Libertad Emocional, cómo funciona en el sistema nervioso y para qué sirve en el trabajo terapéutico con Patricio Ruiz."
-  altPath="/blog/tapping-eft/"
-  category="Aproximaciones terapéuticas"
-  heroImage="/uploads/placeholder-tapping-eft.svg"
-  heroAlt="Acercamiento a unas yemas de los dedos tocando suavemente la clavícula"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-tapping-eft.html"
-  nextPost={{ href: "/es/blog/core-energetica/", label: "Core Energética →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay algo que siempre me parece vale la pena decir antes de hablar de tapping: cuando lo describes en voz alta por primera vez, suena raro. Tocar puntos en tu cara y tu cuerpo mientras piensas en algo que te angustia. Repetir frases en voz alta. No es la imagen que la mayoría tenemos de la terapia.</p>
   <p data-reveal>Y sin embargo, lo que ocurre en el sistema nervioso cuando se hace bien es preciso, medible y, con frecuencia, sorprendentemente rápido.</p>

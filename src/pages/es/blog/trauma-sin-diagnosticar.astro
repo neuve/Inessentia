@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('trauma-sin-diagnosticar')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="No puedo dejar de pensar en algo que pasó"
-  description="La rumiación persistente sobre algo del pasado puede ser una señal de trauma sin diagnosticar. No necesita haber sido un evento dramático: el trauma es lo que queda en el cuerpo, no lo que ocurrió."
-  altPath="/blog/undiagnosed-trauma/"
-  category="Bienestar"
-  heroImage="/uploads/placeholder-trauma-sin-diagnosticar.svg"
-  heroAlt="Silueta pensativa mirando por una ventana empañada"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-trauma-sin-diagnosticar.html"
-  nextPost={{ href: "/es/blog/duelo-somatico/", label: "Duelo: cuando la pérdida se queda en el cuerpo →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una frase que escucho con cierta frecuencia en consulta, dicha casi siempre con algo de vergüenza: "No sé por qué no puedo dejar de pensar en eso. Ya pasó. Debería haberlo superado." A veces hablan de una relación que terminó mal. A veces de algo que dijo alguien hace años y que todavía duele. A veces de una situación de la infancia que aparece sin avisar, en sueños o en mitad de una conversación trivial.</p>
   <p data-reveal>Lo que está detrás de esa experiencia —ese no poder soltar, ese volver involuntario— muchas veces tiene nombre. Y ese nombre es trauma. Aunque no lo parezca.</p>

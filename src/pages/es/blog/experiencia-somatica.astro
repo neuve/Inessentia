@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('experiencia-somatica')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Experiencia Somática (SE)"
-  description="La Experiencia Somática trabaja con el sistema nervioso para completar ciclos de defensa interrumpidos. Así es cómo funciona y qué ocurre en sesión."
-  altPath="/blog/experiencia-somatica/"
-  category="Aproximaciones terapéuticas"
-  heroImage="/uploads/placeholder-experiencia-somatica.svg"
-  heroAlt="Venado en un claro de bosque, luz moteada entre los árboles"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-experiencia-somatica.html"
-  nextPost={{ href: "/es/blog/sistemas-familiares-internos/", label: "Sistemas Familiares Internos (IFS) →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una pregunta que aparece mucho cuando hablo con alguien que lleva tiempo en terapia sin sentir que algo se mueve de verdad: "¿Por qué si ya sé de dónde viene esto, sigo reaccionando igual?" Es una pregunta honesta, y merece una respuesta igual de honesta: porque el saber intelectual y el sistema nervioso son dos cosas distintas, y la terapia convencional a veces solo habla con uno de los dos.</p>
   <p data-reveal>La Experiencia Somática (SE) fue desarrollada por Peter Levine precisamente para trabajar con el que queda fuera de la conversación.</p>

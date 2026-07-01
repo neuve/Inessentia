@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('patrones-de-pareja')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="My partner and I keep repeating the same pattern"
-  description="Most couples don't have a new problem every week — they have the same problem wearing a different costume each time. Recognizing the cycle is the first step to getting out of it."
-  altPath="/blog/patrones-de-pareja/"
-  category="Wellbeing"
-  heroImage="/uploads/placeholder-patrones-de-pareja.svg"
-  heroAlt="Two mirrored silhouettes, circular motion"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-couples-patterns.html"
-  nextPost={{ href: "/en/blog/individual-or-couples-therapy/", label: "Do I need individual or couples therapy? →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There's a scene that repeats itself a lot in session. A couple arrives and tells me about the week's fight: he went to another room, she felt like he was abandoning her, the volume escalated, he shut down further. When they finish telling me, almost always someone says: "it's always the same." And they're right. Not in the sense that they're hopelessly stuck, but in the sense that what they're describing isn't an isolated conflict — it's a pattern. A dance they both know by heart, even though neither consciously chose it.</p>
   <p data-reveal>Recognizing that — seeing the cycle as a cycle — is, in my experience, the first move that makes change possible.</p>

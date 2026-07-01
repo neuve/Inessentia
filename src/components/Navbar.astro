@@ -1,5 +1,6 @@
 ---
 import { t, navLinks, type Locale } from '../i18n/utils';
+import { posts, postHref } from '../data/posts';
 
 interface Props {
   locale: Locale;
@@ -9,6 +10,13 @@ interface Props {
 const { locale, altHref } = Astro.props;
 const i = t(locale);
 const links = navLinks(locale);
+
+// Blog entries for the site search index, generated from the single source
+// of truth in data/posts.ts so a new post can never be missing from search.
+const searchBlogEntries = {
+  es: posts.map(p => ({ title: p.es.title, desc: p.cardBlurb?.es ?? p.es.description, href: postHref('es', p.id) })),
+  en: posts.map(p => ({ title: p.en.title, desc: p.cardBlurb?.en ?? p.en.description, href: postHref('en', p.id) })),
+};
 ---
 
 <header id="site-nav" class="navbar">
@@ -59,6 +67,8 @@ const links = navLinks(locale);
     <div id="search-results" class="search-results"></div>
   </div>
 </div>
+
+<script type="application/json" id="search-blog-data" set:html={JSON.stringify(searchBlogEntries)}></script>
 
 <style>
   .navbar {
@@ -189,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Search
 (function() {
-  var pages = {
+  var sitePages = {
     es: [
       { title: 'Inicio', desc: 'Psicoterapia en CDMX y en línea', href: '/es/' },
       { title: 'Sobre mí', desc: 'Patricio Ruiz Abrín, psicoterapeuta', href: '/es/sobre-mi/' },
@@ -199,20 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'Recursos', desc: 'Artículos antes de tu primera sesión', href: '/es/recursos/' },
       { title: 'Red terapéutica', desc: 'Directorio de terapeutas en México', href: '/es/red-terapeutica/' },
       { title: 'Testimonios', desc: 'Experiencias de personas reales', href: '/es/testimonios/' },
-      { title: '¿Qué esperar de la terapia?', desc: 'Proceso de auto-transformación', href: '/es/blog/que-esperar-de-la-terapia/' },
-      { title: '¿Cómo suele ser la primera cita?', desc: 'Qué pasa, cuánto dura, qué llevarte', href: '/es/blog/primera-cita/' },
-      { title: '¿Cuándo empezar terapia?', desc: 'Las señales que vale la pena escuchar', href: '/es/blog/cuando-es-buen-momento/' },
-      { title: 'Tipos de terapia', desc: 'SE, IFS, EFT, Core Energética', href: '/es/blog/tipos-de-terapia/' },
-      { title: 'Siento ansiedad en el cuerpo, no solo en la mente', desc: 'Cómo el cuerpo registra la ansiedad', href: '/es/blog/ansiedad-somatica/' },
-      { title: 'Duelo: cuando la pérdida se queda en el cuerpo', desc: 'El duelo no se resuelve — se integra', href: '/es/blog/duelo-somatico/' },
-      { title: 'Qué es el estrés crónico', desc: 'Cómo afecta al cuerpo y por qué no basta con relajarse', href: '/es/blog/estres-cronico/' },
-      { title: 'Mi pareja y yo repetimos siempre el mismo patrón', desc: 'Reconocer el ciclo para poder salir de él', href: '/es/blog/patrones-de-pareja/' },
-      { title: 'Psicólogo, psicoterapeuta o psiquiatra', desc: 'En qué se diferencian estas tres figuras', href: '/es/blog/psicologo-psicoterapeuta-psiquiatra/' },
-      { title: 'Qué es la regulación del sistema nervioso', desc: 'Por qué es la base de todo lo demás', href: '/es/blog/regulacion-sistema-nervioso/' },
-      { title: 'Terapia para adolescentes', desc: 'Cuándo y cómo puede ayudar', href: '/es/blog/terapia-adolescentes/' },
-      { title: '¿Terapia individual o de pareja?', desc: 'La respuesta casi nunca es binaria', href: '/es/blog/terapia-individual-o-pareja/' },
-      { title: 'Terapia presencial vs online', desc: 'Qué dice la evidencia', href: '/es/blog/terapia-presencial-vs-online/' },
-      { title: 'No puedo dejar de pensar en algo que pasó', desc: 'Trauma sin diagnosticar', href: '/es/blog/trauma-sin-diagnosticar/' },
       { title: 'Privacidad', desc: 'Aviso de privacidad', href: '/es/privacidad/' },
     ],
     en: [
@@ -224,22 +220,15 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'Resources', desc: 'Articles before your first session', href: '/en/resources/' },
       { title: 'Therapist Network', desc: 'Directory of therapists in Mexico', href: '/en/therapist-network/' },
       { title: 'Testimonials', desc: 'Real people, real changes', href: '/en/testimonials/' },
-      { title: 'What to expect from therapy?', desc: 'A process of self-transformation', href: '/en/blog/what-to-expect/' },
-      { title: "What's a first session like?", desc: 'What happens, how long, what to bring', href: '/en/blog/first-session/' },
-      { title: 'When to start therapy?', desc: 'Signs worth listening to', href: '/en/blog/good-time-to-start/' },
-      { title: 'Types of therapy', desc: 'SE, IFS, EFT, Core Energetics', href: '/en/blog/types-of-therapy/' },
-      { title: 'I feel anxiety in my body, not just my mind', desc: 'How the body registers anxiety', href: '/en/blog/somatic-anxiety/' },
-      { title: 'Grief: when loss stays in the body', desc: "Grief doesn't resolve — it integrates", href: '/en/blog/somatic-grief/' },
-      { title: 'What chronic stress is', desc: 'How it affects the body and why relaxing isn’t enough', href: '/en/blog/chronic-stress/' },
-      { title: 'My partner and I keep repeating the same pattern', desc: 'Recognizing the cycle to get out of it', href: '/en/blog/couples-patterns/' },
-      { title: 'Psychologist, psychotherapist, or psychiatrist?', desc: 'How these three roles differ', href: '/en/blog/psychologist-therapist-psychiatrist/' },
-      { title: 'What nervous system regulation means', desc: 'Why it is the foundation for everything else', href: '/en/blog/nervous-system-regulation/' },
-      { title: 'Therapy for teenagers', desc: 'When and how it can help', href: '/en/blog/teen-therapy/' },
-      { title: 'Individual or couples therapy?', desc: 'The answer is almost never binary', href: '/en/blog/individual-or-couples-therapy/' },
-      { title: 'In-person vs online therapy', desc: 'What the evidence says', href: '/en/blog/in-person-vs-online-therapy/' },
-      { title: "I can't stop thinking about something that happened", desc: 'Undiagnosed trauma', href: '/en/blog/undiagnosed-trauma/' },
       { title: 'Privacy', desc: 'Privacy policy', href: '/en/privacy/' },
     ]
+  };
+
+  var blogDataEl = document.getElementById('search-blog-data');
+  var blogPages = blogDataEl ? JSON.parse(blogDataEl.textContent) : { es: [], en: [] };
+  var pages = {
+    es: sitePages.es.concat(blogPages.es),
+    en: sitePages.en.concat(blogPages.en),
   };
 
   var lang = document.documentElement.lang === 'en' ? 'en' : 'es';

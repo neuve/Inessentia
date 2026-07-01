@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('core-energetica')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Core Energetics: the body as an archive of your history"
-  description="Core Energetics works with the body, energy, and psyche to release emotional patterns held in muscular tension, posture, and breath."
-  altPath="/blog/core-energetica/"
-  category="Therapeutic approaches"
-  heroImage="/uploads/placeholder-core-energetica.svg"
-  heroAlt="A human figure from behind, standing before a large window with morning light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-core-energetics.html"
-  nextPost={{ href: "/en/blog/what-to-expect/", label: "What to expect from therapy? →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There are questions the mind can't answer on its own. Why do I shut down whenever someone gets too close? Why is it hard to breathe deeply when there's conflict? Why, despite perfectly understanding what's going on with me, do I keep repeating the same patterns? The answer, often, isn't only in thought — it's in the body. And that's precisely what Core Energetics came to say.</p>
 

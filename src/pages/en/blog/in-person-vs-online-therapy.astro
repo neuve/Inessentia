@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-presencial-vs-online')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="In-person vs online therapy: which works better?"
-  description="Online therapy works. But there are nuances. Here's what the evidence says and how I think about the choice between in-person and online, depending on each person's process."
-  altPath="/blog/terapia-presencial-vs-online/"
-  category="Therapeutic process"
-  heroImage="/uploads/placeholder-terapia-presencial-vs-online.svg"
-  heroAlt="Lit screen beside an empty chair in a warm room"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-in-person-vs-online-therapy.html"
-  nextPost={{ href: "/en/blog/psychologist-therapist-psychiatrist/", label: "The difference between a psychologist, a psychotherapist, and a psychiatrist →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>The question comes up often, and it makes sense that it does: is doing therapy over Zoom the same as in person? Does something get lost on the screen? Or does the comfort of doing it from home make up for what gets left behind?</p>
   <p data-reveal>The honest answer is that it depends — not on a personal preference of mine, but on what each person is living through, how they work best, and what conditions they have available. What I want to do here is give you real elements so you can make that decision in an informed way, not sell you one modality over the other.</p>

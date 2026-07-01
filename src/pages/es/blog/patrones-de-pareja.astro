@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('patrones-de-pareja')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Mi pareja y yo repetimos siempre el mismo patrón"
-  description="La mayoría de las parejas no tienen un problema nuevo cada semana — tienen el mismo problema disfrazado de distintas situaciones. Reconocer el ciclo es el primer paso para salir de él."
-  altPath="/blog/couples-patterns/"
-  category="Bienestar"
-  heroImage="/uploads/placeholder-patrones-de-pareja.svg"
-  heroAlt="Dos siluetas en espejo, movimiento circular"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-patrones-de-pareja.html"
-  nextPost={{ href: "/es/blog/terapia-individual-o-pareja/", label: "¿Necesito terapia individual o de pareja? →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una escena que se repite mucho en el consultorio. Una pareja llega y me cuenta la pelea de la semana: él se fue a otra habitación, ella sintió que la estaba abandonando, escaló el volumen, él se cerró más. Al terminar de contármela, casi siempre alguien dice: "es que siempre es lo mismo". Y tienen razón. No en el sentido de que estén atrapados sin remedio, sino en el sentido de que lo que están describiendo no es un conflicto aislado — es un patrón. Una danza que los dos conocen de memoria aunque ninguno la haya elegido conscientemente.</p>
   <p data-reveal>Reconocer eso — ver el ciclo como ciclo — es, en mi experiencia, el primer movimiento que hace posible el cambio.</p>

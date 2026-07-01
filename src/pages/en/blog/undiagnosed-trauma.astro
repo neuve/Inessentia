@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('trauma-sin-diagnosticar')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="I can't stop thinking about something that happened"
-  description="Persistent rumination about something from the past can be a sign of undiagnosed trauma. It doesn't need to have been a dramatic event: trauma is what remains in the body, not what occurred."
-  altPath="/blog/trauma-sin-diagnosticar/"
-  category="Wellbeing"
-  heroImage="/uploads/placeholder-trauma-sin-diagnosticar.svg"
-  heroAlt="Pensive silhouette looking through a fogged-up window"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-undiagnosed-trauma.html"
-  nextPost={{ href: "/en/blog/somatic-grief/", label: "Grief: when loss stays in the body →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There's a phrase I hear fairly often in session, almost always said with a trace of shame: "I don't know why I can't stop thinking about it. It's over. I should be over it by now." Sometimes they're talking about a relationship that ended badly. Sometimes about something someone said years ago that still stings. Sometimes about a childhood situation that shows up unannounced, in dreams or in the middle of a trivial conversation.</p>
   <p data-reveal>What's behind that experience — that inability to let go, that involuntary return — often has a name. And that name is trauma. Even when it doesn't look like it.</p>

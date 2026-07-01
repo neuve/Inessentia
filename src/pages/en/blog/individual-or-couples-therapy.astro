@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-individual-o-pareja')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Do I need individual or couples therapy?"
-  description="It's one of the questions I get asked most before a first session. The answer is almost never binary — and exploring it together is usually the best place to start."
-  altPath="/blog/terapia-individual-o-pareja/"
-  category="Therapeutic process"
-  heroImage="/uploads/placeholder-terapia-individual-o-pareja.svg"
-  heroAlt="Two paths splitting in a bright forest"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-individual-or-couples-therapy.html"
-  nextPost={{ href: "/en/blog/in-person-vs-online-therapy/", label: "In-person vs online therapy: which works better? →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>It's one of the questions I get most before a first session — sometimes in the first message, sometimes on the first call, sometimes formulated with a doubt underneath: "I don't know if the problem is me or if the problem is us." The question strikes me as very honest. And the answer is almost always more nuanced than people expect.</p>
   <p data-reveal>There's no universal rule. What does exist is a way of thinking about the problem that can help you orient yourself — and a first conversation where we can explore it together.</p>

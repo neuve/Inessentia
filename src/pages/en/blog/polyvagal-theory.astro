@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('teoria-polivagal')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Polyvagal Theory: the nervous system as a compass"
-  description="Stephen Porges's Polyvagal Theory explains how the autonomic nervous system regulates our capacity for connection, mobilization, and collapse — and why that transforms therapy."
-  altPath="/blog/teoria-polivagal/"
-  category="Nervous system"
-  heroImage="/uploads/placeholder-teoria-polivagal.svg"
-  heroAlt="Calm concentric waves on still water, golden light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-polyvagal-theory.html"
-  nextPost={{ href: "/en/blog/somatic-experiencing/", label: "Somatic Experiencing (SE) →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>There are moments when we react in a way we later don't understand. You "freeze" in the middle of an argument and can't think. Your body collapses at a memory even though you rationally know it's over. You disconnect in situations that should feel safe. You're not exaggerating, and you're not too sensitive. Your nervous system is doing exactly what it learned to do to keep you alive.</p>
   <p data-reveal>Polyvagal Theory, developed by neuroscientist Stephen Porges, offers a map for understanding this — and that map changes how you see yourself.</p>

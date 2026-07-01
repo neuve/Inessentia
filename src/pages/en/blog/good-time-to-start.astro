@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('cuando-es-buen-momento')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="When is a good time to start therapy?"
-  description="You don't need to be in crisis to go to therapy. Recognize the signs worth paying attention to, and the myths that tend to postpone a decision worth making."
-  altPath="/blog/cuando-es-buen-momento/"
-  category="Wellbeing"
-  heroImage="/uploads/buen-momento-pareja.webp"
-  heroAlt="Person sitting by a window in morning light, holding a cup, contemplative mood"
-  heroPosition="center 65%"
-  disqusIdentifier="/en/blog-when-to-start-therapy.html"
-  nextPost={{ href: "/en/blog/chronic-stress/", label: "What chronic stress is and how it affects the body →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>One of the questions I hear most — sometimes spoken, sometimes implied — is this: is what I'm going through enough to justify therapy? As if you had to earn the right to ask for help with a certain amount of suffering. As if therapy were an emergency resource, rather than what it actually is: a space for self-knowledge, growth, and honest self-review.</p>
   <p data-reveal>There's no minimum threshold of pain required to begin. There are, however, moments when life invites us — sometimes gently, sometimes forcefully — to stop and look at ourselves.</p>

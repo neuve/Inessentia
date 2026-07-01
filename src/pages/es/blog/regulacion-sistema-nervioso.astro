@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('regulacion-sistema-nervioso')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Qué es la regulación del sistema nervioso y por qué importa"
-  description="Regular el sistema nervioso no es calmarse con fuerza de voluntad. Es recuperar la capacidad de moverse fluidamente entre activación y reposo. Aquí exploro qué significa esto en la práctica, cómo se trabaja en terapia y por qué es la base de todo lo demás."
-  altPath="/blog/nervous-system-regulation/"
-  category="Sistema nervioso"
-  heroImage="/uploads/placeholder-regulacion-sistema-nervioso.svg"
-  heroAlt="Balanza suspendida en equilibrio, luz suave"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-regulacion-sistema-nervioso.html"
-  nextPost={{ href: "/es/blog/trauma-sin-diagnosticar/", label: "No puedo dejar de pensar en algo que pasó →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Cuando hablo de regulación del sistema nervioso con las personas que llegan a consulta, casi siempre hay un momento de confusión inicial. La palabra "regulación" suena técnica, clínica, un poco fría. Pero lo que designa es algo muy concreto y muy humano: la capacidad del cuerpo de moverse fluidamente entre distintos estados de activación según lo que la situación real requiere, y de regresar al reposo cuando la amenaza ha pasado.</p>
   <p data-reveal>No es lo mismo que calmarse. No es control. No es ausencia de emoción. Y entender esa distinción cambia, profundamente, la forma en que una persona puede relacionarse con su propio sistema interno.</p>

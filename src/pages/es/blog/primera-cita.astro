@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('primera-cita')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="¿Cómo es la primera cita?"
-  description="Saber qué esperar antes y durante la primera sesión de terapia puede calmar la incertidumbre. Así funciona el proceso inicial en mi consulta."
-  altPath="/blog/first-session/"
-  category="Primera sesión"
-  heroImage="/uploads/primera-cita-terapia.webp"
-  heroAlt="Sala de terapia vacía con dos sillones uno frente al otro, luz cálida de tarde"
-  heroPosition="center 35%"
-  disqusIdentifier="/blog-primera-cita.html"
-  nextPost={{ href: "/es/blog/cuando-es-buen-momento/", label: "¿Cuándo es buen momento para empezar? →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Llegar a la primera sesión de terapia requiere algo que no siempre se nombra: valentía. No la valentía ruidosa de los grandes gestos, sino esa otra, más silenciosa, que Brené Brown describe como la disposición a mostrarse sin saber exactamente qué va a pasar. Si estás leyendo esto, probablemente ya diste ese paso, o estás muy cerca de darlo. Y tiene todo el sentido que quieras saber qué te espera.</p>
   <p data-reveal>Lo que describo aquí es cómo funciona el proceso inicial en mi consulta. No porque haya una fórmula rígida, sino porque creo que reducir la incertidumbre es parte del cuidado desde el primer momento.</p>

@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('ansiedad-somatica')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Siento ansiedad en el cuerpo, no solo en la mente"
-  description="La ansiedad somática se manifiesta como tensión, opresión en el pecho o intestino revuelto antes de que la mente pueda ponerle nombre. Entender cómo el cuerpo registra la ansiedad es el primer paso para trabajar con ella desde adentro."
-  altPath="/blog/somatic-anxiety/"
-  category="Bienestar"
-  heroImage="/uploads/placeholder-ansiedad-somatica.svg"
-  heroAlt="Manos entrelazadas sobre el pecho, respiración consciente"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-ansiedad-somatica.html"
-  nextPost={{ href: "/es/blog/regulacion-sistema-nervioso/", label: "Qué es la regulación del sistema nervioso →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una imagen que muchas personas tienen de la ansiedad: pensamientos que no paran, preocupaciones en loop, la mente dando vueltas a algo que quizá ni siquiera ha pasado. Y sí, esa es una cara de la ansiedad. Pero hay otra cara que se ignora con mucha frecuencia, y que en mi trabajo con pacientes aparece todo el tiempo: la ansiedad que vive en el cuerpo antes de que la mente sepa que está ahí.</p>
   <p data-reveal>Hablo de la mandíbula apretada al despertar. De los hombros que suben solos hacia las orejas a mitad de la tarde. Del pecho que se siente como si tuviera un peso encima. Del intestino que se revuelve antes de una reunión, o sin ninguna razón aparente. Del corazón que se acelera cuando no estás haciendo nada que lo justifique, o del insomnio que llega aunque el día haya sido tranquilo.</p>

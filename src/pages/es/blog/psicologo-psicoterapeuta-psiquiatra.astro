@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('psicologo-psicoterapeuta-psiquiatra')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Diferencia entre psicólogo, psicoterapeuta y psiquiatra"
-  description="Es la pregunta más frecuente de quien considera buscar ayuda por primera vez. Te explico en qué se diferencian estas tres figuras y cómo encontrar lo que necesitas."
-  altPath="/blog/psychologist-therapist-psychiatrist/"
-  category="Proceso terapéutico"
-  heroImage="/uploads/placeholder-psicologo-psicoterapeuta-psiquiatra.svg"
-  heroAlt="Brújula sobre un mapa, luz cálida de escritorio"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-psicologo-psicoterapeuta-psiquiatra.html"
-  nextPost={{ href: "/es/blog/que-esperar-de-la-terapia/", label: "¿Qué esperar de la terapia? →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Cuando alguien está considerando buscar ayuda por primera vez, una de las primeras preguntas que aparece es: ¿a quién voy? ¿Psicólogo, psiquiatra, terapeuta? Los tres términos circulan en la conversación cotidiana casi como si fueran intercambiables, y sin embargo no lo son. No porque uno sea mejor que otro, sino porque se refieren a formaciones, roles y funciones distintas.</p>
   <p data-reveal>Lo que escribo aquí no es un glosario académico. Es una orientación práctica para que puedas tomar una decisión informada sobre qué tipo de apoyo tiene más sentido para lo que estás viviendo.</p>

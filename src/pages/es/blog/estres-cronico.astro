@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('estres-cronico')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Qué es el estrés crónico y cómo afecta al cuerpo"
-  description="El estrés crónico no es un rasgo de carácter ni una señal de debilidad. Es el cuerpo diciéndonos que algo en la forma en que estamos viviendo ya no es sostenible. Aquí exploro qué lo distingue del estrés agudo, cómo se instala en la biología y por qué relajarse no siempre es suficiente."
-  altPath="/blog/chronic-stress/"
-  category="Sistema nervioso"
-  heroImage="/uploads/placeholder-estres-cronico.svg"
-  heroAlt="Reloj de arena junto a una ventana, luz tensa de mediodía"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-estres-cronico.html"
-  nextPost={{ href: "/es/blog/ansiedad-somatica/", label: "Siento ansiedad en el cuerpo, no solo en la mente →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Muchas personas llegan a terapia sin saber que lo que viven tiene nombre. Han aprendido a funcionar con una tensión de fondo constante, con el sueño interrumpido, con el cuerpo siempre listo para algo que nunca termina de llegar. "Soy así", me dicen. O: "Todo el mundo está estresado, ¿no?" Esa normalización es, quizás, una de las formas más silenciosas en que el estrés crónico se perpetúa. Porque cuando algo se vuelve cotidiano, deja de verse como un problema. Se vuelve identidad.</p>
   <p data-reveal>Lo que quiero compartir aquí es una distinción que, en mi experiencia clínica, cambia profundamente la manera en que las personas se relacionan con su propio malestar: la diferencia entre el estrés que cumple su función y el estrés que se quedó instalado sin permiso.</p>

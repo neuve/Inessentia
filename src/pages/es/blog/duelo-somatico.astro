@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('duelo-somatico')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Duelo: cuando la pérdida se queda en el cuerpo"
-  description="El duelo no es un proceso que se resuelve. Es algo que se integra. Y antes de poder integrarlo, hay que dejar de presionarse para 'ya estar bien'."
-  altPath="/blog/somatic-grief/"
-  category="Bienestar"
-  heroImage="/uploads/placeholder-duelo-somatico.svg"
-  heroAlt="Pluma blanca flotando suavemente en el aire"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-duelo-somatico.html"
-  nextPost={{ href: "/es/blog/terapia-adolescentes/", label: "Terapia para adolescentes: cuándo y cómo →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una frase que escucho con frecuencia en personas que atraviesan un duelo: "Ya debería haberlo superado". A veces viene acompañada de una fecha — seis meses, un año, "ya pasaron dos años y todavía". A veces viene sin fecha, solo como una sensación difusa de que algo no está bien, de que están fallando en algo que se supone que todos saben hacer: perder.</p>
   <p data-reveal>Lo primero que quiero decir es esto: no estás fallando. El duelo no tiene un cronograma. Y la idea de que debería tenerlo ha hecho más daño del que parece.</p>

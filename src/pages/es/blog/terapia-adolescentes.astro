@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('terapia-adolescentes')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Terapia para adolescentes: cuándo y cómo"
-  description="La adolescencia no es una etapa difícil que hay que aguantar — es una de las reorganizaciones neurológicas más profundas de la vida. Aquí exploro cuándo puede ayudar la terapia y cómo funciona en la práctica."
-  altPath="/blog/teen-therapy/"
-  category="Proceso terapéutico"
-  heroImage="/uploads/placeholder-terapia-adolescentes.svg"
-  heroAlt="Brote verde emergiendo de la tierra, luz de mañana"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-terapia-adolescentes.html"
-  nextPost={{ href: "/es/blog/patrones-de-pareja/", label: "Mi pareja y yo repetimos siempre el mismo patrón →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Cuando los papás me contactan preguntando si su hijo o hija debería estar en terapia, noto que la mayoría llegan con cierta culpa de fondo — como si buscar ayuda profesional fuera admitir que algo salió mal. Lo primero que les digo es que buscar apoyo para un adolescente no es una señal de fracaso. Es exactamente lo contrario: es reconocer que están atravesando algo que excede lo que cualquier familia puede sostener sola.</p>
   <p data-reveal>Y no porque la familia sea insuficiente. Sino porque la adolescencia es, objetivamente, uno de los procesos de transformación más intensos que existe.</p>

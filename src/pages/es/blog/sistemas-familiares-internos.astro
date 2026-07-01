@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('sistemas-familiares-internos')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="Sistemas Familiares Internos (IFS): conocer las partes que te habitan"
-  description="Descubre cómo el modelo IFS de Dick Schwartz te ayuda a relacionarte con compasión con tu mundo interior y recuperar el liderazgo del Self."
-  altPath="/blog/sistemas-familiares-internos/"
-  category="Aproximaciones terapéuticas"
-  heroImage="/uploads/placeholder-sistemas-familiares-internos.svg"
-  heroAlt="Reflejos múltiples del cielo en charcos de agua sobre una calle, metáfora de la multiplicidad interna"
-  heroPosition="center 40%"
-  disqusIdentifier="/blog-sistemas-familiares-internos.html"
-  nextPost={{ href: "/es/blog/tapping-eft/", label: "Tapping / EFT →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Hay una escena que ocurre con frecuencia en mi consulta: alguien llega frustrado consigo mismo por una conducta que no puede parar — procrastinar, comer de más, explotar de enojo, cerrarse cuando más necesita conectar. "Sé que no debería hacerlo", dicen, "pero algo en mí lo sigue haciendo de todas formas."</p>
   <p data-reveal>Ese "algo en mí" es, para mí, uno de los puntos de partida más honestos de la terapia. Porque ya contiene una intuición importante: no eres tú, en tu totalidad, quien actúa así. Es una parte.</p>

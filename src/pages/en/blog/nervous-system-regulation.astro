@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('regulacion-sistema-nervioso')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="What nervous system regulation means and why it matters"
-  description="Regulating the nervous system isn't about calming down through willpower. It's about recovering the capacity to move fluidly between activation and rest. Here I explore what this means in practice, how it's worked with in therapy, and why it's the foundation everything else rests on."
-  altPath="/blog/regulacion-sistema-nervioso/"
-  category="Nervous system"
-  heroImage="/uploads/placeholder-regulacion-sistema-nervioso.svg"
-  heroAlt="Balance scale suspended in equilibrium, soft light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-nervous-system-regulation.html"
-  nextPost={{ href: "/en/blog/undiagnosed-trauma/", label: "I can't stop thinking about something that happened →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>When I bring up nervous system regulation with people who come to session, there's almost always a moment of initial confusion. The word "regulation" sounds technical, clinical, a little cold. But what it points to is something very concrete and very human: the body's capacity to move fluidly between different states of activation depending on what the real situation calls for, and to return to rest once the threat has passed.</p>
   <p data-reveal>It's not the same as calming down. It's not control. It's not the absence of emotion. And understanding that distinction profoundly changes how a person can relate to their own inner system.</p>

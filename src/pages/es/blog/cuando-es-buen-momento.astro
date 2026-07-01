@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('cuando-es-buen-momento')!;
+const locale = 'es';
 ---
 
 <BlogPost
-  locale="es"
-  title="¿Cuándo es buen momento para empezar terapia?"
-  description="No hace falta estar en crisis para ir a terapia. Reconoce las señales que piden atención y los mitos que suelen posponer una decisión que vale la pena tomar."
-  altPath="/blog/good-time-to-start/"
-  category="Bienestar"
-  heroImage="/uploads/buen-momento-pareja.webp"
-  heroAlt="Persona sentada junto a una ventana en la mañana sosteniendo una taza, ambiente contemplativo"
-  heroPosition="center 65%"
-  disqusIdentifier="/blog-cuando-es-buen-momento-para-iniciar.html"
-  nextPost={{ href: "/es/blog/estres-cronico/", label: "Qué es el estrés crónico y cómo afecta al cuerpo →" }}
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Una de las preguntas que más escucho — a veces dicha, a veces implícita — es esta: ¿ya es suficiente lo que estoy viviendo para ir a terapia? Como si hubiera que ganarse el derecho de pedir ayuda con una cantidad determinada de sufrimiento. Como si la terapia fuera un recurso de emergencia, y no lo que en realidad es: un espacio de autoconocimiento, de crecimiento, de revisión honesta de uno mismo.</p>
   <p data-reveal>No hay un umbral de dolor mínimo para empezar. Sí hay momentos en que la vida nos invita — a veces con suavidad, a veces con fuerza — a detenernos y mirarnos.</p>

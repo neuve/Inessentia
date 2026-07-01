@@ -1,18 +1,23 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('tipos-de-terapia')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="Types of therapy: how I work in session"
-  description="Four approaches I integrate to support you through the body, emotions, and the story you carry."
-  altPath="/blog/tipos-de-terapia/"
-  category="Therapeutic approaches"
-  heroImage="/uploads/tipos-terapia.webp"
-  heroAlt="Types of therapy"
-  heroPosition="center 25%"
-  disqusIdentifier="/en/blog-types-of-therapy.html"
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
   videos={[
     { name: "What is Somatic Experiencing (SE)?", description: "A trauma-informed therapeutic model that pays attention to the nervous system's responses.", thumbnailUrl: "https://img.youtube.com/vi/2lZfFB-dcbA/hqdefault.jpg", contentUrl: "https://www.youtube.com/watch?v=2lZfFB-dcbA", embedUrl: "https://www.youtube.com/embed/2lZfFB-dcbA" },
     { name: "What is Internal Family Systems (IFS)?", description: "Works with the different parts that coexist within you to integrate conflicting inner voices.", thumbnailUrl: "https://img.youtube.com/vi/DdZZ7sTX840/hqdefault.jpg", contentUrl: "https://youtu.be/DdZZ7sTX840", embedUrl: "https://www.youtube.com/embed/DdZZ7sTX840" },

@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('psicologo-psicoterapeuta-psiquiatra')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="The difference between a psychologist, a psychotherapist, and a psychiatrist"
-  description="It's the most frequent question from anyone considering seeking help for the first time. I explain what sets these three roles apart and how to find what you actually need."
-  altPath="/blog/psicologo-psicoterapeuta-psiquiatra/"
-  category="Therapeutic process"
-  heroImage="/uploads/placeholder-psicologo-psicoterapeuta-psiquiatra.svg"
-  heroAlt="Compass on a map, warm desk light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-psychologist-therapist-psychiatrist.html"
-  nextPost={{ href: "/en/blog/what-to-expect/", label: "What to expect from therapy? →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>When someone is considering seeking help for the first time, one of the first questions that comes up is: who do I go to? A psychologist, a psychiatrist, a therapist? The three terms circulate in everyday conversation almost as if they were interchangeable, and yet they aren't. Not because one is better than another, but because they refer to different training, roles, and functions.</p>
   <p data-reveal>What I'm writing here isn't an academic glossary. It's practical orientation so you can make an informed decision about what kind of support makes the most sense for what you're going through.</p>

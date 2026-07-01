@@ -1,18 +1,22 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('estres-cronico')!;
+const locale = 'en';
 ---
 
 <BlogPost
-  locale="en"
-  title="What chronic stress is and how it affects the body"
-  description="Chronic stress isn't a personality trait or a sign of weakness. It's the body telling us that something about how we're living is no longer sustainable. Here I explore what sets it apart from acute stress, how it settles into biology, and why relaxing isn't always enough."
-  altPath="/blog/estres-cronico/"
-  category="Nervous system"
-  heroImage="/uploads/placeholder-estres-cronico.svg"
-  heroAlt="Hourglass by a window, tense midday light"
-  heroPosition="center 40%"
-  disqusIdentifier="/en/blog-chronic-stress.html"
-  nextPost={{ href: "/en/blog/somatic-anxiety/", label: "I feel anxiety in my body, not just my mind →" }}
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
 >
   <p data-reveal>Many people arrive at therapy without knowing that what they're living has a name. They've learned to function with constant background tension, interrupted sleep, a body always braced for something that never quite arrives. "That's just how I am," they tell me. Or: "everyone's stressed, right?" That normalization is, perhaps, one of the quietest ways chronic stress perpetuates itself. Because once something becomes routine, it stops looking like a problem. It becomes identity.</p>
   <p data-reveal>What I want to share here is a distinction that, in my clinical experience, profoundly changes the way people relate to their own discomfort: the difference between stress that serves its function and stress that got installed without permission.</p>
