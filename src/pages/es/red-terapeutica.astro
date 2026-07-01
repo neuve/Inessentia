@@ -10,6 +10,7 @@ const i = t(locale);
   title="Red Inessentia — Directorio de terapeutas somáticos, psicoterapeutas y terapia física en Latinoamérica"
   description="Red Inessentia es un directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Encuentra profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendados por Patricio Ruiz."
   altPath="/therapist-network/"
+  hideFooter
 >
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -70,8 +71,15 @@ const i = t(locale);
     @media(max-width:768px){#ri-sidebar{display:none!important}.ri-zona-input{width:110px}}
   </style>
 
+  <script is:inline>
+    document.documentElement.style.height = '100%';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.height = '100%';
+    document.body.style.overflow = 'hidden';
+  </script>
+
   <!-- MAP APP (full-height, replaces normal page flow) -->
-  <div style="height:calc(100vh - 82px);display:flex;flex-direction:column;overflow:hidden;position:relative;">
+  <div style="height:calc(100vh - 89px);display:flex;flex-direction:column;overflow:hidden;position:relative;">
 
     <!-- LOADING OVERLAY -->
     <div id="ri-loading" style="position:absolute;inset:0;background:rgba(60,31,94,.96);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;">

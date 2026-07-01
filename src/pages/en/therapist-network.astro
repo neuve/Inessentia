@@ -10,6 +10,7 @@ const i = t(locale);
   title="Red Inessentia — Directory of somatic therapists, psychotherapists, and physical therapy in Latin America"
   description="Red Inessentia is an interactive directory of English and Spanish-speaking therapists, primarily in Latin America. Find professionals in systemic family therapy, somatic experiencing, psychotherapy, transpersonal therapy, psychiatry, and physical therapy recommended by Patricio Ruiz."
   altPath="/red-terapeutica/"
+  hideFooter
 >
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -76,7 +77,14 @@ const i = t(locale);
 @media(max-width:768px){#ri-sidebar{display:none!important}.ri-zona-input{width:110px}}
 </style>
 
-<div style="height:100vh;display:flex;flex-direction:column;overflow:hidden;font-family:'Mulish',sans-serif;">
+<script is:inline>
+  document.documentElement.style.height = '100%';
+  document.documentElement.style.overflow = 'hidden';
+  document.body.style.height = '100%';
+  document.body.style.overflow = 'hidden';
+</script>
+
+<div style="height:calc(100vh - 89px);display:flex;flex-direction:column;overflow:hidden;font-family:'Mulish',sans-serif;">
 
   <!-- MAP APP -->
   <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:0;position:relative;">

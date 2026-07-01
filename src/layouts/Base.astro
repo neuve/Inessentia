@@ -16,6 +16,7 @@ interface Props {
   altPath?: string; // path in the OTHER locale (e.g. /about-me/ when current is /es/sobre-mi/)
   schema?: object;
   extraSchemas?: object[];
+  hideFooter?: boolean;
 }
 
 const locale = getLocale(Astro.url);
@@ -30,6 +31,7 @@ const {
   altPath,
   schema,
   extraSchemas,
+  hideFooter = false,
 } = Astro.props;
 
 const altHref = altPath
@@ -46,6 +48,10 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{title}</title>
   <meta name="description" content={description}>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="canonical" href={canonical}>
   <link rel="alternate" hreflang={locale} href={currentHref}>
   <link rel="alternate" hreflang={altLocale} href={altHrefAbsolute}>
@@ -75,7 +81,7 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <main>
     <slot />
   </main>
-  <Footer locale={locale} />
+  {!hideFooter && <Footer locale={locale} />}
   <WhatsApp locale={locale} />
   <CookieConsent locale={locale} />
   <RevealOnScroll />
