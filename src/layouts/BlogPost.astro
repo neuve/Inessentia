@@ -1,7 +1,7 @@
 ---
 import Base from './Base.astro';
 import DisqusComments from '../components/DisqusComments.astro';
-import { t, type Locale } from '../i18n/utils';
+import { t, sitePath, type Locale } from '../i18n/utils';
 
 interface VideoSchema {
   name: string;
@@ -41,7 +41,7 @@ const {
 } = Astro.props;
 
 const i = t(locale);
-const resourcesPath = locale === 'es' ? '/es/recursos/' : '/en/resources/';
+const resourcesPath = sitePath(locale, 'resources');
 const resourcesLabel = locale === 'es' ? '← Recursos' : '← Resources';
 const ctaTitle = locale === 'es' ? '¿Listo para empezar?' : 'Ready to start?';
 const ctaButton = locale === 'es' ? 'Agenda tu primera cita' : 'Book Your First Session';

@@ -23,6 +23,20 @@ export function altLocalePath(locale: Locale, esPath: string, enPath: string): s
   return `/${alt}${alt === 'es' ? esPath : enPath}`;
 }
 
+const sitePaths = {
+  privacy: { es: '/es/privacidad/', en: '/en/privacy/' },
+  terms: { es: '/es/terminos/', en: '/en/terms/' },
+  resources: { es: '/es/recursos/', en: '/en/resources/' },
+  testimonials: { es: '/es/testimonios/', en: '/en/testimonials/' },
+} as const;
+
+/** Locale-aware path for the handful of standalone pages referenced by
+ * multiple components (Footer, TestimonialCarousel, BlogPost's back-link),
+ * so the ES/EN URL pairs live in one place instead of a ternary per file. */
+export function sitePath(locale: Locale, key: keyof typeof sitePaths): string {
+  return sitePaths[key][locale];
+}
+
 export function navLinks(locale: Locale) {
   const i = t(locale);
   const base = `/${locale}`;

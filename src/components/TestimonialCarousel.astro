@@ -1,12 +1,12 @@
 ---
-import { t, type Locale } from '../i18n/utils';
+import { t, sitePath, type Locale } from '../i18n/utils';
 import { testimonials, homeTeaserIds } from '../data/testimonials';
 
 interface Props { locale: Locale; }
 
 const { locale } = Astro.props;
 const i = t(locale);
-const testimonialsPath = locale === 'es' ? '/es/testimonios/' : '/en/testimonials/';
+const testimonialsPath = sitePath(locale, 'testimonials');
 
 const byId = new Map(testimonials[locale].map(item => [item.id, item]));
 const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);

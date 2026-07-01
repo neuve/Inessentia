@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import WhatsApp from '../components/WhatsApp.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { getLocale, t, localePath } from '../i18n/utils';
+import { getLocale, t } from '../i18n/utils';
 
 interface Props {
   title?: string;
@@ -79,5 +79,8 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <WhatsApp locale={locale} />
   <CookieConsent locale={locale} />
   <RevealOnScroll />
+  <script>
+    import '../scripts/video-embed.js';
+  </script>
 </body>
 </html>
