@@ -46,7 +46,6 @@ const searchBlogEntries = {
     <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="navbar__cta">{i.nav.cta}</a>
   </div>
 </header>
-<div style="height:88px;flex:none;"></div>
 
 <!-- Language toggle -->
 <a href={altHref} id="lang-toggle-btn" class="lang-toggle" title={i.langToggleTitle}>{i.langToggle}</a>
@@ -72,11 +71,10 @@ const searchBlogEntries = {
 
 <style>
   .navbar {
-    position: fixed; top: 0; left: 0; right: 0; width: 100%;
+    position: sticky; top: 0; width: 100%;
     z-index: 40; background: var(--cream);
     transition: box-shadow .35s ease, background .35s ease, border-bottom .35s ease;
     border-bottom: 1px solid transparent;
-    -webkit-transform: translateZ(0); transform: translateZ(0);
   }
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 10px 32px;
