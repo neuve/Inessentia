@@ -1,11 +1,15 @@
 ---
 import { t, type Locale } from '../i18n/utils';
+import { testimonials, homeTeaserIds } from '../data/testimonials';
 
 interface Props { locale: Locale; }
 
 const { locale } = Astro.props;
 const i = t(locale);
 const testimonialsPath = locale === 'es' ? '/es/testimonios/' : '/en/testimonials/';
+
+const byId = new Map(testimonials[locale].map(item => [item.id, item]));
+const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
 ---
 
 <section class="section">
@@ -26,76 +30,10 @@ const testimonialsPath = locale === 'es' ? '/es/testimonios/' : '/en/testimonial
   </div>
 </section>
 
-<script is:inline>
-(function() {
-  var T = [
-    { q: 'Me cambió la vida. He aprendido a atravesar mi ansiedad y mis ataques de pánico de una manera mucho más suave, y esto me ha brindado paz y confianza en mi propio poder y autorregulación.', name: 'Dan Gunter' },
-    { q: 'Mi cuerpo está más equilibrado y recuperando la salud. Hay menos dolor y más energía. La presencia compasiva, paciente y abierta de Pato me ha permitido mirarme más completa.', name: 'Isabel de la Rosa', link: 'https://www.youtube.com/@DescubrimientoInterior' },
-    { q: 'En mi proceso me he sentido siempre cobijada, respaldada, respetada y sobre todo que no estoy sola y que cuento con un lugar seguro.', name: 'Valeria Salazar' },
-    { q: 'He desarrollado tolerancia ante asuntos que me hacían saltar, que ahora puedo manejar con más consciencia, bajarles la intensidad y disminuir su duración.', name: 'Kar-El', link: 'https://www.instagram.com/karellifesherpa/', tag: 'Life Sherpa' },
-    { q: 'Estamos en terapia familiar mi hija adolescente y yo, y ahora es de una apertura hermosa. Andar las crisis de la adolescencia contigo acompañándonos ha sido de los procesos más hermosos.', name: 'Paloma Tovar', tag: 'Terapia familiar' },
-    { q: 'Aprendí a priorizarme y a hacerme las preguntas necesarias para encontrar el core, entendiendo que lo que siento es válido. Siempre me sentí muy segura.', name: 'Thalía Dorronsoro' },
-    { q: 'Quería reconectarme con mis emociones desde el sentir y no desde lo mental. Hoy vivo más pleno, con más tranquilidad y paz.', name: 'Renato Picard' },
-    { q: 'Un proceso muy suave, respetuoso y amoroso, de movimientos sutiles que me ayudaron a liberarme de la desregulación de mi sistema nervioso. Aprendí que menos es más.', name: 'Alejandra BM' },
-    { q: 'In every session I learn something about myself, my past and my traumas. Most importantly, I overcome traumas that were stuck in me — slowly I found my way up again.', name: 'Chiara V' },
-    { q: 'Llegamos por una terrible crisis de pareja. Aprendimos a comunicarnos sin miedo y a evitar que un problema estalle irremediablemente.', name: 'Anónimo', tag: 'Terapia de pareja' }
-  ];
-
-  var start = 0;
-  var timer;
-
-  function cardHTML(t) {
-    var nameInner = t.link
-      ? '<a href="' + t.link + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;">' + t.name + '</a>'
-      : t.name;
-    var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· ' + t.tag + '</span>' : '';
-    return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;">' +
-      '<div style="font-family:Zilla Slab,serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">&ldquo;</div>' +
-      '<p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">' + t.q + '</p>' +
-      '<p style="margin:0;font-family:Zilla Slab,serif;font-weight:600;color:var(--purple);font-size:18px;">' + nameInner + tag + '</p>' +
-    '</div>';
-  }
-
-  function render(immediate) {
-    var slots = document.querySelectorAll('#home-t-grid .home-t-slot');
-    if (!slots.length) return;
-    function set() {
-      slots.forEach(function(s, i) { s.innerHTML = cardHTML(T[(start + i) % T.length]); });
-      requestAnimationFrame(function() { slots.forEach(function(s) { s.style.opacity = '1'; }); });
-      syncDots();
-    }
-    if (immediate) { set(); }
-    else { slots.forEach(function(s) { s.style.opacity = '0'; }); setTimeout(set, 380); }
-  }
-
-  function buildDots() {
-    var wrap = document.getElementById('home-t-dots');
-    if (!wrap) return;
-    wrap.innerHTML = '';
-    T.forEach(function(_, i) {
-      var d = document.createElement('button');
-      d.setAttribute('aria-label', 'Testimonio ' + (i + 1));
-      d.style.cssText = 'width:24px;height:24px;border-radius:50%;border:none;padding:0;cursor:pointer;background:transparent;transition:background .3s,transform .3s;display:flex;align-items:center;justify-content:center;';
-      var dot = document.createElement('span');
-      dot.style.cssText = 'width:9px;height:9px;border-radius:50%;background:#d6cdbb;transition:background .3s,transform .3s;pointer-events:none;';
-      d.appendChild(dot);
-      d.onclick = function() { start = i; render(false); clearInterval(timer); timer = setInterval(advance, 4500); };
-      wrap.appendChild(d);
-    });
-  }
-
-  function syncDots() {
-    document.querySelectorAll('#home-t-dots button').forEach(function(d, i) {
-      var active = i === start;
-      var dot = d.querySelector('span');
-      if (dot) { dot.style.background = active ? 'var(--wine)' : '#d6cdbb'; dot.style.transform = active ? 'scale(1.35)' : 'scale(1)'; }
-    });
-  }
-
-  function advance() { start = (start + 1) % T.length; render(false); }
-
-  buildDots();
-  render(true);
-  timer = setInterval(advance, 4500);
-})();
+<script type="application/json" id="home-t-data" set:html={JSON.stringify(items)}></script>
+<script>
+  import { initTestimonialCarousel } from '../scripts/testimonial-carousel.js';
+  const dataEl = document.getElementById('home-t-data');
+  const items = dataEl ? JSON.parse(dataEl.textContent) : [];
+  initTestimonialCarousel({ gridSel: '#home-t-grid', slotSel: '.home-t-slot', dotsSel: '#home-t-dots', items, dotStyle: 'nested' });
 </script>

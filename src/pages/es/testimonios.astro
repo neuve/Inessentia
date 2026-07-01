@@ -1,9 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
+import { testimonials } from '../../data/testimonials';
 
 const locale = 'es';
 const i = t(locale);
+const items = testimonials[locale];
 ---
 
 <Base
@@ -42,67 +44,12 @@ const i = t(locale);
     </div>
   </section>
 
-  <script is:inline>
-  (function() {
-    var T = [
-      { q: 'Me cambio la vida. He aprendido a atravesar mi ansiedad y mis ataques de panico de una manera mucho mas suave, y esto me ha brindado paz y confianza en mi propio poder y autorregulacion.', name: 'Dan Gunter', link: null, tag: null },
-      { q: 'Mi cuerpo esta mas equilibrado y recuperando la salud. Hay menos dolor y mas energia. La presencia compasiva, paciente y abierta de Pato me ha permitido mirarme mas completa.', name: 'Isabel de la Rosa', link: 'https://www.youtube.com/@DescubrimientoInterior', tag: null },
-      { q: 'En mi proceso me he sentido siempre cobijada, respaldada, respetada y sobre todo que no estoy sola y que cuento con un lugar seguro.', name: 'Valeria Salazar', link: null, tag: null },
-      { q: 'He desarrollado tolerancia ante asuntos que me hacian saltar, que ahora puedo manejar con mas consciencia, bajarles la intensidad y disminuir su duracion.', name: 'Kar-El', link: 'https://www.instagram.com/karellifesherpa/', tag: 'Life Sherpa' },
-      { q: 'Estamos en terapia familiar mi hija adolescente y yo, y ahora es de una apertura hermosa. Andar las crisis de la adolescencia contigo acompanandonos ha sido de los procesos mas hermosos que hemos vivido.', name: 'Paloma Tovar', link: null, tag: 'Terapia familiar' },
-      { q: 'Llegamos por una terrible crisis de pareja. Aprendimos a comunicarnos sin miedo, a expresar nuestras diferencias de manera civilizada y a evitar que un problema estalle irremediablemente.', name: 'Anonimo', link: null, tag: 'Terapia de pareja' },
-      { q: 'Aprendi a priorizarme y a hacerme las preguntas necesarias para encontrar el core, entendiendo que lo que siento es valido. Siempre me senti muy segura.', name: 'Thalia Dorronsoro', link: null, tag: null },
-      { q: 'Queria reconectarme con mis emociones desde el sentir y no desde lo mental. Hoy vivo mas pleno, con mas tranquilidad y paz.', name: 'Renato Picard', link: null, tag: null },
-      { q: 'Me gusta que salgo del relato y puedo sentir con mas honestidad. He aprendido a reconocer las memorias de mi cuerpo y lo que me dicen de mi.', name: 'Maru Marquez', link: null, tag: null },
-      { q: 'Un proceso muy suave, respetuoso y amoroso, de movimientos sutiles que me han ayudado a liberarme de la desregulacion de mi sistema nervioso. Aprendi que menos es mas.', name: 'Alejandra BM', link: null, tag: null },
-      { q: 'Cada sesion fue muy significativa: darme el momento para respirar y sentirme en consciencia. Ha sido un paso de crecimiento mucho mayor que otros en mi vida.', name: 'Jackie Baltazar', link: null, tag: null },
-      { q: 'Lo mas importante ha sido el proceso de autoaceptacion y validacion en mi estima quebrantada, desde el respeto a cada expresion y la suavidad de los movimientos.', name: 'Margarita Costa', link: null, tag: null },
-      { q: 'Aprendi a decir las cosas y no guardarmelas. Definitivamente cambio mi relacion y mi vision de como hacia y decia las cosas antes de la terapia.', name: 'Nay', link: null, tag: 'Terapia de pareja' },
-      { q: 'In every session I learn something about myself, my past and my traumas. Most importantly, I overcome traumas that were stuck in me — and slowly I found my way up again.', name: 'Chiara V', link: null, tag: null },
-      { q: 'El proceso fue suave, amoroso y profundo; me ayudo a mirar mis propios limites sin sentirme desbordada. Es como tener un botiquin de primeros auxilios conmigo.', name: 'Anonimo', link: null, tag: null }
-    ];
-    var start = 0;
-    function cardHTML(t) {
-      var nameInner = t.link
-        ? '<a href="'+t.link+'" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;">'+t.name+'</a>'
-        : t.name;
-      var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· '+t.tag+'</span>' : '';
-      return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;"><div style="font-family:\'Zilla Slab\',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">“</div><p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">'+t.q+'</p><p style="margin:0;font-family:\'Zilla Slab\',serif;font-weight:600;color:var(--purple);font-size:18px;">'+nameInner+tag+'</p></div>';
-    }
-    function renderSlots(immediate) {
-      var slots = document.querySelectorAll('#t-grid .t-slot');
-      if (!slots.length) return;
-      var set = function() {
-        slots.forEach(function(s, i) { s.innerHTML = cardHTML(T[(start + i) % T.length]); });
-        requestAnimationFrame(function() { slots.forEach(function(s) { s.style.opacity = '1'; }); });
-        syncDots();
-      };
-      if (immediate) { set(); }
-      else { slots.forEach(function(s) { s.style.opacity = '0'; }); setTimeout(set, 380); }
-    }
-    function buildDots() {
-      var wrap = document.getElementById('t-dots');
-      if (!wrap) return;
-      wrap.innerHTML = '';
-      T.forEach(function(_, i) {
-        var d = document.createElement('button');
-        d.style.cssText = 'width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:#d6cdbb;transition:background .3s,transform .3s;';
-        d.onclick = function() { start = i; renderSlots(false); clearInterval(timer); timer = setInterval(function() { start = (start + 1) % T.length; renderSlots(false); }, 4500); };
-        wrap.appendChild(d);
-      });
-    }
-    function syncDots() {
-      var dots = document.querySelectorAll('#t-dots button');
-      dots.forEach(function(d, i) {
-        var active = i === start;
-        d.style.background = active ? 'var(--wine)' : '#d6cdbb';
-        d.style.transform = active ? 'scale(1.35)' : 'scale(1)';
-      });
-    }
-    buildDots();
-    renderSlots(true);
-    var timer = setInterval(function() { start = (start + 1) % T.length; renderSlots(false); }, 4500);
-  })();
+  <script type="application/json" id="t-data" set:html={JSON.stringify(items)}></script>
+  <script>
+    import { initTestimonialCarousel } from '../../scripts/testimonial-carousel.js';
+    const dataEl = document.getElementById('t-data');
+    const items = dataEl ? JSON.parse(dataEl.textContent) : [];
+    initTestimonialCarousel({ gridSel: '#t-grid', slotSel: '.t-slot', dotsSel: '#t-dots', items, dotStyle: 'flat' });
   </script>
 
 </Base>

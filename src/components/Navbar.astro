@@ -162,7 +162,7 @@ const links = navLinks(locale);
 </style>
 
 <script is:inline>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const nav = document.getElementById('site-nav');
   const ham = document.getElementById('nav-ham');
   const mobMenu = document.getElementById('mob-menu');
@@ -185,7 +185,7 @@ const links = navLinks(locale);
     mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeMenu(); });
     mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
   }
-})();
+});
 
 // Search
 (function() {
