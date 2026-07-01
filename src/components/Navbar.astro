@@ -76,6 +76,7 @@ const searchBlogEntries = {
     z-index: 40; background: var(--cream);
     transition: box-shadow .35s ease, background .35s ease, border-bottom .35s ease;
     border-bottom: 1px solid transparent;
+    -webkit-transform: translateZ(0); transform: translateZ(0);
   }
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 10px 32px;
@@ -117,6 +118,7 @@ const searchBlogEntries = {
     font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 11px;
     letter-spacing: .05em; text-decoration: none;
     box-shadow: 0 4px 14px rgba(70,39,110,.3); transition: transform .2s, background .2s;
+    -webkit-transform: translateZ(0);
   }
   .lang-toggle:hover { transform: scale(1.1); background: var(--purple-d); }
 
