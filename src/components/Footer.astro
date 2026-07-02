@@ -1,5 +1,6 @@
 ---
 import { t, sitePath, type Locale } from '../i18n/utils';
+import pkg from '../../package.json';
 
 interface Props { locale: Locale; }
 
@@ -9,6 +10,7 @@ const privacyPath = sitePath(locale, 'privacy');
 const termsPath = sitePath(locale, 'terms');
 const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service';
 const currentYear = new Date().getFullYear();
+const siteVersion = pkg.version;
 ---
 
 <footer class="footer">
@@ -36,7 +38,7 @@ const currentYear = new Date().getFullYear();
       <p class="footer__emergency">{i.footer.emergency}</p>
       <div class="footer__meta">
         <p class="footer__stock">{i.footer.stockCredit}</p>
-        <p class="footer__version">V1.4</p>
+        <p class="footer__version">V{siteVersion}</p>
       </div>
     </div>
   </div>
