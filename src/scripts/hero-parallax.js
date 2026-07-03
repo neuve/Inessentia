@@ -1,8 +1,11 @@
-// Fraction of the photo's own height, at each end, that's empty margin
-// (grass / raised legs, no faces) — the parallax travel never enters these
-// zones, so it always settles on faces at both ends of the scroll.
-var TOP_DEAD_ZONE = 0.38;
-var BOTTOM_DEAD_ZONE = 0.10;
+// Default fraction of the photo's own height, at each end, that's empty
+// margin (grass / raised legs, no faces) — the parallax travel never enters
+// these zones, so it always settles on the subject at both ends of the
+// scroll. Override per-image via data-top-inset / data-bottom-inset
+// (see BlogPost.astro's heroParallaxInsets prop) when a photo doesn't have
+// the same kind of dead space.
+var DEFAULT_TOP_DEAD_ZONE = 0.38;
+var DEFAULT_BOTTOM_DEAD_ZONE = 0.10;
 
 export function initHeroParallax() {
   var els = document.querySelectorAll('[data-parallax]');
@@ -17,8 +20,12 @@ export function initHeroParallax() {
     var containerRect = container.getBoundingClientRect();
     var ratio = img.naturalWidth && img.naturalHeight ? img.naturalHeight / img.naturalWidth : 1;
     var renderedHeight = containerRect.width * ratio;
-    var topDead = renderedHeight * TOP_DEAD_ZONE;
-    var bottomDead = renderedHeight * BOTTOM_DEAD_ZONE;
+    var topInsetAttr = img.getAttribute('data-top-inset');
+    var bottomInsetAttr = img.getAttribute('data-bottom-inset');
+    var topFrac = topInsetAttr !== null ? parseFloat(topInsetAttr) : DEFAULT_TOP_DEAD_ZONE;
+    var bottomFrac = bottomInsetAttr !== null ? parseFloat(bottomInsetAttr) : DEFAULT_BOTTOM_DEAD_ZONE;
+    var topDead = renderedHeight * topFrac;
+    var bottomDead = renderedHeight * bottomFrac;
     // offset range: image top edge (y=0) aligns with -topDead at the "latest"
     // position, and the bottom-most usable position keeps bottomDead clear
     // beneath the container.

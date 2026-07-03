@@ -23,6 +23,8 @@ interface Props {
   heroPosition?: string;
   heroCaption?: string;
   heroParallax?: boolean;
+  /** fraction of the photo's own height, at each end, left untouched by the parallax travel (default: 0.38 / 0.10) */
+  heroParallaxInsets?: { top?: number; bottom?: number };
   disqusIdentifier: string;
   nextPost?: { href: string; label: string };
   videos?: VideoSchema[];
@@ -39,6 +41,7 @@ const {
   heroPosition = 'center 20%',
   heroCaption,
   heroParallax = false,
+  heroParallaxInsets,
   disqusIdentifier,
   nextPost,
   videos,
@@ -98,7 +101,7 @@ const schema = {
 
   <!-- HERO IMAGE -->
   <div style="position:relative;width:100%;height:clamp(240px,38vw,460px);overflow:hidden;">
-    <img src={heroImage} width="1200" height="800" loading="lazy" alt={heroAlt} data-parallax={heroParallax || undefined} style={heroImgStyle}>
+    <img src={heroImage} width="1200" height="800" loading="lazy" alt={heroAlt} data-parallax={heroParallax || undefined} data-top-inset={heroParallax ? heroParallaxInsets?.top : undefined} data-bottom-inset={heroParallax ? heroParallaxInsets?.bottom : undefined} style={heroImgStyle}>
   </div>
   {heroCaption && (
     <p style="max-width:680px;margin:8px auto 0;padding:0 32px;font-size:13px;color:var(--sand-d);text-align:center;">{heroCaption}</p>
