@@ -120,7 +120,7 @@ export const posts: PostEntry[] = [
       es: 'Grupo de personas acostadas en disposición radial sobre el pasto, vista en picada, foto de dron',
       en: 'A group of people lying in a radial circle on the grass, seen from above, drone photo',
     },
-    heroPosition: '45% 58%',
+    heroPosition: '40% 58%',
     heroCaption: {
       es: 'Mi Generación, la 8a, en Córpore: 2015-2017',
       en: 'My Generation, the 8th, at Corpore: 2015-2017',

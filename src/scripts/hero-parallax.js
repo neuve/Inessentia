@@ -1,17 +1,31 @@
+// Fraction of the photo's own height, at each end, that's empty margin
+// (grass / raised legs, no faces) — the parallax travel never enters these
+// zones, so it always settles on faces at both ends of the scroll.
+var TOP_DEAD_ZONE = 0.38;
+var BOTTOM_DEAD_ZONE = 0.10;
+
 export function initHeroParallax() {
   var els = document.querySelectorAll('[data-parallax]');
   if (!els.length) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var ranges = new Map();
+  var bounds = new Map();
   var ticking = false;
 
   function measureOne(img) {
     var container = img.parentElement;
     var containerRect = container.getBoundingClientRect();
-    var ratio = img.naturalWidth && img.naturalHeight ? img.naturalHeight / img.naturalWidth : 0.75;
+    var ratio = img.naturalWidth && img.naturalHeight ? img.naturalHeight / img.naturalWidth : 1;
     var renderedHeight = containerRect.width * ratio;
-    ranges.set(img, Math.max(0, renderedHeight - containerRect.height));
+    var topDead = renderedHeight * TOP_DEAD_ZONE;
+    var bottomDead = renderedHeight * BOTTOM_DEAD_ZONE;
+    // offset range: image top edge (y=0) aligns with -topDead at the "latest"
+    // position, and the bottom-most usable position keeps bottomDead clear
+    // beneath the container.
+    var maxOffset = -topDead;
+    var minOffset = -(renderedHeight - bottomDead - containerRect.height);
+    if (minOffset > maxOffset) minOffset = maxOffset;
+    bounds.set(img, { min: minOffset, max: maxOffset });
   }
 
   function measureAll() {
@@ -26,8 +40,11 @@ export function initHeroParallax() {
       var total = vh + rect.height;
       var progress = (vh - rect.top) / total;
       progress = Math.max(0, Math.min(1, progress));
-      var range = ranges.get(img) || 0;
-      img.style.setProperty('--parallax-y', (-progress * range).toFixed(1) + 'px');
+      var b = bounds.get(img) || { min: 0, max: 0 };
+      // reversed: starts at the bottom of the photo (lower faces), ends at
+      // the top of the photo (upper faces).
+      var offset = b.min + progress * (b.max - b.min);
+      img.style.setProperty('--parallax-y', offset.toFixed(1) + 'px');
     });
     ticking = false;
   }
