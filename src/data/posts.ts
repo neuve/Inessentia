@@ -14,6 +14,8 @@ export interface PostEntry {
   heroImage: string;
   heroAlt: { es: string; en: string };
   heroPosition: string;
+  /** small credit/caption line shown under the hero image on the full post view only */
+  heroCaption?: { es: string; en: string };
   /** short teaser shown on the resources/recursos card grid (distinct from the meta description) */
   cardBlurb?: { es: string; en: string };
   /** overrides heroPosition just for the card thumbnail, when the card crop differs from the post's own hero crop */
@@ -113,12 +115,16 @@ export const posts: PostEntry[] = [
     cardBlurb: { es: 'El cuerpo como archivo emocional.', en: 'The body as an emotional archive.' },
     slugEs: 'core-energetica',
     slugEn: 'core-energetics',
-    heroImage: '/uploads/placeholder-core-energetica.svg',
+    heroImage: '/uploads/core-energetica-generacion-corpore.webp',
     heroAlt: {
-      es: 'Figura humana de espaldas frente a una ventana grande con luz de mañana',
-      en: 'A human figure from behind, standing before a large window with morning light',
+      es: 'Grupo de personas acostadas en disposición radial sobre el pasto, vista en picada, foto de dron',
+      en: 'A group of people lying in a radial circle on the grass, seen from above, drone photo',
     },
-    heroPosition: 'center 40%',
+    heroPosition: 'center',
+    heroCaption: {
+      es: 'Mi Generación, la 8a, en Córpore: 2015-2017',
+      en: 'My Generation, the 8th, at Corpore: 2015-2017',
+    },
     es: { title: 'Core Energética: el cuerpo como archivo de tu historia', description: 'La Core Energética trabaja con el cuerpo, la energía y la psique para liberar patrones emocionales que se alojan en la tensión muscular, la postura y la respiración.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-core-energetica.html' },
     en: { title: 'Core Energetics: the body as an archive of your history', description: 'Core Energetics works with the body, energy, and psyche to release emotional patterns held in muscular tension, posture, and breath.', category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-core-energetics.html' },
     next: 'que-esperar-de-la-terapia',
