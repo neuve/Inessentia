@@ -91,8 +91,8 @@ export const posts: PostEntry[] = [
       en: 'Multiple reflections of the sky in puddles on a quiet street, a metaphor for inner multiplicity',
     },
     heroPosition: 'center 40%',
-    es: { title: 'Sistemas Familiares Internos (IFS): conocer las partes que te habitan', description: 'Descubre cómo el modelo IFS de Dick Schwartz te ayuda a relacionarte con compasión con tu mundo interior y recuperar el liderazgo del Self.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-sistemas-familiares-internos.html' },
-    en: { title: 'Internal Family Systems (IFS): getting to know the parts that live in you', description: "Discover how Dick Schwartz's IFS model helps you relate with compassion to your inner world and reclaim the leadership of the Self.", category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-internal-family-systems.html' },
+    es: { title: 'Sistemas Familiares Internos (IFS): conocer las partes que te habitan', description: 'Descubre cómo Internal Family Systems te ayuda a relacionarte con compasión con tu mundo interior y recuperar el liderazgo del Self.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-sistemas-familiares-internos.html' },
+    en: { title: 'Internal Family Systems (IFS): getting to know the parts that live in you', description: 'Discover how Internal Family Systems helps you relate with compassion to your inner world and reclaim the leadership of the Self.', category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-internal-family-systems.html' },
     next: 'tapping-eft',
   },
   {
