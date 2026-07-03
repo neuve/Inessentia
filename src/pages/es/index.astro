@@ -3,6 +3,12 @@ import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import { t } from '../../i18n/utils';
 
+interface Props {
+  canonical?: string;
+}
+
+const { canonical } = Astro.props;
+
 const locale = 'es';
 const i = t(locale);
 
@@ -37,7 +43,7 @@ const schema = {
 };
 ---
 
-<Base title={i.site.title} description={i.site.description} altPath="/" schema={schema} ogImage="/uploads/logo-patricio-ruiz.webp">
+<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" schema={schema} ogImage="/uploads/logo-patricio-ruiz.webp">
 
   <!-- HERO -->
   <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F3EFE5 42%,var(--warm) 100%);">
