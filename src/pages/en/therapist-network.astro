@@ -230,7 +230,7 @@ const i = t(locale);
     // ── MAP INIT ─────────────────────────────────────────────────────────────
     var mapEl = document.getElementById('ri-map');
     if (!mapEl) return;
-    var map = L.map('ri-map', { center: [19.39, -99.17], zoom: 11 });
+    var map = L.map('ri-map', { center: [23.6, -102.5], zoom: 5 }); // provisional initial view: all of Mexico (recalculated with fitBounds once the container has its real size, see below)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap contributors &copy; CARTO', maxZoom: 19
     }).addTo(map);
@@ -374,8 +374,8 @@ const i = t(locale);
         if (activeCasos.size > 0 && ![...activeCasos].some(function(c) { return (t.casos||[]).includes(c); })) return;
         if (zona && !(t.zona||'').toLowerCase().includes(zona) && !(t.cp||'').includes(zona)) return;
         var idx = markers.length;
-        var marker = L.marker([t.lat,t.lng],{icon:crearIcono(t)}).bindPopup(crearPopup(t),{maxWidth:310}).addTo(map);
-        marker.on('click', function() { activarItem(idx); });
+        var marker = L.marker([t.lat,t.lng],{icon:crearIcono(t)}).bindPopup(crearPopup(t),{maxWidth:310,autoPan:false}).addTo(map);
+        marker.on('click', function() { activarItem(idx); map.setView(marker.getLatLng(), Math.max(map.getZoom(), 14), {animate:true}); });
         markers.push(marker);
         agregarALista(t, idx);
         visible++;
@@ -473,10 +473,14 @@ const i = t(locale);
     var lmsg = document.getElementById('ri-loading-msg');
     if (lbar) lbar.style.width = '100%';
     if (lmsg) lmsg.textContent = TERAPEUTAS.length + ' therapists loaded';
-    setTimeout(function() { if (loading) loading.style.display='none'; riApplyFilters(); }, 600);
-
-    // Invalidate map size after layout settles
-    setTimeout(function() { map.invalidateSize(); }, 200);
+    // Invalidate map size and recompute the national view once the layout has settled
+    // (the list/loading overlay affect the container's real height before this point).
+    setTimeout(function() {
+      if (loading) loading.style.display='none';
+      riApplyFilters();
+      map.invalidateSize();
+      map.fitBounds([[14.5, -118.4], [32.7, -86.7]]);
+    }, 600);
   }
 })();
 </script>

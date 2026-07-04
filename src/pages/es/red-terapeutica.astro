@@ -99,7 +99,7 @@ const i = t(locale);
             Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span>
           </div>
           <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;color:rgba(255,255,255,.45);line-height:1.5;margin:4px 0 0;text-align:left;">
-            Directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendadas por Patricio Ruiz.
+            Directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendadas por Patricio Ruiz. Filtra por tipo de terapia, enfoque, modalidad (online o presencial) y zona para encontrar el/la terapeuta que mejor se ajuste a lo que buscas.
           </p>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex:1;flex-wrap:wrap;justify-content:flex-end;">
@@ -182,7 +182,7 @@ const i = t(locale);
     cargarDatos(function(){waitLeaflet(iniciarMapa);});
     function iniciarMapa(){
       var mapEl=document.getElementById('ri-map');if(!mapEl)return;
-      var map=L.map('ri-map',{center:[19.39,-99.17],zoom:11});
+      var map=L.map('ri-map',{center:[23.6,-102.5],zoom:5}); // vista inicial provisional: toda la República (se recalcula con fitBounds cuando el contenedor tiene tamaño real, ver abajo)
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap contributors &copy; CARTO',maxZoom:19}).addTo(map);
 
       // scatter overlapping
@@ -206,7 +206,7 @@ const i = t(locale);
 
       function riPoblarEnfoques(tipoF,subtipoF){var enfoques=new Set();TERAPEUTAS.forEach(function(t){if(tipoF&&t.tipo!==tipoF)return;if(subtipoF&&t.subtipo!==subtipoF)return;(t.enfoques||[]).forEach(function(e){enfoques.add(e);});});var sel=document.getElementById('filterEnfoque');if(!sel)return;var prev=sel.value||'';sel.innerHTML='<option value="">Todos los enfoques</option>';Array.from(enfoques).sort().forEach(function(e){var opt=document.createElement('option');opt.value=e;opt.textContent=e;if(e===prev)opt.selected=true;sel.appendChild(opt);});}
 
-      window.riApplyFilters=function(){var tipo=(document.getElementById('filterTipo')||{}).value||'';var subtipo=(document.getElementById('filterSubtipo')||{}).value||'';var enfoque=(document.getElementById('filterEnfoque')||{}).value||'';var zona=((document.getElementById('filterZona')||{}).value||'').toLowerCase().trim();markers.forEach(function(m){map.removeLayer(m);});markers=[];var lc=document.getElementById('list-container');if(lc)lc.innerHTML='';var visible=0;TERAPEUTAS.forEach(function(t){if(!t.lat||!t.lng)return;if(tipo&&t.tipo!==tipo)return;if(subtipo&&t.subtipo!==subtipo)return;if(enfoque&&!(t.enfoques||[]).includes(enfoque))return;if(modalidadActiva&&!(t.modalidades||[]).includes(modalidadActiva))return;if(activeCasos.size>0&&!Array.from(activeCasos).some(function(c){return(t.casos||[]).includes(c);}))return;if(zona&&!(t.zona||'').toLowerCase().includes(zona)&&!(t.cp||'').includes(zona))return;var idx=markers.length;var marker=L.marker([t.lat,t.lng],{icon:crearIcono(t)}).bindPopup(crearPopup(t),{maxWidth:310}).addTo(map);marker.on('click',function(){activarItem(idx);});markers.push(marker);agregarALista(t,idx);visible++;});if(visible===0&&TERAPEUTAS.length>0&&lc)lc.innerHTML='<div class="ri-no-results">Sin resultados para estos filtros.<br>Intenta con menos criterios.</div>';var ctr=document.getElementById('ri-counter');if(ctr)ctr.textContent=visible+' terapeuta'+(visible!==1?'s':'');};
+      window.riApplyFilters=function(){var tipo=(document.getElementById('filterTipo')||{}).value||'';var subtipo=(document.getElementById('filterSubtipo')||{}).value||'';var enfoque=(document.getElementById('filterEnfoque')||{}).value||'';var zona=((document.getElementById('filterZona')||{}).value||'').toLowerCase().trim();markers.forEach(function(m){map.removeLayer(m);});markers=[];var lc=document.getElementById('list-container');if(lc)lc.innerHTML='';var visible=0;TERAPEUTAS.forEach(function(t){if(!t.lat||!t.lng)return;if(tipo&&t.tipo!==tipo)return;if(subtipo&&t.subtipo!==subtipo)return;if(enfoque&&!(t.enfoques||[]).includes(enfoque))return;if(modalidadActiva&&!(t.modalidades||[]).includes(modalidadActiva))return;if(activeCasos.size>0&&!Array.from(activeCasos).some(function(c){return(t.casos||[]).includes(c);}))return;if(zona&&!(t.zona||'').toLowerCase().includes(zona)&&!(t.cp||'').includes(zona))return;var idx=markers.length;var marker=L.marker([t.lat,t.lng],{icon:crearIcono(t)}).bindPopup(crearPopup(t),{maxWidth:310,autoPan:false}).addTo(map);marker.on('click',function(){activarItem(idx);map.setView(marker.getLatLng(),Math.max(map.getZoom(),14),{animate:true});});markers.push(marker);agregarALista(t,idx);visible++;});if(visible===0&&TERAPEUTAS.length>0&&lc)lc.innerHTML='<div class="ri-no-results">Sin resultados para estos filtros.<br>Intenta con menos criterios.</div>';var ctr=document.getElementById('ri-counter');if(ctr)ctr.textContent=visible+' terapeuta'+(visible!==1?'s':'');};
 
       // bind events
       var fTipo=document.getElementById('filterTipo');var fSubtipo=document.getElementById('filterSubtipo');var fEnfoque=document.getElementById('filterEnfoque');var fZona=document.getElementById('filterZona');
@@ -230,8 +230,7 @@ const i = t(locale);
       // done loading
       var loading=document.getElementById('ri-loading');var lbar=document.getElementById('ri-loading-bar');var lmsg=document.getElementById('ri-loading-msg');
       if(lbar)lbar.style.width='100%';if(lmsg)lmsg.textContent=TERAPEUTAS.length+' terapeutas cargados';
-      setTimeout(function(){if(loading)loading.style.display='none';riApplyFilters();},600);
-      setTimeout(function(){map.invalidateSize();},200);
+      setTimeout(function(){if(loading)loading.style.display='none';riApplyFilters();map.invalidateSize();map.fitBounds([[14.5,-118.4],[32.7,-86.7]]);},600);
     }
   })();
   </script>
