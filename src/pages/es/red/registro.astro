@@ -1,0 +1,259 @@
+---
+// Página OCULTA: noindex, fuera del sitemap y del menú. Compartir solo por link directo.
+import Base from '../../../layouts/Base.astro';
+import { RI_API, RI_TOKEN } from '../../../data/red-config';
+---
+
+<Base
+  title="Registro — Red Inessentia"
+  description="Formulario privado para terapeutas de la Red Inessentia."
+  noindex
+  hideFooter
+>
+  <style>
+    .rr-wrap{max-width:720px;margin:0 auto;padding:48px 22px 80px;font-family:'Mulish',sans-serif;color:var(--ink,#262321)}
+    .rr-title{font-family:'Zilla Slab',serif;font-size:2rem;color:#46276E;font-weight:600;margin:0 0 6px}
+    .rr-sub{font-size:.9rem;color:#8B8378;line-height:1.6;margin:0 0 32px}
+    .rr-field{margin-bottom:20px}
+    .rr-label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#46276E;margin-bottom:6px}
+    .rr-label small{font-weight:400;text-transform:none;letter-spacing:0;color:#8B8378}
+    .rr-input,.rr-select,.rr-textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D8D2C4;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.9rem;background:#FCFBF6;color:#262321;outline:none;transition:border-color .15s}
+    .rr-input:focus,.rr-select:focus,.rr-textarea:focus{border-color:#C2B07E}
+    .rr-textarea{min-height:80px;resize:vertical}
+    .rr-row{display:flex;gap:14px;flex-wrap:wrap}
+    .rr-row>.rr-field{flex:1;min-width:180px}
+    .rr-checks{display:flex;gap:8px;flex-wrap:wrap}
+    .rr-check{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #D8D2C4;border-radius:20px;font-size:.82rem;cursor:pointer;background:#FCFBF6;transition:all .15s;user-select:none}
+    .rr-check:has(input:checked){background:#46276E;border-color:#46276E;color:#fff}
+    .rr-check input{display:none}
+    .rr-btn{background:#8E2B5D;color:#fff;border:none;padding:13px 34px;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .15s}
+    .rr-btn:hover{opacity:.88}
+    .rr-btn:disabled{opacity:.5;cursor:wait}
+    .rr-msg{margin-top:16px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none}
+    .rr-msg.ok{display:block;background:#EFF4EF;color:#3A5A3A;border:1px solid #BFD4BF}
+    .rr-msg.err{display:block;background:#FBEDED;color:#8E2B2B;border:1px solid #E4BFBF}
+    .rr-geo{font-size:.75rem;color:#8B8378;margin-top:4px}
+  </style>
+
+  <div class="rr-wrap">
+    <h1 class="rr-title">Red <em style="color:#C2B07E;">Inessentia</em></h1>
+    <p class="rr-sub">
+      Formulario privado para colegas. Con estos datos te agregamos al
+      <a href="/es/red-terapeutica/" style="color:#8E2B5D;">mapa de la Red Inessentia</a>.
+      Tu registro pasa primero por una revisión antes de publicarse. Por favor no compartas este link públicamente.
+    </p>
+
+    <form id="rr-form" novalidate>
+      <div class="rr-field">
+        <label class="rr-label" for="f-nombre">Nombre completo *</label>
+        <input class="rr-input" id="f-nombre" name="nombre" required>
+      </div>
+
+      <div class="rr-row">
+        <div class="rr-field">
+          <label class="rr-label" for="f-tipo">Tipo de terapia *</label>
+          <select class="rr-select" id="f-tipo" name="tipo" required>
+            <option value="Psicoterapia">Psicoterapia</option>
+            <option value="Terapia Física">Terapia Física</option>
+            <option value="Psiquiátrica">Psiquiátrica</option>
+          </select>
+        </div>
+        <div class="rr-field" id="f-subtipo-wrap">
+          <label class="rr-label" for="f-subtipo">Subtipo</label>
+          <select class="rr-select" id="f-subtipo" name="subtipo">
+            <option value="Terapia somática">Terapia somática</option>
+            <option value="Terapia psicológica">Terapia psicológica</option>
+            <option value="Terapia transpersonal">Terapia transpersonal</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rr-field">
+        <label class="rr-label" for="f-enfoques">Enfoques * <small>— separados por comas (ej. Experiencia somática, Terapia narrativa)</small></label>
+        <input class="rr-input" id="f-enfoques" name="enfoques" required>
+      </div>
+
+      <div class="rr-field">
+        <label class="rr-label" for="f-especialidades">Especialidades <small>— temas que acompañas, formación relevante</small></label>
+        <textarea class="rr-textarea" id="f-especialidades" name="especialidades"></textarea>
+      </div>
+
+      <div class="rr-field">
+        <span class="rr-label">Atiende *</span>
+        <div class="rr-checks" id="f-casos">
+          {['Individual','Pareja','Familia','Adolescentes','Niños'].map(c => (
+            <label class="rr-check"><input type="checkbox" value={c}>{c}</label>
+          ))}
+        </div>
+      </div>
+
+      <div class="rr-field">
+        <span class="rr-label">Modalidades *</span>
+        <div class="rr-checks" id="f-modalidades">
+          {['Online','Presencial','A domicilio'].map(m => (
+            <label class="rr-check"><input type="checkbox" value={m}>{m}</label>
+          ))}
+        </div>
+      </div>
+
+      <div class="rr-row">
+        <div class="rr-field">
+          <label class="rr-label" for="f-zona">Zona / colonia y ciudad *</label>
+          <input class="rr-input" id="f-zona" name="zona" placeholder="ej. Nápoles, CDMX" required>
+        </div>
+        <div class="rr-field">
+          <label class="rr-label" for="f-cp">Código postal</label>
+          <input class="rr-input" id="f-cp" name="cp" inputmode="numeric">
+        </div>
+        <div class="rr-field">
+          <label class="rr-label" for="f-pais">País *</label>
+          <input class="rr-input" id="f-pais" name="pais" value="México" required>
+        </div>
+      </div>
+      <p class="rr-geo">📍 Con la zona y el CP ubicamos tu pin en el mapa de forma aproximada (no tu dirección exacta).</p>
+
+      <div class="rr-row">
+        <div class="rr-field">
+          <label class="rr-label" for="f-telefono">Teléfono / WhatsApp *</label>
+          <input class="rr-input" id="f-telefono" name="telefono" inputmode="tel" required>
+        </div>
+        <div class="rr-field">
+          <label class="rr-label" for="f-email">Email <small>— no se publica</small></label>
+          <input class="rr-input" id="f-email" name="email" type="email">
+        </div>
+      </div>
+
+      <div class="rr-row">
+        <div class="rr-field">
+          <label class="rr-label" for="f-webpage">Sitio web / Instagram</label>
+          <input class="rr-input" id="f-webpage" name="webpage" placeholder="www.tusitio.mx o @tuinstagram">
+        </div>
+        <div class="rr-field">
+          <label class="rr-label" for="f-idiomas">Otros idiomas <small>— además de español, separados por comas</small></label>
+          <input class="rr-input" id="f-idiomas" name="idiomas" placeholder="ej. Inglés">
+        </div>
+      </div>
+
+      <div class="rr-row">
+        <div class="rr-field">
+          <label class="rr-label" for="f-costo">Costo primera sesión (MXN)</label>
+          <input class="rr-input" id="f-costo" name="costo" inputmode="numeric">
+        </div>
+        <div class="rr-field">
+          <label class="rr-label" for="f-disponibilidad">Disponibilidad</label>
+          <select class="rr-select" id="f-disponibilidad" name="disponibilidad">
+            <option value="Agenda abierta">Agenda abierta</option>
+            <option value="Sin espacio / Lista de espera">Sin espacio / Lista de espera</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="rr-btn" id="rr-submit">Enviar mi registro</button>
+      <div class="rr-msg" id="rr-msg"></div>
+    </form>
+  </div>
+
+  <script is:inline define:vars={{ RI_API, RI_TOKEN }}>
+    (function () {
+      var form = document.getElementById('rr-form');
+      var btn = document.getElementById('rr-submit');
+      var msg = document.getElementById('rr-msg');
+      var tipoSel = document.getElementById('f-tipo');
+      var subWrap = document.getElementById('f-subtipo-wrap');
+
+      tipoSel.addEventListener('change', function () {
+        subWrap.style.display = tipoSel.value === 'Psicoterapia' ? '' : 'none';
+      });
+
+      function checks(id) {
+        return Array.from(document.querySelectorAll('#' + id + ' input:checked')).map(function (i) { return i.value; });
+      }
+      function list(id) {
+        var v = document.getElementById(id).value;
+        return v ? v.split(',').map(function (s) { return s.trim(); }).filter(Boolean) : [];
+      }
+      function show(cls, text) { msg.className = 'rr-msg ' + cls; msg.textContent = text; }
+
+      function geocode(q) {
+        return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q))
+          .then(function (r) { return r.json(); })
+          .then(function (res) { return res && res[0] ? { lat: +res[0].lat, lng: +res[0].lon } : null; })
+          .catch(function () { return null; });
+      }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var nombre = document.getElementById('f-nombre').value.trim();
+        var zona = document.getElementById('f-zona').value.trim();
+        var pais = document.getElementById('f-pais').value.trim();
+        var cp = document.getElementById('f-cp').value.trim();
+        var enfoques = list('f-enfoques');
+        var modalidades = checks('f-modalidades');
+        var casos = checks('f-casos');
+
+        if (!nombre || !zona || !enfoques.length || !modalidades.length || !casos.length || !document.getElementById('f-telefono').value.trim()) {
+          show('err', 'Faltan campos obligatorios (marcados con *).');
+          return;
+        }
+        if (RI_API.indexOf('http') !== 0) {
+          show('err', 'El formulario aún no está conectado (falta configurar RI_API).');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+
+        // Geocodificar: CP+país primero, si no zona+país
+        var intentos = [];
+        if (cp) intentos.push(cp + ', ' + pais);
+        intentos.push(zona + ', ' + pais);
+
+        (function tryGeo(i) {
+          if (i >= intentos.length) return Promise.resolve(null);
+          return geocode(intentos[i]).then(function (r) { return r || tryGeo(i + 1); });
+        })(0).then(function (coords) {
+          var tipo = tipoSel.value;
+          var payload = {
+            token: RI_TOKEN,
+            nombre: nombre,
+            tipo: tipo,
+            subtipo: tipo === 'Psicoterapia' ? document.getElementById('f-subtipo').value : '',
+            enfoques: enfoques,
+            especialidades: document.getElementById('f-especialidades').value.trim(),
+            telefono: document.getElementById('f-telefono').value.trim(),
+            email: document.getElementById('f-email').value.trim(),
+            webpage: document.getElementById('f-webpage').value.trim(),
+            casos: casos,
+            modalidades: modalidades,
+            zona: zona,
+            cp: cp,
+            pais: pais,
+            idiomas: list('f-idiomas'),
+            costo: document.getElementById('f-costo').value.trim(),
+            disponibilidad: document.getElementById('f-disponibilidad').value,
+            lat: coords ? coords.lat : '',
+            lng: coords ? coords.lng : ''
+          };
+          return fetch(RI_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          }).then(function (r) { return r.json(); });
+        }).then(function (res) {
+          if (res && res.ok) {
+            show('ok', '¡Gracias! Recibimos tu registro. Patricio lo revisará y en breve aparecerás en el mapa de la Red Inessentia.');
+            form.reset();
+            subWrap.style.display = '';
+          } else {
+            show('err', 'No se pudo enviar el registro. Intenta de nuevo o escríbenos por WhatsApp.');
+          }
+        }).catch(function () {
+          show('err', 'No se pudo enviar el registro. Intenta de nuevo o escríbenos por WhatsApp.');
+        }).finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Enviar mi registro';
+        });
+      });
+    })();
+  </script>
+</Base>

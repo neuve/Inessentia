@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
+import { RI_API } from '../../data/red-config';
 
 const locale = 'en';
 const i = t(locale);
@@ -15,6 +16,7 @@ const i = t(locale);
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script is:inline define:vars={{ RI_API }}>window.RI_API = RI_API;</script>
 
 <style is:global>
 /* ── MAP-SPECIFIC CLASSES ── */
@@ -179,7 +181,14 @@ const i = t(locale);
 <script is:inline>
 (function() {
   var waitLeaflet = function(cb) { if (typeof L !== 'undefined') cb(); else setTimeout(function() { waitLeaflet(cb); }, 60); };
-  waitLeaflet(function() { _initMap(); });
+  // Fresh data from the Google Sheet (Apps Script); falls back to the inline array on failure.
+  var REMOTE = null;
+  function loadData(cb) {
+    var api = window.RI_API || '';
+    if (api.indexOf('http') !== 0) { cb(); return; }
+    fetch(api).then(function(r){ return r.json(); }).then(function(d){ if (Array.isArray(d) && d.length) REMOTE = d; }).catch(function(){}).then(cb, cb);
+  }
+  loadData(function() { waitLeaflet(function() { _initMap(); }); });
 
   function _initMap() {
     // ── INLINE DATA ──────────────────────────────────────────────────────────
@@ -205,6 +214,7 @@ const i = t(locale);
       {"nombre":"Claudia Stepensky","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Terapia familiar sistémica","Experiencia somática","Core energética"],"especialidades":"Ansiedad, depresión, dificultades relacionales, trauma, duelos, crisis. +20 años de experiencia.","telefono":"9988743971","webpage":null,"casos":["Individual","Pareja","Familia"],"modalidades":["Online","Presencial"],"zona":"Valle de Bravo, Estado de México","cp":"51200","idiomas":["Inglés"],"costo":1800,"disponibilidad":"Agenda abierta","lat":19.1927,"lng":-100.1316},
       {"nombre":"Hilda Martinez Vega","tipo":"Psicoterapia","subtipo":"Terapia somática","enfoques":["Experiencia somática","Osteopatía visceral y neural","Terapia Craneosacral","Medicina Germánica"],"especialidades":"Abuso sexual, accidentes, ansiedad, dolor crónico, enfermedades autoinmunes, fatiga crónica, migrañas, insomnio.","telefono":"5511957245","webpage":null,"casos":["Individual"],"modalidades":["Online","Presencial"],"zona":"Tequisquiapan, Querétaro","cp":"76790","idiomas":[],"costo":1000,"disponibilidad":"Agenda abierta","lat":20.5222,"lng":-99.8935}
     ];
+    if (REMOTE) TERAPEUTAS = REMOTE;
 
     // ── COLOR CONFIG ────────────────────────────────────────────────────────
     var TIPO_ORDER = ['Psicoterapia','Terapia Física','Psiquiátrica'];
@@ -462,7 +472,7 @@ const i = t(locale);
     var lbar = document.getElementById('ri-loading-bar');
     var lmsg = document.getElementById('ri-loading-msg');
     if (lbar) lbar.style.width = '100%';
-    if (lmsg) lmsg.textContent = '20 therapists loaded';
+    if (lmsg) lmsg.textContent = TERAPEUTAS.length + ' therapists loaded';
     setTimeout(function() { if (loading) loading.style.display='none'; riApplyFilters(); }, 600);
 
     // Invalidate map size after layout settles

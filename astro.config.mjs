@@ -14,7 +14,11 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => page !== 'https://inessentia.mx/',
+      filter: (page) =>
+        page !== 'https://inessentia.mx/' &&
+        !page.includes('/red/registro') &&
+        !page.includes('/testimonios/nuevo') &&
+        !page.includes('/testimonials/new'),
     }),
   ],
 });

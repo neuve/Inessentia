@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
+import { RI_API } from '../../data/red-config';
 
 const locale = 'es';
 const i = t(locale);
@@ -139,6 +140,7 @@ const i = t(locale);
   </div>
 
   <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script is:inline define:vars={{ RI_API }}>window.RI_API = RI_API;</script>
   <script is:inline>
   (function() {
     var TERAPEUTAS = [
@@ -175,7 +177,10 @@ const i = t(locale);
     var getTagLabel=function(t){return t.subtipo||t.tipo;};
 
     function waitLeaflet(cb){if(typeof L!=='undefined')cb();else setTimeout(function(){waitLeaflet(cb);},60);}
-    waitLeaflet(function(){
+    // Carga datos frescos de la hoja (Apps Script). Si falla, usa el arreglo local como respaldo.
+    function cargarDatos(cb){var api=window.RI_API||'';if(api.indexOf('http')!==0){cb();return;}fetch(api).then(function(r){return r.json();}).then(function(d){if(Array.isArray(d)&&d.length)TERAPEUTAS=d;}).catch(function(){}).then(cb,cb);}
+    cargarDatos(function(){waitLeaflet(iniciarMapa);});
+    function iniciarMapa(){
       var mapEl=document.getElementById('ri-map');if(!mapEl)return;
       var map=L.map('ri-map',{center:[19.39,-99.17],zoom:11});
       L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap contributors &copy; CARTO',maxZoom:19}).addTo(map);
@@ -224,10 +229,10 @@ const i = t(locale);
 
       // done loading
       var loading=document.getElementById('ri-loading');var lbar=document.getElementById('ri-loading-bar');var lmsg=document.getElementById('ri-loading-msg');
-      if(lbar)lbar.style.width='100%';if(lmsg)lmsg.textContent='20 terapeutas cargados';
+      if(lbar)lbar.style.width='100%';if(lmsg)lmsg.textContent=TERAPEUTAS.length+' terapeutas cargados';
       setTimeout(function(){if(loading)loading.style.display='none';riApplyFilters();},600);
       setTimeout(function(){map.invalidateSize();},200);
-    });
+    }
   })();
   </script>
 

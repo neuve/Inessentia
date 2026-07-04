@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
 import { testimonials } from '../../data/testimonials';
+import { RI_API } from '../../data/red-config';
 
 const locale = 'en';
 const i = t(locale);
@@ -45,11 +46,27 @@ const items = testimonials[locale];
   </section>
 
   <script type="application/json" id="t-data" set:html={JSON.stringify(items)}></script>
+  <script is:inline define:vars={{ RI_API }}>window.RI_API = RI_API;</script>
   <script>
     import { initTestimonialCarousel } from '../../scripts/testimonial-carousel.js';
     const dataEl = document.getElementById('t-data');
     const items = dataEl ? JSON.parse(dataEl.textContent) : [];
-    initTestimonialCarousel({ gridSel: '#t-grid', slotSel: '.t-slot', dotsSel: '#t-dots', items, dotStyle: 'flat' });
+
+    function init(all) {
+      initTestimonialCarousel({ gridSel: '#t-grid', slotSel: '.t-slot', dotsSel: '#t-dots', items: all, dotStyle: 'flat' });
+    }
+
+    // Adds new approved testimonials from the sheet (Apps Script).
+    // Falls back to the curated ones from code if it fails or isn't configured.
+    const api = (window as any).RI_API || '';
+    if (api.indexOf('http') === 0) {
+      fetch(api + '?form=testimonios&idioma=en')
+        .then((r) => r.json())
+        .then((extra) => init(Array.isArray(extra) && extra.length ? items.concat(extra) : items))
+        .catch(() => init(items));
+    } else {
+      init(items);
+    }
   </script>
 
 </Base>

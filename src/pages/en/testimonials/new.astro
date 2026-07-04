@@ -1,0 +1,154 @@
+---
+// HIDDEN page: noindex, out of the sitemap and nav. Share by direct link only.
+import Base from '../../../layouts/Base.astro';
+import { RI_API, RI_TOKEN } from '../../../data/red-config';
+---
+
+<Base
+  title="Share your experience — Inessentia"
+  description="Private form to share your therapy testimonial."
+  noindex
+  hideFooter
+>
+  <style>
+    .rt-wrap{max-width:640px;margin:0 auto;padding:48px 22px 80px;font-family:'Mulish',sans-serif;color:var(--ink,#262321)}
+    .rt-title{font-family:'Zilla Slab',serif;font-size:2rem;color:#46276E;font-weight:600;margin:0 0 6px}
+    .rt-sub{font-size:.9rem;color:#8B8378;line-height:1.6;margin:0 0 32px}
+    .rt-field{margin-bottom:20px}
+    .rt-label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#46276E;margin-bottom:6px}
+    .rt-label small{font-weight:400;text-transform:none;letter-spacing:0;color:#8B8378}
+    .rt-input,.rt-select,.rt-textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D8D2C4;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.9rem;background:#FCFBF6;color:#262321;outline:none;transition:border-color .15s}
+    .rt-input:focus,.rt-select:focus,.rt-textarea:focus{border-color:#C2B07E}
+    .rt-textarea{min-height:140px;resize:vertical}
+    .rt-row{display:flex;gap:14px;flex-wrap:wrap}
+    .rt-row>.rt-field{flex:1;min-width:180px}
+    .rt-consent{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;line-height:1.55;color:#555;cursor:pointer;user-select:none}
+    .rt-consent input{margin-top:3px;accent-color:#8E2B5D}
+    .rt-btn{background:#8E2B5D;color:#fff;border:none;padding:13px 34px;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .15s}
+    .rt-btn:hover{opacity:.88}
+    .rt-btn:disabled{opacity:.5;cursor:wait}
+    .rt-msg{margin-top:16px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none}
+    .rt-msg.ok{display:block;background:#EFF4EF;color:#3A5A3A;border:1px solid #BFD4BF}
+    .rt-msg.err{display:block;background:#FBEDED;color:#8E2B2B;border:1px solid #E4BFBF}
+    .rt-count{font-size:.72rem;color:#8B8378;text-align:right;margin-top:4px}
+  </style>
+
+  <div class="rt-wrap">
+    <h1 class="rt-title">Share your <em style="color:#C2B07E;">experience</em></h1>
+    <p class="rt-sub">
+      Thank you for wanting to share your process. Your testimonial helps others feel encouraged
+      to start their own. It's reviewed before being published on
+      <a href="/en/testimonials/" style="color:#8E2B5D;">the testimonials page</a>.
+      You can sign it with your name, initials, or as "Anonymous".
+    </p>
+
+    <form id="rt-form" novalidate>
+      <div class="rt-field">
+        <label class="rt-label" for="t-testimonio">Your testimonial *</label>
+        <textarea class="rt-textarea" id="t-testimonio" maxlength="600" required
+          placeholder="How did you get here? What has changed in you or your life through the process?"></textarea>
+        <div class="rt-count"><span id="t-count">0</span>/600</div>
+      </div>
+
+      <div class="rt-row">
+        <div class="rt-field">
+          <label class="rt-label" for="t-nombre">Your name *</label>
+          <input class="rt-input" id="t-nombre" required>
+        </div>
+        <div class="rt-field">
+          <label class="rt-label" for="t-publicar">Publish as <small>— if you'd rather not use your name</small></label>
+          <input class="rt-input" id="t-publicar" placeholder="e.g. Anonymous, initials, nickname">
+        </div>
+      </div>
+
+      <div class="rt-row">
+        <div class="rt-field">
+          <label class="rt-label" for="t-tipo">Type of process</label>
+          <select class="rt-select" id="t-tipo">
+            <option value="">Prefer not to say</option>
+            <option value="Individual therapy">Individual therapy</option>
+            <option value="Couples therapy">Couples therapy</option>
+            <option value="Family therapy">Family therapy</option>
+          </select>
+        </div>
+        <div class="rt-field">
+          <label class="rt-label" for="t-email">Email <small>— not published</small></label>
+          <input class="rt-input" id="t-email" type="email">
+        </div>
+      </div>
+
+      <div class="rt-field">
+        <label class="rt-label" for="t-link">Link <small>— optional: your site, Instagram or YouTube, if you'd like it to appear next to your name</small></label>
+        <input class="rt-input" id="t-link" placeholder="https://…">
+      </div>
+
+      <div class="rt-field">
+        <label class="rt-consent">
+          <input type="checkbox" id="t-consent">
+          <span>I authorize this testimonial to be published on inessentia.mx with the name I provided. I understand I can request its removal at any time. *</span>
+        </label>
+      </div>
+
+      <button type="submit" class="rt-btn" id="rt-submit">Send my testimonial</button>
+      <div class="rt-msg" id="rt-msg"></div>
+    </form>
+  </div>
+
+  <script is:inline define:vars={{ RI_API, RI_TOKEN }}>
+    (function () {
+      var form = document.getElementById('rt-form');
+      var btn = document.getElementById('rt-submit');
+      var msg = document.getElementById('rt-msg');
+      var ta = document.getElementById('t-testimonio');
+      var count = document.getElementById('t-count');
+
+      ta.addEventListener('input', function () { count.textContent = ta.value.length; });
+
+      function show(cls, text) { msg.className = 'rt-msg ' + cls; msg.textContent = text; }
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var testimonio = ta.value.trim();
+        var nombre = document.getElementById('t-nombre').value.trim();
+        var consent = document.getElementById('t-consent').checked;
+
+        if (!testimonio || !nombre) { show('err', 'Required fields are missing (marked with *).'); return; }
+        if (!consent) { show('err', 'We need your authorization to be able to publish the testimonial.'); return; }
+        if (RI_API.indexOf('http') !== 0) { show('err', "The form isn't connected yet (RI_API not configured)."); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        fetch(RI_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            token: RI_TOKEN,
+            form: 'testimonio',
+            testimonio: testimonio,
+            nombre: nombre,
+            publicar_como: document.getElementById('t-publicar').value.trim() || nombre,
+            tipo_terapia: document.getElementById('t-tipo').value,
+            link: document.getElementById('t-link').value.trim(),
+            email: document.getElementById('t-email').value.trim(),
+            consentimiento: true,
+            idioma: 'en'
+          })
+        }).then(function (r) { return r.json(); }).then(function (res) {
+          if (res && res.ok) {
+            show('ok', 'Thank you so much! We received your testimonial. Patricio will review it and it will appear published shortly.');
+            form.reset();
+            count.textContent = '0';
+          } else {
+            show('err', "Couldn't be sent. Please try again or write to us on WhatsApp.");
+          }
+        }).catch(function () {
+          show('err', "Couldn't be sent. Please try again or write to us on WhatsApp.");
+        }).finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Send my testimonial';
+        });
+      });
+    })();
+  </script>
+</Base>
