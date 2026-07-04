@@ -60,8 +60,8 @@ export const posts: PostEntry[] = [
       en: 'Vintage-style anatomical plate of the sympathetic and parasympathetic nervous systems, highlighting the vagus nerve and its connections to the heart, lungs, and intestines',
     },
     heroPosition: 'center 40%',
-    es: { title: 'Teoría Polivagal: el sistema nervioso como brújula', description: 'La Teoría Polivagal de Stephen Porges explica cómo el sistema nervioso autónomo regula nuestra capacidad de conexión, movilización y colapso — y por qué eso transforma la terapia.', category: 'Sistema nervioso', disqusIdentifier: '/blog-teoria-polivagal.html' },
-    en: { title: 'Polyvagal Theory: the nervous system as a compass', description: "Stephen Porges's Polyvagal Theory explains how the autonomic nervous system regulates our capacity for connection, mobilization, and collapse — and why that transforms therapy.", category: 'Nervous system', disqusIdentifier: '/en/blog-polyvagal-theory.html' },
+    es: { title: 'Teoría Polivagal: el sistema nervioso como brújula', description: 'La Teoría Polivagal concebida por Stephen Porges explica cómo el sistema nervioso autónomo regula nuestra capacidad de conexión, movilización y colapso — aquí reflexiono sobre cómo eso revolucionó la terapia.', category: 'Sistema nervioso', disqusIdentifier: '/blog-teoria-polivagal.html' },
+    en: { title: 'Polyvagal Theory: the nervous system as a compass', description: "Stephen Porges's Polyvagal Theory explains how the autonomic nervous system regulates our capacity for connection, mobilization, and collapse — here I reflect on how that revolutionized therapy.", category: 'Nervous system', disqusIdentifier: '/en/blog-polyvagal-theory.html' },
     next: 'experiencia-somatica',
   },
   {
