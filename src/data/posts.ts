@@ -54,10 +54,10 @@ export const posts: PostEntry[] = [
     cardBlurb: { es: 'Por qué reaccionamos como reaccionamos.', en: 'Why we react the way we react.' },
     slugEs: 'teoria-polivagal',
     slugEn: 'polyvagal-theory',
-    heroImage: '/uploads/placeholder-teoria-polivagal.svg',
+    heroImage: '/uploads/teoria-polivagal-lamina-sistema-nervioso.webp',
     heroAlt: {
-      es: 'Ondas concéntricas en calma sobre agua quieta, luz dorada',
-      en: 'Calm concentric waves on still water, golden light',
+      es: 'Lámina anatómica de estilo antiguo del sistema nervioso simpático y parasimpático, con énfasis en el nervio vago y sus conexiones con corazón, pulmones e intestinos',
+      en: 'Vintage-style anatomical plate of the sympathetic and parasympathetic nervous systems, highlighting the vagus nerve and its connections to the heart, lungs, and intestines',
     },
     heroPosition: 'center 40%',
     es: { title: 'Teoría Polivagal: el sistema nervioso como brújula', description: 'La Teoría Polivagal de Stephen Porges explica cómo el sistema nervioso autónomo regula nuestra capacidad de conexión, movilización y colapso — y por qué eso transforma la terapia.', category: 'Sistema nervioso', disqusIdentifier: '/blog-teoria-polivagal.html' },

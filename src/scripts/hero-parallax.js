@@ -31,7 +31,10 @@ export function initHeroParallax() {
     // beneath the container.
     var maxOffset = -topDead;
     var minOffset = -(renderedHeight - bottomDead - containerRect.height);
-    if (minOffset > maxOffset) minOffset = maxOffset;
+    // Imagen más corta que el contenedor (panorámicas en viewport angosto):
+    // no hay recorrido posible — sin desplazar, el object-fit:cover del layout
+    // llena el contenedor.
+    if (minOffset > maxOffset) { minOffset = 0; maxOffset = 0; }
     bounds.set(img, { min: minOffset, max: maxOffset });
   }
 
