@@ -20,7 +20,7 @@ Un solo Apps Script atiende los tres formularios ocultos:
 
 ## Flujo diario (moderación)
 
-- Cada envío llega como fila nueva con `aprobado = NO`.
+- Cada envío llega como fila nueva con `aprobado = NO`, y manda un correo a `NOTIFY_EMAIL` (en el .gs) avisando con un link directo a la Sheet.
 - Cambias la celda a `SI` → aparece en el sitio en la siguiente carga de página. `NO` o borrar la fila lo quita.
 - Terapeutas: lat/lng llegan geocodificados desde el formulario (zona/CP vía OpenStreetMap). Si quedaron vacíos o mal, corrígelos a mano (Google Maps → clic derecho → copiar coordenadas).
 - Testimonios: la columna `nombre` es el nombre real (privado); se publica lo que diga `publicar_como`.

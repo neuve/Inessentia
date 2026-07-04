@@ -10,6 +10,7 @@
  */
 
 var TOKEN = 'inessentia-red-2026'; // debe coincidir con RI_TOKEN en src/data/red-config.ts
+var NOTIFY_EMAIL = 'patricio@inessentia.mx'; // a quién avisar cuando llega un registro nuevo
 
 var SHEET_TERAPEUTAS = 'Terapeutas';
 var SHEET_TESTIMONIOS = 'Testimonios';
@@ -51,6 +52,9 @@ function doPost(e) {
         String(d.link || ''), String(d.email || ''),
         d.consentimiento ? 'SI' : 'NO', String(d.idioma || 'es')
       ]);
+      notify_('Nuevo testimonio (' + String(d.idioma || 'es').toUpperCase() + ')',
+        'De: ' + String(d.nombre || '') + ' (publicar como: ' + String(d.publicar_como || d.nombre || 'Anónimo') + ')\n\n' +
+        String(d.testimonio || ''));
       return json_({ ok: true });
     }
 
@@ -68,6 +72,12 @@ function doPost(e) {
       d.costo || '', String(d.disponibilidad || ''),
       d.lat || '', d.lng || '', String(d.email || '')
     ]);
+    notify_('Nuevo registro en la Red Inessentia',
+      'Nombre: ' + String(d.nombre || '') + '\n' +
+      'Tipo: ' + String(d.tipo || '') + (d.subtipo ? ' / ' + d.subtipo : '') + '\n' +
+      'Zona: ' + String(d.zona || '') + '\n' +
+      'Tel/WhatsApp: ' + String(d.telefono || '') + '\n' +
+      'Email: ' + String(d.email || ''));
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -143,6 +153,15 @@ function readApproved_(sheetName, headers) {
 function splitList_(v) {
   if (!v) return [];
   return String(v).split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+}
+
+function notify_(subject, body) {
+  try {
+    var sheetUrl = SpreadsheetApp.getActiveSpreadsheet().getUrl();
+    MailApp.sendEmail(NOTIFY_EMAIL, subject, body + '\n\nRevisar y aprobar aquí: ' + sheetUrl);
+  } catch (err) {
+    // no interrumpe el guardado del registro si el correo falla
+  }
 }
 
 function json_(obj) {
