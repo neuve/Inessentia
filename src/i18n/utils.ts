@@ -28,6 +28,7 @@ const sitePaths = {
   terms: { es: '/es/terminos/', en: '/en/terms/' },
   resources: { es: '/es/recursos/', en: '/en/resources/' },
   testimonials: { es: '/es/testimonios/', en: '/en/testimonials/' },
+  costs: { es: '/es/costos/', en: '/en/costs/' },
 } as const;
 
 /** Locale-aware path for the handful of standalone pages referenced by

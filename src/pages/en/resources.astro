@@ -1,12 +1,50 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
-import BlogCard from '../../components/BlogCard.astro';
-import { getResourcesGrid } from '../../data/posts';
+import { getResourcesGrid, getPost, postHref, tagLabels, tagOrder, tagKeysFor } from '../../data/posts';
 
 const locale = 'en';
 const i = t(locale);
-const grid = getResourcesGrid();
+
+const featuredIds = ['experiencia-somatica', 'sistemas-familiares-internos', 'core-energetica', 'tipos-de-terapia', 'que-esperar-de-la-terapia'];
+const featured = featuredIds
+  .map(id => getPost(id))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p))
+  .map(p => ({
+    href: postHref(locale, p.id),
+    img: p.heroImage,
+    pos: p.heroPosition,
+    cat: p[locale].category,
+    title: p[locale].title,
+    blurb: p.cardBlurb?.[locale] ?? p[locale].description,
+  }));
+
+const tilePalettes = [
+  { bg: 'var(--purple)', fg: '#fff', eb: 'var(--sand)', sub: 'rgba(255,255,255,.74)' },
+  { bg: 'var(--wine)', fg: '#fff', eb: '#F0D9C4', sub: 'rgba(255,255,255,.82)' },
+  { bg: 'var(--sand)', fg: 'var(--purple-d)', eb: 'var(--wine)', sub: '#5b4a2f' },
+  { bg: 'var(--cream)', fg: 'var(--purple)', eb: 'var(--wine)', sub: '#4a443f' },
+];
+let tileIdx = 0;
+
+const grid = getResourcesGrid().map(p => {
+  const photo = !p.heroImage.endsWith('.svg');
+  const pal = photo ? null : tilePalettes[tileIdx++ % tilePalettes.length];
+  return {
+    href: postHref(locale, p.id),
+    img: p.heroImage,
+    pos: p.cardHeroPosition?.[locale] ?? p.heroPosition,
+    cat: p[locale].category,
+    title: p[locale].title,
+    blurb: p.cardBlurb?.[locale] ?? p[locale].description,
+    alt: p.cardAlt?.[locale] ?? p.heroAlt[locale],
+    tags: tagKeysFor(p.id).join(' '),
+    photo,
+    pal,
+  };
+});
+
+const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
 ---
 
 <Base
@@ -15,36 +53,80 @@ const grid = getResourcesGrid();
   altPath="/recursos/"
 >
 
-  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,8vw,96px) 32px clamp(40px,5vw,64px);">
-    <div class="container">
-      <p data-reveal class="label-section">{i.blog.label}</p>
-      <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">{i.blog.title}</h1>
-      <p data-reveal style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:#4a443f;margin:18px 0 0;max-width:62ch;">{i.blog.subtitle}</p>
+  <!-- HERO: intro + rotating featured -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 62%);padding:clamp(44px,6vw,64px) clamp(24px,5vw,52px) clamp(32px,4vw,48px);">
+    <div style="max-width:1240px;margin:0 auto;">
+      <div class="rec-hero-grid">
+        <!-- intro -->
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <p data-reveal class="label-section" style="margin-bottom:14px;">{i.blog.label}</p>
+          <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,4.6vw,52px);line-height:1.04;margin:0;">{i.blog.title}</h1>
+          <p data-reveal style="font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:#4a443f;margin:20px 0 0;max-width:44ch;">{i.blog.subtitle}</p>
+          <div data-reveal style="display:flex;flex-wrap:wrap;gap:9px;margin-top:28px;">
+            <button type="button" data-rec-pill="all" style="background:var(--purple);color:#fff;border:1px solid var(--purple);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">All</button>
+            {pills.map(p => (
+              <button type="button" data-rec-pill={p.key} style="background:#fff;color:var(--purple);border:1px solid rgba(70,39,110,.25);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">{p.label}</button>
+            ))}
+          </div>
+        </div>
+        <!-- rotating featured -->
+        <div data-reveal class="rec-featured" style="position:relative;border-radius:24px;overflow:hidden;min-height:508px;box-shadow:0 30px 60px rgba(70,39,110,.20);">
+          {featured.map((f, k) => (
+            <a href={f.href} data-rec-slide={k} style={`position:absolute;inset:0;display:block;text-decoration:none;transition:opacity .6s ease;opacity:${k === 0 ? '1' : '0'};`}>
+              <img src={f.img} alt={f.title} style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};`}>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,20,60,.04) 0%,rgba(38,20,60,.12) 40%,rgba(48,24,74,.86) 100%);"></div>
+              <div style="position:absolute;top:22px;left:24px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 15px;border-radius:99px;">Featured</div>
+              <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(24px,3vw,40px);">
+                <p style="margin:0 0 12px;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);">{f.cat}</p>
+                <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(24px,2.6vw,34px);line-height:1.12;margin:0 0 14px;max-width:20ch;">{f.title}</h2>
+                <p style="font-size:clamp(14px,1.1vw,16px);line-height:1.55;color:rgba(255,255,255,.86);margin:0 0 22px;max-width:46ch;">{f.blurb}</p>
+                <span style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:14px 26px;border-radius:99px;">{i.blog.readMore}</span>
+              </div>
+            </a>
+          ))}
+          <div style="position:absolute;top:26px;right:24px;display:flex;gap:7px;align-items:center;z-index:3;">
+            {featured.map((_, k) => (
+              <button type="button" data-rec-dot={k} aria-label={`Featured ${k + 1}`} style={`height:9px;border-radius:99px;border:none;padding:0;cursor:pointer;transition:all .3s;width:${k === 0 ? '26px' : '9px'};background:${k === 0 ? '#fff' : 'rgba(255,255,255,.5)'};`}></button>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <a data-reveal href="/en/blog/what-to-expect/" class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:0;text-decoration:none;color:inherit;margin-bottom:28px;">
-        <div style="height:100%;min-height:260px;overflow:hidden;">
-          <img src="/uploads/que-esperar-terapia.webp" width="1200" height="800" loading="lazy" alt="Portrait of a young woman with a warm gaze holding a heart-shaped object and showing it to the camera" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;">
-        </div>
-        <div style="padding:clamp(28px,3vw,44px);display:flex;flex-direction:column;justify-content:center;gap:14px;">
-          <p style="margin:0;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Therapeutic process</p>
-          <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(22px,2.5vw,32px);line-height:1.15;margin:0;">What to expect from therapy?</h2>
-          <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;">How the therapeutic relationship, techniques and time come together in a real process.</p>
-          <span style="color:var(--wine);font-weight:700;font-size:14px;">{i.blog.readMore}</span>
-        </div>
-      </a>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;">
-        {grid.map(post => (
-          <BlogCard post={post} locale={locale} readMoreLabel={i.blog.readMore} />
+  <!-- MAGAZINE GRID -->
+  <section style="background:var(--warm);padding:clamp(8px,2vw,20px) clamp(24px,5vw,52px) clamp(56px,8vw,88px);">
+    <div style="max-width:1240px;margin:0 auto;">
+      <div class="rec-grid">
+        {grid.map(c => (
+          c.photo ? (
+            <a href={c.href} data-rec-item data-tags={c.tags} class="rec-card" style="break-inside:avoid;-webkit-column-break-inside:avoid;display:block;margin:0 0 22px;text-decoration:none;color:inherit;">
+              <div style="background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;">
+                <div style="height:190px;overflow:hidden;"><img src={c.img} alt={c.alt} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${c.pos};display:block;`}></div>
+                <div style="padding:22px 22px 24px;">
+                  <p style="margin:0 0 9px;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">{c.cat}</p>
+                  <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:20px;line-height:1.18;margin:0 0 10px;">{c.title}</h3>
+                  <p style="font-size:14px;line-height:1.6;color:#4a443f;margin:0 0 14px;">{c.blurb}</p>
+                  <span style="color:var(--wine);font-weight:700;font-size:13px;">{i.blog.readMore}</span>
+                </div>
+              </div>
+            </a>
+          ) : (
+            <a href={c.href} data-rec-item data-tags={c.tags} class="rec-card" style="break-inside:avoid;-webkit-column-break-inside:avoid;display:block;margin:0 0 22px;text-decoration:none;color:inherit;">
+              <div style={`background:${c.pal!.bg};border-radius:20px;padding:26px 24px;min-height:176px;display:flex;flex-direction:column;justify-content:flex-end;gap:11px;`}>
+                <p style={`margin:0;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:${c.pal!.eb};`}>{c.cat}</p>
+                <h3 style={`font-family:'Zilla Slab',serif;font-weight:600;color:${c.pal!.fg};font-size:22px;line-height:1.15;margin:0;`}>{c.title}</h3>
+                <p style={`font-size:14px;line-height:1.55;color:${c.pal!.sub};margin:0;`}>{c.blurb}</p>
+                <span style={`color:${c.pal!.fg};font-weight:700;font-size:13px;opacity:.92;`}>{i.blog.readMore}</span>
+              </div>
+            </a>
+          )
         ))}
       </div>
     </div>
   </section>
 
+  <!-- CTA -->
   <section style="background:var(--purple);padding:clamp(64px,9vw,118px) 32px;text-align:center;">
     <div data-reveal style="max-width:760px;margin:0 auto;">
       <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
@@ -54,3 +136,48 @@ const grid = getResourcesGrid();
   </section>
 
 </Base>
+
+<style>
+  .rec-hero-grid { display:grid; grid-template-columns:0.86fr 1.14fr; gap:46px; align-items:stretch; }
+  .rec-grid { column-count:3; column-gap:22px; }
+  .rec-card { border-radius:20px; transition:transform .3s ease, box-shadow .3s ease; }
+  .rec-card:hover { transform:translateY(-6px); box-shadow:0 22px 44px rgba(70,39,110,.16); }
+  @media (max-width:1000px) { .rec-grid { column-count:2; } }
+  @media (max-width:900px) { .rec-hero-grid { grid-template-columns:1fr; gap:26px; } .rec-featured { min-height:400px !important; } }
+  @media (max-width:640px) { .rec-grid { column-count:1; } }
+</style>
+
+<script is:inline>
+  (function () {
+    // Rotating featured
+    var slides = Array.prototype.slice.call(document.querySelectorAll('[data-rec-slide]'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('[data-rec-dot]'));
+    var idx = 0, timer = null;
+    function show(n) {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.style.opacity = k === idx ? '1' : '0'; s.style.pointerEvents = k === idx ? 'auto' : 'none'; });
+      dots.forEach(function (d, k) { d.style.width = k === idx ? '26px' : '9px'; d.style.background = k === idx ? '#fff' : 'rgba(255,255,255,.5)'; });
+    }
+    function start() { stop(); if (slides.length > 1) timer = setInterval(function () { show(idx + 1); }, 6000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    dots.forEach(function (d, k) { d.addEventListener('click', function (e) { e.preventDefault(); show(k); start(); }); });
+    if (slides.length) { show(0); start(); }
+
+    // Category filter
+    var pills = Array.prototype.slice.call(document.querySelectorAll('[data-rec-pill]'));
+    var cards = Array.prototype.slice.call(document.querySelectorAll('[data-rec-item]'));
+    function filter(key) {
+      cards.forEach(function (c) {
+        var tags = (c.getAttribute('data-tags') || '').split(' ');
+        c.style.display = (key === 'all' || tags.indexOf(key) !== -1) ? '' : 'none';
+      });
+      pills.forEach(function (p) {
+        var on = p.getAttribute('data-rec-pill') === key;
+        p.style.background = on ? '#46276E' : '#fff';
+        p.style.color = on ? '#fff' : '#46276E';
+        p.style.borderColor = on ? '#46276E' : 'rgba(70,39,110,.25)';
+      });
+    }
+    pills.forEach(function (p) { p.addEventListener('click', function () { filter(p.getAttribute('data-rec-pill')); }); });
+  })();
+</script>

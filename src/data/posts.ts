@@ -397,3 +397,52 @@ export const resourcesGridOrder: string[] = [
 export function getResourcesGrid(): PostEntry[] {
   return resourcesGridOrder.map(id => getPost(id)!).filter(Boolean);
 }
+
+// --- Tag taxonomy for the resources filter -------------------------------
+// A richer, reader-facing set of topics (distinct from the single editorial
+// `category`), used to power the category pills / filter on /recursos/.
+export const tagLabels: Record<string, { es: string; en: string }> = {
+  start:         { es: 'Empezar terapia',         en: 'Starting therapy' },
+  approaches:    { es: 'Aproximaciones',          en: 'Approaches' },
+  body:          { es: 'Cuerpo y sistema nervioso', en: 'Body & nervous system' },
+  trauma:        { es: 'Trauma',                  en: 'Trauma' },
+  anxiety:       { es: 'Ansiedad y estrés',       en: 'Anxiety & stress' },
+  relationships: { es: 'Vínculos y pareja',       en: 'Relationships' },
+  grief:         { es: 'Duelo',                   en: 'Grief' },
+  self:          { es: 'Autoconocimiento',        en: 'Self-knowledge' },
+  adolescence:   { es: 'Adolescencia',            en: 'Adolescence' },
+};
+
+// Order in which the filter pills are rendered.
+export const tagOrder: string[] = [
+  'start', 'approaches', 'body', 'trauma', 'anxiety', 'relationships', 'grief', 'self', 'adolescence',
+];
+
+// Each post's topics. A post can carry several so it surfaces under more than
+// one filter — the grid feels fuller and search gets more entry points.
+export const postTags: Record<string, string[]> = {
+  'terapia-corporal':                ['body', 'approaches'],
+  'teoria-polivagal':                ['body', 'approaches'],
+  'experiencia-somatica':            ['trauma', 'body', 'approaches'],
+  'sistemas-familiares-internos':    ['self', 'approaches'],
+  'tapping-eft':                     ['anxiety', 'approaches'],
+  'core-energetica':                 ['body', 'self', 'approaches'],
+  'que-esperar-de-la-terapia':       ['start'],
+  'primera-cita':                    ['start'],
+  'cuando-es-buen-momento':          ['start'],
+  'estres-cronico':                  ['anxiety', 'body'],
+  'ansiedad-somatica':               ['anxiety', 'body'],
+  'regulacion-sistema-nervioso':     ['body'],
+  'trauma-sin-diagnosticar':         ['trauma', 'self'],
+  'duelo-somatico':                  ['grief', 'body'],
+  'terapia-adolescentes':            ['adolescence', 'start'],
+  'patrones-de-pareja':              ['relationships'],
+  'terapia-individual-o-pareja':     ['relationships', 'start'],
+  'terapia-presencial-vs-online':    ['start'],
+  'psicologo-psicoterapeuta-psiquiatra': ['start'],
+  'tipos-de-terapia':                ['approaches', 'start'],
+};
+
+export function tagKeysFor(id: string): string[] {
+  return postTags[id] ?? [];
+}

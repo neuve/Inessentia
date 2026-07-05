@@ -8,6 +8,8 @@ const { locale } = Astro.props;
 const i = t(locale);
 const privacyPath = sitePath(locale, 'privacy');
 const termsPath = sitePath(locale, 'terms');
+const costsPath = sitePath(locale, 'costs');
+const costsLabel = locale === 'es' ? 'Costos' : 'Costs';
 const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service';
 const currentYear = new Date().getFullYear();
 const siteVersion = pkg.version;
@@ -26,7 +28,7 @@ const siteVersion = pkg.version;
         <a href="mailto:patricio@inessentia.mx" class="footer__email">patricio@inessentia.mx</a>
       </div>
       <div class="footer__right">
-        <p class="footer__copyright">© 2025–{currentYear} Patricio Ruiz Abrín · <a href={privacyPath}>{i.footer.privacy}</a> · <a href={termsPath}>{termsLabel}</a></p>
+        <p class="footer__copyright">© 2025–{currentYear} Patricio Ruiz Abrín · <a href={costsPath}>{costsLabel}</a> · <a href={privacyPath}>{i.footer.privacy}</a> · <a href={termsPath}>{termsLabel}</a></p>
         <div class="footer__social">
           <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
             <img src="/uploads/instagram-icon.svg" loading="lazy" alt="Instagram" width="27" height="27" style="display:block;filter:brightness(0) invert(1);">
