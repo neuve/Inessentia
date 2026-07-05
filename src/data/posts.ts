@@ -66,17 +66,21 @@ export const posts: PostEntry[] = [
   },
   {
     id: 'experiencia-somatica',
-    cardBlurb: { es: 'Completar ciclos de defensa interrumpidos.', en: 'Completing interrupted defense cycles.' },
+    cardBlurb: { es: 'El trauma es la respuesta que el cuerpo empezó y nunca terminó.', en: 'Trauma is the response the body started and never finished.' },
     slugEs: 'experiencia-somatica',
     slugEn: 'somatic-experiencing',
-    heroImage: '/uploads/placeholder-experiencia-somatica.svg',
+    heroImage: '/uploads/experiencia-somatica-impala-guepardo.webp',
     heroAlt: {
-      es: 'Venado en un claro de bosque, luz moteada entre los árboles',
-      en: 'A deer in a forest clearing, dappled light through trees',
+      es: 'Un impala salta huyendo de un guepardo que lo acecha junto a un abrevadero en la sabana',
+      en: 'An impala leaps to escape a stalking cheetah beside a watering hole on the savanna',
     },
-    heroPosition: 'center 40%',
-    es: { title: 'Experiencia Somática (SE)', description: 'La Experiencia Somática trabaja con el sistema nervioso para completar ciclos de defensa interrumpidos. Así es cómo funciona y qué ocurre en sesión.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-experiencia-somatica.html' },
-    en: { title: 'Somatic Experiencing (SE)', description: "Somatic Experiencing works with the nervous system to complete interrupted defense cycles. Here's how it works and what happens in session.", category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-somatic-experiencing.html' },
+    heroCaption: {
+      es: 'Un impala moviliza toda su energía de supervivencia ante un guepardo. En la naturaleza esa descarga se completa; en nosotros, muchas veces queda interrumpida.',
+      en: 'An impala mobilizes all its survival energy in front of a cheetah. In the wild that discharge gets completed; in us, it is often left interrupted.',
+    },
+    heroPosition: 'center 45%',
+    es: { title: "'Trauma' y Experiencia Somática (ES)", description: 'Qué es el trauma, cómo cambió el concepto a lo largo de un siglo y cómo la Experiencia Somática trabaja con el sistema nervioso para completar los ciclos de defensa que quedaron interrumpidos.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-experiencia-somatica.html' },
+    en: { title: "'Trauma' and Somatic Experiencing (SE)", description: "What trauma is, how the concept changed across a century, and how Somatic Experiencing works with the nervous system to complete the defense cycles that were left interrupted.", category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-somatic-experiencing.html' },
     next: 'sistemas-familiares-internos',
   },
   {
