@@ -34,7 +34,15 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://inessentia.mx
     steps:
       - id: deployment
+        uses: actions/deploy-pages@v5
+        continue-on-error: true
+      # GitHub Pages a veces rechaza un deploy si el anterior sigue
+      # finalizando (más probable con pushes seguidos); un segundo intento
+      # tras una breve espera resuelve la mayoría de estos casos.
+      - if: steps.deployment.outcome == 'failure'
+        run: sleep 30
+      - if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5
