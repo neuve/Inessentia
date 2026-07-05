@@ -78,7 +78,7 @@ export const posts: PostEntry[] = [
       es: 'Un impala moviliza toda su energía de supervivencia ante un guepardo. En la naturaleza esa descarga se completa; en nosotros, muchas veces queda interrumpida.',
       en: 'An impala mobilizes all its survival energy in front of a cheetah. In the wild that discharge gets completed; in us, it is often left interrupted.',
     },
-    heroPosition: 'center 45%',
+    heroPosition: 'center 25%',
     es: { title: "'Trauma' y Experiencia Somática (ES)", description: 'Qué es el trauma, cómo cambió el concepto a lo largo de un siglo y cómo la Experiencia Somática trabaja con el sistema nervioso para completar los ciclos de defensa que quedaron interrumpidos.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-experiencia-somatica.html' },
     en: { title: "'Trauma' and Somatic Experiencing (SE)", description: "What trauma is, how the concept changed across a century, and how Somatic Experiencing works with the nervous system to complete the defense cycles that were left interrupted.", category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-somatic-experiencing.html' },
     next: 'sistemas-familiares-internos',
