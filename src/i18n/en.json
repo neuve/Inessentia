@@ -18,9 +18,12 @@
   "hero": {
     "label": "Psychotherapy · Mexico City & Online",
     "title": "Come back to yourself.",
-    "subtitle": "Relational and psychosomatic psychotherapy with Patricio Ruiz. Individual, couples, and family therapy — in person in Mexico City and online.",
+    "subtitle": "Therapy that listens to your body, not just your mind. Individual, couples, and family work — in person in Mexico City and online.",
     "cta": "Book Your First Session",
-    "secondary": "What's a session like?"
+    "secondary": "See how I work",
+    "trustNumber": "10",
+    "trustYears": "years",
+    "trust": "helping people reconnect with their essence, through body-centered therapy."
   },
   "approach": {
     "label": "The approach",
@@ -89,7 +92,13 @@
     "privacy": "Privacy Policy",
     "copyright": "Copyright Notice",
     "emergency": "If you have an emergency or your life is in danger, call 911 or your local emergency line.",
-    "stockCredit": "Some images © Adobe Stock"
+    "stockCredit": "Some images © Adobe Stock",
+    "tagline": "Relational and psychosomatic psychotherapy. In person in Mexico City and online.",
+    "colTherapy": "Therapy",
+    "colExplore": "Explore",
+    "colContact": "Contact",
+    "contactLine": "Write to me and I'll gladly answer your questions.",
+    "whatsapp": "WhatsApp"
   },
   "langToggle": "ES",
   "langToggleTitle": "Cambiar a español",

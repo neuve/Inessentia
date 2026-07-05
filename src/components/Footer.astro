@@ -6,110 +6,165 @@ interface Props { locale: Locale; }
 
 const { locale } = Astro.props;
 const i = t(locale);
+const currentYear = new Date().getFullYear();
+const siteVersion = pkg.version;
+
 const privacyPath = sitePath(locale, 'privacy');
 const termsPath = sitePath(locale, 'terms');
 const costsPath = sitePath(locale, 'costs');
-const costsLabel = locale === 'es' ? 'Costos' : 'Costs';
+const resourcesPath = sitePath(locale, 'resources');
 const termsLabel = locale === 'es' ? 'Términos de servicio' : 'Terms of service';
-const currentYear = new Date().getFullYear();
-const siteVersion = pkg.version;
+const costsLabel = locale === 'es' ? 'Costos' : 'Costs';
+
+const therapyBase = `/${locale}/${locale === 'es' ? 'terapia' : 'therapy'}/`;
+const therapyLinks = [
+  { label: i.nav.individual, href: `${therapyBase}individual/` },
+  { label: i.nav.couples, href: `${therapyBase}${locale === 'es' ? 'pareja' : 'couples'}/` },
+  { label: i.nav.family, href: `${therapyBase}${locale === 'es' ? 'familias' : 'family'}/` },
+  { label: costsLabel, href: costsPath },
+];
+const exploreLinks = [
+  { label: i.nav.about, href: `/${locale}/${locale === 'es' ? 'sobre-mi' : 'about-me'}/` },
+  { label: i.nav.resources, href: resourcesPath },
+  { label: i.nav.network, href: `/${locale}/${locale === 'es' ? 'red-terapeutica' : 'therapist-network'}/` },
+];
+const legalLinks = [
+  { label: i.footer.privacy, href: privacyPath },
+  { label: termsLabel, href: termsPath },
+];
 ---
 
-<footer class="footer">
-  <div class="footer__mandala"></div>
-  <div class="footer__inner">
-    <div class="footer__columns">
-      <div class="footer__contact">
-        <h2 class="footer__title">{i.footer.contactTitle}</h2>
-        <p class="footer__text">
-          {i.footer.contactDesc}{' '}
-          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="footer__wa-link">{i.footer.contactWhatsapp}</a>.
-        </p>
-        <a href="mailto:patricio@inessentia.mx" class="footer__email">patricio@inessentia.mx</a>
+<footer class="footer2">
+  <div class="footer2__mandala"></div>
+  <div class="footer2__inner">
+
+    <div class="footer2__cols">
+      <!-- brand -->
+      <div>
+        <a href={`/${locale}/`} class="footer2__brand">
+          <img src="/uploads/logo-icon.webp" width="214" height="214" alt="Logotipo de Patricio Ruiz" class="footer2__logo">
+          <span class="footer2__name">Patricio<br>Ruiz</span>
+        </a>
+        <p class="footer2__tagline">{i.footer.tagline}</p>
       </div>
-      <div class="footer__right">
-        <p class="footer__copyright">© 2025–{currentYear} Patricio Ruiz Abrín · <a href={costsPath}>{costsLabel}</a> · <a href={privacyPath}>{i.footer.privacy}</a> · <a href={termsPath}>{termsLabel}</a></p>
-        <div class="footer__social">
-          <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
-            <img src="/uploads/instagram-icon.svg" loading="lazy" alt="Instagram" width="27" height="27" style="display:block;filter:brightness(0) invert(1);">
+
+      <!-- therapy links -->
+      <div>
+        <p class="footer2__coltitle">{i.footer.colTherapy}</p>
+        <div class="footer2__links">
+          {therapyLinks.map(l => (<a href={l.href} class="footer2__link">{l.label}</a>))}
+        </div>
+      </div>
+
+      <!-- explore links -->
+      <div>
+        <p class="footer2__coltitle">{i.footer.colExplore}</p>
+        <div class="footer2__links">
+          {exploreLinks.map(l => (<a href={l.href} class="footer2__link">{l.label}</a>))}
+        </div>
+      </div>
+
+      <!-- contact -->
+      <div>
+        <p class="footer2__coltitle">{i.footer.colContact}</p>
+        <p class="footer2__contactline">{i.footer.contactLine}</p>
+        <a href="mailto:patricio@inessentia.mx" class="footer2__email">patricio@inessentia.mx</a>
+        <div class="footer2__social">
+          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="footer2__wa">{i.footer.whatsapp}</a>
+          <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer2__ig">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
           </a>
         </div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <p class="footer__emergency">{i.footer.emergency}</p>
-      <div class="footer__meta">
-        <p class="footer__stock">{i.footer.stockCredit}</p>
-        <p class="footer__version">V{siteVersion}</p>
+
+    <!-- emergency strip -->
+    <div class="footer2__emergency">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sand)" stroke-width="2.2" stroke-linecap="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.4" fill="var(--sand)"/></svg>
+      <p>{i.footer.emergency}</p>
+    </div>
+
+    <!-- bottom bar -->
+    <div class="footer2__bottom">
+      <p class="footer2__copyright">© 2025–{currentYear} Patricio Ruiz Abrín</p>
+      <div class="footer2__bottomright">
+        {legalLinks.map(l => (<a href={l.href} class="footer2__legal">{l.label}</a>))}
+        <span class="footer2__version">v{siteVersion}</span>
       </div>
     </div>
+
   </div>
 </footer>
 
 <style>
-  .footer {
+  .footer2 {
     position: relative; overflow: hidden; background: var(--purple-d);
-    color: #fff; padding: clamp(56px,8vw,96px) 32px clamp(34px,4vw,48px);
+    color: #fff; padding: clamp(56px,7vw,72px) clamp(24px,5vw,60px) 30px;
   }
-  .footer__mandala {
-    position: absolute; top: 0; left: -180px; width: 420px; height: 520px;
-    opacity: .22; pointer-events: none;
+  .footer2__mandala {
+    position: absolute; top: -90px; left: -150px; width: 420px; height: 420px;
+    opacity: .2; pointer-events: none;
     background: repeating-conic-gradient(#cdbce6 0deg .6deg, transparent .6deg 8deg);
     -webkit-mask: radial-gradient(circle, transparent 28%, #000 29%, #000 48%, transparent 49%);
     mask: radial-gradient(circle, transparent 28%, #000 29%, #000 48%, transparent 49%);
   }
-  .footer__inner { position: relative; max-width: 1200px; margin: 0 auto; }
-  .footer__columns {
-    display: flex; gap: clamp(36px,6vw,90px); flex-wrap: wrap; justify-content: space-between;
+  .footer2__inner { position: relative; max-width: 1200px; margin: 0 auto; }
+  .footer2__cols {
+    display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
+    gap: clamp(32px,4vw,52px); align-items: start; padding-bottom: 44px;
   }
-  .footer__contact { flex: 1 1 360px; min-width: 280px; }
-  .footer__title {
-    font-family: 'Zilla Slab', serif; font-weight: 700; color: var(--sand);
-    font-size: clamp(34px,4.4vw,50px); margin: 0 0 22px;
+  .footer2__brand { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; text-decoration: none; }
+  .footer2__logo { height: 52px; width: auto; display: block; filter: brightness(0) invert(1); opacity: .92; }
+  .footer2__name { font-family: 'Zilla Slab', serif; font-weight: 600; color: #fff; font-size: 19px; line-height: 1.15; }
+  .footer2__tagline { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,.62); margin: 0; max-width: 34ch; }
+  .footer2__coltitle {
+    margin: 0 0 18px; font-weight: 700; font-size: 12px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--sand);
   }
-  .footer__text {
-    font-size: 16px; line-height: 1.6; color: rgba(255,255,255,.82);
-    margin: 0 0 22px; max-width: 42ch;
+  .footer2__links { display: flex; flex-direction: column; gap: 12px; }
+  .footer2__link { font-size: 15px; color: rgba(255,255,255,.74); text-decoration: none; transition: color .2s; width: fit-content; }
+  .footer2__link:hover { color: var(--sand); }
+  .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.62); }
+  .footer2__email {
+    display: inline-block; color: #fff; font-size: 16px; font-weight: 600; text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 3px; margin-bottom: 20px;
   }
-  .footer__wa-link {
-    color: #fff; font-weight: 600; text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,.5);
+  .footer2__email:hover { border-color: var(--sand); }
+  .footer2__social { display: flex; align-items: center; gap: 14px; }
+  .footer2__wa {
+    display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.18); color: #fff; font-size: 13px; font-weight: 700;
+    padding: 9px 16px; border-radius: 99px; text-decoration: none; transition: background .2s;
   }
-  .footer__wa-link:hover { border-color: var(--sand); }
-  .footer__email {
-    display: inline-block; color: #fff; font-size: 19px; font-weight: 600;
-    text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.5);
-    padding-bottom: 3px; margin-bottom: 28px;
+  .footer2__wa:hover { background: rgba(255,255,255,.18); }
+  .footer2__ig {
+    display: flex; align-items: center; justify-content: center; width: 38px; height: 38px;
+    border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
+    transition: background .2s;
   }
-  .footer__email:hover { border-color: var(--sand); }
-  .footer__right {
-    flex: 0 1 300px; min-width: 240px; text-align: right;
-    display: flex; flex-direction: column; align-items: flex-end; gap: 14px;
+  .footer2__ig:hover { background: rgba(255,255,255,.18); }
+  .footer2__emergency {
+    display: flex; align-items: center; gap: 12px; background: rgba(142,43,93,.18);
+    border: 1px solid rgba(194,176,126,.28); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px;
   }
-  .footer__copyright {
-    margin: 0; font-size: 13px; color: rgba(255,255,255,.65); text-align: right;
+  .footer2__emergency p { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.72); }
+  .footer2__bottom {
+    border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px;
+    display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   }
-  .footer__copyright a { color: rgba(255,255,255,.75); text-decoration: none; }
-  .footer__copyright a:hover { color: var(--sand); }
-  .footer__social { display: flex; gap: 14px; }
-  .footer__social-link {
-    display: flex; align-items: center; justify-content: center;
-    opacity: .9; transition: opacity .25s, transform .25s;
+  .footer2__copyright { margin: 0; font-size: 13px; color: rgba(255,255,255,.55); }
+  .footer2__bottomright { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .footer2__legal { font-size: 13px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+  .footer2__legal:hover { color: var(--sand); }
+  .footer2__version {
+    font-size: 12px; color: rgba(255,255,255,.4);
+    border: 1px solid rgba(255,255,255,.16); padding: 3px 10px; border-radius: 99px; white-space: nowrap;
   }
-  .footer__social-link:hover { opacity: 1; transform: translateY(-2px); }
-  .footer__bottom {
-    border-top: 1px solid rgba(255,255,255,.18);
-    margin-top: clamp(36px,5vw,56px); padding-top: 24px;
-    display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+  @media (max-width: 900px) {
+    .footer2__cols { grid-template-columns: 1fr 1fr; gap: 36px; }
   }
-  .footer__emergency {
-    margin: 0; font-size: 13px; color: rgba(255,255,255,.55); max-width: 60ch;
-  }
-  .footer__meta {
-    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
-  }
-  .footer__stock { margin: 0; font-size: 12px; color: rgba(255,255,255,.65); }
-  .footer__version {
-    margin: 0; font-size: 13px; color: rgba(255,255,255,.7); white-space: nowrap;
+  @media (max-width: 560px) {
+    .footer2__cols { grid-template-columns: 1fr; }
+    .footer2__bottom { justify-content: flex-start; }
   }
 </style>

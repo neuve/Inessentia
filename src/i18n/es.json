@@ -18,9 +18,12 @@
   "hero": {
     "label": "Psicoterapia · CDMX y en línea",
     "title": "Vuelve a habitarte.",
-    "subtitle": "Psicoterapia relacional y psicosomática con Patricio Ruiz. Procesos individuales, de pareja y familia — presencial en CDMX y en línea.",
+    "subtitle": "Terapia que escucha a tu cuerpo, no solo a tu mente. Acompaño procesos individuales, de pareja y familia — presencial en CDMX y en línea.",
     "cta": "Agenda tu primera cita",
-    "secondary": "¿Cómo es una sesión?"
+    "secondary": "Conoce cómo trabajo",
+    "trustNumber": "10",
+    "trustYears": "años",
+    "trust": "acompañando a las personas a volver a su esencia, a través del enfoque corporal."
   },
   "approach": {
     "label": "El enfoque",
@@ -89,7 +92,13 @@
     "privacy": "Aviso de privacidad",
     "copyright": "Aviso sobre derechos de autor",
     "emergency": "Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.",
-    "stockCredit": "Algunas imágenes © Adobe Stock"
+    "stockCredit": "Algunas imágenes © Adobe Stock",
+    "tagline": "Psicoterapia relacional y psicosomática. Presencial en la Ciudad de México y en línea.",
+    "colTherapy": "Terapia",
+    "colExplore": "Explora",
+    "colContact": "Contacto",
+    "contactLine": "Escríbeme y con gusto resuelvo tus dudas.",
+    "whatsapp": "WhatsApp"
   },
   "langToggle": "EN",
   "langToggleTitle": "Switch to English",
