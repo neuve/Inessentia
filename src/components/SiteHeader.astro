@@ -156,8 +156,10 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__lead :global(p) { margin: 0 0 10px; }
   .site-header__lead :global(p:last-child) { margin-bottom: 0; }
   .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 8px; }
-  .site-header__link { color: #fff; font-weight: 700; font-size: 15px; text-decoration: none; border-bottom: 1.5px solid rgba(255,255,255,.5); padding-bottom: 2px; transition: opacity .2s; }
-  .site-header__link:hover { opacity: .7; }
+  /* Tertiary CTA: quiet text link so it doesn't compete with the primary white button */
+  .site-header__link { color: rgba(255,255,255,.72); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
+  .site-header__link::after { content: ' \2192'; }
+  .site-header__link:hover { color: #fff; border-bottom-color: rgba(255,255,255,.4); }
 
   /* ---------- Stats (split, inline) ---------- */
   .site-header__stats { display: flex; gap: 34px; flex-wrap: wrap; margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.22); }
