@@ -73,9 +73,10 @@ const searchBlogEntries = {
   .navbar {
     position: sticky; top: 0; width: 100%;
     z-index: 40; background: var(--cream);
-    transition: box-shadow .35s ease, background .35s ease, border-bottom .35s ease;
+    transition: box-shadow .35s ease, background .35s ease, border-bottom .35s ease, transform .38s cubic-bezier(.22,1,.36,1);
     border-bottom: 1px solid transparent;
   }
+  .navbar.navbar--hidden { transform: translateY(-100%); }
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 10px 32px;
     display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
@@ -178,12 +179,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const mobMenu = document.getElementById('mob-menu');
   const mobClose = document.getElementById('mob-close');
 
+  var lastScrollY = window.scrollY || document.documentElement.scrollTop;
   window.addEventListener('scroll', function() {
     if (!nav) return;
     var y = window.scrollY || document.documentElement.scrollTop;
     nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
     nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
     nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
+    // Hide on scroll-down past 160px, reappear on scroll-up.
+    if (y > lastScrollY && y > 160) {
+      nav.classList.add('navbar--hidden');
+    } else {
+      nav.classList.remove('navbar--hidden');
+    }
+    lastScrollY = y;
   }, { passive: true });
 
   function openMenu() { if (mobMenu) mobMenu.style.display = 'flex'; }

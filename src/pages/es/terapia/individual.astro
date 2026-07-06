@@ -1,6 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
+import SiteHeader from '../../../components/SiteHeader.astro';
 import { t } from '../../../i18n/utils';
 
 const locale = 'es';
@@ -21,19 +22,17 @@ const schema = [
 >
 
   <!-- HERO -->
-  <section style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--cream) 0%,#F0EBE0 50%,var(--warm) 100%);padding:clamp(64px,9vw,120px) 32px clamp(56px,8vw,108px);text-align:center;">
-    <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:560px;height:560px;opacity:.4;pointer-events:none;background:repeating-conic-gradient(#dccfb6 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
-    <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
-      <p style="margin:0 0 18px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">Psicoterapia individual</p>
-      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,5vw,60px);line-height:1.05;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;">Un espacio solo para ti — terapia individual con enfoque psicosomático.</h1>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.6;color:#3f3a36;margin:0 auto 10px;max-width:52ch;">Procesos para adolescentes y adultos.</p>
-      <p style="font-size:15px;color:#8a837a;margin:0 auto 34px;">Presencial en Colonia Nápoles · Online</p>
-      <div style="display:flex;align-items:center;justify-content:center;gap:22px;flex-wrap:wrap;">
-        <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn-primary">Agenda tu primera cita</a>
-        <a href="#primera-sesion" class="link-underline">¿Cómo es la primera sesión?</a>
-      </div>
-    </div>
-  </section>
+  <SiteHeader
+    eyebrow="Psicoterapia individual"
+    title="Un espacio solo para ti — terapia individual con enfoque psicosomático."
+    ctaLabel="Agenda tu primera cita"
+    ctaHref="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F"
+    secondaryLabel="¿Cómo es la primera sesión?"
+    secondaryHref="#primera-sesion"
+  >
+    <p>Procesos para adolescentes y adultos.</p>
+    <p>Presencial en Colonia Nápoles · Online</p>
+  </SiteHeader>
 
   <!-- ¿ES PARA TI? -->
   <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
