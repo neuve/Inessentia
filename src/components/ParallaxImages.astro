@@ -1,0 +1,45 @@
+---
+// Subtle scroll parallax for hero/decorative images. Opt in per-element with
+// `data-parallax="<factor>"` (fraction of scroll-driven offset, ~0.06–0.12)
+// and optionally `data-parallax-max="<px>"` to cap the shift (default 28px)
+// so it never exceeds the oversized headroom baked into the element's CSS.
+// Movement is measured off the element's parent (the clipping container),
+// not the (intentionally oversized) image itself.
+---
+
+<script is:inline>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]')).map(function (el) {
+    return {
+      el: el,
+      factor: parseFloat(el.getAttribute('data-parallax')) || 0.1,
+      max: parseFloat(el.getAttribute('data-parallax-max')) || 28,
+    };
+  });
+  if (!items.length) return;
+
+  var ticking = false;
+  function update() {
+    var vh = window.innerHeight || 800;
+    var vCenter = vh / 2;
+    items.forEach(function (it) {
+      var ref = it.el.parentElement || it.el;
+      var r = ref.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      var elCenter = r.top + r.height / 2;
+      var delta = (vCenter - elCenter) * it.factor;
+      if (delta > it.max) delta = it.max;
+      if (delta < -it.max) delta = -it.max;
+      it.el.style.transform = 'translateY(' + delta.toFixed(1) + 'px)';
+    });
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
+})();
+</script>

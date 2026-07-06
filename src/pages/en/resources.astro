@@ -54,18 +54,24 @@ const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
 >
 
   <!-- HERO: intro + rotating featured -->
-  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 62%);padding:clamp(44px,6vw,64px) clamp(24px,5vw,52px) clamp(32px,4vw,48px);">
-    <div style="max-width:1240px;margin:0 auto;">
+  <section style="position:relative;overflow:hidden;padding:clamp(44px,6vw,64px) clamp(24px,5vw,52px) clamp(32px,4vw,48px);">
+    <div style="position:absolute;inset:0;">
+      {featured.map((f, k) => (
+        <img src={f.img} data-rec-bg={k} alt="" data-parallax="0.08" data-parallax-max="24" style={`position:absolute;top:-10%;left:0;width:100%;height:120%;object-fit:cover;object-position:${f.pos};opacity:${k === 0 ? '1' : '0'};transition:opacity .6s ease;`}>
+      ))}
+      <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(46,22,72,.95) 0%,rgba(46,22,72,.88) 32%,rgba(46,22,72,.55) 60%,rgba(46,22,72,.30) 100%);"></div>
+    </div>
+    <div style="position:relative;z-index:1;max-width:1240px;margin:0 auto;">
       <div class="rec-hero-grid">
         <!-- intro -->
         <div style="display:flex;flex-direction:column;justify-content:center;">
-          <p data-reveal class="label-section" style="margin-bottom:14px;">{i.blog.label}</p>
-          <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(34px,4.6vw,52px);line-height:1.04;margin:0;">{i.blog.title}</h1>
-          <p data-reveal style="font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:#4a443f;margin:20px 0 0;max-width:44ch;">{i.blog.subtitle}</p>
+          <p data-reveal style="margin-bottom:14px;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);">{i.blog.label}</p>
+          <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(34px,4.6vw,52px);line-height:1.04;margin:0;">{i.blog.title}</h1>
+          <p data-reveal style="font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:rgba(255,255,255,.85);margin:20px 0 0;max-width:44ch;">{i.blog.subtitle}</p>
           <div data-reveal style="display:flex;flex-wrap:wrap;gap:9px;margin-top:28px;">
-            <button type="button" data-rec-pill="all" style="background:var(--purple);color:#fff;border:1px solid var(--purple);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">All</button>
+            <button type="button" data-rec-pill="all" style="background:var(--sand);color:var(--purple-d);border:1px solid var(--sand);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">All</button>
             {pills.map(p => (
-              <button type="button" data-rec-pill={p.key} style="background:#fff;color:var(--purple);border:1px solid rgba(70,39,110,.25);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">{p.label}</button>
+              <button type="button" data-rec-pill={p.key} style="background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.34);padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;">{p.label}</button>
             ))}
           </div>
         </div>
@@ -73,7 +79,7 @@ const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
         <div data-reveal class="rec-featured" style="position:relative;border-radius:24px;overflow:hidden;min-height:508px;box-shadow:0 30px 60px rgba(70,39,110,.20);">
           {featured.map((f, k) => (
             <a href={f.href} data-rec-slide={k} style={`position:absolute;inset:0;display:block;text-decoration:none;transition:opacity .6s ease;opacity:${k === 0 ? '1' : '0'};`}>
-              <img src={f.img} alt={f.title} style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};`}>
+              <img src={f.img} alt={f.title} data-parallax="0.08" data-parallax-max="20" style={`position:absolute;top:-8%;left:0;width:100%;height:116%;object-fit:cover;object-position:${f.pos};`}>
               <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(38,20,60,.04) 0%,rgba(38,20,60,.12) 40%,rgba(48,24,74,.86) 100%);"></div>
               <div style="position:absolute;top:22px;left:24px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 15px;border-radius:99px;">Featured</div>
               <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(24px,3vw,40px);">
@@ -102,7 +108,7 @@ const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
           c.photo ? (
             <a href={c.href} data-rec-item data-tags={c.tags} class="rec-card" style="break-inside:avoid;-webkit-column-break-inside:avoid;display:block;margin:0 0 22px;text-decoration:none;color:inherit;">
               <div style="background:#fff;border:1px solid #ece6d8;border-radius:20px;overflow:hidden;">
-                <div style="height:190px;overflow:hidden;"><img src={c.img} alt={c.alt} loading="lazy" style={`width:100%;height:100%;object-fit:cover;object-position:${c.pos};display:block;`}></div>
+                <div style="height:190px;overflow:hidden;position:relative;"><img src={c.img} alt={c.alt} loading="lazy" data-parallax="0.10" data-parallax-max="14" style={`position:absolute;top:-14%;left:0;width:100%;height:128%;object-fit:cover;object-position:${c.pos};display:block;`}></div>
                 <div style="padding:22px 22px 24px;">
                   <p style="margin:0 0 9px;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">{c.cat}</p>
                   <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:20px;line-height:1.18;margin:0 0 10px;">{c.title}</h3>
@@ -152,11 +158,13 @@ const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
     // Rotating featured
     var slides = Array.prototype.slice.call(document.querySelectorAll('[data-rec-slide]'));
     var dots = Array.prototype.slice.call(document.querySelectorAll('[data-rec-dot]'));
+    var bgs = Array.prototype.slice.call(document.querySelectorAll('[data-rec-bg]'));
     var idx = 0, timer = null;
     function show(n) {
       idx = (n + slides.length) % slides.length;
       slides.forEach(function (s, k) { s.style.opacity = k === idx ? '1' : '0'; s.style.pointerEvents = k === idx ? 'auto' : 'none'; });
       dots.forEach(function (d, k) { d.style.width = k === idx ? '26px' : '9px'; d.style.background = k === idx ? '#fff' : 'rgba(255,255,255,.5)'; });
+      bgs.forEach(function (b, k) { b.style.opacity = k === idx ? '1' : '0'; });
     }
     function start() { stop(); if (slides.length > 1) timer = setInterval(function () { show(idx + 1); }, 6000); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
@@ -173,9 +181,9 @@ const pills = tagOrder.map(k => ({ key: k, label: tagLabels[k][locale] }));
       });
       pills.forEach(function (p) {
         var on = p.getAttribute('data-rec-pill') === key;
-        p.style.background = on ? '#46276E' : '#fff';
-        p.style.color = on ? '#fff' : '#46276E';
-        p.style.borderColor = on ? '#46276E' : 'rgba(70,39,110,.25)';
+        p.style.background = on ? '#C2B07E' : 'rgba(255,255,255,.14)';
+        p.style.color = on ? '#3C1F5E' : '#fff';
+        p.style.borderColor = on ? '#C2B07E' : 'rgba(255,255,255,.34)';
       });
     }
     pills.forEach(function (p) { p.addEventListener('click', function () { filter(p.getAttribute('data-rec-pill')); }); });

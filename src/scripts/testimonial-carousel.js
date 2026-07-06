@@ -12,7 +12,7 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
       : t.name;
     var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· ' + t.tag + '</span>' : '';
     return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;">' +
-      '<div style="font-family:\'Zilla Slab\',serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">&ldquo;</div>' +
+      '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">&ldquo;</div>' +
       '<p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">' + t.q + '</p>' +
       '<p style="margin:0;font-family:\'Zilla Slab\',serif;font-weight:600;color:var(--purple);font-size:18px;">' + nameInner + tag + '</p>' +
     '</div>';
