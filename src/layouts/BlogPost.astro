@@ -2,6 +2,7 @@
 import Base from './Base.astro';
 import DisqusComments from '../components/DisqusComments.astro';
 import { t, sitePath, type Locale } from '../i18n/utils';
+import { personSchema, personRef, PERSON_ALT_NAME } from '../data/person';
 
 interface VideoSchema {
   name: string;
@@ -60,17 +61,18 @@ const resourcesLabel = locale === 'es' ? '← Recursos' : '← Resources';
 const ctaTitle = locale === 'es' ? '¿Listo para empezar?' : 'Ready to start?';
 const ctaButton = locale === 'es' ? 'Agenda tu primera cita' : 'Book Your First Session';
 
+const aboutPath = `/${locale}/${locale === 'es' ? 'sobre-mi' : 'about-me'}/`;
+const bylinePrefix = locale === 'es' ? 'Por' : 'By';
+const bylineCred = locale === 'es' ? 'Somatic Experiencing Practitioner (SE)' : 'Somatic Experiencing Practitioner (SE)';
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
   "image": `https://inessentia.mx${heroImage}`,
   "inLanguage": locale,
-  "author": {
-    "@type": "Person",
-    "name": "Patricio Ruiz Abrín",
-    "url": `https://inessentia.mx/${locale}/${locale === 'es' ? 'sobre-mi' : 'about-me'}/`
-  },
+  // author referencia el nodo Person completo (con credenciales) por @id
+  "author": personRef,
   "publisher": {
     "@type": "Organization",
     "name": "Inessentia",
@@ -78,18 +80,25 @@ const schema = {
   },
   "mainEntityOfPage": `https://inessentia.mx${Astro.url.pathname}`
 };
+
+// nodo Person completo, para que Google resuelva las credenciales del autor
+// directamente en el artículo (E-E-A-T)
+const authorSchema = personSchema(locale);
 ---
 
-<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} schema={schema} extraSchemas={videos?.map(v => ({
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": v.name,
-  "description": v.description,
-  "thumbnailUrl": v.thumbnailUrl,
-  "uploadDate": v.uploadDate ?? "2024-01-01T00:00:00-06:00",
-  "contentUrl": v.contentUrl,
-  "embedUrl": v.embedUrl,
-}))}>
+<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} schema={schema} extraSchemas={[
+  authorSchema,
+  ...(videos?.map(v => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": v.name,
+    "description": v.description,
+    "thumbnailUrl": v.thumbnailUrl,
+    "uploadDate": v.uploadDate ?? "2024-01-01T00:00:00-06:00",
+    "contentUrl": v.contentUrl,
+    "embedUrl": v.embedUrl,
+  })) ?? []),
+]}>
 
 
   <!-- HERO -->
@@ -97,8 +106,13 @@ const schema = {
     <div style="max-width:760px;margin:0 auto;">
       <a href={resourcesPath} style="display:inline-flex;align-items:center;gap:6px;color:var(--wine);font-weight:700;font-size:13px;text-decoration:none;letter-spacing:.06em;text-transform:uppercase;margin-bottom:28px;">{resourcesLabel}</a>
       <p style="margin:0 0 16px;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine);">{category}</p>
-      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0 0 22px;text-wrap:balance;">{title}</h1>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:#4a443f;margin:0;max-width:54ch;">{description}</p>
+      <h1 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0 0 18px;text-wrap:balance;">{title}</h1>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:#4a443f;margin:0 0 20px;max-width:54ch;">{description}</p>
+      <p style="margin:0;font-size:14px;color:var(--sand-d);">
+        {bylinePrefix}{' '}
+        <a href={aboutPath} rel="author" style="color:var(--wine);font-weight:700;text-decoration:none;">{PERSON_ALT_NAME}</a>
+        <span style="color:var(--sand-d);"> · {bylineCred}</span>
+      </p>
     </div>
   </section>
 

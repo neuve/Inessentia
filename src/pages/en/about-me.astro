@@ -2,20 +2,12 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import { t } from '../../i18n/utils';
+import { personSchema } from '../../data/person';
 
 const locale = 'en';
 const i = t(locale);
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Patricio Ruiz Abrín",
-  "jobTitle": "Psychotherapist",
-  "description": "Meet Patricio Ruiz Abrín, a psychotherapist with a psychosomatic and systemic approach in Mexico City and online: his training, his perspective, and how he accompanies each process.",
-  "url": "https://inessentia.mx/en/about-me/",
-  "image": "https://inessentia.mx/uploads/patricio-ruiz-retrato.webp",
-  "sameAs": ["https://www.instagram.com/neuve"]
-};
+const schema = personSchema(locale);
 ---
 
 <Base

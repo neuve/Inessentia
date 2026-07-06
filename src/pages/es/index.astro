@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import { t } from '../../i18n/utils';
+import { businessSchema, personSchema } from '../../data/person';
 
 interface Props {
   canonical?: string;
@@ -13,38 +14,11 @@ const { canonical } = Astro.props;
 const locale = 'es';
 const i = t(locale);
 
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "Inessentia — Patricio Ruiz Abrín",
-  "description": i.site.description,
-  "url": "https://inessentia.mx/es/",
-  "image": "https://inessentia.mx/uploads/patricio-ruiz-retrato.webp",
-  "telephone": "+525532020488",
-  "priceRange": "$1700–$2600 MXN",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Georgia 114, Oficina 303",
-    "addressLocality": "Nápoles, Benito Juárez",
-    "postalCode": "03840",
-    "addressRegion": "CDMX",
-    "addressCountry": "MX"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": 19.3936, "longitude": -99.1714 },
-  "areaServed": "Ciudad de México",
-  "availableLanguage": ["es", "en"],
-  "founder": {
-    "@type": "Person",
-    "name": "Patricio Ruiz Abrín",
-    "jobTitle": "Psicoterapeuta",
-    "url": "https://inessentia.mx/es/sobre-mi/",
-    "sameAs": ["https://www.instagram.com/neuve"]
-  },
-  "sameAs": ["https://www.instagram.com/neuve"]
-};
+const schema = businessSchema(locale, i.site.description);
+const authorSchema = personSchema(locale);
 ---
 
-<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" schema={schema} ogImage="/uploads/logo-patricio-ruiz.webp">
+<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" schema={schema} extraSchemas={[authorSchema]} ogImage="/uploads/logo-patricio-ruiz.webp">
 
   <!-- HERO -->
   <SiteHeader
