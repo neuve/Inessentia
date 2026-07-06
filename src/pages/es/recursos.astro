@@ -32,7 +32,7 @@ const grid = getResourcesGrid().map(p => {
   const pal = photo ? null : tilePalettes[tileIdx++ % tilePalettes.length];
   return {
     href: postHref(locale, p.id),
-    img: p.heroImage,
+    img: p.cardImage ?? p.heroImage,
     pos: p.cardHeroPosition?.[locale] ?? p.heroPosition,
     cat: p[locale].category,
     title: p[locale].title,

@@ -22,6 +22,8 @@ export interface PostEntry {
   cardHeroPosition?: { es?: string; en?: string };
   /** overrides heroAlt just for the card thumbnail, when it differs from the post's own hero alt */
   cardAlt?: { es?: string; en?: string };
+  /** smaller pre-resized image for the card thumbnail (~190px tall), when heroImage is much larger than the crop needs */
+  cardImage?: string;
   es: PostLocaleMeta;
   en: PostLocaleMeta;
   /** id of the post this one links to via "read next", or null for standalone hub posts */
@@ -40,6 +42,7 @@ export const posts: PostEntry[] = [
     slugEs: 'terapia-corporal',
     slugEn: 'body-based-therapy',
     heroImage: '/uploads/terapia-corporal.webp',
+    cardImage: '/uploads/terapia-corporal-card.webp',
     heroAlt: {
       es: 'Acercamiento a una mano abierta apoyada sobre una rodilla, luz natural',
       en: 'Close-up of a hand resting open on a knee, natural light',
@@ -55,6 +58,7 @@ export const posts: PostEntry[] = [
     slugEs: 'teoria-polivagal',
     slugEn: 'polyvagal-theory',
     heroImage: '/uploads/teoria-polivagal-lamina-sistema-nervioso.webp',
+    cardImage: '/uploads/teoria-polivagal-lamina-sistema-nervioso-card.webp',
     heroAlt: {
       es: 'Lámina anatómica de estilo antiguo del sistema nervioso simpático y parasimpático, con énfasis en el nervio vago y sus conexiones con corazón, pulmones e intestinos',
       en: 'Vintage-style anatomical plate of the sympathetic and parasympathetic nervous systems, highlighting the vagus nerve and its connections to the heart, lungs, and intestines',
@@ -70,6 +74,7 @@ export const posts: PostEntry[] = [
     slugEs: 'experiencia-somatica',
     slugEn: 'somatic-experiencing',
     heroImage: '/uploads/experiencia-somatica-impala-guepardo.webp',
+    cardImage: '/uploads/experiencia-somatica-impala-guepardo-card.webp',
     heroAlt: {
       es: 'Un impala salta huyendo de un guepardo que lo acecha junto a un abrevadero en la sabana',
       en: 'An impala leaps to escape a stalking cheetah beside a watering hole on the savanna',
@@ -89,6 +94,7 @@ export const posts: PostEntry[] = [
     slugEs: 'sistemas-familiares-internos',
     slugEn: 'internal-family-systems',
     heroImage: '/uploads/sistemas-familiares-internos-mano-comunidad.webp',
+    cardImage: '/uploads/sistemas-familiares-internos-mano-comunidad-card.webp',
     heroAlt: {
       es: 'Una mano sostiene con cuidado un pequeño círculo de personas alrededor de dos sillones de terapia, junto a una rama de olivo',
       en: 'A hand carefully holds a small circle of people gathered around two therapy chairs, next to an olive branch',
@@ -119,6 +125,7 @@ export const posts: PostEntry[] = [
     slugEs: 'core-energetica',
     slugEn: 'core-energetics',
     heroImage: '/uploads/core-energetica-generacion-corpore.webp',
+    cardImage: '/uploads/core-energetica-generacion-corpore-card.webp',
     heroAlt: {
       es: 'Grupo de personas acostadas en disposición radial sobre el pasto, vista en picada, foto de dron',
       en: 'A group of people lying in a radial circle on the grass, seen from above, drone photo',
@@ -137,6 +144,7 @@ export const posts: PostEntry[] = [
     slugEs: 'que-esperar-de-la-terapia',
     slugEn: 'what-to-expect',
     heroImage: '/uploads/que-esperar-terapia.webp',
+    cardImage: '/uploads/que-esperar-terapia-card.webp',
     heroAlt: {
       es: '¿Qué esperar de la terapia?',
       en: 'What to expect from therapy?',
@@ -336,6 +344,7 @@ export const posts: PostEntry[] = [
     slugEs: 'tipos-de-terapia',
     slugEn: 'types-of-therapy',
     heroImage: '/uploads/tipos-terapia.webp',
+    cardImage: '/uploads/tipos-terapia-card.webp',
     heroAlt: {
       es: 'Tipos de terapia',
       en: 'Types of therapy',

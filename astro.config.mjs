@@ -5,6 +5,13 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://inessentia.mx',
   output: 'static',
+  build: {
+    // Inline all component CSS into the page HTML instead of splitting it
+    // into separate <link> stylesheets — avoids extra render-blocking
+    // requests (default 'auto' only inlines files under 4KB, which left
+    // SiteHeader.css and therapist-network.css as blocking network fetches).
+    inlineStylesheets: 'always',
+  },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
