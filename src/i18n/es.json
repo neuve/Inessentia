@@ -24,7 +24,7 @@
     "stats": [
       { "value": "10", "label": "<strong>años acompañando</strong><br>personas a volver a su esencia" },
       { "value": "89", "label": "<strong>consultantes</strong><br>con procesos de 12 o más sesiones" },
-      { "value": "6", "label": "<strong>meses promedio</strong><br>periodo de trabajo" }
+      { "value": "16", "label": "<strong>sesiones promedio</strong><br>por proceso terapéutico" }
     ]
   },
   "approach": {
