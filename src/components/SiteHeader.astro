@@ -24,6 +24,10 @@ interface Props {
   title: string;
   photo?: string;
   photoAlt?: string;
+  /** Brand icon shown in a translucent circle above the eyebrow (monolith heros only). */
+  icon?: string;
+  /** Rendered height of the icon inside the circle, e.g. "132px". */
+  iconSize?: string;
   ctaLabel?: string;
   ctaHref?: string;
   secondaryLabel?: string;
@@ -37,6 +41,8 @@ const {
   title,
   photo,
   photoAlt = '',
+  icon,
+  iconSize = '120px',
   ctaLabel,
   ctaHref,
   secondaryLabel,
@@ -84,6 +90,11 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       <div class="site-header__mandala site-header__mandala--a" aria-hidden="true" data-parallax="0.06" data-parallax-max="50"></div>
       <div class="site-header__mandala site-header__mandala--b" aria-hidden="true" data-parallax="0.05" data-parallax-max="40"></div>
       <div class="site-header__monolith-inner" data-reveal>
+        {icon && (
+          <div class="site-header__icon">
+            <img src={icon} alt="" style={`height:${iconSize};width:auto;display:block;`} />
+          </div>
+        )}
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}
         <h1 class="site-header__title site-header__title--mono">{title}</h1>
         <div class="site-header__lead site-header__lead--mono"><slot /></div>
@@ -147,6 +158,13 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__monolith-inner { position: relative; max-width: 780px; margin: 0 auto; padding: 0 32px; text-align: center; }
   .site-header__monolith-inner .site-header__actions { justify-content: center; }
   .site-header__monolith-inner .site-header__lead { max-width: 56ch; margin-left: auto; margin-right: auto; }
+  .site-header__icon {
+    width: 172px; height: 172px; border-radius: 50%;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 26px;
+  }
+  @media (max-width: 520px) { .site-header__icon { width: 140px; height: 140px; } }
 
   /* ---------- Shared text ---------- */
   .site-header__eyebrow { margin: 0 0 18px; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
@@ -161,10 +179,17 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__link::after { content: ' \2192'; }
   .site-header__link:hover { color: #fff; border-bottom-color: rgba(255,255,255,.4); }
 
-  /* ---------- Stats (split, inline) ---------- */
-  .site-header__stats { display: flex; gap: 34px; flex-wrap: wrap; margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.22); }
-  .site-header__stat b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: 46px; line-height: .9; color: #fff; display: block; }
-  .site-header__stat span { font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.8); display: block; margin-top: 8px; max-width: 20ch; }
+  /* ---------- Numeralia (split, inline — 3 columns with dividers) ---------- */
+  .site-header__stats { display: flex; gap: clamp(16px,2.4vw,32px); margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.22); }
+  .site-header__stat { flex: 1; min-width: 0; }
+  .site-header__stat + .site-header__stat { border-left: 1px solid rgba(255,255,255,.2); padding-left: clamp(16px,2.4vw,32px); }
+  .site-header__stat b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: clamp(38px,4.4vw,50px); line-height: .9; color: #fff; display: block; }
+  .site-header__stat span { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.82); display: block; margin-top: 8px; }
+  .site-header__stat span :global(strong) { color: #fff; font-weight: 700; }
+  @media (max-width: 420px) {
+    .site-header__stats { flex-direction: column; gap: 18px; }
+    .site-header__stat + .site-header__stat { border-left: 0; padding-left: 0; }
+  }
 
   /* ---------- Stat ribbon (monolith, floating card) ---------- */
   .site-header__ribbon-wrap { position: relative; z-index: 6; max-width: 1000px; margin: -48px auto 0; padding: 0 32px; }
@@ -177,3 +202,41 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__ribbon-item span { font-size: 14px; color: #6a6460; }
   .site-header__ribbon-div { width: 1px; background: #ece6d8; }
 </style>
+
+<script is:inline>
+  (function () {
+    // Contador animado de la numeralia (solo hero split, p. ej. el home).
+    var nums = Array.prototype.slice.call(document.querySelectorAll('.site-header__stats b'));
+    if (!nums.length) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    nums.forEach(function (el) {
+      var target = parseInt((el.textContent || '').replace(/[^0-9]/g, ''), 10);
+      if (isNaN(target)) return;
+      el.setAttribute('data-final', String(target));
+      if (!reduce) el.textContent = '0';
+    });
+    if (reduce || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        var el = e.target;
+        var target = parseInt(el.getAttribute('data-final'), 10);
+        var dur = 1400, start = null, done = false;
+        function finish() { if (!done) { done = true; el.textContent = String(target); } }
+        function step(ts) {
+          if (done) return;
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = String(Math.round(eased * target));
+          if (p < 1) requestAnimationFrame(step); else finish();
+        }
+        requestAnimationFrame(step);
+        // Fallback: garantiza el valor final aunque rAF se pause (p. ej. tab en background).
+        setTimeout(finish, dur + 300);
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function (el) { io.observe(el); });
+  })();
+</script>
