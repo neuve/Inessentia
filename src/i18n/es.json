@@ -17,13 +17,15 @@
   },
   "hero": {
     "label": "Psicoterapia · CDMX y en línea",
-    "title": "Vuelve a habitarte.",
-    "subtitle": "Terapia que escucha a tu cuerpo, no solo a tu mente. Acompaño procesos individuales, de pareja y familia — presencial en CDMX y en línea.",
+    "title": "Habita tu cuerpo en paz.",
+    "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles. Presencial en la Nápoles, y en línea.",
     "cta": "Agenda tu primera cita",
     "secondary": "Conoce cómo trabajo",
-    "trustNumber": "10",
-    "trustYears": "años",
-    "trust": "acompañando a las personas a volver a su esencia, a través del enfoque corporal."
+    "stats": [
+      { "value": "10", "label": "<strong>años acompañando</strong><br>personas a volver a su esencia" },
+      { "value": "89", "label": "<strong>consultantes</strong><br>con procesos de 12 o más sesiones" },
+      { "value": "6", "label": "<strong>meses promedio</strong><br>periodo de trabajo" }
+    ]
   },
   "approach": {
     "label": "El enfoque",

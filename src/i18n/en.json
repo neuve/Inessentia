@@ -17,13 +17,15 @@
   },
   "hero": {
     "label": "Psychotherapy · Mexico City & Online",
-    "title": "Come back to yourself.",
-    "subtitle": "Therapy that listens to your body, not just your mind. Individual, couples, and family work — in person in Mexico City and online.",
+    "title": "Feel at home with your body once again.",
+    "subtitle": "I support you to relieve anxiety and stress, while softening your outdated patterns. Online and in-person — Nápoles, CDMX.",
     "cta": "Book Your First Session",
     "secondary": "See how I work",
-    "trustNumber": "10",
-    "trustYears": "years",
-    "trust": "helping people reconnect with their essence, through body-centered therapy."
+    "stats": [
+      { "value": "10", "label": "<strong>years accompanying</strong><br>people back to their essence" },
+      { "value": "89", "label": "<strong>clients</strong><br>with 12+ session journeys" },
+      { "value": "6", "label": "<strong>months average</strong><br>length of the work" }
+    ]
   },
   "approach": {
     "label": "The approach",
