@@ -4,10 +4,11 @@
  * a 1200x630 en public/uploads/og/ — reemplaza el logo genérico que se
  * mostraba antes en todos los links del sitio.
  *
- * Cuatro templates, mismo sistema visual (degradado de marca de
- * SiteHeader.astro:131, ícono del sol, tipografías reales del sitio):
- *   - blog:     ícono grande + categoría + título, uno por post por idioma
- *   - retrato:  recorte de terapia-hero.webp + label (terapia individual/pareja/familias)
+ * Tres templates, mismo sistema visual (degradado de marca de
+ * SiteHeader.astro:131, tipografías reales del sitio):
+ *   - icon:     ícono grande + eyebrow + título — blog posts (ícono del sol)
+ *               y terapia individual/pareja/familias (su propio
+ *               icono-terapia-*.webp, el mismo que usa su SiteHeader)
  *   - split:    panel con degradado morado→dorado (#C2B07E) + retrato al lado
  *               (home, Sobre mí / About me)
  *   - default:  ícono + "Patricio Ruiz" + tagline (páginas legales/utilitarias)
@@ -97,11 +98,13 @@ function buildGradient() {
 const GRADIENT = buildGradient();
 
 // ---------------------------------------------------------------------------
-// Blog card: big logo (left) + category/title stacked (right), centered as
-// one composition with equal side margins.
+// Icon card: big icon (left) + eyebrow/title stacked (right), centered as
+// one composition with equal side margins. Used by blog posts (icon =
+// brand sun mark) and by the therapy modality pages (icon = that page's own
+// icono-terapia-*.webp, same one used in its SiteHeader).
 // ---------------------------------------------------------------------------
 
-function makeBlogCard(category, title, outPath) {
+function makeIconCard(iconPath, eyebrow, title, outPath) {
   const logoSize = 300;
   const gap = 40;
   const textW = 760;
@@ -113,7 +116,7 @@ function makeBlogCard(category, title, outPath) {
     '-size', `${textW}x420`, 'xc:none',
     '-gravity', 'NorthWest',
     '-fill', BRAND.cream, '-font', MULISH_BOLD, '-pointsize', '30',
-    '-annotate', '+0+15', category.toUpperCase(),
+    '-annotate', '+0+15', eyebrow.toUpperCase(),
     '(', '-size', `${textW}x300`, '-background', 'none',
          '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '58',
          '-gravity', 'NorthWest', `caption:${title}`, ')',
@@ -123,7 +126,7 @@ function makeBlogCard(category, title, outPath) {
 
   sh('convert', [
     GRADIENT,
-    '(', path.join(UPLOADS, 'logo-icon.webp'), '-resize', `${logoSize}x${logoSize}`, ')',
+    '(', iconPath, '-resize', `${logoSize}x${logoSize}`, ')',
     '-gravity', 'West', '-geometry', `+${margin}+0`, '-composite',
     textBlock,
     '-gravity', 'West', '-geometry', `+${margin + logoSize + gap}+0`, '-composite',
@@ -132,36 +135,8 @@ function makeBlogCard(category, title, outPath) {
   ]);
 }
 
-// ---------------------------------------------------------------------------
-// Portrait card: face-framed crop of terapia-hero.webp + bottom scrim + label
-// ---------------------------------------------------------------------------
-
-function buildPortraitBase() {
-  const dest = path.join(TMP_DIR, 'portrait-base.png');
-  if (existsSync(dest)) return dest;
-  sh('convert', [
-    path.join(UPLOADS, 'terapia-hero.webp'),
-    '-resize', `${W}x`,
-    '-gravity', 'North', '-crop', `${W}x${H}+0+380`, '+repage',
-    dest,
-  ]);
-  return dest;
-}
-
-function makePortraitCard(label, outPath) {
-  const base = buildPortraitBase();
-  const scrim = path.join(TMP_DIR, 'scrim.png');
-  sh('convert', ['-size', `${H}x220`, `gradient:none-${BRAND.purple}`, scrim]);
-  sh('convert', [
-    base,
-    scrim, '-gravity', 'South', '-geometry', '+0+0', '-compose', 'over', '-composite',
-    '(', path.join(UPLOADS, 'logo-icon.webp'), '-resize', '56x56', ')',
-    '-gravity', 'SouthWest', '-geometry', '+50+90', '-composite',
-    '-gravity', 'SouthWest', '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '46',
-    '-annotate', '+125+96', label,
-    '-quality', '85',
-    outPath,
-  ]);
+function makeBlogCard(category, title, outPath) {
+  makeIconCard(path.join(UPLOADS, 'logo-icon.webp'), category, title, outPath);
 }
 
 // ---------------------------------------------------------------------------
@@ -300,17 +275,20 @@ for (const post of posts) {
   }
 }
 
-const PORTRAIT_PAGES = [
-  { label: 'Terapia individual', out: 'terapia-individual.webp' },
-  { label: 'Individual Therapy', out: 'therapy-individual.webp' },
-  { label: 'Terapia de pareja', out: 'terapia-pareja.webp' },
-  { label: 'Couples Therapy', out: 'therapy-couples.webp' },
-  { label: 'Terapia familiar', out: 'terapia-familias.webp' },
-  { label: 'Family Therapy', out: 'therapy-family.webp' },
+// Páginas de terapia: mismo template que blog (ícono grande + eyebrow +
+// título) pero con el ícono propio de cada modalidad (el mismo que usa su
+// SiteHeader) en vez del logo del sitio.
+const THERAPY_PAGES = [
+  { icon: 'icono-terapia-individual.webp', eyebrow: 'Psicoterapia individual', title: 'Procesos uno a uno para transformarte y aliviar lo que te sobrepasa.', out: 'terapia-individual.webp' },
+  { icon: 'icono-terapia-individual.webp', eyebrow: 'Individual psychotherapy', title: 'One-on-one work to transform and ease what overwhelms you.', out: 'therapy-individual.webp' },
+  { icon: 'icono-terapia-pareja.webp', eyebrow: 'Psicoterapia de pareja', title: 'Un refugio seguro para reencontrarte con tu compañero/a de vida.', out: 'terapia-pareja.webp' },
+  { icon: 'icono-terapia-pareja.webp', eyebrow: 'Couples psychotherapy', title: 'A safe space to reconnect with your life partner.', out: 'therapy-couples.webp' },
+  { icon: 'icono-terapia-familiar.webp', eyebrow: 'Psicoterapia familiar', title: 'Resignifica tus relaciones familiares.', out: 'terapia-familias.webp' },
+  { icon: 'icono-terapia-familiar.webp', eyebrow: 'Family psychotherapy', title: 'Redefine your family relationships.', out: 'therapy-family.webp' },
 ];
-for (const p of PORTRAIT_PAGES) {
+for (const p of THERAPY_PAGES) {
   const outPath = path.join(OUT_DIR, p.out);
-  makePortraitCard(p.label, outPath);
+  makeIconCard(path.join(UPLOADS, p.icon), p.eyebrow, p.title, outPath);
   console.log('✓', path.relative(ROOT, outPath));
 }
 
