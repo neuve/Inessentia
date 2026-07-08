@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # local Claude Code agent config
 .claude/
+
+# fonts/scratch files downloaded by tools/generate-og-cards.mjs
+.cache/

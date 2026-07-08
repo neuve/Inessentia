@@ -29,7 +29,7 @@ const {
   title = i.site.title,
   description = i.site.description,
   canonical = Astro.url.href,
-  ogImage = '/uploads/logo-patricio-ruiz.webp',
+  ogImage = '/uploads/og/default.webp',
   altPath,
   schema,
   extraSchemas,
@@ -64,9 +64,16 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <meta property="og:description" content={description}>
   <meta property="og:url" content={currentHref}>
   <meta property="og:image" content={`https://inessentia.mx${ogImage}`}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:alt" content={title}>
   <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'}>
   <meta property="og:site_name" content="Inessentia">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={`https://inessentia.mx${ogImage}`}>
   {schema && (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   )}

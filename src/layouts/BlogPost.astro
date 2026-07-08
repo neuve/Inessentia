@@ -20,6 +20,7 @@ interface Props {
   altPath: string;
   category: string;
   heroImage: string;
+  ogImage: string;
   heroAlt: string;
   heroPosition?: string;
   heroCaption?: string;
@@ -38,6 +39,7 @@ const {
   altPath,
   category,
   heroImage,
+  ogImage,
   heroAlt,
   heroPosition = 'center 20%',
   heroCaption,
@@ -86,7 +88,7 @@ const schema = {
 const authorSchema = personSchema(locale);
 ---
 
-<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} schema={schema} extraSchemas={[
+<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} ogImage={ogImage} schema={schema} extraSchemas={[
   authorSchema,
   ...(videos?.map(v => ({
     "@context": "https://schema.org",
