@@ -12,7 +12,7 @@ const schema = businessSchema(locale, i.site.description);
 const authorSchema = personSchema(locale);
 ---
 
-<Base title={i.site.title} description={i.site.description} altPath="/" schema={schema} extraSchemas={[authorSchema]}>
+<Base title={i.site.title} description={i.site.description} altPath="/" ogImage="/uploads/og/home-en.webp" schema={schema} extraSchemas={[authorSchema]}>
 
   <!-- HERO -->
   <SiteHeader

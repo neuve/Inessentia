@@ -18,7 +18,7 @@ const schema = businessSchema(locale, i.site.description);
 const authorSchema = personSchema(locale);
 ---
 
-<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" schema={schema} extraSchemas={[authorSchema]}>
+<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" ogImage="/uploads/og/home-es.webp" schema={schema} extraSchemas={[authorSchema]}>
 
   <!-- HERO -->
   <SiteHeader

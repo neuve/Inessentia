@@ -4,11 +4,13 @@
  * a 1200x630 en public/uploads/og/ — reemplaza el logo genérico que se
  * mostraba antes en todos los links del sitio.
  *
- * Tres templates, mismo sistema visual (degradado de marca de
+ * Cuatro templates, mismo sistema visual (degradado de marca de
  * SiteHeader.astro:131, ícono del sol, tipografías reales del sitio):
  *   - blog:     ícono grande + categoría + título, uno por post por idioma
- *   - retrato:  recorte de terapia-hero.webp + label (Sobre mí / terapia/*)
- *   - default:  ícono + "Patricio Ruiz" + tagline (home y páginas legales)
+ *   - retrato:  recorte de terapia-hero.webp + label (terapia individual/pareja/familias)
+ *   - split:    panel con degradado morado→dorado (#C2B07E) + retrato al lado
+ *               (home, Sobre mí / About me)
+ *   - default:  ícono + "Patricio Ruiz" + tagline (páginas legales/utilitarias)
  *
  * Requiere ImageMagick (`convert`) instalado en el sistema. Las fuentes
  * (Zilla Slab, Mulish) se descargan de fonts.gstatic.com la primera vez y
@@ -163,6 +165,74 @@ function makePortraitCard(label, outPath) {
 }
 
 // ---------------------------------------------------------------------------
+// Split card: brand panel (left, 460px) + face-framed photo (right, 740px).
+// Panel gradient is vertical — dark purple through ~55%, then blends into the
+// site's actual sand tone (#C2B07E) for the bottom ~45% — approved design
+// for home + Sobre mí / About me (2026-07-08 feedback: "un poco de dorado
+// abajo para que el texto contraste", using the real hero gradient color,
+// not a generic gold).
+// ---------------------------------------------------------------------------
+
+function buildSplitPanelGradient() {
+  const dest = path.join(TMP_DIR, 'panel-gradient.png');
+  if (existsSync(dest)) return dest;
+  const panelW = 460;
+  const topH = Math.round(H * 0.55);
+  const bottomH = H - topH;
+  const top = path.join(TMP_DIR, 'panel-seg-top.png');
+  const bottom = path.join(TMP_DIR, 'panel-seg-bottom.png');
+  sh('convert', ['-size', `${panelW}x${topH}`, `gradient:#341A54-${BRAND.purple}`, top]);
+  sh('convert', ['-size', `${panelW}x${bottomH}`, `gradient:${BRAND.purple}-${BRAND.sand}`, bottom]);
+  sh('convert', [top, bottom, '-append', dest]);
+  return dest;
+}
+
+function buildSplitPhoto() {
+  const dest = path.join(TMP_DIR, 'split-photo.png');
+  if (existsSync(dest)) return dest;
+  sh('convert', [
+    path.join(UPLOADS, 'terapia-hero.webp'),
+    '-resize', '740x',
+    '-gravity', 'North', '-crop', `740x${H}+0+250`, '+repage',
+    dest,
+  ]);
+  return dest;
+}
+
+function makeSplitCard({ eyebrow, title, subtitle }, outPath) {
+  const panelW = 460;
+  const panel = buildSplitPanelGradient();
+  const photo = buildSplitPhoto();
+  const textBlock = path.join(TMP_DIR, 'split-textblock.png');
+
+  const args = ['-size', `${panelW}x630`, 'xc:none', '-gravity', 'North'];
+  let y = 90;
+  args.push('(', path.join(UPLOADS, 'logo-icon.webp'), '-resize', '130x130', ')', '-gravity', 'North', '-geometry', `+0+${y}`, '-composite');
+  y += 160;
+  if (eyebrow) {
+    args.push('-gravity', 'North', '-fill', BRAND.cream, '-font', MULISH_BOLD, '-pointsize', '26', '-annotate', `+0+${y}`, eyebrow.toUpperCase());
+    y += 50;
+  }
+  args.push('-gravity', 'North', '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '42', '-annotate', `+0+${y}`, title);
+  y += 70;
+  if (subtitle) {
+    args.push(
+      '(', '-size', '380x90', '-background', 'none', '-fill', BRAND.cream, '-font', MULISH_BOLD, '-pointsize', '20',
+           '-gravity', 'North', `caption:${subtitle}`, ')',
+      '-gravity', 'North', '-geometry', `+0+${y}`, '-composite',
+    );
+  }
+  sh('convert', [...args, textBlock]);
+
+  sh('convert', [
+    panel, textBlock, '-gravity', 'NorthWest', '-geometry', '+0+0', '-composite',
+    photo, '+append',
+    '-quality', '85',
+    outPath,
+  ]);
+}
+
+// ---------------------------------------------------------------------------
 // Default fallback card: icon + name + tagline, used site-wide when no other
 // image applies (home, costos, terminos, privacidad, testimonios, recursos).
 // ---------------------------------------------------------------------------
@@ -231,8 +301,6 @@ for (const post of posts) {
 }
 
 const PORTRAIT_PAGES = [
-  { label: 'Sobre mí', out: 'sobre-mi.webp' },
-  { label: 'About me', out: 'about-me.webp' },
   { label: 'Terapia individual', out: 'terapia-individual.webp' },
   { label: 'Individual Therapy', out: 'therapy-individual.webp' },
   { label: 'Terapia de pareja', out: 'terapia-pareja.webp' },
@@ -243,6 +311,19 @@ const PORTRAIT_PAGES = [
 for (const p of PORTRAIT_PAGES) {
   const outPath = path.join(OUT_DIR, p.out);
   makePortraitCard(p.label, outPath);
+  console.log('✓', path.relative(ROOT, outPath));
+}
+
+// Home + Sobre mí / About me: split panel + photo (approved 2026-07-08)
+const SPLIT_PAGES = [
+  { eyebrow: null, title: 'Patricio Ruiz', subtitle: 'Psicoterapia relacional y psicosomática. Presencial en la Ciudad de México y en línea.', out: 'home-es.webp' },
+  { eyebrow: null, title: 'Patricio Ruiz', subtitle: 'Relational and psychosomatic psychotherapy. In person in Mexico City and online.', out: 'home-en.webp' },
+  { eyebrow: 'Sobre mí', title: 'Patricio Ruiz', subtitle: null, out: 'sobre-mi.webp' },
+  { eyebrow: 'About me', title: 'Patricio Ruiz', subtitle: null, out: 'about-me.webp' },
+];
+for (const p of SPLIT_PAGES) {
+  const outPath = path.join(OUT_DIR, p.out);
+  makeSplitCard(p, outPath);
   console.log('✓', path.relative(ROOT, outPath));
 }
 
