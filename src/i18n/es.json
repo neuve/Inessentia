@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Psicoterapia en CDMX y en línea | Patricio Ruiz — enfoque psicosomático",
-    "description": "Terapia individual, de pareja y familiar con enfoque psicosomático y sistémico en la Ciudad de México y en línea. Agenda tu primera cita con Patricio Ruiz Abrín."
+    "title": "Psicoterapia en CDMX y en línea | Patricio Ruiz — enfoque de base somática",
+    "description": "Trabajo desde una base somática —la regulación del sistema nervioso como cimiento de todo proceso— integrando herramientas de Somatic Experiencing, IFS, Core Energetics y EFT, con formación sistémica en curso para el trabajo con parejas y familias. La vía de entrada no es aleatoria ni única: la elegimos contigo según cómo llegas —qué tan disponible está tu cuerpo, tu momento, tu manera de mirar el problema— y el proceso se recalibra sobre la marcha. Individual, pareja y familia, en español o inglés."
   },
   "nav": {
     "home": "Inicio",
@@ -29,8 +29,8 @@
   },
   "approach": {
     "label": "El enfoque",
-    "title": "¿Qué es la terapia con enfoque psicosomático y cómo te puede ayudar?",
-    "p1": "La terapia con enfoque psicosomático se apoya en la relación entre cuerpo, corazón y mente — y cómo lo que vivimos se queda registrado en nosotros físicamente. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.",
+    "title": "¿Qué es la terapia de base somática y cómo te puede ayudar?",
+    "p1": "La terapia de base somática se apoya en la relación entre cuerpo, corazón y mente — y cómo lo que vivimos se queda registrado en nosotros físicamente. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.",
     "p2": "Mi trabajo te ayuda a alcanzar más claridad de pensamiento, emoción y acción, a reducir tus niveles de ansiedad y a gestionar mejor el estrés que se acumula en tu cuerpo. Mi meta última es empoderarte para que no dependas de la terapia para mantenerte autorregulad@.",
     "link": "Conoce las técnicas que utilizo"
   },
@@ -60,7 +60,7 @@
   },
   "podcast": {
     "label": "Regalo para ti",
-    "title": "Escucha mi podcast: de qué va la terapia psicosomática",
+    "title": "Escucha mi podcast: de qué va la terapia de base somática",
     "desc": "Un episodio que explica a profundidad en qué se enfoca y cómo funciona mi acompañamiento terapéutico.",
     "namePlaceholder": "¿Cómo te llamas?",
     "nameLabel": "Tu nombre",
@@ -95,7 +95,7 @@
     "copyright": "Aviso sobre derechos de autor",
     "emergency": "Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.",
     "stockCredit": "Algunas imágenes © Adobe Stock",
-    "tagline": "Psicoterapia relacional y psicosomática. Presencial en la Ciudad de México y en línea.",
+    "tagline": "Terapia de base somática: el cuerpo como fundamento, muchas vías de entrada. Presencial en la Ciudad de México y en línea.",
     "colTherapy": "Terapia",
     "colExplore": "Explora",
     "colContact": "Contacto",

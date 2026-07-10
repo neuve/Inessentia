@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Psychotherapy in Mexico City & Online | Patricio Ruiz — psychosomatic approach",
-    "description": "Individual, couples, and family therapy with a psychosomatic and systemic approach in Mexico City and online. Book your first session with Patricio Ruiz Abrín."
+    "title": "Psychotherapy in Mexico City & Online | Patricio Ruiz — somatic-based approach",
+    "description": "I work from a somatic foundation — nervous-system regulation as the ground of every process — integrating tools from Somatic Experiencing, IFS, Core Energetics, and EFT, with systemic training in progress for my work with couples and families. The way in isn't random or fixed: we choose it together, according to how you arrive — how available your body is, your moment, the way you see the problem — and the process recalibrates as we go. Individual, couples, and family therapy, in Spanish or English."
   },
   "nav": {
     "home": "Home",
@@ -29,8 +29,8 @@
   },
   "approach": {
     "label": "The approach",
-    "title": "What is psychosomatic therapy and how can it help you?",
-    "p1": "Psychosomatic therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
+    "title": "What is somatic-based therapy and how can it help you?",
+    "p1": "Somatic-based therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
     "p2": "My work helps you gain clarity of thought, emotion, and action, reduce anxiety levels, and better manage the stress that accumulates in your body. My ultimate goal is to empower you so that you don't depend on therapy to stay self-regulated.",
     "link": "Learn about the techniques I use"
   },
@@ -60,7 +60,7 @@
   },
   "podcast": {
     "label": "A gift for you",
-    "title": "Listen to my podcast: what psychosomatic therapy is all about",
+    "title": "Listen to my podcast: what somatic-based therapy is all about",
     "desc": "An episode that explains in depth what my therapeutic approach focuses on and how it works.",
     "namePlaceholder": "What's your name?",
     "nameLabel": "Your name",
@@ -95,7 +95,7 @@
     "copyright": "Copyright Notice",
     "emergency": "If you have an emergency or your life is in danger, call 911 or your local emergency line.",
     "stockCredit": "Some images © Adobe Stock",
-    "tagline": "Relational and psychosomatic psychotherapy. In person in Mexico City and online.",
+    "tagline": "Somatic-based therapy: the body as foundation, many ways in. In person in Mexico City and online.",
     "colTherapy": "Therapy",
     "colExplore": "Explore",
     "colContact": "Contact",

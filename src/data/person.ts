@@ -36,8 +36,8 @@ const KNOWS_ABOUT: Record<Locale, string[]> = {
 };
 
 const DESCRIPTION: Record<Locale, string> = {
-  es: 'Psicoterapeuta con enfoque psicosomático y sistémico en CDMX y en línea. Somatic Experiencing Practitioner (SE) y maestrante en Terapia Familiar Sistémica.',
-  en: 'Psychotherapist with a psychosomatic and systemic approach in Mexico City and online. Somatic Experiencing Practitioner (SE) and a graduate student in Systemic Family Therapy.',
+  es: 'Psicoterapeuta con enfoque de base somática, en formación sistémica, en CDMX y en línea. Somatic Experiencing Practitioner (SE) y maestrante en Terapia Familiar Sistémica.',
+  en: 'Psychotherapist with a somatic-based approach, training in systemic therapy, in Mexico City and online. Somatic Experiencing Practitioner (SE) and a graduate student in Systemic Family Therapy.',
 };
 
 const org = (name: string) => ({ '@type': 'EducationalOrganization', name });
