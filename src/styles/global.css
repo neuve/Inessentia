@@ -1,3 +1,17 @@
+/* Fuentes auto-hospedadas (woff2, subset latin) — public/fonts/, descargadas con
+   tools/fetch-fonts.mjs. Reemplazan la carga desde Google Fonts (sin conexión a
+   fonts.googleapis/gstatic). font-display:swap evita texto invisible. */
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/mulish-300.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/mulish-400.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/mulish-500.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/mulish-600.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/mulish-700.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/mulish-800.woff2') format('woff2'); }
+@font-face { font-family: 'Zilla Slab'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/zilla-slab-400.woff2') format('woff2'); }
+@font-face { font-family: 'Zilla Slab'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/zilla-slab-500.woff2') format('woff2'); }
+@font-face { font-family: 'Zilla Slab'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/zilla-slab-600.woff2') format('woff2'); }
+@font-face { font-family: 'Zilla Slab'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/zilla-slab-700.woff2') format('woff2'); }
+
 :root {
   --purple: #46276E;
   --purple-d: #3C1F5E;

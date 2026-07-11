@@ -1,6 +1,7 @@
 ---
 import BlogPost from '../../../layouts/BlogPost.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
+import Img from '../../../components/Img.astro';
 import { getPost, nextPostFor } from '../../../data/posts';
 
 const post = getPost('sistemas-familiares-internos')!;
@@ -33,7 +34,7 @@ const locale = 'es';
   <VideoEmbed videoId="KuuoLT-fq4s" start={296} title="Ver video: Richard Schwartz explica el origen de Internal Family Systems (IFS)" style="max-width:100%;" caption="Entrevista a Schwartz sobre IFS en Huberman Lab. (Fuente: YouTube, 3 de marzo de 2025)." />
   <p data-reveal>Schwartz identificó tres grandes categorías. Los <strong>exiliados</strong> son las partes que cargan las heridas más antiguas — la vergüenza, el miedo al abandono, el dolor que aprendimos a no mostrar. Son vulnerables, y por eso el sistema interno procura mantenerlas ocultas y muy poco accesibles; para evitar el contacto con ellas, despliega toda una serie de distracciones y controles que están a cargo de las otras dos categorías. Los <strong>managers</strong> son las partes que intentan mantener el control: el perfeccionista, el que siempre está al pendiente de lo que piensan los demás, el que planea y prevé para que nada salga mal. Y los <strong>bomberos</strong> son las partes de emergencia — las que entran cuando el dolor de los exiliados amenaza con desbordarse: el impulso de escapar, de distraerse, de anestesiarse con lo que sea.</p>
   <div data-reveal>
-    <img src="/uploads/ifs-taxonomia-partes-infografia.webp" width="1800" height="982" loading="lazy" alt="Infografía de Sistemas Familiares Internos: gestores, bomberos y exiliados alrededor del Sí Mismo" style="width:100%;height:auto;border-radius:12px;display:block;">
+    <Img src="/uploads/ifs-taxonomia-partes-infografia.webp" sizes="(max-width:800px) 100vw, 760px" alt="Infografía de Sistemas Familiares Internos: gestores, bomberos y exiliados alrededor del Sí Mismo" style="width:100%;height:auto;border-radius:12px;display:block;" />
     <p style="margin:8px 0 0;font-size:13px;color:var(--sand-d);">Sistema de partes propuesto por IFS (Sí mismo = <em>self</em>), generado en Nano Banana.</p>
   </div>
   <p data-reveal>Ninguna de estas partes es el problema. Todas trabajan en equipo para proteger la psique, gestionando el dolor a través de patrones útiles pero congelados en el tiempo. El crítico interno que no para de señalarte errores no es tu enemigo — es una parte que aprendió que si te exigía más, te protegía del rechazo. Esta es una de las miradas más neutras y compasivas que conozco y, sin embargo, permite cuestionar la lógica de nuestros mecanismos de defensa: reaccionan desactualizados, siguen sintiendo y pensando que habitan una realidad que ya no es la de hoy. Cuando puedes verlo así, la relación con esa voz deja de ser una guerra y se convierte en un diálogo posible.</p>

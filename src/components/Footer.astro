@@ -1,6 +1,7 @@
 ---
 import { t, sitePath, type Locale } from '../i18n/utils';
 import pkg from '../../package.json';
+import Img from './Img.astro';
 
 interface Props { locale: Locale; }
 
@@ -42,7 +43,7 @@ const legalLinks = [
       <!-- brand -->
       <div>
         <a href={`/${locale}/`} class="footer2__brand">
-          <img src="/uploads/logo-icon.webp" width="150" height="150" alt="Logotipo de Patricio Ruiz" class="footer2__logo">
+          <Img src="/uploads/logo-icon.webp" sizes="52px" alt="Logotipo de Patricio Ruiz" class="footer2__logo" />
           <span class="footer2__name">Patricio<br>Ruiz</span>
         </a>
         <p class="footer2__tagline">{i.footer.tagline}</p>

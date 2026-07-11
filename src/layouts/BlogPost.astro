@@ -1,5 +1,6 @@
 ---
 import Base from './Base.astro';
+import Img from '../components/Img.astro';
 import DisqusComments from '../components/DisqusComments.astro';
 import { t, sitePath, type Locale } from '../i18n/utils';
 import { personSchema, personRef, PERSON_ALT_NAME } from '../data/person';
@@ -120,7 +121,7 @@ const authorSchema = personSchema(locale);
 
   <!-- HERO IMAGE -->
   <div style="position:relative;width:100%;height:clamp(240px,38vw,460px);overflow:hidden;">
-    <img src={heroImage} width="1200" height="800" loading="lazy" alt={heroAlt} data-parallax={heroParallax || undefined} data-top-inset={heroParallax ? heroParallaxInsets?.top : undefined} data-bottom-inset={heroParallax ? heroParallaxInsets?.bottom : undefined} style={heroImgStyle}>
+    <Img src={heroImage} sizes="100vw" alt={heroAlt} data-parallax={heroParallax || undefined} data-top-inset={heroParallax ? heroParallaxInsets?.top : undefined} data-bottom-inset={heroParallax ? heroParallaxInsets?.bottom : undefined} style={heroImgStyle} />
   </div>
   {heroCaption && (
     <p style="max-width:680px;margin:8px auto 0;padding:0 32px;font-size:13px;color:var(--sand-d);text-align:center;">{heroCaption}</p>

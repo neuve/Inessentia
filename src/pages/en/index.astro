@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import Img from '../../components/Img.astro';
 import { t } from '../../i18n/utils';
 import { businessSchema, personSchema } from '../../data/person';
 
@@ -51,7 +52,7 @@ const authorSchema = personSchema(locale);
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
-            <img src="/uploads/icono-terapia-individual-sm.webp" alt="" width="142" height="156" loading="lazy" style="height:78px;width:auto;display:block;">
+            <Img src="/uploads/icono-terapia-individual.webp" alt="" sizes="96px" style="height:78px;width:auto;display:block;" />
           </div>
           <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">{i.modalities.individual.title}</h3>
           <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">{i.modalities.individual.desc}</p>
@@ -60,7 +61,7 @@ const authorSchema = personSchema(locale);
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
-            <img src="/uploads/icono-terapia-pareja-sm.webp" alt="" width="192" height="192" loading="lazy" style="height:96px;width:auto;display:block;">
+            <Img src="/uploads/icono-terapia-pareja.webp" alt="" sizes="96px" style="height:96px;width:auto;display:block;" />
           </div>
           <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">{i.modalities.couples.title}</h3>
           <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">{i.modalities.couples.desc}</p>
@@ -69,7 +70,7 @@ const authorSchema = personSchema(locale);
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
-            <img src="/uploads/icono-terapia-familiar-sm.webp" alt="" width="158" height="176" loading="lazy" style="height:88px;width:auto;display:block;">
+            <Img src="/uploads/icono-terapia-familiar.webp" alt="" sizes="96px" style="height:88px;width:auto;display:block;" />
           </div>
           <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--wine);font-size:26px;margin:0;">{i.modalities.family.title}</h3>
           <p style="font-size:16px;line-height:1.65;color:#4a443f;margin:0;flex:1;">{i.modalities.family.desc}</p>
@@ -149,7 +150,7 @@ const authorSchema = personSchema(locale);
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;" class="blog-grid">
 
         <a data-reveal href="/en/blog/what-to-expect/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><img src="/uploads/que-esperar-terapia.webp" width="1200" height="800" loading="lazy" alt="Portrait of a young woman with a warm gaze holding a heart-shaped object and showing it to the camera" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;"></div>
+          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/que-esperar-terapia.webp" sizes="(max-width:640px) 100vw, 380px" alt="Portrait of a young woman with a warm gaze holding a heart-shaped object and showing it to the camera" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" /></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">What to expect from therapy?</h3>
             <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">How the therapeutic relationship, techniques and time come together in a real process.</p>
@@ -158,7 +159,7 @@ const authorSchema = personSchema(locale);
         </a>
 
         <a data-reveal href="/en/blog/first-session/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><img src="/uploads/primera-cita-terapia.webp" width="900" height="900" loading="lazy" alt="Empty therapy room with two armchairs facing each other, warm afternoon light" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;"></div>
+          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/primera-cita-terapia.webp" sizes="(max-width:640px) 100vw, 380px" alt="Empty therapy room with two armchairs facing each other, warm afternoon light" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;" /></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">What's a first session usually like?</h3>
             <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">When you reach out for the first time, here's how we get started.</p>
@@ -167,7 +168,7 @@ const authorSchema = personSchema(locale);
         </a>
 
         <a data-reveal href="/en/blog/good-time-to-start/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><img src="/uploads/buen-momento-pareja.webp" width="900" height="900" loading="lazy" alt="Person sitting by a window in morning light, holding a cup, contemplative mood" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;"></div>
+          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/buen-momento-pareja.webp" sizes="(max-width:640px) 100vw, 380px" alt="Person sitting by a window in morning light, holding a cup, contemplative mood" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;" /></div>
           <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
             <h3 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">When is a good time to start therapy?</h3>
             <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">The signs worth listening to — and why asking for help doesn't require hitting rock bottom.</p>

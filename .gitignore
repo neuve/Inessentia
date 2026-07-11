@@ -28,3 +28,7 @@ pnpm-debug.log*
 
 # fonts/scratch files downloaded by tools/generate-og-cards.mjs
 .cache/
+
+# variantes responsivas generadas por tools/generate-responsive-images.mjs
+# (se regeneran en cada build; el manifiesto src/data/image-manifest.json sí se versiona)
+public/uploads/responsive/

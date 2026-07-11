@@ -80,10 +80,11 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   {extraSchemas && extraSchemas.map(s => (
     <script type="application/ld+json" set:html={JSON.stringify(s)} />
   ))}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Fuentes auto-hospedadas (ver @font-face en global.css). Precarga de las
+       críticas para el primer render; el resto se resuelve por @font-face. -->
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-700.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/zilla-slab-600.woff2" crossorigin>
   <!-- GA loads conditionally via CookieConsent component -->
 </head>
 <body>

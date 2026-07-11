@@ -36,6 +36,8 @@ interface Props {
   variant?: 'auto' | 'split' | 'monolith';
 }
 
+import Img from './Img.astro';
+
 const {
   eyebrow,
   title,
@@ -80,7 +82,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         )}
       </div>
       <div class="site-header__photo" data-reveal>
-        {photo && <img src={photo} alt={photoAlt} width="800" height="1000" fetchpriority="high" loading="eager" data-parallax="0.10" data-parallax-max="32" />}
+        {photo && <Img src={photo} alt={photoAlt} sizes="(max-width:900px) 100vw, 50vw" fetchpriority="high" loading="eager" data-parallax="0.10" data-parallax-max="32" />}
       </div>
     </div>
   </section>
@@ -92,7 +94,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       <div class="site-header__monolith-inner" data-reveal>
         {icon && (
           <div class="site-header__icon">
-            <img src={icon} alt="" style={`height:${iconSize};width:auto;display:block;`} />
+            <Img src={icon} alt="" sizes="160px" style={`height:${iconSize};width:auto;display:block;`} />
           </div>
         )}
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}

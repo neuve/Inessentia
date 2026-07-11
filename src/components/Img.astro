@@ -1,0 +1,64 @@
+---
+// <Img> — imagen responsiva servida desde public/uploads.
+//
+// Lee src/data/image-manifest.json (generado por tools/generate-responsive-images.mjs)
+// y emite un <img> con srcset/sizes + width/height intrínsecos (CLS 0). El
+// navegador baja el ancho que corresponde a su viewport × densidad, así que un
+// mismo hueco ya no fuerza un archivo sobredimensionado en desktop o mobile.
+//
+// Mantiene la arquitectura de strings (`src="/uploads/…"`): no hay que importar
+// assets ni tocar schema/OG. Si el src no está en el manifiesto (SVG, remoto, no
+// procesado), cae a un <img> normal sin romper nada.
+import manifestJson from '../data/image-manifest.json';
+
+interface Variant { w: number; url: string; }
+interface Entry { width: number; height: number; srcset: Variant[]; }
+
+interface Props {
+  src: string;
+  alt?: string;
+  sizes?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
+  [key: string]: unknown;
+}
+
+const {
+  src,
+  alt = '',
+  sizes = '100vw',
+  class: className,
+  loading = 'lazy',
+  fetchpriority,
+  ...rest
+} = Astro.props;
+
+const manifest = manifestJson as Record<string, Entry>;
+const entry = manifest[src];
+const srcset = entry ? entry.srcset.map((v) => `${v.url} ${v.w}w`).join(', ') : undefined;
+---
+
+{entry ? (
+  <img
+    src={src}
+    srcset={srcset}
+    sizes={sizes}
+    width={entry.width}
+    height={entry.height}
+    alt={alt}
+    class={className}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    {...rest}
+  />
+) : (
+  <img
+    src={src}
+    alt={alt}
+    class={className}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    {...rest}
+  />
+)}
