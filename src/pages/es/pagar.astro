@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+
+const locale = 'es';
+---
+
+<Base
+  title="Paga y confirma tu sesión | Inessentia"
+  description="Completa el pago de tu sesión de forma segura con Stripe y confirma tu cita con Patricio Ruiz Abrín."
+  altPath="/pay/"
+>
+
+  <!-- HERO -->
+  <SiteHeader
+    eyebrow="Pago seguro"
+    icon="/uploads/logo-icon.webp"
+    iconSize="96px"
+    title="Paga y confirma tu sesión"
+    ctaLabel="Ir a pagar"
+    ctaHref="https://buy.stripe.com/fZu8wPaMmgD58S1euw3sI0c"
+  >
+    <p>Completa tu pago de forma segura a través de Stripe. En cuanto se confirme, tu sesión queda agendada.</p>
+  </SiteHeader>
+
+  <!-- AYUDA -->
+  <section style="padding:clamp(40px,6vw,64px) 32px;">
+    <div style="max-width:600px;margin:0 auto;text-align:center;">
+      <p style="font-size:15px;line-height:1.7;color:#6a615a;margin:0;">¿Tienes dudas sobre tu pago o tu cita? Escríbeme por <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20tengo%20una%20duda%20sobre%20mi%20pago." target="_blank" rel="noopener" style="color:var(--wine);font-weight:700;text-decoration:none;">WhatsApp</a>.</p>
+    </div>
+  </section>
+
+</Base>
