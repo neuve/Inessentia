@@ -21,7 +21,7 @@ const KNOWS_ABOUT: Record<Locale, string[]> = {
     'Core Energética',
     'Enfoque centrado en la persona',
     'Trauma',
-    'Psicoterapia corporal',
+    'Terapia corporal',
   ],
   en: [
     'Somatic Experiencing (SE)',
@@ -31,13 +31,13 @@ const KNOWS_ABOUT: Record<Locale, string[]> = {
     'Core Energetics',
     'Person-centered approach',
     'Trauma',
-    'Body psychotherapy',
+    'Body-based therapy',
   ],
 };
 
 const DESCRIPTION: Record<Locale, string> = {
-  es: 'Psicoterapeuta con enfoque de base somática, en formación sistémica, en CDMX y en línea. Somatic Experiencing Practitioner (SE) y maestrante en Terapia Familiar Sistémica.',
-  en: 'Psychotherapist with a somatic-based approach, training in systemic therapy, in Mexico City and online. Somatic Experiencing Practitioner (SE) and a graduate student in Systemic Family Therapy.',
+  es: 'Terapeuta de base somática, en formación sistémica, en CDMX y en línea. Somatic Experiencing Practitioner (SE) y maestrante en Terapia Familiar Sistémica.',
+  en: 'Somatic-based therapist, training in systemic therapy, in Mexico City and online. Somatic Experiencing Practitioner (SE) and a graduate student in Systemic Family Therapy.',
 };
 
 const org = (name: string) => ({ '@type': 'EducationalOrganization', name });
@@ -66,7 +66,7 @@ export function personSchema(locale: Locale) {
     '@id': PERSON_ID,
     'name': PERSON_NAME,
     'alternateName': PERSON_ALT_NAME,
-    'jobTitle': isEs ? 'Psicoterapeuta' : 'Psychotherapist',
+    'jobTitle': isEs ? 'Terapeuta de base somática' : 'Somatic-based therapist',
     'description': DESCRIPTION[locale],
     'url': `https://inessentia.mx/${locale}/${isEs ? 'sobre-mi' : 'about-me'}/`,
     'image': 'https://inessentia.mx/uploads/patricio-ruiz-retrato.webp',
@@ -100,13 +100,15 @@ export const personRef = { '@id': PERSON_ID, '@type': 'Person', 'name': PERSON_N
 // @id estable del negocio, para poder referenciarlo desde otros nodos.
 export const BUSINESS_ID = 'https://inessentia.mx/#inessentia';
 
-// Schema del negocio para el home. Tipado como MedicalBusiness + ProfessionalService
-// (categoría de salud, señal YMYL) y con `founder` apuntando por @id a la persona
-// con credenciales. La descripción varía por idioma, se pasa desde la página.
+// Schema del negocio para el home. Tipado sólo como ProfessionalService (NO
+// MedicalBusiness: el servicio no constituye atención médica ni psicoterapia
+// reservada — ver la cláusula de encuadre en Términos). `founder` apunta por
+// @id a la persona con credenciales. La descripción varía por idioma, se pasa
+// desde la página.
 export function businessSchema(locale: Locale, description: string) {
   return {
     '@context': 'https://schema.org',
-    '@type': ['MedicalBusiness', 'ProfessionalService'],
+    '@type': 'ProfessionalService',
     '@id': BUSINESS_ID,
     'name': 'Inessentia — Patricio Ruiz Abrín',
     'description': description,
