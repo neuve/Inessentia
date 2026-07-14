@@ -2,8 +2,8 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import MobileMenu from '../components/MobileMenu.astro';
+import MenuOverlay from '../components/MenuOverlay.astro';
 import Footer from '../components/Footer.astro';
-import WhatsApp from '../components/WhatsApp.astro';
 import RevealOnScroll from '../components/RevealOnScroll.astro';
 import ParallaxImages from '../components/ParallaxImages.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -88,13 +88,13 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <!-- GA loads conditionally via CookieConsent component -->
 </head>
 <body>
-  <Navbar locale={locale} altHref={altHref} />
+  <Navbar locale={locale} />
   <MobileMenu locale={locale} />
+  <MenuOverlay locale={locale} />
   <main>
     <slot />
   </main>
   {!hideFooter && <Footer locale={locale} />}
-  <WhatsApp locale={locale} />
   <CookieConsent locale={locale} />
   <RevealOnScroll />
   <ParallaxImages />

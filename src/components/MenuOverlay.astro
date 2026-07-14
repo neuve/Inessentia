@@ -1,0 +1,161 @@
+---
+// Overlay editorial de menú (solo desktop). En móvil (<820px) se conserva el
+// MobileMenu actual; este overlay queda oculto. Abre/cierra desde el sandwich
+// flotante (#nav-ham) vía la clase body.menu-open, gestionada en Navbar.astro.
+import { t, menuColumns, type Locale } from '../i18n/utils';
+
+interface Props { locale: Locale; }
+
+const { locale } = Astro.props;
+const i = t(locale);
+const [col1, col2] = menuColumns(locale, Astro.url.pathname);
+const columns = [col1, col2];
+// Delay de aparición escalonado por índice global (igual que el prototipo).
+let idx = 0;
+---
+
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+  <div class="menu-overlay__inner">
+    <a href={`/${locale}/`} class="menu-overlay__logo">
+      <img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" width="64" height="64" />
+      <span>Patricio<br>Ruiz</span>
+    </a>
+
+    <div class="menu-overlay__cols">
+      {columns.map(col => (
+        <div class="menu-overlay__col">
+          {col.map(link => {
+            const d = (0.1 + idx++ * 0.07).toFixed(2);
+            return (
+              <a
+                href={link.href}
+                class:list={["mo-link", { "mo-link--current": link.current, "mo-link--cta": link.cta }]}
+                style={`--d:${d}s`}
+                {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}
+              >
+                <span class="mo-link__dot" aria-hidden="true">•</span>
+                <span class="mo-link__label">{link.label}</span>
+              </a>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+
+    <div class="menu-overlay__footer">
+      <div>
+        <div class="menu-overlay__eyebrow">{i.menu.contact}</div>
+        <a href="mailto:patricio@inessentia.mx" class="menu-overlay__email">patricio@inessentia.mx</a>
+        <div class="menu-overlay__social">
+          <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram">
+            <img src="/uploads/instagram-icon.svg" alt="Instagram" width="20" height="20" />
+          </a>
+          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <img src="/uploads/whatsapp-icon.svg" alt="WhatsApp" width="20" height="20" />
+          </a>
+        </div>
+      </div>
+      <div class="menu-overlay__search">
+        <input id="menu-search-input" type="text" readonly placeholder={i.menu.searchPlaceholder} aria-label={i.menu.searchPlaceholder} />
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#46276E" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="7"/><line x1="15.5" y1="15.5" x2="21" y2="21"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .menu-overlay {
+    position: fixed; inset: 0; z-index: 210;
+    background: var(--cream-2);
+    opacity: 0; pointer-events: none;
+    transition: opacity .8s cubic-bezier(.22,1,.36,1);
+  }
+  .menu-overlay.open { opacity: 1; pointer-events: auto; }
+  /* Solo desktop — en móvil se usa #mob-menu. */
+  @media (max-width: 820px) { .menu-overlay { display: none; } }
+
+  .menu-overlay__inner {
+    position: absolute; inset: 0; padding: 56px 60px;
+    display: flex; flex-direction: column;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .menu-overlay__logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+    opacity: 0; transition: opacity .3s ease;
+  }
+  .menu-overlay.open .menu-overlay__logo { opacity: 1; transition: opacity .7s ease .55s; }
+  .menu-overlay__logo img { height: 60px; width: auto; display: block; }
+  .menu-overlay__logo span {
+    font-family: 'Zilla Slab', serif; font-weight: 600; color: var(--purple);
+    font-size: 17px; line-height: 1.12;
+  }
+
+  .menu-overlay__cols { flex: 1; display: flex; align-items: center; }
+  .menu-overlay__cols > .menu-overlay__col + .menu-overlay__col { margin-left: 96px; }
+  .menu-overlay__col { display: flex; flex-direction: column; }
+
+  .mo-link {
+    position: relative; display: flex; align-items: center; text-decoration: none;
+    padding: 9px 0;
+    opacity: 0;
+    transition: transform .45s cubic-bezier(.22,1,.36,1), opacity .8s ease var(--d, 0s);
+  }
+  .menu-overlay.open .mo-link { opacity: 1; }
+  .menu-overlay.open .mo-link:hover { transform: translateX(14px); }
+
+  .mo-link__label {
+    font-family: 'Zilla Slab', serif; font-weight: 600; font-size: 38px; line-height: 1.1;
+    color: var(--ink); transition: color .25s ease;
+  }
+  .mo-link:hover .mo-link__label { color: var(--wine); }
+
+  .mo-link--current .mo-link__label {
+    text-decoration: underline; text-underline-offset: 8px;
+    text-decoration-color: var(--sand); text-decoration-thickness: 2px;
+  }
+  .mo-link--cta .mo-link__label { color: var(--sand); }
+  .mo-link--cta:hover .mo-link__label { color: var(--wine); }
+
+  .mo-link__dot {
+    position: absolute; left: -30px; top: 50%;
+    font-family: 'Mulish', sans-serif; font-size: 32px; line-height: 1; color: var(--wine);
+    opacity: 0; transform: translate(-8px, -50%);
+    transition: opacity .45s ease, transform .45s ease;
+  }
+  .mo-link:hover .mo-link__dot { opacity: 1; transform: translate(0, -50%); }
+
+  .menu-overlay__footer {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
+    border-top: 1px solid #ece6d8; padding-top: 26px;
+  }
+  .menu-overlay__eyebrow {
+    font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 11px;
+    letter-spacing: .16em; text-transform: uppercase; color: #6a6460; margin-bottom: 10px;
+  }
+  .menu-overlay__email {
+    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--ink); text-decoration: none;
+    transition: opacity .2s;
+  }
+  .menu-overlay__email:hover { opacity: .6; }
+  .menu-overlay__social { display: flex; gap: 16px; margin-top: 16px; align-items: center; }
+  .menu-overlay__social a { display: flex; }
+
+  .menu-overlay__search { position: relative; width: 280px; }
+  .menu-overlay__search input {
+    width: 100%; border: none; border-bottom: 1.5px solid var(--purple);
+    background: transparent; padding: 10px 28px 10px 2px;
+    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--ink);
+    outline: none; cursor: pointer;
+  }
+  .menu-overlay__search input::placeholder { color: #6a6460; }
+  .menu-overlay__search svg { position: absolute; right: 2px; top: 10px; }
+
+  @media (max-width: 960px) {
+    .menu-overlay__inner { padding: 48px 40px; }
+    .mo-link__label { font-size: 32px; }
+    .menu-overlay__cols > .menu-overlay__col + .menu-overlay__col { margin-left: 56px; }
+  }
+</style>

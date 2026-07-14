@@ -15,10 +15,21 @@
     "openMenu": "Open navigation menu",
     "closeMenu": "Close menu"
   },
+  "menu": {
+    "individual": "Individual therapy",
+    "framing": "Framing",
+    "testimonials": "Testimonials",
+    "book": "Book",
+    "couplesShort": "Couples",
+    "familyShort": "Family",
+    "contact": "Contact",
+    "searchPlaceholder": "Search the site…"
+  },
   "hero": {
-    "label": "Psychotherapy · Mexico City & Online",
-    "title": "Feel at home with your body once again.",
-    "subtitle": "I support you to relieve anxiety and stress, while softening your outdated patterns. Online and in-person — Nápoles, CDMX.",
+    "label": "Trauma-sensitive somatic therapy",
+    "title": "Come home to peace.",
+    "subtitle": "I support people in reducing their anxiety and stress, and softening the patterns that no longer serve them, with the support of awareness and body-based movement.",
+    "meta": "In person in Mexico City, Nápoles · Online",
     "cta": "Book Your First Session",
     "secondary": "See how I work",
     "stats": [
@@ -95,15 +106,11 @@
     "copyright": "Copyright Notice",
     "emergency": "If you have an emergency or your life is in danger, call 911 or your local emergency line.",
     "stockCredit": "Some images © Adobe Stock",
-    "tagline": "Somatic-based therapy: the body as foundation, many ways in. In person in Mexico City and online.",
     "colTherapy": "Therapy",
     "colExplore": "Explore",
     "colContact": "Contact",
     "contactLine": "Write to me and I'll gladly answer your questions.",
     "whatsapp": "WhatsApp"
   },
-  "langToggle": "ES",
-  "langToggleTitle": "Cambiar a español",
-  "whatsappTitle": "Message me on WhatsApp",
   "comments": "Comments"
 }

@@ -15,10 +15,21 @@
     "openMenu": "Abrir menú de navegación",
     "closeMenu": "Cerrar menú"
   },
+  "menu": {
+    "individual": "Terapia individual",
+    "framing": "Encuadre",
+    "testimonials": "Testimonios",
+    "book": "Agendar",
+    "couplesShort": "De pareja",
+    "familyShort": "Familiar",
+    "contact": "Contacto",
+    "searchPlaceholder": "Buscar en el sitio…"
+  },
   "hero": {
-    "label": "Psicoterapia · CDMX y en línea",
-    "title": "Habita tu cuerpo en paz.",
-    "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles. Presencial en la Nápoles, y en línea.",
+    "label": "Terapia somática con sensibilidad al trauma",
+    "title": "Habítate en paz.",
+    "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles, con apoyo de la consciencia y el movimiento corporal.",
+    "meta": "Presencial CDMX, Col. Nápoles · Online",
     "cta": "Agenda tu primera cita",
     "secondary": "Conoce cómo trabajo",
     "stats": [
@@ -95,15 +106,11 @@
     "copyright": "Aviso sobre derechos de autor",
     "emergency": "Si tienes una emergencia o tu vida corre peligro, llama al 911 o a la línea de emergencia de tu localidad.",
     "stockCredit": "Algunas imágenes © Adobe Stock",
-    "tagline": "Terapia de base somática: el cuerpo como fundamento, muchas vías de entrada. Presencial en la Ciudad de México y en línea.",
     "colTherapy": "Terapia",
     "colExplore": "Explora",
     "colContact": "Contacto",
     "contactLine": "Escríbeme y con gusto resuelvo tus dudas.",
     "whatsapp": "WhatsApp"
   },
-  "langToggle": "EN",
-  "langToggleTitle": "Switch to English",
-  "whatsappTitle": "Escríbeme por WhatsApp",
   "comments": "Comentarios"
 }

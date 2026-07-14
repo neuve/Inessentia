@@ -22,6 +22,8 @@ export interface Stat {
 interface Props {
   eyebrow?: string;
   title: string;
+  /** Small caps meta line under the lead paragraph, e.g. "Presencial CDMX, Col. Nápoles · Online". */
+  meta?: string;
   photo?: string;
   photoAlt?: string;
   /** Brand icon shown in a translucent circle above the eyebrow (monolith heros only). */
@@ -34,6 +36,11 @@ interface Props {
   secondaryHref?: string;
   stats?: Stat[];
   variant?: 'auto' | 'split' | 'monolith';
+  /** Split only: portrait fills the full column height edge-to-edge (top
+   * aligned with the eyebrow, bottom with the stats) instead of a fixed
+   * aspect-ratio crop. Opt-in since it needs a tall enough text column
+   * (e.g. the home hero with stats) to look right. */
+  photoFill?: boolean;
 }
 
 import Img from './Img.astro';
@@ -41,6 +48,7 @@ import Img from './Img.astro';
 const {
   eyebrow,
   title,
+  meta,
   photo,
   photoAlt = '',
   icon,
@@ -51,6 +59,7 @@ const {
   secondaryHref,
   stats = [],
   variant = 'auto',
+  photoFill = false,
 } = Astro.props;
 
 const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
@@ -59,11 +68,12 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 {mode === 'split' ? (
   <section class="site-header site-header--split">
     <div class="site-header__mandala" aria-hidden="true" data-parallax="0.06" data-parallax-max="50"></div>
-    <div class="site-header__grid">
+    <div class:list={["site-header__grid", { "site-header__grid--fill": photoFill }]}>
       <div data-reveal>
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}
         <h1 class="site-header__title">{title}</h1>
         <div class="site-header__lead"><slot /></div>
+        {meta && <h4 class="site-header__meta">{meta}</h4>}
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
             {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
@@ -81,7 +91,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
           </div>
         )}
       </div>
-      <div class="site-header__photo" data-reveal>
+      <div class:list={["site-header__photo", { "site-header__photo--fill": photoFill }]} data-reveal>
         {photo && <Img src={photo} alt={photoAlt} sizes="(max-width:900px) 100vw, 50vw" fetchpriority="high" loading="eager" data-parallax="0.10" data-parallax-max="32" />}
       </div>
     </div>
@@ -150,8 +160,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     gap: clamp(36px, 4vw, 72px); align-items: center;
   }
   @media (max-width: 860px) { .site-header__grid { grid-template-columns: 1fr; } }
+  /* Portrait edge-to-edge with the text column (top at the eyebrow, bottom at
+     the stats), as opposed to the default fixed aspect-ratio crop. */
+  .site-header__grid--fill { align-items: stretch; }
   .site-header__photo { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 30px 70px rgba(35,18,55,.34); aspect-ratio: 4 / 5; }
   .site-header__photo img { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; object-fit: cover; display: block; }
+  .site-header__photo--fill { aspect-ratio: auto; height: 100%; }
+  .site-header__photo--fill img { position: static; width: 100%; height: 100%; }
+  @media (max-width: 860px) { .site-header__photo--fill { aspect-ratio: 4 / 5; height: auto; } .site-header__photo--fill img { position: absolute; top: 0; left: 0; height: 100%; } }
 
   /* ---------- Monolith (B) ---------- */
   .site-header--monolith { min-height: 66vh; display: flex; align-items: center; padding: 130px 0 96px; }
@@ -175,22 +191,20 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; color: rgba(255,255,255,.85); max-width: 48ch; margin: 0 0 32px; }
   .site-header__lead :global(p) { margin: 0 0 10px; }
   .site-header__lead :global(p:last-child) { margin-bottom: 0; }
+  .site-header__meta { margin: 0 0 30px; font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
   .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 8px; }
   /* Tertiary CTA: quiet text link so it doesn't compete with the primary white button */
   .site-header__link { color: rgba(255,255,255,.72); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
   .site-header__link::after { content: ' \2192'; }
   .site-header__link:hover { color: #fff; border-bottom-color: rgba(255,255,255,.4); }
 
-  /* ---------- Numeralia (split, inline — 3 columns with dividers) ---------- */
-  .site-header__stats { display: flex; gap: clamp(16px,2.4vw,32px); margin-top: 30px; padding-top: 26px; border-top: 1px solid rgba(255,255,255,.22); }
-  .site-header__stat { flex: 1; min-width: 0; }
-  .site-header__stat + .site-header__stat { border-left: 1px solid rgba(255,255,255,.2); padding-left: clamp(16px,2.4vw,32px); }
-  .site-header__stat b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: clamp(38px,4.4vw,50px); line-height: .9; color: #fff; display: block; }
-  .site-header__stat span { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.82); display: block; margin-top: 8px; }
+  /* ---------- Numeralia (split — grid de 3 columnas, sin divisores) ---------- */
+  .site-header__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); gap: clamp(20px, 2.4vw, 34px); }
+  .site-header__stat b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: clamp(34px,4.4vw,42px); line-height: .9; color: #fff; display: block; }
+  .site-header__stat span { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.8); display: block; margin-top: 8px; }
   .site-header__stat span :global(strong) { color: #fff; font-weight: 700; }
   @media (max-width: 420px) {
-    .site-header__stats { flex-direction: column; gap: 18px; }
-    .site-header__stat + .site-header__stat { border-left: 0; padding-left: 0; }
+    .site-header__stats { grid-template-columns: 1fr; gap: 18px; }
   }
 
   /* ---------- Stat ribbon (monolith, floating card) ---------- */

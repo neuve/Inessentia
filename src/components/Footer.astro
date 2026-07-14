@@ -46,7 +46,6 @@ const legalLinks = [
           <Img src="/uploads/logo-icon.webp" sizes="52px" alt="Logotipo de Patricio Ruiz" class="footer2__logo" />
           <span class="footer2__name">Patricio<br>Ruiz</span>
         </a>
-        <p class="footer2__tagline">{i.footer.tagline}</p>
       </div>
 
       <!-- therapy links -->
@@ -114,10 +113,9 @@ const legalLinks = [
     display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
     gap: clamp(32px,4vw,52px); align-items: start; padding-bottom: 44px;
   }
-  .footer2__brand { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; text-decoration: none; }
-  .footer2__logo { height: 52px; width: auto; display: block; filter: brightness(0) invert(1); opacity: .92; }
+  .footer2__brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .footer2__logo { height: 52px; width: auto; display: block; }
   .footer2__name { font-family: 'Zilla Slab', serif; font-weight: 600; color: #fff; font-size: 19px; line-height: 1.15; }
-  .footer2__tagline { font-size: 15px; line-height: 1.65; color: rgba(255,255,255,.62); margin: 0; max-width: 34ch; }
   .footer2__coltitle {
     margin: 0 0 18px; font-weight: 700; font-size: 12px; letter-spacing: .14em;
     text-transform: uppercase; color: var(--sand);
@@ -128,9 +126,9 @@ const legalLinks = [
   .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.62); }
   .footer2__email {
     display: inline-block; color: #fff; font-size: 16px; font-weight: 600; text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,.5); padding-bottom: 3px; margin-bottom: 20px;
+    margin-bottom: 20px; transition: color .2s;
   }
-  .footer2__email:hover { border-color: var(--sand); }
+  .footer2__email:hover { color: var(--sand); }
   .footer2__social { display: flex; align-items: center; gap: 14px; }
   .footer2__wa {
     display: flex; align-items: center; gap: 8px; background: #25D366;

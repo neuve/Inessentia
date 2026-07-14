@@ -1,16 +1,15 @@
 ---
-import { t, navLinks, type Locale } from '../i18n/utils';
+import { t, barLinks, type Locale } from '../i18n/utils';
 import { posts, postHref } from '../data/posts';
 import Img from './Img.astro';
 
 interface Props {
   locale: Locale;
-  altHref: string;
 }
 
-const { locale, altHref } = Astro.props;
+const { locale } = Astro.props;
 const i = t(locale);
-const links = navLinks(locale);
+const links = barLinks(locale);
 
 // Blog entries for the site search index, generated from the single source
 // of truth in data/posts.ts so a new post can never be missing from search.
@@ -23,7 +22,7 @@ const searchBlogEntries = {
 <header id="site-nav" class="navbar">
   <div class="navbar__inner">
     <a href={`/${locale}/`} class="navbar__logo">
-      <Img src="/uploads/logo-icon.webp" sizes="68px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
+      <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
       <span class="navbar__logo-name">Patricio<br>Ruiz</span>
     </a>
     <nav id="nav-links" class="navbar__links">
@@ -31,35 +30,17 @@ const searchBlogEntries = {
         <a href={link.href} class="navbar__link">{link.label}</a>
       ))}
     </nav>
-    <button id="nav-search-btn" class="navbar__search" aria-label="Search">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-        <circle cx="10.5" cy="10.5" r="7"/>
-        <line x1="15.5" y1="15.5" x2="21" y2="21"/>
-      </svg>
-    </button>
-    <button id="nav-ham" class="navbar__ham" aria-label={i.nav.openMenu}>
-      <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
-        <rect y="0" width="26" height="2.5" rx="1.25" fill="#46276E" />
-        <rect y="8.75" width="26" height="2.5" rx="1.25" fill="#46276E" />
-        <rect y="17.5" width="26" height="2.5" rx="1.25" fill="#46276E" />
-      </svg>
-    </button>
-    <a id="nav-cta-btn" href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="navbar__cta">{i.nav.cta}</a>
+    <div class="navbar__spacer" aria-hidden="true"></div>
   </div>
 </header>
 
-<!-- Language toggle -->
-<a href={altHref} id="lang-toggle-btn" class="lang-toggle" title={i.langToggleTitle}>{i.langToggle}</a>
-<script is:inline define:vars={{ altLocale: locale === 'es' ? 'en' : 'es' }}>
-  (function() {
-    var btn = document.getElementById('lang-toggle-btn');
-    if (btn) btn.addEventListener('click', function() {
-      localStorage.setItem('preferred-lang', altLocale);
-    });
-  })();
-</script>
+<!-- Sandwich flotante: vive por encima del overlay (no dentro de la barra) para
+     permanecer visible y transformarse en X cuando el menú abre. -->
+<button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
+  <span></span><span></span><span></span>
+</button>
 
-<!-- Search overlay -->
+<!-- Search overlay (reutilizado desde el buscador del menú overlay) -->
 <div id="search-overlay" class="search-overlay">
   <div class="search-modal">
     <input id="search-input" type="text" placeholder={locale === 'es' ? 'Buscar en el sitio...' : 'Search the site...'} autocomplete="off">
@@ -73,60 +54,83 @@ const searchBlogEntries = {
 <style>
   .navbar {
     position: sticky; top: 0; width: 100%;
-    z-index: 40; background: var(--cream);
-    transition: box-shadow .35s ease, background .35s ease, border-bottom .35s ease, transform .38s cubic-bezier(.22,1,.36,1);
-    border-bottom: 1px solid transparent;
+    z-index: 40;
+    min-height: var(--nav-h);
+    background: rgba(234, 229, 217, .95);
+    box-shadow: none;
+    transition: box-shadow .35s ease, background .35s cubic-bezier(.22,1,.36,1),
+                transform .38s cubic-bezier(.22,1,.36,1);
+  }
+  /* Borde + sombra sutiles solo en estado sólido tras hacer scroll, como
+     box-shadow (no border) para no sumar 1px a la altura de la barra —
+     con margin-top negativo sobre el hero, un border real desalinea el
+     encaje y deja una línea de 1px del fondo de la página. */
+  :global(html:not(.over-hero)) .navbar.navbar--scrolled {
+    box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
   }
   .navbar.navbar--hidden { transform: translateY(-100%); }
-  .navbar__inner {
-    max-width: 1200px; margin: 0 auto; padding: 10px 32px;
-    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+
+  /* Estado transparente sobre un banner oscuro (marcado por html.over-hero). */
+  :global(html.over-hero) .navbar {
+    background: transparent;
+    box-shadow: none;
   }
-  .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: none; }
-  .navbar__logo-icon { height: 68px; width: auto; display: block; }
+
+  .navbar__inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 40px;
+    min-height: var(--nav-h);
+    display: flex; align-items: center; gap: 24px;
+  }
+  .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: 1; }
+  .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
     font-family: 'Zilla Slab', serif; font-weight: 600; color: var(--purple);
-    font-size: 18px; line-height: 1.15; letter-spacing: .01em;
+    font-size: 17px; line-height: 1.12; letter-spacing: .01em;
+    transition: color .35s ease;
   }
-  @media (max-width: 500px) {
-    .navbar__logo-icon { height: 54px; }
-    .navbar__logo-name { font-size: 15px; }
-  }
-  .navbar__links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+  :global(html.over-hero) .navbar__logo-name { color: #fff; }
+
+  .navbar__links { display: flex; align-items: center; gap: 38px; flex: none; }
   .navbar__link {
-    font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-    color: var(--purple); text-decoration: none; white-space: nowrap; transition: color .2s;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
+    color: var(--purple); text-decoration: none; white-space: nowrap;
+    transition: color .2s;
   }
   .navbar__link:hover { color: var(--wine); }
-  .navbar__ham {
-    display: none; align-items: center; justify-content: center;
-    background: none; border: none; cursor: pointer; padding: 6px; flex: none;
-  }
-  .navbar__cta {
-    flex: none; white-space: nowrap; background: var(--purple); color: #fff;
-    font-weight: 700; font-size: 13px; letter-spacing: .07em; text-transform: uppercase;
-    padding: 13px 26px; border-radius: 999px; text-decoration: none;
-    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
-  }
-  .navbar__cta:hover {
-    transform: translateY(-2px); box-shadow: 0 10px 24px rgba(70,39,110,.28); background: var(--purple-d);
-  }
-  .lang-toggle {
-    position: fixed; top: 80px; right: 24px; z-index: 55;
-    width: 38px; height: 38px; border-radius: 50%; background: var(--purple);
-    color: #fff; display: flex; align-items: center; justify-content: center;
-    font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 11px;
-    letter-spacing: .05em; text-decoration: none;
-    box-shadow: 0 4px 14px rgba(70,39,110,.3); transition: transform .2s, background .2s;
-    -webkit-transform: translateZ(0);
-  }
-  .lang-toggle:hover { transform: scale(1.1); background: var(--purple-d); }
+  :global(html.over-hero) .navbar__link { color: rgba(255, 255, 255, .92); }
+  :global(html.over-hero) .navbar__link:hover { color: #fff; }
 
-  .navbar__search {
-    background: none; border: none; cursor: pointer; padding: 6px; flex: none;
-    color: var(--purple); transition: color .2s;
+  /* Zona derecha vacía: equilibra el logo (flex:1) para centrar el nav; deja
+     espacio bajo el sandwich flotante. */
+  .navbar__spacer { flex: 1; }
+
+  /* ---------- Sandwich flotante ---------- */
+  .nav-ham {
+    position: fixed; top: calc((var(--nav-h) - 22px) / 2); right: 40px;
+    z-index: 220; width: 27px; height: 22px; padding: 0;
+    background: none; border: none; cursor: pointer; display: block;
   }
-  .navbar__search:hover { color: var(--wine); }
+  .nav-ham span {
+    position: absolute; left: 0; width: 27px; height: 1.5px; display: block;
+    background: var(--purple);
+    transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease, background .5s ease;
+  }
+  .nav-ham span:nth-child(1) { top: 0; }
+  .nav-ham span:nth-child(2) { top: 10px; }
+  .nav-ham span:nth-child(3) { top: 20px; }
+  :global(html.over-hero) .nav-ham span { background: #fff; }
+  /* Con el menú abierto: barras púrpura sobre el crema del overlay + forma X. */
+  :global(body.menu-open) .nav-ham span { background: var(--purple); }
+  :global(body.menu-open) .nav-ham span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+  :global(body.menu-open) .nav-ham span:nth-child(2) { opacity: 0; transform: scaleX(.4); }
+  :global(body.menu-open) .nav-ham span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+  @media (max-width: 500px) {
+    .navbar__logo-icon { height: 52px; }
+    .navbar__logo-name { font-size: 15px; }
+    .nav-ham { right: 22px; }
+  }
 
   .search-overlay {
     display: none; position: fixed; inset: 0; z-index: 300;
@@ -177,33 +181,92 @@ const searchBlogEntries = {
 document.addEventListener('DOMContentLoaded', function() {
   const nav = document.getElementById('site-nav');
   const ham = document.getElementById('nav-ham');
-  const mobMenu = document.getElementById('mob-menu');
+  const overlay = document.getElementById('menu-overlay');   // desktop editorial overlay
+  const mobMenu = document.getElementById('mob-menu');        // mobile menu (unchanged)
   const mobClose = document.getElementById('mob-close');
+  const root = document.documentElement;
+  const DESKTOP = '(min-width: 821px)';
 
+  // --- Estado transparente vs. sólido -------------------------------------
+  // Sólido por defecto; transparente solo mientras un banner oscuro (SiteHeader
+  // o cualquier sección con [data-nav-overlay]) cubre la barra. Se calcula en el
+  // scroll (determinista) en vez de con IntersectionObserver.
+  var darkBanner = document.querySelector('.site-header, [data-nav-overlay]');
+  var NAV_H = parseInt(getComputedStyle(root).getPropertyValue('--nav-h'), 10) || 84;
+  function updateOverHero() {
+    if (!darkBanner) return;
+    // Transparente mientras el fondo del banner siga por debajo del borde
+    // inferior de la barra; sólido en cuanto el banner queda por encima.
+    root.classList.toggle('over-hero', darkBanner.getBoundingClientRect().bottom > NAV_H);
+  }
+  updateOverHero();
+
+  // --- Sombra al hacer scroll + ocultar-al-bajar / reaparecer-al-subir ------
   var lastScrollY = window.scrollY || document.documentElement.scrollTop;
   window.addEventListener('scroll', function() {
     if (!nav) return;
     var y = window.scrollY || document.documentElement.scrollTop;
-    nav.style.boxShadow = y > 8 ? '0 4px 20px rgba(40,20,60,.16)' : 'none';
-    nav.style.background = y > 8 ? 'rgba(234,229,217,.97)' : '#EAE5D9';
-    nav.style.borderBottom = y > 8 ? '1px solid rgba(70,39,110,.13)' : '1px solid transparent';
-    // Hide on scroll-down past 160px, reappear on scroll-up.
-    if (y > lastScrollY && y > 160) {
+    updateOverHero();
+    nav.classList.toggle('navbar--scrolled', y > 8);
+    if (y > lastScrollY && y > 160 && !document.body.classList.contains('menu-open')) {
       nav.classList.add('navbar--hidden');
     } else {
       nav.classList.remove('navbar--hidden');
     }
     lastScrollY = y;
   }, { passive: true });
+  window.addEventListener('resize', updateOverHero, { passive: true });
 
-  function openMenu() { if (mobMenu) mobMenu.style.display = 'flex'; }
-  function closeMenu() { if (mobMenu) mobMenu.style.display = 'none'; }
+  // --- Overlay / menú -------------------------------------------------------
+  function openDesktop() {
+    document.body.classList.add('menu-open');
+    if (overlay) overlay.classList.add('open');
+    if (ham) ham.setAttribute('aria-expanded', 'true');
+  }
+  function closeDesktop() {
+    document.body.classList.remove('menu-open');
+    if (overlay) overlay.classList.remove('open');
+    if (ham) ham.setAttribute('aria-expanded', 'false');
+  }
+  function openMobile() {
+    document.body.classList.add('menu-open');
+    if (mobMenu) mobMenu.style.display = 'flex';
+    if (ham) ham.setAttribute('aria-expanded', 'true');
+  }
+  function closeMobile() {
+    document.body.classList.remove('menu-open');
+    if (mobMenu) mobMenu.style.display = 'none';
+    if (ham) ham.setAttribute('aria-expanded', 'false');
+  }
 
-  if (ham) ham.addEventListener('click', openMenu);
-  if (mobClose) mobClose.addEventListener('click', closeMenu);
+  function isDesktop() { return window.matchMedia(DESKTOP).matches; }
+
+  if (ham) ham.addEventListener('click', function() {
+    var isOpen = document.body.classList.contains('menu-open');
+    if (isDesktop()) {
+      isOpen ? closeDesktop() : openDesktop();
+    } else {
+      isOpen ? closeMobile() : openMobile();
+    }
+  });
+
+  // Cerrar overlay desktop: clic en un link, en el fondo, o Escape.
+  if (overlay) {
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay || (e.target.closest && e.target.closest('a'))) closeDesktop();
+    });
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+      isDesktop() ? closeDesktop() : closeMobile();
+    }
+  });
+
+  // Menú móvil (comportamiento existente, sin cambios).
+  if (mobClose) mobClose.addEventListener('click', closeMobile);
   if (mobMenu) {
-    mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeMenu(); });
-    mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+    mobMenu.addEventListener('click', function(e) { if (e.target === mobMenu) closeMobile(); });
+    mobMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMobile); });
   }
 });
 
@@ -246,7 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
   var overlay = document.getElementById('search-overlay');
   var input = document.getElementById('search-input');
   var results = document.getElementById('search-results');
-  var btn = document.getElementById('nav-search-btn');
   var closeBtn = document.getElementById('search-close');
   var noResults = lang === 'es' ? 'No se encontraron resultados' : 'No results found';
 
@@ -270,7 +332,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }).join('');
   }
 
-  if (btn) btn.addEventListener('click', open);
+  // El buscador del overlay de menú (readonly) abre este modal al enfocarlo.
+  // Se enlaza en DOMContentLoaded porque #menu-search-input (MenuOverlay) se
+  // parsea después de este script.
+  document.addEventListener('DOMContentLoaded', function() {
+    var menuSearch = document.getElementById('menu-search-input');
+    if (menuSearch) {
+      menuSearch.addEventListener('focus', open);
+      menuSearch.addEventListener('click', open);
+    }
+  });
   if (closeBtn) closeBtn.addEventListener('click', close);
   if (overlay) overlay.addEventListener('click', function(e) { if (e.target === overlay) close(); });
   if (input) input.addEventListener('input', function() { search(input.value); });
@@ -280,3 +351,4 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 </script>
+</content>

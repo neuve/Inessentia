@@ -22,7 +22,18 @@
   --sand-d: #A8945C;
   --ink: #262321;
   --warm: #FCFBF6;
+  --nav-h: 84px;
 }
+
+/* La barra vive sobre el banner de marca: los heros oscuros del tope (SiteHeader
+   o cualquier sección marcada con [data-nav-overlay]) se suben bajo la barra
+   sticky para que el nav transparente los cubra. Su padding-top interno mantiene
+   el contenido por debajo de la barra. */
+.site-header,
+[data-nav-overlay] { margin-top: calc(var(--nav-h) * -1); }
+
+/* Bloqueo de scroll con el overlay de menú abierto. */
+body.menu-open { overflow: hidden; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: var(--warm); }
@@ -41,19 +52,6 @@ body {
 [data-reveal].revealed {
   opacity: 1;
   transform: none;
-}
-
-/* WhatsApp pulse */
-.whatsapp-float::before {
-  content: ''; position: absolute; inset: 0; border-radius: 50%;
-  background: rgba(37,211,102,.45);
-  animation: waPulse 2.6s infinite;
-  pointer-events: none;
-}
-@keyframes waPulse {
-  0%   { transform: scale(1);   opacity: .45; }
-  70%  { transform: scale(1.6); opacity: 0; }
-  100% { transform: scale(1.6); opacity: 0; }
 }
 
 /* Section helpers */
@@ -152,11 +150,10 @@ body {
   box-shadow: 0 22px 48px rgba(70,39,110,.12);
 }
 
-/* Mobile nav */
+/* Mobile nav: se ocultan los links inline; el sandwich (#nav-ham) abre el
+   #mob-menu actual. El overlay editorial (desktop) queda oculto por su propio CSS. */
 @media (max-width: 820px) {
   #nav-links { display: none !important; }
-  #nav-cta-btn { display: none !important; }
-  #nav-ham { display: flex !important; }
 }
 
 #mob-menu {
@@ -188,17 +185,9 @@ body {
   border-radius: 999px;
   margin-top: 8px;
 }
-#mob-close {
-  position: absolute;
-  top: 24px;
-  right: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 28px;
-  color: var(--purple);
-  line-height: 1;
-}
+/* El sandwich flotante (#nav-ham) se transforma en X y ya sirve para cerrar el
+   menú móvil; se oculta la × redundante para no duplicar el control de cierre. */
+#mob-close { display: none; }
 
 /* Mobile general */
 @media (max-width: 600px) {
