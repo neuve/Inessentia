@@ -31,7 +31,7 @@
     "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles, con apoyo de la consciencia y el movimiento corporal.",
     "meta": "Presencial CDMX, Col. Nápoles · Online",
     "cta": "Agenda tu primera cita",
-    "secondary": "Conoce cómo trabajo",
+    "secondary": "Conoce mis modalidades de trabajo",
     "stats": [
       { "value": "10", "label": "<strong>años acompañando</strong><br>personas a volver a su esencia" },
       { "value": "89", "label": "<strong>consultantes</strong><br>con procesos de 12 o más sesiones" },
@@ -51,17 +51,17 @@
     "individual": {
       "title": "Terapia individual",
       "desc": "Adolescentes y adultos. Procesos para reconectar con el cuerpo, escuchar y procesar tus emociones, y apoyarte a decidir y tomar acción desde un lugar más claro.",
-      "link": "Conoce más →"
+      "link": "Conoce más"
     },
     "couples": {
       "title": "Terapia de pareja",
       "desc": "Ayudo a cada miembro a poner atención al vínculo desde la responsabilidad individual, mientras genera apertura para acoger la experiencia emocional —y el dolor— del otro. Un proceso que teje compasión con atención.",
-      "link": "Conoce más →"
+      "link": "Conoce más"
     },
     "family": {
       "title": "Terapia familiar",
       "desc": "Acompaño a las familias para que sus miembros se escuchen de manera más equilibrada y, desde dentro del sistema, puedan surgir nuevas soluciones a los retos compartidos.",
-      "link": "Conoce más →"
+      "link": "Conoce más"
     }
   },
   "testimonials": {
@@ -77,7 +77,7 @@
     "nameLabel": "Tu nombre",
     "emailLabel": "Tu correo electrónico",
     "emailPlaceholder": "hola@ejemplo.com",
-    "submit": "Recibe el podcast →",
+    "submit": "Recibe el podcast",
     "submitting": "Enviando...",
     "privacy": "Solo te contactaré con información sobre mi terapia. Puedes darte de baja en cualquier momento.",
     "privacyLink": "Consulta el aviso de privacidad",
@@ -91,7 +91,7 @@
     "title": "Escritos desde la consulta",
     "subtitle": "Aquí te comparto lecturas para apoyar tu proceso terapéutico y atender tu curiosidad sobre mi filosofía y mis aproximaciones.",
     "seeAll": "Descubre todas las entradas",
-    "readMore": "Lee más →"
+    "readMore": "Lee más"
   },
   "cta": {
     "title": "¿Quieres dar el primer paso?",
@@ -109,8 +109,7 @@
     "colTherapy": "Terapia",
     "colExplore": "Explora",
     "colContact": "Contacto",
-    "contactLine": "Escríbeme y con gusto resuelvo tus dudas.",
-    "whatsapp": "WhatsApp"
+    "contactLine": "Escríbeme y con gusto resuelvo tus dudas."
   },
   "comments": "Comentarios"
 }

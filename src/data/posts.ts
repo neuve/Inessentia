@@ -376,7 +376,7 @@ export function nextPostFor(id: string, locale: Locale): { href: string; label: 
   if (!p || !p.next) return null;
   const n = getPost(p.next);
   if (!n) return null;
-  return { href: postHref(locale, n.id), label: `${n[locale].title} →` };
+  return { href: postHref(locale, n.id), label: n[locale].title };
 }
 
 // Display order for the /recursos/ and /resources/ card grid, excluding

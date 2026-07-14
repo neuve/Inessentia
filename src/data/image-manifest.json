@@ -235,6 +235,44 @@
       }
     ]
   },
+  "/uploads/facebook-icon.png": {
+    "width": 1089,
+    "height": 1867,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/facebook-icon-96.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/facebook-icon-192.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/facebook-icon-320.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/facebook-icon-480.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/facebook-icon-640.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/facebook-icon-768.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/facebook-icon-960.webp"
+      },
+      {
+        "w": 1089,
+        "url": "/uploads/facebook-icon.png"
+      }
+    ]
+  },
   "/uploads/icono-terapia-familiar.webp": {
     "width": 250,
     "height": 279,
@@ -335,6 +373,40 @@
       }
     ]
   },
+  "/uploads/linkedin-icon.png": {
+    "width": 816,
+    "height": 645,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/linkedin-icon-96.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/linkedin-icon-192.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/linkedin-icon-320.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/linkedin-icon-480.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/linkedin-icon-640.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/linkedin-icon-768.webp"
+      },
+      {
+        "w": 816,
+        "url": "/uploads/linkedin-icon.png"
+      }
+    ]
+  },
   "/uploads/logo-icon.png": {
     "width": 214,
     "height": 214,
@@ -428,8 +500,8 @@
     ]
   },
   "/uploads/patricio-ruiz-retrato.webp": {
-    "width": 650,
-    "height": 974,
+    "width": 1707,
+    "height": 2560,
     "srcset": [
       {
         "w": 96,
@@ -452,7 +524,23 @@
         "url": "/uploads/responsive/patricio-ruiz-retrato-640.webp"
       },
       {
-        "w": 650,
+        "w": 768,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-768.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-960.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1200.webp"
+      },
+      {
+        "w": 1600,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1600.webp"
+      },
+      {
+        "w": 1707,
         "url": "/uploads/patricio-ruiz-retrato.webp"
       }
     ]

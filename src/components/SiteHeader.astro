@@ -36,11 +36,11 @@ interface Props {
   secondaryHref?: string;
   stats?: Stat[];
   variant?: 'auto' | 'split' | 'monolith';
-  /** Split only: portrait fills the full column height edge-to-edge (top
-   * aligned with the eyebrow, bottom with the stats) instead of a fixed
-   * aspect-ratio crop. Opt-in since it needs a tall enough text column
-   * (e.g. the home hero with stats) to look right. */
-  photoFill?: boolean;
+  /** Split only: `object-position` for the portrait inside its 4:5 box, to
+   * fine-tune the vertical crop (e.g. `center 30%` on the home hero to drop
+   * the wall clock while keeping air above the head). Defaults to the shared
+   * framing used across the other pages. */
+  photoPosition?: string;
 }
 
 import Img from './Img.astro';
@@ -59,7 +59,7 @@ const {
   secondaryHref,
   stats = [],
   variant = 'auto',
-  photoFill = false,
+  photoPosition,
 } = Astro.props;
 
 const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
@@ -68,7 +68,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 {mode === 'split' ? (
   <section class="site-header site-header--split">
     <div class="site-header__mandala" aria-hidden="true" data-parallax="0.06" data-parallax-max="50"></div>
-    <div class:list={["site-header__grid", { "site-header__grid--fill": photoFill }]}>
+    <div class="site-header__grid">
       <div data-reveal>
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}
         <h1 class="site-header__title">{title}</h1>
@@ -91,7 +91,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
           </div>
         )}
       </div>
-      <div class:list={["site-header__photo", { "site-header__photo--fill": photoFill }]} data-reveal>
+      <div class="site-header__photo" data-reveal style={photoPosition ? `--photo-pos:${photoPosition}` : undefined}>
         {photo && <Img src={photo} alt={photoAlt} sizes="(max-width:900px) 100vw, 50vw" fetchpriority="high" loading="eager" data-parallax="0.10" data-parallax-max="32" />}
       </div>
     </div>
@@ -160,14 +160,11 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     gap: clamp(36px, 4vw, 72px); align-items: center;
   }
   @media (max-width: 860px) { .site-header__grid { grid-template-columns: 1fr; } }
-  /* Portrait edge-to-edge with the text column (top at the eyebrow, bottom at
-     the stats), as opposed to the default fixed aspect-ratio crop. */
-  .site-header__grid--fill { align-items: stretch; }
+  /* Portrait: fixed 4:5 box. `--photo-pos` (from the `photoPosition` prop)
+     fine-tunes the vertical crop per page; the default replicates the prior
+     framing (image at 120% height pulled up 10% ≈ object-position center 8%). */
   .site-header__photo { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 30px 70px rgba(35,18,55,.34); aspect-ratio: 4 / 5; }
-  .site-header__photo img { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; object-fit: cover; display: block; }
-  .site-header__photo--fill { aspect-ratio: auto; height: 100%; }
-  .site-header__photo--fill img { position: static; width: 100%; height: 100%; }
-  @media (max-width: 860px) { .site-header__photo--fill { aspect-ratio: 4 / 5; height: auto; } .site-header__photo--fill img { position: absolute; top: 0; left: 0; height: 100%; } }
+  .site-header__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 8%); display: block; }
 
   /* ---------- Monolith (B) ---------- */
   .site-header--monolith { min-height: 66vh; display: flex; align-items: center; padding: 130px 0 96px; }
@@ -192,10 +189,10 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__lead :global(p) { margin: 0 0 10px; }
   .site-header__lead :global(p:last-child) { margin-bottom: 0; }
   .site-header__meta { margin: 0 0 30px; font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
-  .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 8px; }
+  /* Aire balanceado alrededor del pill: ~30px arriba (meta) y ~34px abajo (stats). */
+  .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
   /* Tertiary CTA: quiet text link so it doesn't compete with the primary white button */
   .site-header__link { color: rgba(255,255,255,.72); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
-  .site-header__link::after { content: ' \2192'; }
   .site-header__link:hover { color: #fff; border-bottom-color: rgba(255,255,255,.4); }
 
   /* ---------- Numeralia (split — grid de 3 columnas, sin divisores) ---------- */

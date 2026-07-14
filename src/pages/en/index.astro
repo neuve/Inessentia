@@ -22,7 +22,7 @@ const authorSchema = personSchema(locale);
     meta={i.hero.meta}
     photo="/uploads/patricio-ruiz-retrato.webp"
     photoAlt="Portrait of Patricio Ruiz Abrín, psychotherapist, a young adult with medium complexion and dark hair, with a calm expression and warm gaze"
-    photoFill
+    photoPosition="center bottom"
     ctaLabel={i.hero.cta}
     ctaHref="https://wa.me/patriciomx"
     secondaryLabel={i.hero.secondary}
@@ -39,7 +39,7 @@ const authorSchema = personSchema(locale);
       <h2 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(28px,4.2vw,48px);line-height:1.1;letter-spacing:-.01em;margin:0 auto 32px;max-width:18ch;text-wrap:balance;">{i.approach.title}</h2>
       <p data-reveal class="body-text" style="margin:0 auto 22px;max-width:68ch;">{i.approach.p1}</p>
       <p data-reveal class="body-text" style="margin:0 auto 34px;max-width:68ch;">{i.approach.p2}</p>
-      <a data-reveal href="/en/resources/" class="link-underline">{i.approach.link}</a>
+      <a data-reveal href="/en/blog/types-of-therapy/" class="link-underline">{i.approach.link}</a>
     </div>
   </section>
 
@@ -133,7 +133,7 @@ const authorSchema = personSchema(locale);
         var thanks = document.getElementById('podcast-thanks');
         if (thanks) thanks.style.display = 'block';
       }).catch(function() {
-        if (btn) { btn.disabled = false; btn.textContent = 'Get the podcast →'; }
+        if (btn) { btn.disabled = false; btn.textContent = 'Get the podcast'; }
       });
     });
   })();

@@ -70,9 +70,17 @@ const legalLinks = [
         <p class="footer2__contactline">{i.footer.contactLine}</p>
         <a href="mailto:patricio@inessentia.mx" class="footer2__email">patricio@inessentia.mx</a>
         <div class="footer2__social">
-          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="footer2__wa">{i.footer.whatsapp}</a>
-          <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer2__ig">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+          <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram" class="footer2__soc">
+            <img src="/uploads/instagram-icon.svg" alt="" width="18" height="18" />
+          </a>
+          <a href="https://www.facebook.com/neuve0/" target="_blank" rel="noopener" aria-label="Facebook" class="footer2__soc">
+            <img src="/uploads/facebook-icon.png" alt="" width="18" height="18" />
+          </a>
+          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" aria-label="WhatsApp" class="footer2__soc">
+            <img src="/uploads/whatsapp-icon.svg" alt="" width="18" height="18" />
+          </a>
+          <a href="https://www.linkedin.com/in/patricioruiz/" target="_blank" rel="noopener" aria-label="LinkedIn" class="footer2__soc">
+            <img src="/uploads/linkedin-icon.png" alt="" width="18" height="18" />
           </a>
         </div>
       </div>
@@ -129,19 +137,15 @@ const legalLinks = [
     margin-bottom: 20px; transition: color .2s;
   }
   .footer2__email:hover { color: var(--sand); }
-  .footer2__social { display: flex; align-items: center; gap: 14px; }
-  .footer2__wa {
-    display: flex; align-items: center; gap: 8px; background: #25D366;
-    border: 1px solid rgba(0,0,0,.08); color: var(--purple-d); font-size: 13px; font-weight: 700;
-    padding: 9px 16px; border-radius: 99px; text-decoration: none; transition: filter .2s;
-  }
-  .footer2__wa:hover { filter: brightness(1.08); }
-  .footer2__ig {
+  .footer2__social { display: flex; align-items: center; gap: 12px; }
+  .footer2__soc {
     display: flex; align-items: center; justify-content: center; width: 38px; height: 38px;
     border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
     transition: background .2s;
   }
-  .footer2__ig:hover { background: rgba(255,255,255,.18); }
+  .footer2__soc:hover { background: rgba(255,255,255,.18); }
+  /* Glifos de marca (SVG monocromo) renderizados en blanco para uniformidad. */
+  .footer2__soc img { width: 18px; height: 18px; display: block; filter: brightness(0) invert(1); }
   .footer2__emergency {
     display: flex; align-items: center; gap: 12px; background: rgba(142,43,93,.18);
     border: 1px solid rgba(194,176,126,.28); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px;

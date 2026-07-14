@@ -51,17 +51,17 @@
     "individual": {
       "title": "Individual Therapy",
       "desc": "Teens and adults. Processes to reconnect with your body, listen to and process your emotions, and support you in deciding and taking action from a clearer place.",
-      "link": "Learn more →"
+      "link": "Learn more"
     },
     "couples": {
       "title": "Couples Therapy",
       "desc": "I help each partner pay attention to the bond from a place of individual responsibility, while opening up to embrace the emotional experience — and pain — of the other. A process that weaves compassion with attention.",
-      "link": "Learn more →"
+      "link": "Learn more"
     },
     "family": {
       "title": "Family Therapy",
       "desc": "I support families so their members can listen to each other more equitably, and from within the system, new solutions to shared challenges can emerge.",
-      "link": "Learn more →"
+      "link": "Learn more"
     }
   },
   "testimonials": {
@@ -77,7 +77,7 @@
     "nameLabel": "Your name",
     "emailLabel": "Your email",
     "emailPlaceholder": "hello@example.com",
-    "submit": "Get the podcast →",
+    "submit": "Get the podcast",
     "submitting": "Sending...",
     "privacy": "I'll only contact you with information about my therapy. You can unsubscribe at any time.",
     "privacyLink": "See privacy policy",
@@ -91,7 +91,7 @@
     "title": "Writings from the consulting room",
     "subtitle": "Here I share readings to support your therapeutic process and to meet your curiosity about my philosophy and my approaches.",
     "seeAll": "See all posts",
-    "readMore": "Read more →"
+    "readMore": "Read more"
   },
   "cta": {
     "title": "Do you want to take the first step?",
@@ -109,8 +109,7 @@
     "colTherapy": "Therapy",
     "colExplore": "Explore",
     "colContact": "Contact",
-    "contactLine": "Write to me and I'll gladly answer your questions.",
-    "whatsapp": "WhatsApp"
+    "contactLine": "Write to me and I'll gladly answer your questions."
   },
   "comments": "Comments"
 }
