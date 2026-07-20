@@ -57,17 +57,16 @@ export function navLinks(locale: Locale) {
 }
 
 /** Curated subset shown inline in the simple bar (the full menu lives in the
- * overlay): Sobre mí · Recursos · Red terapéutica. */
+ * overlay): Sobre mí · Tipos de terapia (→ hub "cómo trabajo") · Agenda una sesión. */
 export function barLinks(locale: Locale) {
   const i = t(locale);
   const base = `/${locale}`;
   const about = locale === 'es' ? 'sobre-mi' : 'about-me';
-  const resources = locale === 'es' ? 'recursos' : 'resources';
-  const network = locale === 'es' ? 'red-terapeutica' : 'therapist-network';
+  const therapyTypesSlug = locale === 'es' ? 'tipos-de-terapia' : 'types-of-therapy';
   return [
     { label: i.nav.about, href: `${base}/${about}/` },
-    { label: i.nav.resources, href: `${base}/${resources}/` },
-    { label: i.nav.network, href: `${base}/${network}/` },
+    { label: i.nav.therapyTypes, href: `${base}/blog/${therapyTypesSlug}/` },
+    { label: i.nav.cta, href: 'https://wa.me/patriciomx' },
   ];
 }
 

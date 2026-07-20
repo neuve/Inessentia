@@ -13,13 +13,14 @@
     "network": "Therapist Network",
     "cta": "Book a Session",
     "openMenu": "Open navigation menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "therapyTypes": "Types of Therapy"
   },
   "menu": {
     "individual": "Individual therapy",
-    "framing": "Framing",
+    "framing": "T&C",
     "testimonials": "Testimonials",
-    "book": "Book",
+    "book": "Book a Session",
     "couplesShort": "Couples",
     "familyShort": "Family",
     "contact": "Contact",
@@ -31,11 +32,20 @@
     "subtitle": "I support people in reducing their anxiety and stress, and softening the patterns that no longer serve them, with the support of awareness and body-based movement.",
     "meta": "In person in Mexico City, Nápoles · Online",
     "cta": "Book Your First Session",
-    "secondary": "See how I work",
+    "secondary": "See my experience",
     "stats": [
-      { "value": "10", "label": "<strong>years accompanying</strong><br>people back to their essence" },
-      { "value": "89", "label": "<strong>clients</strong><br>with 12+ session journeys" },
-      { "value": "16", "label": "<strong>sessions average</strong><br>per therapeutic process" }
+      {
+        "value": "10",
+        "label": "<strong>years accompanying</strong><br>people back to their essence"
+      },
+      {
+        "value": "89",
+        "label": "<strong>clients</strong><br>with 12+ session journeys"
+      },
+      {
+        "value": "16",
+        "label": "<strong>sessions average</strong><br>per therapeutic process"
+      }
     ]
   },
   "approach": {
@@ -59,7 +69,7 @@
       "link": "Learn more"
     },
     "family": {
-      "title": "Family Therapy",
+      "title": "Systemic Family Therapy",
       "desc": "I support families so their members can listen to each other more equitably, and from within the system, new solutions to shared challenges can emerge.",
       "link": "Learn more"
     }

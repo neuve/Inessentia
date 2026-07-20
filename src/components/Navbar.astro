@@ -31,14 +31,12 @@ const searchBlogEntries = {
       ))}
     </nav>
     <div class="navbar__spacer" aria-hidden="true"></div>
+    <!-- Sandwich: parte real de la barra; se transforma en X cuando el menú abre. -->
+    <button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
-
-<!-- Sandwich flotante: vive por encima del overlay (no dentro de la barra) para
-     permanecer visible y transformarse en X cuando el menú abre. -->
-<button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
-  <span></span><span></span><span></span>
-</button>
 
 <!-- Search overlay (reutilizado desde el buscador del menú overlay) -->
 <div id="search-overlay" class="search-overlay">
@@ -54,26 +52,15 @@ const searchBlogEntries = {
 <style>
   .navbar {
     position: sticky; top: 0; width: 100%;
-    z-index: 40;
+    z-index: 220;
     min-height: var(--nav-h);
-    background: rgba(234, 229, 217, .95);
+    background: linear-gradient(100deg, #341A54 0%, #46276E 30%, #7E4E77 56%, #C2B07E 83%, #EAE5D9 100%);
     box-shadow: none;
-    transition: box-shadow .35s ease, background .35s cubic-bezier(.22,1,.36,1),
-                transform .38s cubic-bezier(.22,1,.36,1);
+    transition: box-shadow .35s ease, background .8s cubic-bezier(.22,1,.36,1);
   }
-  /* Borde + sombra sutiles solo en estado sólido tras hacer scroll, como
-     box-shadow (no border) para no sumar 1px a la altura de la barra —
-     con margin-top negativo sobre el hero, un border real desalinea el
-     encaje y deja una línea de 1px del fondo de la página. */
-  :global(html:not(.over-hero)) .navbar.navbar--scrolled {
+  /* Borde + sombra sutiles tras hacer scroll. */
+  .navbar.navbar--scrolled {
     box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
-  }
-  .navbar.navbar--hidden { transform: translateY(-100%); }
-
-  /* Estado transparente sobre un banner oscuro (marcado por html.over-hero). */
-  :global(html.over-hero) .navbar {
-    background: transparent;
-    box-shadow: none;
   }
 
   .navbar__inner {
@@ -84,44 +71,43 @@ const searchBlogEntries = {
   .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: 1; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
-    font-family: 'Zilla Slab', serif; font-weight: 600; color: var(--purple);
+    font-family: 'Zilla Slab', serif; font-weight: 600; color: #fff;
     font-size: 17px; line-height: 1.12; letter-spacing: .01em;
-    transition: color .35s ease;
+    transition: color .8s cubic-bezier(.22,1,.36,1);
   }
-  :global(html.over-hero) .navbar__logo-name { color: #fff; }
+  /* Con el menú abierto el fondo de la barra desaparece y queda el crema del
+     overlay detrás — el logo pasa a morado para seguir siendo legible. */
+  :global(body.menu-open) .navbar__logo-name { color: var(--purple); }
 
-  .navbar__links { display: flex; align-items: center; gap: 38px; flex: none; }
+  .navbar__links { display: flex; align-items: center; gap: 38px; flex: none; transition: opacity .8s cubic-bezier(.22,1,.36,1); }
   .navbar__link {
     font-family: 'Mulish', sans-serif;
     font-weight: 700; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
-    color: var(--purple); text-decoration: none; white-space: nowrap;
+    color: #fff; text-decoration: none; white-space: nowrap;
     transition: color .2s;
   }
-  .navbar__link:hover { color: var(--wine); }
-  :global(html.over-hero) .navbar__link { color: rgba(255, 255, 255, .92); }
-  :global(html.over-hero) .navbar__link:hover { color: #fff; }
+  .navbar__link:hover { color: var(--sand); }
+  /* Con el menú abierto: el fondo de la barra y los links principales
+     desaparecen — el logo se queda flotando, en blanco, por encima de todo. */
+  :global(body.menu-open) .navbar { background: transparent; box-shadow: none; }
+  :global(body.menu-open) .navbar__links { opacity: 0; pointer-events: none; }
 
-  /* Zona derecha vacía: equilibra el logo (flex:1) para centrar el nav; deja
-     espacio bajo el sandwich flotante. */
+  /* Zona derecha vacía: equilibra el logo (flex:1) para centrar el nav. */
   .navbar__spacer { flex: 1; }
 
-  /* ---------- Sandwich flotante ---------- */
+  /* ---------- Sandwich (parte de la barra) ---------- */
   .nav-ham {
-    position: fixed; top: calc((var(--nav-h) - 22px) / 2); right: 40px;
-    z-index: 220; width: 27px; height: 22px; padding: 0;
+    flex: none; width: 27px; height: 22px; padding: 0; position: relative;
     background: none; border: none; cursor: pointer; display: block;
   }
   .nav-ham span {
     position: absolute; left: 0; width: 27px; height: 1.5px; display: block;
     background: var(--purple);
-    transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease, background .5s ease;
+    transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease;
   }
   .nav-ham span:nth-child(1) { top: 0; }
   .nav-ham span:nth-child(2) { top: 10px; }
   .nav-ham span:nth-child(3) { top: 20px; }
-  :global(html.over-hero) .nav-ham span { background: #fff; }
-  /* Con el menú abierto: barras púrpura sobre el crema del overlay + forma X. */
-  :global(body.menu-open) .nav-ham span { background: var(--purple); }
   :global(body.menu-open) .nav-ham span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
   :global(body.menu-open) .nav-ham span:nth-child(2) { opacity: 0; transform: scaleX(.4); }
   :global(body.menu-open) .nav-ham span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
@@ -129,7 +115,6 @@ const searchBlogEntries = {
   @media (max-width: 500px) {
     .navbar__logo-icon { height: 52px; }
     .navbar__logo-name { font-size: 15px; }
-    .nav-ham { right: 22px; }
   }
 
   .search-overlay {
@@ -184,38 +169,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const overlay = document.getElementById('menu-overlay');   // desktop editorial overlay
   const mobMenu = document.getElementById('mob-menu');        // mobile menu (unchanged)
   const mobClose = document.getElementById('mob-close');
-  const root = document.documentElement;
   const DESKTOP = '(min-width: 821px)';
 
-  // --- Estado transparente vs. sólido -------------------------------------
-  // Sólido por defecto; transparente solo mientras un banner oscuro (SiteHeader
-  // o cualquier sección con [data-nav-overlay]) cubre la barra. Se calcula en el
-  // scroll (determinista) en vez de con IntersectionObserver.
-  var darkBanner = document.querySelector('.site-header, [data-nav-overlay]');
-  var NAV_H = parseInt(getComputedStyle(root).getPropertyValue('--nav-h'), 10) || 84;
-  function updateOverHero() {
-    if (!darkBanner) return;
-    // Transparente mientras el fondo del banner siga por debajo del borde
-    // inferior de la barra; sólido en cuanto el banner queda por encima.
-    root.classList.toggle('over-hero', darkBanner.getBoundingClientRect().bottom > NAV_H);
-  }
-  updateOverHero();
-
-  // --- Sombra al hacer scroll + ocultar-al-bajar / reaparecer-al-subir ------
-  var lastScrollY = window.scrollY || document.documentElement.scrollTop;
+  // --- Sombra al hacer scroll ------------------------------------------------
+  // La barra queda siempre fija y visible (degradado permanente); solo se le
+  // agrega sombra tras un pequeño scroll para separarla del contenido.
   window.addEventListener('scroll', function() {
     if (!nav) return;
     var y = window.scrollY || document.documentElement.scrollTop;
-    updateOverHero();
     nav.classList.toggle('navbar--scrolled', y > 8);
-    if (y > lastScrollY && y > 160 && !document.body.classList.contains('menu-open')) {
-      nav.classList.add('navbar--hidden');
-    } else {
-      nav.classList.remove('navbar--hidden');
-    }
-    lastScrollY = y;
   }, { passive: true });
-  window.addEventListener('resize', updateOverHero, { passive: true });
 
   // --- Overlay / menú -------------------------------------------------------
   function openDesktop() {

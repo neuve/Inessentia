@@ -13,11 +13,12 @@
     "network": "Red terapéutica",
     "cta": "Agenda cita",
     "openMenu": "Abrir menú de navegación",
-    "closeMenu": "Cerrar menú"
+    "closeMenu": "Cerrar menú",
+    "therapyTypes": "Tipos de terapia"
   },
   "menu": {
     "individual": "Terapia individual",
-    "framing": "Encuadre",
+    "framing": "TyC",
     "testimonials": "Testimonios",
     "book": "Agendar",
     "couplesShort": "De pareja",
@@ -31,11 +32,20 @@
     "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles, con apoyo de la consciencia y el movimiento corporal.",
     "meta": "Presencial CDMX, Col. Nápoles · Online",
     "cta": "Agenda tu primera cita",
-    "secondary": "Conoce mis modalidades de trabajo",
+    "secondary": "Conoce mi experiencia",
     "stats": [
-      { "value": "10", "label": "<strong>años acompañando</strong><br>personas a volver a su esencia" },
-      { "value": "89", "label": "<strong>consultantes</strong><br>con procesos de 12 o más sesiones" },
-      { "value": "16", "label": "<strong>sesiones promedio</strong><br>por proceso terapéutico" }
+      {
+        "value": "10",
+        "label": "<strong>años acompañando</strong><br>personas a volver a su esencia"
+      },
+      {
+        "value": "89",
+        "label": "<strong>consultantes</strong><br>con procesos de 12 o más sesiones"
+      },
+      {
+        "value": "16",
+        "label": "<strong>sesiones promedio</strong><br>por proceso terapéutico"
+      }
     ]
   },
   "approach": {
@@ -59,7 +69,7 @@
       "link": "Conoce más"
     },
     "family": {
-      "title": "Terapia familiar",
+      "title": "Terapia familiar sistémica",
       "desc": "Acompaño a las familias para que sus miembros se escuchen de manera más equilibrada y, desde dentro del sistema, puedan surgir nuevas soluciones a los retos compartidos.",
       "link": "Conoce más"
     }

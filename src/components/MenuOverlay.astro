@@ -89,8 +89,8 @@ let idx = 0;
   }
 
   .menu-overlay__logo {
-    display: flex; align-items: center; gap: 12px; text-decoration: none;
-    opacity: 0; transition: opacity .3s ease;
+    /* Oculto: el logo de Navbar.astro flota fijo por encima del overlay, no hace falta duplicarlo. */
+    display: none;
   }
   .menu-overlay.open .menu-overlay__logo { opacity: 1; transition: opacity .7s ease .55s; }
   .menu-overlay__logo img { height: 60px; width: auto; display: block; }
