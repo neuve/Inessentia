@@ -155,6 +155,44 @@
       }
     ]
   },
+  "/uploads/ease-caballos-hero.webp": {
+    "width": 1200,
+    "height": 800,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/ease-caballos-hero-96.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/ease-caballos-hero-192.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/ease-caballos-hero-320.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/ease-caballos-hero-480.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/ease-caballos-hero-640.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/ease-caballos-hero-768.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/ease-caballos-hero-960.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/ease-caballos-hero.webp"
+      }
+    ]
+  },
   "/uploads/experiencia-somatica-impala-guepardo-card.webp": {
     "width": 700,
     "height": 382,

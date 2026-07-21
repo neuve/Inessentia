@@ -24,6 +24,8 @@ export interface PostEntry {
   cardAlt?: { es?: string; en?: string };
   /** smaller pre-resized image for the card thumbnail (~190px tall), when heroImage is much larger than the crop needs */
   cardImage?: string;
+  /** looping muted clip that plays over the card thumbnail on hover */
+  cardVideo?: { mp4: string; webm: string };
   es: PostLocaleMeta;
   en: PostLocaleMeta;
   /** id of the post this one links to via "read next", or null for standalone hub posts */
@@ -94,6 +96,7 @@ export const posts: PostEntry[] = [
     slugEs: 'ease-caballos',
     slugEn: 'ease-horses',
     heroImage: '/uploads/ease-caballos-hero.webp',
+    cardVideo: { mp4: '/uploads/ease-caballos-clip.mp4', webm: '/uploads/ease-caballos-clip.webm' },
     heroAlt: {
       es: 'Un caballo y una persona de pie, cercanos, en un campo abierto',
       en: 'A horse and a person standing close together in an open field',
