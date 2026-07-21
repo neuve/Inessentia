@@ -388,6 +388,7 @@ export function nextPostFor(id: string, locale: Locale): { href: string; label: 
 // Display order for the /recursos/ and /resources/ card grid, excluding
 // 'que-esperar-de-la-terapia' which is shown separately as the featured post.
 export const resourcesGridOrder: string[] = [
+  'ease-caballos',
   'primera-cita',
   'cuando-es-buen-momento',
   'tipos-de-terapia',
