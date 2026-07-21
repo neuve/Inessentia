@@ -1,0 +1,48 @@
+---
+import BlogPost from '../../../layouts/BlogPost.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('ease-caballos')!;
+const locale = 'en';
+---
+
+<BlogPost
+  locale={locale}
+  title={post.en.title}
+  description={post.en.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.en.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.en}
+  heroPosition={post.heroPosition}
+  heroParallax
+  disqusIdentifier={post.en.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
+  videos={[
+    { name: "EASE: Equine Assisted Somatic Experiencing", description: "An introduction to Equinimity's Equine Assisted Somatic Experiencing (EASE) work.", thumbnailUrl: "https://img.youtube.com/vi/VlRoTgBF2lo/hqdefault.jpg", contentUrl: "https://www.youtube.com/watch?v=VlRoTgBF2lo", embedUrl: "https://www.youtube.com/embed/VlRoTgBF2lo" },
+  ]}
+>
+  <p data-reveal>I arrived in Querétaro without many expectations. What I carried was a desire: to meet and explore a new way of relating. What I found at Las Pawlonias, in July 2026, was a workshop that begins with experience — the rational information arrived little by little, once the body had already understood something first. This is how Barbara Collier and Jeanie Shepherd hold their offering: <strong>EASE</strong>, Equine Assisted Somatic Experiencing.</p>
+
+  <h2 data-reveal>A workshop where no one says "equine therapy"</h2>
+  <p data-reveal>There is a detail that feels telling to me: in the entire workshop, the phrase "equine therapy" is never spoken. That absence opens a fresh way of seeing — you are not there to be given therapy, to receive something, to be cured. You come to an encounter with nature, and to an exploration of relational work through the bond with horses: sharing space with them, up close, and discovering what happens in you there.</p>
+  <p data-reveal>Barbara Collier is a Somatic Experiencing Practitioner (SEP), a licensed professional counselor, and a nurse by first training; she has studied extensively with Peter Levine and Kathy Kain, and co-founded <a href="https://equinimitytucson.com/" class="link-underline" target="_blank" rel="noopener">Equinimity</a>, a nonprofit in Tucson, Arizona, that weaves trauma-informed somatic practices, movement, and creative expression together with equine-assisted work. With Jeanie Shepherd, she brought this workshop for complex and developmental trauma to Mexico.</p>
+  <p data-reveal>I don't want to describe what they do — I would rather describe what the process gave me. I would put it in stages: the approach, the forming of a bond, the widening of that bond's capacity, and finally the experience of trust — discovering that the bond exists and holds.</p>
+
+  <h2 data-reveal>Families of concepts for the body</h2>
+  <p data-reveal>The workshop's curriculum rests on small families of concepts that become embodied through the exercises. The first has to do with the depth of physical contact with the horses: <strong>hair, skin, muscle, and bone</strong> — four possible depths of one same touch. Another is the triad of <strong>mind, heart, and hands</strong>, mirrored in <strong>thinking, feeling, and will</strong>. Another gathers <strong>presence, connection, and leadership</strong> — with awareness of the surroundings as its ground. And one more widens the sensory repertoire: not only the five senses we know, but those other senses that help us perceive our relationship with ourselves, with our body, and with the world.</p>
+  <p data-reveal>Beyond the concepts, though, what mattered most to me were the invitations to be present in my body — first with some degree of bodily awareness, then recognizing my relationship with the environment, and the environment's relationship with itself.</p>
+  <p data-reveal>There is an idea Barbara and Jeanie return to that keeps working in me: <em>life begets life</em>. Life does not concern itself with death; it concerns itself with creating the conditions that sustain life. Carried into therapeutic work: we don't focus on the trauma — we make it easier for attention to go toward what sustains life. From presence in my body, from awareness of my being in the world and of how that world holds the conditions for life, I could build enough safety to move toward encounter — first with the landscape, then with my fellow participants, and finally with the horses who accompanied us.</p>
+
+  <h2 data-reveal>What the horses mirrored back to me</h2>
+  <p data-reveal>This is my personal journey, and these are my field notes. The first thing I could see was my hurry: a hurry to complete the task and make room for someone else to practice, which kept costing me the bond with the horses. I received a simple invitation — to stay a little longer, and to give thanks before closing the relational space in each exercise. Stay. Give thanks. Close.</p>
+  <p data-reveal>The second was how I brace with my body to carry out a task: a holding built on rigid strength that, they reflected back to me, sometimes kept me from conveying my intention to the horses and got in the way of the process. As I softened and let go, I began to see that there could be <strong>strength without rigidity</strong>. And after working with those two threads — hurry and rigidity — something arrived that I wasn't expecting: joy, pleasure, and play. Play as a legitimate part of exploration.</p>
+  <p data-reveal>I also had the chance to work one-on-one with Barbara and to taste her approach to somatic touch, in the lineage of Kathy Kain. It brought me back to the body's basic tasks: feeling my grounding and my presence in my legs and feet, especially through diaphragmatic breathing — working with the abdominal diaphragm, the pelvic diaphragm, and the diaphragms of the feet, concepts I had first met while studying the introduction to craniosacral therapy at the Upledger Institute. In Barbara's words: saying hello to the parts of the body that make themselves present, and hello to the ones that don't. It was a very round process — beginning in the body, going out into the world, and returning to myself, in a coming and going.</p>
+
+  <h2 data-reveal>What can happen in a silence</h2>
+  <p data-reveal>If I had to name the most valuable thing the workshop left me, it would be this: the pleasure of experiencing everything that can happen in a silence — in containment, in presence, in connection. There are very few words for that, and there are also many paths. But working with these great mammals, and with the facilitation of these teachers, was a process that let me touch what is deep and inner in me — lovingly.</p>
+  <p data-reveal>I recognize this experience as a natural extension of the <a href="/en/blog/somatic-experiencing/" class="link-underline">Somatic Experiencing</a> I integrate in my practice, and of the map offered by <a href="/en/blog/polyvagal-theory/" class="link-underline">Polyvagal Theory</a>: co-regulation is not exclusive to humans — a nervous system can find safety in the presence of another, even when that other walks on four legs and does not speak.</p>
+  <p data-reveal>I want to thank the teachers <a href="https://experienciasomaticamexico.com/terapeutas/viviana-valdes-teja/" class="link-underline" target="_blank" rel="noopener">Viviana Valdés Tejada</a> and Andrés Hijuelos for creating the conditions for this workshop to be offered in Mexico. And Barbara, Jeanie, and the horses of Las Pawlonias — for reminding me that a bond is built slowly, is thanked before it is closed, and is best held without rigidity.</p>
+  <VideoEmbed videoId="VlRoTgBF2lo" title="Watch: EASE — Equine Assisted Somatic Experiencing" style="max-width:100%;" caption="The EASE work at Equinimity, Tucson. (Source: YouTube)." />
+</BlogPost>
