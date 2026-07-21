@@ -1,0 +1,57 @@
+---
+import BlogPost from '../../../layouts/BlogPost.astro';
+import VideoEmbed from '../../../components/VideoEmbed.astro';
+import { getPost, nextPostFor } from '../../../data/posts';
+
+const post = getPost('ease-caballos')!;
+const locale = 'es';
+---
+
+<BlogPost
+  locale={locale}
+  title={post.es.title}
+  description={post.es.description}
+  altPath={`/blog/${locale === "es" ? post.slugEn : post.slugEs}/`}
+  category={post.es.category}
+  heroImage={post.heroImage}
+  heroAlt={post.heroAlt.es}
+  heroPosition={post.heroPosition}
+  heroParallax
+  disqusIdentifier={post.es.disqusIdentifier}
+  nextPost={nextPostFor(post.id, locale)}
+  videos={[
+    { name: "EASE: Equine Assisted Somatic Experiencing", description: "Presentación del trabajo de Experiencias Somáticas asistidas por equinos (EASE) de Equinimity.", thumbnailUrl: "https://img.youtube.com/vi/VlRoTgBF2lo/hqdefault.jpg", contentUrl: "https://www.youtube.com/watch?v=VlRoTgBF2lo", embedUrl: "https://www.youtube.com/embed/VlRoTgBF2lo" },
+  ]}
+>
+  <p data-reveal>Decidí tomar este taller y llegué a Querétaro sin muchas expectativas más que mi experiencia previa de una actualización sobre Toque en Experiencia Somática que nos brindó <a href="https://www.barbaracollier.com/about-barbara" class="link-underline" target="_blank" rel="noopener">Barbara Collier</a> el invierno pasado. Traía, eso sí, un deseo: conocer y explorar una manera distinta de trabajar con el trauma de desarrollo y de vincularme con la naturaleza.</p>
+  <p data-reveal>Lo que encontré en Las Pawlonias, en julio de 2026, fue un taller que empieza por la experiencia — la información racional fue llegando poco a poco, cuando el cuerpo ya había entendido algo primero. Así trabajan Barbara Collier y Jeanie Shepherd su propuesta: <strong>EASE</strong>, Equine Assisted Somatic Experiencing — Experiencias Somáticas asistidas por equinos.</p>
+
+  <div data-reveal>
+    <video autoplay muted loop playsinline preload="metadata" poster="/uploads/ease-caballos-hero.webp" width="1200" height="675" style="width:100%;height:auto;border-radius:12px;display:block;">
+      <source src="/uploads/ease-caballos-clip.webm" type="video/webm">
+      <source src="/uploads/ease-caballos-clip.mp4" type="video/mp4">
+    </video>
+    <p style="margin:8px 0 0;font-size:13px;color:var(--sand-d);">El corral de Las Pawlonias, Querétaro, al atardecer — los caballos que acompañaron el taller.</p>
+  </div>
+
+  <h2 data-reveal>Un taller donde nadie dice "equinoterapia"</h2>
+  <p data-reveal>Hay un detalle que me parece revelador: en todo el taller, la palabra "equinoterapia" no se usa ni una sola vez. Y esa ausencia abre una mirada fresca — no vienes a que te den terapia, a recibir algo, a que te curen. Vienes a un encuentro con la naturaleza y a una exploración del trabajo relacional a través del vínculo con los caballos: a convivir con ellos de cerca, en el corral donde viven y duermen, y explorar los movimientos internos que te suceden mientras estás ahí interactuando con ellos.</p>
+  <p data-reveal>Barbara Collier, practicante de Experiencia Somática (SEP), consejera profesional y enfermera de formación; se ha formado extensamente con Peter Levine y con Kathy Kain, y cofundó <a href="https://equinimitytucson.com/" class="link-underline" target="_blank" rel="noopener">Equinimity</a>, una organización sin fines de lucro en Tucson, Arizona, que integra prácticas somáticas informadas por el trauma, movimiento y expresión creativa con el trabajo asistido por caballos. Junto con Jeanie Shepherd trajo a México este taller orientado al trauma complejo y de desarrollo, gracias al apoyo de Experiencia Somática México y la organización excelentísima de los maestros y facilitadores Viviana Valdés y Andrés Hijuelos.</p>
+  <p data-reveal>No quiero relatar qué es lo que hacen —para eso está el video al final de este texto— y quiero relatar qué me dio el proceso. Lo pondría en etapas: la aproximación, la creación de un vínculo, la ampliación de la capacidad de ese vínculo y, finalmente, la experimentación de la confianza — comprobar que el vínculo existe y está formado.</p>
+
+  <h2 data-reveal>Familias de conceptos para el cuerpo</h2>
+  <p data-reveal>El currículum del taller se sostiene en pequeñas familias de conceptos que se van encarnando en los ejercicios. La primera tiene que ver con la aproximación y la comprensión de la intensidad del contacto físico con los caballos: <strong>pelaje, piel, músculo y hueso</strong> — cuatro profundidades posibles de un mismo toque. Otra es la tríada <strong>mente, corazón y manos</strong>, que se refleja en la de <strong>pensamiento, sentimiento y voluntad</strong>. Otra más reúne <strong>presencia, conexión y liderazgo</strong> — con la conciencia del entorno como sostén. Y una última amplía el repertorio de lo sensorial: no solo los cinco sentidos que conocemos, sino esos otros sentidos que nos ayudan a percibir nuestra relación con nosotros mismos, con nuestro cuerpo y con el mundo.</p>
+  <p data-reveal>Pero más allá de los conceptos, lo importante para mí fueron las invitaciones a estar presente — primero desde mi cuerpo con cierto grado de conciencia corporal, después reconociendo mi relación con el ambiente, y la relación del ambiente consigo mismo.</p>
+  <p data-reveal>Hay una idea que Barbara y Jeanie repiten y que me sigue trabajando por dentro: <em>la vida engendra vida</em>. La vida no se ocupa de la muerte; se ocupa de generar las condiciones para sostenerse. Trasladado al trabajo terapéutico: no nos enfocamos en el trauma — facilitamos que la atención vaya hacia lo que sostiene la vida. Nuevamente, desde la presencia en mi cuerpo, desde la conciencia de mi estar en el mundo y de cómo ese mundo sostiene las condiciones para la vida, es como pude construir seguridad para ir al encuentro — primero con el ambiente natural, después con mis compañeras de curso y finalmente con los caballos que nos acompañaron.</p>
+
+  <h2 data-reveal>Lo que los caballos me reflejaron</h2>
+  <p data-reveal>Lo primero que pude ver fue mi prisa: una prisa por cumplir con la tarea y dar paso a que alguien más practicara, que me hacía perder de vista el vínculo con los caballos. Recibí una invitación sencilla — quedarme un poco más de tiempo y agradecer antes de cerrar el espacio relacional en cada ejercicio. Quedarme. Agradecer. Cerrar.</p>
+  <p data-reveal>Lo segundo fue cómo me sostengo con el cuerpo para ejecutar una tarea: un sostén desde la fuerza rígida que, me reflejaron, a veces me impedía transmitir mi intención a los caballos y entorpecía los procesos. Conforme me fui soltando y suavizando, fui viendo que podía haber <strong>fuerza sin rigidez</strong>. Y después de trabajar con esas dos líneas — la prisa y la rigidez — llegó algo que no esperaba: el gozo, el placer y el juego. El juego como parte legítima de la exploración.</p>
+  <p data-reveal>Tuve también la oportunidad de que Barbara trabajara uno a uno conmigo y de conocer su aproximación al toque somático — <em>somatic touch</em>, en la línea de Kathy Kain. Me regresó a las tareas básicas del cuerpo: sentir mi arraigo y mi presencia en las piernas y los pies, especialmente a través de la respiración diafragmática — trabajando con el diafragma abdominal, el diafragma pélvico y los diafragmas de los pies, conceptos que había conocido al estudiar la introducción a la terapia craneosacral en el Instituto Upledger y en los que ahora pude profundizar con apoyo del toque y la respiración. En palabras de Barbara: decirle hola a las partes del cuerpo que se hacen presentes, y hola a las que no se hacen presentes. Fue un proceso muy redondo — empezar por el cuerpo, salir al mundo y regresar a mí, en un ciclo recurrente.</p>
+
+  <h2 data-reveal>Lo que puede suceder en el silencio</h2>
+  <p data-reveal>Si tuviera que decir qué fue lo más valioso que me dejó el taller, sería esto: el placer de experimentar todo lo que puede suceder en un silencio — en contención, en presencia y en conexión. Para eso hay muy pocas palabras, y también hay muchos caminos. Pero trabajando con estos grandes mamíferos, y con la facilitación de estas maestras, fue un proceso que me permitió contactar amorosamente con lo profundo, con lo interno.</p>
+  <p data-reveal>Reconozco esta experiencia como una extensión natural de la <a href="/es/blog/experiencia-somatica/" class="link-underline">Experiencia Somática</a> que integro en consulta, y del mapa que ofrece la <a href="/es/blog/teoria-polivagal/" class="link-underline">Teoría Polivagal</a>: la co-regulación no es exclusiva de los humanos — un sistema nervioso puede encontrar seguridad en la presencia de otro, aunque ese otro tenga cuatro patas y hable desde la coherencia, usando palabras como la atención, la cercanía, la presencia y el movimiento.</p>
+  <p data-reveal>Quiero subrayar y agradecer el trabajo de los maestros <a href="https://experienciasomaticamexico.com/terapeutas/viviana-valdes-teja/" class="link-underline" target="_blank" rel="noopener">Viviana Valdés Tejada</a> y Andrés Hijuelos por generar las condiciones para que este taller pudiera impartirse en México. Y a Barbara, a Jeanie y London, Patol, Emilio, Jacinto, Milho, Miranda, Juanito, y el resto de los caballos y animales de Las Pawlonias — por recordarme que el vínculo se construye despacio, se agradece antes de cerrarse, y se sostiene mejor sin rigidez.</p>
+  <VideoEmbed videoId="VlRoTgBF2lo" title="Ver video: EASE — Equine Assisted Somatic Experiencing" style="max-width:100%;" caption="El trabajo de EASE en Equinimity, Tucson. (Fuente: YouTube)." />
+</BlogPost>

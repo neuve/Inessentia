@@ -89,6 +89,21 @@ export const posts: PostEntry[] = [
     next: 'sistemas-familiares-internos',
   },
   {
+    id: 'ease-caballos',
+    cardBlurb: { es: 'Lo que puede suceder en un silencio, en presencia y en conexión.', en: 'What can happen in silence, in presence, in connection.' },
+    slugEs: 'ease-caballos',
+    slugEn: 'ease-horses',
+    heroImage: '/uploads/ease-caballos-hero.webp',
+    heroAlt: {
+      es: 'Un caballo y una persona de pie, cercanos, en un campo abierto',
+      en: 'A horse and a person standing close together in an open field',
+    },
+    heroPosition: 'center 40%',
+    es: { title: 'EASE: lo que los caballos me mostraron sobre el vínculo', description: 'Bitácora de mi experiencia en el taller de Experiencias Somáticas asistidas por equinos (EASE) con Barbara Collier y Jeanie Shepherd en Querétaro: presencia, vínculo, fuerza sin rigidez y el gozo de lo que puede suceder en un silencio.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-ease-caballos.html' },
+    en: { title: 'EASE: what horses showed me about connection', description: 'Field notes from the Equine Assisted Somatic Experiencing (EASE) workshop with Barbara Collier and Jeanie Shepherd in Querétaro: presence, bonding, strength without rigidity, and the joy of what can happen in silence.', category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-ease-horses.html' },
+    next: 'experiencia-somatica',
+  },
+  {
     id: 'sistemas-familiares-internos',
     cardBlurb: { es: 'Conocer las partes que te habitan.', en: 'Getting to know the parts that live in you.' },
     slugEs: 'sistemas-familiares-internos',
@@ -382,6 +397,7 @@ export function nextPostFor(id: string, locale: Locale): { href: string; label: 
 // Display order for the /recursos/ and /resources/ card grid, excluding
 // 'que-esperar-de-la-terapia' which is shown separately as the featured post.
 export const resourcesGridOrder: string[] = [
+  'ease-caballos',
   'primera-cita',
   'cuando-es-buen-momento',
   'tipos-de-terapia',
