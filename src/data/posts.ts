@@ -88,7 +88,7 @@ export const posts: PostEntry[] = [
     cardBlurb: { es: 'Lo que puede suceder en un silencio, en presencia y en conexión.', en: 'What can happen in silence, in presence, in connection.' },
     slugEs: 'ease-caballos',
     slugEn: 'ease-horses',
-    heroImage: '/uploads/placeholder-ease-caballos.svg',
+    heroImage: '/uploads/ease-caballos-hero.webp',
     heroAlt: {
       es: 'Un caballo y una persona de pie, cercanos, en un campo abierto',
       en: 'A horse and a person standing close together in an open field',
