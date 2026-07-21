@@ -11,7 +11,7 @@
     "family": "Familias",
     "resources": "Recursos",
     "network": "Red terapéutica",
-    "cta": "Agenda cita",
+    "cta": "Agendar una cita",
     "openMenu": "Abrir menú de navegación",
     "closeMenu": "Cerrar menú",
     "therapyTypes": "Tipos de terapia"
@@ -27,9 +27,9 @@
     "searchPlaceholder": "Buscar en el sitio…"
   },
   "hero": {
-    "label": "Terapia somática con sensibilidad al trauma",
+    "label": "Terapia corporal con sensibilidad al trauma",
     "title": "Habítate en paz.",
-    "subtitle": "Acompaño a las personas a reducir su ansiedad, estrés y suavizar los patrones que ya no son útiles, con apoyo de la consciencia y el movimiento corporal.",
+    "subtitle": "Acompaño a adolescentes y adultos a transformar somáticamente el estrés, la ansiedad y los síntomas físicos.",
     "meta": "Presencial CDMX, Col. Nápoles · Online",
     "cta": "Agenda tu primera cita",
     "secondary": "Conoce mi experiencia",
