@@ -57,15 +57,14 @@ export function navLinks(locale: Locale) {
 }
 
 /** Curated subset shown inline in the simple bar (the full menu lives in the
- * overlay): Sobre mí · Tipos de terapia (→ hub "cómo trabajo") · Agenda una sesión. */
+ * overlay): Sobre mí · Tipos de terapia (→ home's "Cómo trabajo" section) · Agenda una sesión. */
 export function barLinks(locale: Locale) {
   const i = t(locale);
   const base = `/${locale}`;
   const about = locale === 'es' ? 'sobre-mi' : 'about-me';
-  const therapyTypesSlug = locale === 'es' ? 'tipos-de-terapia' : 'types-of-therapy';
   return [
     { label: i.nav.about, href: `${base}/${about}/` },
-    { label: i.nav.therapyTypes, href: `${base}/blog/${therapyTypesSlug}/` },
+    { label: i.nav.therapyTypes, href: `${base}/#modalidades` },
     { label: i.nav.cta, href: 'https://wa.me/patriciomx' },
   ];
 }
