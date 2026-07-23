@@ -19,16 +19,16 @@ const schema = businessSchema(locale, i.site.description);
 const authorSchema = personSchema(locale);
 ---
 
-<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" ogImage="/uploads/og/home-es.webp" schema={schema} extraSchemas={[authorSchema]}>
+<Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" ogImage="/uploads/og/home-es.webp" schema={schema} extraSchemas={[authorSchema]} nav="photo">
 
   <!-- HERO -->
   <SiteHeader
+    variant="cinema"
     eyebrow={i.hero.label}
     title={i.hero.title}
     photo="/uploads/patricio-ruiz-retrato.webp"
     photoAlt="Retrato de Patricio Ruiz, terapeuta, persona adulta joven de tez media y cabello oscuro sentada con semblante apacible y mirada cálida"
-    photoPosition="center 43%"
-    photoAspect="1 / 1"
+    photoPosition="center 30%"
     ctaLabel={i.hero.cta}
     ctaHref="https://wa.me/patriciomx"
     secondaryLabel={i.hero.secondary}

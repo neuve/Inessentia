@@ -22,8 +22,10 @@ interface Props {
   // Navbar background variant: 'gradient' (default, dark hero continuation),
   // 'light' (transparent → solid --warm on scroll, purple links, for pages
   // with a light --warm hero), 'solid' (solid --cream-2 with hairline, for
-  // pages without a hero below the nav).
-  nav?: 'gradient' | 'light' | 'solid';
+  // pages without a hero below the nav), 'photo' (transparent over a
+  // full-bleed photo hero, white links/wordmark, gains the brand gradient
+  // on scroll — used by Home/Sobre mí per Familia A of the design handoff).
+  nav?: 'gradient' | 'light' | 'solid' | 'photo';
 }
 
 const locale = getLocale(Astro.url);

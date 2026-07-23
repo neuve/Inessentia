@@ -30,16 +30,19 @@ const searchBlogEntries = {
       <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
       <span class="navbar__logo-name">Patricio<br>Ruiz</span>
     </a>
-    <nav id="nav-links" class="navbar__links">
-      {links.map(link => (
-        <a href={link.href} class="navbar__link">{link.label}</a>
-      ))}
-    </nav>
-    <div class="navbar__spacer" aria-hidden="true"></div>
-    <!-- Sandwich: parte real de la barra; se transforma en X cuando el menú abre. -->
-    <button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="navbar__right">
+      <nav id="nav-links" class="navbar__links">
+        {links.map((link, idx) => (
+          idx === links.length - 1
+            ? <a href={link.href} class="navbar__cta">{link.label}</a>
+            : <a href={link.href} class="navbar__link">{link.label}</a>
+        ))}
+      </nav>
+      <!-- Sandwich: parte real de la barra; se transforma en X cuando el menú abre. -->
+      <button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -99,6 +102,27 @@ const searchBlogEntries = {
     box-shadow: inset 0 -1px 0 #ece6d8, 0 4px 20px rgba(40, 20, 60, .10);
   }
 
+  /* ---------- Variant: photo ----------
+     Para heros de foto a sangre completa (Home, Sobre mí — Familia A).
+     Transparente sobre la foto; wordmark/links/hamburguesa blancos; CTA
+     pill blanco/texto morado. Al hacer scroll gana el crema sólido con
+     hairline (mismo tratamiento que la variante solid) y todo el
+     contenido de la barra pasa a morado para seguir legible. */
+  .navbar.navbar--photo {
+    background: transparent;
+  }
+  .navbar.navbar--photo.navbar--scrolled {
+    background: var(--cream-2);
+    box-shadow: inset 0 -1px 0 #ece6d8, 0 4px 20px rgba(40, 20, 60, .10);
+  }
+  .navbar.navbar--photo.navbar--scrolled .navbar__logo-name { color: var(--purple); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__link { color: var(--purple); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__cta { background: var(--purple); color: #fff; }
+  .navbar.navbar--photo .nav-ham span { background: #fff; }
+  .navbar.navbar--photo.navbar--scrolled .nav-ham span { background: var(--purple); }
+  :global(body.menu-open) .navbar.navbar--photo .nav-ham span { background: var(--purple); }
+
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 0 40px;
     min-height: var(--nav-h);
@@ -115,6 +139,10 @@ const searchBlogEntries = {
      overlay detrás — el logo pasa a morado para seguir siendo legible. */
   :global(body.menu-open) .navbar__logo-name { color: var(--purple); }
 
+  /* ---------- Anatomía sándwich ----------
+     Logo a la izquierda (flex:1 en .navbar__logo); a la derecha un solo
+     grupo con los links de texto, el CTA pill y la hamburguesa. */
+  .navbar__right { display: flex; align-items: center; gap: 28px; flex: none; }
   .navbar__links { display: flex; align-items: center; gap: 38px; flex: none; transition: opacity .8s cubic-bezier(.22,1,.36,1); }
   .navbar__link {
     font-family: 'Mulish', sans-serif;
@@ -123,13 +151,28 @@ const searchBlogEntries = {
     transition: color .2s;
   }
   .navbar__link:hover { color: var(--sand); }
+
+  /* CTA pill (último link de barLinks, "Agendar cita"). Fondo blanco / texto
+     morado sobre variantes oscuras (gradient, photo); invertido sobre
+     variantes claras (light, solid). */
+  .navbar__cta {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase;
+    white-space: nowrap; text-decoration: none;
+    background: #fff; color: var(--purple);
+    padding: 12px 22px; border-radius: 999px;
+    transition: background .2s, color .2s, transform .2s;
+  }
+  .navbar__cta:hover { transform: translateY(-1px); }
+  .navbar.navbar--light .navbar__cta,
+  .navbar.navbar--solid .navbar__cta {
+    background: var(--purple); color: #fff;
+  }
+
   /* Con el menú abierto: el fondo de la barra y los links principales
      desaparecen — el logo se queda flotando, en blanco, por encima de todo. */
   :global(body.menu-open) .navbar { background: transparent; box-shadow: none; }
   :global(body.menu-open) .navbar__links { opacity: 0; pointer-events: none; }
-
-  /* Zona derecha vacía: equilibra el logo (flex:1) para centrar el nav. */
-  .navbar__spacer { flex: 1; }
 
   /* ---------- Sandwich (parte de la barra) ---------- */
   .nav-ham {
