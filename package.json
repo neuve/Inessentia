@@ -7,7 +7,7 @@
   },
   "scripts": {
     "images": "node tools/generate-responsive-images.mjs",
-    "dev": "node tools/generate-responsive-images.mjs && astro dev",
+    "dev": "node tools/generate-responsive-images.mjs && astro dev --port \"${PORT:-4321}\"",
     "build": "node tools/generate-responsive-images.mjs && astro build",
     "preview": "astro preview",
     "astro": "astro",

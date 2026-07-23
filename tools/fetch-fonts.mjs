@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Descarga los woff2 (subset latin) de Mulish + Zilla Slab desde Google Fonts
-// y los deja en public/fonts/ para auto-hospedarlos (sin dependencia CDN en
+// Descarga los woff2 (subset latin) de Mulish + Bitter desde Google Fonts y
+// los deja en public/fonts/ para auto-hospedarlos (sin dependencia CDN en
 // runtime). Los archivos se versionan; este script es sólo para refrescarlos.
 //
 // Uso: node tools/fetch-fonts.mjs
@@ -19,7 +19,7 @@ const UA =
 
 const CSS_URL =
   'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800' +
-  '&family=Zilla+Slab:wght@400;500;600;700&display=swap';
+  '&family=Bitter:wght@500;600;700&display=swap';
 
 const slug = (s) => s.toLowerCase().replace(/\s+/g, '-');
 
