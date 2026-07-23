@@ -5,9 +5,14 @@ import Img from './Img.astro';
 
 interface Props {
   locale: Locale;
+  // Navbar background variant: 'gradient' (default, current behavior),
+  // 'light' (transparent over a light hero, purple links/wordmark, solid
+  // --warm once scrolled), 'solid' (solid --cream-2 with hairline, for
+  // pages with no dark hero below).
+  variant?: 'gradient' | 'light' | 'solid';
 }
 
-const { locale } = Astro.props;
+const { locale, variant = 'gradient' } = Astro.props;
 const i = t(locale);
 const links = barLinks(locale);
 
@@ -19,7 +24,7 @@ const searchBlogEntries = {
 };
 ---
 
-<header id="site-nav" class="navbar">
+<header id="site-nav" class:list={['navbar', variant !== 'gradient' && `navbar--${variant}`]}>
   <div class="navbar__inner">
     <a href={`/${locale}/`} class="navbar__logo">
       <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
@@ -63,6 +68,37 @@ const searchBlogEntries = {
     box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
   }
 
+  /* ---------- Variant: light ----------
+     Para páginas con hero claro (--warm) en vez del degradado oscuro.
+     Fondo transparente y wordmark/links en morado (mismo look que
+     body.menu-open reusa abajo). Al hacer scroll gana fondo sólido --warm
+     para no quedar flotando sobre contenido claro. */
+  .navbar.navbar--light {
+    background: transparent;
+  }
+  .navbar.navbar--light .navbar__logo-name { color: var(--purple); }
+  .navbar.navbar--light .navbar__link { color: var(--purple); }
+  .navbar.navbar--light .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--light.navbar--scrolled {
+    background: var(--warm);
+    box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
+  }
+
+  /* ---------- Variant: solid ----------
+     Para páginas sin hero oscuro debajo (costos, términos, privacidad,
+     blogposts). Fondo sólido --cream-2 con hairline inferior vía box-shadow
+     (no añade borde real, así no mueve layout). Links/wordmark en morado. */
+  .navbar.navbar--solid {
+    background: var(--cream-2);
+    box-shadow: inset 0 -1px 0 #ece6d8;
+  }
+  .navbar.navbar--solid .navbar__logo-name { color: var(--purple); }
+  .navbar.navbar--solid .navbar__link { color: var(--purple); }
+  .navbar.navbar--solid .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--solid.navbar--scrolled {
+    box-shadow: inset 0 -1px 0 #ece6d8, 0 4px 20px rgba(40, 20, 60, .10);
+  }
+
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 0 40px;
     min-height: var(--nav-h);
@@ -71,7 +107,7 @@ const searchBlogEntries = {
   .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: 1; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
-    font-family: 'Zilla Slab', serif; font-weight: 600; color: #fff;
+    font-family: 'Bitter', serif; font-weight: 700; color: #fff;
     font-size: 17px; line-height: 1.12; letter-spacing: .01em;
     transition: color .8s cubic-bezier(.22,1,.36,1);
   }
@@ -151,7 +187,7 @@ const searchBlogEntries = {
   }
   .search-result:hover { background: var(--cream-2); }
   .search-result__title {
-    font-family: 'Zilla Slab', serif; font-weight: 600; color: var(--purple);
+    font-family: 'Bitter', serif; font-weight: 700; color: var(--purple);
     font-size: 16px; margin: 0 0 4px;
   }
   .search-result__desc {

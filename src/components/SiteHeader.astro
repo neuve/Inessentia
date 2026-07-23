@@ -35,7 +35,7 @@ interface Props {
   secondaryLabel?: string;
   secondaryHref?: string;
   stats?: Stat[];
-  variant?: 'auto' | 'split' | 'monolith';
+  variant?: 'auto' | 'split' | 'monolith' | 'panel';
   /** Split only: `object-position` for the portrait inside its 4:5 box, to
    * fine-tune the vertical crop (e.g. `center 30%` on the home hero to drop
    * the wall clock while keeping air above the head). Defaults to the shared
@@ -43,6 +43,8 @@ interface Props {
   photoPosition?: string;
   /** Split only: overrides the portrait box's `aspect-ratio` (default `4 / 5`), e.g. `1 / 1`. */
   photoAspect?: string;
+  /** Panel only: larger card (individual page) — 52px title, 960px copy max-width. */
+  panelLarge?: boolean;
 }
 
 import Img from './Img.astro';
@@ -63,6 +65,7 @@ const {
   variant = 'auto',
   photoPosition,
   photoAspect,
+  panelLarge = false,
 } = Astro.props;
 
 const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
@@ -97,6 +100,29 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       <div class="site-header__photo" data-reveal style={`${photoPosition ? `--photo-pos:${photoPosition};` : ''}${photoAspect ? `--photo-aspect:${photoAspect};` : ''}`}>
         {photo && <Img src={photo} alt={photoAlt} sizes="(max-width:900px) 100vw, 50vw" fetchpriority="high" loading="eager" data-parallax="0.10" data-parallax-max="32" />}
       </div>
+    </div>
+  </section>
+) : mode === 'panel' ? (
+  <section class="site-header site-header--panel">
+    <div class="site-header__panel-rail" aria-hidden="true"></div>
+    <div class="site-header__panel-inner" data-reveal>
+      <div class={`site-header__panel-copy${panelLarge ? ' site-header__panel-copy--lg' : ''}`}>
+        {eyebrow && <p class="site-header__eyebrow site-header__eyebrow--panel">{eyebrow}</p>}
+        <h1 class={`site-header__title site-header__title--panel${panelLarge ? ' site-header__title--panel-lg' : ''}`}>{title}</h1>
+        <div class={`site-header__lead site-header__lead--panel${panelLarge ? ' site-header__lead--panel-lg' : ''}`}><slot /></div>
+        {meta && <h4 class="site-header__meta site-header__meta--panel">{meta}</h4>}
+        {(ctaHref || secondaryHref) && (
+          <div class="site-header__actions">
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-primary">{ctaLabel}</a>}
+            {secondaryHref && <a href={secondaryHref} class="site-header__link site-header__link--panel">{secondaryLabel}</a>}
+          </div>
+        )}
+      </div>
+      {icon && (
+        <div class="site-header__panel-icon">
+          <Img src={icon} alt="" sizes="160px" style={`height:${iconSize};width:auto;display:block;`} />
+        </div>
+      )}
     </div>
   </section>
 ) : (
@@ -169,6 +195,37 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__photo { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 30px 70px rgba(35,18,55,.34); aspect-ratio: var(--photo-aspect, 4 / 5); width: 100%; max-width: var(--photo-max-w, none); margin-left: auto; }
   .site-header__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 8%); display: block; }
 
+  /* ---------- Panel (C) ---------- */
+  .site-header--panel { background: var(--warm); min-height: 62vh; display: flex; align-items: center; padding: 150px 0 80px; }
+  .site-header__panel-rail { position: absolute; inset: 0 auto 0 0; width: 6px; background: linear-gradient(180deg, #8E2B5D 0%, #46276E 55%, #C2B07E 100%); }
+  .site-header__panel-inner {
+    position: relative; max-width: 1100px; margin: 0 auto; width: 100%; padding: 0 32px 0 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: clamp(24px, 4vw, 56px);
+  }
+  .site-header__panel-copy { max-width: 66%; }
+  .site-header__panel-copy--lg { max-width: 960px; }
+  .site-header__panel-icon { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+  /* Panel text colours must beat the shared white/sand rules below, which
+     have equal specificity but come later in source order. Prefix with the
+     block class to win regardless of order. */
+  .site-header--panel .site-header__eyebrow--panel { color: #8E2B5D; }
+  .site-header--panel .site-header__title--panel { color: #46276E; font-size: 34px; line-height: 1.12; }
+  .site-header--panel .site-header__title--panel-lg { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; }
+  .site-header--panel .site-header__lead--panel { color: #3f3a36; font-family: 'Mulish', sans-serif; font-weight: 500; font-size: 14px; max-width: 60ch; }
+  .site-header--panel .site-header__lead--panel-lg { font-size: 16px; }
+  .site-header__lead--panel :global(p) { margin: 0 0 10px; }
+  .site-header__lead--panel :global(p:last-child) { margin-bottom: 0; }
+  .site-header--panel .site-header__meta--panel { color: #6a6460; }
+  .site-header--panel .site-header__link--panel { color: #8E2B5D; text-decoration: none; border-bottom: none; }
+  .site-header--panel .site-header__link--panel:hover { color: #8E2B5D; text-decoration: none; border-bottom: none; }
+  @media (max-width: 860px) {
+    .site-header__panel-inner { flex-direction: column-reverse; align-items: center; text-align: center; padding-left: 32px; }
+    .site-header__panel-copy { max-width: 100%; }
+    .site-header__panel-icon { margin: 0 auto; }
+    .site-header__panel-copy .site-header__actions { justify-content: center; }
+    .site-header__panel-copy .site-header__lead--panel { margin-left: auto; margin-right: auto; }
+  }
+
   /* ---------- Monolith (B) ---------- */
   .site-header--monolith { min-height: 66vh; display: flex; align-items: center; padding: 130px 0 96px; }
   .site-header--monolith .site-header__mandala--a { top: 50%; margin-top: -320px; left: 60%; width: 640px; height: 640px; opacity: .13; }
@@ -186,7 +243,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 
   /* ---------- Shared text ---------- */
   .site-header__eyebrow { margin: 0 0 18px; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
-  .site-header__title { font-family: 'Zilla Slab', serif; font-weight: 600; color: #fff; font-size: clamp(38px, 5.4vw, 68px); line-height: 1.03; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
+  .site-header__title { font-family: 'Bitter', serif; font-weight: 700; color: #fff; font-size: clamp(38px, 5.4vw, 68px); line-height: 1.03; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
   .site-header__title--mono { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; }
   .site-header__lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; color: rgba(255,255,255,.85); max-width: 48ch; margin: 0 0 32px; }
   .site-header__lead :global(p) { margin: 0 0 10px; }
@@ -200,7 +257,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 
   /* ---------- Numeralia (split — grid de 3 columnas, sin divisores) ---------- */
   .site-header__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); gap: clamp(20px, 2.4vw, 34px); }
-  .site-header__stat b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: clamp(34px,4.4vw,42px); line-height: .9; color: #fff; display: block; }
+  .site-header__stat b { font-family: 'Bitter', serif; font-weight: 700; font-size: clamp(34px,4.4vw,42px); line-height: .9; color: #fff; display: block; }
   .site-header__stat span { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.8); display: block; margin-top: 8px; }
   .site-header__stat span :global(strong) { color: #fff; font-weight: 700; }
   @media (max-width: 420px) {
@@ -214,7 +271,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     box-shadow: 0 26px 60px rgba(70,39,110,.16); padding: 28px 36px;
     display: flex; gap: 36px; flex-wrap: wrap; justify-content: space-around; text-align: center;
   }
-  .site-header__ribbon-item b { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: 40px; color: var(--wine); display: block; line-height: .9; }
+  .site-header__ribbon-item b { font-family: 'Bitter', serif; font-weight: 700; font-size: 40px; color: var(--wine); display: block; line-height: .9; }
   .site-header__ribbon-item span { font-size: 14px; color: #6a6460; }
   .site-header__ribbon-div { width: 1px; background: #ece6d8; }
 </style>

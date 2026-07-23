@@ -1,6 +1,5 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Img from '../../components/Img.astro';
 import { sitePath } from '../../i18n/utils';
 
 const locale = 'es';
@@ -11,16 +10,15 @@ const termsPath = sitePath(locale, 'terms');
   title="Costos | Inessentia"
   description="Tarifas claras para acompañarte. Individual, pareja y familia comparten el mismo costo y duración. Consulta el precio por sesión y el paquete de continuidad."
   altPath="/costs/"
+  nav="solid"
 >
 
-  <!-- PORTADA -->
-  <section data-nav-overlay style="position:relative;overflow:hidden;min-height:clamp(320px,44vw,460px);display:flex;align-items:center;">
-    <Img src="/uploads/costos-header.webp" sizes="100vw" loading="eager" fetchpriority="high" alt="Un espacio cálido y sereno para tu proceso terapéutico" data-parallax="0.10" data-parallax-max="26" style="position:absolute;top:-10%;left:0;width:100%;height:120%;object-fit:cover;object-position:center 40%;" />
-    <div style="position:absolute;inset:0;background:linear-gradient(118deg,rgba(46,22,72,.95) 0%,rgba(46,22,72,.82) 38%,rgba(46,22,72,.34) 72%,rgba(46,22,72,.12) 100%);"></div>
-    <div style="position:relative;max-width:1120px;margin:0 auto;padding:0 clamp(24px,5vw,52px);width:100%;">
-      <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--sand);">Costos</p>
-      <h1 data-reveal style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(34px,5.4vw,56px);line-height:1.02;margin:0;max-width:16ch;">Invierte en tu proceso</h1>
-      <p data-reveal style="font-size:clamp(16px,1.3vw,18px);line-height:1.6;color:rgba(255,255,255,.85);margin:20px 0 0;max-width:52ch;">Tarifas claras para acompañarte, ya sea que empieces hoy o sostengas tu proceso con continuidad.</p>
+  <!-- HEADER -->
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 32px clamp(40px,5vw,64px);">
+    <div style="max-width:760px;margin:0 auto;">
+      <p class="label-section">Costos</p>
+      <h1 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">Invierte en tu proceso</h1>
+      <p style="font-size:clamp(16px,1.1vw,18px);line-height:1.7;color:#3f3a36;margin:20px 0 0;">Tarifas claras para acompañarte, ya sea que empieces hoy o sostengas tu proceso con continuidad.</p>
     </div>
   </section>
 
@@ -39,10 +37,10 @@ const termsPath = sitePath(locale, 'terms');
       <!-- Por sesión -->
       <div data-reveal style="background:#fff;border:1px solid #e6ddca;border-radius:24px;padding:clamp(32px,4vw,44px) clamp(28px,3.5vw,40px);display:flex;flex-direction:column;box-shadow:0 24px 54px rgba(60,31,94,.10);">
         <p style="margin:0 0 16px;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--wine);">Por sesión</p>
-        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(24px,2.5vw,30px);line-height:1.14;margin:0 0 28px;">Primera sesión y sesiones esporádicas</h2>
+        <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(24px,2.5vw,30px);line-height:1.14;margin:0 0 28px;">Primera sesión y sesiones esporádicas</h2>
         <div style="margin-top:auto;">
           <div style="display:flex;align-items:baseline;gap:8px;">
-            <span style="font-family:'Zilla Slab',serif;font-weight:600;color:var(--purple);font-size:clamp(42px,5vw,52px);line-height:1;">$1,700</span>
+            <span style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(42px,5vw,52px);line-height:1;">$1,700</span>
             <span style="font-weight:700;font-size:15px;color:#8a8178;">mxp*</span>
           </div>
           <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:var(--purple);color:#fff;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:15px 30px;border-radius:99px;text-decoration:none;">Agenda cita</a>
@@ -53,13 +51,13 @@ const termsPath = sitePath(locale, 'terms');
       <div data-reveal style="position:relative;background:var(--purple);border-radius:24px;padding:clamp(32px,4vw,44px) clamp(28px,3.5vw,40px);display:flex;flex-direction:column;box-shadow:0 30px 64px rgba(60,31,94,.28);">
         <div style="position:absolute;top:26px;right:26px;background:var(--sand);color:#2e1b12;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:99px;">Ahorra 5%</div>
         <p style="margin:0 0 16px;font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--sand);">Continuidad</p>
-        <h2 style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(24px,2.5vw,30px);line-height:1.14;margin:0 0 6px;">4 sesiones</h2>
+        <h2 style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(24px,2.5vw,30px);line-height:1.14;margin:0 0 6px;">4 sesiones</h2>
         <p style="margin:0 0 28px;font-size:15px;line-height:1.5;color:rgba(255,255,255,.72);">Recurrencia semanal o quincenal.</p>
         <div style="margin-top:auto;">
           <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
-            <span style="font-family:'Zilla Slab',serif;font-weight:400;color:rgba(255,255,255,.55);font-size:26px;line-height:1;text-decoration:line-through;">$6,800</span>
+            <span style="font-family:'Bitter',serif;font-weight:500;color:rgba(255,255,255,.55);font-size:26px;line-height:1;text-decoration:line-through;">$6,800</span>
             <span style="display:flex;align-items:baseline;gap:8px;">
-              <span style="font-family:'Zilla Slab',serif;font-weight:600;color:#fff;font-size:clamp(42px,5vw,52px);line-height:1;">$6,398</span>
+              <span style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(42px,5vw,52px);line-height:1;">$6,398</span>
               <span style="font-weight:700;font-size:15px;color:var(--sand);">mxp*</span>
             </span>
           </div>
