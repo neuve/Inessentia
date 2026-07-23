@@ -19,6 +19,11 @@ interface Props {
   extraSchemas?: object[];
   hideFooter?: boolean;
   noindex?: boolean;
+  // Navbar background variant: 'gradient' (default, dark hero continuation),
+  // 'light' (transparent → solid --warm on scroll, purple links, for pages
+  // with a light --warm hero), 'solid' (solid --cream-2 with hairline, for
+  // pages without a hero below the nav).
+  nav?: 'gradient' | 'light' | 'solid';
 }
 
 const locale = getLocale(Astro.url);
@@ -35,6 +40,7 @@ const {
   extraSchemas,
   hideFooter = false,
   noindex = false,
+  nav = 'gradient',
 } = Astro.props;
 
 const altHref = altPath
@@ -84,11 +90,11 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
        críticas para el primer render; el resto se resuelve por @font-face. -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-700.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/zilla-slab-600.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/bitter-700.woff2" crossorigin>
   <!-- GA loads conditionally via CookieConsent component -->
 </head>
 <body>
-  <Navbar locale={locale} />
+  <Navbar locale={locale} variant={nav} />
   <MobileMenu locale={locale} />
   <MenuOverlay locale={locale} />
   <main>

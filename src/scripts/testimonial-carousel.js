@@ -14,7 +14,7 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
     return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;">' +
       '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">&ldquo;</div>' +
       '<p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">' + t.q + '</p>' +
-      '<p style="margin:0;font-family:\'Zilla Slab\',serif;font-weight:600;color:var(--purple);font-size:18px;">' + nameInner + tag + '</p>' +
+      '<p style="margin:0;font-family:\'Bitter\',serif;font-weight:700;color:var(--purple);font-size:18px;">' + nameInner + tag + '</p>' +
     '</div>';
   }
 
