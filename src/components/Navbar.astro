@@ -30,19 +30,17 @@ const searchBlogEntries = {
       <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
       <span class="navbar__logo-name">Patricio<br>Ruiz</span>
     </a>
-    <div class="navbar__right">
-      <nav id="nav-links" class="navbar__links">
-        {links.map((link, idx) => (
-          idx === links.length - 1
-            ? <a href={link.href} class="navbar__cta">{link.label}</a>
-            : <a href={link.href} class="navbar__link">{link.label}</a>
-        ))}
-      </nav>
-      <!-- Sandwich: parte real de la barra; se transforma en X cuando el menú abre. -->
-      <button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <nav id="nav-links" class="navbar__links">
+      {links.map((link, idx) => (
+        idx === links.length - 1
+          ? <a href={link.href} class="navbar__cta">{link.label}</a>
+          : <a href={link.href} class="navbar__link">{link.label}</a>
+      ))}
+    </nav>
+    <!-- Sandwich: parte real de la barra; se transforma en X cuando el menú abre. -->
+    <button id="nav-ham" class="nav-ham" aria-label={i.nav.openMenu} aria-controls="menu-overlay" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -126,9 +124,9 @@ const searchBlogEntries = {
   .navbar__inner {
     max-width: 1200px; margin: 0 auto; padding: 0 40px;
     min-height: var(--nav-h);
-    display: flex; align-items: center; gap: 24px;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
   }
-  .navbar__logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex: 1; }
+  .navbar__logo { grid-column: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
     font-family: 'Bitter', serif; font-weight: 700; color: #fff;
@@ -139,11 +137,10 @@ const searchBlogEntries = {
      overlay detrás — el logo pasa a morado para seguir siendo legible. */
   :global(body.menu-open) .navbar__logo-name { color: var(--purple); }
 
-  /* ---------- Anatomía sándwich ----------
-     Logo a la izquierda (flex:1 en .navbar__logo); a la derecha un solo
-     grupo con los links de texto, el CTA pill y la hamburguesa. */
-  .navbar__right { display: flex; align-items: center; gap: 28px; flex: none; }
-  .navbar__links { display: flex; align-items: center; gap: 38px; flex: none; transition: opacity .8s cubic-bezier(.22,1,.36,1); }
+  /* ---------- Anatomía ----------
+     Grid de 3 columnas: logo a la izquierda, links+CTA centrados en medio,
+     hamburguesa a la derecha. */
+  .navbar__links { grid-column: 2; justify-self: center; display: flex; align-items: center; gap: 38px; transition: opacity .8s cubic-bezier(.22,1,.36,1); }
   .navbar__link {
     font-family: 'Mulish', sans-serif;
     font-weight: 700; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
@@ -176,6 +173,7 @@ const searchBlogEntries = {
 
   /* ---------- Sandwich (parte de la barra) ---------- */
   .nav-ham {
+    grid-column: 3; justify-self: end;
     flex: none; width: 27px; height: 22px; padding: 0; position: relative;
     background: none; border: none; cursor: pointer; display: block;
   }

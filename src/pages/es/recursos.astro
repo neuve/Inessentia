@@ -62,7 +62,7 @@ const grid = getResourcesGrid().map((p, k) => {
   <!-- HERO CINEMÁTICO: intro (arriba) + destacado rotativo (abajo) sobre banner full-bleed -->
   <section class="rec-hero" data-nav-overlay>
     {featured.map((f, k) => (
-      <Img src={f.img} sizes="100vw" loading="eager" data-rec-bg={k} alt="" style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};opacity:${k === 0 ? '1' : '0'};transition:opacity .7s ease;`} />
+      <Img src={f.img} sizes="100vw" minWidth={960} loading="eager" data-rec-bg={k} alt="" style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};opacity:${k === 0 ? '1' : '0'};transition:opacity .7s ease;`} />
     ))}
     <div class="rec-hero-overlay"></div>
 

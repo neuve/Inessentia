@@ -21,6 +21,12 @@ interface Props {
   class?: string;
   loading?: 'lazy' | 'eager';
   fetchpriority?: 'high' | 'low' | 'auto';
+  /** Descarta candidatos del srcset por debajo de este ancho (px). Úsalo en
+   * imágenes que SIEMPRE se muestran grandes (heros a sangre completa) para
+   * que el navegador no tenga a mano una variante minúscula que a veces
+   * elige como primera estimación antes de resolver el layout real —eso
+   * produce un parpadeo visible de baja resolución en la primera pintura. */
+  minWidth?: number;
   [key: string]: unknown;
 }
 
@@ -31,12 +37,16 @@ const {
   class: className,
   loading = 'lazy',
   fetchpriority,
+  minWidth,
   ...rest
 } = Astro.props;
 
 const manifest = manifestJson as Record<string, Entry>;
 const entry = manifest[src];
-const srcset = entry ? entry.srcset.map((v) => `${v.url} ${v.w}w`).join(', ') : undefined;
+const variants = entry && minWidth
+  ? entry.srcset.filter((v) => v.w >= minWidth || v.w === entry.srcset[entry.srcset.length - 1].w)
+  : entry?.srcset;
+const srcset = variants ? variants.map((v) => `${v.url} ${v.w}w`).join(', ') : undefined;
 ---
 
 {entry ? (

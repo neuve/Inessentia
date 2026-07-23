@@ -109,7 +109,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 ) : mode === 'cinema' ? (
   <section class="site-header site-header--cinema">
     <div class="site-header__cinema-photo" style={photoPosition ? `--photo-pos:${photoPosition};` : ''}>
-      {photo && <Img src={photo} alt={photoAlt} sizes="100vw" fetchpriority="high" loading="eager" />}
+      {photo && <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={960} fetchpriority="high" loading="eager" />}
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
     </div>
     <div class="site-header__cinema-inner" data-reveal>
