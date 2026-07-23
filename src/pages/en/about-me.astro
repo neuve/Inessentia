@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Img from '../../components/Img.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -16,97 +16,25 @@ const schema = personSchema(locale);
   altPath="/sobre-mi/"
   ogImage="/uploads/og/about-me.webp"
   schema={schema}
-  nav="light"
 >
 
   <!-- HERO -->
-  <section class="about-hero">
-    <div class="about-hero__text" data-reveal>
-      <p class="about-hero__eyebrow">Somatic-based therapist · Mexico City and online</p>
-      <h1 class="about-hero__title">I'm Patricio Ruiz Abrín, a somatic-based therapist, training in systemic therapy.</h1>
-      <p class="about-hero__lead"><strong>Feel at home in yourself.</strong></p>
-      <p class="about-hero__body">I help you reconnect with your intuition, your instinct, and your ability to self-regulate. A space of presence, curiosity, containment, and experimentation for your growth, with a humanistic and relational approach that integrates mind, emotion, and body.</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn-primary">Book your first session</a>
-    </div>
-    <div class="about-hero__photo">
-      <Img src="/uploads/terapia-hero.webp" alt="Patricio Ruiz Abrín, therapist" sizes="(max-width:860px) 100vw, 33vw" fetchpriority="high" loading="eager" />
-    </div>
-  </section>
+  <SiteHeader
+    variant="split"
+    eyebrow="Somatic-based therapist · Mexico City and online"
+    title="I'm Patricio Ruiz Abrín, a somatic-based therapist, training in systemic therapy."
+    photo="/uploads/patricio-ruiz-retrato.webp"
+    photoAlt="Patricio Ruiz Abrín, therapist"
+    photoPosition="center 43%"
+    ctaLabel="Book your first session"
+    ctaHref="https://wa.me/patriciomx"
+  >
+    <p><strong>Feel at home in yourself.</strong></p>
+    <p>I help you reconnect with your intuition, your instinct, and your ability to self-regulate. A space of presence, curiosity, containment, and experimentation for your growth, with a humanistic and relational approach that integrates mind, emotion, and body.</p>
+  </SiteHeader>
 
   <style>
-    .about-hero {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      min-height: 88vh;
-      background: var(--warm);
-    }
-    .about-hero__text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(110px, 12vw, 160px) clamp(32px, 5vw, 64px) 64px;
-    }
-    .about-hero__eyebrow {
-      margin: 0 0 18px;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: #8E2B5D;
-    }
-    .about-hero__title {
-      font-family: 'Bitter', serif;
-      font-weight: 700;
-      color: #46276E;
-      font-size: clamp(30px, 3.4vw, 44px);
-      line-height: 1.12;
-      letter-spacing: -.01em;
-      margin: 0 0 22px;
-      text-wrap: balance;
-      max-width: 22ch;
-    }
-    .about-hero__lead {
-      font-family: 'Bitter', serif;
-      font-weight: 700;
-      color: #8E2B5D;
-      font-size: 18px;
-      margin: 0 0 14px;
-    }
-    .about-hero__body {
-      font-family: 'Mulish', sans-serif;
-      font-weight: 500;
-      color: #3f3a36;
-      font-size: 16px;
-      line-height: 1.65;
-      max-width: 58ch;
-      margin: 0 0 32px;
-    }
-    .about-hero__photo {
-      position: relative;
-      overflow: hidden;
-    }
-    .about-hero__photo :global(img) {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    @media (max-width: 860px) {
-      .about-hero {
-        grid-template-columns: 1fr;
-        min-height: 0;
-      }
-      .about-hero__text {
-        order: 1;
-        padding: clamp(90px, 14vw, 120px) 24px 40px;
-      }
-      .about-hero__photo {
-        order: 2;
-        height: 240px;
-      }
-    }
+    :global(.site-header--split .site-header__lead strong) { color: #E6D2B4; }
   </style>
 
   <!-- APPROACH -->
