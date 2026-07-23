@@ -26,6 +26,8 @@ interface Props {
   // full-bleed photo hero, white links/wordmark, gains the brand gradient
   // on scroll — used by Home/Sobre mí per Familia A of the design handoff).
   nav?: 'gradient' | 'light' | 'solid' | 'photo';
+  hideNav?: boolean;
+  noAltLocale?: boolean;
 }
 
 const locale = getLocale(Astro.url);
@@ -43,6 +45,8 @@ const {
   hideFooter = false,
   noindex = false,
   nav = 'gradient',
+  hideNav = false,
+  noAltLocale = false,
 } = Astro.props;
 
 const altHref = altPath
@@ -65,8 +69,8 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="canonical" href={canonical}>
-  <link rel="alternate" hreflang={locale} href={currentHref}>
-  <link rel="alternate" hreflang={altLocale} href={altHrefAbsolute}>
+  {!noAltLocale && <link rel="alternate" hreflang={locale} href={currentHref}>}
+  {!noAltLocale && <link rel="alternate" hreflang={altLocale} href={altHrefAbsolute}>}
   <meta property="og:type" content="website">
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
@@ -96,9 +100,9 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <!-- GA loads conditionally via CookieConsent component -->
 </head>
 <body>
-  <Navbar locale={locale} variant={nav} />
-  <MobileMenu locale={locale} />
-  <MenuOverlay locale={locale} />
+  {!hideNav && <Navbar locale={locale} variant={nav} />}
+  {!hideNav && <MobileMenu locale={locale} />}
+  {!hideNav && <MenuOverlay locale={locale} />}
   <main>
     <slot />
   </main>

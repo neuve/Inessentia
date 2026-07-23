@@ -743,6 +743,98 @@
       }
     ]
   },
+  "/uploads/supervision-grupo-conversacion.webp": {
+    "width": 1920,
+    "height": 1440,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-96.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-192.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-320.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-480.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-640.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-768.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-960.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-1200.webp"
+      },
+      {
+        "w": 1600,
+        "url": "/uploads/responsive/supervision-grupo-conversacion-1600.webp"
+      },
+      {
+        "w": 1920,
+        "url": "/uploads/supervision-grupo-conversacion.webp"
+      }
+    ]
+  },
+  "/uploads/supervision-grupos-trabajando.webp": {
+    "width": 1920,
+    "height": 1460,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-96.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-192.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-320.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-480.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-640.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-768.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-960.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-1200.webp"
+      },
+      {
+        "w": 1600,
+        "url": "/uploads/responsive/supervision-grupos-trabajando-1600.webp"
+      },
+      {
+        "w": 1920,
+        "url": "/uploads/supervision-grupos-trabajando.webp"
+      }
+    ]
+  },
   "/uploads/teoria-polivagal-lamina-sistema-nervioso-card.webp": {
     "width": 700,
     "height": 382,

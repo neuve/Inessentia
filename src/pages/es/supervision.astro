@@ -1,0 +1,853 @@
+---
+import Base from '../../layouts/Base.astro';
+import Img from '../../components/Img.astro';
+import { personRef, BUSINESS_ID } from '../../data/person';
+
+const CANONICAL = 'https://inessentia.mx/es/supervision/';
+
+const WA = 'https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20el%20Grupo%20de%20Actualizaci%C3%B3n%20en%20Terapia%20Corporal.%20%C2%BFMe%20cuentas%20m%C3%A1s%3F';
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "EducationEvent",
+  "name": "Grupo de Actualización en Terapia Corporal",
+  "description": "Supervisión de casos y ética del acompañamiento para la comunidad Core Energética. 9 sesiones, octubre 2026 – febrero 2027, CDMX y en línea.",
+  "startDate": "2026-10-03T09:30:00-06:00",
+  "endDate": "2027-02-20T13:30:00-06:00",
+  "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "maximumAttendeeCapacity": 12,
+  "location": [
+    {
+      "@type": "Place",
+      "name": "Inessentia",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Georgia 114, Oficina 303",
+        "addressLocality": "Nápoles, Benito Juárez",
+        "postalCode": "03840",
+        "addressRegion": "CDMX",
+        "addressCountry": "MX"
+      }
+    },
+    {
+      "@type": "VirtualLocation",
+      "url": "https://meet.google.com/"
+    }
+  ],
+  "performer": personRef,
+  "organizer": {
+    "@id": BUSINESS_ID,
+    "@type": "Organization",
+    "name": "Inessentia",
+    "url": "https://inessentia.mx/es/"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "MXN",
+    "lowPrice": 7500,
+    "highPrice": 15000,
+    "availability": "https://schema.org/LimitedAvailability",
+    "validThrough": "2026-09-17",
+    "url": CANONICAL
+  },
+  "url": CANONICAL
+};
+
+const pilares = [
+  {
+    num: 1,
+    title: '¿Qué te llevas?',
+    items: [
+      '9 sesiones de supervisión en vivo, con casos reales de tu propia práctica',
+      'Un recorrido completo por los 7 temas de "The Ethics of Caring": dinero, sexualidad, poder, amor, verdad, insight y unidad',
+      'Rutas de trabajo y opciones de seguimiento para cada caso, revisadas por el equipo a lo largo del ciclo',
+      'Una comunidad de práctica sostenida durante 5 meses',
+    ],
+  },
+  {
+    num: 2,
+    title: '¿Por qué es útil?',
+    items: [
+      'La ética del acompañamiento se sostiene en comunidad y frente a casos reales, no en la teoría',
+      'La supervisión en vivo da retroalimentación inmediata, no hipotética',
+      'El marco de Kylea Taylor es referencia central para trabajar con estados no ordinarios de consciencia',
+      'El formato híbrido da profundidad sin sacrificar accesibilidad',
+    ],
+  },
+  {
+    num: 3,
+    title: '¿Cómo te apoya?',
+    items: [
+      'Un espacio regular, cada 15 días, que sostiene la continuidad de tu proceso y el de tus consultantes',
+      'Un equipo terapéutico que acompaña tus decisiones clínicas — no estás sola/o frente al caso',
+      'Devoluciones y seguimiento revisados a lo largo de todo el ciclo, no una sola vez',
+    ],
+  },
+];
+
+const recorridoBase = [
+  { n: '0', label: 'Introducción' },
+  { n: '1', label: 'Dinero' },
+  { n: '2', label: 'Sexualidad' },
+  { n: '3', label: 'Poder' },
+  { n: '4', label: 'Amor' },
+  { n: '5', label: 'Verdad' },
+  { n: '6', label: 'Insight' },
+  { n: '7', label: 'Unidad' },
+  { n: '8', label: 'Cierre' },
+];
+const recorrido = recorridoBase.map((s, i, arr) => ({
+  ...s,
+  arrow: i < arr.length - 1,
+  extreme: i === 0 || i === arr.length - 1,
+}));
+
+const fechas = [
+  { n: 1, fecha: 'Sábado 3 de octubre de 2026', nota: 'Inicio' },
+  { n: 2, fecha: 'Sábado 17 de octubre de 2026', nota: '' },
+  { n: 3, fecha: 'Sábado 31 de octubre de 2026', nota: '' },
+  { n: 4, fecha: 'Sábado 14 de noviembre de 2026', nota: '' },
+  { n: 5, fecha: 'Sábado 28 de noviembre de 2026', nota: '2º pago del plan en 2 pagos' },
+  { n: 6, fecha: 'Sábado 9 de enero de 2027', nota: 'Reanuda' },
+  { n: 7, fecha: 'Sábado 23 de enero de 2027', nota: '' },
+  { n: 8, fecha: 'Sábado 6 de febrero de 2027', nota: '' },
+  { n: 9, fecha: 'Sábado 20 de febrero de 2027', nota: 'Cierre' },
+];
+
+const PRICING = {
+  eyebrow: 'Inversión',
+  titulo: 'Tu lugar en el grupo',
+  subtitulo: 'El ciclo completo incluye las 9 sesiones, de octubre de 2026 a febrero de 2027. El pago en efectivo o transferencia tiene 5% de descuento sobre el precio con tarjeta.',
+  planes: [
+    {
+      tag: 'Precio especial hasta el 1 de septiembre',
+      titulo: 'Pago único',
+      subtitulo: 'Un solo pago por el ciclo completo',
+      precioTachado: '$15,000 precio completo',
+      precioGrande: '$9,900',
+      notaPrecio: 'Efectivo o transferencia (5% desc.) · Inscribiéndote antes del 1 de septiembre.',
+      textoLibre: 'Del 2 al 12 de septiembre, el pago único es de $12,600 (efectivo o transferencia, 5% desc. ya incluido).',
+    },
+    {
+      tag: null,
+      titulo: 'Plan en 2 pagos',
+      subtitulo: 'Dos pagos: 19 de septiembre y 28 de noviembre',
+      precioTachado: null,
+      precioGrande: '$7,500 c/u',
+      notaPrecio: '$7,125 c/u en efectivo o transferencia (5% desc.)',
+      textoLibre: 'Disponible también como suscripción con tarjeta de crédito, cargos automáticos en esas dos fechas.',
+    },
+  ],
+  notaApartado: 'Apartado de lugar: $2,000, abonables al total, reembolsables hasta el 12 de septiembre.',
+  notaCierre: 'Cierre de inscripciones: 17 de septiembre. El grupo abre al alcanzar el cupo mínimo de 7 personas (máximo 12).',
+  corpore: {
+    titulo: 'Estudiantes del Instituto Córpore',
+    texto: 'Pueden integrarse por bloques o por sesiones sueltas, con costo de supervisión de $1,500 por sesión. Si no se integran desde la primera sesión, es necesaria una entrevista previa y ver el video de introducción para comprender el encuadre.',
+  },
+};
+---
+
+<Base
+  hideNav
+  hideFooter
+  noAltLocale
+  title="Grupo de Actualización en Terapia Corporal | Supervisión de casos — Inessentia"
+  description="Supervisión de casos y ética del acompañamiento para la comunidad Core Energética. 9 sesiones, octubre 2026 – febrero 2027, CDMX y en línea, con Patricio Ruiz."
+  canonical={CANONICAL}
+  ogImage="/uploads/supervision-grupo-conversacion.webp"
+  schema={eventSchema}
+>
+  <div class="gl-page">
+
+    <!-- NAV -->
+    <nav id="gl-nav" class="gl-nav">
+      <div class="gl-nav-inner">
+        <div class="gl-nav-brand">
+          <Img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" sizes="70px" />
+          <span class="gl-nav-word">Patricio<br>Ruiz</span>
+        </div>
+        <div class="gl-nav-right">
+          <div class="gl-nav-links">
+            <a href="#programa">Programa</a>
+            <a href="#fechas">Fechas</a>
+            <a href="#inversion">Inversión</a>
+          </div>
+          <a href={WA} target="_blank" rel="noopener" class="gl-nav-cta">Inscríbete</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="gl-hero">
+      <Img
+        src="/uploads/supervision-grupo-conversacion.webp"
+        alt="Conversación de supervisión entre practicantes en Inessentia"
+        loading="eager"
+        fetchpriority="high"
+        minWidth={960}
+        sizes="100vw"
+        class="gl-hero-img"
+      />
+      <div class="gl-hero-veil"></div>
+      <div class="gl-hero-content">
+        <div class="gl-hero-top">
+          <p class="gl-eyebrow-gold">Comunidad Core Energética</p>
+          <div class="gl-hero-meta">
+            <span>9 sesiones · oct 2026 – feb 2027</span>
+            <span class="gl-dot"></span>
+            <span>Cupo 7–12 personas</span>
+            <span class="gl-dot"></span>
+            <span>Modalidad híbrida</span>
+          </div>
+        </div>
+        <div class="gl-hero-bottom">
+          <h1 class="gl-h1">Grupo de Actualización en Terapia Corporal</h1>
+          <p class="gl-subtitle">Supervisión de casos + ética del acompañamiento</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARA QUIÉN -->
+    <section class="section" style="max-width:820px;margin:0 auto;text-align:center;">
+      <p class="label-section" style="justify-content:center;display:flex;">¿Para quién es esto?</p>
+      <h2 class="heading-section" style="margin:0 0 24px;">Un espacio para sostener y profundizar tu práctica en comunidad</h2>
+      <p class="body-text" style="margin:0 auto;max-width:60ch;font-size:18px;">Dirigido a la comunidad de Core Energética: practicantes certificadas/os que quieran sostener y profundizar su práctica de acompañamiento terapéutico, junto a un equipo que acompaña sus decisiones clínicas.</p>
+      <p class="gl-italic-note">Basado en <em>&ldquo;The Ethics of Caring&rdquo;</em> de Kylea Taylor.</p>
+    </section>
+
+    <!-- PILARES -->
+    <section class="section section--cream gl-bordered">
+      <div class="container">
+        <div style="max-width:640px;margin-bottom:48px;">
+          <p class="label-section">Lo esencial</p>
+          <h2 class="heading-section" style="margin:0;">Tres razones para sostener tu práctica aquí</h2>
+        </div>
+        <div class="gl-grid-3">
+          {pilares.map((p) => (
+            <div class="gl-card">
+              <span class="gl-badge">{p.num}</span>
+              <h3 class="gl-card-title">{p.title}</h3>
+              <ul class="gl-list">
+                {p.items.map((it) => <li>{it}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMA -->
+    <section id="programa" class="section container">
+      <div style="max-width:680px;margin-bottom:14px;">
+        <p class="label-section">¿Qué haremos?</p>
+        <h2 class="heading-section" style="margin:0 0 18px;">Un ciclo de 9 sesiones siguiendo los 7 temas de la ética del cuidado</h2>
+        <p class="body-text" style="font-size:17px;">Cada capítulo de <em>&ldquo;The Ethics of Caring&rdquo;</em> de Kylea Taylor abre un espacio de reflexión colectiva y de supervisión en vivo con casos reales.</p>
+      </div>
+
+      <div style="margin:36px 0 44px;">
+        <p class="gl-mini-label">El recorrido, sesión a sesión</p>
+        <div class="gl-recorrido">
+          {recorrido.map((s) => (
+            <div class="gl-parada">
+              <div class="gl-pill">
+                <span class:list={['gl-pill-dot', { 'gl-pill-dot--gold': s.extreme }]}>{s.n}</span>
+                <span class="gl-pill-label">{s.label}</span>
+              </div>
+              {s.arrow && <span class="gl-arrow">→</span>}
+            </div>
+          ))}
+        </div>
+
+        <div class="gl-transversal">
+          <span class="gl-transversal-tag">Transversal</span>
+          <span class="gl-transversal-text">La <strong>ética y el trabajo con estados no ordinarios de consciencia</strong> atraviesan todas las sesiones: no son un tema aparte, sino el hilo que sostiene cada encuentro.</span>
+        </div>
+      </div>
+
+      <div class="gl-grid-2">
+        <div class="gl-card">
+          <h3 class="gl-card-title" style="font-size:22px;">Reflexión grupal</h3>
+          <p class="body-text" style="font-size:16px;margin:0;">Revisión de cada capítulo del libro como espacio de reflexión colectiva, conectando la teoría ética con la práctica cotidiana del acompañamiento.</p>
+        </div>
+        <div class="gl-card">
+          <h3 class="gl-card-title" style="font-size:22px;">Supervisión en vivo</h3>
+          <p class="body-text" style="font-size:16px;margin:0;">Cada integrante podrá traer a un consultante a sesión. El equipo terapéutico establece rutas de trabajo para apoyar la facilitación y propone opciones de seguimiento, revisadas a lo largo del ciclo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMUNIDAD -->
+    <section class="section gl-purple-deep">
+      <div class="container" style="text-align:center;">
+        <p class="gl-eyebrow-gold" style="margin-bottom:16px;">Una comunidad de práctica</p>
+        <h2 class="gl-h2-white" style="margin:0 0 40px;">Cinco meses sosteniéndonos en presencia</h2>
+        <div class="gl-photo-frame">
+          <Img
+            src="/uploads/supervision-grupos-trabajando.webp"
+            alt="Pequeños grupos de supervisión trabajando en Inessentia"
+            loading="lazy"
+            sizes="(max-width: 1280px) 100vw, 1120px"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- FECHAS -->
+    <section id="fechas" class="section section--cream gl-bordered">
+      <div class="container--narrow">
+        <div style="max-width:680px;margin-bottom:40px;">
+          <p class="label-section">Fechas y logística</p>
+          <h2 class="heading-section" style="margin:0 0 16px;">Sábados cada 15 días, 9:30 a 13:30 h</h2>
+          <p class="body-text" style="font-size:17px;">4 horas por sesión, 36 horas totales a lo largo del ciclo.</p>
+        </div>
+
+        <div class="gl-table-wrap">
+          <table class="gl-table">
+            <thead>
+              <tr>
+                <th style="width:56px;">#</th>
+                <th>Fecha</th>
+                <th>Nota</th>
+              </tr>
+            </thead>
+            <tbody>
+              {fechas.map((row, i) => (
+                <tr class={i % 2 === 1 ? 'gl-row-alt' : ''}>
+                  <td class="gl-td-n">{row.n}</td>
+                  <td>{row.fecha}</td>
+                  <td class="gl-td-nota">{row.nota}</td>
+                </tr>
+              ))}
+              <tr>
+                <td colspan="3" class="gl-td-receso">Receso decembrino: 12 de diciembre – 8 de enero</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="gl-grid-3 gl-grid-3--tight">
+          <div class="gl-mini-card">
+            <div class="gl-mini-card-label">Modalidad</div>
+            <div class="gl-mini-card-value">Híbrida — presencial en Inessentia y en línea por Meet</div>
+          </div>
+          <div class="gl-mini-card">
+            <div class="gl-mini-card-label">Cupo</div>
+            <div class="gl-mini-card-value">Mínimo 7 · Máximo 12 personas</div>
+          </div>
+          <div class="gl-mini-card">
+            <div class="gl-mini-card-label">Cierre de inscripciones</div>
+            <div class="gl-mini-card-value">17 de septiembre de 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INVERSIÓN -->
+    <section id="inversion" class="section container">
+      <div style="max-width:680px;margin-bottom:44px;">
+        <p class="label-section">{PRICING.eyebrow}</p>
+        <h2 class="heading-section" style="margin:0 0 16px;">{PRICING.titulo}</h2>
+        <p class="body-text" style="font-size:17px;">{PRICING.subtitulo}</p>
+      </div>
+
+      <div class="gl-grid-2">
+        {PRICING.planes.map((plan, i) => (
+          <div class:list={['gl-price-card', { 'gl-price-card--featured': i === 0 }]}>
+            {plan.tag && <span class="gl-price-tag">{plan.tag}</span>}
+            <h3 class="gl-card-title" style="font-size:22px;">{plan.titulo}</h3>
+            <p class="gl-price-subtitle">{plan.subtitulo}</p>
+            {plan.precioTachado && <p class="gl-price-strike">{plan.precioTachado}</p>}
+            <p class="gl-price-big">{plan.precioGrande}</p>
+            <p class="gl-price-note">{plan.notaPrecio}</p>
+            {plan.textoLibre && <p class="gl-price-free">{plan.textoLibre}</p>}
+          </div>
+        ))}
+      </div>
+
+      <div class="gl-notes-box">
+        <p><strong>Apartado de lugar:</strong> {PRICING.notaApartado.replace('Apartado de lugar: ', '')}</p>
+        <p><strong>Cierre de inscripciones:</strong> {PRICING.notaCierre.replace('Cierre de inscripciones: ', '')}</p>
+      </div>
+
+      <div class="gl-corpore-callout">
+        <h3 class="gl-card-title" style="font-size:21px;">{PRICING.corpore.titulo}</h3>
+        <p class="body-text" style="margin:0;">{PRICING.corpore.texto}</p>
+      </div>
+    </section>
+
+    <!-- SUPERVISA -->
+    <section class="section section--cream" style="border-top:1px solid var(--cream);">
+      <div class="container--narrow">
+        <p class="label-section" style="margin-bottom:32px;">Supervisa</p>
+        <div class="gl-supervisor">
+          <Img
+            src="/uploads/patricio-ruiz-retrato.webp"
+            alt="Patricio Ruiz Abrín"
+            loading="lazy"
+            sizes="180px"
+            class="gl-supervisor-photo"
+          />
+          <div>
+            <h3 class="gl-supervisor-name">Patricio Ruiz</h3>
+            <p class="body-text" style="margin:0;font-size:16.5px;">CEP, SEP, Maestro titular del 3er año en Instituto Córpore, asistente en Experiencia Somática México y Uruguay, maestrante en Terapia Familiar Sistémica en Instituto Crisol. Con trayectoria en Core Energética, Somática y Terapia Familiar Sistémica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section section--purple" style="text-align:center;">
+      <div style="max-width:820px;margin:0 auto;">
+        <h2 class="gl-h2-white">Reserva tu lugar</h2>
+        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,.82);margin:0 auto 34px;max-width:52ch;">Cupo limitado a 12 personas. El apartado de $2,000 es reembolsable hasta el 12 de septiembre.</p>
+        <a href={WA} target="_blank" rel="noopener" class="btn-white">Quiero inscribirme</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="gl-footer">
+      <p>Inessentia · Grupo de Actualización en Terapia Corporal</p>
+      <p><a href={WA} target="_blank" rel="noopener">wa.me/patriciomx</a></p>
+    </footer>
+
+  </div>
+
+  <script>
+    const nav = document.getElementById('gl-nav');
+    const onScroll = () => {
+      if (window.scrollY > 60) {
+        nav?.classList.add('is-scrolled');
+      } else {
+        nav?.classList.remove('is-scrolled');
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</Base>
+
+<style is:global>
+  html { scroll-behavior: smooth; }
+</style>
+
+<style>
+  .gl-page {
+    --gl-purple-deep: #341A54;
+    --gl-gold-light: #E6D2B4;
+    --gl-hairline: #ece6d8;
+    --gl-body-ink: #3f3a36;
+    --gl-muted: #8a8274;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  .gl-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: blur(6px);
+    transition: background .3s ease, box-shadow .3s ease;
+  }
+  .gl-nav.is-scrolled {
+    background: rgba(52,26,84,.96);
+    box-shadow: 0 8px 28px rgba(38,20,60,.28);
+  }
+  .gl-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: padding .3s ease;
+  }
+  .gl-nav.is-scrolled .gl-nav-inner {
+    padding: 12px 40px;
+  }
+  .gl-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+  }
+  .gl-nav-brand img { height: 70px; width: auto; display: block; }
+  .gl-nav-word {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .gl-nav-right { display: flex; align-items: center; gap: 28px; }
+  .gl-nav-links { display: flex; align-items: center; gap: 28px; }
+  .gl-nav-links a {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+    text-decoration: none;
+  }
+  .gl-nav-cta {
+    background: #fff;
+    color: var(--purple);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 680px) {
+    .gl-nav-links { display: none; }
+  }
+
+  /* HERO */
+  .gl-hero {
+    position: relative;
+    min-height: 820px;
+    overflow: hidden;
+    background: var(--gl-purple-deep);
+    display: flex;
+    flex-direction: column;
+  }
+  .gl-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+  .gl-hero-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(38,20,60,.92) 0%, rgba(38,20,60,.78) 20%, rgba(38,20,60,.28) 40%, rgba(38,20,60,.22) 58%, rgba(38,20,60,.72) 82%, rgba(38,20,60,.94) 100%);
+  }
+  @media (max-width: 680px) {
+    .gl-hero-veil {
+      background: linear-gradient(180deg, rgba(38,20,60,.9) 0%, rgba(38,20,60,.82) 45%, rgba(38,20,60,.86) 100%);
+    }
+  }
+  .gl-hero-content {
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 132px 40px 60px;
+  }
+  .gl-hero-top { max-width: 900px; }
+  .gl-eyebrow-gold {
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin: 0 0 14px;
+  }
+  .gl-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 20px;
+  }
+  .gl-hero-meta span { color: #fff; font-size: 14px; font-weight: 600; }
+  .gl-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sand); }
+  .gl-hero-bottom { max-width: 820px; margin-right: auto; text-align: left; }
+  .gl-h1 {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.03;
+    color: #fff;
+    letter-spacing: 0;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .gl-subtitle {
+    font-family: 'Bitter', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(18px, 2.4vw, 24px);
+    color: var(--gl-gold-light);
+    margin: 18px 0 0;
+  }
+
+  .gl-italic-note {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--gl-muted);
+    margin: 24px 0 0;
+  }
+
+  .gl-bordered { border-top: 1px solid var(--gl-hairline); border-bottom: 1px solid var(--gl-hairline); }
+
+  .gl-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .gl-grid-3--tight { margin-top: 24px; }
+  .gl-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+  .gl-card {
+    background: #fff;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 22px;
+    padding: 34px 30px;
+  }
+  .gl-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+  .gl-card-title {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 21px;
+    color: var(--purple);
+    margin: 0 0 16px;
+    line-height: 1.2;
+  }
+  .gl-list { margin: 0; padding-left: 20px; }
+  .gl-list li { margin-bottom: 12px; font-size: 15.5px; line-height: 1.6; color: var(--gl-body-ink); }
+
+  .gl-mini-label {
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gl-muted);
+    margin: 0 0 22px;
+  }
+  .gl-recorrido { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+  .gl-parada { display: flex; align-items: center; gap: 10px; }
+  .gl-pill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 999px;
+    padding: 10px 20px 10px 12px;
+  }
+  .gl-pill-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #fff;
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 13px;
+    flex: none;
+  }
+  .gl-pill-dot--gold { background: var(--sand); color: var(--ink); }
+  .gl-pill-label { font-size: 14.5px; font-weight: 600; color: var(--purple); line-height: 1.2; white-space: nowrap; }
+  .gl-arrow { color: var(--sand); font-size: 18px; font-weight: 700; }
+
+  .gl-transversal {
+    margin-top: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--cream-2);
+    border: 1px solid var(--gl-hairline);
+    border-left: 3px solid var(--wine);
+    border-radius: 0 16px 16px 0;
+    padding: 18px 22px;
+  }
+  .gl-transversal-tag {
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--wine);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .gl-transversal-text { font-size: 15px; line-height: 1.6; color: var(--gl-body-ink); }
+  .gl-transversal-text strong { color: var(--purple); }
+
+  .gl-purple-deep { background: var(--gl-purple-deep); }
+  .gl-h2-white {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.12;
+    color: #fff;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .gl-photo-frame {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,.3);
+    aspect-ratio: 16 / 9;
+    background: #26203a;
+  }
+  .gl-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .gl-table-wrap {
+    background: #fff;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 22px;
+    overflow: hidden;
+  }
+  .gl-table { width: 100%; border-collapse: collapse; }
+  .gl-table thead th {
+    text-align: left;
+    padding: 15px 22px;
+    background: var(--purple);
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .gl-table tbody td {
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--gl-hairline);
+    font-size: 15px;
+    color: var(--gl-body-ink);
+  }
+  .gl-row-alt { background: var(--cream-2); }
+  .gl-td-n { font-weight: 700; color: var(--purple); }
+  .gl-td-nota { font-size: 14px; color: var(--wine); font-weight: 600; }
+  .gl-td-receso {
+    text-align: center;
+    font-style: italic;
+    color: var(--gl-muted);
+    font-size: 14px;
+    background: var(--cream-2);
+  }
+
+  .gl-mini-card {
+    background: #fff;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 18px;
+    padding: 22px 24px;
+  }
+  .gl-mini-card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--wine);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .gl-mini-card-value { font-size: 15px; color: var(--gl-body-ink); }
+
+  .gl-price-card {
+    position: relative;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 22px;
+    padding: 34px 30px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+  }
+  .gl-price-card--featured {
+    border: 2px solid var(--sand);
+    box-shadow: 0 22px 48px rgba(70,39,110,.12);
+  }
+  .gl-price-tag {
+    position: absolute;
+    top: -13px; left: 28px;
+    background: var(--sand);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .gl-price-subtitle { font-size: 13.5px; color: var(--gl-muted); margin: 0 0 18px; }
+  .gl-price-strike { font-size: 15px; color: var(--gl-muted); text-decoration: line-through; margin: 0; }
+  .gl-price-big {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--purple);
+    margin: 2px 0 4px;
+  }
+  .gl-price-note { font-size: 13px; color: var(--wine); font-weight: 700; margin: 0 0 12px; }
+  .gl-price-free { font-size: 14.5px; color: var(--gl-body-ink); margin: auto 0 0; }
+
+  .gl-notes-box {
+    margin-top: 28px;
+    padding: 24px 28px;
+    background: var(--cream-2);
+    border: 1px solid var(--gl-hairline);
+    border-radius: 18px;
+  }
+  .gl-notes-box p { font-size: 15px; color: var(--gl-body-ink); margin: 0 0 8px; }
+  .gl-notes-box p:last-child { margin: 0; }
+  .gl-notes-box strong { color: var(--purple); }
+
+  .gl-corpore-callout {
+    margin-top: 24px;
+    background: #fff;
+    border: 1px dashed var(--sand);
+    border-radius: 22px;
+    padding: 32px 30px;
+  }
+
+  .gl-supervisor {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 36px;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--gl-hairline);
+    border-radius: 22px;
+    padding: 38px;
+  }
+  .gl-supervisor-photo {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 38%;
+  }
+  .gl-supervisor-name {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--purple);
+    margin: 0 0 12px;
+  }
+  @media (max-width: 560px) {
+    .gl-supervisor { grid-template-columns: 1fr; text-align: center; padding: 30px 24px; }
+    .gl-supervisor-photo { margin: 0 auto; }
+  }
+
+  .gl-footer {
+    background: var(--ink);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 38px 40px;
+  }
+  .gl-footer p { font-size: 14px; margin: 0 0 6px; }
+  .gl-footer p:last-child { margin: 0; }
+  .gl-footer a { color: rgba(255,255,255,.85); text-decoration: none; }
+</style>

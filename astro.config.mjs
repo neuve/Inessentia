@@ -19,6 +19,9 @@ export default defineConfig({
       prefixDefaultLocale: true,
     },
   },
+  redirects: {
+    '/es/supervisión/': '/es/supervision/',
+  },
   integrations: [
     sitemap({
       filter: (page) =>
