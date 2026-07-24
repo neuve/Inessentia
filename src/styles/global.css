@@ -22,6 +22,12 @@
   --ink: #262321;
   --warm: #FCFBF6;
   --nav-h: 84px;
+  /* Ancho fluido para contenedores de layout/navegación (nav, footer, menú,
+     heros, grids de tarjetas) — crece con la pantalla hasta un techo, en vez
+     del clásico ancho fijo de "columna de laptop". NO usar en contenedores
+     de lectura larga (blog, párrafos legales, panel de terapia): esos
+     conservan su tope angosto a propósito, por legibilidad. */
+  --container-w: clamp(1200px, 90vw, 1680px);
 }
 
 /* La barra vive sobre el banner de marca: los heros oscuros del tope (SiteHeader
@@ -59,7 +65,7 @@ body {
 .section--cream { background: var(--cream-2); }
 .section--purple { background: var(--purple); }
 .section--purple-d { background: var(--purple-d); }
-.container { max-width: 1200px; margin: 0 auto; }
+.container { max-width: var(--container-w); margin: 0 auto; }
 .container--narrow { max-width: 1000px; margin: 0 auto; }
 .container--blog { max-width: 820px; margin: 0 auto; }
 
