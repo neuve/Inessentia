@@ -790,8 +790,8 @@
     ]
   },
   "/uploads/supervision-grupos-trabajando.webp": {
-    "width": 1920,
-    "height": 1460,
+    "width": 1800,
+    "height": 1290,
     "srcset": [
       {
         "w": 96,
@@ -830,7 +830,7 @@
         "url": "/uploads/responsive/supervision-grupos-trabajando-1600.webp"
       },
       {
-        "w": 1920,
+        "w": 1800,
         "url": "/uploads/supervision-grupos-trabajando.webp"
       }
     ]
