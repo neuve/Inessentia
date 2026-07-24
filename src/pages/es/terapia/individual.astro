@@ -29,7 +29,7 @@ const schema = [
     panelLarge
     eyebrow="Terapia individual"
     icon="/uploads/icono-terapia-individual.webp"
-    iconSize="118px"
+    iconSize="clamp(118px, 9vw, 160px)"
     title="Procesos uno a uno para transformarte y aliviar lo que te sobrepasa."
     ctaLabel="Agenda tu primera cita"
     ctaHref="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F"
@@ -41,8 +41,8 @@ const schema = [
   </SiteHeader>
 
   <!-- ¿ES PARA TI? -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
-    <div style="max-width:1100px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;background:var(--cream-2);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <p data-reveal class="label-section">Indicaciones</p>
       <h2 data-reveal class="heading-section" style="margin-bottom:40px;">¿Esta terapia es para ti?</h2>
       <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
@@ -69,8 +69,8 @@ const schema = [
   </section>
 
   <!-- CÓMO TRABAJAMOS -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;">
-    <div style="max-width:900px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <p data-reveal class="label-section">El proceso</p>
       <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Ritmo, profundidad y método</h2>
       <div style="display:flex;flex-direction:column;gap:18px;">
@@ -82,8 +82,8 @@ const schema = [
   </section>
 
   <!-- 3 TRANSFORMACIONES -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
-    <div style="max-width:1200px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;background:var(--cream-2);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
         <p data-reveal class="label-section">Evolución</p>
         <h2 data-reveal class="heading-section">Qué cambia conforme avanza el proceso</h2>
@@ -109,8 +109,8 @@ const schema = [
   </section>
 
   <!-- PRIMERA SESIÓN + COSTO -->
-  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 32px;">
-    <div class="two-col" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 0;">
+    <div class="two-col" style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
       <div>
         <p data-reveal class="label-section">Tu primera sesión</p>
         <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Paso a paso</h2>
@@ -145,8 +145,8 @@ const schema = [
   </section>
 
   <!-- TÉCNICAS -->
-  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 32px;background:var(--purple);">
-    <div style="max-width:1200px;margin:0 auto;">
+  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 0;background:var(--purple);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
         <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Aproximaciones</p>
         <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;text-wrap:balance;">Cómo trabajo en sesión</h2>
@@ -176,8 +176,8 @@ const schema = [
   </section>
 
   <!-- TESTIMONIOS -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;">
-    <div style="max-width:1100px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(36px,4vw,52px);">
         <p data-reveal class="label-section">Experiencias</p>
         <h2 data-reveal class="heading-section">Lo que dicen quienes han pasado por aquí</h2>
@@ -203,8 +203,8 @@ const schema = [
   </section>
 
   <!-- CTA + CROSS-SELL -->
-  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 32px;text-align:center;">
-    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;">
+  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 0;text-align:center;">
+    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <h2 style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">¿Listo para agendar tu primera sesión?</h2>
       <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20llegu%C3%A9%20a%20tu%20sitio%20y%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20individual.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn-white">Agenda tu primera cita</a>
       <p style="margin:32px 0 10px;color:rgba(255,255,255,.7);font-size:15px;">¿Estás pensando en un proceso en pareja?</p>

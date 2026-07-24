@@ -13,7 +13,7 @@ const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
 ---
 
 <section class="section">
-  <div class="container" style="max-width:1100px;">
+  <div class="container" style="max-width:var(--container-w);">
     <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
       <p data-reveal class="label-section">{i.testimonials.label}</p>
       <h2 data-reveal class="heading-section">{i.testimonials.title}</h2>

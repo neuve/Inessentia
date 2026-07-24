@@ -8,8 +8,11 @@ interface Props {
   // Navbar background variant: 'gradient' (default, current behavior),
   // 'light' (transparent over a light hero, purple links/wordmark, solid
   // --warm once scrolled), 'solid' (solid --cream-2 with hairline, for
-  // pages with no dark hero below).
-  variant?: 'gradient' | 'light' | 'solid';
+  // pages with no dark hero below), 'photo' (transparent over a full-bleed
+  // photo hero, cream-2 once scrolled), 'dark' (solid --purple always, for
+  // pages that continue into their own solid-dark UI below, e.g. Red
+  // Inessentia's map app).
+  variant?: 'gradient' | 'light' | 'solid' | 'photo' | 'dark';
 }
 
 const { locale, variant = 'gradient' } = Astro.props;
@@ -83,6 +86,16 @@ const searchBlogEntries = {
   .navbar.navbar--light.navbar--scrolled {
     background: var(--warm);
     box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
+  }
+
+  /* ---------- Variant: dark ----------
+     Para páginas con una barra sólida oscura debajo (Red Inessentia: el nav
+     se continúa visualmente con la topbar morada de la app, sin el
+     degradado a arena de la variante gradient). Fondo sólido --purple,
+     texto blanco siempre — no cambia con scroll (la página no hace scroll
+     de contenido, es una app de una pantalla). */
+  .navbar.navbar--dark {
+    background: var(--purple);
   }
 
   /* ---------- Variant: solid ----------

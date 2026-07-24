@@ -94,8 +94,8 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CATEGORY FILTER (pills) -->
-  <div style="background:var(--cream-2);padding:24px clamp(24px,5vw,52px) 6px;border-bottom:1px solid #e2dccc;">
-    <div style="max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:9px;">
+  <div style="background:var(--cream-2);padding:24px 0 6px;border-bottom:1px solid #e2dccc;">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;display:flex;flex-wrap:wrap;gap:9px;">
       {cats.map((c, k) => (
         <button type="button" data-rec-pill={c.key}
           style={`background:${k === 0 ? 'var(--purple)' : '#fff'};color:${k === 0 ? '#fff' : '#5a5048'};border:1px solid ${k === 0 ? 'var(--purple)' : '#e4dece'};padding:9px 17px;border-radius:99px;font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;`}>{c.label}</button>
@@ -104,8 +104,8 @@ const grid = getResourcesGrid().map((p, k) => {
   </div>
 
   <!-- DENSE MOSAIC (masonry, 4 columns) -->
-  <section style="background:var(--cream-2);padding:34px clamp(24px,5vw,52px) 58px;">
-    <div style="max-width:1320px;margin:0 auto;">
+  <section style="background:var(--cream-2);padding:34px 0 58px;">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;">
       <div class="rec-grid">
         {grid.map(c => (
           c.photo ? (
@@ -155,8 +155,8 @@ const grid = getResourcesGrid().map((p, k) => {
 <style>
   .rec-hero { position:relative; overflow:hidden; height:calc(clamp(540px,64vw,600px) + var(--nav-h)); width:100%; }
   .rec-hero-overlay { position:absolute; inset:0; background:linear-gradient(118deg,rgba(46,22,72,.95) 0%,rgba(46,22,72,.82) 38%,rgba(46,22,72,.34) 72%,rgba(46,22,72,.12) 100%); }
-  .rec-hero-intro { position:absolute; top:calc(clamp(32px,5vw,46px) + var(--nav-h)); left:clamp(24px,5vw,52px); right:clamp(24px,5vw,52px); z-index:1; }
-  .rec-hero-feature { position:absolute; left:clamp(24px,5vw,52px); right:clamp(24px,5vw,52px); bottom:40px; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:28px; }
+  .rec-hero-intro { position:absolute; top:calc(clamp(32px,5vw,46px) + var(--nav-h)); left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-w); padding:0 40px; box-sizing:border-box; z-index:1; }
+  .rec-hero-feature { position:absolute; left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-w); padding:0 40px; box-sizing:border-box; bottom:40px; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:28px; }
   .rec-grid { column-count:4; column-gap:20px; }
   .rec-card { border-radius:18px; transition:transform .3s ease, box-shadow .3s ease; }
   .rec-card:hover { transform:translateY(-6px); box-shadow:0 22px 44px rgba(60,31,94,.24); }

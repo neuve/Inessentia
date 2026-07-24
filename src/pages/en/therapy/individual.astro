@@ -29,7 +29,7 @@ const schema = [
     panelLarge
     eyebrow="Individual therapy"
     icon="/uploads/icono-terapia-individual.webp"
-    iconSize="118px"
+    iconSize="clamp(118px, 9vw, 160px)"
     title="One-on-one work to transform and ease what overwhelms you."
     ctaLabel="Book your first session"
     ctaHref="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F"
@@ -41,8 +41,8 @@ const schema = [
   </SiteHeader>
 
   <!-- IS THIS FOR YOU? -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
-    <div style="max-width:1100px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;background:var(--cream-2);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <p data-reveal class="label-section">Who it's for</p>
       <h2 data-reveal class="heading-section" style="margin-bottom:40px;">Is this therapy right for you?</h2>
       <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
@@ -69,8 +69,8 @@ const schema = [
   </section>
 
   <!-- HOW WE WORK -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;">
-    <div style="max-width:900px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;">
+    <div style="max-width:900px;margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <p data-reveal class="label-section">The process</p>
       <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Rhythm, depth and method</h2>
       <div style="display:flex;flex-direction:column;gap:18px;">
@@ -82,8 +82,8 @@ const schema = [
   </section>
 
   <!-- 3 TRANSFORMATIONS -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;background:var(--cream-2);">
-    <div style="max-width:1200px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;background:var(--cream-2);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
         <p data-reveal class="label-section">Evolution</p>
         <h2 data-reveal class="heading-section">What changes as the process unfolds</h2>
@@ -109,8 +109,8 @@ const schema = [
   </section>
 
   <!-- FIRST SESSION + COST -->
-  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 32px;">
-    <div class="two-col" style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+  <section id="primera-sesion" style="padding:clamp(64px,9vw,116px) 0;">
+    <div class="two-col" style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
       <div>
         <p data-reveal class="label-section">Your first session</p>
         <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Step by step</h2>
@@ -145,8 +145,8 @@ const schema = [
   </section>
 
   <!-- TECHNIQUES -->
-  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 32px;background:var(--purple);">
-    <div style="max-width:1200px;margin:0 auto;">
+  <section id="tecnicas" style="padding:clamp(64px,9vw,116px) 0;background:var(--purple);">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
         <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);">Approaches</p>
         <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(28px,4vw,46px);line-height:1.1;margin:0;text-wrap:balance;">How I work in session</h2>
@@ -176,8 +176,8 @@ const schema = [
   </section>
 
   <!-- TESTIMONIALS -->
-  <section style="padding:clamp(64px,9vw,116px) 32px;">
-    <div style="max-width:1100px;margin:0 auto;">
+  <section style="padding:clamp(64px,9vw,116px) 0;">
+    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="text-align:center;margin-bottom:clamp(36px,4vw,52px);">
         <p data-reveal class="label-section">Testimonials</p>
         <h2 data-reveal class="heading-section">What people say about working together</h2>
@@ -203,8 +203,8 @@ const schema = [
   </section>
 
   <!-- CTA + CROSS-SELL -->
-  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 32px;text-align:center;">
-    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;">
+  <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,112px) 0;text-align:center;">
+    <div data-reveal style="position:relative;max-width:700px;margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <h2 style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
       <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn-white">Book your first session</a>
       <p style="margin:32px 0 10px;color:rgba(255,255,255,.7);font-size:15px;">Considering a couples process?</p>

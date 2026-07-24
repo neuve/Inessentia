@@ -231,8 +231,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     background: linear-gradient(0deg, rgba(38,20,60,.94) 0%, rgba(38,20,60,.78) 26%, rgba(38,20,60,.34) 58%, rgba(38,20,60,.12) 100%);
   }
   .site-header__cinema-inner {
-    position: relative; z-index: 2; width: 100%; max-width: var(--container-w); margin: 0 auto;
-    padding: 130px 32px 72px;
+    /* Tope propio, más angosto que --container-w: a diferencia del nav/footer/
+       menú, este texto vive encima de un retrato con foco en la cara — si
+       crece con el contenedor ancho general, la columna del párrafo termina
+       invadiendo la cara en pantallas grandes. El padding lateral (40px) sí
+       coincide con el del nav para que el borde derecho quede alineado con
+       la hamburguesa. */
+    position: relative; z-index: 2; width: 100%; max-width: clamp(1200px, 82vw, 1440px); margin: 0 auto;
+    padding: 130px 40px 72px;
     display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr);
     gap: clamp(28px, 4vw, 64px); align-items: end;
     min-height: 90vh;
@@ -265,12 +271,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header--panel { background: var(--warm); min-height: 62vh; display: flex; align-items: center; padding: 150px 0 80px; }
   .site-header__panel-rail { position: absolute; inset: 0 auto 0 0; width: 6px; background: linear-gradient(180deg, #8E2B5D 0%, #46276E 55%, #C2B07E 100%); }
   .site-header__panel-inner {
-    position: relative; max-width: var(--container-w); margin: 0 auto; width: 100%; padding: 0 32px 0 48px;
-    display: flex; align-items: center; justify-content: space-between; gap: clamp(24px, 4vw, 56px);
+    /* Grid en vez de flex space-between: el ícono vive en su propia columna
+       (no pegado al borde derecho) y se centra dentro de ella. */
+    position: relative; max-width: var(--container-w); margin: 0 auto; width: 100%; padding: 0 40px 0 48px;
+    display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.5fr); align-items: center; gap: clamp(24px, 4vw, 56px);
   }
   .site-header__panel-copy { max-width: 66%; }
   .site-header__panel-copy--lg { max-width: 960px; }
-  .site-header__panel-icon { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; }
+  .site-header__panel-icon { width: 100%; display: flex; align-items: center; justify-content: center; }
   /* Panel text colours must beat the shared white/sand rules below, which
      have equal specificity but come later in source order. Prefix with the
      block class to win regardless of order. */
@@ -285,9 +293,9 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header--panel .site-header__link--panel { color: #8E2B5D; text-decoration: none; border-bottom: none; }
   .site-header--panel .site-header__link--panel:hover { color: #8E2B5D; text-decoration: none; border-bottom: none; }
   @media (max-width: 860px) {
-    .site-header__panel-inner { flex-direction: column-reverse; align-items: center; text-align: center; padding-left: 32px; }
-    .site-header__panel-copy { max-width: 100%; }
-    .site-header__panel-icon { margin: 0 auto; }
+    .site-header__panel-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-left: 32px; }
+    .site-header__panel-copy { max-width: 100%; grid-row: 2; }
+    .site-header__panel-icon { grid-row: 1; margin: 0 auto; }
     .site-header__panel-copy .site-header__actions { justify-content: center; }
     .site-header__panel-copy .site-header__lead--panel { margin-left: auto; margin-right: auto; }
   }

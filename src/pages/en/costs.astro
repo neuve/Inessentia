@@ -14,8 +14,8 @@ const termsPath = sitePath(locale, 'terms');
 >
 
   <!-- HEADER -->
-  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 32px clamp(40px,5vw,64px);">
-    <div style="max-width:760px;margin:0 auto;">
+  <section style="background:linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);padding:clamp(56px,7vw,96px) 0 clamp(40px,5vw,64px);">
+    <div style="max-width:760px;margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <p class="label-section">Costs</p>
       <h1 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(32px,4.5vw,52px);line-height:1.06;margin:0;">Invest in your process</h1>
       <p style="font-size:clamp(16px,1.1vw,18px);line-height:1.7;color:#3f3a36;margin:20px 0 0;">Clear rates to support you — whether you're starting today or keeping your process going with continuity.</p>
@@ -24,15 +24,15 @@ const termsPath = sitePath(locale, 'terms');
 
   <!-- BAND: SAME COST AND DURATION -->
   <section style="background:var(--cream);border-bottom:1px solid rgba(70,39,110,.10);">
-    <div data-reveal style="max-width:1120px;margin:0 auto;padding:20px clamp(24px,5vw,52px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center;">
+    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:20px 40px;box-sizing:border-box;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--wine)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       <p style="margin:0;font-size:clamp(14px,1.1vw,16px);line-height:1.55;color:#3f3a36;">Individual, couples, and family sessions share the <strong>same cost</strong> and a duration of <strong>50 to 60 minutes</strong> each.</p>
     </div>
   </section>
 
   <!-- PRICING CARDS -->
-  <section style="background:var(--cream-2);padding:clamp(48px,7vw,64px) clamp(24px,5vw,52px) 20px;">
-    <div class="costos-grid" style="max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;">
+  <section style="background:var(--cream-2);padding:clamp(48px,7vw,64px) 0 20px;">
+    <div class="costos-grid" style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;">
 
       <!-- Per session -->
       <div data-reveal style="background:#fff;border:1px solid #e6ddca;border-radius:24px;padding:clamp(32px,4vw,44px) clamp(28px,3.5vw,40px);display:flex;flex-direction:column;box-shadow:0 24px 54px rgba(60,31,94,.10);">
@@ -69,8 +69,8 @@ const termsPath = sitePath(locale, 'terms');
   </section>
 
   <!-- NOTE -->
-  <section style="background:var(--cream-2);padding:14px clamp(24px,5vw,52px) clamp(56px,8vw,80px);">
-    <div data-reveal style="max-width:1120px;margin:0 auto;">
+  <section style="background:var(--cream-2);padding:14px 0 clamp(56px,8vw,80px);">
+    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="border-top:1px solid #e2dccc;padding-top:22px;max-width:78ch;">
         <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:#6a615a;">* Payments are processed by bank transfer or Stripe. Paying in advance confirms your slot; you can also pay in cash on the day of your session.</p>
         <p style="margin:0;font-size:14px;line-height:1.65;color:#6a615a;">See more details in the <a href={termsPath} style="color:var(--wine);font-weight:700;text-decoration:none;">terms of service</a>.</p>

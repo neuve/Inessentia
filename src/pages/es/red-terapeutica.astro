@@ -11,6 +11,7 @@ const i = t(locale);
   title="Red Inessentia — Directorio de terapeutas somáticos, psicoterapeutas y terapia física en Latinoamérica"
   description="Red Inessentia es un directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Encuentra profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendados por Patricio Ruiz."
   altPath="/therapist-network/"
+  nav="dark"
   hideFooter
 >
 
@@ -93,7 +94,7 @@ const i = t(locale);
 
     <!-- FILTER BAR -->
     <div style="flex:none;background:#46276E;z-index:50;">
-      <div style="padding:10px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="max-width:var(--container-w);margin:0 auto;padding:10px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <div style="flex:none;max-width:420px;">
           <div style="font-family:'Bitter',serif;font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:.04em;white-space:nowrap;">
             Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span>
@@ -115,13 +116,14 @@ const i = t(locale);
           <span id="ri-counter" style="font-size:.72rem;color:#C2B07E;white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:'DM Sans',sans-serif;">—</span>
         </div>
       </div>
-      <div style="padding:6px 22px 8px;border-top:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:6px;overflow-x:auto;">
+      <div style="border-top:1px solid rgba(255,255,255,.07);"><div style="max-width:var(--container-w);margin:0 auto;padding:6px 40px 8px;display:flex;align-items:center;gap:6px;overflow-x:auto;">
         <span style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:'DM Sans',sans-serif;">Atiende</span>
         <button class="ri-chip" data-caso="Individual">Individual</button>
         <button class="ri-chip" data-caso="Pareja">Pareja</button>
         <button class="ri-chip" data-caso="Familia">Familia</button>
         <button class="ri-chip" data-caso="Adolescentes">Adolescentes</button>
         <button class="ri-chip" data-caso="Niños">Niños</button>
+      </div>
       </div>
     </div>
 
