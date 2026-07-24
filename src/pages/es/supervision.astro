@@ -447,8 +447,8 @@ const PRICING = {
   .gl-page {
     --gl-purple-deep: #341A54;
     --gl-gold-light: #E6D2B4;
-    --gl-hairline: #ece6d8;
-    --gl-body-ink: #3f3a36;
+    --gl-hairline: var(--border-card);
+    --gl-body-ink: var(--text);
     --gl-muted: #8a8274;
     width: 100%;
     overflow-x: hidden;
@@ -540,11 +540,11 @@ const PRICING = {
   .gl-hero-veil {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(38,20,60,.92) 0%, rgba(38,20,60,.78) 20%, rgba(38,20,60,.28) 40%, rgba(38,20,60,.22) 58%, rgba(38,20,60,.72) 82%, rgba(38,20,60,.94) 100%);
+    background: linear-gradient(180deg, rgba(var(--veil-purple),.92) 0%, rgba(var(--veil-purple),.78) 20%, rgba(var(--veil-purple),.28) 40%, rgba(var(--veil-purple),.22) 58%, rgba(var(--veil-purple),.72) 82%, rgba(var(--veil-purple),.94) 100%);
   }
   @media (max-width: 680px) {
     .gl-hero-veil {
-      background: linear-gradient(180deg, rgba(38,20,60,.9) 0%, rgba(38,20,60,.82) 45%, rgba(38,20,60,.86) 100%);
+      background: linear-gradient(180deg, rgba(var(--veil-purple),.9) 0%, rgba(var(--veil-purple),.82) 45%, rgba(var(--veil-purple),.86) 100%);
     }
   }
   .gl-hero-content {

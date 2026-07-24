@@ -18,30 +18,30 @@ const i = t(locale);
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style is:global>
-    .ri-select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 28px 5px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C2B07E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;background-size:10px;transition:border-color .15s}
-    .ri-select option{background:#46276E;color:#fff}
-    .ri-select:focus{border-color:#C2B07E}
+    .ri-select{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 28px 5px 10px;border-radius:6px;font-family:var(--ff-body);font-size:.78rem;cursor:pointer;outline:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C2B07E' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center;background-size:10px;transition:border-color .15s}
+    .ri-select option{background:var(--purple);color:#fff}
+    .ri-select:focus{border-color:var(--sand)}
     .ri-mod-group{display:flex;border:1px solid rgba(255,255,255,.18);border-radius:6px;overflow:hidden}
-    .ri-mod-btn{background:transparent;border:none;color:rgba(255,255,255,.5);padding:5px 11px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .15s;white-space:nowrap}
+    .ri-mod-btn{background:transparent;border:none;color:rgba(255,255,255,.5);padding:5px 11px;font-family:var(--ff-body);font-size:.78rem;cursor:pointer;transition:all .15s;white-space:nowrap}
     .ri-mod-btn+.ri-mod-btn{border-left:1px solid rgba(255,255,255,.18)}
-    .ri-mod-btn.active{background:#C2B07E;color:#3C1F5E;font-weight:600}
-    .ri-chip{font-family:'DM Sans',sans-serif;font-size:.72rem;padding:3px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
-    .ri-chip:hover{border-color:#C2B07E;color:#fff}
-    .ri-chip.active{background:#8E2B5D;border-color:#8E2B5D;color:#fff;font-weight:600}
-    .ri-zona-input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 10px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:.78rem;outline:none;width:140px;transition:border-color .15s}
+    .ri-mod-btn.active{background:var(--sand);color:var(--purple-d);font-weight:600}
+    .ri-chip{font-family:var(--ff-body);font-size:.72rem;padding:3px 12px;border-radius:var(--r-pill);border:1px solid rgba(255,255,255,.18);background:transparent;color:rgba(255,255,255,.6);cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0}
+    .ri-chip:hover{border-color:var(--sand);color:#fff}
+    .ri-chip.active{background:var(--wine);border-color:var(--wine);color:#fff;font-weight:600}
+    .ri-zona-input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#fff;padding:5px 10px;border-radius:6px;font-family:var(--ff-body);font-size:.78rem;outline:none;width:140px;transition:border-color .15s}
     .ri-zona-input::placeholder{color:rgba(255,255,255,.35)}
-    .ri-zona-input:focus{border-color:#C2B07E}
+    .ri-zona-input:focus{border-color:var(--sand)}
     .ri-list-container{flex:1;overflow-y:auto;padding:8px 0}
     .ri-list-container::-webkit-scrollbar{width:4px}
     .ri-list-container::-webkit-scrollbar-track{background:transparent}
     .ri-list-container::-webkit-scrollbar-thumb{background:#C2B07E55;border-radius:2px}
     .therapist-item{padding:12px 20px;border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer;transition:background .15s;border-left:3px solid transparent}
     .therapist-item:hover{background:#FAF6F0}
-    .therapist-item.active{background:#FFF5FA;border-left-color:#8E2B5D}
-    .therapist-name{font-weight:600;font-size:.85rem;color:#262321;margin-bottom:3px;font-family:'DM Sans',sans-serif}
-    .therapist-location{font-size:.72rem;color:#8B8378;margin-bottom:5px;font-family:'DM Sans',sans-serif}
+    .therapist-item.active{background:#FFF5FA;border-left-color:var(--wine)}
+    .therapist-name{font-weight:600;font-size:.85rem;color:var(--ink);margin-bottom:3px;font-family:var(--ff-body)}
+    .therapist-location{font-size:.72rem;color:var(--text-faint);margin-bottom:5px;font-family:var(--ff-body)}
     .therapist-tags{display:flex;gap:4px;flex-wrap:wrap}
-    .tag{font-size:.6rem;padding:2px 7px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-family:'DM Sans',sans-serif}
+    .tag{font-size:.6rem;padding:2px 7px;border-radius:var(--r-pill);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-family:var(--ff-body)}
     .tag-online{background:#E8F0FB;color:#2255AA}
     .tag-presencial{background:#F8F0E8;color:#8E4A20}
     .tag-domicilio{background:#F0EBF8;color:#6B3A9E}
@@ -52,24 +52,24 @@ const i = t(locale);
     .tag-fisica{background:#F8EFE8;color:#8E5030}
     .tag-psiquiatrica{background:#E8EDF6;color:#3A4A7A}
     .tag-lista{background:#FFF0E8;color:#8E4A10}
-    .ri-no-results{padding:40px 20px;text-align:center;color:#8B8378;font-size:.85rem;line-height:1.7;font-family:'DM Sans',sans-serif}
+    .ri-no-results{padding:40px 20px;text-align:center;color:var(--text-faint);font-size:.85rem;line-height:1.7;font-family:var(--ff-body)}
     .leaflet-popup-content-wrapper{border-radius:14px!important;box-shadow:0 8px 32px rgba(70,39,110,.2)!important;border:none!important;padding:0!important;overflow:hidden}
     .leaflet-popup-content{margin:0!important;width:310px!important}
     .leaflet-popup-tip{background:white!important}
     .leaflet-popup-close-button{color:rgba(255,255,255,.75)!important;font-size:18px!important;top:8px!important;right:10px!important;z-index:10}
-    .popup-header{padding:14px 36px 12px 16px;background:#46276E;border-top:3px solid #C2B07E}
-    .popup-tipo{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:#C2B07E;margin-bottom:5px;font-family:'DM Sans',sans-serif;font-weight:600}
+    .popup-header{padding:14px 36px 12px 16px;background:var(--purple);border-top:3px solid var(--sand)}
+    .popup-tipo{font-size:.62rem;text-transform:uppercase;letter-spacing:.12em;color:var(--sand);margin-bottom:5px;font-family:var(--ff-body);font-weight:600}
     .popup-name{font-family:'Bitter',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2}
-    .popup-city{font-size:.7rem;color:rgba(255,255,255,.6);margin-top:4px;font-family:'DM Sans',sans-serif}
+    .popup-city{font-size:.7rem;color:rgba(255,255,255,.6);margin-top:4px;font-family:var(--ff-body)}
     .popup-body{padding:14px 16px}
     .popup-section{margin-bottom:10px}
-    .popup-section-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:#8B8378;margin-bottom:4px;font-weight:600;font-family:'DM Sans',sans-serif}
-    .popup-section-value{font-size:.8rem;color:#262321;line-height:1.5;font-family:'DM Sans',sans-serif}
+    .popup-section-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);margin-bottom:4px;font-weight:600;font-family:var(--ff-body)}
+    .popup-section-value{font-size:.8rem;color:var(--ink);line-height:1.5;font-family:var(--ff-body)}
     .popup-tags{display:flex;gap:4px;flex-wrap:wrap}
     .popup-footer{border-top:1px solid rgba(0,0,0,.07);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-    .popup-link{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;text-decoration:none;font-weight:500;font-family:'DM Sans',sans-serif;transition:opacity .15s}
+    .popup-link{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;text-decoration:none;font-weight:500;font-family:var(--ff-body);transition:opacity .15s}
     .popup-link:hover{opacity:.7}
-    .popup-costo{margin-left:auto;font-size:.7rem;color:#8B8378;white-space:nowrap;font-family:'DM Sans',sans-serif}
+    .popup-costo{margin-left:auto;font-size:.7rem;color:var(--text-faint);white-space:nowrap;font-family:var(--ff-body)}
     @media(max-width:768px){#ri-sidebar{display:none!important}.ri-zona-input{width:110px}}
   </style>
 
@@ -85,21 +85,21 @@ const i = t(locale);
 
     <!-- LOADING OVERLAY -->
     <div id="ri-loading" style="position:absolute;inset:0;background:rgba(60,31,94,.96);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;">
-      <div style="font-family:'Bitter',serif;font-size:1.7rem;color:#fff;font-weight:300;letter-spacing:.06em;">Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span></div>
-      <div id="ri-loading-msg" style="font-size:.78rem;color:#C2B07E;font-family:'DM Sans',sans-serif;">Cargando directorio...</div>
+      <div style="font-family:'Bitter',serif;font-size:1.7rem;color:#fff;font-weight:300;letter-spacing:.06em;">Red <span style="color:var(--sand);font-style:italic;">Inessentia</span></div>
+      <div id="ri-loading-msg" style="font-size:.78rem;color:var(--sand);font-family:var(--ff-body);">Cargando directorio...</div>
       <div style="width:240px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;">
-        <div id="ri-loading-bar" style="height:100%;background:#C2B07E;border-radius:2px;transition:width .35s ease;width:0%;"></div>
+        <div id="ri-loading-bar" style="height:100%;background:var(--sand);border-radius:2px;transition:width .35s ease;width:0%;"></div>
       </div>
     </div>
 
     <!-- FILTER BAR -->
-    <div style="flex:none;background:#46276E;z-index:50;">
+    <div style="flex:none;background:var(--purple);z-index:50;">
       <div style="max-width:var(--container-w);margin:0 auto;padding:10px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <div style="flex:none;max-width:420px;">
           <div style="font-family:'Bitter',serif;font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:.04em;white-space:nowrap;">
-            Red <span style="color:#C2B07E;font-style:italic;">Inessentia</span>
+            Red <span style="color:var(--sand);font-style:italic;">Inessentia</span>
           </div>
-          <p style="font-family:'DM Sans',sans-serif;font-size:.65rem;color:rgba(255,255,255,.45);line-height:1.5;margin:4px 0 0;text-align:left;">
+          <p style="font-family:var(--ff-body);font-size:.65rem;color:rgba(255,255,255,.45);line-height:1.5;margin:4px 0 0;text-align:left;">
             Directorio interactivo de terapeutas anglo e hispanoparlantes en Latinoamérica. Profesionales en terapia familiar sistémica, experiencia somática, psicoterapia, terapia transpersonal, psiquiatría y terapia física recomendadas por Patricio Ruiz. Filtra por tipo de terapia, enfoque, modalidad (online o presencial) y zona para encontrar el/la terapeuta que mejor se ajuste a lo que buscas.
           </p>
         </div>
@@ -113,11 +113,11 @@ const i = t(locale);
             <button class="ri-mod-btn" id="ri-mod-presencial" data-mod="Presencial">Presencial</button>
           </div>
           <input type="text" class="ri-zona-input" id="filterZona" placeholder="🔍 Zona o CP...">
-          <span id="ri-counter" style="font-size:.72rem;color:#C2B07E;white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:'DM Sans',sans-serif;">—</span>
+          <span id="ri-counter" style="font-size:.72rem;color:var(--sand);white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:var(--ff-body);">—</span>
         </div>
       </div>
       <div style="border-top:1px solid rgba(255,255,255,.07);"><div style="max-width:var(--container-w);margin:0 auto;padding:6px 40px 8px;display:flex;align-items:center;gap:6px;overflow-x:auto;">
-        <span style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:'DM Sans',sans-serif;">Atiende</span>
+        <span style="font-size:.65rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.09em;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:var(--ff-body);">Atiende</span>
         <button class="ri-chip" data-caso="Individual">Individual</button>
         <button class="ri-chip" data-caso="Pareja">Pareja</button>
         <button class="ri-chip" data-caso="Familia">Familia</button>
@@ -129,11 +129,11 @@ const i = t(locale);
 
     <!-- MAP + SIDEBAR -->
     <div style="flex:1;display:flex;overflow:hidden;min-height:0;">
-      <div id="ri-map" style="flex:1;"><noscript><div style="padding:32px 22px;max-width:760px;margin:0 auto;font-family:'Mulish',sans-serif;color:#262321;"><h2 style="font-family:'Bitter',serif;color:#46276E;">Red Inessentia — terapeutas en México</h2><p>La Red Inessentia reúne a terapeutas de experiencia somática, terapia psicológica, transpersonal y física en México y el extranjero. Activa JavaScript para ver el mapa interactivo y los filtros. Estos son los terapeutas de la red y sus zonas:</p><ul style="line-height:1.9;"><li>Abigail Leija Rosano — Hipódromo Condesa</li><li>Maggie Jamous — Bosques de las Lomas</li><li>Maia Treviño — Colonia Nápoles</li><li>Ximena Ochoa Villalobos — Condesa, Alcaldía Cuauhtémoc</li><li>Kersti Estrada Alcántara — Bosques de Aragón, Zona Norte</li><li>Sandra Casale — Torreón, Coahuila</li><li>Regina Verduzco Gallo — San Ángel, CDMX</li><li>Luz Elena Herrera Castañeda — Alcaldía Coyoacán / Tláhuac</li><li>Adelaida Navaridas — Salamanca, España</li><li>Gerardo Chávez Sierra — Cuauhtémoc, CDMX</li><li>Myr Ojeda — Benito Juárez / Coyoacán, CDMX</li><li>Jeannette Marcos Cattan — Huixquilucan / Bosques de las Lomas</li><li>Marta María Ortiz — Mixco, Guatemala</li><li>Karen Silva — Nápoles, CDMX</li><li>Mayra Fernanda Chávez Leal — San Pedro Garza García, Nuevo León</li><li>Ana Platas de la Mora — Insurgentes Mixcoac, CDMX</li><li>Isabel de la Rosa — Del Valle, CDMX</li><li>Itzel Alejandra González Sánchez — Lomas del Campestre, León, Guanajuato</li><li>Claudia Stepensky — Valle de Bravo, Estado de México</li><li>Hilda Martinez Vega — Tequisquiapan, Querétaro</li></ul></div></noscript></div>
+      <div id="ri-map" style="flex:1;"><noscript><div style="padding:32px 22px;max-width:760px;margin:0 auto;font-family:'Mulish',sans-serif;color:var(--ink);"><h2 style="font-family:'Bitter',serif;color:var(--purple);">Red Inessentia — terapeutas en México</h2><p>La Red Inessentia reúne a terapeutas de experiencia somática, terapia psicológica, transpersonal y física en México y el extranjero. Activa JavaScript para ver el mapa interactivo y los filtros. Estos son los terapeutas de la red y sus zonas:</p><ul style="line-height:1.9;"><li>Abigail Leija Rosano — Hipódromo Condesa</li><li>Maggie Jamous — Bosques de las Lomas</li><li>Maia Treviño — Colonia Nápoles</li><li>Ximena Ochoa Villalobos — Condesa, Alcaldía Cuauhtémoc</li><li>Kersti Estrada Alcántara — Bosques de Aragón, Zona Norte</li><li>Sandra Casale — Torreón, Coahuila</li><li>Regina Verduzco Gallo — San Ángel, CDMX</li><li>Luz Elena Herrera Castañeda — Alcaldía Coyoacán / Tláhuac</li><li>Adelaida Navaridas — Salamanca, España</li><li>Gerardo Chávez Sierra — Cuauhtémoc, CDMX</li><li>Myr Ojeda — Benito Juárez / Coyoacán, CDMX</li><li>Jeannette Marcos Cattan — Huixquilucan / Bosques de las Lomas</li><li>Marta María Ortiz — Mixco, Guatemala</li><li>Karen Silva — Nápoles, CDMX</li><li>Mayra Fernanda Chávez Leal — San Pedro Garza García, Nuevo León</li><li>Ana Platas de la Mora — Insurgentes Mixcoac, CDMX</li><li>Isabel de la Rosa — Del Valle, CDMX</li><li>Itzel Alejandra González Sánchez — Lomas del Campestre, León, Guanajuato</li><li>Claudia Stepensky — Valle de Bravo, Estado de México</li><li>Hilda Martinez Vega — Tequisquiapan, Querétaro</li></ul></div></noscript></div>
       <div id="ri-sidebar" style="width:340px;background:#fff;border-left:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;">
         <div style="padding:14px 20px 10px;border-bottom:1px solid rgba(0,0,0,.07);background:#EAE5D9;">
-          <div style="font-family:'Bitter',serif;font-size:1rem;font-weight:700;color:#262321;">Terapeutas</div>
-          <div id="ri-sidebar-sub" style="font-size:.72rem;color:#8B8378;margin-top:2px;font-family:'DM Sans',sans-serif;">Selecciona un pin o nombre</div>
+          <div style="font-family:'Bitter',serif;font-size:1rem;font-weight:700;color:var(--ink);">Terapeutas</div>
+          <div id="ri-sidebar-sub" style="font-size:.72rem;color:var(--text-faint);margin-top:2px;font-family:var(--ff-body);">Selecciona un pin o nombre</div>
         </div>
         <div class="ri-list-container" id="list-container"></div>
       </div>
@@ -174,7 +174,7 @@ const i = t(locale);
     var SUBTIPO_TAG = {'Terapia somática':'tag-somatica','Terapia transpersonal':'tag-transpersonal','Terapia psicológica':'tag-psicologica'};
     var TIPO_TAG = {'Terapia Física':'tag-fisica','Psiquiátrica':'tag-psiquiatrica'};
 
-    var getColor=function(t){return (t.subtipo&&SUBTIPO_COLOR[t.subtipo])||TIPO_COLOR[t.tipo]||'#8B8378';};
+    var getColor=function(t){return (t.subtipo&&SUBTIPO_COLOR[t.subtipo])||TIPO_COLOR[t.tipo]||'var(--text-faint)';};
     var getTagClass=function(t){return (t.subtipo&&SUBTIPO_TAG[t.subtipo])||TIPO_TAG[t.tipo]||'tag-somatica';};
     var getTagLabel=function(t){return t.subtipo||t.tipo;};
 

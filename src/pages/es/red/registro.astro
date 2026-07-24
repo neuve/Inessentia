@@ -7,59 +7,50 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
 <Base
   title="Registro — Red Inessentia"
   description="Formulario privado para terapeutas de la Red Inessentia."
+  nav="solid"
   noindex
   hideFooter
 >
   <style>
-    .rr-wrap{max-width:720px;margin:0 auto;padding:48px 22px 80px;font-family:'Mulish',sans-serif;color:var(--ink,#262321)}
-    .rr-title{font-family:'Bitter',serif;font-size:2rem;color:#46276E;font-weight:700;margin:0 0 6px}
-    .rr-sub{font-size:.9rem;color:#8B8378;line-height:1.6;margin:0 0 32px}
-    .rr-field{margin-bottom:20px}
-    .rr-label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#46276E;margin-bottom:6px}
-    .rr-label small{font-weight:400;text-transform:none;letter-spacing:0;color:#8B8378}
-    .rr-input,.rr-select,.rr-textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D8D2C4;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.9rem;background:#FCFBF6;color:#262321;outline:none;transition:border-color .15s}
-    .rr-input:focus,.rr-select:focus,.rr-textarea:focus{border-color:#C2B07E}
-    .rr-textarea{min-height:80px;resize:vertical}
+    .rr-title{font-family:'Bitter',serif;font-size:2rem;color:var(--purple);font-weight:700;margin:0 0 6px}
+    .rr-sub{font-size:.9rem;color:var(--text-faint);line-height:1.6;margin:0 0 32px}
     .rr-row{display:flex;gap:14px;flex-wrap:wrap}
-    .rr-row>.rr-field{flex:1;min-width:180px}
+    .rr-row>.form-field{flex:1;min-width:180px}
+    .form-textarea{min-height:80px;resize:vertical}
     .rr-checks{display:flex;gap:8px;flex-wrap:wrap}
-    .rr-check{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #D8D2C4;border-radius:20px;font-size:.82rem;cursor:pointer;background:#FCFBF6;transition:all .15s;user-select:none}
-    .rr-check:has(input:checked){background:#46276E;border-color:#46276E;color:#fff}
+    .rr-check{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1px solid #D8D2C4;border-radius:20px;font-size:.82rem;cursor:pointer;background:var(--warm);transition:all .15s;user-select:none}
+    .rr-check:has(input:checked){background:var(--purple);border-color:var(--purple);color:#fff}
     .rr-check input{display:none}
-    .rr-btn{background:#8E2B5D;color:#fff;border:none;padding:13px 34px;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .15s}
-    .rr-btn:hover{opacity:.88}
-    .rr-btn:disabled{opacity:.5;cursor:wait}
-    .rr-msg{margin-top:16px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none}
-    .rr-msg.ok{display:block;background:#EFF4EF;color:#3A5A3A;border:1px solid #BFD4BF}
-    .rr-msg.err{display:block;background:#FBEDED;color:#8E2B2B;border:1px solid #E4BFBF}
-    .rr-geo{font-size:.75rem;color:#8B8378;margin-top:4px}
+    .form-msg{display:none;margin-top:16px;font-size:.88rem;line-height:1.5}
+    .form-msg.ok,.form-msg.err{display:block}
+    .rr-geo{font-size:.75rem;color:var(--text-faint);margin-top:4px}
   </style>
 
-  <div class="rr-wrap">
-    <h1 class="rr-title">Red <em style="color:#C2B07E;">Inessentia</em></h1>
+  <div class="form-wrap form-wrap--wide">
+    <h1 class="rr-title">Red <em style="color:var(--sand);">Inessentia</em></h1>
     <p class="rr-sub">
-      Formulario privado para colegas. Con estos datos te agregamos al <a href="/es/red-terapeutica/" style="color:#8E2B5D;text-decoration:none;">mapa de la Red Inessentia</a>.
+      Formulario privado para colegas. Con estos datos te agregamos al <a href="/es/red-terapeutica/" style="color:var(--wine);text-decoration:none;">mapa de la Red Inessentia</a>.
       Tu registro pasa primero por una revisión antes de publicarse. Por favor no compartas este link públicamente.
     </p>
 
     <form id="rr-form" novalidate>
-      <div class="rr-field">
-        <label class="rr-label" for="f-nombre">Nombre completo *</label>
-        <input class="rr-input" id="f-nombre" name="nombre" required>
+      <div class="form-field">
+        <label class="form-label" for="f-nombre">Nombre completo *</label>
+        <input class="form-input" id="f-nombre" name="nombre" required>
       </div>
 
       <div class="rr-row">
-        <div class="rr-field">
-          <label class="rr-label" for="f-tipo">Tipo de terapia *</label>
-          <select class="rr-select" id="f-tipo" name="tipo" required>
+        <div class="form-field">
+          <label class="form-label" for="f-tipo">Tipo de terapia *</label>
+          <select class="form-select" id="f-tipo" name="tipo" required>
             <option value="Psicoterapia">Psicoterapia</option>
             <option value="Terapia Física">Terapia Física</option>
             <option value="Psiquiátrica">Psiquiátrica</option>
           </select>
         </div>
-        <div class="rr-field" id="f-subtipo-wrap">
-          <label class="rr-label" for="f-subtipo">Subtipo</label>
-          <select class="rr-select" id="f-subtipo" name="subtipo">
+        <div class="form-field" id="f-subtipo-wrap">
+          <label class="form-label" for="f-subtipo">Subtipo</label>
+          <select class="form-select" id="f-subtipo" name="subtipo">
             <option value="Terapia somática">Terapia somática</option>
             <option value="Terapia psicológica">Terapia psicológica</option>
             <option value="Terapia transpersonal">Terapia transpersonal</option>
@@ -67,18 +58,18 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
         </div>
       </div>
 
-      <div class="rr-field">
-        <label class="rr-label" for="f-enfoques">Enfoques * <small>— separados por comas (ej. Experiencia somática, Terapia narrativa)</small></label>
-        <input class="rr-input" id="f-enfoques" name="enfoques" required>
+      <div class="form-field">
+        <label class="form-label" for="f-enfoques">Enfoques * <small>— separados por comas (ej. Experiencia somática, Terapia narrativa)</small></label>
+        <input class="form-input" id="f-enfoques" name="enfoques" required>
       </div>
 
-      <div class="rr-field">
-        <label class="rr-label" for="f-especialidades">Especialidades <small>— temas que acompañas, formación relevante</small></label>
-        <textarea class="rr-textarea" id="f-especialidades" name="especialidades"></textarea>
+      <div class="form-field">
+        <label class="form-label" for="f-especialidades">Especialidades <small>— temas que acompañas, formación relevante</small></label>
+        <textarea class="form-textarea" id="f-especialidades" name="especialidades"></textarea>
       </div>
 
-      <div class="rr-field">
-        <span class="rr-label">Atiende *</span>
+      <div class="form-field">
+        <span class="form-label">Atiende *</span>
         <div class="rr-checks" id="f-casos">
           {['Individual','Pareja','Familia','Adolescentes','Niños'].map(c => (
             <label class="rr-check"><input type="checkbox" value={c}>{c}</label>
@@ -86,8 +77,8 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
         </div>
       </div>
 
-      <div class="rr-field">
-        <span class="rr-label">Modalidades *</span>
+      <div class="form-field">
+        <span class="form-label">Modalidades *</span>
         <div class="rr-checks" id="f-modalidades">
           {['Online','Presencial','A domicilio'].map(m => (
             <label class="rr-check"><input type="checkbox" value={m}>{m}</label>
@@ -96,59 +87,59 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
       </div>
 
       <div class="rr-row">
-        <div class="rr-field">
-          <label class="rr-label" for="f-zona">Zona / colonia y ciudad *</label>
-          <input class="rr-input" id="f-zona" name="zona" placeholder="ej. Nápoles, CDMX" required>
+        <div class="form-field">
+          <label class="form-label" for="f-zona">Zona / colonia y ciudad *</label>
+          <input class="form-input" id="f-zona" name="zona" placeholder="ej. Nápoles, CDMX" required>
         </div>
-        <div class="rr-field">
-          <label class="rr-label" for="f-cp">Código postal</label>
-          <input class="rr-input" id="f-cp" name="cp" inputmode="numeric">
+        <div class="form-field">
+          <label class="form-label" for="f-cp">Código postal</label>
+          <input class="form-input" id="f-cp" name="cp" inputmode="numeric">
         </div>
-        <div class="rr-field">
-          <label class="rr-label" for="f-pais">País *</label>
-          <input class="rr-input" id="f-pais" name="pais" value="México" required>
+        <div class="form-field">
+          <label class="form-label" for="f-pais">País *</label>
+          <input class="form-input" id="f-pais" name="pais" value="México" required>
         </div>
       </div>
       <p class="rr-geo">📍 Con la zona y el CP ubicamos tu pin en el mapa de forma aproximada (no tu dirección exacta).</p>
 
       <div class="rr-row">
-        <div class="rr-field">
-          <label class="rr-label" for="f-telefono">Teléfono / WhatsApp *</label>
-          <input class="rr-input" id="f-telefono" name="telefono" inputmode="tel" required>
+        <div class="form-field">
+          <label class="form-label" for="f-telefono">Teléfono / WhatsApp *</label>
+          <input class="form-input" id="f-telefono" name="telefono" inputmode="tel" required>
         </div>
-        <div class="rr-field">
-          <label class="rr-label" for="f-email">Email <small>— no se publica</small></label>
-          <input class="rr-input" id="f-email" name="email" type="email">
-        </div>
-      </div>
-
-      <div class="rr-row">
-        <div class="rr-field">
-          <label class="rr-label" for="f-webpage">Sitio web / Instagram</label>
-          <input class="rr-input" id="f-webpage" name="webpage" placeholder="www.tusitio.mx o @tuinstagram">
-        </div>
-        <div class="rr-field">
-          <label class="rr-label" for="f-idiomas">Otros idiomas <small>— además de español, separados por comas</small></label>
-          <input class="rr-input" id="f-idiomas" name="idiomas" placeholder="ej. Inglés">
+        <div class="form-field">
+          <label class="form-label" for="f-email">Email <small>— no se publica</small></label>
+          <input class="form-input" id="f-email" name="email" type="email">
         </div>
       </div>
 
       <div class="rr-row">
-        <div class="rr-field">
-          <label class="rr-label" for="f-costo">Costo primera sesión (MXN)</label>
-          <input class="rr-input" id="f-costo" name="costo" inputmode="numeric">
+        <div class="form-field">
+          <label class="form-label" for="f-webpage">Sitio web / Instagram</label>
+          <input class="form-input" id="f-webpage" name="webpage" placeholder="www.tusitio.mx o @tuinstagram">
         </div>
-        <div class="rr-field">
-          <label class="rr-label" for="f-disponibilidad">Disponibilidad</label>
-          <select class="rr-select" id="f-disponibilidad" name="disponibilidad">
+        <div class="form-field">
+          <label class="form-label" for="f-idiomas">Otros idiomas <small>— además de español, separados por comas</small></label>
+          <input class="form-input" id="f-idiomas" name="idiomas" placeholder="ej. Inglés">
+        </div>
+      </div>
+
+      <div class="rr-row">
+        <div class="form-field">
+          <label class="form-label" for="f-costo">Costo primera sesión (MXN)</label>
+          <input class="form-input" id="f-costo" name="costo" inputmode="numeric">
+        </div>
+        <div class="form-field">
+          <label class="form-label" for="f-disponibilidad">Disponibilidad</label>
+          <select class="form-select" id="f-disponibilidad" name="disponibilidad">
             <option value="Agenda abierta">Agenda abierta</option>
             <option value="Sin espacio / Lista de espera">Sin espacio / Lista de espera</option>
           </select>
         </div>
       </div>
 
-      <button type="submit" class="rr-btn" id="rr-submit">Enviar mi registro</button>
-      <div class="rr-msg" id="rr-msg"></div>
+      <button type="submit" class="btn btn--wine" id="rr-submit">Enviar mi registro</button>
+      <div class="form-msg" id="rr-msg"></div>
     </form>
   </div>
 
@@ -171,7 +162,7 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
         var v = document.getElementById(id).value;
         return v ? v.split(',').map(function (s) { return s.trim(); }).filter(Boolean) : [];
       }
-      function show(cls, text) { msg.className = 'rr-msg ' + cls; msg.textContent = text; }
+      function show(cls, text) { msg.className = 'form-msg ' + cls; msg.textContent = text; }
 
       function geocode(q) {
         return fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q))

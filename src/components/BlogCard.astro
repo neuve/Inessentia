@@ -1,28 +1,172 @@
 ---
-import type { Locale } from '../data/posts';
-import { postHref } from '../data/posts';
-import type { PostEntry } from '../data/posts';
+// <BlogCard> — tarjeta de blog/recurso reutilizable, tokenizada sobre `.card`.
+//
+// Cubre los dos formatos usados en el sitio: card con imagen (home, recursos)
+// y card de "tile" de color sólido sin foto (recursos, categorías sin imagen).
+//
+// Props:
+// - href       (string, requerido)  Destino del enlace de la tarjeta completa.
+// - title      (string, requerido)  Título (se renderiza en <h3>, --ff-head).
+// - image      (string, opcional)   Ruta para <Img src=...> (ver src/data/image-manifest.json).
+//                                   Si se omite y hay `color`, se muestra el tile de color en su lugar.
+// - imageAlt   (string, opcional)   Alt de la imagen. Requerido en la práctica si pasas `image`.
+// - imagePosition (string, opcional) object-position del <Img>. Default: "center".
+// - imageSizes (string, opcional)   atributo sizes del <Img>. Default: "(max-width:640px) 100vw, 380px".
+// - category   (string, opcional)   Eyebrow/categoría sobre el título.
+// - date       (string, opcional)   Fecha o meta corta, se muestra junto a category si hay ambos.
+// - excerpt    (string, opcional)   Bajada / resumen debajo del título.
+// - readMoreLabel (string, opcional) Texto del enlace inferior ("Leer más"). Si se omite, no se muestra.
+// - color      (object, opcional)   Paleta del tile sólido cuando no hay `image`:
+//                                   { bg, fg, eyebrow?, sub? } (todas strings CSS válidas).
+//                                   Si se omite junto con `image`, se usa --surface como fondo liso.
+// - large      (boolean, opcional)  Variante más grande (título/padding mayores). Default: false.
 import Img from './Img.astro';
 
-interface Props {
-  post: PostEntry;
-  locale: Locale;
-  readMoreLabel: string;
+interface CardColor {
+  bg: string;
+  fg?: string;
+  eyebrow?: string;
+  sub?: string;
 }
 
-const { post, locale, readMoreLabel } = Astro.props;
-const meta = post[locale];
-const blurb = post.cardBlurb ? post.cardBlurb[locale] : meta.description;
-const alt = post.cardAlt?.[locale] ?? post.heroAlt[locale];
-const heroPosition = post.cardHeroPosition?.[locale] ?? post.heroPosition;
+interface Props {
+  href: string;
+  title: string;
+  image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+  imageSizes?: string;
+  category?: string;
+  date?: string;
+  excerpt?: string;
+  readMoreLabel?: string;
+  color?: CardColor;
+  large?: boolean;
+}
+
+const {
+  href,
+  title,
+  image,
+  imageAlt = '',
+  imagePosition = 'center',
+  imageSizes = '(max-width:640px) 100vw, 380px',
+  category,
+  date,
+  excerpt,
+  readMoreLabel,
+  color,
+  large = false,
+} = Astro.props as Props;
+
+const tileBg = color?.bg ?? 'var(--surface)';
+const tileFg = color?.fg ?? 'var(--ink)';
+const tileEyebrow = color?.eyebrow ?? 'var(--wine)';
+const tileSub = color?.sub ?? 'var(--text)';
 ---
 
-<a data-reveal href={postHref(locale, post.id)} class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-  <div style="height:184px;overflow:hidden;"><Img src={post.heroImage} sizes="(max-width:640px) 100vw, 380px" alt={alt} style={`width:100%;height:100%;object-fit:cover;object-position:${heroPosition};display:block;`} /></div>
-  <div style="padding:24px 24px 26px;display:flex;flex-direction:column;gap:10px;flex:1;">
-    <p style="margin:0;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">{meta.category}</p>
-    <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:20px;line-height:1.2;margin:0;">{meta.title}</h3>
-    <p style="font-size:14px;line-height:1.6;color:#4a443f;margin:0;flex:1;">{blurb}</p>
-    <span style="color:var(--wine);font-weight:700;font-size:13px;">{readMoreLabel}</span>
+<a
+  data-reveal
+  href={href}
+  class="card blog-card"
+  class:list={[{ 'blog-card--large': large, 'blog-card--tile': !image }]}
+>
+  {image ? (
+    <div class="blog-card__media">
+      <Img
+        src={image}
+        sizes={imageSizes}
+        alt={imageAlt}
+        style={`object-position:${imagePosition};`}
+      />
+    </div>
+  ) : null}
+
+  <div
+    class="blog-card__body"
+    style={!image ? `background:${tileBg};` : undefined}
+  >
+    {(category || date) && (
+      <p class="blog-card__eyebrow" style={!image ? `color:${tileEyebrow};` : undefined}>
+        {category}{category && date ? ' · ' : ''}{date}
+      </p>
+    )}
+    <h3 class="blog-card__title" style={!image ? `color:${tileFg};` : undefined}>{title}</h3>
+    {excerpt && (
+      <p class="blog-card__excerpt" style={!image ? `color:${tileSub};` : undefined}>{excerpt}</p>
+    )}
+    {readMoreLabel && <span class="blog-card__cta">{readMoreLabel}</span>}
   </div>
 </a>
+
+<style>
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .blog-card__media {
+    height: 184px;
+    overflow: hidden;
+  }
+  .blog-card__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .blog-card__body {
+    padding: 24px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+  .blog-card--tile .blog-card__body {
+    justify-content: flex-end;
+    min-height: 158px;
+  }
+
+  .blog-card__eyebrow {
+    margin: 0;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--wine);
+  }
+
+  .blog-card__title {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    color: var(--purple);
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .blog-card__excerpt {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0;
+    flex: 1;
+  }
+
+  .blog-card__cta {
+    color: var(--wine);
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  .blog-card--large .blog-card__title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+  .blog-card--large .blog-card__body {
+    padding: 38px 30px 34px;
+  }
+</style>

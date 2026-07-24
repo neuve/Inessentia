@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import Img from '../../components/Img.astro';
+import BlogCard from '../../components/BlogCard.astro';
 import { t } from '../../i18n/utils';
 import { businessSchema, personSchema } from '../../data/person';
 
@@ -40,8 +41,10 @@ const authorSchema = personSchema(locale);
   <!-- APPROACH -->
   <section class="section">
     <div class="container--narrow" style="text-align:center;">
-      <p data-reveal class="label-section">{i.approach.label}</p>
-      <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:clamp(28px,4.2vw,48px);line-height:1.1;letter-spacing:-.01em;margin:0 auto 32px;max-width:18ch;text-wrap:balance;">{i.approach.title}</h2>
+      <div class="section-header">
+        <p data-reveal class="label-section">{i.approach.label}</p>
+        <h2 data-reveal class="heading-section" style="margin:0 auto;max-width:18ch;letter-spacing:-.01em;">{i.approach.title}</h2>
+      </div>
       <p data-reveal class="body-text" style="margin:0 auto 22px;max-width:68ch;">{i.approach.p1}</p>
       <p data-reveal class="body-text" style="margin:0 auto 34px;max-width:68ch;">{i.approach.p2}</p>
       <a data-reveal href="/es/blog/tipos-de-terapia/" class="link-underline">{i.approach.link}</a>
@@ -51,7 +54,7 @@ const authorSchema = personSchema(locale);
   <!-- MODALITIES -->
   <section id="modalidades" class="section section--cream">
     <div class="container">
-      <div style="text-align:center;margin-bottom:clamp(40px,5vw,64px);">
+      <div class="section-header" style="text-align:center;">
         <p data-reveal class="label-section">{i.modalities.label}</p>
         <h2 data-reveal class="heading-section">{i.modalities.title}</h2>
       </div>
@@ -108,13 +111,13 @@ const authorSchema = personSchema(locale);
           <input type="text" name="nombre" placeholder={i.podcast.namePlaceholder} required style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:12px 14px;font-size:15px;color:#fff;font-family:'Mulish',sans-serif;outline:none;">
           <label style="font-size:13px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.04em;">{i.podcast.emailLabel}</label>
           <input type="email" name="email" placeholder={i.podcast.emailPlaceholder} required style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:12px 14px;font-size:15px;color:#fff;font-family:'Mulish',sans-serif;outline:none;">
-          <button type="submit" style="background:var(--sand);color:var(--purple-d);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;padding:14px 24px;border:none;border-radius:999px;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:'Mulish',sans-serif;">{i.podcast.submit}</button>
+          <button type="submit" class="btn" style="background:var(--sand);color:var(--purple-d);">{i.podcast.submit}</button>
           <p style="margin:0;font-size:12px;color:rgba(255,255,255,.4);text-align:center;line-height:1.5;">{i.podcast.privacy} <a href={`/${locale}/privacidad/`} style="color:rgba(255,255,255,.6);font-weight:700;text-decoration:none;">{i.podcast.privacyLink}</a>.</p>
         </form>
         <div id="podcast-thanks" style="display:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:28px 26px;text-align:center;">
           <p style="font-size:32px;margin:0 0 12px;">{i.podcast.thanksEmoji}</p>
           <p style="font-family:'Bitter',serif;font-size:22px;color:#fff;font-weight:700;margin:0 0 10px;">{i.podcast.thanksTitle}</p>
-          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:var(--sand);color:var(--purple-d);font-weight:700;font-size:14px;padding:13px 26px;border-radius:999px;text-decoration:none;margin-top:6px;">{i.podcast.thanksCta}</a>
+          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" class="btn" style="background:var(--sand);color:var(--purple-d);padding:13px 26px;margin-top:6px;">{i.podcast.thanksCta}</a>
           <p style="font-size:13px;color:rgba(255,255,255,.5);margin:14px 0 0;">{i.podcast.thanksNote}</p>
         </div>
       </div>
@@ -156,32 +159,35 @@ const authorSchema = personSchema(locale);
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;" class="blog-grid">
 
-        <a data-reveal href="/es/blog/que-esperar-de-la-terapia/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/que-esperar-terapia.webp" sizes="(max-width:640px) 100vw, 380px" alt="Retrato de una mujer joven de tez media con mirada cálida sosteniendo un corazón y mostrándoselo a la cámara" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;" /></div>
-          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Qué esperar de la terapia?</h3>
-            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Cómo se conjugan la relación terapéutica, las técnicas y el tiempo en un proceso real.</p>
-            <span style="color:var(--wine);font-weight:700;font-size:14px;">{i.blog.readMore}</span>
-          </div>
-        </a>
+        <BlogCard
+          href="/es/blog/que-esperar-de-la-terapia/"
+          image="/uploads/que-esperar-terapia.webp"
+          imageAlt="Retrato de una mujer joven de tez media con mirada cálida sosteniendo un corazón y mostrándoselo a la cámara"
+          imagePosition="center 20%"
+          title="¿Qué esperar de la terapia?"
+          excerpt="Cómo se conjugan la relación terapéutica, las técnicas y el tiempo en un proceso real."
+          readMoreLabel={i.blog.readMore}
+        />
 
-        <a data-reveal href="/es/blog/primera-cita/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/primera-cita-terapia.webp" sizes="(max-width:640px) 100vw, 380px" alt="Sala de terapia vacía con dos sillones uno frente al otro, luz cálida de tarde" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;" /></div>
-          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cómo suele ser la primera cita?</h3>
-            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Cuando me contactas por primera vez, así arrancamos: qué pasa, cuánto dura, qué llevarte.</p>
-            <span style="color:var(--wine);font-weight:700;font-size:14px;">{i.blog.readMore}</span>
-          </div>
-        </a>
+        <BlogCard
+          href="/es/blog/primera-cita/"
+          image="/uploads/primera-cita-terapia.webp"
+          imageAlt="Sala de terapia vacía con dos sillones uno frente al otro, luz cálida de tarde"
+          imagePosition="center 30%"
+          title="¿Cómo suele ser la primera cita?"
+          excerpt="Cuando me contactas por primera vez, así arrancamos: qué pasa, cuánto dura, qué llevarte."
+          readMoreLabel={i.blog.readMore}
+        />
 
-        <a data-reveal href="/es/blog/cuando-es-buen-momento/" class="card" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;">
-          <div style="position:relative;height:184px;overflow:hidden;"><Img src="/uploads/buen-momento-pareja.webp" sizes="(max-width:640px) 100vw, 380px" alt="Persona sentada junto a una ventana en la mañana sosteniendo una taza, ambiente contemplativo" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;" /></div>
-          <div style="padding:28px 28px 30px;display:flex;flex-direction:column;gap:12px;flex:1;">
-            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--purple);font-size:22px;line-height:1.2;margin:0;">¿Cuándo es buen momento para empezar terapia?</h3>
-            <p style="font-size:15px;line-height:1.6;color:#4a443f;margin:0;flex:1;">Las señales que vale la pena escuchar — y por qué pedir ayuda no requiere tocar fondo.</p>
-            <span style="color:var(--wine);font-weight:700;font-size:14px;">{i.blog.readMore}</span>
-          </div>
-        </a>
+        <BlogCard
+          href="/es/blog/cuando-es-buen-momento/"
+          image="/uploads/buen-momento-pareja.webp"
+          imageAlt="Persona sentada junto a una ventana en la mañana sosteniendo una taza, ambiente contemplativo"
+          imagePosition="center 55%"
+          title="¿Cuándo es buen momento para empezar terapia?"
+          excerpt="Las señales que vale la pena escuchar — y por qué pedir ayuda no requiere tocar fondo."
+          readMoreLabel={i.blog.readMore}
+        />
 
       </div>
     </div>
@@ -191,9 +197,9 @@ const authorSchema = personSchema(locale);
   <section style="position:relative;overflow:hidden;background:var(--purple);padding:clamp(64px,9vw,118px) 32px;text-align:center;">
     <div style="position:absolute;top:50%;left:-140px;transform:translateY(-50%);width:460px;height:460px;opacity:.16;pointer-events:none;background:repeating-conic-gradient(#fff 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
     <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
-      <h2 style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.82);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn-white">{i.cta.button}</a>
+      <h2 class="heading-section heading-section--on-dark" style="margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
+      <p class="body-text body-text--on-dark" style="margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--white">{i.cta.button}</a>
     </div>
   </section>
 

@@ -63,7 +63,7 @@ const searchBlogEntries = {
     position: sticky; top: 0; width: 100%;
     z-index: 220;
     min-height: var(--nav-h);
-    background: linear-gradient(100deg, #341A54 0%, #46276E 30%, #7E4E77 56%, #C2B07E 83%, #EAE5D9 100%);
+    background: var(--grad-brand);
     box-shadow: none;
     transition: box-shadow .35s ease, background .8s cubic-bezier(.22,1,.36,1);
   }
@@ -108,13 +108,13 @@ const searchBlogEntries = {
      (no añade borde real, así no mueve layout). Links/wordmark en morado. */
   .navbar.navbar--solid {
     background: var(--cream-2);
-    box-shadow: inset 0 -1px 0 #ece6d8;
+    box-shadow: inset 0 -1px 0 var(--border-card);
   }
   .navbar.navbar--solid .navbar__logo-name { color: var(--purple); }
   .navbar.navbar--solid .navbar__link { color: var(--purple); }
   .navbar.navbar--solid .navbar__link:hover { color: var(--purple-d); }
   .navbar.navbar--solid.navbar--scrolled {
-    box-shadow: inset 0 -1px 0 #ece6d8, 0 4px 20px rgba(40, 20, 60, .10);
+    box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
   }
 
   /* ---------- Variant: photo ----------
@@ -128,7 +128,7 @@ const searchBlogEntries = {
   }
   .navbar.navbar--photo.navbar--scrolled {
     background: var(--cream-2);
-    box-shadow: inset 0 -1px 0 #ece6d8, 0 4px 20px rgba(40, 20, 60, .10);
+    box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
   }
   .navbar.navbar--photo.navbar--scrolled .navbar__logo-name { color: var(--purple); }
   .navbar.navbar--photo.navbar--scrolled .navbar__link { color: var(--purple); }
@@ -146,7 +146,7 @@ const searchBlogEntries = {
   .navbar__logo { grid-column: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
-    font-family: 'Bitter', serif; font-weight: 700; color: #fff;
+    font-family: var(--ff-head); font-weight: 700; color: #fff;
     font-size: 17px; line-height: 1.12; letter-spacing: .01em;
     transition: color .8s cubic-bezier(.22,1,.36,1);
   }
@@ -159,7 +159,7 @@ const searchBlogEntries = {
      hamburguesa a la derecha. */
   .navbar__links { grid-column: 2; justify-self: center; display: flex; align-items: center; gap: 38px; transition: opacity .8s cubic-bezier(.22,1,.36,1); }
   .navbar__link {
-    font-family: 'Mulish', sans-serif;
+    font-family: var(--ff-body);
     font-weight: 700; font-size: 12.5px; letter-spacing: .13em; text-transform: uppercase;
     color: #fff; text-decoration: none; white-space: nowrap;
     transition: color .2s;
@@ -170,7 +170,7 @@ const searchBlogEntries = {
      morado sobre variantes oscuras (gradient, photo); invertido sobre
      variantes claras (light, solid). */
   .navbar__cta {
-    font-family: 'Mulish', sans-serif;
+    font-family: var(--ff-body);
     font-weight: 700; font-size: 12.5px; letter-spacing: .1em; text-transform: uppercase;
     white-space: nowrap; text-decoration: none;
     background: #fff; color: var(--purple);
@@ -223,7 +223,7 @@ const searchBlogEntries = {
   }
   #search-input {
     width: 100%; border: none; outline: none; padding: 22px 56px 22px 24px;
-    font-family: 'Mulish', sans-serif; font-size: 17px; color: var(--ink);
+    font-family: var(--ff-body); font-size: 17px; color: var(--ink);
     background: transparent;
   }
   #search-input::placeholder { color: #b0a89d; }
@@ -245,11 +245,11 @@ const searchBlogEntries = {
   }
   .search-result:hover { background: var(--cream-2); }
   .search-result__title {
-    font-family: 'Bitter', serif; font-weight: 700; color: var(--purple);
+    font-family: var(--ff-head); font-weight: 700; color: var(--purple);
     font-size: 16px; margin: 0 0 4px;
   }
   .search-result__desc {
-    font-size: 13px; color: #6a6460; margin: 0; line-height: 1.4;
+    font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.4;
   }
   .search-result__empty {
     padding: 24px; text-align: center; color: #999; font-size: 15px;
