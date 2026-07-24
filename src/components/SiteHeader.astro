@@ -246,6 +246,8 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header--cinema .site-header__title--cinema { font-size: clamp(40px, 5.6vw, 80px); margin-bottom: 26px; }
   .site-header--cinema .site-header__title--cinema-compact { font-size: clamp(32px, 3.8vw, 54px); }
   .site-header--cinema .site-header__lead--cinema { max-width: 46ch; margin: 0 0 6px; color: rgba(255,255,255,.92); }
+  .site-header--cinema .site-header__eyebrow,
+  .site-header--cinema .site-header__title--cinema { text-shadow: 0 1px 22px rgba(38,20,60,.5); }
   .site-header__cinema-lead { align-self: end; }
   @media (max-width: 820px) {
     /* Móvil (ref 04-mobile-closed): eyebrow + H1 anclados ARRIBA bajo el nav,
@@ -254,6 +256,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
        reordenar: el margin-bottom:auto del H1 empuja el resto al fondo y las
        actions pasan al final (debajo del párrafo), como en el mock. */
     .site-header--cinema { min-height: 100vh; }
+    .site-header__cinema-veil { background: linear-gradient(180deg, rgba(38,20,60,.80) 0%, rgba(38,20,60,.34) 22%, rgba(38,20,60,.10) 44%, rgba(38,20,60,.48) 68%, rgba(38,20,60,.95) 100%); }
     .site-header__cinema-inner {
       display: flex; flex-direction: column; align-items: stretch;
       padding: 120px 24px 48px; gap: 18px; min-height: 100vh;

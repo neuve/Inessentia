@@ -167,7 +167,8 @@ const legalLinks = [
     .footer2__cols { grid-template-columns: 1fr 1fr; gap: 36px; }
   }
   @media (max-width: 560px) {
-    .footer2__cols { grid-template-columns: 1fr; }
+    .footer2__cols { grid-template-columns: 1fr 1fr; }
+    .footer2__cols > div:first-child { grid-column: 1 / -1; }
     .footer2__bottom { justify-content: flex-start; }
   }
 </style>

@@ -97,6 +97,10 @@ const searchBlogEntries = {
   .navbar.navbar--dark {
     background: var(--purple);
   }
+  /* Hamburguesa blanca sobre el morado sólido (el trazo default es morado y
+     quedaría invisible). Al abrir el menú (velo crema) vuelve a morado. */
+  .navbar.navbar--dark .nav-ham span { background: #fff; }
+  :global(body.menu-open) .navbar.navbar--dark .nav-ham span { background: var(--purple); }
 
   /* ---------- Variant: solid ----------
      Para páginas sin hero oscuro debajo (costos, términos, privacidad,

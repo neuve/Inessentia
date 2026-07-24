@@ -194,6 +194,9 @@ body {
 /* El sandwich flotante (#nav-ham) se transforma en X y ya sirve para cerrar el
    menú móvil; se oculta la × redundante para no duplicar el control de cierre. */
 #mob-close { display: none; }
+.mob-social { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 16px; }
+.mob-social a { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(70,39,110,.07); border: 1px solid rgba(70,39,110,.16); }
+.mob-social img { width: 20px; height: 20px; display: block; }
 
 /* Mobile general */
 @media (max-width: 600px) {
@@ -202,6 +205,7 @@ body {
   .modal-grid { grid-template-columns: 1fr !important; }
   .blog-grid { grid-template-columns: 1fr !important; }
 }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr !important; } }
 
 /* Blog post content */
 .blog-content h2 {
