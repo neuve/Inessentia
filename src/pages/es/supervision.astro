@@ -118,24 +118,24 @@ const fechas = [
 const PRICING = {
   eyebrow: 'Inversión',
   titulo: 'Tu lugar en el grupo',
-  subtitulo: 'El ciclo completo incluye las 9 sesiones, de octubre de 2026 a febrero de 2027. El pago en efectivo o transferencia tiene 5% de descuento sobre el precio con tarjeta.',
+  subtitulo: 'El ciclo completo incluye las 9 sesiones, de octubre de 2026 a febrero de 2027. Los precios destacados son pagando en efectivo o transferencia; con tarjeta de crédito aplica el precio de lista (tachado).',
   planes: [
     {
       tag: 'Precio especial hasta el 1 de septiembre',
       titulo: 'Pago único',
       subtitulo: 'Un solo pago por el ciclo completo',
-      precioTachado: '$15,000 precio completo',
-      precioGrande: '$9,900',
-      notaPrecio: 'Efectivo o transferencia (5% desc.) · Inscribiéndote antes del 1 de septiembre.',
-      textoLibre: 'Del 2 al 12 de septiembre, el pago único es de $12,600 (efectivo o transferencia, 5% desc. ya incluido).',
+      precioTachado: '$10,070 con tarjeta',
+      precioGrande: '$9,500',
+      notaPrecio: 'Efectivo o transferencia · Inscribiéndote antes del 1 de septiembre.',
+      textoLibre: 'Después del 1 de septiembre y hasta el cierre de inscripciones, el pago único es de $10,500 en efectivo o transferencia ($11,130 con tarjeta).',
     },
     {
       tag: null,
-      titulo: 'Plan en 2 pagos',
+      titulo: 'Plan en 2 exhibiciones',
       subtitulo: 'Dos pagos: 19 de septiembre y 28 de noviembre',
-      precioTachado: null,
-      precioGrande: '$7,500 c/u',
-      notaPrecio: '$7,125 c/u en efectivo o transferencia (5% desc.)',
+      precioTachado: '$6,360 c/u con tarjeta',
+      precioGrande: '$6,000 c/u',
+      notaPrecio: 'Efectivo o transferencia · $12,000 en total',
       textoLibre: 'Disponible también como suscripción con tarjeta de crédito, cargos automáticos en esas dos fechas.',
     },
   ],
@@ -143,7 +143,13 @@ const PRICING = {
   notaCierre: 'Cierre de inscripciones: 17 de septiembre. El grupo abre al alcanzar el cupo mínimo de 7 personas (máximo 12).',
   corpore: {
     titulo: 'Estudiantes del Instituto Córpore',
-    texto: 'Pueden integrarse por bloques o por sesiones sueltas, con costo de supervisión de $1,500 por sesión. Si no se integran desde la primera sesión, es necesaria una entrevista previa y ver el video de introducción para comprender el encuadre.',
+    texto: 'Pueden integrarse por bloques o por sesiones sueltas (usualmente la introducción + 4 sesiones). Si no se integran desde la primera sesión, es necesaria una entrevista previa y ver el video de introducción para comprender el encuadre.',
+    tiers: [
+      { condicion: 'Tarjeta, sin pago anticipado', precio: '$1,500 / sesión' },
+      { condicion: 'Efectivo o transferencia (4% desc.)', precio: '$1,440 / sesión' },
+      { condicion: '2 exhibiciones, efectivo o transferencia (6% desc.)', precio: '$1,410 / sesión' },
+      { condicion: 'Pronto pago, una sola exhibición, efectivo o transferencia', precio: '$12,500 las 9 sesiones', destacado: true },
+    ],
   },
 };
 ---
@@ -372,7 +378,15 @@ const PRICING = {
 
       <div class="gl-corpore-callout">
         <h3 class="gl-card-title" style="font-size:21px;">{PRICING.corpore.titulo}</h3>
-        <p class="body-text" style="margin:0;">{PRICING.corpore.texto}</p>
+        <p class="body-text" style="margin:0 0 22px;">{PRICING.corpore.texto}</p>
+        <div class="gl-corpore-tiers">
+          {PRICING.corpore.tiers.map((tier) => (
+            <div class:list={['gl-corpore-tier', { 'gl-corpore-tier--featured': tier.destacado }]}>
+              <span class="gl-corpore-tier-cond">{tier.condicion}</span>
+              <span class="gl-corpore-tier-precio">{tier.precio}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
@@ -811,6 +825,43 @@ const PRICING = {
     border: 1px dashed var(--sand);
     border-radius: 22px;
     padding: 32px 30px;
+  }
+  .gl-corpore-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gl-corpore-tier {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 16px;
+    background: var(--cream-2);
+    border-radius: 12px;
+  }
+  .gl-corpore-tier--featured {
+    background: var(--purple);
+  }
+  .gl-corpore-tier-cond {
+    font-size: 14px;
+    color: var(--gl-body-ink);
+  }
+  .gl-corpore-tier--featured .gl-corpore-tier-cond {
+    color: rgba(255,255,255,.9);
+  }
+  .gl-corpore-tier-precio {
+    font-family: 'Bitter', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--purple);
+    white-space: nowrap;
+  }
+  .gl-corpore-tier--featured .gl-corpore-tier-precio {
+    color: #fff;
+  }
+  @media (max-width: 560px) {
+    .gl-corpore-tier { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 
   .gl-supervisor {
