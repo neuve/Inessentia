@@ -744,8 +744,8 @@
     ]
   },
   "/uploads/supervision-grupo-conversacion.webp": {
-    "width": 1920,
-    "height": 1440,
+    "width": 1840,
+    "height": 1330,
     "srcset": [
       {
         "w": 96,
@@ -784,7 +784,7 @@
         "url": "/uploads/responsive/supervision-grupo-conversacion-1600.webp"
       },
       {
-        "w": 1920,
+        "w": 1840,
         "url": "/uploads/supervision-grupo-conversacion.webp"
       }
     ]
