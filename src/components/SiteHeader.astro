@@ -147,7 +147,9 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       </div>
       {icon && (
         <div class="site-header__panel-icon">
-          <Img src={icon} alt="" sizes="160px" style={`height:${iconSize};width:auto;display:block;`} />
+          <div class="site-header__panel-icon-circle">
+            <Img src={icon} alt="" sizes="160px" style={`height:${iconSize};width:auto;display:block;`} />
+          </div>
         </div>
       )}
     </div>
@@ -282,6 +284,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__panel-copy { max-width: 66%; }
   .site-header__panel-copy--lg { max-width: 960px; }
   .site-header__panel-icon { width: 100%; display: flex; align-items: center; justify-content: center; }
+  /* Disco crema detrás del ícono de modalidad: lo asienta en su columna en
+     vez de flotar suelto sobre el fondo casi blanco. */
+  .site-header__panel-icon-circle {
+    display: flex; align-items: center; justify-content: center;
+    width: clamp(240px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 50% 45%, #F4F0E6 0%, #EAE5D9 100%);
+    box-shadow: inset 0 0 0 1px rgba(70,39,110,.05);
+  }
   /* Panel text colours must beat the shared white/sand rules below, which
      have equal specificity but come later in source order. Prefix with the
      block class to win regardless of order. */
