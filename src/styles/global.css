@@ -47,6 +47,10 @@
   --border-card: #ece6d8;   /* colapsa #e6ddca, #e4dece */
   --border-hair: #e2dccc;   /* hairline legal/costos */
   --surface: #ffffff;
+  /* Alias semánticos que flipan con el tema (ver capa de tema tras :root).
+     Hoy = valores claros → sin cambio visual hasta repuntar clases/inline. */
+  --bg: var(--warm);        /* fondo de página */
+  --heading: var(--purple); /* color de titulares */
 
   /* Gradientes de marca (antes duplicados literal en Navbar/SiteHeader/supervision) */
   --grad-brand: linear-gradient(100deg,#341A54 0%,#46276E 30%,#7E4E77 56%,#C2B07E 83%,#EAE5D9 100%);
@@ -95,6 +99,35 @@
      Migración: 600→560, 768→820, 860/900→820. */
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   CAPA DE TEMA — fundación. Redefine SOLO tokens semánticos (no las
+   constantes de marca). Decisión: oscuro por defecto, pero el default
+   se mantiene CLARO hasta terminar la tokenización de los ~210 colores
+   inline (si no, se rompería). El toggle deja ver el avance en oscuro.
+   Cuando la tokenización esté lista, se activa @media dark + se puede
+   quitar este candado. ══════════════════════════════════════════════ */
+:root[data-theme="dark"] {
+  --bg: #221735;
+  --surface: #2e2140;
+  --text: #EAE5D9;
+  --text-soft: #cfc6d6;
+  --text-muted: #a99fb4;
+  --text-faint: #a99fb4;
+  --border-card: #40315a;
+  --border-hair: #463659;
+  --heading: #EAE5D9;
+  --cream-2: #2a1e40;   /* .section--cream flip */
+}
+:root[data-theme="light"] {
+  --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
+  --text-muted: #6a6460; --text-faint: #8B8378; --border-card: #ece6d8;
+  --border-hair: #e2dccc; --heading: var(--purple); --cream-2: #F4F0E6;
+}
+/* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
+   de una página oscura, o una franja morada en una clara). */
+.on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#8B8378; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); }
+.on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; }
+
 /* La barra vive sobre el banner de marca: los heros oscuros del tope (SiteHeader
    o cualquier sección marcada con [data-nav-overlay]) se suben bajo la barra
    sticky para que el nav transparente los cubra. Su padding-top interno mantiene
@@ -106,7 +139,7 @@
 body.menu-open { overflow: hidden; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--warm); }
+html, body { margin: 0; padding: 0; background: var(--bg); }
 body {
   font-family: 'Mulish', sans-serif;
   font-weight: 500;
@@ -142,7 +175,7 @@ body {
 .heading-section {
   font-family: var(--ff-head);
   font-weight: 700;
-  color: var(--purple);
+  color: var(--heading);
   font-size: var(--fs-h2);
   line-height: var(--lh-tight);
   margin: 0;
