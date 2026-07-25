@@ -59,85 +59,62 @@ const searchBlogEntries = {
 <script type="application/json" id="search-blog-data" set:html={JSON.stringify(searchBlogEntries)}></script>
 
 <style>
+  /* ══════════════════════════════════════════════════════════════════
+     BARRA ADAPTATIVA — parte del sistema "Noche → Amanecer".
+     La barra es sticky: flota sobre TODO el viaje del lienzo (navy arriba,
+     crema abajo). Por eso NO puede tener un color fijo — chocaría en un
+     extremo o en el otro. En vez de eso es un cristal translúcido que
+     recoge el color del lienzo detrás (backdrop-filter) y declara su tramo:
+       · sin scroll        → transparente (el hero se ve entero)
+       · tramo noche       → velo oscuro, texto claro
+       · tramo amanecer    → velo crema, texto oscuro   (clase .navbar--dawn,
+                             que aplica el script según el avance del scroll)
+     Las antiguas variantes de color fijo (gradient/light/solid/photo) se
+     colapsan aquí; solo `dark` sobrevive como excepción (ver abajo).
+     ══════════════════════════════════════════════════════════════════ */
   .navbar {
     position: sticky; top: 0; width: 100%;
     z-index: 220;
     min-height: var(--nav-h);
-    background: var(--grad-brand);
-    box-shadow: none;
-    transition: box-shadow .35s ease, background .8s cubic-bezier(.22,1,.36,1);
-  }
-  /* Borde + sombra sutiles tras hacer scroll. */
-  .navbar.navbar--scrolled {
-    box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
-  }
-
-  /* ---------- Variant: light ----------
-     Para páginas con hero claro (--warm) en vez del degradado oscuro.
-     Fondo transparente y wordmark/links en morado (mismo look que
-     body.menu-open reusa abajo). Al hacer scroll gana fondo sólido --warm
-     para no quedar flotando sobre contenido claro. */
-  .navbar.navbar--light {
     background: transparent;
-  }
-  .navbar.navbar--light .navbar__logo-name { color: var(--heading); }
-  .navbar.navbar--light .navbar__link { color: var(--heading); }
-  .navbar.navbar--light .navbar__link:hover { color: var(--accent); }
-  .navbar.navbar--light .nav-ham span { background: var(--heading); }
-  .navbar.navbar--light.navbar--scrolled {
-    background: var(--bg);
-    box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
+    box-shadow: none;
+    /* Color del contenido de la barra; cada tramo lo redefine. */
+    --nav-fg: #fff;
+    --nav-fg-hover: var(--sand);
+    transition: background .5s ease, box-shadow .35s ease, backdrop-filter .5s ease;
   }
 
-  /* ---------- Variant: dark ----------
-     Para páginas con una barra sólida oscura debajo (Red Inessentia: el nav
-     se continúa visualmente con la topbar morada de la app, sin el
-     degradado a arena de la variante gradient). Fondo sólido --purple,
-     texto blanco siempre — no cambia con scroll (la página no hace scroll
-     de contenido, es una app de una pantalla). */
+  /* Tramo NOCHE (por defecto tras hacer scroll): velo oscuro translúcido. */
+  .navbar.navbar--scrolled {
+    background: rgba(16, 12, 38, .72);
+    /* Una sola función de filtro a propósito: al minificar, `blur() saturate()`
+       pierde el espacio entre funciones y la declaración se vuelve inválida. */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .07), 0 6px 24px rgba(10, 8, 26, .30);
+  }
+
+  /* Tramo AMANECER: el lienzo ya aterrizó en arena/crema, así que la barra
+     se aclara y su contenido se oscurece para seguir legible. */
+  .navbar.navbar--dawn.navbar--scrolled {
+    background: rgba(245, 238, 222, .80);
+    box-shadow: 0 1px 0 rgba(60, 31, 94, .10), 0 6px 24px rgba(60, 31, 94, .14);
+  }
+  .navbar.navbar--dawn {
+    --nav-fg: #3C1F5E;
+    --nav-fg-hover: var(--wine);
+  }
+
+  /* ---------- Excepción: variant `dark` ----------
+     Red Inessentia es una app de una sola pantalla con su propia topbar
+     morada sólida debajo; ahí la barra sí debe ser un bloque continuo con
+     esa UI, no un cristal sobre el lienzo. */
   .navbar.navbar--dark {
     background: var(--purple);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
-  /* Hamburguesa blanca sobre el morado sólido (el trazo default es morado y
-     quedaría invisible). Al abrir el menú (velo crema) vuelve a morado. */
-  .navbar.navbar--dark .nav-ham span { background: #fff; }
   :global(body.menu-open) .navbar.navbar--dark .nav-ham span { background: var(--heading); }
-
-  /* ---------- Variant: solid ----------
-     Para páginas sin hero oscuro debajo (costos, términos, privacidad,
-     blogposts). Fondo sólido --cream-2 con hairline inferior vía box-shadow
-     (no añade borde real, así no mueve layout). Links/wordmark en morado. */
-  .navbar.navbar--solid {
-    background: var(--cream-2);
-    box-shadow: inset 0 -1px 0 var(--border-card);
-  }
-  .navbar.navbar--solid .navbar__logo-name { color: var(--heading); }
-  .navbar.navbar--solid .navbar__link { color: var(--heading); }
-  .navbar.navbar--solid .navbar__link:hover { color: var(--accent); }
-  .navbar.navbar--solid .nav-ham span { background: var(--heading); }
-  .navbar.navbar--solid.navbar--scrolled {
-    box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
-  }
-
-  /* ---------- Variant: photo ----------
-     Para heros de foto a sangre completa (Home, Sobre mí — Familia A).
-     Transparente sobre la foto; wordmark/links/hamburguesa blancos; CTA
-     pill blanco/texto morado. Al hacer scroll gana el crema sólido con
-     hairline (mismo tratamiento que la variante solid) y todo el
-     contenido de la barra pasa a morado para seguir legible. */
-  .navbar.navbar--photo {
-    background: transparent;
-  }
-  .navbar.navbar--photo.navbar--scrolled {
-    background: var(--cream-2);
-    box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
-  }
-  .navbar.navbar--photo.navbar--scrolled .navbar__logo-name { color: var(--heading); }
-  .navbar.navbar--photo.navbar--scrolled .navbar__link { color: var(--heading); }
-  .navbar.navbar--photo.navbar--scrolled .navbar__link:hover { color: var(--accent); }
-  .navbar.navbar--photo.navbar--scrolled .navbar__cta { background: var(--purple); color: #fff; }
-  .navbar.navbar--photo .nav-ham span { background: #fff; }
-  .navbar.navbar--photo.navbar--scrolled .nav-ham span { background: var(--heading); }
   :global(body.menu-open) .navbar.navbar--photo .nav-ham span { background: var(--heading); }
 
   .navbar__inner {
@@ -148,9 +125,9 @@ const searchBlogEntries = {
   .navbar__logo { grid-column: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
   .navbar__logo-name {
-    font-family: var(--ff-head); font-weight: 700; color: #fff;
+    font-family: var(--ff-head); font-weight: 700; color: var(--nav-fg);
     font-size: 17px; line-height: 1.12; letter-spacing: .01em;
-    transition: color .8s cubic-bezier(.22,1,.36,1);
+    transition: color .5s ease;
   }
   /* Con el menú abierto el fondo de la barra desaparece y queda el crema del
      overlay detrás — el logo pasa a morado para seguir siendo legible. */
@@ -163,26 +140,25 @@ const searchBlogEntries = {
   .navbar__link {
     font-family: var(--ff-body);
     font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none;
-    color: #fff; text-decoration: none; white-space: nowrap;
-    transition: color .2s;
+    color: var(--nav-fg); text-decoration: none; white-space: nowrap;
+    transition: color .5s ease;
   }
-  .navbar__link:hover { color: var(--sand); }
+  .navbar__link:hover { color: var(--nav-fg-hover); }
 
-  /* CTA pill (último link de barLinks, "Agendar cita"). Fondo blanco / texto
-     morado sobre variantes oscuras (gradient, photo); invertido sobre
-     variantes claras (light, solid). */
+  /* CTA pill de la barra ("Agendar cita"). También se adapta al tramo:
+     píldora clara sobre la noche, morada sólida sobre el amanecer — en
+     ambos casos con el contraste invertido respecto a su fondo. */
   .navbar__cta {
     font-family: var(--ff-body);
     font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none;
     white-space: nowrap; text-decoration: none;
-    background: #fff; color: var(--purple);
+    background: #fff; color: var(--purple-d);
     padding: 12px 22px; border-radius: 999px;
-    transition: background .2s, color .2s, transform .2s;
+    transition: background .5s ease, color .5s ease, transform .2s;
   }
   .navbar__cta:hover { transform: translateY(-1px); }
-  .navbar.navbar--light .navbar__cta,
-  .navbar.navbar--solid .navbar__cta {
-    background: var(--purple); color: #fff;
+  .navbar.navbar--dawn .navbar__cta {
+    background: var(--purple-d); color: #fff;
   }
 
   /* Con el menú abierto: el fondo de la barra y los links principales
@@ -198,8 +174,8 @@ const searchBlogEntries = {
   }
   .nav-ham span {
     position: absolute; left: 0; width: 27px; height: 1.5px; display: block;
-    background: var(--heading);
-    transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+    background: var(--nav-fg);
+    transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease, background .5s ease;
   }
   .nav-ham span:nth-child(1) { top: 0; }
   .nav-ham span:nth-child(2) { top: 10px; }
@@ -270,11 +246,26 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Sombra al hacer scroll ------------------------------------------------
   // La barra queda siempre fija y visible (degradado permanente); solo se le
   // agrega sombra tras un pequeño scroll para separarla del contenido.
-  window.addEventListener('scroll', function() {
+  // La barra flota sobre TODO el viaje del lienzo (navy arriba → crema abajo),
+  // así que además de la sombra calcula EN QUÉ TRAMO está: pasado ~72% del
+  // documento el gradiente ya aclaró, y la barra cambia a su versión amanecer
+  // (velo crema + contenido oscuro) para no quedar negra sobre un fondo claro.
+  var DAWN_AT = 0.72;
+  function syncNav() {
     if (!nav) return;
     var y = window.scrollY || document.documentElement.scrollTop;
     nav.classList.toggle('navbar--scrolled', y > 8);
-  }, { passive: true });
+
+    var doc = document.documentElement;
+    var scrollable = doc.scrollHeight - window.innerHeight;
+    // El punto de referencia es el BORDE INFERIOR de la barra: es la parte del
+    // lienzo que realmente tiene detrás.
+    var progress = scrollable > 0 ? (y + nav.offsetHeight) / doc.scrollHeight : 0;
+    nav.classList.toggle('navbar--dawn', progress >= DAWN_AT);
+  }
+  window.addEventListener('scroll', syncNav, { passive: true });
+  window.addEventListener('resize', syncNav, { passive: true });
+  syncNav();
 
   // --- Overlay / menú -------------------------------------------------------
   function openDesktop() {
