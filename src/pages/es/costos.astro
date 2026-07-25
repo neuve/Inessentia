@@ -24,7 +24,7 @@ const termsPath = sitePath(locale, 'terms');
 
   <!-- BANDA: MISMO COSTO Y DURACIÓN -->
   <section class="zone-dark" style="background:transparent;">
-    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:20px 40px;box-sizing:border-box;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;text-align:center;">
+    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:20px 40px;box-sizing:border-box;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       <p style="margin:0;font-size:clamp(14px,1.1vw,16px);line-height:1.55;color:var(--on-canvas);">Individual, pareja y familia comparten el <strong>mismo costo</strong> y una duración de <strong>50 a 60 minutos</strong> por sesión.</p>
     </div>
@@ -68,8 +68,11 @@ const termsPath = sitePath(locale, 'terms');
     </div>
   </section>
 
-  <!-- NOTA -->
-  <section class="zone-light" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
+  <!-- NOTA — zone-dark a propósito (no zone-light): en una página corta como
+       esta, a esta altura el lienzo TODAVÍA es vino/magenta, no crema; en
+       tema claro el override fuerza texto oscuro igual, así que zone-dark es
+       la opción segura en ambos casos. -->
+  <section class="zone-dark" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
     <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
       <div style="border-top:1px solid var(--border-hair);padding-top:22px;max-width:78ch;">
         <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-faint);">* Los pagos se procesan por transferencia bancaria (SPEI) o Stripe. El pago anticipado confirma tu lugar; también puedes cubrirlo en efectivo el día de tu sesión.</p>

@@ -145,21 +145,21 @@ const searchBlogEntries = {
   }
   .navbar__link:hover { color: var(--nav-fg-hover); }
 
-  /* CTA pill de la barra ("Agendar cita"). También se adapta al tramo:
-     píldora clara sobre la noche, morada sólida sobre el amanecer — en
-     ambos casos con el contraste invertido respecto a su fondo. */
+  /* CTA de la barra ("Quiero agendar") — NIVEL 3 del sistema: rectangular
+     boleado, pequeño y de contorno fino. Deliberadamente subordinado: el N1
+     dorado de cada página es el llamado protagonista, y la barra no debe
+     competir con él en cada scroll. Gesto tímido al hover (se encoge).
+     Toma su color de --nav-fg, así que se adapta al tramo del lienzo. */
   .navbar__cta {
     font-family: var(--ff-body);
     font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none;
     white-space: nowrap; text-decoration: none;
-    background: #fff; color: var(--purple-d);
-    padding: 12px 22px; border-radius: 999px;
-    transition: background .5s ease, color .5s ease, transform .2s;
+    background: transparent; color: var(--nav-fg);
+    box-shadow: inset 0 0 0 1.5px currentColor;
+    padding: 10px 20px; border-radius: 12px;
+    transition: color .5s ease, opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1);
   }
-  .navbar__cta:hover { transform: translateY(-1px); }
-  .navbar.navbar--dawn .navbar__cta {
-    background: var(--purple-d); color: #fff;
-  }
+  .navbar__cta:hover { transform: scale(.955); opacity: .72; }
 
   /* Con el menú abierto: el fondo de la barra y los links principales
      desaparecen — el logo se queda flotando, en blanco, por encima de todo. */
@@ -250,18 +250,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // así que además de la sombra calcula EN QUÉ TRAMO está: pasado ~72% del
   // documento el gradiente ya aclaró, y la barra cambia a su versión amanecer
   // (velo crema + contenido oscuro) para no quedar negra sobre un fondo claro.
-  var DAWN_AT = 0.72;
   function syncNav() {
     if (!nav) return;
-    var y = window.scrollY || document.documentElement.scrollTop;
+    var doc = document.documentElement;
+    var y = window.scrollY || doc.scrollTop;
     nav.classList.toggle('navbar--scrolled', y > 8);
 
-    var doc = document.documentElement;
-    var scrollable = doc.scrollHeight - window.innerHeight;
+    // El umbral vive junto al gradiente en global.css (--dawn-at), así que
+    // depende del tema: en oscuro el lienzo tarda en aclarar; en claro ya es
+    // claro desde arriba y la barra amanece en cuanto se despega del hero.
+    var dawnAt = parseFloat(getComputedStyle(doc).getPropertyValue('--dawn-at'));
+    if (isNaN(dawnAt)) dawnAt = 0.6;
     // El punto de referencia es el BORDE INFERIOR de la barra: es la parte del
     // lienzo que realmente tiene detrás.
-    var progress = scrollable > 0 ? (y + nav.offsetHeight) / doc.scrollHeight : 0;
-    nav.classList.toggle('navbar--dawn', progress >= DAWN_AT);
+    var progress = doc.scrollHeight > 0 ? (y + nav.offsetHeight) / doc.scrollHeight : 0;
+    nav.classList.toggle('navbar--dawn', y > 8 && progress >= dawnAt);
   }
   window.addEventListener('scroll', syncNav, { passive: true });
   window.addEventListener('resize', syncNav, { passive: true });

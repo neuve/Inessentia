@@ -136,6 +136,11 @@
      100%, para que el cierre de página (CTA final, footer) quede legible
      con texto oscuro. Ver .zone-dark / .zone-light más abajo. */
   --page-grad: linear-gradient(180deg,#0a0c28 0%,#1b1550 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#b4744f 72%,#d9b27a 86%,#EAE5D9 100%);
+  /* Punto del recorrido a partir del cual el lienzo ya aclaró lo suficiente
+     como para que la barra deba amanecer (velo crema + contenido oscuro).
+     Vive junto al gradiente a propósito: si se retocan las paradas, este
+     número se ajusta en el mismo sitio. Lo lee el script de Navbar.astro. */
+  --dawn-at: .60;
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
@@ -153,6 +158,9 @@
      "oscuro" del inicio también usa texto oscuro (ver override de
      .zone-dark en tema claro, más abajo). */
   --page-grad: linear-gradient(180deg,#EDEAF7 0%,#F0E4EE 12%,#F2E5E8 24%,#F4E6DD 36%,#F5E8D0 48%,#F3E4C0 60%,#F0DCAE 72%,#EAD59A 86%,#E9D19C 100%);
+  /* En tema claro el lienzo es claro DESDE ARRIBA, así que la barra debe
+     amanecer en cuanto se despega del hero: umbral 0. */
+  --dawn-at: 0;
 }
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
@@ -187,6 +195,10 @@
   --on-canvas-faint: rgba(234,229,217,.62);
   --heading-canvas: #EAE5D9;
   --accent-canvas: var(--sand);
+  /* Campos: se hunden respecto a la tarjeta que los contiene. */
+  --field-bg: rgba(0,0,0,.26);
+  --field-bg-focus: rgba(0,0,0,.34);
+  --field-border: rgba(234,229,217,.30);
 }
 .zone-light {
   /* Tramo de cierre (crema/arena) — es claro en AMBOS temas porque los
@@ -197,6 +209,9 @@
   --on-canvas-faint: #6a6460;
   --heading-canvas: var(--purple);
   --accent-canvas: var(--wine);
+  --field-bg: #fff;
+  --field-bg-focus: #fff;
+  --field-border: #D8D2C4;
 }
 :root[data-theme="dark"] {
   /* Default sin zona = zone-dark, porque el tema oscuro arranca navy. */
@@ -490,20 +505,32 @@ form .btn, .form-wrap .btn, .form-field .btn {
   color: var(--heading);
   margin-bottom: var(--sp-2);
 }
+/* Campos de formulario sobre el lienzo. El campo NO puede compartir color con
+   la tarjeta que lo contiene (era el bug: caja y campo ambos en --surface, así
+   que el input desaparecía). Se hunde respecto a su contenedor con un velo
+   oscuro propio y un borde con cuerpo, y el placeholder tiene su propio color
+   — si no, el navegador lo pinta gris sobre translúcido y se vuelve ilegible. */
 .form-input, .form-select, .form-textarea {
   width: 100%;
   box-sizing: border-box;
   padding: var(--sp-3);
-  border: 1px solid #D8D2C4;
+  border: 1px solid var(--field-border, #D8D2C4);
   border-radius: var(--r-field);
   font-family: var(--ff-body);
-  font-size: .9rem;
-  background: var(--warm);
-  color: var(--ink);
+  font-size: .95rem;
+  background: var(--field-bg, #fff);
+  color: var(--on-canvas, var(--text));
   outline: none;
-  transition: border-color .15s ease;
+  transition: border-color .15s ease, background .15s ease;
 }
-.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--sand); }
+.form-input::placeholder, .form-textarea::placeholder {
+  color: var(--on-canvas-faint, var(--text-faint));
+  opacity: 1;   /* Firefox lo baja a .54 por defecto */
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  background: var(--field-bg-focus, var(--field-bg, #fff));
+}
 .form-msg { border-radius: var(--r-field); padding: var(--sp-3) var(--sp-4); }
 .form-msg.ok  { background: #EFF4EF; color: #3A5A3A; border: 1px solid #BFD4BF; }
 .form-msg.err { background: #FBEDED; color: #8E2B2B; border: 1px solid #E4BFBF; }

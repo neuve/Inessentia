@@ -330,24 +330,21 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header--panel .site-header__link--panel { color: var(--accent-canvas); text-decoration: none; border-bottom: none; }
   .site-header--panel .site-header__link--panel:hover { color: var(--accent-canvas); text-decoration: none; border-bottom: none; opacity: .75; }
   @media (max-width: 860px) {
-    .site-header__panel-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-left: 32px; }
+    .site-header__panel-inner { grid-template-columns: 1fr; padding-left: 32px; }
     .site-header__panel-copy { max-width: 100%; grid-row: 2; }
-    .site-header__panel-icon { grid-row: 1; margin: 0 auto; }
-    .site-header__panel-copy .site-header__actions { justify-content: center; }
-    .site-header__panel-copy .site-header__lead--panel { margin-left: auto; margin-right: auto; }
+    .site-header__panel-icon { grid-row: 1; }
   }
 
   /* ---------- Monolith (B) ---------- */
   .site-header--monolith { min-height: 66vh; display: flex; align-items: center; padding: 130px 0 96px; }
   .site-header--monolith .site-header__mandala--a { top: 50%; margin-top: -320px; left: 60%; width: 640px; height: 640px; opacity: .13; }
-  .site-header__monolith-inner { position: relative; max-width: 780px; margin: 0 auto; padding: 0 32px; text-align: center; }
-  .site-header__monolith-inner .site-header__actions { justify-content: center; }
-  .site-header__monolith-inner .site-header__lead { max-width: 56ch; margin-left: auto; margin-right: auto; }
+  .site-header__monolith-inner { position: relative; max-width: 780px; margin: 0 auto; padding: 0 32px; }
+  .site-header__monolith-inner .site-header__lead { max-width: 56ch; }
   .site-header__icon {
     width: 172px; height: 172px; border-radius: 50%;
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
     -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 26px;
+    display: flex; align-items: center; justify-content: center; margin: 0 0 26px;
   }
   @media (max-width: 520px) { .site-header__icon { width: 140px; height: 140px; } }
 

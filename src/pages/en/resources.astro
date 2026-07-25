@@ -95,7 +95,7 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CATEGORY FILTER (pills) -->
-  <div style="background:var(--cream-2);padding:24px 0 6px;border-bottom:1px solid var(--border-hair);">
+  <div class="zone-dark" style="background:transparent;padding:24px 0 6px;border-bottom:1px solid var(--border-hair);">
     <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;display:flex;flex-wrap:wrap;gap:9px;">
       {cats.map((c, k) => (
         <button type="button" data-rec-pill={c.key}
@@ -105,7 +105,7 @@ const grid = getResourcesGrid().map((p, k) => {
   </div>
 
   <!-- DENSE MOSAIC (masonry, 4 columns) -->
-  <section style="background:var(--cream-2);padding:34px 0 58px;">
+  <section class="zone-dark" style="background:transparent;padding:34px 0 58px;">
     <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;">
       <div class="rec-grid">
         {grid.map(c => (
@@ -147,10 +147,10 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;">
     <div data-reveal style="max-width:760px;margin:0 auto;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--on-canvas-soft);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--on-canvas-soft);margin:0 0 36px;max-width:52ch;">{i.cta.desc}</p>
       <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
     </div>
   </section>
