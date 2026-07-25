@@ -112,22 +112,22 @@ const authorSchema = personSchema(locale);
     <!-- categoría + h1 + descripción, en la franja inferior sobre el degradado -->
     <div style="position:absolute;left:0;right:0;bottom:0;padding:0 32px clamp(28px,4vw,48px);z-index:2;">
       <div class="container--read">
-        <p style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;">{category}</p>
+        <p style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:#fff;">{category}</p>
         <h1 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(30px,4.5vw,52px);line-height:1.06;margin:0 0 16px;text-wrap:balance;">{title}</h1>
         <p style="font-size:clamp(15px,1.2vw,18px);line-height:1.6;color:rgba(255,255,255,.92);margin:0;max-width:54ch;">{description}</p>
       </div>
     </div>
   </div>
   {heroCaption && (
-    <p class="container--read" style="margin-top:8px;padding:0 32px;font-size:13px;color:var(--sand-d);text-align:center;">{heroCaption}</p>
+    <p class="container--read zone-dark" style="margin-top:8px;padding:0 32px;font-size:13px;color:var(--on-canvas-faint);">{heroCaption}</p>
   )}
 
   <!-- BYLINE (debajo del hero, fondo claro, para mantener legibilidad) -->
-  <div style="padding:clamp(20px,3vw,28px) 32px 0;">
-    <p class="container--read" style="font-size:14px;color:var(--sand-d);">
+  <div class="zone-dark" style="padding:clamp(20px,3vw,28px) 32px 0;">
+    <p class="container--read" style="font-size:14px;color:var(--on-canvas-faint);">
       {bylinePrefix}{' '}
-      <a href={aboutPath} rel="author" style="color:var(--wine);font-weight:700;text-decoration:none;">{PERSON_ALT_NAME}</a>
-      <span style="color:var(--sand-d);"> · {bylineCred}</span>
+      <a href={aboutPath} rel="author" style="color:var(--accent-canvas);font-weight:700;text-decoration:none;">{PERSON_ALT_NAME}</a>
+      <span style="color:var(--on-canvas-faint);"> · {bylineCred}</span>
     </p>
   </div>
 
@@ -161,10 +161,10 @@ const authorSchema = personSchema(locale);
   </section>
 
   <!-- CTA -->
-  <section style="background:var(--purple);padding:clamp(56px,8vw,96px) 32px;text-align:center;">
-    <div style="max-width:600px;margin:0 auto;">
-      <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 20px;text-wrap:balance;">{ctaTitle}</h2>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--white">{ctaButton}</a>
+  <section class="zone-light" style="padding:clamp(56px,8vw,96px) 32px;">
+    <div class="container--read">
+      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 20px;text-wrap:balance;">{ctaTitle}</h2>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{ctaButton}<span class="btn__dot"></span></a>
     </div>
   </section>
 

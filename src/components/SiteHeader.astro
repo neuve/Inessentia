@@ -79,7 +79,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 ---
 
 {mode === 'split' ? (
-  <section class="site-header site-header--split">
+  <section class="site-header site-header--split zone-dark">
     <div class="site-header__mandala" aria-hidden="true" data-parallax="0.06" data-parallax-max="50"></div>
     <div class="site-header__grid">
       <div data-reveal>
@@ -89,7 +89,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         {meta && <h4 class="site-header__meta">{meta}</h4>}
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
@@ -110,7 +110,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     </div>
   </section>
 ) : mode === 'cinema' ? (
-  <section class="site-header site-header--cinema">
+  <section class="site-header site-header--cinema zone-dark">
     <div class="site-header__cinema-photo" style={photoPosition ? `--photo-pos:${photoPosition};` : ''}>
       {photo && <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={960} fetchpriority="high" loading="eager" />}
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
@@ -121,7 +121,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         <h1 class={`site-header__title site-header__title--cinema${titleCompact ? ' site-header__title--cinema-compact' : ''}`}>{title}</h1>
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
@@ -133,7 +133,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     </div>
   </section>
 ) : mode === 'panel' ? (
-  <section class="site-header site-header--panel">
+  <section class="site-header site-header--panel zone-dark">
     <div class="site-header__panel-rail" aria-hidden="true"></div>
     <div class="site-header__panel-inner" data-reveal>
       <div class={`site-header__panel-copy${panelLarge ? ' site-header__panel-copy--lg' : ''}`}>
@@ -143,7 +143,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         {meta && <h4 class="site-header__meta site-header__meta--panel">{meta}</h4>}
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-primary">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link site-header__link--panel">{secondaryLabel}</a>}
           </div>
         )}
@@ -159,9 +159,8 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   </section>
 ) : (
   <>
-    <section class="site-header site-header--monolith">
+    <section class="site-header site-header--monolith zone-dark">
       <div class="site-header__mandala site-header__mandala--a" aria-hidden="true" data-parallax="0.06" data-parallax-max="50"></div>
-      <div class="site-header__mandala site-header__mandala--b" aria-hidden="true" data-parallax="0.05" data-parallax-max="40"></div>
       <div class="site-header__monolith-inner" data-reveal>
         {icon && (
           <div class="site-header__icon">
@@ -173,14 +172,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         <div class="site-header__lead site-header__lead--mono"><slot /></div>
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
       </div>
     </section>
     {stats.length > 0 && (
-      <div class="site-header__ribbon-wrap">
+      <div class="site-header__ribbon-wrap on-light">
         <div class="site-header__ribbon">
           {stats.map((s, i) => (
             <>
@@ -199,9 +198,12 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 
 <style>
   .site-header {
+    /* Contrato "noche → amanecer": el hero nunca pinta su propio fondo —
+       vive sobre el lienzo continuo del body (--page-grad) y declara
+       zone-dark en el marcado para resolver el color de texto correcto. */
     position: relative;
     overflow: hidden;
-    background: var(--grad-brand);
+    background: transparent;
   }
   .site-header__mandala {
     position: absolute;
@@ -223,15 +225,30 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   @media (max-width: 860px) { .site-header__grid { grid-template-columns: 1fr; } }
   /* Portrait: fixed 4:5 box. `--photo-pos` (from the `photoPosition` prop)
      fine-tunes the vertical crop per page; the default replicates the prior
-     framing (image at 120% height pulled up 10% ≈ object-position center 8%). */
-  .site-header__photo { position: relative; overflow: hidden; border-radius: 18px; box-shadow: 0 30px 70px rgba(35,18,55,.34); aspect-ratio: var(--photo-aspect, 4 / 5); width: 100%; max-width: var(--photo-max-w, none); margin-left: auto; }
-  .site-header__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 8%); display: block; }
+     framing (image at 120% height pulled up 10% ≈ object-position center 8%).
+     Sin recorte duro: se funde al lienzo por abajo y por los lados con una
+     máscara radial en vez de un borde/sombra que lo delate como bloque. */
+  .site-header__photo {
+    position: relative; overflow: visible; aspect-ratio: var(--photo-aspect, 4 / 5);
+    width: 100%; max-width: var(--photo-max-w, none); margin-left: auto;
+    -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 42%, #000 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse 92% 88% at 50% 42%, #000 60%, transparent 100%);
+  }
+  .site-header__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 8%); display: block; border-radius: 18px; }
 
   /* ---------- Cinema (A — home + sobre mí, foto a sangre completa) ---------- */
-  .site-header--cinema { min-height: 90vh; display: flex; align-items: stretch; background: #26143C; }
-  .site-header__cinema-photo { position: absolute; inset: 0; }
+  .site-header--cinema { min-height: 90vh; display: flex; align-items: stretch; }
+  /* El contenedor foto+velo se funde hacia abajo en el lienzo transparente
+     de la sección (en vez de cortar en seco contra la siguiente sección). */
+  .site-header__cinema-photo {
+    position: absolute; inset: 0;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 80%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 80%, transparent 100%);
+  }
   .site-header__cinema-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 30%); display: block; }
   .site-header__cinema-veil {
+    /* Overlay de marca sobre la foto (no sobre texto plano): sigue siendo
+       válido usar un tono de marca como fondo de imagen para legibilidad. */
     position: absolute; inset: 0;
     background: linear-gradient(0deg, rgba(38,20,60,.94) 0%, rgba(38,20,60,.78) 26%, rgba(38,20,60,.34) 58%, rgba(38,20,60,.12) 100%);
   }
@@ -250,7 +267,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   }
   .site-header--cinema .site-header__title--cinema { font-size: var(--fs-display); margin-bottom: 26px; }
   .site-header--cinema .site-header__title--cinema-compact { font-size: clamp(32px, 3.8vw, 54px); }
-  .site-header--cinema .site-header__lead--cinema { max-width: 46ch; margin: 0 0 6px; color: rgba(255,255,255,.92); }
+  .site-header--cinema .site-header__lead--cinema { max-width: 46ch; margin: 0 0 6px; color: var(--on-canvas); }
   .site-header--cinema .site-header__eyebrow,
   .site-header--cinema .site-header__title--cinema { text-shadow: 0 1px 22px rgba(38,20,60,.5); }
   .site-header__cinema-lead { align-self: end; }
@@ -276,7 +293,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   }
 
   /* ---------- Panel (C) ---------- */
-  .site-header--panel { background: var(--warm); min-height: 62vh; display: flex; align-items: center; padding: 150px 0 80px; }
+  .site-header--panel { background: transparent; min-height: 62vh; display: flex; align-items: center; padding: 150px 0 80px; }
   .site-header__panel-rail { position: absolute; inset: 0 auto 0 0; width: 6px; background: var(--grad-rail); }
   .site-header__panel-inner {
     /* Grid en vez de flex space-between: el ícono vive en su propia columna
@@ -298,63 +315,66 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   /* Panel text colours must beat the shared white/sand rules below, which
      have equal specificity but come later in source order. Prefix with the
      block class to win regardless of order. */
-  .site-header--panel .site-header__eyebrow--panel { color: var(--wine); }
+  .site-header--panel .site-header__eyebrow--panel { color: var(--accent-canvas); }
+  .site-header--panel .site-header__eyebrow--panel::before { background: var(--accent-canvas); }
   /* Nota: 34px / clamp(34px,4.6vw,52px) NO se sustituyen por --fs-h2
      (clamp(30px,4.4vw,50px)) porque no son el mismo valor — hacerlo
      cambiaría el tamaño renderizado en desktop. Se dejan como literales. */
-  .site-header--panel .site-header__title--panel { color: var(--purple); font-size: 34px; line-height: 1.12; }
+  .site-header--panel .site-header__title--panel { color: var(--heading-canvas); font-size: 34px; line-height: 1.12; }
   .site-header--panel .site-header__title--panel-lg { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; }
-  .site-header--panel .site-header__lead--panel { color: var(--text); font-family: var(--ff-body); font-weight: 500; font-size: 14px; max-width: 60ch; }
+  .site-header--panel .site-header__lead--panel { color: var(--on-canvas-soft); font-family: var(--ff-body); font-weight: 500; font-size: 14px; max-width: 60ch; }
   .site-header--panel .site-header__lead--panel-lg { font-size: 16px; }
   .site-header__lead--panel :global(p) { margin: 0 0 10px; }
   .site-header__lead--panel :global(p:last-child) { margin-bottom: 0; }
-  .site-header--panel .site-header__meta--panel { color: var(--text-muted); }
-  .site-header--panel .site-header__link--panel { color: var(--wine); text-decoration: none; border-bottom: none; }
-  .site-header--panel .site-header__link--panel:hover { color: var(--wine); text-decoration: none; border-bottom: none; }
+  .site-header--panel .site-header__meta--panel { color: var(--on-canvas-faint); }
+  .site-header--panel .site-header__link--panel { color: var(--accent-canvas); text-decoration: none; border-bottom: none; }
+  .site-header--panel .site-header__link--panel:hover { color: var(--accent-canvas); text-decoration: none; border-bottom: none; opacity: .75; }
   @media (max-width: 860px) {
-    .site-header__panel-inner { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-left: 32px; }
+    .site-header__panel-inner { grid-template-columns: 1fr; padding-left: 32px; }
     .site-header__panel-copy { max-width: 100%; grid-row: 2; }
-    .site-header__panel-icon { grid-row: 1; margin: 0 auto; }
-    .site-header__panel-copy .site-header__actions { justify-content: center; }
-    .site-header__panel-copy .site-header__lead--panel { margin-left: auto; margin-right: auto; }
+    .site-header__panel-icon { grid-row: 1; }
   }
 
   /* ---------- Monolith (B) ---------- */
   .site-header--monolith { min-height: 66vh; display: flex; align-items: center; padding: 130px 0 96px; }
   .site-header--monolith .site-header__mandala--a { top: 50%; margin-top: -320px; left: 60%; width: 640px; height: 640px; opacity: .13; }
-  .site-header--monolith .site-header__mandala--b { --mc: #EAE5D9; background: repeating-conic-gradient(#EAE5D9 0deg .55deg, transparent .55deg 7deg); bottom: -220px; left: -160px; width: 460px; height: 460px; opacity: .16; }
-  .site-header__monolith-inner { position: relative; max-width: 780px; margin: 0 auto; padding: 0 32px; text-align: center; }
-  .site-header__monolith-inner .site-header__actions { justify-content: center; }
-  .site-header__monolith-inner .site-header__lead { max-width: 56ch; margin-left: auto; margin-right: auto; }
+  .site-header__monolith-inner { position: relative; max-width: 780px; margin: 0 auto; padding: 0 32px; }
+  .site-header__monolith-inner .site-header__lead { max-width: 56ch; }
   .site-header__icon {
     width: 172px; height: 172px; border-radius: 50%;
     background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
     -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
-    display: flex; align-items: center; justify-content: center; margin: 0 auto 26px;
+    display: flex; align-items: center; justify-content: center; margin: 0 0 26px;
   }
   @media (max-width: 520px) { .site-header__icon { width: 140px; height: 140px; } }
 
-  /* ---------- Shared text ---------- */
-  .site-header__eyebrow { margin: 0 0 18px; font-weight: 700; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
-  .site-header__title { font-family: var(--ff-head); font-weight: 700; color: #fff; font-size: var(--fs-h1); line-height: 1.03; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
+  /* ---------- Shared text ----------
+     Regla de oro del contrato noche→amanecer: nada de #fff/rgba(255,255,255,…)
+     fijos ni var(--wine)/(--sand)/(--purple) como color de texto — el hero
+     depende de la zona (.zone-dark) para resolver --on-canvas/--heading-canvas/
+     --accent-canvas correctamente en cualquier punto del lienzo y en ambos
+     temas. */
+  .site-header__eyebrow { margin: 0 0 18px; display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--accent-canvas); }
+  .site-header__eyebrow::before { content: ""; width: 24px; height: 2px; flex: 0 0 auto; background: var(--accent-canvas); }
+  .site-header__title { font-family: var(--ff-head); font-weight: 700; color: var(--heading-canvas); font-size: var(--fs-h1); line-height: 1.03; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
   /* Nota: clamp(40px,6vw,76px) NO se sustituye por --fs-display
      (clamp(40px,5.6vw,80px)) porque no son el mismo valor. Se deja literal. */
   .site-header__title--mono { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; }
-  .site-header__lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; color: rgba(255,255,255,.85); max-width: 48ch; margin: 0 0 32px; }
+  .site-header__lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; color: var(--on-canvas-soft); max-width: 48ch; margin: 0 0 32px; }
   .site-header__lead :global(p) { margin: 0 0 10px; }
   .site-header__lead :global(p:last-child) { margin-bottom: 0; }
-  .site-header__meta { margin: 0 0 30px; font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  .site-header__meta { margin: 0 0 30px; font-weight: 600; font-size: 13px; letter-spacing: 0; text-transform: none; color: var(--on-canvas-faint); }
   /* Aire balanceado alrededor del pill: ~30px arriba (meta) y ~34px abajo (stats). */
   .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
-  /* Tertiary CTA: quiet text link so it doesn't compete with the primary white button */
-  .site-header__link { color: rgba(255,255,255,.72); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
-  .site-header__link:hover { color: #fff; border-bottom-color: rgba(255,255,255,.4); }
+  /* Tertiary CTA: quiet text link so it doesn't compete with the primary gold pill */
+  .site-header__link { color: var(--on-canvas-faint); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
+  .site-header__link:hover { color: var(--on-canvas); border-bottom-color: currentColor; }
 
   /* ---------- Numeralia (split — grid de 3 columnas, sin divisores) ---------- */
   .site-header__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); gap: clamp(20px, 2.4vw, 34px); }
-  .site-header__stat b { font-family: var(--ff-head); font-weight: 700; font-size: clamp(34px,4.4vw,42px); line-height: .9; color: #fff; display: block; }
-  .site-header__stat span { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,.8); display: block; margin-top: 8px; }
-  .site-header__stat span :global(strong) { color: #fff; font-weight: 700; }
+  .site-header__stat b { font-family: var(--ff-head); font-weight: 700; font-size: clamp(34px,4.4vw,42px); line-height: .9; color: var(--heading-canvas); display: block; }
+  .site-header__stat span { font-size: 13px; line-height: 1.5; color: var(--on-canvas-soft); display: block; margin-top: 8px; }
+  .site-header__stat span :global(strong) { color: var(--heading-canvas); font-weight: 700; }
   @media (max-width: 420px) {
     .site-header__stats { grid-template-columns: 1fr; gap: 18px; }
   }

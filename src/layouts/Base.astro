@@ -63,6 +63,17 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tema: OSCURO por defecto, adaptable al dispositivo (si prefiere claro),
+       preferencia guardada gana. Se resuelve antes del render para evitar parpadeo. -->
+  <script is:inline>
+    (function(){
+      try{
+        var saved=localStorage.getItem('iness-theme');
+        var theme=saved||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+        document.documentElement.setAttribute('data-theme',theme);
+      }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+    })();
+  </script>
   <title>{title}</title>
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
@@ -112,6 +123,23 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <CookieConsent locale={locale} />
   <RevealOnScroll />
   <ParallaxImages />
+  <!-- Toggle de tema (beta): la fundación oscura está en marcha; el default
+       sigue claro hasta terminar la tokenización de colores inline. -->
+  <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema (beta)"
+    style="position:fixed;right:18px;bottom:18px;z-index:120;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-card);background:var(--surface);color:var(--heading);font-size:18px;cursor:pointer;box-shadow:0 8px 22px rgba(70,39,110,.16);display:flex;align-items:center;justify-content:center;">◐</button>
+  <script is:inline>
+    (function(){
+      var KEY='iness-theme';
+      var saved=localStorage.getItem(KEY);
+      if(saved){document.documentElement.setAttribute('data-theme',saved);}
+      var b=document.getElementById('theme-toggle');
+      if(b){b.addEventListener('click',function(){
+        var next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+        document.documentElement.setAttribute('data-theme',next);
+        localStorage.setItem(KEY,next);
+      });}
+    })();
+  </script>
   <script>
     import '../scripts/video-embed.js';
   </script>

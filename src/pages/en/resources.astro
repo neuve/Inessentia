@@ -61,7 +61,7 @@ const grid = getResourcesGrid().map((p, k) => {
 >
 
   <!-- CINEMATIC HERO: intro (top) + rotating featured (bottom) over a full-bleed banner -->
-  <section class="rec-hero" data-nav-overlay>
+  <section class="rec-hero on-dark" data-nav-overlay>
     {featured.map((f, k) => (
       <Img src={f.img} sizes="100vw" minWidth={960} loading="eager" data-rec-bg={k} alt="" style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};opacity:${k === 0 ? '1' : '0'};transition:opacity .7s ease;`} />
     ))}
@@ -69,7 +69,7 @@ const grid = getResourcesGrid().map((p, k) => {
 
     <!-- fixed section intro -->
     <div class="rec-hero-intro">
-      <p style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#E6D2B4;">{i.blog.label}</p>
+      <p style="margin:0 0 14px;font-weight:700;font-size:13px;letter-spacing:0;text-transform:none;color:#E6D2B4;">{i.blog.label}</p>
       <h1 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(34px,4.6vw,56px);line-height:1.0;margin:0;max-width:15ch;">{i.blog.title}</h1>
       <p style="font-size:clamp(15px,1.3vw,18px);line-height:1.6;color:rgba(255,255,255,.82);margin:20px 0 0;max-width:50ch;">{i.blog.subtitle}</p>
     </div>
@@ -80,9 +80,9 @@ const grid = getResourcesGrid().map((p, k) => {
         <div style="height:1px;background:rgba(255,255,255,.25);margin-bottom:22px;"></div>
         {featured.map((f, k) => (
           <a href={f.href} data-rec-slide={k} style={`display:block;text-decoration:none;transition:opacity .5s ease;opacity:${k === 0 ? '1' : '0'};${k === 0 ? '' : 'position:absolute;left:0;right:0;bottom:0;pointer-events:none;'}`}>
-            <p style="margin:0 0 10px;font-weight:700;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:#E6D2B4;">Featured · {f.cat}</p>
+            <p style="margin:0 0 10px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:#E6D2B4;">Featured · {f.cat}</p>
             <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(24px,2.6vw,32px);line-height:1.12;margin:0 0 16px;max-width:26ch;">{f.title}</h2>
-            <span style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;padding:14px 26px;border-radius:var(--r-pill);">{i.blog.readMore}</span>
+            <span style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-weight:700;font-size:13px;letter-spacing:0;text-transform:none;padding:14px 26px;border-radius:var(--r-pill);">{i.blog.readMore}</span>
           </a>
         ))}
       </div>
@@ -95,23 +95,23 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CATEGORY FILTER (pills) -->
-  <div style="background:var(--cream-2);padding:24px 0 6px;border-bottom:1px solid #e2dccc;">
+  <div class="zone-dark" style="background:transparent;padding:24px 0 6px;border-bottom:1px solid var(--border-hair);">
     <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;display:flex;flex-wrap:wrap;gap:9px;">
       {cats.map((c, k) => (
         <button type="button" data-rec-pill={c.key}
-          style={`background:${k === 0 ? 'var(--purple)' : '#fff'};color:${k === 0 ? '#fff' : '#5a5048'};border:1px solid ${k === 0 ? 'var(--purple)' : 'var(--border-card)'};padding:9px 17px;border-radius:var(--r-pill);font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;`}>{c.label}</button>
+          style={`background:${k === 0 ? 'var(--purple)' : 'var(--surface)'};color:${k === 0 ? '#fff' : 'var(--text-soft)'};border:1px solid ${k === 0 ? 'var(--purple)' : 'var(--border-card)'};padding:9px 17px;border-radius:var(--r-pill);font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;`}>{c.label}</button>
       ))}
     </div>
   </div>
 
   <!-- DENSE MOSAIC (masonry, 4 columns) -->
-  <section style="background:var(--cream-2);padding:34px 0 58px;">
+  <section class="zone-dark" style="background:transparent;padding:34px 0 58px;">
     <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;">
       <div class="rec-grid">
         {grid.map(c => (
           c.photo && c.video ? (
             <a href={c.href} data-rec-item data-cat={c.cat} class="rec-card" style="break-inside:avoid;-webkit-column-break-inside:avoid;display:block;margin:0 0 20px;text-decoration:none;color:inherit;">
-              <div style="background:#fff;border:1px solid var(--border-card);border-radius:var(--r-panel);overflow:hidden;">
+              <div style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-panel);overflow:hidden;">
                 <div style={`height:${c.big ? '300' : '208'}px;overflow:hidden;position:relative;`}>
                   <Img src={c.img} sizes="(max-width:640px) 100vw, 400px" alt={c.alt} style={`width:100%;height:100%;object-fit:cover;object-position:${c.pos};display:block;`} />
                   <video class="rec-card-video" muted loop playsinline preload="none" style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${c.pos};`}>
@@ -120,9 +120,9 @@ const grid = getResourcesGrid().map((p, k) => {
                   </video>
                 </div>
                 <div style="padding:18px 18px 20px;">
-                  <p style="margin:0 0 8px;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);">{c.cat}</p>
-                  <h3 style={`font-family:var(--ff-head);font-weight:700;color:var(--purple);font-size:${c.big ? '24px' : '19px'};line-height:1.18;margin:0 0 9px;`}>{c.title}</h3>
-                  <p style="font-size:13px;line-height:1.55;color:#4a443f;margin:0;">{c.blurb}</p>
+                  <p style="margin:0 0 8px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--accent-canvas);">{c.cat}</p>
+                  <h3 style={`font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:${c.big ? '24px' : '19px'};line-height:1.18;margin:0 0 9px;`}>{c.title}</h3>
+                  <p style="font-size:13px;line-height:1.55;color:var(--on-canvas);margin:0;">{c.blurb}</p>
                 </div>
               </div>
             </a>
@@ -147,11 +147,11 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CTA -->
-  <section style="background:var(--purple);padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;">
     <div data-reveal style="max-width:760px;margin:0 auto;">
-      <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.82);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--white">{i.cta.button}</a>
+      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--on-canvas-soft);margin:0 0 36px;max-width:52ch;">{i.cta.desc}</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
     </div>
   </section>
 
@@ -210,8 +210,8 @@ const grid = getResourcesGrid().map((p, k) => {
       });
       pills.forEach(function (p) {
         var on = p.getAttribute('data-rec-pill') === key;
-        p.style.background = on ? 'var(--purple)' : '#fff';
-        p.style.color = on ? '#fff' : '#5a5048';
+        p.style.background = on ? 'var(--purple)' : 'var(--surface)';
+        p.style.color = on ? '#fff' : 'var(--text-soft)';
         p.style.borderColor = on ? 'var(--purple)' : 'var(--border-card)';
       });
     }

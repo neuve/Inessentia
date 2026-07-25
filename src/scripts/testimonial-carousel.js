@@ -8,13 +8,13 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
 
   function cardHTML(t) {
     var nameInner = t.link
-      ? '<a href="' + t.link + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid rgba(70,39,110,.3);padding-bottom:1px;">' + t.name + '</a>'
+      ? '<a href="' + t.link + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-hair);padding-bottom:1px;">' + t.name + '</a>'
       : t.name;
-    var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:#8a837a;font-size:14px;">· ' + t.tag + '</span>' : '';
-    return '<div style="background:var(--cream-2);border-radius:20px;padding:34px 32px;">' +
-      '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--sand);margin-bottom:6px;">&ldquo;</div>' +
-      '<p style="font-size:17px;line-height:1.6;color:#34302c;margin:0 0 22px;">' + t.q + '</p>' +
-      '<p style="margin:0;font-family:\'Bitter\',serif;font-weight:700;color:var(--purple);font-size:18px;">' + nameInner + tag + '</p>' +
+    var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:var(--on-canvas-faint);font-size:14px;">· ' + t.tag + '</span>' : '';
+    return '<div style="background:var(--surface);border-radius:20px;padding:34px 32px;">' +
+      '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--accent-canvas);margin-bottom:6px;">&ldquo;</div>' +
+      '<p style="font-size:17px;line-height:1.6;color:var(--on-canvas);margin:0 0 22px;">' + t.q + '</p>' +
+      '<p style="margin:0;font-family:\'Bitter\',serif;font-weight:700;color:var(--heading-canvas);font-size:18px;">' + nameInner + tag + '</p>' +
     '</div>';
   }
 
@@ -46,10 +46,10 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
       if (dotStyle === 'nested') {
         d.style.cssText = 'width:24px;height:24px;border-radius:50%;border:none;padding:0;cursor:pointer;background:transparent;transition:background .3s,transform .3s;display:flex;align-items:center;justify-content:center;';
         var dot = document.createElement('span');
-        dot.style.cssText = 'width:9px;height:9px;border-radius:50%;background:#d6cdbb;transition:background .3s,transform .3s;pointer-events:none;';
+        dot.style.cssText = 'width:9px;height:9px;border-radius:50%;background:var(--border-hair);transition:background .3s,transform .3s;pointer-events:none;';
         d.appendChild(dot);
       } else {
-        d.style.cssText = 'width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:#d6cdbb;transition:background .3s,transform .3s;';
+        d.style.cssText = 'width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;background:var(--border-hair);transition:background .3s,transform .3s;';
       }
       d.onclick = function() { goTo(i); };
       dotsWrap.appendChild(d);
@@ -61,7 +61,7 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
     dotsWrap.querySelectorAll('button').forEach(function(d, i) {
       var active = i === start;
       var target = dotStyle === 'nested' ? d.querySelector('span') : d;
-      if (target) { target.style.background = active ? 'var(--wine)' : '#d6cdbb'; target.style.transform = active ? 'scale(1.35)' : 'scale(1)'; }
+      if (target) { target.style.background = active ? 'var(--accent-canvas)' : 'var(--border-hair)'; target.style.transform = active ? 'scale(1.35)' : 'scale(1)'; }
     });
   }
 

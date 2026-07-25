@@ -60,9 +60,9 @@ const {
 } = Astro.props as Props;
 
 const tileBg = color?.bg ?? 'var(--surface)';
-const tileFg = color?.fg ?? 'var(--ink)';
-const tileEyebrow = color?.eyebrow ?? 'var(--wine)';
-const tileSub = color?.sub ?? 'var(--text)';
+const tileFg = color?.fg ?? 'var(--heading-canvas)';
+const tileEyebrow = color?.eyebrow ?? 'var(--accent-canvas)';
+const tileSub = color?.sub ?? 'var(--on-canvas)';
 ---
 
 <a
@@ -133,16 +133,16 @@ const tileSub = color?.sub ?? 'var(--text)';
   .blog-card__eyebrow {
     margin: 0;
     font-weight: 700;
-    font-size: 11px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--wine);
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--accent-canvas);
   }
 
   .blog-card__title {
     font-family: var(--ff-head);
     font-weight: 700;
-    color: var(--purple);
+    color: var(--heading-canvas);
     font-size: 20px;
     line-height: 1.2;
     margin: 0;
@@ -151,13 +151,13 @@ const tileSub = color?.sub ?? 'var(--text)';
   .blog-card__excerpt {
     font-size: 14px;
     line-height: 1.6;
-    color: var(--text);
+    color: var(--on-canvas);
     margin: 0;
     flex: 1;
   }
 
   .blog-card__cta {
-    color: var(--wine);
+    color: var(--accent-canvas);
     font-weight: 700;
     font-size: 13px;
   }
