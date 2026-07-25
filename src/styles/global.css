@@ -143,7 +143,7 @@ html, body { margin: 0; padding: 0; background: var(--bg); }
 body {
   font-family: 'Mulish', sans-serif;
   font-weight: 500;
-  color: var(--ink);
+  color: var(--text);   /* --text flipa con el tema; --ink (constante) dejaba todo el texto heredado oscuro-sobre-oscuro */
   overflow-x: hidden;
 }
 
@@ -251,7 +251,7 @@ body {
 }
 .btn--wine { background: var(--wine); color: #fff; }
 .btn--wine:hover { transform: translateY(-2px); box-shadow: var(--sh-btn); }
-.btn--ghost { background: transparent; color: var(--purple); box-shadow: inset 0 0 0 1.5px currentColor; }
+.btn--ghost { background: transparent; color: var(--heading); box-shadow: inset 0 0 0 1.5px currentColor; }
 .btn--ghost:hover { transform: translateY(-2px); }
 
 /* Cards */
@@ -275,7 +275,7 @@ body {
 .page-header--soft h1 {
   font-family: var(--ff-head);
   font-weight: 700;
-  color: var(--purple);
+  color: var(--heading);
   font-size: var(--fs-h1);
   line-height: var(--lh-tight);
   margin: 0;
@@ -289,9 +289,9 @@ body {
   display: block;
   font-size: .78rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--purple);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--heading);
   margin-bottom: var(--sp-2);
 }
 .form-input, .form-select, .form-textarea {
@@ -367,7 +367,7 @@ body {
 .blog-content h2 {
   font-family: var(--ff-head);
   font-weight: 700;
-  color: var(--purple);
+  color: var(--heading);
   font-size: var(--fs-h3);
   line-height: var(--lh-head);
   margin: 42px 0 18px;
