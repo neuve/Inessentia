@@ -449,7 +449,7 @@ const PRICING = {
     --gl-gold-light: #E6D2B4;
     --gl-hairline: var(--border-card);
     --gl-body-ink: var(--text);
-    --gl-muted: #8a8274;
+    --gl-muted: var(--text-muted);
     width: 100%;
     overflow-x: hidden;
   }
@@ -610,7 +610,7 @@ const PRICING = {
   .gl-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
 
   .gl-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--gl-hairline);
     border-radius: 22px;
     padding: 34px 30px;
@@ -632,7 +632,7 @@ const PRICING = {
     font-family: 'Bitter', serif;
     font-weight: 700;
     font-size: 21px;
-    color: var(--purple);
+    color: var(--heading);
     margin: 0 0 16px;
     line-height: 1.2;
   }
@@ -653,7 +653,7 @@ const PRICING = {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--gl-hairline);
     border-radius: 999px;
     padding: 10px 20px 10px 12px;
@@ -672,7 +672,7 @@ const PRICING = {
     flex: none;
   }
   .gl-pill-dot--gold { background: var(--sand); color: var(--ink); }
-  .gl-pill-label { font-size: 14.5px; font-weight: 600; color: var(--purple); line-height: 1.2; white-space: nowrap; }
+  .gl-pill-label { font-size: 14.5px; font-weight: 600; color: var(--heading); line-height: 1.2; white-space: nowrap; }
   .gl-arrow { color: var(--sand); font-size: 18px; font-weight: 700; }
 
   .gl-transversal {
@@ -696,7 +696,7 @@ const PRICING = {
     margin-top: 2px;
   }
   .gl-transversal-text { font-size: 15px; line-height: 1.6; color: var(--gl-body-ink); }
-  .gl-transversal-text strong { color: var(--purple); }
+  .gl-transversal-text strong { color: var(--heading); }
 
   .gl-purple-deep { background: var(--gl-purple-deep); }
   .gl-h2-white {
@@ -720,7 +720,7 @@ const PRICING = {
   .gl-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .gl-table-wrap {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--gl-hairline);
     border-radius: 22px;
     overflow: hidden;
@@ -743,7 +743,7 @@ const PRICING = {
     color: var(--gl-body-ink);
   }
   .gl-row-alt { background: var(--cream-2); }
-  .gl-td-n { font-weight: 700; color: var(--purple); }
+  .gl-td-n { font-weight: 700; color: var(--heading); }
   .gl-td-nota { font-size: 14px; color: var(--wine); font-weight: 600; }
   .gl-td-receso {
     text-align: center;
@@ -754,7 +754,7 @@ const PRICING = {
   }
 
   .gl-mini-card {
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--gl-hairline);
     border-radius: 18px;
     padding: 22px 24px;
@@ -776,7 +776,7 @@ const PRICING = {
     padding: 34px 30px;
     display: flex;
     flex-direction: column;
-    background: #fff;
+    background: var(--surface);
   }
   .gl-price-card--featured {
     border: 2px solid var(--sand);
@@ -800,7 +800,7 @@ const PRICING = {
     font-family: 'Bitter', serif;
     font-weight: 700;
     font-size: 36px;
-    color: var(--purple);
+    color: var(--heading);
     margin: 2px 0 4px;
   }
   .gl-price-note { font-size: 13px; color: var(--wine); font-weight: 700; margin: 0 0 12px; }
@@ -815,11 +815,11 @@ const PRICING = {
   }
   .gl-notes-box p { font-size: 15px; color: var(--gl-body-ink); margin: 0 0 8px; }
   .gl-notes-box p:last-child { margin: 0; }
-  .gl-notes-box strong { color: var(--purple); }
+  .gl-notes-box strong { color: var(--heading); }
 
   .gl-corpore-callout {
     margin-top: 24px;
-    background: #fff;
+    background: var(--surface);
     border: 1px dashed var(--sand);
     border-radius: 22px;
     padding: 32px 30px;
@@ -852,7 +852,7 @@ const PRICING = {
     font-family: 'Bitter', serif;
     font-weight: 700;
     font-size: 15px;
-    color: var(--purple);
+    color: var(--heading);
     white-space: nowrap;
   }
   .gl-corpore-tier--featured .gl-corpore-tier-precio {
@@ -867,7 +867,7 @@ const PRICING = {
     grid-template-columns: 180px 1fr;
     gap: 36px;
     align-items: center;
-    background: #fff;
+    background: var(--surface);
     border: 1px solid var(--gl-hairline);
     border-radius: 22px;
     padding: 38px;
@@ -882,7 +882,7 @@ const PRICING = {
     font-family: 'Bitter', serif;
     font-weight: 700;
     font-size: 26px;
-    color: var(--purple);
+    color: var(--heading);
     margin: 0 0 12px;
   }
   @media (max-width: 560px) {

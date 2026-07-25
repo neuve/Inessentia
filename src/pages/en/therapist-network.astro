@@ -42,7 +42,7 @@ const i = t(locale);
 .therapist-item{padding:12px 20px;border-bottom:1px solid rgba(0,0,0,.05);cursor:pointer;transition:background .15s;border-left:3px solid transparent}
 .therapist-item:hover{background:#FAF6F0}
 .therapist-item.active{background:#FFF5FA;border-left-color:var(--wine)}
-.therapist-name{font-weight:600;font-size:.85rem;color:var(--ink);margin-bottom:3px;font-family:var(--ff-body)}
+.therapist-name{font-weight:600;font-size:.85rem;color:var(--text);margin-bottom:3px;font-family:var(--ff-body)}
 .therapist-location{font-size:.72rem;color:var(--text-faint);margin-bottom:5px;font-family:var(--ff-body)}
 .therapist-tags{display:flex;gap:4px;flex-wrap:wrap}
 /* Tags */
@@ -71,7 +71,7 @@ const i = t(locale);
 .popup-body{padding:14px 16px}
 .popup-section{margin-bottom:10px}
 .popup-section-label{font-size:.75rem;text-transform:none;letter-spacing:0;color:var(--text-faint);margin-bottom:4px;font-weight:600;font-family:var(--ff-body)}
-.popup-section-value{font-size:.8rem;color:var(--ink);line-height:1.5;font-family:var(--ff-body)}
+.popup-section-value{font-size:.8rem;color:var(--text);line-height:1.5;font-family:var(--ff-body)}
 .popup-tags{display:flex;gap:4px;flex-wrap:wrap}
 .popup-footer{border-top:1px solid rgba(0,0,0,.07);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .popup-link{display:inline-flex;align-items:center;gap:4px;font-size:.75rem;text-decoration:none;font-weight:500;font-family:var(--ff-body);transition:opacity .15s}
@@ -140,8 +140,8 @@ const i = t(locale);
     <div style="flex:1;display:flex;overflow:hidden;min-height:0;">
       <div id="ri-map" style="flex:1;">
         <noscript>
-          <div style="padding:32px 22px;max-width:760px;margin:0 auto;font-family:'Mulish',sans-serif;color:var(--ink);">
-            <h2 style="font-family:'Bitter',serif;color:var(--purple);">Red Inessentia — therapists in Mexico</h2>
+          <div style="padding:32px 22px;max-width:760px;margin:0 auto;font-family:'Mulish',sans-serif;color:var(--text);">
+            <h2 style="font-family:'Bitter',serif;color:var(--heading);">Red Inessentia — therapists in Mexico</h2>
             <p>Red Inessentia brings together somatic experiencing therapists, psychotherapists, transpersonal therapists, and physical therapists in Mexico and abroad. Enable JavaScript to view the interactive map and filters. These are the network's therapists and their areas:</p>
             <ul style="line-height:1.9;">
               <li>Abigail Leija Rosano — Hipódromo Condesa</li>
@@ -168,9 +168,9 @@ const i = t(locale);
           </div>
         </noscript>
       </div>
-      <div id="ri-sidebar" style="width:340px;background:#fff;border-left:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;">
-        <div style="padding:14px 20px 10px;border-bottom:1px solid rgba(0,0,0,.07);background:#EAE5D9;">
-          <div style="font-family:'Bitter',serif;font-size:1rem;font-weight:700;color:var(--ink);">Therapists</div>
+      <div id="ri-sidebar" style="width:340px;background:var(--surface);border-left:1px solid rgba(0,0,0,.08);display:flex;flex-direction:column;overflow:hidden;flex-shrink:0;">
+        <div style="padding:14px 20px 10px;border-bottom:1px solid rgba(0,0,0,.07);background:var(--cream-2);">
+          <div style="font-family:'Bitter',serif;font-size:1rem;font-weight:700;color:var(--text);">Therapists</div>
           <div id="ri-sidebar-sub" style="font-size:.72rem;color:var(--text-faint);margin-top:2px;font-family:var(--ff-body);">Select a pin or name</div>
         </div>
         <div class="ri-list-container" id="list-container"></div>
@@ -314,7 +314,7 @@ const i = t(locale);
       '</div>'+
       '<div class="popup-body">'+
         '<div class="popup-section"><div class="popup-section-label">Approaches</div><div class="popup-section-value">'+(t.enfoques||[]).join(' · ')+'</div></div>'+
-        (t.especialidades?'<div class="popup-section"><div class="popup-section-label">Specialties</div><div class="popup-section-value" style="font-size:.76rem;color:#555">'+t.especialidades+'</div></div>':'')+
+        (t.especialidades?'<div class="popup-section"><div class="popup-section-label">Specialties</div><div class="popup-section-value" style="font-size:.76rem;color:var(--text-soft)">'+t.especialidades+'</div></div>':'')+
         '<div class="popup-section"><div class="popup-section-label">Works with</div><div class="popup-section-value">'+(t.casos||[]).join(', ')+'</div></div>'+
         '<div class="popup-tags">'+modTags+idiomaTag+listaTag+'</div>'+
       '</div>'+

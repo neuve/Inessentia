@@ -60,7 +60,7 @@ const {
 } = Astro.props as Props;
 
 const tileBg = color?.bg ?? 'var(--surface)';
-const tileFg = color?.fg ?? 'var(--ink)';
+const tileFg = color?.fg ?? 'var(--text)';
 const tileEyebrow = color?.eyebrow ?? 'var(--wine)';
 const tileSub = color?.sub ?? 'var(--text)';
 ---
@@ -142,7 +142,7 @@ const tileSub = color?.sub ?? 'var(--text)';
   .blog-card__title {
     font-family: var(--ff-head);
     font-weight: 700;
-    color: var(--purple);
+    color: var(--heading);
     font-size: 20px;
     line-height: 1.2;
     margin: 0;

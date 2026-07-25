@@ -114,7 +114,7 @@ let idx = 0;
 
   .mo-link__label {
     font-family: 'Bitter', serif; font-weight: 700; font-size: 38px; line-height: 1.1;
-    color: var(--ink); transition: color .25s ease;
+    color: var(--text); transition: color .25s ease;
   }
   .mo-link:hover .mo-link__label { color: var(--wine); }
 
@@ -135,14 +135,14 @@ let idx = 0;
 
   .menu-overlay__footer {
     display: flex; align-items: flex-end; justify-content: space-between; gap: 40px;
-    border-top: 1px solid #ece6d8; padding-top: 26px;
+    border-top: 1px solid var(--border-card); padding-top: 26px;
   }
   .menu-overlay__eyebrow {
     font-family: 'Mulish', sans-serif; font-weight: 700; font-size: 12px;
-    letter-spacing: 0; text-transform: none; color: #6a6460; margin-bottom: 10px;
+    letter-spacing: 0; text-transform: none; color: var(--text-muted); margin-bottom: 10px;
   }
   .menu-overlay__email {
-    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--ink); text-decoration: none;
+    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--text); text-decoration: none;
     transition: opacity .2s;
   }
   .menu-overlay__email:hover { opacity: .6; }
@@ -153,10 +153,10 @@ let idx = 0;
   .menu-overlay__search input {
     width: 100%; border: none; border-bottom: 1.5px solid var(--purple);
     background: transparent; padding: 10px 28px 10px 2px;
-    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--ink);
+    font-family: 'Mulish', sans-serif; font-size: 15px; color: var(--text);
     outline: none; cursor: pointer;
   }
-  .menu-overlay__search input::placeholder { color: #6a6460; }
+  .menu-overlay__search input::placeholder { color: var(--text-muted); }
   .menu-overlay__search svg { position: absolute; right: 2px; top: 10px; }
 
   @media (max-width: 960px) {
