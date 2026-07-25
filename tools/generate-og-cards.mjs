@@ -14,7 +14,7 @@
  *   - default:  ícono + "Patricio Ruiz" + tagline (páginas legales/utilitarias)
  *
  * Requiere ImageMagick (`convert`) instalado en el sistema. Las fuentes
- * (Zilla Slab, Mulish) se descargan de fonts.gstatic.com la primera vez y
+ * (Bitter, Mulish) se descargan de fonts.gstatic.com la primera vez y
  * se cachean en .cache/fonts/ (no versionado) — no hace falta volver a
  * bajarlas en corridas siguientes.
  *
@@ -72,7 +72,7 @@ function ensureFont(file, family, weight) {
   return dest;
 }
 
-const ZILLA_BOLD = ensureFont('zilla-slab-bold.ttf', 'Zilla+Slab', '700');
+const BITTER_BOLD = ensureFont('bitter-bold.ttf', 'Bitter', '700');
 const MULISH_BOLD = ensureFont('mulish-bold.ttf', 'Mulish', '700');
 
 // ---------------------------------------------------------------------------
@@ -118,7 +118,7 @@ function makeIconCard(iconPath, eyebrow, title, outPath) {
     '-fill', BRAND.cream, '-font', MULISH_BOLD, '-pointsize', '30',
     '-annotate', '+0+15', eyebrow.toUpperCase(),
     '(', '-size', `${textW}x300`, '-background', 'none',
-         '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '58',
+         '-fill', 'white', '-font', BITTER_BOLD, '-pointsize', '58',
          '-gravity', 'NorthWest', `caption:${title}`, ')',
     '-gravity', 'NorthWest', '-geometry', '+0+90', '-composite',
     textBlock,
@@ -188,7 +188,7 @@ function makeSplitCard({ eyebrow, title, subtitle }, outPath) {
     args.push('-gravity', 'North', '-fill', BRAND.cream, '-font', MULISH_BOLD, '-pointsize', '26', '-annotate', `+0+${y}`, eyebrow.toUpperCase());
     y += 50;
   }
-  args.push('-gravity', 'North', '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '42', '-annotate', `+0+${y}`, title);
+  args.push('-gravity', 'North', '-fill', 'white', '-font', BITTER_BOLD, '-pointsize', '42', '-annotate', `+0+${y}`, title);
   y += 70;
   if (subtitle) {
     args.push(
@@ -217,7 +217,7 @@ function makeDefaultCard(outPath) {
   sh('convert', [
     '-size', `${W}x120`, 'xc:none',
     '-gravity', 'North',
-    '-fill', 'white', '-font', ZILLA_BOLD, '-pointsize', '56',
+    '-fill', 'white', '-font', BITTER_BOLD, '-pointsize', '56',
     '-annotate', '+0+0', 'Patricio Ruiz',
     '-fill', BRAND.sand, '-font', MULISH_BOLD, '-pointsize', '26',
     '-annotate', '+0+78', 'Psicoterapia psicosomática y sistémica · CDMX y en línea',
