@@ -148,15 +148,28 @@ body {
   margin: 0;
 }
 .heading-section--on-dark { color: var(--on-dark); }
+/* Rótulo de sección — rediseñado: SIN all-caps (rechazado). Title Case en
+   vino con una raya dorada corta que lo ancla; editorial, sin gritar. */
 .label-section {
   margin: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-weight: 700;
-  font-size: var(--fs-eyebrow);
-  letter-spacing: var(--ls-eyebrow);
-  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--wine);
 }
-.label-section--on-dark { color: var(--sand); }   /* eyebrow dorado sobre morado */
+.label-section::before {
+  content: "";
+  width: 24px;
+  height: 2px;
+  flex: 0 0 auto;
+  background: var(--sand-d);
+}
+.label-section--on-dark { color: var(--sand); }   /* rótulo dorado sobre morado */
+.label-section--on-dark::before { background: var(--sand); }
 .body-text {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
@@ -182,10 +195,10 @@ body {
   gap: 10px;
   font-family: var(--ff-body);
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  padding: 17px 32px;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  padding: 16px 30px;
   border: none;
   border-radius: var(--r-pill);
   text-decoration: none;
