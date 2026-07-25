@@ -39,24 +39,24 @@ const authorSchema = personSchema(locale);
   </SiteHeader>
 
   <!-- APPROACH -->
-  <section class="section">
+  <section class="section zone-dark">
     <div class="container--narrow">
       <div class="section-header">
-        <p data-reveal class="label-section">{i.approach.label}</p>
-        <h2 data-reveal class="heading-section" style="margin:0;max-width:24ch;letter-spacing:-.01em;">{i.approach.title}</h2>
+        <p data-reveal class="label-section" style="color:var(--accent-canvas);">{i.approach.label}</p>
+        <h2 data-reveal class="heading-section" style="margin:0;max-width:24ch;letter-spacing:-.01em;color:var(--heading-canvas);">{i.approach.title}</h2>
       </div>
-      <p data-reveal class="body-text" style="margin:0 0 22px;max-width:62ch;">{i.approach.p1}</p>
-      <p data-reveal class="body-text" style="margin:0 0 34px;max-width:62ch;">{i.approach.p2}</p>
-      <a data-reveal href="/es/blog/tipos-de-terapia/" class="link-underline">{i.approach.link}</a>
+      <p data-reveal class="body-text" style="margin:0 0 22px;max-width:62ch;color:var(--on-canvas);">{i.approach.p1}</p>
+      <p data-reveal class="body-text" style="margin:0 0 34px;max-width:62ch;color:var(--on-canvas);">{i.approach.p2}</p>
+      <a data-reveal href="/es/blog/tipos-de-terapia/" class="link-underline" style="color:var(--accent-canvas);">{i.approach.link}</a>
     </div>
   </section>
 
   <!-- MODALITIES -->
-  <section id="modalidades" class="section section--cream">
+  <section id="modalidades" class="section section--cream zone-dark">
     <div class="container">
       <div class="section-header">
-        <p data-reveal class="label-section">{i.modalities.label}</p>
-        <h2 data-reveal class="heading-section">{i.modalities.title}</h2>
+        <p data-reveal class="label-section" style="color:var(--accent-canvas);">{i.modalities.label}</p>
+        <h2 data-reveal class="heading-section" style="color:var(--heading-canvas);">{i.modalities.title}</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;" class="modal-grid">
 
@@ -64,27 +64,27 @@ const authorSchema = personSchema(locale);
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
             <Img src="/uploads/icono-terapia-individual.webp" alt="" sizes="96px" style="height:78px;width:auto;display:block;" />
           </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--wine);font-size:26px;margin:0;">{i.modalities.individual.title}</h3>
-          <p style="font-size:16px;line-height:1.65;color:var(--text);margin:0;flex:1;">{i.modalities.individual.desc}</p>
-          <a href="/es/terapia/individual/" style="color:var(--heading);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.individual.link}</a>
+          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.individual.title}</h3>
+          <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.individual.desc}</p>
+          <a href="/es/terapia/individual/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.individual.link}</a>
         </div>
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
             <Img src="/uploads/icono-terapia-pareja.webp" alt="" sizes="96px" style="height:96px;width:auto;display:block;" />
           </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--wine);font-size:26px;margin:0;">{i.modalities.couples.title}</h3>
-          <p style="font-size:16px;line-height:1.65;color:var(--text);margin:0;flex:1;">{i.modalities.couples.desc}</p>
-          <a href="/es/terapia/pareja/" style="color:var(--heading);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.couples.link}</a>
+          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.couples.title}</h3>
+          <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.couples.desc}</p>
+          <a href="/es/terapia/pareja/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.couples.link}</a>
         </div>
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
           <div style="width:112px;height:112px;border-radius:50%;background:linear-gradient(160deg,var(--cream-2),var(--cream));display:flex;align-items:center;justify-content:center;">
             <Img src="/uploads/icono-terapia-familiar.webp" alt="" sizes="96px" style="height:88px;width:auto;display:block;" />
           </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--wine);font-size:26px;margin:0;">{i.modalities.family.title}</h3>
-          <p style="font-size:16px;line-height:1.65;color:var(--text);margin:0;flex:1;">{i.modalities.family.desc}</p>
-          <a href="/es/terapia/familias/" style="color:var(--heading);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.family.link}</a>
+          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.family.title}</h3>
+          <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.family.desc}</p>
+          <a href="/es/terapia/familias/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.family.link}</a>
         </div>
 
       </div>
@@ -95,14 +95,12 @@ const authorSchema = personSchema(locale);
   <TestimonialCarousel locale={locale} />
 
   <!-- PODCAST -->
-  <section style="background:transparent;padding:clamp(56px,8vw,100px) 32px;overflow:hidden;position:relative;">
-    <div style="position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:rgba(194,176,126,.07);pointer-events:none;"></div>
-    <div style="position:absolute;bottom:-80px;left:-40px;width:260px;height:260px;border-radius:50%;background:rgba(194,176,126,.05);pointer-events:none;"></div>
+  <section class="zone-dark" style="background:transparent;padding:clamp(56px,8vw,100px) 32px;overflow:hidden;position:relative;">
     <div style="position:relative;max-width:820px;margin:0 auto;display:flex;gap:clamp(32px,5vw,64px);align-items:center;flex-wrap:wrap;">
       <div style="flex:1 1 320px;">
-        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--gold);">{i.podcast.label}</p>
-        <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--heading);font-size:clamp(26px,3.8vw,42px);line-height:1.1;margin:0 0 16px;text-wrap:balance;">{i.podcast.title}</h2>
-        <p data-reveal style="font-size:clamp(15px,1.1vw,17px);line-height:1.65;color:var(--text-soft);margin:0;">{i.podcast.desc}</p>
+        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--accent-canvas);">{i.podcast.label}</p>
+        <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,3.8vw,42px);line-height:1.1;margin:0 0 16px;text-wrap:balance;">{i.podcast.title}</h2>
+        <p data-reveal style="font-size:clamp(15px,1.1vw,17px);line-height:1.65;color:var(--on-canvas-soft);margin:0;">{i.podcast.desc}</p>
       </div>
       <div data-reveal style="flex:1 1 280px;">
         <form id="podcast-form" action="https://formspree.io/f/mzdqnrka" method="POST" style="background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;">
@@ -111,13 +109,13 @@ const authorSchema = personSchema(locale);
           <input type="text" name="nombre" placeholder={i.podcast.namePlaceholder} required style="background:var(--surface);border:1px solid var(--border-card);border-radius:9px;padding:12px 14px;font-size:15px;color:var(--text);font-family:'Mulish',sans-serif;outline:none;">
           <label style="font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;">{i.podcast.emailLabel}</label>
           <input type="email" name="email" placeholder={i.podcast.emailPlaceholder} required style="background:var(--surface);border:1px solid var(--border-card);border-radius:9px;padding:12px 14px;font-size:15px;color:var(--text);font-family:'Mulish',sans-serif;outline:none;">
-          <button type="submit" class="btn btn--gold">{i.podcast.submit}<span class="btn__dot"></span></button>
+          <button type="submit" class="btn btn--secondary" style="align-self:flex-start;width:auto;">{i.podcast.submit}</button>
           <p style="margin:0;font-size:12px;color:var(--text-faint);text-align:center;line-height:1.5;">{i.podcast.privacy} <a href={`/${locale}/privacidad/`} style="color:var(--text-muted);font-weight:700;text-decoration:none;">{i.podcast.privacyLink}</a>.</p>
         </form>
         <div id="podcast-thanks" style="display:none;background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;text-align:center;">
           <p style="font-size:32px;margin:0 0 12px;">{i.podcast.thanksEmoji}</p>
           <p style="font-family:'Bitter',serif;font-size:22px;color:var(--heading);font-weight:700;margin:0 0 10px;">{i.podcast.thanksTitle}</p>
-          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" class="btn btn--gold" style="padding:13px 26px;margin-top:6px;">{i.podcast.thanksCta}<span class="btn__dot"></span></a>
+          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" class="btn btn--secondary" style="padding:13px 26px;margin-top:6px;width:auto;">{i.podcast.thanksCta}</a>
           <p style="font-size:13px;color:var(--text-faint);margin:14px 0 0;">{i.podcast.thanksNote}</p>
         </div>
       </div>
@@ -148,14 +146,14 @@ const authorSchema = personSchema(locale);
   </script>
 
   <!-- BLOG -->
-  <section class="section section--cream">
+  <section class="section section--cream zone-dark">
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(36px,4vw,56px);">
         <div data-reveal>
-          <p class="label-section">{i.blog.label}</p>
-          <h2 class="heading-section">{i.blog.title}</h2>
+          <p class="label-section" style="color:var(--accent-canvas);">{i.blog.label}</p>
+          <h2 class="heading-section" style="color:var(--heading-canvas);">{i.blog.title}</h2>
         </div>
-        <a data-reveal href="/es/recursos/" class="link-underline">{i.blog.seeAll}</a>
+        <a data-reveal href="/es/recursos/" class="link-underline" style="color:var(--accent-canvas);">{i.blog.seeAll}</a>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;" class="blog-grid">
 
@@ -194,11 +192,11 @@ const authorSchema = personSchema(locale);
   </section>
 
   <!-- CTA -->
-  <section style="position:relative;overflow:hidden;background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+  <section class="zone-light" style="position:relative;overflow:hidden;background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
     <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
-      <h2 class="heading-section heading-section--on-dark" style="margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p class="body-text body-text--on-dark" style="margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
+      <h2 class="heading-section" style="margin:0 0 22px;text-wrap:balance;color:var(--heading-canvas);">{i.cta.title}</h2>
+      <p class="body-text" style="margin:0 auto 36px;max-width:52ch;color:var(--on-canvas);">{i.cta.desc}</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--secondary">{i.cta.button}</a>
     </div>
   </section>
 

@@ -10,11 +10,11 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
     var nameInner = t.link
       ? '<a href="' + t.link + '" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-hair);padding-bottom:1px;">' + t.name + '</a>'
       : t.name;
-    var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:var(--text-muted);font-size:14px;">· ' + t.tag + '</span>' : '';
+    var tag = t.tag ? ' <span style="font-family:Mulish,sans-serif;font-weight:400;color:var(--on-canvas-faint);font-size:14px;">· ' + t.tag + '</span>' : '';
     return '<div style="background:var(--surface);border-radius:20px;padding:34px 32px;">' +
-      '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--gold);margin-bottom:6px;">&ldquo;</div>' +
-      '<p style="font-size:17px;line-height:1.6;color:var(--text);margin:0 0 22px;">' + t.q + '</p>' +
-      '<p style="margin:0;font-family:\'Bitter\',serif;font-weight:700;color:var(--heading);font-size:18px;">' + nameInner + tag + '</p>' +
+      '<div style="font-family:\'Mulish\',sans-serif;font-size:54px;line-height:.6;color:var(--accent-canvas);margin-bottom:6px;">&ldquo;</div>' +
+      '<p style="font-size:17px;line-height:1.6;color:var(--on-canvas);margin:0 0 22px;">' + t.q + '</p>' +
+      '<p style="margin:0;font-family:\'Bitter\',serif;font-weight:700;color:var(--heading-canvas);font-size:18px;">' + nameInner + tag + '</p>' +
     '</div>';
   }
 
@@ -61,7 +61,7 @@ export function initTestimonialCarousel({ gridSel, slotSel, dotsSel, items, dotS
     dotsWrap.querySelectorAll('button').forEach(function(d, i) {
       var active = i === start;
       var target = dotStyle === 'nested' ? d.querySelector('span') : d;
-      if (target) { target.style.background = active ? 'var(--wine)' : 'var(--border-hair)'; target.style.transform = active ? 'scale(1.35)' : 'scale(1)'; }
+      if (target) { target.style.background = active ? 'var(--accent-canvas)' : 'var(--border-hair)'; target.style.transform = active ? 'scale(1.35)' : 'scale(1)'; }
     });
   }
 

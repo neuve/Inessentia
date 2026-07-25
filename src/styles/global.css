@@ -130,12 +130,12 @@
   --on-dark-faint: rgba(255,255,255,.7);
   --accent: var(--wine);
   --gold: var(--sand);   /* dorado brillante sobre fondo oscuro */
-  /* Lienzo continuo (oscuro) — viaje de color MARCADO tipo Dawn. Las paradas
-     se cargan hacia el primer tramo de la página (0–45%) porque ahí vive el
-     scroll real de una sesión típica; en páginas largas el resto se estira
-     manteniendo el vino cálido de cierre, para que el viaje se note en la
-     primera pantalla y no se diluya en el resto del documento. */
-  --page-grad: linear-gradient(180deg,#0a0c28 0%,#171450 10%,#2c1a5e 20%,#3f2070 30%,#552577 40%,#6b2a68 52%,#7c2f58 64%,#833a4e 78%,#7c4a48 100%);
+  /* Lienzo continuo (oscuro) — viaje NOCHE → AMANECER: arranca en navy
+     profundo (tramo generoso: el hero es transparente y lo deja ver),
+     cruza índigo/violeta/morado/vino y ATERRIZA en arena y crema clara al
+     100%, para que el cierre de página (CTA final, footer) quede legible
+     con texto oscuro. Ver .zone-dark / .zone-light más abajo. */
+  --page-grad: linear-gradient(180deg,#0a0c28 0%,#1b1550 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#b4744f 72%,#d9b27a 86%,#EAE5D9 100%);
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
@@ -146,17 +146,115 @@
   --on-dark-faint: #6a6460;
   --accent: var(--wine);
   --gold: var(--wine);   /* el dorado profundo no da contraste suficiente en claro */
-  /* Lienzo continuo (claro) — mismo viaje de tono que el oscuro, pero muy
-     aclarado: un dejo lavanda arriba (eco del navy) que pasa por crema y
-     aterriza en arena dorada tibia. Variación de TONO real, no solo de
-     luminosidad, para que se perciba como un viaje y no un degradé plano.
-     Paradas cargadas al primer tramo, igual que en oscuro. */
-  --page-grad: linear-gradient(180deg,#EDEAF7 0%,#F1EAF0 12%,#F4EBE4 24%,#F6EEDD 38%,#F7EFD6 52%,#F5E9C8 68%,#F0DFB4 84%,#E9D19C 100%);
+  /* Lienzo continuo (claro) — mismo viaje NOCHE→AMANECER que el oscuro, pero
+     aclarado: lavanda pálido (eco del navy) → violeta/vino muy tenues →
+     crema → arena dorada tibia al cierre. Variación de TONO real, no solo
+     de luminosidad. Al quedar pálido en todo el recorrido, el tramo
+     "oscuro" del inicio también usa texto oscuro (ver override de
+     .zone-dark en tema claro, más abajo). */
+  --page-grad: linear-gradient(180deg,#EDEAF7 0%,#F0E4EE 12%,#F2E5E8 24%,#F4E6DD 36%,#F5E8D0 48%,#F3E4C0 60%,#F0DCAE 72%,#EAD59A 86%,#E9D19C 100%);
 }
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
 .on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#8B8378; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); --on-dark:#3f3a36; --on-dark-soft:#5a544e; --on-dark-faint:#6a6460; }
 .on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --on-dark-faint:rgba(255,255,255,.7); }
+
+/* ══════════════════════════════════════════════════════════════════
+   ZONAS DEL LIENZO — el fondo del body (--page-grad) viaja de noche a
+   amanecer SIN cortes de sección; el color de texto ya no puede ser fijo
+   (var(--wine)/var(--purple)/var(--sand)/hex) porque en algún punto del
+   viaje coincide con el fondo y desaparece. Un bloque declara en qué
+   tramo del lienzo vive y consume estos tokens en vez de color fijo:
+     .zone-dark  → tramo oscuro (arranque/medio de la página)
+     .zone-light → tramo claro de cierre (CTA final, footer)
+   ══════════════════════════════════════════════════════════════════ */
+:root {
+  /* Default sin zona declarada: hereda --text/--heading de siempre (no
+     rompe nada sin migrar). Las capas de tema, abajo, lo redefinen para
+     que el default siga siendo legible en cada tema. */
+  --on-canvas: var(--text);
+  --on-canvas-soft: var(--text-soft);
+  --on-canvas-faint: var(--text-faint);
+  --heading-canvas: var(--heading);
+  --accent-canvas: var(--wine);
+}
+.zone-dark {
+  /* Válido para el tramo navy/índigo/morado/vino real del tema oscuro.
+     En tema claro ese mismo tramo queda pálido (lavanda), así que se
+     sobreescribe más abajo. */
+  --on-canvas: #EAE5D9;
+  --on-canvas-soft: rgba(234,229,217,.82);
+  --on-canvas-faint: rgba(234,229,217,.62);
+  --heading-canvas: #EAE5D9;
+  --accent-canvas: var(--sand);
+}
+.zone-light {
+  /* Tramo de cierre (crema/arena) — es claro en AMBOS temas porque los
+     dos gradientes aterrizan en crema/arena, así que no necesita override
+     por tema. */
+  --on-canvas: #3f3a36;
+  --on-canvas-soft: #5a544e;
+  --on-canvas-faint: #6a6460;
+  --heading-canvas: var(--purple);
+  --accent-canvas: var(--wine);
+}
+:root[data-theme="dark"] {
+  /* Default sin zona = zone-dark, porque el tema oscuro arranca navy. */
+  --on-canvas: #EAE5D9;
+  --on-canvas-soft: rgba(234,229,217,.82);
+  --on-canvas-faint: rgba(234,229,217,.62);
+  --heading-canvas: #EAE5D9;
+  --accent-canvas: var(--sand);
+}
+:root[data-theme="light"] {
+  /* Default sin zona = zone-light, porque el tema claro es pálido de
+     principio a fin. */
+  --on-canvas: #3f3a36;
+  --on-canvas-soft: #5a544e;
+  --on-canvas-faint: #6a6460;
+  --heading-canvas: var(--purple);
+  --accent-canvas: var(--wine);
+}
+:root[data-theme="light"] .zone-dark {
+  /* El tramo "oscuro" del tema claro es lavanda pálido, no navy real:
+     texto claro se perdería. Se fuerza el mismo tratamiento que
+     .zone-light. */
+  --on-canvas: #3f3a36;
+  --on-canvas-soft: #5a544e;
+  --on-canvas-faint: #6a6460;
+  --heading-canvas: var(--purple);
+  --accent-canvas: var(--wine);
+}
+
+/* ISLAS con fondo propio y fijo: resuelven los tokens de lienzo contra SU
+   fondo, no contra el tramo del gradiente en el que caen. Se declaran
+   DESPUÉS de las zonas para ganar por orden (misma especificidad de clase),
+   de modo que una tarjeta .on-dark dentro de un .zone-light siga con texto
+   claro y viceversa. */
+.on-dark {
+  --on-canvas: #EAE5D9;
+  --on-canvas-soft: rgba(234,229,217,.85);
+  --on-canvas-faint: rgba(234,229,217,.68);
+  --heading-canvas: #EAE5D9;
+  --accent-canvas: var(--sand);
+}
+.on-light,
+:root[data-theme="dark"] .on-light,
+:root[data-theme="light"] .on-light {
+  --on-canvas: #3f3a36;
+  --on-canvas-soft: #5a544e;
+  --on-canvas-faint: #6a6460;
+  --heading-canvas: var(--purple);
+  --accent-canvas: var(--wine);
+}
+:root[data-theme="dark"] .on-dark,
+:root[data-theme="light"] .on-dark {
+  --on-canvas: #EAE5D9;
+  --on-canvas-soft: rgba(234,229,217,.85);
+  --on-canvas-faint: rgba(234,229,217,.68);
+  --heading-canvas: #EAE5D9;
+  --accent-canvas: var(--sand);
+}
 
 /* La barra vive sobre el banner de marca: los heros oscuros del tope (SiteHeader
    o cualquier sección marcada con [data-nav-overlay]) se suben bajo la barra
@@ -210,7 +308,7 @@ body {
 .heading-section {
   font-family: var(--ff-head);
   font-weight: 700;
-  color: var(--heading);
+  color: var(--heading-canvas);
   font-size: var(--fs-h2);
   line-height: var(--lh-tight);
   margin: 0;
@@ -227,27 +325,28 @@ body {
   font-size: 14px;
   letter-spacing: 0;
   text-transform: none;
-  color: var(--wine);
+  color: var(--accent-canvas);
 }
 .label-section::before {
   content: "";
   width: 24px;
   height: 2px;
   flex: 0 0 auto;
-  background: var(--sand-d);
+  background: var(--accent-canvas);
+  opacity: .75;
 }
 .label-section--on-dark { color: var(--gold); }   /* rótulo dorado; flipa a vino en tema claro para contraste */
 .label-section--on-dark::before { background: var(--gold); }
 .body-text {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  color: var(--text);
+  color: var(--on-canvas);
 }
 .body-text--on-dark { color: var(--on-dark-soft); }
 
 /* Links */
 .link-underline {
-  color: var(--wine);
+  color: var(--accent-canvas);
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
@@ -325,6 +424,31 @@ body {
   flex: 0 0 auto;
 }
 .btn--gold:hover .btn__dot { background: #fff; opacity: 1; }
+
+/* N2 — botón secundario del design system: sólido sobrio, SIN puntito,
+   ancho ajustado al contenido. Para todo lo que no sea el único CTA
+   "Agendar/Reservar cita" (podcast, packs, "consulta los costos", etc.).
+   Debe leerse claramente subordinado al N1 dorado y funcionar en ambos
+   temas y en cualquier punto del viaje del lienzo. */
+.btn--secondary {
+  /* N2 nunca se estira: ancho ajustado al contenido en cualquier layout. */
+  width: auto;
+  align-self: flex-start;
+  background: var(--purple-d);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(70,39,110,.22);
+}
+.btn--secondary:hover {
+  transform: translateY(-2px);
+  background: var(--wine);
+  box-shadow: 0 14px 28px rgba(70,39,110,.3);
+}
+/* Un .btn dentro de un <form> nunca debe estirarse a todo el ancho del
+   campo aunque el layout del formulario use flex/grid con stretch. */
+form .btn, .form-wrap .btn, .form-field .btn {
+  align-self: flex-start;
+  width: auto;
+}
 
 /* Cards */
 .card {

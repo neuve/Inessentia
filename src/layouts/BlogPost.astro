@@ -119,15 +119,15 @@ const authorSchema = personSchema(locale);
     </div>
   </div>
   {heroCaption && (
-    <p class="container--read" style="margin-top:8px;padding:0 32px;font-size:13px;color:var(--sand-d);text-align:center;">{heroCaption}</p>
+    <p class="container--read zone-dark" style="margin-top:8px;padding:0 32px;font-size:13px;color:var(--on-canvas-faint);text-align:center;">{heroCaption}</p>
   )}
 
   <!-- BYLINE (debajo del hero, fondo claro, para mantener legibilidad) -->
-  <div style="padding:clamp(20px,3vw,28px) 32px 0;">
-    <p class="container--read" style="font-size:14px;color:var(--sand-d);">
+  <div class="zone-dark" style="padding:clamp(20px,3vw,28px) 32px 0;">
+    <p class="container--read" style="font-size:14px;color:var(--on-canvas-faint);">
       {bylinePrefix}{' '}
-      <a href={aboutPath} rel="author" style="color:var(--wine);font-weight:700;text-decoration:none;">{PERSON_ALT_NAME}</a>
-      <span style="color:var(--sand-d);"> · {bylineCred}</span>
+      <a href={aboutPath} rel="author" style="color:var(--accent-canvas);font-weight:700;text-decoration:none;">{PERSON_ALT_NAME}</a>
+      <span style="color:var(--on-canvas-faint);"> · {bylineCred}</span>
     </p>
   </div>
 
@@ -161,9 +161,9 @@ const authorSchema = personSchema(locale);
   </section>
 
   <!-- CTA -->
-  <section class="on-dark" style="background:var(--purple);padding:clamp(56px,8vw,96px) 32px;text-align:center;">
+  <section class="zone-light" style="padding:clamp(56px,8vw,96px) 32px;text-align:center;">
     <div style="max-width:600px;margin:0 auto;">
-      <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 20px;text-wrap:balance;">{ctaTitle}</h2>
+      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 20px;text-wrap:balance;">{ctaTitle}</h2>
       <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{ctaButton}<span class="btn__dot"></span></a>
     </div>
   </section>

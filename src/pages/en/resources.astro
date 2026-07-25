@@ -120,9 +120,9 @@ const grid = getResourcesGrid().map((p, k) => {
                   </video>
                 </div>
                 <div style="padding:18px 18px 20px;">
-                  <p style="margin:0 0 8px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--wine);">{c.cat}</p>
-                  <h3 style={`font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:${c.big ? '24px' : '19px'};line-height:1.18;margin:0 0 9px;`}>{c.title}</h3>
-                  <p style="font-size:13px;line-height:1.55;color:var(--text);margin:0;">{c.blurb}</p>
+                  <p style="margin:0 0 8px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--accent-canvas);">{c.cat}</p>
+                  <h3 style={`font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:${c.big ? '24px' : '19px'};line-height:1.18;margin:0 0 9px;`}>{c.title}</h3>
+                  <p style="font-size:13px;line-height:1.55;color:var(--on-canvas);margin:0;">{c.blurb}</p>
                 </div>
               </div>
             </a>
@@ -147,10 +147,10 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CTA -->
-  <section style="background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
+  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
     <div data-reveal style="max-width:760px;margin:0 auto;">
-      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--text-soft);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
+      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--on-canvas-soft);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
       <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
     </div>
   </section>
