@@ -117,11 +117,14 @@
   --border-hair: #463659;
   --heading: #EAE5D9;
   --cream-2: #2a1e40;   /* .section--cream flip */
+  /* Lienzo continuo (oscuro): un solo fondo que respira detrás de todo. */
+  --page-grad: linear-gradient(180deg,#1b1433 0%,#241a3f 22%,#31204c 46%,#43244a 72%,#1e1631 100%);
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
   --text-muted: #6a6460; --text-faint: #8B8378; --border-card: #ece6d8;
   --border-hair: #e2dccc; --heading: var(--purple); --cream-2: #F4F0E6;
+  --page-grad: linear-gradient(180deg,#F4F0E6 0%,#F0EADD 45%,#F3ECDE 72%,#EAE5D9 100%);
 }
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
@@ -139,8 +142,10 @@
 body.menu-open { overflow: hidden; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--bg); }
+html { margin: 0; padding: 0; background: var(--bg); }
 body {
+  margin: 0; padding: 0;
+  background: var(--page-grad, var(--bg));   /* lienzo continuo: se extiende por todo el documento */
   font-family: 'Mulish', sans-serif;
   font-weight: 500;
   color: var(--text);   /* --text flipa con el tema; --ink (constante) dejaba todo el texto heredado oscuro-sobre-oscuro */
@@ -160,9 +165,12 @@ body {
 
 /* Section helpers */
 .section { padding: clamp(64px, 9vw, 120px) 32px; }
-.section--cream { background: var(--cream-2); }
-.section--purple { background: var(--purple); }
-.section--purple-d { background: var(--purple-d); }
+/* Lienzo continuo: las secciones ya no cortan el fondo — se vuelven
+   transparentes y flotan sobre el gradiente del body. Su contenido sigue
+   legible (texto claro sobre el gradiente oscuro). */
+.section--cream { background: transparent; }
+.section--purple { background: transparent; }
+.section--purple-d { background: transparent; }
 .container { max-width: var(--container-w); margin: 0 auto; }
 .container--narrow { max-width: 1000px; margin: 0 auto; }
 .container--blog { max-width: 820px; margin: 0 auto; }
