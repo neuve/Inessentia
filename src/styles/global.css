@@ -277,7 +277,7 @@ body {
 
 /* Header ligero para páginas legales / hard-data (NO es el hero grande) */
 .page-header--soft {
-  background: var(--grad-soft);
+  background: transparent;
   padding: clamp(56px, 7vw, 96px) var(--gutter) clamp(40px, 5vw, 64px);
 }
 .page-header--soft h1 {
