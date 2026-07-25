@@ -1,15 +1,8 @@
 /* Fuentes auto-hospedadas (woff2, subset latin) — public/fonts/, descargadas con
    tools/fetch-fonts.mjs. Reemplazan la carga desde Google Fonts (sin conexión a
    fonts.googleapis/gstatic). font-display:swap evita texto invisible. */
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 300; font-display: swap; src: url('/fonts/mulish-300.woff2') format('woff2'); }
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 400; font-display: swap; src: url('/fonts/mulish-400.woff2') format('woff2'); }
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/mulish-500.woff2') format('woff2'); }
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/mulish-600.woff2') format('woff2'); }
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/mulish-700.woff2') format('woff2'); }
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 800; font-display: swap; src: url('/fonts/mulish-800.woff2') format('woff2'); }
-@font-face { font-family: 'Bitter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/fonts/bitter-500.woff2') format('woff2'); }
-@font-face { font-family: 'Bitter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/fonts/bitter-600.woff2') format('woff2'); }
-@font-face { font-family: 'Bitter'; font-style: normal; font-weight: 700; font-display: swap; src: url('/fonts/bitter-700.woff2') format('woff2'); }
+@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 200 1000; font-display: swap; src: url('/fonts/mulish.woff2') format('woff2'); }
+@font-face { font-family: 'Bitter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('/fonts/bitter.woff2') format('woff2'); }
 
 :root {
   --purple: #46276E;
@@ -38,7 +31,7 @@
   --text: #3f3a36;          /* cuerpo de texto base */
   --text-soft: #5a544e;     /* blockquote / secundario */
   --text-muted: #6a6460;    /* meta / ribbons */
-  --text-faint: #8B8378;    /* apoyos tenues (red, forms) */
+  --text-faint: #797267;    /* apoyos tenues (red, forms) */
   /* --on-dark / --on-dark-soft / --on-dark-faint: alias semánticos que
      FLIPAN con el tema (ver capa de tema tras :root) — valor base = claro
      por defecto hasta que el atributo de tema aplique. */
@@ -144,7 +137,7 @@
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
-  --text-muted: #6a6460; --text-faint: #8B8378; --border-card: #ece6d8;
+  --text-muted: #6a6460; --text-faint: #797267; --border-card: #ece6d8;
   --border-hair: #e2dccc; --heading: var(--purple); --cream-2: #F4F0E6;
   --on-dark: #3f3a36;
   --on-dark-soft: #5a544e;
@@ -164,7 +157,7 @@
 }
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
-.on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#8B8378; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); --on-dark:#3f3a36; --on-dark-soft:#5a544e; --on-dark-faint:#6a6460; }
+.on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#797267; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); --on-dark:#3f3a36; --on-dark-soft:#5a544e; --on-dark-faint:#6a6460; }
 .on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --on-dark-faint:rgba(255,255,255,.7); }
 
 /* ══════════════════════════════════════════════════════════════════

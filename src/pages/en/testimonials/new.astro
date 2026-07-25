@@ -13,10 +13,10 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
   <style>
     .rt-wrap{max-width:640px;margin:0 auto;padding:48px 22px 80px;font-family:'Mulish',sans-serif;color:var(--ink,#262321)}
     .rt-title{font-family:'Bitter',serif;font-size:2rem;color:var(--heading);font-weight:700;margin:0 0 6px}
-    .rt-sub{font-size:.9rem;color:#8B8378;line-height:1.6;margin:0 0 32px}
+    .rt-sub{font-size:.9rem;color:var(--text-faint);line-height:1.6;margin:0 0 32px}
     .rt-field{margin-bottom:20px}
     .rt-label{display:block;font-size:.78rem;font-weight:700;text-transform:none;letter-spacing:0;color:var(--heading);margin-bottom:6px}
-    .rt-label small{font-weight:400;text-transform:none;letter-spacing:0;color:#8B8378}
+    .rt-label small{font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-faint)}
     .rt-input,.rt-select,.rt-textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D8D2C4;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.9rem;background:#FCFBF6;color:#262321;outline:none;transition:border-color .15s}
     .rt-input:focus,.rt-select:focus,.rt-textarea:focus{border-color:#C2B07E}
     .rt-textarea{min-height:140px;resize:vertical}
@@ -30,7 +30,7 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
     .rt-msg{margin-top:16px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none}
     .rt-msg.ok{display:block;background:#EFF4EF;color:#3A5A3A;border:1px solid #BFD4BF}
     .rt-msg.err{display:block;background:#FBEDED;color:#8E2B2B;border:1px solid #E4BFBF}
-    .rt-count{font-size:.72rem;color:#8B8378;text-align:right;margin-top:4px}
+    .rt-count{font-size:.72rem;color:var(--text-faint);text-align:right;margin-top:4px}
   </style>
 
   <div class="rt-wrap">

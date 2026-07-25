@@ -62,9 +62,12 @@ export function barLinks(locale: Locale) {
   const i = t(locale);
   const base = `/${locale}`;
   const about = locale === 'es' ? 'sobre-mi' : 'about-me';
+  // El id de la sección está en el idioma de cada home (#modalidades / #modalities):
+  // hardcodear el español dejaba el ancla roto en /en/.
+  const modalities = locale === 'es' ? 'modalidades' : 'modalities';
   return [
     { label: i.nav.about, href: `${base}/${about}/` },
-    { label: i.nav.therapyTypes, href: `${base}/#modalidades` },
+    { label: i.nav.therapyTypes, href: `${base}/#${modalities}` },
     { label: i.nav.cta, href: 'https://wa.me/patriciomx' },
   ];
 }

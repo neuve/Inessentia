@@ -4,6 +4,14 @@
 // runtime). Los archivos se versionan; este script es sólo para refrescarlos.
 //
 // Uso: node tools/fetch-fonts.mjs
+//
+// OJO — ambas familias son FUENTES VARIABLES: Google sirve UN solo archivo por
+// familia que cubre todo el eje wght. La versión anterior de este script pedía
+// pesos discretos (wght@300;400;500…) y guardaba ese mismo binario con un
+// nombre por peso, así que el navegador descargaba hasta 6 copias idénticas
+// (~180 KiB en vez de 30 KiB) y eso dominaba el LCP en móvil. Ahora se pide el
+// RANGO del eje y se escribe un único archivo por familia: mulish.woff2 y
+// bitter.woff2, que es lo que declaran los @font-face de global.css.
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -17,9 +25,11 @@ const UA =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 ' +
   '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 
+// Se pide el RANGO del eje wght (sintaxis `a..b`) para que Google devuelva la
+// fuente variable. Los rangos deben coincidir con los @font-face de global.css.
 const CSS_URL =
-  'https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800' +
-  '&family=Bitter:wght@500;600;700&display=swap';
+  'https://fonts.googleapis.com/css2?family=Mulish:wght@200..1000' +
+  '&family=Bitter:wght@100..900&display=swap';
 
 const slug = (s) => s.toLowerCase().replace(/\s+/g, '-');
 
@@ -42,13 +52,31 @@ async function main() {
 
   if (!wanted.length) throw new Error('No se encontraron bloques latin/woff2 en el CSS de Google.');
 
-  for (const { family, weight, url } of wanted) {
-    const name = `${slug(family)}-${weight}.woff2`;
+  // Una familia variable devuelve la MISMA url para todo el rango: agrupamos por
+  // familia y nos quedamos con la url única. Si alguna familia trajera más de una
+  // url distinta, dejó de ser variable y global.css necesitaría volver a declarar
+  // un @font-face por peso — mejor fallar ruidosamente que escribir archivos que
+  // el CSS no referencia.
+  const byFamily = new Map();
+  for (const { family, url } of wanted) {
+    if (!byFamily.has(family)) byFamily.set(family, new Set());
+    byFamily.get(family).add(url);
+  }
+
+  for (const [family, urls] of byFamily) {
+    if (urls.size !== 1) {
+      throw new Error(
+        `${family} devolvió ${urls.size} archivos distintos: ya no es variable. ` +
+          'Revisa los @font-face de src/styles/global.css antes de continuar.'
+      );
+    }
+    const url = [...urls][0];
+    const name = `${slug(family)}.woff2`;
     const buf = Buffer.from(await (await fetch(url, { headers: { 'User-Agent': UA } })).arrayBuffer());
     await fs.writeFile(path.join(OUT, name), buf);
-    console.log(`✓ ${name} (${(buf.length / 1024).toFixed(1)} KiB)`);
+    console.log(`✓ ${name} (${(buf.length / 1024).toFixed(1)} KiB) — variable, cubre todo el eje wght`);
   }
-  console.log(`\n${wanted.length} fuentes en public/fonts/`);
+  console.log(`\n${byFamily.size} fuentes en public/fonts/`);
 }
 
 main().catch((e) => {

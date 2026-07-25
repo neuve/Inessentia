@@ -30,7 +30,7 @@ const searchBlogEntries = {
 <header id="site-nav" class:list={['navbar', variant !== 'gradient' && `navbar--${variant}`]}>
   <div class="navbar__inner">
     <a href={`/${locale}/`} class="navbar__logo">
-      <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
+      <Img src="/uploads/logo-icon.webp" sizes="64px" loading="eager" fetchpriority="high" alt="Logotipo de Patricio Ruiz, terapeuta: un sol colorido con símbolos alquímicos y astrológicos" class="navbar__logo-icon" />
       <span class="navbar__logo-name">Patricio<br>Ruiz</span>
     </a>
     <nav id="nav-links" class="navbar__links">
