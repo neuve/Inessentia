@@ -546,13 +546,14 @@ const PRICING = {
     object-position: center 42%;
   }
   .gl-hero-veil {
+    --veil-blue: 10,12,40; /* navy del lienzo Noche→Amanecer, más oscuro que --veil-purple */
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(var(--veil-purple),.92) 0%, rgba(var(--veil-purple),.78) 20%, rgba(var(--veil-purple),.28) 40%, rgba(var(--veil-purple),.22) 58%, rgba(var(--veil-purple),.72) 82%, rgba(var(--veil-purple),.94) 100%);
+    background: linear-gradient(180deg, rgba(var(--veil-blue),.92) 0%, rgba(var(--veil-blue),.78) 20%, rgba(var(--veil-blue),.28) 40%, rgba(var(--veil-blue),.22) 58%, rgba(var(--veil-blue),.72) 82%, rgba(var(--veil-blue),.94) 100%);
   }
   @media (max-width: 680px) {
     .gl-hero-veil {
-      background: linear-gradient(180deg, rgba(var(--veil-purple),.9) 0%, rgba(var(--veil-purple),.82) 45%, rgba(var(--veil-purple),.86) 100%);
+      background: linear-gradient(180deg, rgba(var(--veil-blue),.9) 0%, rgba(var(--veil-blue),.82) 45%, rgba(var(--veil-blue),.86) 100%);
     }
   }
   .gl-hero-content {
@@ -744,10 +745,11 @@ const PRICING = {
   .gl-table thead th {
     text-align: left;
     padding: 15px 22px;
-    background: var(--purple);
+    background: var(--purple-d);
     color: #fff;
+    font-family: var(--ff-head);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 17px;
     letter-spacing: 0;
     text-transform: none;
   }
