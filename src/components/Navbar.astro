@@ -80,11 +80,12 @@ const searchBlogEntries = {
   .navbar.navbar--light {
     background: transparent;
   }
-  .navbar.navbar--light .navbar__logo-name { color: var(--purple); }
-  .navbar.navbar--light .navbar__link { color: var(--purple); }
-  .navbar.navbar--light .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--light .navbar__logo-name { color: var(--heading); }
+  .navbar.navbar--light .navbar__link { color: var(--heading); }
+  .navbar.navbar--light .navbar__link:hover { color: var(--accent); }
+  .navbar.navbar--light .nav-ham span { background: var(--heading); }
   .navbar.navbar--light.navbar--scrolled {
-    background: var(--warm);
+    background: var(--bg);
     box-shadow: 0 1px 0 rgba(70, 39, 110, .13), 0 4px 20px rgba(40, 20, 60, .16);
   }
 
@@ -100,7 +101,7 @@ const searchBlogEntries = {
   /* Hamburguesa blanca sobre el morado sólido (el trazo default es morado y
      quedaría invisible). Al abrir el menú (velo crema) vuelve a morado. */
   .navbar.navbar--dark .nav-ham span { background: #fff; }
-  :global(body.menu-open) .navbar.navbar--dark .nav-ham span { background: var(--purple); }
+  :global(body.menu-open) .navbar.navbar--dark .nav-ham span { background: var(--heading); }
 
   /* ---------- Variant: solid ----------
      Para páginas sin hero oscuro debajo (costos, términos, privacidad,
@@ -110,9 +111,10 @@ const searchBlogEntries = {
     background: var(--cream-2);
     box-shadow: inset 0 -1px 0 var(--border-card);
   }
-  .navbar.navbar--solid .navbar__logo-name { color: var(--purple); }
-  .navbar.navbar--solid .navbar__link { color: var(--purple); }
-  .navbar.navbar--solid .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--solid .navbar__logo-name { color: var(--heading); }
+  .navbar.navbar--solid .navbar__link { color: var(--heading); }
+  .navbar.navbar--solid .navbar__link:hover { color: var(--accent); }
+  .navbar.navbar--solid .nav-ham span { background: var(--heading); }
   .navbar.navbar--solid.navbar--scrolled {
     box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
   }
@@ -130,13 +132,13 @@ const searchBlogEntries = {
     background: var(--cream-2);
     box-shadow: inset 0 -1px 0 var(--border-card), 0 4px 20px rgba(40, 20, 60, .10);
   }
-  .navbar.navbar--photo.navbar--scrolled .navbar__logo-name { color: var(--purple); }
-  .navbar.navbar--photo.navbar--scrolled .navbar__link { color: var(--purple); }
-  .navbar.navbar--photo.navbar--scrolled .navbar__link:hover { color: var(--purple-d); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__logo-name { color: var(--heading); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__link { color: var(--heading); }
+  .navbar.navbar--photo.navbar--scrolled .navbar__link:hover { color: var(--accent); }
   .navbar.navbar--photo.navbar--scrolled .navbar__cta { background: var(--purple); color: #fff; }
   .navbar.navbar--photo .nav-ham span { background: #fff; }
-  .navbar.navbar--photo.navbar--scrolled .nav-ham span { background: var(--purple); }
-  :global(body.menu-open) .navbar.navbar--photo .nav-ham span { background: var(--purple); }
+  .navbar.navbar--photo.navbar--scrolled .nav-ham span { background: var(--heading); }
+  :global(body.menu-open) .navbar.navbar--photo .nav-ham span { background: var(--heading); }
 
   .navbar__inner {
     max-width: var(--container-w); margin: 0 auto; padding: 0 40px;
@@ -152,7 +154,7 @@ const searchBlogEntries = {
   }
   /* Con el menú abierto el fondo de la barra desaparece y queda el crema del
      overlay detrás — el logo pasa a morado para seguir siendo legible. */
-  :global(body.menu-open) .navbar__logo-name { color: var(--purple); }
+  :global(body.menu-open) .navbar__logo-name { color: var(--heading); }
 
   /* ---------- Anatomía ----------
      Grid de 3 columnas: logo a la izquierda, links+CTA centrados en medio,
@@ -196,7 +198,7 @@ const searchBlogEntries = {
   }
   .nav-ham span {
     position: absolute; left: 0; width: 27px; height: 1.5px; display: block;
-    background: var(--purple);
+    background: var(--heading);
     transition: transform .5s cubic-bezier(.22,1,.36,1), opacity .3s ease;
   }
   .nav-ham span:nth-child(1) { top: 0; }

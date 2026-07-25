@@ -36,7 +36,6 @@ const legalLinks = [
 ---
 
 <footer class="footer2">
-  <div class="footer2__mandala"></div>
   <div class="footer2__inner">
 
     <div class="footer2__cols">
@@ -88,7 +87,7 @@ const legalLinks = [
 
     <!-- emergency strip -->
     <div class="footer2__emergency">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sand)" stroke-width="2.2" stroke-linecap="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.4" fill="var(--sand)"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><line x1="12" y1="7.5" x2="12" y2="13"/><circle cx="12" cy="16.5" r="0.4" fill="var(--gold)"/></svg>
       <p>{i.footer.emergency}</p>
     </div>
 
@@ -107,14 +106,7 @@ const legalLinks = [
 <style>
   .footer2 {
     position: relative; overflow: hidden; background: transparent;
-    color: #fff; padding: clamp(56px,7vw,72px) clamp(24px,5vw,60px) 30px;
-  }
-  .footer2__mandala {
-    position: absolute; top: -90px; left: -150px; width: 420px; height: 420px;
-    opacity: .2; pointer-events: none;
-    background: repeating-conic-gradient(#cdbce6 0deg .6deg, transparent .6deg 8deg);
-    -webkit-mask: radial-gradient(circle, transparent 28%, #000 29%, #000 48%, transparent 49%);
-    mask: radial-gradient(circle, transparent 28%, #000 29%, #000 48%, transparent 49%);
+    color: var(--text); padding: clamp(56px,7vw,72px) clamp(24px,5vw,60px) 30px;
   }
   .footer2__inner { position: relative; max-width: var(--container-w); margin: 0 auto; }
   .footer2__cols {
@@ -123,45 +115,50 @@ const legalLinks = [
   }
   .footer2__brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .footer2__logo { height: 52px; width: auto; display: block; }
-  .footer2__name { font-family: 'Bitter', serif; font-weight: 700; color: #fff; font-size: 19px; line-height: 1.15; }
+  .footer2__name { font-family: 'Bitter', serif; font-weight: 700; color: var(--heading); font-size: 19px; line-height: 1.15; }
   .footer2__coltitle {
     margin: 0 0 18px; font-weight: 700; font-size: 12px; letter-spacing: 0;
-    text-transform: none; color: var(--sand);
+    text-transform: none; color: var(--gold);
   }
   .footer2__links { display: flex; flex-direction: column; gap: 12px; }
-  .footer2__link { font-size: 15px; color: rgba(255,255,255,.74); text-decoration: none; transition: color .2s; width: fit-content; }
-  .footer2__link:hover { color: var(--sand); }
-  .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.62); }
+  .footer2__link { font-size: 15px; color: var(--text-soft); text-decoration: none; transition: color .2s; width: fit-content; }
+  .footer2__link:hover { color: var(--accent); }
+  .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: var(--text-muted); }
   .footer2__email {
-    display: inline-block; color: #fff; font-size: 16px; font-weight: 600; text-decoration: none;
+    display: inline-block; color: var(--heading); font-size: 16px; font-weight: 600; text-decoration: none;
     margin-bottom: 20px; transition: color .2s;
   }
-  .footer2__email:hover { color: var(--sand); }
+  .footer2__email:hover { color: var(--accent); }
   .footer2__social { display: flex; align-items: center; gap: 12px; }
   .footer2__soc {
     display: flex; align-items: center; justify-content: center; width: 38px; height: 38px;
-    border-radius: 50%; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18);
-    transition: background .2s;
+    border-radius: 50%; background: var(--surface); border: 1px solid var(--border-card);
+    transition: background .2s, border-color .2s;
   }
-  .footer2__soc:hover { background: rgba(255,255,255,.18); }
-  /* Glifos de marca (SVG monocromo) renderizados en blanco para uniformidad. */
-  .footer2__soc img { width: 18px; height: 18px; display: block; filter: brightness(0) invert(1); }
+  .footer2__soc:hover { border-color: var(--gold); }
+  /* Glifos de marca (SVG monocromo): blancos en tema oscuro, oscuros en tema claro. */
+  .footer2__soc img { width: 18px; height: 18px; display: block; filter: brightness(0); }
+  :root[data-theme="dark"] .footer2__soc img { filter: brightness(0) invert(1); }
+  @media (prefers-color-scheme: dark) {
+    .footer2__soc img { filter: brightness(0) invert(1); }
+  }
+  :root[data-theme="light"] .footer2__soc img { filter: brightness(0); }
   .footer2__emergency {
     display: flex; align-items: center; gap: 12px; background: rgba(142,43,93,.18);
     border: 1px solid rgba(194,176,126,.28); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px;
   }
-  .footer2__emergency p { margin: 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.72); }
+  .footer2__emergency p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--text-soft); }
   .footer2__bottom {
-    border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px;
+    border-top: 1px solid var(--border-hair); padding-top: 22px;
     display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   }
-  .footer2__copyright { margin: 0; font-size: 13px; color: rgba(255,255,255,.55); }
+  .footer2__copyright { margin: 0; font-size: 13px; color: var(--text-muted); }
   .footer2__bottomright { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-  .footer2__legal { font-size: 13px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
-  .footer2__legal:hover { color: var(--sand); }
+  .footer2__legal { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+  .footer2__legal:hover { color: var(--accent); }
   .footer2__version {
-    font-size: 12px; color: rgba(255,255,255,.7);
-    border: 1px solid rgba(255,255,255,.16); padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+    font-size: 12px; color: var(--text-faint);
+    border: 1px solid var(--border-hair); padding: 3px 10px; border-radius: 99px; white-space: nowrap;
   }
   @media (max-width: 900px) {
     .footer2__cols { grid-template-columns: 1fr 1fr; gap: 36px; }

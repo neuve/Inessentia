@@ -39,9 +39,15 @@
   --text-soft: #5a544e;     /* blockquote / secundario */
   --text-muted: #6a6460;    /* meta / ribbons */
   --text-faint: #8B8378;    /* apoyos tenues (red, forms) */
+  /* --on-dark / --on-dark-soft / --on-dark-faint: alias semánticos que
+     FLIPAN con el tema (ver capa de tema tras :root) — valor base = claro
+     por defecto hasta que el atributo de tema aplique. */
   --on-dark: #ffffff;
   --on-dark-soft: rgba(255,255,255,.85);
   --on-dark-faint: rgba(255,255,255,.7);
+  /* Acento (vino) y dorado — también flipan con el tema. */
+  --accent: var(--wine);
+  --gold: var(--sand-d);
 
   /* Bordes y superficies */
   --border-card: #ece6d8;   /* colapsa #e6ddca, #e4dece */
@@ -56,6 +62,7 @@
   --grad-brand: linear-gradient(100deg,#341A54 0%,#46276E 30%,#7E4E77 56%,#C2B07E 83%,#EAE5D9 100%);
   --grad-rail: linear-gradient(180deg,#8E2B5D 0%,#46276E 55%,#C2B07E 100%);
   --grad-soft: linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);
+  --grad-btn-gold: linear-gradient(100deg,#EBD08A 0%,#C2B07E 58%,#B0975E 100%);
   --veil-purple: 38,20,60;  /* usar como rgba(var(--veil-purple),.55) en veils de hero */
 
   /* Spacing (base 4) */
@@ -108,28 +115,48 @@
    quitar este candado. ══════════════════════════════════════════════ */
 :root[data-theme="dark"] {
   --bg: #221735;
-  --surface: #2e2140;
+  /* Tarjetas translúcidas: velo sobre el lienzo en vez de morado sólido. */
+  --surface: rgba(255,255,255,.055);
   --text: #EAE5D9;
   --text-soft: #cfc6d6;
   --text-muted: #a99fb4;
   --text-faint: #a99fb4;
-  --border-card: #40315a;
+  --border-card: rgba(255,255,255,.13);
   --border-hair: #463659;
   --heading: #EAE5D9;
   --cream-2: #2a1e40;   /* .section--cream flip */
-  /* Lienzo continuo (oscuro): un solo fondo que respira detrás de todo. */
-  --page-grad: linear-gradient(180deg,#1b1433 0%,#241a3f 22%,#31204c 46%,#43244a 72%,#1e1631 100%);
+  --on-dark: #ffffff;
+  --on-dark-soft: rgba(255,255,255,.85);
+  --on-dark-faint: rgba(255,255,255,.7);
+  --accent: var(--wine);
+  --gold: var(--sand);   /* dorado brillante sobre fondo oscuro */
+  /* Lienzo continuo (oscuro) — viaje de color MARCADO tipo Dawn. Las paradas
+     se cargan hacia el primer tramo de la página (0–45%) porque ahí vive el
+     scroll real de una sesión típica; en páginas largas el resto se estira
+     manteniendo el vino cálido de cierre, para que el viaje se note en la
+     primera pantalla y no se diluya en el resto del documento. */
+  --page-grad: linear-gradient(180deg,#0a0c28 0%,#171450 10%,#2c1a5e 20%,#3f2070 30%,#552577 40%,#6b2a68 52%,#7c2f58 64%,#833a4e 78%,#7c4a48 100%);
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
   --text-muted: #6a6460; --text-faint: #8B8378; --border-card: #ece6d8;
   --border-hair: #e2dccc; --heading: var(--purple); --cream-2: #F4F0E6;
-  --page-grad: linear-gradient(180deg,#F4F0E6 0%,#F0EADD 45%,#F3ECDE 72%,#EAE5D9 100%);
+  --on-dark: #3f3a36;
+  --on-dark-soft: #5a544e;
+  --on-dark-faint: #6a6460;
+  --accent: var(--wine);
+  --gold: var(--wine);   /* el dorado profundo no da contraste suficiente en claro */
+  /* Lienzo continuo (claro) — mismo viaje de tono que el oscuro, pero muy
+     aclarado: un dejo lavanda arriba (eco del navy) que pasa por crema y
+     aterriza en arena dorada tibia. Variación de TONO real, no solo de
+     luminosidad, para que se perciba como un viaje y no un degradé plano.
+     Paradas cargadas al primer tramo, igual que en oscuro. */
+  --page-grad: linear-gradient(180deg,#EDEAF7 0%,#F1EAF0 12%,#F4EBE4 24%,#F6EEDD 38%,#F7EFD6 52%,#F5E9C8 68%,#F0DFB4 84%,#E9D19C 100%);
 }
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
-.on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#8B8378; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); }
-.on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; }
+.on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#8B8378; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); --on-dark:#3f3a36; --on-dark-soft:#5a544e; --on-dark-faint:#6a6460; }
+.on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --on-dark-faint:rgba(255,255,255,.7); }
 
 /* La barra vive sobre el banner de marca: los heros oscuros del tope (SiteHeader
    o cualquier sección marcada con [data-nav-overlay]) se suben bajo la barra
@@ -209,8 +236,8 @@ body {
   flex: 0 0 auto;
   background: var(--sand-d);
 }
-.label-section--on-dark { color: var(--sand); }   /* rótulo dorado sobre morado */
-.label-section--on-dark::before { background: var(--sand); }
+.label-section--on-dark { color: var(--gold); }   /* rótulo dorado; flipa a vino en tema claro para contraste */
+.label-section--on-dark::before { background: var(--gold); }
 .body-text {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
@@ -257,10 +284,47 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 14px 32px rgba(0,0,0,.25);
 }
+/* Sobre el lienzo CLARO, blanco-sobre-blanco se pierde: se invierte a morado
+   sólido con texto blanco. Dentro de una isla .on-dark (fondo morado fijo)
+   vuelve siempre a blanca con texto morado. */
+:root[data-theme="light"] .btn--white, :root[data-theme="light"] .btn-white {
+  background: var(--purple);
+  color: #fff;
+}
+/* Especificidad: debe ganar a la regla :root[data-theme="light"] de arriba,
+   por eso repite el selector de tema. */
+.on-dark .btn--white, .on-dark .btn-white,
+:root[data-theme="light"] .on-dark .btn--white,
+:root[data-theme="light"] .on-dark .btn-white {
+  background: #fff;
+  color: var(--purple);
+}
 .btn--wine { background: var(--wine); color: #fff; }
 .btn--wine:hover { transform: translateY(-2px); box-shadow: var(--sh-btn); }
 .btn--ghost { background: transparent; color: var(--heading); box-shadow: inset 0 0 0 1.5px currentColor; }
 .btn--ghost:hover { transform: translateY(-2px); }
+
+/* Botón primario del design system: píldora dorada con puntito. */
+.btn--gold {
+  background: var(--grad-btn-gold);
+  color: var(--purple-d);
+  box-shadow: 0 12px 26px rgba(168,148,92,.4);
+}
+.btn--gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(168,148,92,.5);
+}
+.btn__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: .5;
+  display: inline-block;
+  transition: all .3s ease;
+  flex: 0 0 auto;
+}
+.btn--gold:hover .btn__dot { background: #fff; opacity: 1; }
 
 /* Cards */
 .card {
@@ -330,7 +394,7 @@ body {
   display: none;
   position: fixed;
   inset: 0;
-  background: var(--cream);
+  background: var(--bg);
   z-index: 200;
   flex-direction: column;
   align-items: center;
@@ -343,9 +407,9 @@ body {
   font-family: 'Mulish', sans-serif;
   font-weight: 700;
   font-size: 20px;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--purple);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--heading);
   text-decoration: none;
 }
 #mob-menu .mob-cta {

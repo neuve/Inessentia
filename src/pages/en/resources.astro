@@ -61,7 +61,7 @@ const grid = getResourcesGrid().map((p, k) => {
 >
 
   <!-- CINEMATIC HERO: intro (top) + rotating featured (bottom) over a full-bleed banner -->
-  <section class="rec-hero" data-nav-overlay>
+  <section class="rec-hero on-dark" data-nav-overlay>
     {featured.map((f, k) => (
       <Img src={f.img} sizes="100vw" minWidth={960} loading="eager" data-rec-bg={k} alt="" style={`position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:${f.pos};opacity:${k === 0 ? '1' : '0'};transition:opacity .7s ease;`} />
     ))}
@@ -149,9 +149,9 @@ const grid = getResourcesGrid().map((p, k) => {
   <!-- CTA -->
   <section style="background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
     <div data-reveal style="max-width:760px;margin:0 auto;">
-      <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
-      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.82);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--white">{i.cta.button}</a>
+      <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
+      <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--text-soft);margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
     </div>
   </section>
 

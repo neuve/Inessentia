@@ -100,25 +100,25 @@ const authorSchema = personSchema(locale);
     <div style="position:absolute;bottom:-80px;left:-40px;width:260px;height:260px;border-radius:50%;background:rgba(194,176,126,.05);pointer-events:none;"></div>
     <div style="position:relative;max-width:820px;margin:0 auto;display:flex;gap:clamp(32px,5vw,64px);align-items:center;flex-wrap:wrap;">
       <div style="flex:1 1 320px;">
-        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--sand);">{i.podcast.label}</p>
-        <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:#fff;font-size:clamp(26px,3.8vw,42px);line-height:1.1;margin:0 0 16px;text-wrap:balance;">{i.podcast.title}</h2>
-        <p data-reveal style="font-size:clamp(15px,1.1vw,17px);line-height:1.65;color:rgba(255,255,255,.82);margin:0;">{i.podcast.desc}</p>
+        <p data-reveal style="margin:0 0 14px;font-weight:700;font-size:12px;letter-spacing:0;text-transform:none;color:var(--gold);">{i.podcast.label}</p>
+        <h2 data-reveal style="font-family:'Bitter',serif;font-weight:700;color:var(--heading);font-size:clamp(26px,3.8vw,42px);line-height:1.1;margin:0 0 16px;text-wrap:balance;">{i.podcast.title}</h2>
+        <p data-reveal style="font-size:clamp(15px,1.1vw,17px);line-height:1.65;color:var(--text-soft);margin:0;">{i.podcast.desc}</p>
       </div>
       <div data-reveal style="flex:1 1 280px;">
-        <form id="podcast-form" action="https://formspree.io/f/mzdqnrka" method="POST" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;">
+        <form id="podcast-form" action="https://formspree.io/f/mzdqnrka" method="POST" style="background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;">
           <input type="hidden" name="_subject" value="Solicitud de podcast — inessentia.mx">
-          <label style="font-size:13px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.04em;">{i.podcast.nameLabel}</label>
-          <input type="text" name="nombre" placeholder={i.podcast.namePlaceholder} required style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:12px 14px;font-size:15px;color:#fff;font-family:'Mulish',sans-serif;outline:none;">
-          <label style="font-size:13px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.04em;">{i.podcast.emailLabel}</label>
-          <input type="email" name="email" placeholder={i.podcast.emailPlaceholder} required style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:12px 14px;font-size:15px;color:#fff;font-family:'Mulish',sans-serif;outline:none;">
-          <button type="submit" class="btn" style="background:var(--sand);color:var(--purple-d);">{i.podcast.submit}</button>
-          <p style="margin:0;font-size:12px;color:rgba(255,255,255,.4);text-align:center;line-height:1.5;">{i.podcast.privacy} <a href={`/${locale}/privacidad/`} style="color:rgba(255,255,255,.6);font-weight:700;text-decoration:none;">{i.podcast.privacyLink}</a>.</p>
+          <label style="font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;">{i.podcast.nameLabel}</label>
+          <input type="text" name="nombre" placeholder={i.podcast.namePlaceholder} required style="background:var(--surface);border:1px solid var(--border-card);border-radius:9px;padding:12px 14px;font-size:15px;color:var(--text);font-family:'Mulish',sans-serif;outline:none;">
+          <label style="font-size:13px;color:var(--text-muted);font-weight:600;letter-spacing:.04em;">{i.podcast.emailLabel}</label>
+          <input type="email" name="email" placeholder={i.podcast.emailPlaceholder} required style="background:var(--surface);border:1px solid var(--border-card);border-radius:9px;padding:12px 14px;font-size:15px;color:var(--text);font-family:'Mulish',sans-serif;outline:none;">
+          <button type="submit" class="btn btn--gold">{i.podcast.submit}<span class="btn__dot"></span></button>
+          <p style="margin:0;font-size:12px;color:var(--text-faint);text-align:center;line-height:1.5;">{i.podcast.privacy} <a href={`/${locale}/privacidad/`} style="color:var(--text-muted);font-weight:700;text-decoration:none;">{i.podcast.privacyLink}</a>.</p>
         </form>
-        <div id="podcast-thanks" style="display:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:28px 26px;text-align:center;">
+        <div id="podcast-thanks" style="display:none;background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;text-align:center;">
           <p style="font-size:32px;margin:0 0 12px;">{i.podcast.thanksEmoji}</p>
-          <p style="font-family:'Bitter',serif;font-size:22px;color:#fff;font-weight:700;margin:0 0 10px;">{i.podcast.thanksTitle}</p>
-          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" class="btn" style="background:var(--sand);color:var(--purple-d);padding:13px 26px;margin-top:6px;">{i.podcast.thanksCta}</a>
-          <p style="font-size:13px;color:rgba(255,255,255,.5);margin:14px 0 0;">{i.podcast.thanksNote}</p>
+          <p style="font-family:'Bitter',serif;font-size:22px;color:var(--heading);font-weight:700;margin:0 0 10px;">{i.podcast.thanksTitle}</p>
+          <a href="https://speechify.app.link/JKr46qR953b" target="_blank" rel="noopener" class="btn btn--gold" style="padding:13px 26px;margin-top:6px;">{i.podcast.thanksCta}<span class="btn__dot"></span></a>
+          <p style="font-size:13px;color:var(--text-faint);margin:14px 0 0;">{i.podcast.thanksNote}</p>
         </div>
       </div>
     </div>
@@ -195,11 +195,10 @@ const authorSchema = personSchema(locale);
 
   <!-- CTA -->
   <section style="position:relative;overflow:hidden;background:transparent;padding:clamp(64px,9vw,118px) 32px;text-align:center;">
-    <div style="position:absolute;top:50%;left:-140px;transform:translateY(-50%);width:460px;height:460px;opacity:.16;pointer-events:none;background:repeating-conic-gradient(#fff 0deg .55deg,transparent .55deg 7deg);-webkit-mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);mask:radial-gradient(circle,transparent 29%,#000 30%,#000 49%,transparent 50%);"></div>
     <div data-reveal style="position:relative;max-width:760px;margin:0 auto;">
       <h2 class="heading-section heading-section--on-dark" style="margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
       <p class="body-text body-text--on-dark" style="margin:0 auto 36px;max-width:52ch;">{i.cta.desc}</p>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--white">{i.cta.button}</a>
+      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
     </div>
   </section>
 

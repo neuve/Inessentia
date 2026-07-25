@@ -89,7 +89,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         {meta && <h4 class="site-header__meta">{meta}</h4>}
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
@@ -121,7 +121,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         <h1 class={`site-header__title site-header__title--cinema${titleCompact ? ' site-header__title--cinema-compact' : ''}`}>{title}</h1>
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
@@ -143,7 +143,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         {meta && <h4 class="site-header__meta site-header__meta--panel">{meta}</h4>}
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-primary">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link site-header__link--panel">{secondaryLabel}</a>}
           </div>
         )}
@@ -173,7 +173,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
         <div class="site-header__lead site-header__lead--mono"><slot /></div>
         {(ctaHref || secondaryHref) && (
           <div class="site-header__actions">
-            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn-white">{ctaLabel}</a>}
+            {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
         )}
@@ -298,13 +298,14 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   /* Panel text colours must beat the shared white/sand rules below, which
      have equal specificity but come later in source order. Prefix with the
      block class to win regardless of order. */
-  .site-header--panel .site-header__eyebrow--panel { color: var(--wine); }
+  .site-header--panel .site-header__eyebrow--panel { color: var(--gold); }
+  .site-header--panel .site-header__eyebrow--panel::before { background: var(--gold); }
   /* Nota: 34px / clamp(34px,4.6vw,52px) NO se sustituyen por --fs-h2
      (clamp(30px,4.4vw,50px)) porque no son el mismo valor — hacerlo
      cambiaría el tamaño renderizado en desktop. Se dejan como literales. */
-  .site-header--panel .site-header__title--panel { color: var(--purple); font-size: 34px; line-height: 1.12; }
+  .site-header--panel .site-header__title--panel { color: var(--heading); font-size: 34px; line-height: 1.12; }
   .site-header--panel .site-header__title--panel-lg { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; }
-  .site-header--panel .site-header__lead--panel { color: var(--text); font-family: var(--ff-body); font-weight: 500; font-size: 14px; max-width: 60ch; }
+  .site-header--panel .site-header__lead--panel { color: var(--text-soft); font-family: var(--ff-body); font-weight: 500; font-size: 14px; max-width: 60ch; }
   .site-header--panel .site-header__lead--panel-lg { font-size: 16px; }
   .site-header__lead--panel :global(p) { margin: 0 0 10px; }
   .site-header__lead--panel :global(p:last-child) { margin-bottom: 0; }

@@ -230,7 +230,7 @@ const PRICING = {
         <div class="gl-grid-3">
           {pilares.map((p) => (
             <div class="gl-card">
-              <span class="gl-badge">{p.num}</span>
+              <span class="gl-badge on-dark">{p.num}</span>
               <h3 class="gl-card-title">{p.title}</h3>
               <ul class="gl-list">
                 {p.items.map((it) => <li>{it}</li>)}
@@ -255,10 +255,10 @@ const PRICING = {
           {recorrido.map((s) => (
             <div class="gl-parada">
               <div class="gl-pill">
-                <span class:list={['gl-pill-dot', { 'gl-pill-dot--gold': s.extreme }]}>{s.n}</span>
+                <span class:list={['gl-pill-dot', 'on-dark', { 'gl-pill-dot--gold': s.extreme }]}>{s.n}</span>
                 <span class="gl-pill-label">{s.label}</span>
               </div>
-              {s.arrow && <span class="gl-arrow">→</span>}
+              {s.arrow && <span class="gl-arrow" aria-hidden="true">·</span>}
             </div>
           ))}
         </div>
@@ -282,7 +282,7 @@ const PRICING = {
     </section>
 
     <!-- COMUNIDAD -->
-    <section class="section gl-purple-deep">
+    <section class="section gl-purple-deep on-dark">
       <div class="container" style="text-align:center;">
         <p class="gl-eyebrow-gold" style="margin-bottom:16px;">Una comunidad de práctica</p>
         <h2 class="gl-h2-white" style="margin:0 0 40px;">Cinco meses sosteniéndonos en presencia</h2>
@@ -308,7 +308,7 @@ const PRICING = {
 
         <div class="gl-table-wrap">
           <table class="gl-table">
-            <thead>
+            <thead class="on-dark">
               <tr>
                 <th style="width:56px;">#</th>
                 <th>Fecha</th>
@@ -412,13 +412,13 @@ const PRICING = {
     <section class="section section--purple" style="text-align:center;">
       <div style="max-width:820px;margin:0 auto;">
         <h2 class="gl-h2-white">Reserva tu lugar</h2>
-        <p style="font-size:18px;line-height:1.7;color:rgba(255,255,255,.82);margin:0 auto 34px;max-width:52ch;">Cupo limitado a 12 personas. El apartado de $2,000 es reembolsable hasta el 12 de septiembre.</p>
-        <a href={WA} target="_blank" rel="noopener" class="btn-white">Quiero inscribirme</a>
+        <p style="font-size:18px;line-height:1.7;color:var(--text-soft);margin:0 auto 34px;max-width:52ch;">Cupo limitado a 12 personas. El apartado de $2,000 es reembolsable hasta el 12 de septiembre.</p>
+        <a href={WA} target="_blank" rel="noopener" class="btn btn--gold">Quiero inscribirme<span class="btn__dot"></span></a>
       </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="gl-footer">
+    <footer class="gl-footer on-dark">
       <p>Inessentia · Grupo de Actualización en Terapia Corporal</p>
       <p><a href={WA} target="_blank" rel="noopener">wa.me/patriciomx</a></p>
     </footer>
@@ -704,7 +704,7 @@ const PRICING = {
     font-weight: 700;
     font-size: clamp(28px, 3.6vw, 40px);
     line-height: 1.12;
-    color: #fff;
+    color: var(--heading);
     letter-spacing: -.01em;
     margin: 0;
     text-wrap: balance;
