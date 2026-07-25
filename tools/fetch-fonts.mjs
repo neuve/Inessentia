@@ -10,8 +10,8 @@
 // pesos discretos (wght@300;400;500…) y guardaba ese mismo binario con un
 // nombre por peso, así que el navegador descargaba hasta 6 copias idénticas
 // (~180 KiB en vez de 30 KiB) y eso dominaba el LCP en móvil. Ahora se pide el
-// RANGO del eje y se escribe un único archivo por familia: mulish.woff2 y
-// bitter.woff2, que es lo que declaran los @font-face de global.css.
+// RANGO del eje y se escribe un único archivo por familia: mulish-var.woff2 y
+// bitter-var.woff2, que es lo que declaran los @font-face de global.css.
 
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
@@ -71,7 +71,7 @@ async function main() {
       );
     }
     const url = [...urls][0];
-    const name = `${slug(family)}.woff2`;
+    const name = `${slug(family)}-var.woff2`;
     const buf = Buffer.from(await (await fetch(url, { headers: { 'User-Agent': UA } })).arrayBuffer());
     await fs.writeFile(path.join(OUT, name), buf);
     console.log(`✓ ${name} (${(buf.length / 1024).toFixed(1)} KiB) — variable, cubre todo el eje wght`);

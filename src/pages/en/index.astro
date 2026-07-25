@@ -97,7 +97,7 @@ const authorSchema = personSchema(locale);
         <p data-reveal style="font-size:clamp(15px,1.1vw,17px);line-height:1.65;color:var(--on-canvas-soft);margin:0;">{i.podcast.desc}</p>
       </div>
       <div data-reveal style="flex:1 1 280px;">
-        <form id="podcast-form" action="https://formspree.io/f/mzdqnrka" method="POST" style="background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;">
+        <form id="podcast-form" class="on-dark" action="https://formspree.io/f/mzdqnrka" method="POST" style="background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;">
           <input type="hidden" name="_subject" value="Podcast request — inessentia.mx">
           <label style="font-size:13px;color:var(--on-canvas-soft);font-weight:700;letter-spacing:.02em;">{i.podcast.nameLabel}</label>
           <input type="text" name="nombre" placeholder={i.podcast.namePlaceholder} required class="form-input">
@@ -106,7 +106,7 @@ const authorSchema = personSchema(locale);
           <button type="submit" class="btn btn--secondary" style="align-self:flex-start;width:auto;">{i.podcast.submit}</button>
           <p style="margin:0;font-size:12px;color:var(--text-faint);line-height:1.5;">{i.podcast.privacy} <a href="/en/privacy/" style="color:var(--text-muted);font-weight:700;text-decoration:none;">{i.podcast.privacyLink}</a>.</p>
         </form>
-        <div id="podcast-thanks" style="display:none;background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;">
+        <div id="podcast-thanks" class="on-dark" style="display:none;background:var(--surface);border:1px solid var(--border-card);border-radius:18px;padding:28px 26px;">
           <p style="font-size:32px;margin:0 0 12px;">{i.podcast.thanksEmoji}</p>
           <p style="font-family:'Bitter',serif;font-size:22px;color:var(--heading);font-weight:700;margin:0 0 10px;">{i.podcast.thanksTitle}</p>
           <a href="https://speechify.app.link/gnd5mf9tn4b" target="_blank" rel="noopener" class="btn btn--secondary" style="padding:13px 26px;margin-top:6px;width:auto;">{i.podcast.thanksCta}</a>

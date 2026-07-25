@@ -136,8 +136,11 @@ const legalLinks = [
     transition: background .2s, border-color .2s;
   }
   .footer2__soc:hover { border-color: var(--accent-canvas); }
-  /* El footer vive en el tramo claro (zone-light) del lienzo → glifos oscuros sobre crema. */
-  .footer2__soc img { width: 18px; height: 18px; display: block; filter: brightness(0); }
+  /* El footer vive en el tramo claro (zone-light) del lienzo → glifos oscuros sobre crema.
+     object-fit:contain es obligatorio: facebook-icon.png (1089×1867) y linkedin-icon.png
+     (816×645) NO son cuadrados, y sin él el `fill` por defecto los deformaba dentro del
+     hueco de 18×18 (la "f" salía gorda y el "in" estirado a lo alto). */
+  .footer2__soc img { width: 18px; height: 18px; display: block; object-fit: contain; filter: brightness(0); }
   .footer2__emergency {
     display: flex; align-items: center; gap: 12px; background: rgba(142,43,93,.1);
     border: 1px solid rgba(194,176,126,.4); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px;
