@@ -63,6 +63,17 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tema: OSCURO por defecto, adaptable al dispositivo (si prefiere claro),
+       preferencia guardada gana. Se resuelve antes del render para evitar parpadeo. -->
+  <script is:inline>
+    (function(){
+      try{
+        var saved=localStorage.getItem('iness-theme');
+        var theme=saved||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+        document.documentElement.setAttribute('data-theme',theme);
+      }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
+    })();
+  </script>
   <title>{title}</title>
   <meta name="description" content={description}>
   {noindex && <meta name="robots" content="noindex, nofollow">}
