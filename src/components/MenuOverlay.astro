@@ -147,6 +147,9 @@ let idx = 0;
   .menu-overlay__email:hover { opacity: .6; }
   .menu-overlay__social { display: flex; gap: 16px; margin-top: 16px; align-items: center; }
   .menu-overlay__social a { display: flex; }
+  /* Mismo caso que el footer: los iconos van en un hueco fijo de 20x20 y el
+     `fill` por defecto deforma las fuentes no cuadradas. */
+  .menu-overlay__social img { width: 20px; height: 20px; object-fit: contain; }
 
   .menu-overlay__search { position: relative; width: 280px; color: var(--heading); }
   .menu-overlay__search input {

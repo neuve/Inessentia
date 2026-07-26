@@ -568,7 +568,9 @@ form .btn, .form-wrap .btn, .form-field .btn {
 #mob-close { display: none; }
 .mob-social { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 16px; }
 .mob-social a { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(70,39,110,.07); border: 1px solid rgba(70,39,110,.16); }
-.mob-social img { width: 20px; height: 20px; display: block; }
+/* object-fit:contain: el hueco es fijo (20x20) y el `fill` por defecto deforma
+   las fuentes no cuadradas. Mismo caso que el footer y el menú overlay. */
+.mob-social img { width: 20px; height: 20px; display: block; object-fit: contain; }
 
 /* Mobile general */
 @media (max-width: 600px) {
