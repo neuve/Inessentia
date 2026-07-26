@@ -23,15 +23,23 @@
   function update() {
     var vh = window.innerHeight || 800;
     var vCenter = vh / 2;
-    items.forEach(function (it) {
+    // Todas las lecturas de layout (getBoundingClientRect) antes que
+    // cualquier escritura (style.transform): esto corre en cada frame de
+    // scroll, así que intercalar lectura/escritura por item forzaba un
+    // reflow síncrono por item y por frame.
+    var deltas = items.map(function (it) {
       var ref = it.el.parentElement || it.el;
       var r = ref.getBoundingClientRect();
-      if (r.bottom < -200 || r.top > vh + 200) return;
+      if (r.bottom < -200 || r.top > vh + 200) return null;
       var elCenter = r.top + r.height / 2;
       var delta = (vCenter - elCenter) * it.factor;
       if (delta > it.max) delta = it.max;
       if (delta < -it.max) delta = -it.max;
-      it.el.style.transform = 'translateY(' + delta.toFixed(1) + 'px)';
+      return delta;
+    });
+    items.forEach(function (it, i) {
+      if (deltas[i] === null) return;
+      it.el.style.transform = 'translateY(' + deltas[i].toFixed(1) + 'px)';
     });
     ticking = false;
   }

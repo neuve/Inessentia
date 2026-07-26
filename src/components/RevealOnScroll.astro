@@ -13,9 +13,13 @@
   function init() {
     var els = document.querySelectorAll('[data-reveal]');
     var vh = window.innerHeight || 800;
-    els.forEach(function(el) {
-      var r = el.getBoundingClientRect();
-      if (r.top < vh * 0.95) { el.style.opacity = '1'; el.style.transform = 'none'; }
+    // Lecturas de layout (getBoundingClientRect) separadas de las escrituras
+    // (style.opacity/transform): intercaladas, cada escritura invalida el
+    // layout y fuerza un reflow síncrono en la siguiente lectura del bucle.
+    var tops = [];
+    els.forEach(function(el) { tops.push(el.getBoundingClientRect().top); });
+    els.forEach(function(el, i) {
+      if (tops[i] < vh * 0.95) { el.style.opacity = '1'; el.style.transform = 'none'; }
       else { io.observe(el); }
     });
     setTimeout(function() {

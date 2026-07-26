@@ -112,7 +112,13 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
 ) : mode === 'cinema' ? (
   <section class="site-header site-header--cinema zone-dark">
     <div class="site-header__cinema-photo" style={photoPosition ? `--photo-pos:${photoPosition};` : ''}>
-      {photo && <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={960} fetchpriority="high" loading="eager" />}
+      {/* minWidth=768: en mobile (412 CSS px × DSF 1.75 ≈ 722px físicos) el
+          candidato ideal es el de 768w; 960 lo pasaba de largo y desperdiciaba
+          ~21 KiB. sizes="100vw" es incondicional (no depende de un breakpoint
+          por resolver), así que no hay ventana de "primera estimación" en la
+          que el navegador pueda adivinar mal antes del layout: el riesgo de
+          parpateo que documenta minWidth en Img.astro no aplica aquí. */}
+      {photo && <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={768} fetchpriority="high" loading="eager" />}
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
     </div>
     <div class="site-header__cinema-inner" data-reveal>
