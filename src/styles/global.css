@@ -95,7 +95,8 @@
   --fs-eyebrow: 13px;
   --fs-body: clamp(16px, 1.2vw, 18px);
   --fs-small: 14px;
-  --lh-tight: 1.08;
+  /* por debajo de ~1.12 las tildes de Bitter colisionan con la línea superior */
+  --lh-tight: 1.15;
   --lh-head: 1.15;
   --lh-body: 1.8;            /* el 1.85 del blog baja a 1.8 */
   --ls-eyebrow: .16em;
