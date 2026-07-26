@@ -280,7 +280,17 @@
 body.menu-open { overflow: hidden; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { margin: 0; padding: 0; background: var(--bg); }
+/* scroll-padding-top en el contenedor de scroll (html) resuelve de una sola vez
+   TODOS los anclas del sitio (#modalidades, #modalities, #enfoque, #formacion,
+   #tecnicas, #primera-sesion, etc.) sin necesidad de poner scroll-margin-top
+   en cada sección destino; el offset compensa el navbar sticky (--nav-h). */
+html { margin: 0; padding: 0; background: var(--bg); scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+
+/* scroll-behavior: smooth no se desactiva solo con la preferencia del sistema:
+   hay que declarar explícitamente el fallback a "auto" para accesibilidad. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 body {
   margin: 0; padding: 0;
   background: var(--page-grad, var(--bg));   /* lienzo continuo: se extiende por todo el documento */
