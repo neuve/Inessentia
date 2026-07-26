@@ -65,9 +65,11 @@ export function barLinks(locale: Locale) {
   // El id de la sección está en el idioma de cada home (#modalidades / #modalities):
   // hardcodear el español dejaba el ancla roto en /en/.
   const modalities = locale === 'es' ? 'modalidades' : 'modalities';
+  // El orden importa: Navbar.astro renderiza el último elemento como CTA
+  // (idx === links.length - 1), por eso WhatsApp debe quedarse al final.
   return [
-    { label: i.nav.about, href: `${base}/${about}/` },
     { label: i.nav.therapyTypes, href: `${base}/#${modalities}` },
+    { label: i.nav.about, href: `${base}/${about}/` },
     { label: i.nav.cta, href: 'https://wa.me/patriciomx' },
   ];
 }
