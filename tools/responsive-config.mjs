@@ -25,7 +25,10 @@ export const RASTER_EXT = new Set(['.webp', '.png', '.jpg', '.jpeg']);
 // Se saltan por completo (no son imágenes de contenido a redimensionar):
 //  - og/  : tarjetas sociales, ya son 1200×630 exactas (las hace otro script)
 //  - responsive/ : la salida de este mismo script
-export const SKIP_DIRS = new Set(['og', OUT_DIR]);
+// hero-crops/: recortes fijos para <picture><source> del hero cinema (ver
+// SiteHeader.astro `photoDesktop`) — se sirven tal cual, sin srcset, porque
+// solo se muestran en un rango de viewport acotado a un tamaño predecible.
+export const SKIP_DIRS = new Set(['og', OUT_DIR, 'hero-crops']);
 
 // Anchos mínimos: imágenes cuyo master ya es <= este ancho no vale la pena
 // variantizar (íconos diminutos, etc.). Aun así entran al manifiesto con su

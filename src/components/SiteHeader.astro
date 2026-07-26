@@ -29,6 +29,13 @@ interface Props {
   meta?: string;
   photo?: string;
   photoAlt?: string;
+  /** Cinema only: variante recortada en apaisado (ver public/uploads/*-hero-cinema.*)
+   * servida solo desde --bp-md (821px) vía <picture>, para que el retrato quede
+   * encuadrado en el tercio derecho también en el eje horizontal. `photo` (el
+   * original vertical) se mantiene como <img> de fallback para mobile, así
+   * que sigue pasando por el pipeline de Img.astro/image-manifest.json sin
+   * cambios. */
+  photoDesktop?: string;
   /** Brand icon shown in a translucent circle above the eyebrow (monolith heros only). */
   icon?: string;
   /** Rendered height of the icon inside the circle, e.g. "132px". */
@@ -61,6 +68,7 @@ const {
   meta,
   photo,
   photoAlt = '',
+  photoDesktop,
   icon,
   iconSize = '120px',
   ctaLabel,
@@ -118,7 +126,16 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
           por resolver), así que no hay ventana de "primera estimación" en la
           que el navegador pueda adivinar mal antes del layout: el riesgo de
           parpateo que documenta minWidth en Img.astro no aplica aquí. */}
-      {photo && <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={768} fetchpriority="high" loading="eager" />}
+      {photo && (
+        photoDesktop ? (
+          <picture>
+            <source media="(min-width: 821px)" srcset={photoDesktop} />
+            <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={768} fetchpriority="high" loading="eager" />
+          </picture>
+        ) : (
+          <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={768} fetchpriority="high" loading="eager" />
+        )
+      )}
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
     </div>
     <div class="site-header__cinema-inner" data-reveal>
