@@ -155,11 +155,28 @@ const searchBlogEntries = {
     font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none;
     white-space: nowrap; text-decoration: none;
     background: transparent; color: var(--nav-fg);
-    box-shadow: inset 0 0 0 1.5px currentColor;
     padding: 10px 20px; border-radius: 12px;
+    position: relative;
     transition: color .5s ease, opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1);
   }
   .navbar__cta:hover { transform: scale(.955); opacity: .72; }
+
+  /* El contorno vive en un pseudo-elemento en vez de en box-shadow directo:
+     un box-shadow no se puede animar como trazo progresivo, pero clip-path
+     sí permite revelarlo con un barrido lineal izquierda→derecha. Se arma
+     solo en el tramo medio de la página (ver .navbar--cta-armed, controlado
+     por el IntersectionObserver del script). */
+  .navbar__cta::after {
+    content: ''; position: absolute; inset: 0; border-radius: 12px;
+    box-shadow: inset 0 0 0 1.5px currentColor;
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path .9s cubic-bezier(.22,1,.36,1);
+    pointer-events: none;
+  }
+  .navbar--cta-armed .navbar__cta::after { clip-path: inset(0 0 0 0); }
+  @media (prefers-reduced-motion: reduce) {
+    .navbar__cta::after { transition: none; }
+  }
 
   /* Con el menú abierto: el fondo de la barra y los links principales
      desaparecen — el logo se queda flotando, en blanco, por encima de todo. */
@@ -269,6 +286,43 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('scroll', syncNav, { passive: true });
   window.addEventListener('resize', syncNav, { passive: true });
   syncNav();
+
+  // --- Contorno del CTA solo en el tramo medio -------------------------------
+  // El CTA de la barra no debe competir con el CTA dorado del hero ni con el
+  // CTA final de cierre ("¿Quieres dar el primer paso?"): el contorno se arma
+  // únicamente cuando ambos están fuera de vista. Se acota a `main
+  // section.zone-light` porque el <footer> también usa `zone-light` y no debe
+  // observarse (varias páginas ocultan el footer).
+  if (nav) {
+    var heroEl = document.querySelector('.site-header, [data-nav-overlay]');
+    var closeEl = document.querySelector('main section.zone-light');
+    if ('IntersectionObserver' in window) {
+      var heroVisible = false;
+      var closeVisible = false;
+      var updateCtaArmed = function() {
+        nav.classList.toggle('navbar--cta-armed', !heroVisible && !closeVisible);
+      };
+      var ctaObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.target === heroEl) heroVisible = entry.isIntersecting;
+          if (entry.target === closeEl) closeVisible = entry.isIntersecting;
+        });
+        updateCtaArmed();
+      }, { threshold: 0 });
+      if (heroEl) ctaObserver.observe(heroEl);
+      if (closeEl) ctaObserver.observe(closeEl);
+      // Páginas sin hero NI zona de cierre (privacidad, términos, 404): no hay
+      // nada que observar, así que el observer nunca dispararía y el contorno
+      // se quedaría apagado para siempre. Se resuelve el estado a mano.
+      // Solo en ese caso: si hay algo que observar, dejamos que el primer
+      // callback decida, para no encender el contorno un instante sobre el hero.
+      if (!heroEl && !closeEl) updateCtaArmed();
+    } else {
+      // Sin soporte de IntersectionObserver: dejamos el contorno armado
+      // siempre, para no dejar el botón sin contorno nunca.
+      nav.classList.add('navbar--cta-armed');
+    }
+  }
 
   // --- Overlay / menú -------------------------------------------------------
   function openDesktop() {
