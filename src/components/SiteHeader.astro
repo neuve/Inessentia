@@ -310,12 +310,13 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__panel-copy { max-width: 66%; }
   .site-header__panel-copy--lg { max-width: 960px; }
   .site-header__panel-icon { width: 100%; display: flex; align-items: center; justify-content: center; }
-  /* Disco crema detrás del ícono de modalidad: lo asienta en su columna en
-     vez de flotar suelto sobre el fondo casi blanco. */
+  /* Disco detrás del ícono de modalidad: lo asienta en su columna en vez de
+     flotar suelto sobre el fondo. Consume --grad-disc, el mismo token que
+     usan las tarjetas de la home (.icon-disc), para mantener la identidad. */
   .site-header__panel-icon-circle {
     display: flex; align-items: center; justify-content: center;
     width: clamp(240px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%;
-    background: radial-gradient(circle at 50% 45%, #F4F0E6 0%, #EAE5D9 100%);
+    background: var(--grad-disc);
     box-shadow: inset 0 0 0 1px rgba(70,39,110,.05);
   }
   /* Panel text colours must beat the shared white/sand rules below, which

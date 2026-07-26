@@ -56,6 +56,12 @@
   --grad-rail: linear-gradient(180deg,#8E2B5D 0%,#46276E 55%,#C2B07E 100%);
   --grad-soft: linear-gradient(180deg,var(--cream) 0%,var(--warm) 100%);
   --grad-btn-gold: linear-gradient(100deg,#EBD08A 0%,#C2B07E 58%,#B0975E 100%);
+  /* Disco detrás del icono de modalidad (tarjetas de home + hero de terapia).
+     Usa los stops del recorrido Noche→Amanecer (--page-grad) para ser coherente
+     con el lienzo. Deliberadamente independiente del tema: antes mezclaba
+     --cream-2 (que flipa con el tema) con --cream (constante), y en oscuro
+     producía un salto violeta→crema no intencionado. */
+  --grad-disc: linear-gradient(160deg,#1b1550 0%,#8e3a5c 45%,#d9b27a 100%);
   --veil-purple: 38,20,60;  /* usar como rgba(var(--veil-purple),.55) en veils de hero */
 
   /* Spacing (base 4) */
@@ -477,6 +483,16 @@ body {
 form .btn, .form-wrap .btn, .form-field .btn {
   align-self: flex-start;
   width: auto;
+}
+
+/* Disco detrás del icono de modalidad en las tarjetas de la home. Misma
+   identidad visual que el disco del hero de cada página de terapia
+   (.site-header__panel-icon-circle), que consume el mismo token. */
+.icon-disc {
+  width: 112px; height: 112px;
+  border-radius: 50%;
+  background: var(--grad-disc);
+  display: flex; align-items: center; justify-content: center;
 }
 
 /* Cards */
