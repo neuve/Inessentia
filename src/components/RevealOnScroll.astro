@@ -3,7 +3,6 @@
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
       if (e.isIntersecting) {
-        e.target.style.opacity = '1';
         e.target.style.transform = 'none';
         io.unobserve(e.target);
       }
@@ -14,17 +13,17 @@
     var els = document.querySelectorAll('[data-reveal]');
     var vh = window.innerHeight || 800;
     // Lecturas de layout (getBoundingClientRect) separadas de las escrituras
-    // (style.opacity/transform): intercaladas, cada escritura invalida el
-    // layout y fuerza un reflow síncrono en la siguiente lectura del bucle.
+    // (style.transform): intercaladas, cada escritura invalida el layout y
+    // fuerza un reflow síncrono en la siguiente lectura del bucle.
     var tops = [];
     els.forEach(function(el) { tops.push(el.getBoundingClientRect().top); });
     els.forEach(function(el, i) {
-      if (tops[i] < vh * 0.95) { el.style.opacity = '1'; el.style.transform = 'none'; }
+      if (tops[i] < vh * 0.95) { el.style.transform = 'none'; }
       else { io.observe(el); }
     });
     setTimeout(function() {
       document.querySelectorAll('[data-reveal]').forEach(function(el) {
-        el.style.opacity = '1'; el.style.transform = 'none';
+        el.style.transform = 'none';
       });
     }, 2600);
   }

@@ -290,14 +290,20 @@ body {
   overflow-x: hidden;
 }
 
-/* Reveal animation */
+/* Reveal animation — SOLO transform, nunca opacity. Antes el estado inicial
+   era opacity:0 hasta que el IntersectionObserver disparaba por scroll real
+   o vencía un fallback de 2.6s: cualquier elemento fuera del viewport inicial
+   (ej. el form del podcast, muy abajo en la home) quedaba literalmente
+   invisible para cualquier proceso que tomara una foto del DOM antes de esos
+   2.6s sin hacer scroll — el auditor de accesibilidad de PageSpeed es uno de
+   esos procesos, y marcaba TODO el bloque como contraste insuficiente (no es
+   que el color estuviera mal: el texto estaba en opacity:0). Con opacity fija
+   en 1 el contenido nace siempre legible; el deslizamiento se conserva. */
 [data-reveal] {
-  opacity: 0;
   transform: translateY(26px);
-  transition: opacity .85s cubic-bezier(.22,1,.36,1), transform .85s cubic-bezier(.22,1,.36,1);
+  transition: transform .85s cubic-bezier(.22,1,.36,1);
 }
 [data-reveal].revealed {
-  opacity: 1;
   transform: none;
 }
 
