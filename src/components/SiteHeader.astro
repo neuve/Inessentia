@@ -122,20 +122,23 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
     </div>
     <div class="site-header__cinema-inner" data-reveal>
-      <div class="site-header__cinema-copy">
+      {/* Intro arriba: rótulo, titular y entradilla juntos, como en el hero
+          de recursos. El velo diagonal despeja el lado del retrato. */}
+      <div class="site-header__cinema-intro">
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}
         <h1 class={`site-header__title site-header__title--cinema${titleCompact ? ' site-header__title--cinema-compact' : ''}`}>{title}</h1>
-        {(ctaHref || secondaryHref) && (
+        <div class="site-header__lead site-header__lead--cinema"><slot /></div>
+        {meta && <h4 class="site-header__meta">{meta}</h4>}
+      </div>
+      {(ctaHref || secondaryHref) && (
+        <div class="site-header__cinema-band">
+          <div class="site-header__cinema-rule" aria-hidden="true"></div>
           <div class="site-header__actions">
             {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
             {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
           </div>
-        )}
-      </div>
-      <div class="site-header__cinema-lead">
-        <div class="site-header__lead site-header__lead--cinema"><slot /></div>
-        {meta && <h4 class="site-header__meta">{meta}</h4>}
-      </div>
+        </div>
+      )}
     </div>
   </section>
 ) : mode === 'panel' ? (
@@ -243,7 +246,10 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 8%); display: block; border-radius: 18px; }
 
   /* ---------- Cinema (A — home + sobre mí, foto a sangre completa) ---------- */
-  .site-header--cinema { min-height: 90vh; display: flex; align-items: stretch; }
+  /* Alto contenido en vez de 90vh, como el hero de recursos. El + var(--nav-h)
+     compensa el margin-top negativo que global.css aplica a .site-header para
+     que el hero se meta bajo la barra transparente. */
+  .site-header--cinema { height: calc(clamp(540px, 64vw, 600px) + var(--nav-h)); display: flex; align-items: stretch; }
   /* El contenedor foto+velo se funde hacia abajo en el lienzo transparente
      de la sección (en vez de cortar en seco contra la siguiente sección). */
   .site-header__cinema-photo {
@@ -253,49 +259,37 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   }
   .site-header__cinema-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, center 30%); display: block; }
   .site-header__cinema-veil {
-    /* Overlay de marca sobre la foto (no sobre texto plano): sigue siendo
-       válido usar un tono de marca como fondo de imagen para legibilidad. */
+    /* Velo DIAGONAL (118°): opaco donde va el texto y despejado donde está el
+       sujeto del retrato. El vertical anterior pasaba por encima de la cara. */
     position: absolute; inset: 0;
-    background: linear-gradient(0deg, rgba(38,20,60,.94) 0%, rgba(38,20,60,.78) 26%, rgba(38,20,60,.34) 58%, rgba(38,20,60,.12) 100%);
+    background: linear-gradient(118deg, rgba(var(--veil-purple),.95) 0%, rgba(var(--veil-purple),.82) 38%, rgba(var(--veil-purple),.34) 72%, rgba(var(--veil-purple),.12) 100%);
   }
   .site-header__cinema-inner {
-    /* Tope propio, más angosto que --container-w: a diferencia del nav/footer/
-       menú, este texto vive encima de un retrato con foco en la cara — si
-       crece con el contenedor ancho general, la columna del párrafo termina
-       invadiendo la cara en pantallas grandes. El padding lateral (40px) sí
-       coincide con el del nav para que el borde derecho quede alineado con
-       la hamburguesa. */
+    /* Tope propio, más angosto que --container-w: este texto vive encima de un
+       retrato con foco en la cara. El padding lateral (40px) coincide con el
+       del nav para que el borde derecho alinee con la hamburguesa. */
     position: relative; z-index: 2; width: 100%; max-width: clamp(1200px, 82vw, 1440px); margin: 0 auto;
-    padding: 130px 40px 72px;
-    display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr);
-    gap: clamp(28px, 4vw, 64px); align-items: end;
-    min-height: 90vh;
+    padding: calc(clamp(32px, 5vw, 46px) + var(--nav-h)) 40px 40px;
+    display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
   }
-  .site-header--cinema .site-header__title--cinema { font-size: var(--fs-display); margin-bottom: 26px; }
+  .site-header__cinema-intro { max-width: 52ch; }
+  .site-header__cinema-band { width: 100%; }
+  .site-header__cinema-rule { height: 1px; background: rgba(255,255,255,.25); margin-bottom: 22px; }
+  .site-header--cinema .site-header__title--cinema { font-size: var(--fs-display); margin-bottom: 20px; }
   .site-header--cinema .site-header__title--cinema-compact { font-size: clamp(32px, 3.8vw, 54px); }
-  .site-header--cinema .site-header__lead--cinema { max-width: 46ch; margin: 0 0 6px; color: var(--on-canvas); }
+  .site-header--cinema .site-header__lead--cinema { max-width: 50ch; margin: 0; color: var(--on-canvas); }
+  .site-header--cinema .site-header__actions { margin-bottom: 0; }
   .site-header--cinema .site-header__eyebrow,
   .site-header--cinema .site-header__title--cinema { text-shadow: 0 1px 22px rgba(38,20,60,.5); }
-  .site-header__cinema-lead { align-self: end; }
   @media (max-width: 820px) {
-    /* Móvil (ref 04-mobile-closed): eyebrow + H1 anclados ARRIBA bajo el nav,
-       párrafo + CTA anclados ABAJO — la cara del retrato queda despejada en
-       medio. Se aplanan los dos contenedores (display:contents) para poder
-       reordenar: el margin-bottom:auto del H1 empuja el resto al fondo y las
-       actions pasan al final (debajo del párrafo), como en el mock. */
-    .site-header--cinema { min-height: 100vh; }
-    .site-header__cinema-veil { background: linear-gradient(180deg, rgba(38,20,60,.80) 0%, rgba(38,20,60,.34) 22%, rgba(38,20,60,.10) 44%, rgba(38,20,60,.48) 68%, rgba(38,20,60,.95) 100%); }
-    .site-header__cinema-inner {
-      display: flex; flex-direction: column; align-items: stretch;
-      padding: 120px 24px 48px; gap: 18px; min-height: 100vh;
-    }
-    .site-header__cinema-copy, .site-header__cinema-lead { display: contents; }
-    .site-header--cinema .site-header__title--cinema { font-size: clamp(34px, 9vw, 46px); margin-bottom: auto; }
+    /* En móvil el velo vuelve a ser vertical: en pantalla angosta el sujeto
+       queda centrado y una diagonal no lo despejaría. */
+    .site-header--cinema { height: calc(clamp(460px, 92vw, 560px) + var(--nav-h)); }
+    .site-header__cinema-veil { background: linear-gradient(180deg, rgba(var(--veil-purple),.80) 0%, rgba(var(--veil-purple),.34) 22%, rgba(var(--veil-purple),.10) 44%, rgba(var(--veil-purple),.48) 68%, rgba(var(--veil-purple),.95) 100%); }
+    .site-header__cinema-inner { padding: calc(28px + var(--nav-h)) 24px 32px; gap: 20px; }
+    .site-header__cinema-intro { max-width: 100%; }
+    .site-header--cinema .site-header__title--cinema { font-size: clamp(34px, 9vw, 46px); margin-bottom: 16px; }
     .site-header--cinema .site-header__title--cinema-compact { font-size: clamp(26px, 7vw, 36px); }
-    .site-header--cinema .site-header__actions { order: 1; margin-bottom: 0; }
-    .site-header--cinema .site-header__eyebrow { margin-bottom: 0; }
-    .site-header--cinema .site-header__lead--cinema { margin-bottom: 0; }
-    .site-header--cinema .site-header__meta { margin-bottom: 0; }
   }
 
   /* ---------- Panel (C) ---------- */
@@ -327,8 +321,8 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   /* Nota: 34px / clamp(34px,4.6vw,52px) NO se sustituyen por --fs-h2
      (clamp(30px,4.4vw,50px)) porque no son el mismo valor — hacerlo
      cambiaría el tamaño renderizado en desktop. Se dejan como literales. */
-  .site-header--panel .site-header__title--panel { color: var(--heading-canvas); font-size: 34px; line-height: 1.12; }
-  .site-header--panel .site-header__title--panel-lg { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.08; }
+  .site-header--panel .site-header__title--panel { color: var(--heading-canvas); font-size: 34px; line-height: 1.18; }
+  .site-header--panel .site-header__title--panel-lg { font-size: clamp(34px, 4.6vw, 52px); line-height: 1.14; }
   .site-header--panel .site-header__lead--panel { color: var(--on-canvas-soft); font-family: var(--ff-body); font-weight: 500; font-size: 14px; max-width: 60ch; }
   .site-header--panel .site-header__lead--panel-lg { font-size: 16px; }
   .site-header__lead--panel :global(p) { margin: 0 0 10px; }
@@ -363,10 +357,11 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
      temas. */
   .site-header__eyebrow { margin: 0 0 18px; display: inline-flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px; letter-spacing: 0; text-transform: none; color: var(--accent-canvas); }
   .site-header__eyebrow::before { content: ""; width: 24px; height: 2px; flex: 0 0 auto; background: var(--accent-canvas); }
-  .site-header__title { font-family: var(--ff-head); font-weight: 700; color: var(--heading-canvas); font-size: var(--fs-h1); line-height: 1.03; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
+  /* Bitter tiene tildes que sobresalen; con menos de ~1.12 chocan con la línea de arriba. */
+  .site-header__title { font-family: var(--ff-head); font-weight: 700; color: var(--heading-canvas); font-size: var(--fs-h1); line-height: 1.14; letter-spacing: -.015em; margin: 0 0 22px; text-wrap: balance; }
   /* Nota: clamp(40px,6vw,76px) NO se sustituye por --fs-display
      (clamp(40px,5.6vw,80px)) porque no son el mismo valor. Se deja literal. */
-  .site-header__title--mono { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; }
+  .site-header__title--mono { font-size: clamp(40px, 6vw, 76px); line-height: 1.10; }
   .site-header__lead { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.65; color: var(--on-canvas-soft); max-width: 48ch; margin: 0 0 32px; }
   .site-header__lead :global(p) { margin: 0 0 10px; }
   .site-header__lead :global(p:last-child) { margin-bottom: 0; }
