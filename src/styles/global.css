@@ -158,7 +158,12 @@
 /* Contexto de superficie: islas de fondo fijo (una tarjeta crema dentro
    de una página oscura, o una franja morada en una clara). */
 .on-light { --bg:#F4F0E6; --surface:#fff; --text:#3f3a36; --text-soft:#5a544e; --text-muted:#6a6460; --text-faint:#797267; --border-card:#ece6d8; --border-hair:#e2dccc; --heading:var(--purple); --on-dark:#3f3a36; --on-dark-soft:#5a544e; --on-dark-faint:#6a6460; }
-.on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#a99fb4; --text-faint:#a99fb4; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --on-dark-faint:rgba(255,255,255,.7); }
+/* --text-muted/--text-faint suben de #a99fb4 a #bdb2c8: sobre --surface (#2e2140)
+   pasan de 5.90:1 a 7.36:1. La letra chica (avisos de privacidad, notas) quedaba
+   apenas por encima del mínimo AA de 4.5:1, sin margen para estados intermedios
+   de render; 7.36:1 alcanza nivel AAA y sigue leyéndose secundaria frente a los
+   rótulos, que van en --on-canvas-soft (~9:1). */
+.on-dark { --bg:#221735; --surface:#2e2140; --text:#EAE5D9; --text-soft:#cfc6d6; --text-muted:#bdb2c8; --text-faint:#bdb2c8; --border-card:#40315a; --border-hair:#463659; --heading:#EAE5D9; --on-dark:#fff; --on-dark-soft:rgba(255,255,255,.85); --on-dark-faint:rgba(255,255,255,.7); }
 
 /* ══════════════════════════════════════════════════════════════════
    ZONAS DEL LIENZO — el fondo del body (--page-grad) viaja de noche a
