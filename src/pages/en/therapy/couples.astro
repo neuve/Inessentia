@@ -104,8 +104,7 @@ const i = t(locale);
 
   <!-- FIRST SESSION + COST -->
   <section id="primera-sesion" class="section zone-dark">
-    <div class="two-col container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
-      <div>
+    <div class="container">
         <p data-reveal class="label-section">Your first session</p>
         <h2 data-reveal style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;">Step by step</h2>
         <div data-reveal style="display:flex;flex-direction:column;gap:0;">
@@ -126,15 +125,7 @@ const i = t(locale);
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">We schedule in two-month periods with clear goals and constantly recalibrate progress.</p>
           </div>
         </div>
-      </div>
-      <div data-reveal>
-        <div class="on-dark" style="background:var(--purple);border-radius:var(--r-card);padding:36px 32px;color:#fff;margin-bottom:22px;">
-          <p style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--on-dark-faint);">Costs</p>
-          <p style="font-family:var(--ff-head);font-weight:700;font-size:clamp(21px,2.3vw,26px);color:#fff;margin:0 0 12px;line-height:1.18;">Individual, couples, and family: same cost</p>
-          <p style="margin:0 0 22px;font-size:14px;color:var(--on-dark-soft);line-height:1.6;">Sessions of 50 to 60 minutes. See the per-session price and the continuity pack.</p>
-          <a href="/en/costs/" class="btn btn--secondary">See the costs</a>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px;">
+        <div data-reveal style="display:flex;flex-direction:column;gap:14px;margin-top:40px;">
           <div style="background:var(--cream-2);border-radius:18px;padding:22px 24px;">
             <div style="font-family:var(--ff-body);font-size:38px;line-height:.6;color:var(--sand);margin-bottom:8px;">“</div>
             <p style="font-size:15px;line-height:1.6;color:var(--text);margin:0 0 10px;">We learned to communicate better, to feel confident expressing our differences in a respectful way.</p>
@@ -146,7 +137,6 @@ const i = t(locale);
             <p style="margin:0;font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:15px;">Nay</p>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
@@ -182,7 +172,10 @@ const i = t(locale);
   <section class="section section--purple zone-light">
     <div data-reveal style="max-width:700px;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,48px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
-      <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27m%20interested%20in%20scheduling%20a%20first%20couples%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+        <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27m%20interested%20in%20scheduling%20a%20first%20couples%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
+        <a href="/en/costs/" class="link-underline" style="color:var(--accent-canvas);">See the costs</a>
+      </div>
       <p style="margin:30px 0 10px;color:var(--on-canvas-faint);font-size:15px;">Thinking about an individual process?</p>
       <a href="/en/therapy/individual/" class="link-underline" style="color:var(--accent-canvas);">Learn about my individual therapy</a>
     </div>

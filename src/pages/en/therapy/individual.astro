@@ -112,8 +112,7 @@ const schema = [
 
   <!-- FIRST SESSION + COST -->
   <section id="primera-sesion" class="section zone-dark">
-    <div class="two-col container" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
-      <div>
+    <div class="container">
         <p data-reveal class="label-section">Your first session</p>
         <h2 data-reveal style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Step by step</h2>
         <div data-reveal style="display:flex;flex-direction:column;gap:0;">
@@ -134,15 +133,6 @@ const schema = [
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">If we decide to continue, we schedule in two-month blocks with clear goals and constantly review progress.</p>
           </div>
         </div>
-      </div>
-      <div data-reveal style="display:flex;flex-direction:column;gap:24px;">
-        <div class="on-dark" style="background:var(--purple);border-radius:var(--r-card);padding:36px 32px;color:#fff;">
-          <p style="margin:0 0 10px;font-size:13px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--on-dark-faint);">Costs</p>
-          <p style="font-family:var(--ff-head);font-weight:700;font-size:clamp(21px,2.3vw,26px);color:#fff;margin:0 0 12px;line-height:1.18;">Individual, couples, and family: same cost</p>
-          <p style="margin:0 0 22px;font-size:14px;color:var(--on-dark-soft);line-height:1.6;">Sessions of 50 to 60 minutes. See the per-session price and the continuity pack.</p>
-          <a href="/en/costs/" class="btn btn--secondary">See the costs</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -208,7 +198,10 @@ const schema = [
   <section class="section section--purple zone-light" style="position:relative;overflow:hidden;">
     <div data-reveal style="position:relative;max-width:700px;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
-      <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn btn--secondary">Book your first session</a>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
+        <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%20found%20your%20website%20and%20I%E2%80%99m%20interested%20in%20booking%20a%20first%20individual%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn btn--secondary">Book your first session</a>
+        <a href="/en/costs/" class="link-underline" style="color:var(--accent-canvas);">See the costs</a>
+      </div>
       <p style="margin:32px 0 10px;color:var(--on-canvas-faint);font-size:15px;">Considering a couples process?</p>
       <a href="/en/therapy/couples/" class="link-underline" style="color:var(--accent-canvas);">Learn about my couples therapy approach</a>
     </div>
