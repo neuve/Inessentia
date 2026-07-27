@@ -76,15 +76,17 @@ const grid = getResourcesGrid().map((p, k) => {
 
     <!-- destacado rotativo -->
     <div class="rec-hero-feature">
-      <div style="flex:1 1 auto;max-width:60%;min-width:0;position:relative;">
+      <div style="flex:1 1 auto;max-width:60%;min-width:0;">
         <div style="height:1px;background:rgba(255,255,255,.25);margin-bottom:22px;"></div>
-        {featured.map((f, k) => (
-          <a href={f.href} data-rec-slide={k} style={`display:block;text-decoration:none;transition:opacity .5s ease;opacity:${k === 0 ? '1' : '0'};${k === 0 ? '' : 'position:absolute;left:0;right:0;bottom:0;pointer-events:none;'}`}>
-            <p class="label-section label-section--on-dark" style="margin-bottom:10px;">Destacado · {f.cat}</p>
-            <h2 style="font-family:var(--ff-head);font-weight:700;color:#fff;font-size:clamp(24px,2.6vw,32px);line-height:var(--lh-tight);margin:0 0 16px;max-width:26ch;">{f.title}</h2>
-            <span style="display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--purple);font-weight:700;font-size:13px;letter-spacing:0;text-transform:none;padding:14px 26px;border-radius:var(--r-pill);">{i.blog.readMore}</span>
-          </a>
-        ))}
+        <div style="position:relative;display:grid;align-items:end;">
+          {featured.map((f, k) => (
+            <a href={f.href} data-rec-slide={k} style={`grid-area:1 / 1;display:block;text-decoration:none;transition:opacity .5s ease;opacity:${k === 0 ? '1' : '0'};pointer-events:${k === 0 ? 'auto' : 'none'};`}>
+              <p class="label-section label-section--on-dark" style="margin-bottom:10px;">{f.cat}</p>
+              <h2 style="font-family:var(--ff-head);font-weight:500;color:#fff;font-size:clamp(24px,2.6vw,32px);line-height:var(--lh-tight);margin:0 0 16px;max-width:26ch;">{f.title}</h2>
+              <span style="display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-weight:600;font-size:14px;letter-spacing:0;text-transform:none;">{i.blog.readMore} <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </div>
       </div>
       <div style="display:flex;gap:7px;align-items:center;padding-bottom:6px;flex:0 0 auto;">
         {featured.map((_, k) => (
@@ -96,7 +98,7 @@ const grid = getResourcesGrid().map((p, k) => {
 
   <!-- FILTRO DE CATEGORÍAS (pastillas) -->
   <div class="zone-dark" style="background:transparent;padding:24px 0 6px;border-bottom:1px solid var(--border-hair);">
-    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;display:flex;flex-wrap:wrap;gap:9px;">
+    <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);display:flex;flex-wrap:wrap;gap:9px;">
       {cats.map((c, k) => (
         <button type="button" data-rec-pill={c.key}
           style={`background:${k === 0 ? 'var(--purple)' : 'var(--surface)'};color:${k === 0 ? '#fff' : 'var(--text-soft)'};border:1px solid ${k === 0 ? 'var(--purple)' : 'var(--border-card)'};padding:9px 17px;border-radius:var(--r-pill);font-weight:700;font-size:12.5px;letter-spacing:.02em;cursor:pointer;white-space:nowrap;transition:all .2s;`}>{c.label}</button>
@@ -106,7 +108,7 @@ const grid = getResourcesGrid().map((p, k) => {
 
   <!-- MOSAICO DENSO (masonry 4 columnas) -->
   <section class="zone-dark" style="background:transparent;padding:34px 0 58px;">
-    <div style="max-width:var(--container-w);margin:0 auto;padding:0 40px;">
+    <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);">
       <div class="rec-grid">
         {grid.map(c => (
           c.photo && c.video ? (
@@ -162,8 +164,8 @@ const grid = getResourcesGrid().map((p, k) => {
 <style>
   .rec-hero { position:relative; overflow:hidden; height:calc(clamp(540px,64vw,600px) + var(--nav-h)); width:100%; }
   .rec-hero-overlay { position:absolute; inset:0; background:linear-gradient(118deg,rgba(var(--veil-purple),.95) 0%,rgba(var(--veil-purple),.82) 38%,rgba(var(--veil-purple),.34) 72%,rgba(var(--veil-purple),.12) 100%); }
-  .rec-hero-intro { position:absolute; top:calc(clamp(32px,5vw,46px) + var(--nav-h)); left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-w); padding:0 40px; box-sizing:border-box; z-index:1; }
-  .rec-hero-feature { position:absolute; left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-w); padding:0 40px; box-sizing:border-box; bottom:40px; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:28px; }
+  .rec-hero-intro { position:absolute; top:calc(clamp(32px,5vw,46px) + var(--nav-h)); left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-pad-w); padding:0 var(--gutter); box-sizing:border-box; z-index:1; }
+  .rec-hero-feature { position:absolute; left:50%; transform:translateX(-50%); width:100%; max-width:var(--container-pad-w); padding:0 var(--gutter); box-sizing:border-box; bottom:40px; z-index:1; display:flex; justify-content:space-between; align-items:flex-end; gap:28px; }
   .rec-grid { column-count:4; column-gap:20px; }
   .rec-card { border-radius:var(--r-panel); transition:transform .3s ease, box-shadow .3s ease; }
   .rec-card:hover { transform:translateY(-6px); box-shadow:0 22px 44px rgba(60,31,94,.24); }
