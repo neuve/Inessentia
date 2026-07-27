@@ -11,85 +11,75 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
   hideFooter
 >
   <style>
-    .rt-wrap{max-width:640px;margin:0 auto;padding:48px 22px 80px;font-family:'Mulish',sans-serif;color:var(--ink,#262321)}
     .rt-title{font-family:'Bitter',serif;font-size:2rem;color:var(--heading);font-weight:700;margin:0 0 6px}
     .rt-sub{font-size:.9rem;color:var(--text-faint);line-height:1.6;margin:0 0 32px}
-    .rt-field{margin-bottom:20px}
-    .rt-label{display:block;font-size:.78rem;font-weight:700;text-transform:none;letter-spacing:0;color:var(--heading);margin-bottom:6px}
-    .rt-label small{font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-faint)}
-    .rt-input,.rt-select,.rt-textarea{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D8D2C4;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.9rem;background:#FCFBF6;color:#262321;outline:none;transition:border-color .15s}
-    .rt-input:focus,.rt-select:focus,.rt-textarea:focus{border-color:#C2B07E}
-    .rt-textarea{min-height:140px;resize:vertical}
     .rt-row{display:flex;gap:14px;flex-wrap:wrap}
-    .rt-row>.rt-field{flex:1;min-width:180px}
+    .rt-row>.form-field{flex:1;min-width:180px}
+    .form-textarea{min-height:140px;resize:vertical}
     .rt-consent{display:flex;align-items:flex-start;gap:10px;font-size:.85rem;line-height:1.55;color:var(--text-soft);cursor:pointer;user-select:none}
-    .rt-consent input{margin-top:3px;accent-color:#8E2B5D}
-    .rt-btn{background:#8E2B5D;color:#fff;border:none;padding:13px 34px;border-radius:8px;font-family:'Mulish',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:opacity .15s}
-    .rt-btn:hover{opacity:.88}
-    .rt-btn:disabled{opacity:.5;cursor:wait}
-    .rt-msg{margin-top:16px;padding:14px 16px;border-radius:8px;font-size:.88rem;line-height:1.5;display:none}
-    .rt-msg.ok{display:block;background:#EFF4EF;color:#3A5A3A;border:1px solid #BFD4BF}
-    .rt-msg.err{display:block;background:#FBEDED;color:#8E2B2B;border:1px solid #E4BFBF}
+    .rt-consent input{margin-top:3px;accent-color:var(--wine)}
+    .form-msg{display:none;margin-top:16px;font-size:.88rem;line-height:1.5}
+    .form-msg.ok,.form-msg.err{display:block}
     .rt-count{font-size:.72rem;color:var(--text-faint);text-align:right;margin-top:4px}
   </style>
 
-  <div class="rt-wrap">
-    <h1 class="rt-title">Share your <em style="color:#C2B07E;">experience</em></h1>
+  <div class="form-wrap">
+    <h1 class="rt-title">Share your <em style="color:var(--gold);">experience</em></h1>
     <p class="rt-sub">
       Thank you for wanting to share your process. Your testimonial helps others feel encouraged
-      to start their own. It's reviewed before being published on <a href="/en/testimonials/" style="color:#8E2B5D;text-decoration:none;">the testimonials page</a>.
+      to start their own. It's reviewed before being published on <a href="/en/testimonials/" style="color:var(--wine);text-decoration:none;">the testimonials page</a>.
       You can sign it with your name, initials, or as "Anonymous".
     </p>
 
     <form id="rt-form" novalidate>
-      <div class="rt-field">
-        <label class="rt-label" for="t-testimonio">Your testimonial *</label>
-        <textarea class="rt-textarea" id="t-testimonio" maxlength="600" required
+      <div class="form-field">
+        <label class="form-label" for="t-testimonio">Your testimonial *</label>
+        <textarea class="form-textarea" id="t-testimonio" maxlength="600" required
           placeholder="How did you get here? What has changed in you or your life through the process?"></textarea>
         <div class="rt-count"><span id="t-count">0</span>/600</div>
       </div>
 
       <div class="rt-row">
-        <div class="rt-field">
-          <label class="rt-label" for="t-nombre">Your name *</label>
-          <input class="rt-input" id="t-nombre" required>
+        <div class="form-field">
+          <label class="form-label" for="t-nombre">Your name *</label>
+          <input class="form-input" id="t-nombre" required>
         </div>
-        <div class="rt-field">
-          <label class="rt-label" for="t-publicar">Publish as <small>— if you'd rather not use your name</small></label>
-          <input class="rt-input" id="t-publicar" placeholder="e.g. Anonymous, initials, nickname">
+        <div class="form-field">
+          <label class="form-label" for="t-publicar">Publish as <small>— if you'd rather not use your name</small></label>
+          <input class="form-input" id="t-publicar" placeholder="e.g. Anonymous, initials, nickname">
         </div>
       </div>
 
       <div class="rt-row">
-        <div class="rt-field">
-          <label class="rt-label" for="t-tipo">Type of process</label>
-          <select class="rt-select" id="t-tipo">
+        <div class="form-field">
+          <label class="form-label" for="t-tipo">Type of process</label>
+          <select class="form-select" id="t-tipo">
             <option value="">Prefer not to say</option>
             <option value="Individual therapy">Individual therapy</option>
             <option value="Couples therapy">Couples therapy</option>
             <option value="Family therapy">Family therapy</option>
           </select>
         </div>
-        <div class="rt-field">
-          <label class="rt-label" for="t-email">Email <small>— not published</small></label>
-          <input class="rt-input" id="t-email" type="email">
+        <div class="form-field">
+          <label class="form-label" for="t-email">Email <small>— not published</small></label>
+          <input class="form-input" id="t-email" type="email">
         </div>
       </div>
 
-      <div class="rt-field">
-        <label class="rt-label" for="t-link">Link <small>— optional: your site, Instagram or YouTube, if you'd like it to appear next to your name</small></label>
-        <input class="rt-input" id="t-link" placeholder="https://…">
+      <div class="form-field">
+        <label class="form-label" for="t-link">Link <small>— optional: your site, Instagram or YouTube, if you'd like it to appear next to your name</small></label>
+        <input class="form-input" id="t-link" placeholder="https://…">
       </div>
 
-      <div class="rt-field">
+      <div class="form-field">
         <label class="rt-consent">
           <input type="checkbox" id="t-consent">
           <span>I authorize this testimonial to be published on inessentia.mx with the name I provided. I understand I can request its removal at any time. *</span>
         </label>
       </div>
 
-      <button type="submit" class="rt-btn" id="rt-submit">Send my testimonial</button>
-      <div class="rt-msg" id="rt-msg"></div>
+      <button type="submit" class="btn btn--wine" id="rt-submit">Send my testimonial</button>
+      <div class="form-msg" id="rt-msg"></div>
     </form>
   </div>
 
@@ -103,7 +93,7 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
 
       ta.addEventListener('input', function () { count.textContent = ta.value.length; });
 
-      function show(cls, text) { msg.className = 'rt-msg ' + cls; msg.textContent = text; }
+      function show(cls, text) { msg.className = 'form-msg ' + cls; msg.textContent = text; }
 
       form.addEventListener('submit', function (ev) {
         ev.preventDefault();
