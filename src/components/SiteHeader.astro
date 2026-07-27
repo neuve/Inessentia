@@ -138,12 +138,19 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
       )}
       <div class="site-header__cinema-veil" aria-hidden="true"></div>
     </div>
-    <div class="site-header__cinema-inner" data-reveal>
-      {/* Intro arriba: rótulo, titular y entradilla juntos, como en el hero
-          de recursos. El velo diagonal despeja el lado del retrato. */}
-      <div class="site-header__cinema-intro">
+    <div class="site-header__cinema-pad">
+     <div class="site-header__cinema-inner" data-reveal>
+      {/* Rótulo + titular por un lado, entradilla + acciones por otro (dos
+          wrappers separados, no uno): en desktop se agrupan arriba y la
+          banda de acciones se ancla abajo (igual que antes); en móvil el
+          rótulo+titular sube solo, arriba de la cara, y el resto baja al
+          tercio inferior — ver el truco de `margin-bottom:auto` en el CSS,
+          que reasigna cuál bloque "empuja" al resto según el breakpoint. */}
+      <div class="site-header__cinema-heading">
         {eyebrow && <p class="site-header__eyebrow">{eyebrow}</p>}
         <h1 class={`site-header__title site-header__title--cinema${titleCompact ? ' site-header__title--cinema-compact' : ''}`}>{title}</h1>
+      </div>
+      <div class="site-header__cinema-lead">
         <div class="site-header__lead site-header__lead--cinema"><slot /></div>
         {meta && <h4 class="site-header__meta">{meta}</h4>}
       </div>
@@ -152,11 +159,40 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
           <div class="site-header__cinema-rule" aria-hidden="true"></div>
           <div class="site-header__actions">
             {ctaHref && <a href={ctaHref} target="_blank" rel="noopener" class="btn btn--gold">{ctaLabel}<span class="btn__dot"></span></a>}
-            {secondaryHref && <a href={secondaryHref} class="site-header__link">{secondaryLabel}</a>}
+            {secondaryHref && <a href={secondaryHref} class="site-header__link" data-cinema-secondary>{secondaryLabel}</a>}
           </div>
         </div>
       )}
+     </div>
     </div>
+    {secondaryHref && (
+      /* El link secundario satura el hero de móvil cuando el titular ocupa
+         1 sola línea (queda suelto, sin el punto separador de desktop).
+         Se oculta por defecto en móvil (ver CSS) y este script lo reactiva
+         solo si el H1 SÍ ocupó 2+ líneas, dejando aire de sobra. Mide
+         forzando nowrap para obtener la altura de 1 línea real, en vez de
+         parsear line-height (que puede venir sin unidad). */
+      <script is:inline>
+        (function () {
+          function checkCinemaWrap() {
+            document.querySelectorAll('.site-header--cinema').forEach(function (header) {
+              var h1 = header.querySelector('.site-header__title--cinema');
+              var link = header.querySelector('[data-cinema-secondary]');
+              if (!h1 || !link) return;
+              var prevWS = h1.style.whiteSpace;
+              var wrapped = h1.getBoundingClientRect().height;
+              h1.style.whiteSpace = 'nowrap';
+              var single = h1.getBoundingClientRect().height;
+              h1.style.whiteSpace = prevWS;
+              link.classList.toggle('is-visible', wrapped > single * 1.3);
+            });
+          }
+          checkCinemaWrap();
+          if (document.fonts && document.fonts.ready) document.fonts.ready.then(checkCinemaWrap);
+          window.addEventListener('resize', checkCinemaWrap);
+        })();
+      </script>
+    )}
   </section>
 ) : mode === 'panel' ? (
   <section class="site-header site-header--panel zone-dark">
@@ -281,15 +317,31 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
     position: absolute; inset: 0;
     background: linear-gradient(118deg, rgba(var(--veil-purple),.95) 0%, rgba(var(--veil-purple),.82) 38%, rgba(var(--veil-purple),.34) 72%, rgba(var(--veil-purple),.12) 100%);
   }
-  .site-header__cinema-inner {
-    /* Tope propio, más angosto que --container-w: este texto vive encima de un
-       retrato con foco en la cara. El padding lateral (40px) coincide con el
-       del nav para que el borde derecho alinee con la hamburguesa. */
-    position: relative; z-index: 2; width: 100%; max-width: clamp(1200px, 82vw, 1440px); margin: 0 auto;
-    padding: calc(clamp(32px, 5vw, 46px) + var(--nav-h)) 40px 40px;
-    display: flex; flex-direction: column; justify-content: space-between; gap: 28px;
+  /* Replica la estructura real `.section > .container` del resto del sitio,
+     en vez de un tercer sistema de medidas propio: antes `.cinema-inner`
+     cargaba a la vez el padding Y el centrado, y con un tope de 1440px (no
+     var(--container-w)) el texto del hero quedaba a 160px del borde en vez
+     de los 72px que usa el cuerpo de la página a 1440px — se notaba como un
+     salto de alineación al bajar del hero a la primera sección. `.cinema-pad`
+     hace el trabajo de `.section` (padding fijo) y vive como hermano de
+     `.cinema-photo` para no afectar el mask/inset absoluto de la foto+velo;
+     `.cinema-inner` hace el trabajo de `.container` (tope + centrado) adentro. */
+  .site-header__cinema-pad {
+    position: relative; z-index: 2; width: 100%; height: 100%; box-sizing: border-box;
+    padding: calc(clamp(32px, 5vw, 46px) + var(--nav-h)) 32px 40px;
+    display: flex;
   }
-  .site-header__cinema-intro { max-width: 52ch; }
+  .site-header__cinema-inner {
+    width: 100%; max-width: var(--container-w); margin: 0 auto;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  /* `margin-bottom: auto` en flex-column es lo que "ancla" un bloque y
+     empuja el resto — aquí es la entradilla la que empuja la banda de
+     acciones al fondo (desktop). En móvil (ver media query) el trabajo lo
+     hace el rótulo+titular en su lugar, para que ESE bloque quede arriba y
+     la entradilla+banda bajen juntas. */
+  .site-header__cinema-heading { max-width: 52ch; }
+  .site-header__cinema-lead { max-width: 52ch; margin-bottom: auto; }
   .site-header__cinema-band { width: 100%; }
   .site-header__cinema-rule { height: 1px; background: rgba(255,255,255,.25); margin-bottom: 22px; }
   .site-header--cinema .site-header__title--cinema { font-size: var(--fs-display); margin-bottom: 20px; }
@@ -307,15 +359,32 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
        que se vea la cara, opaco abajo para que el texto sea legible. Una
        diagonal aquí no serviría: el sujeto queda centrado, no a un lado. */
     .site-header--cinema { height: calc(clamp(560px, 108vw, 660px) + var(--nav-h)); }
-    .site-header__cinema-veil { background: linear-gradient(180deg, rgba(var(--veil-purple),.30) 0%, rgba(var(--veil-purple),.14) 26%, rgba(var(--veil-purple),.52) 56%, rgba(var(--veil-purple),.93) 100%); }
-    .site-header__cinema-inner { padding: calc(28px + var(--nav-h)) 24px 32px; gap: 20px; justify-content: flex-end; }
+    /* Con el rótulo+titular ahora arriba (ver .cinema-heading más abajo), el
+       velo ya no puede ser transparente arriba: le agregamos una franja
+       oscura suave en el primer ~20% para legibilidad, sin tapar la cara
+       tanto como la franja opaca del fondo. Verificado en vivo contra las
+       fotos reales de home y sobre-mí, no es un valor adivinado. */
+    .site-header__cinema-veil { background: linear-gradient(180deg, rgba(var(--veil-purple),.55) 0%, rgba(var(--veil-purple),.30) 15%, rgba(var(--veil-purple),.12) 28%, rgba(var(--veil-purple),.50) 58%, rgba(var(--veil-purple),.93) 100%); }
+    .site-header__cinema-pad { padding: calc(28px + var(--nav-h)) 24px 32px; }
+    .site-header__cinema-inner { gap: 20px; }
+    /* Invierte quién "empuja": en desktop es la entradilla (ver arriba); en
+       móvil es el rótulo+titular el que se ancla arriba y empuja el resto
+       (entradilla + banda de acciones, ya agrupados por el gap) al fondo. */
+    .site-header__cinema-heading { margin-bottom: auto; }
+    .site-header__cinema-lead { margin-bottom: 0; }
     /* Encuadre propio de móvil: --photo-pos (que fijan las páginas) está
        calibrado para el recorte apaisado del desktop y aquí deja la cara
        demasiado alta. Las páginas pueden afinarlo con --photo-pos-mobile. */
     .site-header__cinema-photo img { object-position: var(--photo-pos-mobile, center 18%); }
-    .site-header__cinema-intro { max-width: 100%; }
+    .site-header__cinema-heading, .site-header__cinema-lead { max-width: 100%; }
     .site-header--cinema .site-header__title--cinema { font-size: clamp(34px, 9vw, 46px); margin-bottom: 16px; }
     .site-header--cinema .site-header__title--cinema-compact { font-size: clamp(26px, 7vw, 36px); }
+    /* El link secundario se ve suelto en móvil cuando el titular cabe en 1
+       línea (sin el punto separador que sí tiene en desktop) — se oculta por
+       defecto y solo reaparece si el script de arriba detecta 2+ líneas, que
+       es cuando sí sobra aire para mostrarlo sin apretar el hero. */
+    .site-header--cinema .site-header__cinema-band .site-header__link { display: none; }
+    .site-header--cinema .site-header__cinema-band .site-header__link.is-visible { display: inline-block; }
   }
 
   /* ---------- Panel (C) ---------- */

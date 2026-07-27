@@ -113,9 +113,12 @@ const legalLinks = [
     display: grid; grid-template-columns: 1.8fr 1fr 1fr 1.3fr;
     gap: clamp(32px,4vw,52px); align-items: start; padding-bottom: 44px;
   }
-  .footer2__brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .footer2__logo { height: 52px; width: auto; display: block; }
-  .footer2__name { font-family: 'Bitter', serif; font-weight: 700; color: var(--heading-canvas); font-size: 19px; line-height: 1.15; }
+  /* Apilado (ícono arriba, nombre abajo) en vez de fila: le da al lockup más
+     presencia de marca frente a las columnas de texto plano de al lado, y
+     mantiene el mismo margen izquierdo que ellas (nunca centrado). */
+  .footer2__brand { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; text-decoration: none; }
+  .footer2__logo { height: 72px; width: auto; display: block; }
+  .footer2__name { font-family: 'Bitter', serif; font-weight: 700; color: var(--heading-canvas); font-size: 22px; line-height: 1.15; }
   .footer2__coltitle {
     margin: 0 0 18px; font-weight: 700; font-size: 12px; letter-spacing: 0;
     text-transform: none; color: var(--accent-canvas);
