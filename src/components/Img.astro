@@ -6,13 +6,22 @@
 // navegador baja el ancho que corresponde a su viewport × densidad, así que un
 // mismo hueco ya no fuerza un archivo sobredimensionado en desktop o mobile.
 //
+// `src` SIEMPRE se resuelve contra `entry.src` (la copia hasheada por
+// contenido del master) cuando hay entrada en el manifiesto — nunca se sirve
+// la ruta cruda de public/uploads, que es la que puede quedar cacheada por un
+// año en el CDN si se regenera el archivo bajo el mismo nombre.
+//
 // Mantiene la arquitectura de strings (`src="/uploads/…"`): no hay que importar
-// assets ni tocar schema/OG. Si el src no está en el manifiesto (SVG, remoto, no
-// procesado), cae a un <img> normal sin romper nada.
+// assets ni tocar schema/OG. Si el src no está en el manifiesto (remoto, no
+// procesado), cae a un <img> normal sin romper nada. Los svg/mp4/webm SÍ están
+// en el manifiesto (hasheados) pero solo traen `.src`, sin srcset/width/height
+// — ver la rama `hasSrcset` abajo: se sirven como <img> simple con la URL
+// hasheada, igual que un src no encontrado, sin intentar construir un srcset
+// que no existe.
 import manifestJson from '../data/image-manifest.json';
 
 interface Variant { w: number; url: string; }
-interface Entry { width: number; height: number; srcset: Variant[]; }
+interface Entry { width?: number; height?: number; srcset?: Variant[]; src?: string; }
 
 interface Props {
   src: string;
@@ -43,19 +52,22 @@ const {
 
 const manifest = manifestJson as Record<string, Entry>;
 const entry = manifest[src];
-const variants = entry && minWidth
-  ? entry.srcset.filter((v) => v.w >= minWidth || v.w === entry.srcset[entry.srcset.length - 1].w)
+// Src resuelto: hasheado si hay entrada en el manifiesto, crudo si no.
+const resolvedSrc = entry?.src ?? src;
+const hasSrcset = !!entry?.srcset?.length;
+const variants = hasSrcset && minWidth
+  ? entry!.srcset!.filter((v) => v.w >= minWidth || v.w === entry!.srcset![entry!.srcset!.length - 1].w)
   : entry?.srcset;
 const srcset = variants ? variants.map((v) => `${v.url} ${v.w}w`).join(', ') : undefined;
 ---
 
-{entry ? (
+{hasSrcset ? (
   <img
-    src={src}
+    src={resolvedSrc}
     srcset={srcset}
     sizes={sizes}
-    width={entry.width}
-    height={entry.height}
+    width={entry!.width}
+    height={entry!.height}
     alt={alt}
     class={className}
     loading={loading}
@@ -64,7 +76,7 @@ const srcset = variants ? variants.map((v) => `${v.url} ${v.w}w`).join(', ') : u
   />
 ) : (
   <img
-    src={src}
+    src={resolvedSrc}
     alt={alt}
     class={className}
     loading={loading}

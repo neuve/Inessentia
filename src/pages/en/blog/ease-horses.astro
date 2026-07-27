@@ -2,6 +2,7 @@
 import BlogPost from '../../../layouts/BlogPost.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import { getPost, nextPostFor } from '../../../data/posts';
+import { resolveAsset } from '../../../lib/resolve-asset';
 
 const post = getPost('ease-caballos')!;
 const locale = 'en';
@@ -26,9 +27,9 @@ const locale = 'en';
   <p data-reveal>I arrived in Querétaro without many expectations. What I carried was a desire: to meet and explore a new way of relating. What I found at Las Pawlonias, in July 2026, was a workshop that begins with experience — the rational information arrived little by little, once the body had already understood something first. This is how Barbara Collier and Jeanie Shepherd hold their offering: <strong>EASE</strong>, Equine Assisted Somatic Experiencing.</p>
 
   <div data-reveal>
-    <video autoplay muted loop playsinline preload="metadata" poster="/uploads/ease-caballos-hero.webp" width="1200" height="675" style="width:100%;height:auto;border-radius:12px;display:block;">
-      <source src="/uploads/ease-caballos-clip.webm" type="video/webm">
-      <source src="/uploads/ease-caballos-clip.mp4" type="video/mp4">
+    <video autoplay muted loop playsinline preload="metadata" poster={resolveAsset('/uploads/ease-caballos-hero.webp')} width="1200" height="675" style="width:100%;height:auto;border-radius:12px;display:block;">
+      <source src={resolveAsset('/uploads/ease-caballos-clip.webm')} type="video/webm">
+      <source src={resolveAsset('/uploads/ease-caballos-clip.mp4')} type="video/mp4">
     </video>
     <p style="margin:8px 0 0;font-size:13px;color:var(--sand-d);">The paddock at Las Pawlonias, Querétaro, at dusk — the horses who took part in the workshop.</p>
   </div>

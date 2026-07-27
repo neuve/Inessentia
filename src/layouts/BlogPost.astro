@@ -4,6 +4,7 @@ import Img from '../components/Img.astro';
 import DisqusComments from '../components/DisqusComments.astro';
 import { t, type Locale } from '../i18n/utils';
 import { personSchema, personRef, PERSON_ALT_NAME } from '../data/person';
+import { resolveAsset } from '../lib/resolve-asset';
 
 interface VideoSchema {
   name: string;
@@ -70,7 +71,11 @@ const schema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": title,
-  "image": `https://inessentia.mx${heroImage}`,
+  // A diferencia de publisher.logo (identidad de marca estable, ver
+  // tools/check-immutable-urls.mjs ALLOWLIST), esto SÍ debe ir hasheado: es
+  // el mismo heroImage dinámico por-post que ya sirve <Img>, no una URL de
+  // identidad canónica.
+  "image": `https://inessentia.mx${resolveAsset(heroImage)}`,
   "inLanguage": locale,
   // author referencia el nodo Person completo (con credenciales) por @id
   "author": personRef,

@@ -1,8 +1,12 @@
 /* Fuentes auto-hospedadas (woff2, subset latin) — public/fonts/, descargadas con
    tools/fetch-fonts.mjs. Reemplazan la carga desde Google Fonts (sin conexión a
-   fonts.googleapis/gstatic). font-display:swap evita texto invisible. */
-@font-face { font-family: 'Mulish'; font-style: normal; font-weight: 200 1000; font-display: swap; src: url('/fonts/mulish-var.woff2') format('woff2'); }
-@font-face { font-family: 'Bitter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('/fonts/bitter-var.woff2') format('woff2'); }
+   fonts.googleapis/gstatic). font-display:swap evita texto invisible.
+   Los @font-face en sí viven en fonts.generated.css (escrito por
+   tools/generate-responsive-images.mjs en cada build) porque este archivo es
+   CSS estático: no puede leer src/data/image-manifest.json ni resolver la URL
+   hasheada vigente de cada woff2. @import debe ir antes que cualquier otra
+   regla, por eso encabeza el archivo. */
+@import './fonts.generated.css';
 
 :root {
   --purple: #46276E;

@@ -3,6 +3,7 @@ import Base from '../../../layouts/Base.astro';
 import VideoEmbed from '../../../components/VideoEmbed.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import { t } from '../../../i18n/utils';
+import { resolveAsset } from '../../../lib/resolve-asset';
 
 const locale = 'en';
 const i = t(locale);
@@ -160,7 +161,7 @@ const schema = [
         </div>
         <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;">
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Core Energetics</h3>
-          <p class="body-text body-text--on-dark" style="margin:0;">Views the person as an integration of body, emotions, thoughts and intentions. Works with movement and breath to access deeper layers. Offers an evolutionary and transpersonal perspective. <a href="https://youtube.com/shorts/WUdo-ENIn7U?si=_F1f8UJgIIgjtRM7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src="/uploads/youtube-icon.webp" width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
+          <p class="body-text body-text--on-dark" style="margin:0;">Views the person as an integration of body, emotions, thoughts and intentions. Works with movement and breath to access deeper layers. Offers an evolutionary and transpersonal perspective. <a href="https://youtube.com/shorts/WUdo-ENIn7U?si=_F1f8UJgIIgjtRM7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;margin-left:6px;opacity:.85;transition:opacity .2s;" title="Watch video"><img src={resolveAsset('/uploads/youtube-icon.webp')} width="64" height="54" loading="lazy" alt="YouTube" style="height:18px;width:auto;display:inline;"></a></p>
         </div>
       </div>
     </div>

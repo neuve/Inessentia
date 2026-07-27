@@ -46,6 +46,7 @@ interface Props {
 }
 
 import Img from './Img.astro';
+import { resolveAsset } from '../lib/resolve-asset';
 
 const {
   eyebrow,
@@ -81,7 +82,7 @@ const mode = variant === 'auto' ? (photo ? 'cinema' : 'panel') : variant;
       {photo && (
         photoDesktop ? (
           <picture>
-            <source media="(min-width: 821px)" srcset={photoDesktop} />
+            <source media="(min-width: 821px)" srcset={resolveAsset(photoDesktop)} />
             <Img src={photo} alt={photoAlt} sizes="100vw" minWidth={768} fetchpriority="high" loading="eager" />
           </picture>
         ) : (

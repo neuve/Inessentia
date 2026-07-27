@@ -4,6 +4,7 @@ import Img from '../../components/Img.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { t } from '../../i18n/utils';
 import { getResourcesGrid, getPost, postHref } from '../../data/posts';
+import { resolveAsset } from '../../lib/resolve-asset';
 
 const locale = 'es';
 const i = t(locale);
@@ -45,7 +46,9 @@ const grid = getResourcesGrid().map((p, k) => {
     title: p[locale].title,
     blurb: p.cardBlurb?.[locale] ?? p[locale].description,
     alt: p.cardAlt?.[locale] ?? p.heroAlt[locale],
-    video: p.cardVideo,
+    // cardVideo se consume en <source src=...> crudo (fuera de <Img>), así que
+    // hay que resolverlo aquí para que apunte a la copia hasheada.
+    video: p.cardVideo ? { mp4: resolveAsset(p.cardVideo.mp4), webm: resolveAsset(p.cardVideo.webm) } : undefined,
     photo,
     pal,
     big: k % 5 === 0, // cada 5ta tarjeta es "grande"

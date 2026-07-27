@@ -1,37 +1,44 @@
 {
+  "/fonts/bitter-var.woff2": {
+    "src": "/fonts/responsive/bitter-var.261cfc4d.woff2"
+  },
+  "/fonts/mulish-var.woff2": {
+    "src": "/fonts/responsive/mulish-var.14cc0eab.woff2"
+  },
   "/uploads/buen-momento-pareja.webp": {
     "width": 900,
     "height": 900,
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/buen-momento-pareja-96.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-96.e6629da2.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/buen-momento-pareja-192.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-192.d7cb2296.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/buen-momento-pareja-320.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-320.babf283b.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/buen-momento-pareja-480.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-480.8f2de7b6.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/buen-momento-pareja-640.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-640.c99729aa.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/buen-momento-pareja-768.webp"
+        "url": "/uploads/responsive/buen-momento-pareja-768.83abd8fa.webp"
       },
       {
         "w": 900,
-        "url": "/uploads/buen-momento-pareja.webp"
+        "url": "/uploads/responsive/buen-momento-pareja.b16abc6c.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/buen-momento-pareja.b16abc6c.webp"
   },
   "/uploads/core-energetica-generacion-corpore-card.webp": {
     "width": 700,
@@ -39,29 +46,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-96.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-96.5a4e2cf2.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-192.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-192.394eba18.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-320.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-320.d8d1c60b.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-480.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-480.5cd3a7cf.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-640.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card-640.ef901fe3.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/core-energetica-generacion-corpore-card.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-card.c8ae60cb.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/core-energetica-generacion-corpore-card.c8ae60cb.webp"
   },
   "/uploads/core-energetica-generacion-corpore.webp": {
     "width": 1600,
@@ -69,41 +77,42 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-96.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-96.b57e2ece.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-192.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-192.3f5d884a.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-320.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-320.fa695edf.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-480.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-480.46c0264e.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-640.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-640.596859f8.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-768.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-768.32a4a98b.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-960.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-960.b96fe6c1.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/core-energetica-generacion-corpore-1200.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore-1200.7f042c84.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/core-energetica-generacion-corpore.webp"
+        "url": "/uploads/responsive/core-energetica-generacion-corpore.867eb387.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/core-energetica-generacion-corpore.867eb387.webp"
   },
   "/uploads/costos-header.webp": {
     "width": 2000,
@@ -111,49 +120,56 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/costos-header-96.webp"
+        "url": "/uploads/responsive/costos-header-96.5ec4dd8f.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/costos-header-192.webp"
+        "url": "/uploads/responsive/costos-header-192.27bf1b08.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/costos-header-320.webp"
+        "url": "/uploads/responsive/costos-header-320.2770fbf1.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/costos-header-480.webp"
+        "url": "/uploads/responsive/costos-header-480.72ede3e5.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/costos-header-640.webp"
+        "url": "/uploads/responsive/costos-header-640.0d98d3ed.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/costos-header-768.webp"
+        "url": "/uploads/responsive/costos-header-768.df9f3f4d.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/costos-header-960.webp"
+        "url": "/uploads/responsive/costos-header-960.0f73c5ad.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/costos-header-1200.webp"
+        "url": "/uploads/responsive/costos-header-1200.77f9a80f.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/costos-header-1600.webp"
+        "url": "/uploads/responsive/costos-header-1600.ec2c3f10.webp"
       },
       {
         "w": 1920,
-        "url": "/uploads/responsive/costos-header-1920.webp"
+        "url": "/uploads/responsive/costos-header-1920.6cedc07d.webp"
       },
       {
         "w": 2000,
-        "url": "/uploads/costos-header.webp"
+        "url": "/uploads/responsive/costos-header.04b6a53e.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/costos-header.04b6a53e.webp"
+  },
+  "/uploads/ease-caballos-clip.mp4": {
+    "src": "/uploads/responsive/ease-caballos-clip.7365542f.mp4"
+  },
+  "/uploads/ease-caballos-clip.webm": {
+    "src": "/uploads/responsive/ease-caballos-clip.81199fdc.webm"
   },
   "/uploads/ease-caballos-hero.webp": {
     "width": 1200,
@@ -161,37 +177,38 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/ease-caballos-hero-96.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-96.ad3374ea.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/ease-caballos-hero-192.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-192.01cbe817.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/ease-caballos-hero-320.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-320.c0a2b305.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/ease-caballos-hero-480.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-480.25025473.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/ease-caballos-hero-640.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-640.c3e7fb41.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/ease-caballos-hero-768.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-768.963f7e44.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/ease-caballos-hero-960.webp"
+        "url": "/uploads/responsive/ease-caballos-hero-960.05a95044.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/ease-caballos-hero.webp"
+        "url": "/uploads/responsive/ease-caballos-hero.06d924fd.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/ease-caballos-hero.06d924fd.webp"
   },
   "/uploads/experiencia-somatica-impala-guepardo-card.webp": {
     "width": 700,
@@ -199,29 +216,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-96.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-96.1408e4ec.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-192.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-192.458dbd90.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-320.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-320.7fcfa988.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-480.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-480.c7434609.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-640.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card-640.29b863c8.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/experiencia-somatica-impala-guepardo-card.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-card.cbb5efd1.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/experiencia-somatica-impala-guepardo-card.cbb5efd1.webp"
   },
   "/uploads/experiencia-somatica-impala-guepardo.webp": {
     "width": 2000,
@@ -229,49 +247,50 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-96.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-96.82d45430.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-192.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-192.5e71354b.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-320.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-320.34729f05.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-480.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-480.4160649f.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-640.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-640.fe533b0d.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-768.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-768.7cffbf69.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-960.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-960.d1eb3ea5.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1200.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1200.333efe5d.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1600.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1600.3c92edbc.webp"
       },
       {
         "w": 1920,
-        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1920.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo-1920.71cafb9b.webp"
       },
       {
         "w": 2000,
-        "url": "/uploads/experiencia-somatica-impala-guepardo.webp"
+        "url": "/uploads/responsive/experiencia-somatica-impala-guepardo.1116c0f8.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/experiencia-somatica-impala-guepardo.1116c0f8.webp"
   },
   "/uploads/facebook-icon.png": {
     "width": 80,
@@ -279,9 +298,32 @@
     "srcset": [
       {
         "w": 80,
-        "url": "/uploads/facebook-icon.png"
+        "url": "/uploads/responsive/facebook-icon.acbe557d.png"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/facebook-icon.acbe557d.png"
+  },
+  "/uploads/hero-crops/patricio-ruiz-retrato-2-hero-cinema.jpg": {
+    "width": 810,
+    "height": 650,
+    "srcset": [
+      {
+        "w": 810,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.bbe5f8f4.jpg"
+      }
+    ],
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.bbe5f8f4.jpg"
+  },
+  "/uploads/hero-crops/patricio-ruiz-retrato-hero-cinema-1300x1089.webp": {
+    "width": 1300,
+    "height": 1089,
+    "srcset": [
+      {
+        "w": 1300,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema-1300x1089.6b364014.webp"
+      }
+    ],
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema-1300x1089.6b364014.webp"
   },
   "/uploads/icono-terapia-familiar.webp": {
     "width": 250,
@@ -289,17 +331,18 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/icono-terapia-familiar-96.webp"
+        "url": "/uploads/responsive/icono-terapia-familiar-96.28f34179.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/icono-terapia-familiar-192.webp"
+        "url": "/uploads/responsive/icono-terapia-familiar-192.ea1d62a3.webp"
       },
       {
         "w": 250,
-        "url": "/uploads/icono-terapia-familiar.webp"
+        "url": "/uploads/responsive/icono-terapia-familiar.b4684ea6.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/icono-terapia-familiar.b4684ea6.webp"
   },
   "/uploads/icono-terapia-individual.webp": {
     "width": 215,
@@ -307,17 +350,18 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/icono-terapia-individual-96.webp"
+        "url": "/uploads/responsive/icono-terapia-individual-96.8732a260.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/icono-terapia-individual-192.webp"
+        "url": "/uploads/responsive/icono-terapia-individual-192.3417fd21.webp"
       },
       {
         "w": 215,
-        "url": "/uploads/icono-terapia-individual.webp"
+        "url": "/uploads/responsive/icono-terapia-individual.1b7b767e.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/icono-terapia-individual.1b7b767e.webp"
   },
   "/uploads/icono-terapia-pareja.webp": {
     "width": 272,
@@ -325,17 +369,18 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/icono-terapia-pareja-96.webp"
+        "url": "/uploads/responsive/icono-terapia-pareja-96.7dd05ed1.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/icono-terapia-pareja-192.webp"
+        "url": "/uploads/responsive/icono-terapia-pareja-192.cac323ed.webp"
       },
       {
         "w": 272,
-        "url": "/uploads/icono-terapia-pareja.webp"
+        "url": "/uploads/responsive/icono-terapia-pareja.8699a607.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/icono-terapia-pareja.8699a607.webp"
   },
   "/uploads/ifs-taxonomia-partes-infografia.webp": {
     "width": 1800,
@@ -343,45 +388,49 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-96.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-96.805cf47d.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-192.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-192.801312d7.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-320.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-320.863158cd.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-480.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-480.63332442.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-640.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-640.18b1f507.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-768.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-768.a27e78ae.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-960.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-960.3ac8b54f.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-1200.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-1200.08e6d71c.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-1600.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia-1600.836dd288.webp"
       },
       {
         "w": 1800,
-        "url": "/uploads/ifs-taxonomia-partes-infografia.webp"
+        "url": "/uploads/responsive/ifs-taxonomia-partes-infografia.ed5b411e.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/ifs-taxonomia-partes-infografia.ed5b411e.webp"
+  },
+  "/uploads/instagram-icon.svg": {
+    "src": "/uploads/responsive/instagram-icon.521148cb.svg"
   },
   "/uploads/linkedin-icon.png": {
     "width": 80,
@@ -389,9 +438,10 @@
     "srcset": [
       {
         "w": 80,
-        "url": "/uploads/linkedin-icon.png"
+        "url": "/uploads/responsive/linkedin-icon.21256bc7.png"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/linkedin-icon.21256bc7.png"
   },
   "/uploads/logo-icon.png": {
     "width": 214,
@@ -399,17 +449,18 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/logo-icon-96.webp"
+        "url": "/uploads/responsive/logo-icon-96.4ff031da.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/logo-icon-192.webp"
+        "url": "/uploads/responsive/logo-icon-192.abb3a4e4.webp"
       },
       {
         "w": 214,
-        "url": "/uploads/logo-icon.png"
+        "url": "/uploads/responsive/logo-icon.89426f78.png"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/logo-icon.89426f78.png"
   },
   "/uploads/logo-icon.webp": {
     "width": 150,
@@ -417,13 +468,14 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/logo-icon-96.webp"
+        "url": "/uploads/responsive/logo-icon-96.ac2bc62a.webp"
       },
       {
         "w": 150,
-        "url": "/uploads/logo-icon.webp"
+        "url": "/uploads/responsive/logo-icon.f8cfddd5.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/logo-icon.f8cfddd5.webp"
   },
   "/uploads/logo-patricio-ruiz.webp": {
     "width": 400,
@@ -431,21 +483,616 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/logo-patricio-ruiz-96.webp"
+        "url": "/uploads/responsive/logo-patricio-ruiz-96.1bd67284.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/logo-patricio-ruiz-192.webp"
+        "url": "/uploads/responsive/logo-patricio-ruiz-192.4b9136ba.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/logo-patricio-ruiz-320.webp"
+        "url": "/uploads/responsive/logo-patricio-ruiz-320.bd604b38.webp"
       },
       {
         "w": 400,
-        "url": "/uploads/logo-patricio-ruiz.webp"
+        "url": "/uploads/responsive/logo-patricio-ruiz.500ba9db.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/logo-patricio-ruiz.500ba9db.webp"
+  },
+  "/uploads/og/about-me.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-about-me.9e9162ae.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-about-me.9e9162ae.webp"
+  },
+  "/uploads/og/blog-ansiedad-somatica-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-ansiedad-somatica-en.b0cf7c74.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-ansiedad-somatica-en.b0cf7c74.webp"
+  },
+  "/uploads/og/blog-ansiedad-somatica-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-ansiedad-somatica-es.d6104ffa.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-ansiedad-somatica-es.d6104ffa.webp"
+  },
+  "/uploads/og/blog-core-energetica-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-core-energetica-en.98b406e6.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-core-energetica-en.98b406e6.webp"
+  },
+  "/uploads/og/blog-core-energetica-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-core-energetica-es.83e0f0ef.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-core-energetica-es.83e0f0ef.webp"
+  },
+  "/uploads/og/blog-cuando-es-buen-momento-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-cuando-es-buen-momento-en.10233461.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-cuando-es-buen-momento-en.10233461.webp"
+  },
+  "/uploads/og/blog-cuando-es-buen-momento-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-cuando-es-buen-momento-es.7dfdad43.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-cuando-es-buen-momento-es.7dfdad43.webp"
+  },
+  "/uploads/og/blog-duelo-somatico-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-duelo-somatico-en.ac0e044b.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-duelo-somatico-en.ac0e044b.webp"
+  },
+  "/uploads/og/blog-duelo-somatico-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-duelo-somatico-es.bdf61d40.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-duelo-somatico-es.bdf61d40.webp"
+  },
+  "/uploads/og/blog-ease-caballos-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-ease-caballos-en.5d01981a.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-ease-caballos-en.5d01981a.webp"
+  },
+  "/uploads/og/blog-ease-caballos-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-ease-caballos-es.a51226af.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-ease-caballos-es.a51226af.webp"
+  },
+  "/uploads/og/blog-estres-cronico-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-estres-cronico-en.c25a6c5d.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-estres-cronico-en.c25a6c5d.webp"
+  },
+  "/uploads/og/blog-estres-cronico-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-estres-cronico-es.ea66b009.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-estres-cronico-es.ea66b009.webp"
+  },
+  "/uploads/og/blog-experiencia-somatica-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-experiencia-somatica-en.f25ca4fb.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-experiencia-somatica-en.f25ca4fb.webp"
+  },
+  "/uploads/og/blog-experiencia-somatica-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-experiencia-somatica-es.9d549eea.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-experiencia-somatica-es.9d549eea.webp"
+  },
+  "/uploads/og/blog-patrones-de-pareja-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-patrones-de-pareja-en.0410e215.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-patrones-de-pareja-en.0410e215.webp"
+  },
+  "/uploads/og/blog-patrones-de-pareja-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-patrones-de-pareja-es.4a612b1c.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-patrones-de-pareja-es.4a612b1c.webp"
+  },
+  "/uploads/og/blog-primera-cita-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-primera-cita-en.71bb080d.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-primera-cita-en.71bb080d.webp"
+  },
+  "/uploads/og/blog-primera-cita-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-primera-cita-es.614b58c5.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-primera-cita-es.614b58c5.webp"
+  },
+  "/uploads/og/blog-psicologo-psicoterapeuta-psiquiatra-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-psicologo-psicoterapeuta-psiquiatra-en.c5826661.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-psicologo-psicoterapeuta-psiquiatra-en.c5826661.webp"
+  },
+  "/uploads/og/blog-psicologo-psicoterapeuta-psiquiatra-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-psicologo-psicoterapeuta-psiquiatra-es.95ab17c6.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-psicologo-psicoterapeuta-psiquiatra-es.95ab17c6.webp"
+  },
+  "/uploads/og/blog-que-esperar-de-la-terapia-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-que-esperar-de-la-terapia-en.bc4d846a.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-que-esperar-de-la-terapia-en.bc4d846a.webp"
+  },
+  "/uploads/og/blog-que-esperar-de-la-terapia-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-que-esperar-de-la-terapia-es.49a4e2ca.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-que-esperar-de-la-terapia-es.49a4e2ca.webp"
+  },
+  "/uploads/og/blog-regulacion-sistema-nervioso-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-regulacion-sistema-nervioso-en.41902226.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-regulacion-sistema-nervioso-en.41902226.webp"
+  },
+  "/uploads/og/blog-regulacion-sistema-nervioso-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-regulacion-sistema-nervioso-es.05433796.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-regulacion-sistema-nervioso-es.05433796.webp"
+  },
+  "/uploads/og/blog-sistemas-familiares-internos-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-sistemas-familiares-internos-en.56837666.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-sistemas-familiares-internos-en.56837666.webp"
+  },
+  "/uploads/og/blog-sistemas-familiares-internos-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-sistemas-familiares-internos-es.ed3de4d6.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-sistemas-familiares-internos-es.ed3de4d6.webp"
+  },
+  "/uploads/og/blog-tapping-eft-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-tapping-eft-en.f9d2be73.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-tapping-eft-en.f9d2be73.webp"
+  },
+  "/uploads/og/blog-tapping-eft-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-tapping-eft-es.9c76cea8.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-tapping-eft-es.9c76cea8.webp"
+  },
+  "/uploads/og/blog-teoria-polivagal-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-teoria-polivagal-en.171af273.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-teoria-polivagal-en.171af273.webp"
+  },
+  "/uploads/og/blog-teoria-polivagal-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-teoria-polivagal-es.a8fca99f.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-teoria-polivagal-es.a8fca99f.webp"
+  },
+  "/uploads/og/blog-terapia-adolescentes-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-adolescentes-en.5692af92.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-adolescentes-en.5692af92.webp"
+  },
+  "/uploads/og/blog-terapia-adolescentes-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-adolescentes-es.e990a408.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-adolescentes-es.e990a408.webp"
+  },
+  "/uploads/og/blog-terapia-corporal-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-corporal-en.ae58eae1.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-corporal-en.ae58eae1.webp"
+  },
+  "/uploads/og/blog-terapia-corporal-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-corporal-es.1e2ce27f.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-corporal-es.1e2ce27f.webp"
+  },
+  "/uploads/og/blog-terapia-individual-o-pareja-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-individual-o-pareja-en.bff3cdea.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-individual-o-pareja-en.bff3cdea.webp"
+  },
+  "/uploads/og/blog-terapia-individual-o-pareja-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-individual-o-pareja-es.b270b5ab.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-individual-o-pareja-es.b270b5ab.webp"
+  },
+  "/uploads/og/blog-terapia-presencial-vs-online-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-presencial-vs-online-en.917abfa6.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-presencial-vs-online-en.917abfa6.webp"
+  },
+  "/uploads/og/blog-terapia-presencial-vs-online-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-terapia-presencial-vs-online-es.80795ff8.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-terapia-presencial-vs-online-es.80795ff8.webp"
+  },
+  "/uploads/og/blog-tipos-de-terapia-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-tipos-de-terapia-en.962ecaf1.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-tipos-de-terapia-en.962ecaf1.webp"
+  },
+  "/uploads/og/blog-tipos-de-terapia-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-tipos-de-terapia-es.51f70aa0.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-tipos-de-terapia-es.51f70aa0.webp"
+  },
+  "/uploads/og/blog-trauma-sin-diagnosticar-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-trauma-sin-diagnosticar-en.2f5455af.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-trauma-sin-diagnosticar-en.2f5455af.webp"
+  },
+  "/uploads/og/blog-trauma-sin-diagnosticar-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-blog-trauma-sin-diagnosticar-es.a2635712.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-blog-trauma-sin-diagnosticar-es.a2635712.webp"
+  },
+  "/uploads/og/default.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-default.c3ba2fd0.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-default.c3ba2fd0.webp"
+  },
+  "/uploads/og/home-en.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-home-en.0d82125c.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-home-en.0d82125c.webp"
+  },
+  "/uploads/og/home-es.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-home-es.3f4d29e7.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-home-es.3f4d29e7.webp"
+  },
+  "/uploads/og/sobre-mi.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-sobre-mi.d9436704.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-sobre-mi.d9436704.webp"
+  },
+  "/uploads/og/supervision.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-supervision.10582d54.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-supervision.10582d54.webp"
+  },
+  "/uploads/og/terapia-familias.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-terapia-familias.514fe595.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-terapia-familias.514fe595.webp"
+  },
+  "/uploads/og/terapia-individual.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-terapia-individual.9e12507b.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-terapia-individual.9e12507b.webp"
+  },
+  "/uploads/og/terapia-pareja.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-terapia-pareja.cc6306dd.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-terapia-pareja.cc6306dd.webp"
+  },
+  "/uploads/og/therapy-couples.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-therapy-couples.848e05f2.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-therapy-couples.848e05f2.webp"
+  },
+  "/uploads/og/therapy-family.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-therapy-family.20a5d94f.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-therapy-family.20a5d94f.webp"
+  },
+  "/uploads/og/therapy-individual.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-therapy-individual.6187a0da.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-therapy-individual.6187a0da.webp"
   },
   "/uploads/patricio-mandala-brand.webp": {
     "width": 1014,
@@ -453,37 +1100,38 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/patricio-mandala-brand-96.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-96.432a0e7d.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/patricio-mandala-brand-192.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-192.5930764b.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/patricio-mandala-brand-320.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-320.db76976e.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/patricio-mandala-brand-480.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-480.4abe2a5c.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/patricio-mandala-brand-640.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-640.abb5bb67.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/patricio-mandala-brand-768.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-768.3932ba36.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/patricio-mandala-brand-960.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand-960.67e474bc.webp"
       },
       {
         "w": 1014,
-        "url": "/uploads/patricio-mandala-brand.webp"
+        "url": "/uploads/responsive/patricio-mandala-brand.f243bd81.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/patricio-mandala-brand.f243bd81.webp"
   },
   "/uploads/patricio-ruiz-retrato-2.jpg": {
     "width": 1066,
@@ -491,37 +1139,38 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-96.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-96.fefcdff9.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-192.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-192.2d50210a.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-320.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-320.032cb315.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-480.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-480.07e4514b.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-640.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-640.e122d006.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-768.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-768.9d0206f3.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-960.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-960.b8c54e0e.webp"
       },
       {
         "w": 1066,
-        "url": "/uploads/patricio-ruiz-retrato-2.jpg"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2.b915b2eb.jpg"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/patricio-ruiz-retrato-2.b915b2eb.jpg"
   },
   "/uploads/patricio-ruiz-retrato.webp": {
     "width": 1707,
@@ -529,45 +1178,91 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-96.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-96.71a844c4.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-192.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-192.16496248.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-320.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-320.e18977e9.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-480.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-480.5f9e1433.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-640.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-640.c66f4789.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-768.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-768.cd0d70c9.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-960.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-960.02f9db54.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-1200.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1200.84f7a5a7.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-1600.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1600.5331acfa.webp"
       },
       {
         "w": 1707,
-        "url": "/uploads/patricio-ruiz-retrato.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato.738649b5.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/patricio-ruiz-retrato.738649b5.webp"
+  },
+  "/uploads/placeholder-ansiedad-somatica.svg": {
+    "src": "/uploads/responsive/placeholder-ansiedad-somatica.50aa4c64.svg"
+  },
+  "/uploads/placeholder-core-energetica.svg": {
+    "src": "/uploads/responsive/placeholder-core-energetica.554b1e6f.svg"
+  },
+  "/uploads/placeholder-duelo-somatico.svg": {
+    "src": "/uploads/responsive/placeholder-duelo-somatico.3ee52f26.svg"
+  },
+  "/uploads/placeholder-estres-cronico.svg": {
+    "src": "/uploads/responsive/placeholder-estres-cronico.86a63843.svg"
+  },
+  "/uploads/placeholder-experiencia-somatica.svg": {
+    "src": "/uploads/responsive/placeholder-experiencia-somatica.3e8a1621.svg"
+  },
+  "/uploads/placeholder-patrones-de-pareja.svg": {
+    "src": "/uploads/responsive/placeholder-patrones-de-pareja.deb23b60.svg"
+  },
+  "/uploads/placeholder-psicologo-psicoterapeuta-psiquiatra.svg": {
+    "src": "/uploads/responsive/placeholder-psicologo-psicoterapeuta-psiquiatra.9d669fa6.svg"
+  },
+  "/uploads/placeholder-regulacion-sistema-nervioso.svg": {
+    "src": "/uploads/responsive/placeholder-regulacion-sistema-nervioso.db6adb4d.svg"
+  },
+  "/uploads/placeholder-sistemas-familiares-internos.svg": {
+    "src": "/uploads/responsive/placeholder-sistemas-familiares-internos.48253e94.svg"
+  },
+  "/uploads/placeholder-tapping-eft.svg": {
+    "src": "/uploads/responsive/placeholder-tapping-eft.4026d8a9.svg"
+  },
+  "/uploads/placeholder-teoria-polivagal.svg": {
+    "src": "/uploads/responsive/placeholder-teoria-polivagal.d3903cbe.svg"
+  },
+  "/uploads/placeholder-terapia-adolescentes.svg": {
+    "src": "/uploads/responsive/placeholder-terapia-adolescentes.db12627a.svg"
+  },
+  "/uploads/placeholder-terapia-individual-o-pareja.svg": {
+    "src": "/uploads/responsive/placeholder-terapia-individual-o-pareja.d125bb44.svg"
+  },
+  "/uploads/placeholder-terapia-presencial-vs-online.svg": {
+    "src": "/uploads/responsive/placeholder-terapia-presencial-vs-online.6cfc55ac.svg"
+  },
+  "/uploads/placeholder-trauma-sin-diagnosticar.svg": {
+    "src": "/uploads/responsive/placeholder-trauma-sin-diagnosticar.3dbb3dc1.svg"
   },
   "/uploads/primera-cita-terapia.webp": {
     "width": 900,
@@ -575,33 +1270,34 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/primera-cita-terapia-96.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-96.463fd29a.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/primera-cita-terapia-192.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-192.ce91f5ae.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/primera-cita-terapia-320.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-320.4239b90c.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/primera-cita-terapia-480.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-480.8abb6ee3.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/primera-cita-terapia-640.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-640.4e22e180.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/primera-cita-terapia-768.webp"
+        "url": "/uploads/responsive/primera-cita-terapia-768.20a21ffb.webp"
       },
       {
         "w": 900,
-        "url": "/uploads/primera-cita-terapia.webp"
+        "url": "/uploads/responsive/primera-cita-terapia.bbfcc87d.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/primera-cita-terapia.bbfcc87d.webp"
   },
   "/uploads/que-esperar-terapia-card.webp": {
     "width": 700,
@@ -609,29 +1305,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/que-esperar-terapia-card-96.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card-96.b37bec71.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/que-esperar-terapia-card-192.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card-192.bbb78072.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/que-esperar-terapia-card-320.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card-320.3bd11b0d.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/que-esperar-terapia-card-480.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card-480.f2ba134c.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/que-esperar-terapia-card-640.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card-640.3bd84050.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/que-esperar-terapia-card.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-card.dd8fed6f.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/que-esperar-terapia-card.dd8fed6f.webp"
   },
   "/uploads/que-esperar-terapia.webp": {
     "width": 1200,
@@ -639,37 +1336,38 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/que-esperar-terapia-96.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-96.08cc8ac6.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/que-esperar-terapia-192.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-192.290f27f7.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/que-esperar-terapia-320.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-320.0f2a1616.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/que-esperar-terapia-480.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-480.7b9c322f.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/que-esperar-terapia-640.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-640.b6f82c72.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/que-esperar-terapia-768.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-768.d5acd3f5.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/que-esperar-terapia-960.webp"
+        "url": "/uploads/responsive/que-esperar-terapia-960.6af8e51f.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/que-esperar-terapia.webp"
+        "url": "/uploads/responsive/que-esperar-terapia.fddeb444.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/que-esperar-terapia.fddeb444.webp"
   },
   "/uploads/sistemas-familiares-internos-mano-comunidad-card.webp": {
     "width": 700,
@@ -677,29 +1375,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-96.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-96.b2997b59.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-192.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-192.95e8823f.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-320.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-320.34a05f2e.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-480.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-480.81db7ecc.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-640.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card-640.5270c1f7.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/sistemas-familiares-internos-mano-comunidad-card.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card.283ff15b.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-card.283ff15b.webp"
   },
   "/uploads/sistemas-familiares-internos-mano-comunidad.webp": {
     "width": 1600,
@@ -707,41 +1406,42 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-96.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-96.20fa09bf.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-192.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-192.412d9da6.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-320.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-320.ec8db880.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-480.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-480.0844c340.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-640.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-640.9f56f141.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-768.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-768.1a134822.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-960.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-960.b8d404ae.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-1200.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad-1200.8e60a23f.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/sistemas-familiares-internos-mano-comunidad.webp"
+        "url": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad.e36061b1.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/sistemas-familiares-internos-mano-comunidad.e36061b1.webp"
   },
   "/uploads/supervision-grupo-conversacion.webp": {
     "width": 1840,
@@ -749,45 +1449,46 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-96.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-96.b8d76d76.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-192.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-192.93ddc478.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-320.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-320.fc09025e.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-480.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-480.2bf74de2.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-640.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-640.8b30cc31.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-768.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-768.eda987f1.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-960.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-960.572c8117.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-1200.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-1200.17e83fbf.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/supervision-grupo-conversacion-1600.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion-1600.a406456f.webp"
       },
       {
         "w": 1840,
-        "url": "/uploads/supervision-grupo-conversacion.webp"
+        "url": "/uploads/responsive/supervision-grupo-conversacion.d5d1fff0.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/supervision-grupo-conversacion.d5d1fff0.webp"
   },
   "/uploads/supervision-grupos-trabajando.webp": {
     "width": 1800,
@@ -795,45 +1496,46 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-96.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-96.3d3face8.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-192.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-192.686bf900.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-320.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-320.34113cc5.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-480.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-480.430b1e56.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-640.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-640.7360fcfd.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-768.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-768.df67a659.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-960.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-960.eac0295e.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-1200.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-1200.47111d45.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/supervision-grupos-trabajando-1600.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando-1600.7b693c04.webp"
       },
       {
         "w": 1800,
-        "url": "/uploads/supervision-grupos-trabajando.webp"
+        "url": "/uploads/responsive/supervision-grupos-trabajando.c0a5e0c6.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/supervision-grupos-trabajando.c0a5e0c6.webp"
   },
   "/uploads/teoria-polivagal-lamina-sistema-nervioso-card.webp": {
     "width": 700,
@@ -841,29 +1543,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-96.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-96.b6c11fac.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-192.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-192.336ceebb.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-320.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-320.b0d2da2d.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-480.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-480.eabc0f58.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-640.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card-640.c50a8da4.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/teoria-polivagal-lamina-sistema-nervioso-card.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card.f4bed79d.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-card.f4bed79d.webp"
   },
   "/uploads/teoria-polivagal-lamina-sistema-nervioso.webp": {
     "width": 1600,
@@ -871,41 +1574,42 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-96.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-96.93dcf2e6.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-192.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-192.5df212c3.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-320.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-320.34f780c6.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-480.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-480.0e699e0f.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-640.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-640.39e5d91b.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-768.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-768.45b79f20.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-960.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-960.39cd3875.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-1200.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso-1200.4cc1b74e.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/teoria-polivagal-lamina-sistema-nervioso.webp"
+        "url": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso.9b93519c.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/teoria-polivagal-lamina-sistema-nervioso.9b93519c.webp"
   },
   "/uploads/terapia-corporal-card.webp": {
     "width": 700,
@@ -913,29 +1617,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/terapia-corporal-card-96.webp"
+        "url": "/uploads/responsive/terapia-corporal-card-96.95fa5560.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/terapia-corporal-card-192.webp"
+        "url": "/uploads/responsive/terapia-corporal-card-192.130535c8.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/terapia-corporal-card-320.webp"
+        "url": "/uploads/responsive/terapia-corporal-card-320.b677781a.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/terapia-corporal-card-480.webp"
+        "url": "/uploads/responsive/terapia-corporal-card-480.80251ceb.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/terapia-corporal-card-640.webp"
+        "url": "/uploads/responsive/terapia-corporal-card-640.75b2bae9.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/terapia-corporal-card.webp"
+        "url": "/uploads/responsive/terapia-corporal-card.50d42f41.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/terapia-corporal-card.50d42f41.webp"
   },
   "/uploads/terapia-corporal.webp": {
     "width": 2048,
@@ -943,49 +1648,50 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/terapia-corporal-96.webp"
+        "url": "/uploads/responsive/terapia-corporal-96.f7120d24.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/terapia-corporal-192.webp"
+        "url": "/uploads/responsive/terapia-corporal-192.023b6c2c.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/terapia-corporal-320.webp"
+        "url": "/uploads/responsive/terapia-corporal-320.e27c0e1d.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/terapia-corporal-480.webp"
+        "url": "/uploads/responsive/terapia-corporal-480.812eea39.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/terapia-corporal-640.webp"
+        "url": "/uploads/responsive/terapia-corporal-640.facadd62.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/terapia-corporal-768.webp"
+        "url": "/uploads/responsive/terapia-corporal-768.44203e94.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/terapia-corporal-960.webp"
+        "url": "/uploads/responsive/terapia-corporal-960.6cff0fcb.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/terapia-corporal-1200.webp"
+        "url": "/uploads/responsive/terapia-corporal-1200.e1da77dd.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/terapia-corporal-1600.webp"
+        "url": "/uploads/responsive/terapia-corporal-1600.0366eccd.webp"
       },
       {
         "w": 1920,
-        "url": "/uploads/responsive/terapia-corporal-1920.webp"
+        "url": "/uploads/responsive/terapia-corporal-1920.e035414b.webp"
       },
       {
         "w": 2048,
-        "url": "/uploads/terapia-corporal.webp"
+        "url": "/uploads/responsive/terapia-corporal.38c66567.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/terapia-corporal.38c66567.webp"
   },
   "/uploads/terapia-hero.webp": {
     "width": 900,
@@ -993,33 +1699,34 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/terapia-hero-96.webp"
+        "url": "/uploads/responsive/terapia-hero-96.f1032939.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/terapia-hero-192.webp"
+        "url": "/uploads/responsive/terapia-hero-192.39e6e011.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/terapia-hero-320.webp"
+        "url": "/uploads/responsive/terapia-hero-320.9921f5d4.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/terapia-hero-480.webp"
+        "url": "/uploads/responsive/terapia-hero-480.a6b5c20e.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/terapia-hero-640.webp"
+        "url": "/uploads/responsive/terapia-hero-640.2653dc84.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/terapia-hero-768.webp"
+        "url": "/uploads/responsive/terapia-hero-768.baa7dae5.webp"
       },
       {
         "w": 900,
-        "url": "/uploads/terapia-hero.webp"
+        "url": "/uploads/responsive/terapia-hero.599483cd.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/terapia-hero.599483cd.webp"
   },
   "/uploads/tipos-terapia-card.webp": {
     "width": 700,
@@ -1027,29 +1734,30 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/tipos-terapia-card-96.webp"
+        "url": "/uploads/responsive/tipos-terapia-card-96.aea0acca.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/tipos-terapia-card-192.webp"
+        "url": "/uploads/responsive/tipos-terapia-card-192.5980f2cf.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/tipos-terapia-card-320.webp"
+        "url": "/uploads/responsive/tipos-terapia-card-320.a8c924ec.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/tipos-terapia-card-480.webp"
+        "url": "/uploads/responsive/tipos-terapia-card-480.f1f666f0.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/tipos-terapia-card-640.webp"
+        "url": "/uploads/responsive/tipos-terapia-card-640.aed5f4ea.webp"
       },
       {
         "w": 700,
-        "url": "/uploads/tipos-terapia-card.webp"
+        "url": "/uploads/responsive/tipos-terapia-card.678a01d9.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/tipos-terapia-card.678a01d9.webp"
   },
   "/uploads/tipos-terapia.webp": {
     "width": 1200,
@@ -1057,37 +1765,41 @@
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/tipos-terapia-96.webp"
+        "url": "/uploads/responsive/tipos-terapia-96.474a5c94.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/tipos-terapia-192.webp"
+        "url": "/uploads/responsive/tipos-terapia-192.5685bf6d.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/tipos-terapia-320.webp"
+        "url": "/uploads/responsive/tipos-terapia-320.3d0a9ad8.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/tipos-terapia-480.webp"
+        "url": "/uploads/responsive/tipos-terapia-480.b6d5b0a2.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/tipos-terapia-640.webp"
+        "url": "/uploads/responsive/tipos-terapia-640.d9b21627.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/tipos-terapia-768.webp"
+        "url": "/uploads/responsive/tipos-terapia-768.af2984a3.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/tipos-terapia-960.webp"
+        "url": "/uploads/responsive/tipos-terapia-960.f9b3367a.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/tipos-terapia.webp"
+        "url": "/uploads/responsive/tipos-terapia.8460bf71.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/tipos-terapia.8460bf71.webp"
+  },
+  "/uploads/whatsapp-icon.svg": {
+    "src": "/uploads/responsive/whatsapp-icon.33898429.svg"
   },
   "/uploads/youtube-icon.webp": {
     "width": 64,
@@ -1095,8 +1807,9 @@
     "srcset": [
       {
         "w": 64,
-        "url": "/uploads/youtube-icon.webp"
+        "url": "/uploads/responsive/youtube-icon.8a4368d4.webp"
       }
-    ]
+    ],
+    "src": "/uploads/responsive/youtube-icon.8a4368d4.webp"
   }
 }

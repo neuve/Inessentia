@@ -1,5 +1,6 @@
 ---
 import { t, menuColumns, type Locale } from '../i18n/utils';
+import { resolveAsset } from '../lib/resolve-asset';
 
 interface Props { locale: Locale; }
 
@@ -19,10 +20,10 @@ const links = [...col1, ...col2];
       : <a href={link.href} aria-current={link.current ? 'page' : undefined}>{link.label}</a>
   ))}
   <div class="mob-social">
-    <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram"><img src="/uploads/instagram-icon.svg" alt="" width="20" height="20" /></a>
-    <a href="https://www.facebook.com/neuve0/" target="_blank" rel="noopener" aria-label="Facebook"><img src="/uploads/facebook-icon.png" alt="" width="20" height="20" /></a>
-    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="/uploads/whatsapp-icon.svg" alt="" width="20" height="20" /></a>
-    <a href="https://www.linkedin.com/in/patricioruiz/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="/uploads/linkedin-icon.png" alt="" width="20" height="20" /></a>
+    <a href="https://www.instagram.com/neuve" target="_blank" rel="noopener" aria-label="Instagram"><img src={resolveAsset('/uploads/instagram-icon.svg')} alt="" width="20" height="20" /></a>
+    <a href="https://www.facebook.com/neuve0/" target="_blank" rel="noopener" aria-label="Facebook"><img src={resolveAsset('/uploads/facebook-icon.png')} alt="" width="20" height="20" /></a>
+    <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" aria-label="WhatsApp"><img src={resolveAsset('/uploads/whatsapp-icon.svg')} alt="" width="20" height="20" /></a>
+    <a href="https://www.linkedin.com/in/patricioruiz/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src={resolveAsset('/uploads/linkedin-icon.png')} alt="" width="20" height="20" /></a>
     <button type="button" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">◐</button>
   </div>
 </div>

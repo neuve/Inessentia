@@ -8,6 +8,7 @@ import RevealOnScroll from '../components/RevealOnScroll.astro';
 import ParallaxImages from '../components/ParallaxImages.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { getLocale, t } from '../i18n/utils';
+import { resolveAsset } from '../lib/resolve-asset';
 
 interface Props {
   title?: string;
@@ -55,6 +56,13 @@ const altHref = altPath
   : `/${altLocale}/`;
 const altHrefAbsolute = `https://inessentia.mx${altHref}`;
 const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
+// og:image/twitter:image y los <link preload as=font> son atributos crudos
+// (no pasan por <Img>): resolverlos aquí es lo que evita que og/*.webp y los
+// woff2 queden sirviendo bytes viejos bajo su nombre estable una vez
+// hasheados (ver src/lib/resolve-asset.ts).
+const ogImageUrl = `https://inessentia.mx${resolveAsset(ogImage)}`;
+const mulishFontUrl = resolveAsset('/fonts/mulish-var.woff2');
+const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
 ---
 
 <!DOCTYPE html>
@@ -87,7 +95,7 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
   <meta property="og:url" content={currentHref}>
-  <meta property="og:image" content={`https://inessentia.mx${ogImage}`}>
+  <meta property="og:image" content={ogImageUrl}>
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:type" content="image/webp">
@@ -97,7 +105,7 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content={title}>
   <meta name="twitter:description" content={description}>
-  <meta name="twitter:image" content={`https://inessentia.mx${ogImage}`}>
+  <meta name="twitter:image" content={ogImageUrl}>
   {schema && (
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   )}
@@ -106,8 +114,8 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   ))}
   <!-- Fuentes auto-hospedadas (ver @font-face en global.css). Precarga de las
        críticas para el primer render; el resto se resuelve por @font-face. -->
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-var.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/bitter-var.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href={mulishFontUrl} crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href={bitterFontUrl} crossorigin>
   <!-- GA se carga incondicional más abajo (ver <body>): el banner de
        CookieConsent está pausado, así que ya no hay gate de consentimiento. -->
 </head>
