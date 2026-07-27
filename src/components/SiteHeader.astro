@@ -279,8 +279,8 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header--split { min-height: 88vh; display: flex; align-items: center; }
   .site-header--split .site-header__mandala { top: -140px; right: -120px; width: 560px; height: 560px; opacity: .14; }
   .site-header__grid {
-    position: relative; max-width: var(--container-w); margin: 0 auto; width: 100%;
-    padding: 130px 32px 90px;
+    position: relative; max-width: var(--container-pad-w); margin: 0 auto; width: 100%;
+    padding: 130px var(--gutter) 90px;
     display: grid; grid-template-columns: minmax(0,1.12fr) minmax(0,.88fr);
     gap: clamp(36px, 4vw, 72px); align-items: center;
   }
@@ -328,20 +328,21 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
      `.cinema-inner` hace el trabajo de `.container` (tope + centrado) adentro. */
   .site-header__cinema-pad {
     position: relative; z-index: 2; width: 100%; height: 100%; box-sizing: border-box;
-    padding: calc(clamp(32px, 5vw, 46px) + var(--nav-h)) 32px 40px;
+    padding: calc(clamp(32px, 5vw, 46px) + var(--nav-h)) var(--gutter) 40px;
     display: flex;
   }
   .site-header__cinema-inner {
     width: 100%; max-width: var(--container-w); margin: 0 auto;
     display: flex; flex-direction: column; gap: 0;
   }
-  /* `margin-bottom: auto` en flex-column es lo que "ancla" un bloque y
-     empuja el resto — aquí es la entradilla la que empuja la banda de
-     acciones al fondo (desktop). En móvil (ver media query) el trabajo lo
-     hace el rótulo+titular en su lugar, para que ESE bloque quede arriba y
-     la entradilla+banda bajen juntas. */
-  .site-header__cinema-heading { max-width: 52ch; }
-  .site-header__cinema-lead { max-width: 52ch; margin-bottom: auto; }
+  /* `margin-top: auto` en flex-column es lo que "ancla" el bloque: el hueco
+     elástico queda ARRIBA del rótulo+titular y empuja rótulo, titular,
+     entradilla y banda de acciones juntos al fondo (desktop), dejando el
+     tercio superior libre para la cara del retrato. En móvil (ver media
+     query) el trabajo lo hace igual el rótulo+titular, pero ahí el bloque
+     queda arriba y es la entradilla+banda la que baja. */
+  .site-header__cinema-heading { max-width: 52ch; margin-top: auto; }
+  .site-header__cinema-lead { max-width: 52ch; }
   .site-header__cinema-band { width: 100%; }
   .site-header__cinema-rule { height: 1px; background: rgba(255,255,255,.25); margin-bottom: 22px; }
   .site-header--cinema .site-header__title--cinema { font-size: var(--fs-display); margin-bottom: 20px; }
@@ -365,12 +366,16 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
        tanto como la franja opaca del fondo. Verificado en vivo contra las
        fotos reales de home y sobre-mí, no es un valor adivinado. */
     .site-header__cinema-veil { background: linear-gradient(180deg, rgba(var(--veil-purple),.55) 0%, rgba(var(--veil-purple),.30) 15%, rgba(var(--veil-purple),.12) 28%, rgba(var(--veil-purple),.50) 58%, rgba(var(--veil-purple),.93) 100%); }
-    .site-header__cinema-pad { padding: calc(28px + var(--nav-h)) 24px 32px; }
+    .site-header__cinema-pad { padding: calc(28px + var(--nav-h)) var(--gutter) 32px; }
     .site-header__cinema-inner { gap: 20px; }
     /* Invierte quién "empuja": en desktop es la entradilla (ver arriba); en
        móvil es el rótulo+titular el que se ancla arriba y empuja el resto
        (entradilla + banda de acciones, ya agrupados por el gap) al fondo. */
-    .site-header__cinema-heading { margin-bottom: auto; }
+    /* `margin-top: 0` es obligatorio, no decorativo: cancela el
+       `margin-top: auto` de escritorio. Si se hereda, el rótulo+titular
+       queda con auto ARRIBA y auto ABAJO a la vez y el navegador lo centra
+       verticalmente — es decir, encima de la cara. */
+    .site-header__cinema-heading { margin-top: 0; margin-bottom: auto; }
     .site-header__cinema-lead { margin-bottom: 0; }
     /* Encuadre propio de móvil: --photo-pos (que fijan las páginas) está
        calibrado para el recorte apaisado del desktop y aquí deja la cara
@@ -393,7 +398,7 @@ const mode = variant === 'auto' ? (photo ? 'split' : 'monolith') : variant;
   .site-header__panel-inner {
     /* Grid en vez de flex space-between: el ícono vive en su propia columna
        (no pegado al borde derecho) y se centra dentro de ella. */
-    position: relative; max-width: var(--container-w); margin: 0 auto; width: 100%; padding: 0 40px 0 48px;
+    position: relative; max-width: var(--container-pad-w); margin: 0 auto; width: 100%; padding: 0 var(--gutter);
     display: grid; grid-template-columns: minmax(0,1fr) minmax(0,.5fr); align-items: center; gap: clamp(24px, 4vw, 56px);
   }
   .site-header__panel-copy { max-width: 66%; }
