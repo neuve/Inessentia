@@ -399,6 +399,18 @@ body {
   transition: opacity .2s;
 }
 .link-underline:hover { opacity: .65; }
+/* <button> que debe leerse como enlace dentro de un párrafo (p.ej. el opt-out
+   de cookies del aviso de privacidad). Resetea SÓLO el cromo del botón: el
+   color, el peso y el tamaño los sigue poniendo .link-underline, así que no
+   se vuelve a estilar a mano y coincide con los enlaces de alrededor. */
+.link-underline--button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+}
+.link-underline--button:disabled { opacity: .5; cursor: default; }
 
 /* Buttons — base única `.btn` + modificadores. `.btn-primary`/`.btn-white`
    quedan como ALIAS (misma apariencia) para no romper páginas aún sin migrar. */

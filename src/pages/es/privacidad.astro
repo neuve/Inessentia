@@ -78,8 +78,9 @@ const locale = 'es';
 
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Cookies y tecnologías de seguimiento</h2>
-        <p class="body-text" style="margin:0 0 14px;">Este sitio puede utilizar cookies de análisis (como Google Analytics) para conocer el comportamiento general de visita de forma agregada y anónima. No se recaban datos personales identificables a través de estas cookies.</p>
-        <p class="body-text" style="margin:0;">Puedes desactivar las cookies desde la configuración de tu navegador en cualquier momento.</p>
+        <p class="body-text" style="margin:0 0 14px;">Este sitio utiliza cookies de análisis de Google Analytics, que se cargan automáticamente al visitar el sitio, para conocer el comportamiento general de visita de forma agregada y anónima. No se recaban datos personales identificables a través de estas cookies.</p>
+        <p class="body-text" style="margin:0 0 14px;">Si no quieres que se utilicen, puedes <button type="button" id="cookie-optout" class="link-underline link-underline--button">desactivarlas aquí</button>. También puedes bloquearlas o borrarlas desde la configuración de tu navegador en cualquier momento.</p>
+        <p class="form-msg ok body-text" id="cookie-optout-msg" role="status" hidden style="margin:0;">Las cookies de análisis quedaron desactivadas en este navegador.</p>
       </div>
 
       <div>
@@ -95,6 +96,60 @@ const locale = 'es';
 
     </div>
   </section>
+
+  {/* Opt-out real de cookies de análisis. Usa la MISMA clave/valor que
+      CookieConsent.astro ('cookie-consent' = 'essential'), que es lo que
+      Base.astro consulta antes de cargar GA. Además borra las cookies _ga*
+      que ya existan y refleja el estado al cargar la página. */}
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('cookie-optout');
+      var msg = document.getElementById('cookie-optout-msg');
+      if (!btn || !msg) return;
+
+      function clearGaCookies() {
+        var host = location.hostname;
+        // GA escribe con varias combinaciones de domain/path; hay que intentarlas
+        // todas o la cookie sobrevive al borrado.
+        var domains = ['', host, '.' + host];
+        var past = 'Thu, 01 Jan 1970 00:00:00 GMT';
+        document.cookie.split(';').forEach(function (raw) {
+          var name = raw.split('=')[0].trim();
+          if (name.indexOf('_ga') !== 0) return;
+          domains.forEach(function (d) {
+            document.cookie = name + '=; expires=' + past + '; path=/' + (d ? '; domain=' + d : '');
+          });
+        });
+      }
+
+      // Apagar el gtag que YA está corriendo en esta pestaña. Sin esto, borrar
+      // las cookies no basta: el tag sigue vivo en memoria y reescribe
+      // _ga_<ID> al salir de la página (comprobado: reaparecía al recargar).
+      // 'ga-disable-<ID>' es el interruptor oficial de GA y surte efecto en
+      // caliente, sin recargar.
+      function disableGa() { window['ga-disable-G-LWCY1M4Y9T'] = true; }
+
+      function showDisabled() {
+        msg.hidden = false;
+        btn.disabled = true;
+        btn.setAttribute('aria-disabled', 'true');
+      }
+
+      try {
+        if (localStorage.getItem('cookie-consent') === 'essential') {
+          disableGa();
+          showDisabled();
+        }
+      } catch (e) { /* localStorage bloqueado: dejamos el botón disponible */ }
+
+      btn.addEventListener('click', function () {
+        try { localStorage.setItem('cookie-consent', 'essential'); } catch (e) {}
+        disableGa();
+        clearGaCookies();
+        showDisabled();
+      });
+    })();
+  </script>
 
 </Base>
 </content>

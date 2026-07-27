@@ -125,12 +125,19 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   {/* El banner de cookies sigue pausado (arriba), pero Analytics debe seguir
       corriendo: como loadGA() vivía DENTRO de CookieConsent.astro, al no
       montar ese componente GA dejó de cargar por completo. Este bloque carga
-      GA de forma incondicional, sin esperar consentimiento. Si algún día se
-      vuelve a montar <CookieConsent />, HAY QUE QUITAR este script: si se
-      deja, GA cargaría antes del consentimiento y el banner quedaría de
+      GA sin esperar consentimiento previo, CON UNA EXCEPCIÓN: si el visitante
+      ya rechazó explícitamente (localStorage 'cookie-consent' === 'essential',
+      la misma clave/valor que usa CookieConsent.astro), este script sale
+      temprano y no carga nada. El opt-out se ofrece desde la página de aviso
+      de privacidad. Si localStorage está bloqueado, GA carga igual. Si algún
+      día se vuelve a montar <CookieConsent />, HAY QUE QUITAR este script: si
+      se deja, GA cargaría antes del consentimiento y el banner quedaría de
       adorno. */}
   <script is:inline>
     (function() {
+      try {
+        if (localStorage.getItem('cookie-consent') === 'essential') return;
+      } catch (e) { /* localStorage bloqueado: seguimos con el comportamiento por defecto */ }
       if (window.__gaLoaded) return;
       window.__gaLoaded = true;
       var s = document.createElement('script');
