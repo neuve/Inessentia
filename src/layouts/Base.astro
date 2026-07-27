@@ -124,21 +124,23 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   {/* <CookieConsent locale={locale} /> */}
   <RevealOnScroll />
   <ParallaxImages />
-  <!-- Toggle de tema (beta): la fundación oscura está en marcha; el default
-       sigue claro hasta terminar la tokenización de colores inline. -->
-  <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema (beta)"
-    style="position:fixed;right:18px;bottom:18px;z-index:120;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-card);background:var(--surface);color:var(--heading);font-size:18px;cursor:pointer;box-shadow:0 8px 22px rgba(70,39,110,.16);display:flex;align-items:center;justify-content:center;">◐</button>
+  {/* El toggle de tema ya no flota aparte — vive dentro de los menús de
+      navegación (MobileMenu.astro y MenuOverlay.astro, cada uno con su
+      propio [data-theme-toggle]; solo uno es visible a la vez según el
+      breakpoint). La lógica se queda acá, centralizada, y engancha a
+      TODAS las instancias del botón que haya en el DOM. */}
   <script is:inline>
     (function(){
       var KEY='iness-theme';
       var saved=localStorage.getItem(KEY);
       if(saved){document.documentElement.setAttribute('data-theme',saved);}
-      var b=document.getElementById('theme-toggle');
-      if(b){b.addEventListener('click',function(){
-        var next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
-        document.documentElement.setAttribute('data-theme',next);
-        localStorage.setItem(KEY,next);
-      });}
+      document.querySelectorAll('[data-theme-toggle]').forEach(function(b){
+        b.addEventListener('click',function(){
+          var next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+          document.documentElement.setAttribute('data-theme',next);
+          localStorage.setItem(KEY,next);
+        });
+      });
     })();
   </script>
   <script>

@@ -14,7 +14,7 @@ const columns = [col1, col2];
 let idx = 0;
 ---
 
-<div id="menu-overlay" class="menu-overlay" aria-hidden="true">
+<div id="menu-overlay" class="menu-overlay on-light" aria-hidden="true">
   <div class="menu-overlay__inner">
     <a href={`/${locale}/`} class="menu-overlay__logo">
       <img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" width="64" height="64" />
@@ -59,6 +59,7 @@ let idx = 0;
           <a href="https://www.linkedin.com/in/patricioruiz/" target="_blank" rel="noopener" aria-label="LinkedIn">
             <img src="/uploads/linkedin-icon.png" alt="LinkedIn" width="20" height="20" />
           </a>
+          <button type="button" data-theme-toggle class="menu-overlay__theme" aria-label="Cambiar tema" title="Cambiar tema">◐</button>
         </div>
       </div>
       <div class="menu-overlay__search">
@@ -74,7 +75,11 @@ let idx = 0;
 <style>
   .menu-overlay {
     position: fixed; inset: 0; z-index: 210;
-    background: var(--cream-2);
+    /* var(--bg), no var(--cream-2): --cream-2 "flipa" con el tema (queda
+       morado oscuro en dark, ver global.css) — este overlay siempre debe
+       verse crema/claro (misma lógica que #mob-menu), y --bg es lo que
+       .on-light ya redefine para forzar ese contexto claro. */
+    background: var(--bg);
     opacity: 0; pointer-events: none;
     transition: opacity .8s cubic-bezier(.22,1,.36,1);
   }
@@ -150,6 +155,12 @@ let idx = 0;
   /* Mismo caso que el footer: los iconos van en un hueco fijo de 20x20 y el
      `fill` por defecto deforma las fuentes no cuadradas. */
   .menu-overlay__social img { width: 20px; height: 20px; object-fit: contain; }
+  .menu-overlay__theme {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 50%; padding: 0;
+    border: 1px solid var(--border-card); background: var(--surface);
+    color: var(--heading); font-size: 14px; cursor: pointer; line-height: 1;
+  }
 
   .menu-overlay__search { position: relative; width: 280px; color: var(--heading); }
   .menu-overlay__search input {
