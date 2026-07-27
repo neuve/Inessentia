@@ -5,14 +5,14 @@ import Img from './Img.astro';
 
 interface Props {
   locale: Locale;
-  // Navbar background variant: 'gradient' (default, current behavior),
-  // 'light' (transparent over a light hero, purple links/wordmark, solid
-  // --warm once scrolled), 'solid' (solid --cream-2 with hairline, for
-  // pages with no dark hero below), 'photo' (transparent over a full-bleed
-  // photo hero, cream-2 once scrolled), 'dark' (solid --purple always, for
-  // pages that continue into their own solid-dark UI below, e.g. Red
-  // Inessentia's map app).
-  variant?: 'gradient' | 'light' | 'solid' | 'photo' | 'dark';
+  // Navbar background variant: 'gradient' (default, cristal translúcido que
+  // se adapta al scroll — ver comentario en el <style> de abajo), 'photo'
+  // (igual que gradient, pero conserva una regla propia para el color de la
+  // hamburguesa con el menú abierto sobre fotos), 'dark' (solid --purple
+  // siempre, para páginas que continúan en su propia UI oscura debajo, p.ej.
+  // Red Inessentia). Las variantes 'light' y 'solid' existieron antes pero
+  // sus clases CSS nunca se implementaron: se quitaron del tipo.
+  variant?: 'gradient' | 'photo' | 'dark';
 }
 
 const { locale, variant = 'gradient' } = Astro.props;
@@ -379,6 +379,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Search
 (function() {
+  // Este indice de busqueda se mantiene a mano: al crear una pagina nueva hay que
+  // anadirla aqui tambien, o no aparecera en el buscador del sitio.
   var sitePages = {
     es: [
       { title: 'Inicio', desc: 'Terapia de base somática en CDMX y en línea', href: '/es/' },
@@ -390,6 +392,10 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'Red terapéutica', desc: 'Directorio de terapeutas en México', href: '/es/red-terapeutica/' },
       { title: 'Testimonios', desc: 'Experiencias de personas reales', href: '/es/testimonios/' },
       { title: 'Privacidad', desc: 'Aviso de privacidad', href: '/es/privacidad/' },
+      { title: 'Costos', desc: 'Tarifas claras para acompañarte. Individual, pareja y familia comparten el mismo costo y duración. Consulta el precio por sesión y el paquete de continuidad.', href: '/es/costos/' },
+      { title: 'Términos de servicio', desc: 'Acuerdos y condiciones que rigen la relación terapéutica con Patricio Ruiz Abrín, terapeuta de base somática en CDMX.', href: '/es/terminos/' },
+      { title: 'Paga y confirma tu sesión', desc: 'Completa el pago de tu sesión de forma segura con Stripe y confirma tu cita con Patricio Ruiz Abrín.', href: '/es/pagar/' },
+      { title: 'Grupo de Actualización en Terapia Corporal', desc: 'Supervisión de casos y ética del acompañamiento para la comunidad Corpore. 9 sesiones, octubre 2026 – febrero 2027, CDMX y en línea, con Patricio Ruiz.', href: '/es/supervision/' },
     ],
     en: [
       { title: 'Home', desc: 'Somatic-based therapy in Mexico City & Online', href: '/en/' },
@@ -401,6 +407,9 @@ document.addEventListener('DOMContentLoaded', function() {
       { title: 'Therapist Network', desc: 'Directory of therapists in Mexico', href: '/en/therapist-network/' },
       { title: 'Testimonials', desc: 'Real people, real changes', href: '/en/testimonials/' },
       { title: 'Privacy', desc: 'Privacy policy', href: '/en/privacy/' },
+      { title: 'Costs', desc: 'Clear rates to support you. Individual, couples, and family therapy share the same cost and duration. See the per-session price and the continuity pack.', href: '/en/costs/' },
+      { title: 'Terms of service', desc: 'Agreements and conditions governing the therapeutic relationship with Patricio Ruiz Abrín, somatic-based therapist in Mexico City.', href: '/en/terms/' },
+      { title: 'Pay and confirm your session', desc: 'Securely complete your session payment with Stripe and confirm your appointment with Patricio Ruiz Abrín.', href: '/en/pay/' },
     ]
   };
 
@@ -426,7 +435,13 @@ document.addEventListener('DOMContentLoaded', function() {
     q = q.toLowerCase().trim();
     if (!q) { results.innerHTML = ''; return; }
     var hits = index.filter(function(p) {
-      return p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+      // También se busca en el slug, no solo en título y descripción: la página
+      // /es/pagar/ se titula "Paga y confirma tu sesión", así que quien escribía
+      // "pagar" (que es literalmente su ruta) no obtenía nada. Se recorta el
+      // prefijo de idioma a propósito — con el href completo, teclear "es"
+      // devolvería el sitio entero, porque no hay longitud mínima de consulta.
+      var slug = p.href.replace(/^\/(es|en)\//, '').replace(/\/$/, '').toLowerCase();
+      return p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || slug.includes(q);
     });
     if (!hits.length) {
       results.innerHTML = '<div class="search-result__empty">' + noResults + '</div>';

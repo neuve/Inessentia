@@ -80,7 +80,7 @@ const grid = getResourcesGrid().map((p, k) => {
         <div style="height:1px;background:rgba(255,255,255,.25);margin-bottom:22px;"></div>
         <div style="position:relative;display:grid;align-items:end;">
           {featured.map((f, k) => (
-            <a href={f.href} data-rec-slide={k} style={`grid-area:1 / 1;display:block;text-decoration:none;transition:opacity .5s ease;opacity:${k === 0 ? '1' : '0'};pointer-events:${k === 0 ? 'auto' : 'none'};`}>
+            <a href={f.href} data-rec-slide={k} aria-hidden={k !== 0 ? 'true' : undefined} style={`grid-area:1 / 1;display:block;text-decoration:none;transition:opacity .5s ease;opacity:${k === 0 ? '1' : '0'};pointer-events:${k === 0 ? 'auto' : 'none'};`}>
               <p class="label-section label-section--on-dark" style="margin-bottom:10px;">{f.cat}</p>
               <h2 style="font-family:var(--ff-head);font-weight:500;color:#fff;font-size:clamp(24px,2.6vw,32px);line-height:var(--lh-tight);margin:0 0 16px;max-width:26ch;">{f.title}</h2>
               <span style="display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.85);font-weight:600;font-size:14px;letter-spacing:0;text-transform:none;">{i.blog.readMore} <span aria-hidden="true">→</span></span>
@@ -196,6 +196,7 @@ const grid = getResourcesGrid().map((p, k) => {
       slides.forEach(function (s, k) {
         s.style.opacity = k === idx ? '1' : '0';
         s.style.pointerEvents = k === idx ? 'auto' : 'none';
+        if (k === idx) { s.removeAttribute('aria-hidden'); } else { s.setAttribute('aria-hidden', 'true'); }
       });
       dots.forEach(function (d, k) { d.style.width = k === idx ? '26px' : '9px'; d.style.background = k === idx ? '#fff' : 'rgba(255,255,255,.45)'; });
       bgs.forEach(function (b, k) { b.style.opacity = k === idx ? '1' : '0'; });

@@ -41,20 +41,37 @@ Full set defined in `src/styles/global.css` `:root`. Consume these — never har
 Brand:   --purple #46276E  --purple-d #3C1F5E  --wine #8E2B5D
          --cream #EAE5D9  --cream-2 #F4F0E6  --sand #C2B07E  --sand-d #A8945C
          --ink #262321  --warm #FCFBF6
-Text:    --text #3f3a36  --text-soft #5a544e  --text-muted #6a6460  --text-faint #8B8378
+Text:    --text #3f3a36  --text-soft #5a544e  --text-muted #6a6460  --text-faint #797267
 On dark: --on-dark  --on-dark-soft  --on-dark-faint
 Borders: --border-card #ece6d8  --border-hair #e2dccc  --surface #fff
-Gradients: --grad-brand (100deg brand)  --grad-rail (panel rail)  --grad-soft (cream→warm)
+Gradients: --grad-brand (100deg brand)  --grad-rail (panel rail)
            --veil-purple "38,20,60" → rgba(var(--veil-purple),α) for hero veils
-Spacing: --sp-1..16 (4→64)  --section-pad clamp(64px,9vw,120px)  --gutter 32px
-Radii:   --r-card 20  --r-panel 18  --r-pill 999  --r-field 10  --r-sm 6
-Shadows: --sh-card  --sh-float  --sh-portrait  --sh-btn
+Layout:  --container-w clamp(1040px,86vw,1600px)   ← tope de ancho del contenido
+         --container-pad-w = --container-w + 2×--gutter  (ver "Márgenes" abajo)
+         --gutter 32px  ← ÚNICO gutter lateral del sitio  --section-pad clamp(64px,9vw,120px)
+Spacing: --sp-1..12 (4→48)
+Radii:   --r-card 20  --r-panel 18  --r-pill 999  --r-field 10
+Shadows: --sh-card  --sh-btn
 Type:    --ff-head 'Bitter',serif  --ff-body 'Mulish',sans-serif
          --fs-display / --fs-h1 / --fs-h2 (=.heading-section) / --fs-h3 / --fs-h4
-         --fs-eyebrow 13px  --fs-body  --fs-small  --lh-tight/head/body  --ls-eyebrow
+         --fs-body  --fs-small  --lh-tight/head/body
 Breakpoints (convention): --bp-sm 560  --bp-md 820  --bp-lg 1024
 ```
 
-Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--white`/`--wine`/`--ghost`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline`.
+## Márgenes: dos patrones, un solo borde
+
+Todo el contenido del sitio debe resolver al MISMO borde izquierdo. Hay dos estructuras
+válidas y **cada una usa un token distinto** — confundirlas es el bug que ya se coló dos veces:
+
+- **Anidado** — `<section class="section">` (aporta el padding) `> <div class="container">`
+  (aporta el tope). El `.container` usa `--container-w`.
+- **Una sola caja** — `max-width` y `padding` lateral en el MISMO elemento. Aquí el padding
+  come por dentro, así que hay que usar **`--container-pad-w`**; con `--container-w` el
+  contenido queda un gutter más adentro. Referencia viva: `.navbar__inner` en `Navbar.astro`.
+
+Exentos por legibilidad (conservan su tope angosto): `.container--blog` (820) y
+`.container--read` (760), usados en blog, términos y privacidad.
+
+Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`/`--plain`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--white`/`--wine`/`--gold`/`--secondary`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline`, `.icon-disc`.
 
 Fonts: **Mulish** (body), **Bitter 700** (headings) — both self-hosted woff2 in `public/fonts/`. GA: G-LWCY1M4Y9T. Disqus shortname: inessentia.

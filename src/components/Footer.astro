@@ -118,7 +118,7 @@ const legalLinks = [
      mantiene el mismo margen izquierdo que ellas (nunca centrado). */
   .footer2__brand { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; text-decoration: none; }
   .footer2__logo { height: 72px; width: auto; display: block; }
-  .footer2__name { font-family: 'Bitter', serif; font-weight: 700; color: var(--heading-canvas); font-size: 22px; line-height: 1.15; }
+  .footer2__name { font-family: var(--ff-head); font-weight: 700; color: var(--heading-canvas); font-size: 22px; line-height: 1.15; }
   .footer2__coltitle {
     margin: 0 0 18px; font-weight: 700; font-size: 12px; letter-spacing: 0;
     text-transform: none; color: var(--accent-canvas);
@@ -144,6 +144,8 @@ const legalLinks = [
      (816×645) NO son cuadrados, y sin él el `fill` por defecto los deformaba dentro del
      hueco de 18×18 (la "f" salía gorda y el "in" estirado a lo alto). */
   .footer2__soc img { width: 18px; height: 18px; display: block; object-fit: contain; filter: brightness(0); }
+  /* rgba(142,43,93,.1) = --wine (#8E2B5D) con alpha; rgba(194,176,126,.4) = --sand (#C2B07E) con alpha.
+     Escritos a mano porque no hay color-mix() en uso aqui; no dupliques estos valores en otro lado. */
   .footer2__emergency {
     display: flex; align-items: center; gap: 12px; background: rgba(142,43,93,.1);
     border: 1px solid rgba(194,176,126,.4); border-radius: 12px; padding: 14px 20px; margin-bottom: 24px;

@@ -19,8 +19,9 @@ import '../styles/global.css';
   </div>
 
   <script is:inline>
-    // Detect language from referrer or browser
-    var lang = (navigator.language || '').slice(0, 2);
+    // Detecta idioma: primero preferencia guardada, luego el del navegador
+    var saved = localStorage.getItem('preferred-lang');
+    var lang = saved || (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
     if (lang === 'en') {
       document.querySelector('h1').textContent = "Oops, looks like we dissociated from something here.";
       document.querySelector('p').textContent = "The page you're looking for doesn't exist, moved away, or just needs a moment alone.";
