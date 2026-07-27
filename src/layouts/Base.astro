@@ -119,7 +119,9 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
     <slot />
   </main>
   {!hideFooter && <Footer locale={locale} />}
-  <CookieConsent locale={locale} />
+  {/* Pausado temporalmente a pedido del usuario — el componente y su lógica
+      de localStorage/GA siguen intactos, solo se dejó de montar. */}
+  {/* <CookieConsent locale={locale} /> */}
   <RevealOnScroll />
   <ParallaxImages />
   <!-- Toggle de tema (beta): la fundación oscura está en marcha; el default
