@@ -56,28 +56,34 @@ const authorSchema = personSchema(locale);
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;" class="modal-grid">
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
-          <div class="icon-disc">
-            <Img src="/uploads/icono-terapia-individual.webp" alt="" sizes="96px" style="height:78px;width:auto;display:block;" />
-          </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.individual.title}</h3>
+          <a href="/en/therapy/individual/" style="display:contents;text-decoration:none;">
+            <div class="icon-disc">
+              <Img src="/uploads/icono-terapia-individual.webp" alt="" sizes="96px" style="height:78px;width:auto;display:block;" />
+            </div>
+            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.individual.title}</h3>
+          </a>
           <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.individual.desc}</p>
           <a href="/en/therapy/individual/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.individual.link}</a>
         </div>
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
-          <div class="icon-disc">
-            <Img src="/uploads/icono-terapia-pareja.webp" alt="" sizes="96px" style="height:96px;width:auto;display:block;" />
-          </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.couples.title}</h3>
+          <a href="/en/therapy/couples/" style="display:contents;text-decoration:none;">
+            <div class="icon-disc">
+              <Img src="/uploads/icono-terapia-pareja.webp" alt="" sizes="96px" style="height:96px;width:auto;display:block;" />
+            </div>
+            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.couples.title}</h3>
+          </a>
           <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.couples.desc}</p>
           <a href="/en/therapy/couples/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.couples.link}</a>
         </div>
 
         <div data-reveal class="card" style="padding:38px 32px;display:flex;flex-direction:column;gap:18px;">
-          <div class="icon-disc">
-            <Img src="/uploads/icono-terapia-familiar.webp" alt="" sizes="96px" style="height:88px;width:auto;display:block;" />
-          </div>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.family.title}</h3>
+          <a href="/en/therapy/family/" style="display:contents;text-decoration:none;">
+            <div class="icon-disc">
+              <Img src="/uploads/icono-terapia-familiar.webp" alt="" sizes="96px" style="height:88px;width:auto;display:block;" />
+            </div>
+            <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:26px;margin:0;">{i.modalities.family.title}</h3>
+          </a>
           <p style="font-size:16px;line-height:1.65;color:var(--on-canvas-soft);margin:0;flex:1;">{i.modalities.family.desc}</p>
           <a href="/en/therapy/family/" style="color:var(--heading-canvas);font-weight:700;font-size:14px;letter-spacing:.04em;text-decoration:none;align-self:flex-start;">{i.modalities.family.link}</a>
         </div>
