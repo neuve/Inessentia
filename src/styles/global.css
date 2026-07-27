@@ -20,7 +20,19 @@
      del clásico ancho fijo de "columna de laptop". NO usar en contenedores
      de lectura larga (blog, párrafos legales, panel de terapia): esos
      conservan su tope angosto a propósito, por legibilidad. */
-  --container-w: clamp(1200px, 90vw, 1680px);
+  /* Con 90vw solo quedaban 76px de margen lateral a 1512px; se pidio margen
+     moderado (~105px). El tope de ancho es lo que manda, no el padding. */
+  --container-w: clamp(1040px, 86vw, 1600px);
+  /* Gemelo de --container-w para el patrón "una sola caja": cuando el
+     max-width y el padding lateral viven en el MISMO elemento (en vez de
+     `.section > .container`, donde el padding va en el padre), el padding
+     come por dentro y el contenido acaba desplazado exactamente un --gutter
+     hacia adentro. Eso es lo que producía dos alineaciones distintas en una
+     misma página (medido en /es/recursos/: 138px contra 106px). Sumar
+     2×--gutter al tope compensa esa diferencia y deja AMBOS patrones
+     resolviendo al mismo borde. Úsalo siempre que un elemento lleve
+     max-width y padding lateral a la vez. */
+  --container-pad-w: calc(var(--container-w) + var(--gutter) * 2);
 
   /* ── Sistema de diseño depurado (fuente única de verdad) ─────────────────
      Los 9 colores de marca de arriba son la paleta. Lo que sigue consolida a
@@ -325,7 +337,7 @@ body {
 }
 
 /* Section helpers */
-.section { padding: clamp(64px, 9vw, 120px) 32px; }
+.section { padding: clamp(64px, 9vw, 120px) var(--gutter); }
 /* Lienzo continuo: las secciones ya no cortan el fondo — se vuelven
    transparentes y flotan sobre el gradiente del body. Su contenido sigue
    legible (texto claro sobre el gradiente oscuro). */

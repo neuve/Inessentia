@@ -24,7 +24,7 @@ const termsPath = sitePath(locale, 'terms');
 
   <!-- BAND: SAME COST AND DURATION -->
   <section class="zone-dark" style="background:transparent;">
-    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:20px 40px;box-sizing:border-box;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+    <div data-reveal style="max-width:var(--container-pad-w);margin:0 auto;padding:20px var(--gutter);box-sizing:border-box;display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-canvas)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
       <p style="margin:0;font-size:clamp(14px,1.1vw,16px);line-height:1.55;color:var(--on-canvas);">Individual, couples, and family sessions share the <strong>same cost</strong> and a duration of <strong>50 to 60 minutes</strong> each.</p>
     </div>
@@ -32,7 +32,7 @@ const termsPath = sitePath(locale, 'terms');
 
   <!-- PRICING CARDS -->
   <section class="zone-dark" style="background:transparent;padding:clamp(48px,7vw,64px) 0 20px;">
-    <div class="costos-grid" style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;">
+    <div class="costos-grid" style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;">
 
       <!-- Per session -->
       <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:24px;padding:clamp(32px,4vw,44px) clamp(28px,3.5vw,40px);display:flex;flex-direction:column;box-shadow:0 24px 54px rgba(60,31,94,.10);">
@@ -73,7 +73,7 @@ const termsPath = sitePath(locale, 'terms');
        the light-theme override forces dark text anyway, so zone-dark is the
        safe choice in both cases. -->
   <section class="zone-dark" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
-    <div data-reveal style="max-width:var(--container-w);margin:0 auto;padding:0 40px;box-sizing:border-box;">
+    <div data-reveal style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="border-top:1px solid var(--border-hair);padding-top:22px;max-width:78ch;">
         <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-faint);">* Payments are processed by bank transfer or Stripe. Paying in advance confirms your slot; you can also pay in cash on the day of your session.</p>
         <p style="margin:0;font-size:14px;line-height:1.65;color:var(--on-canvas-soft);">See more details in the <a href={termsPath} class="link-underline">terms of service</a>.</p>

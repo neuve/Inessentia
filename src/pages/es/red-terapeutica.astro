@@ -94,7 +94,7 @@ const i = t(locale);
 
     <!-- FILTER BAR -->
     <div style="flex:none;background:var(--purple);z-index:50;">
-      <div style="max-width:var(--container-w);margin:0 auto;padding:10px 40px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+      <div style="max-width:var(--container-pad-w);margin:0 auto;padding:10px var(--gutter);display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
         <div style="flex:none;max-width:420px;">
           <div style="font-family:'Bitter',serif;font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:.04em;white-space:nowrap;">
             Red <span style="color:var(--sand);font-style:italic;">Inessentia</span>
@@ -116,7 +116,7 @@ const i = t(locale);
           <span id="ri-counter" style="font-size:.72rem;color:var(--sand);white-space:nowrap;font-weight:600;min-width:80px;text-align:right;font-family:var(--ff-body);">—</span>
         </div>
       </div>
-      <div style="border-top:1px solid rgba(255,255,255,.07);"><div style="max-width:var(--container-w);margin:0 auto;padding:6px 40px 8px;display:flex;align-items:center;gap:6px;overflow-x:auto;">
+      <div style="border-top:1px solid rgba(255,255,255,.07);"><div style="max-width:var(--container-pad-w);margin:0 auto;padding:6px var(--gutter) 8px;display:flex;align-items:center;gap:6px;overflow-x:auto;">
         <span style="font-size:.75rem;color:rgba(255,255,255,.35);text-transform:none;letter-spacing:0;white-space:nowrap;margin-right:2px;flex-shrink:0;font-family:var(--ff-body);">Atiende</span>
         <button class="ri-chip" data-caso="Individual">Individual</button>
         <button class="ri-chip" data-caso="Pareja">Pareja</button>
