@@ -35,8 +35,12 @@ interface Props {
   secondaryLabel?: string;
   secondaryHref?: string;
   variant?: 'auto' | 'panel' | 'cinema';
-  /** Cinema only: `object-position` del retrato, para afinar el encuadre
-   * vertical por página (p. ej. `center 33.333%` en el home). */
+  /** Cinema only: respaldo opcional de `object-position` del retrato, para
+   * páginas cuyo `photoDesktop` no tiene receta en tools/hero-crops.config.mjs
+   * (o que no usan photoDesktop en absoluto). Cuando `photoDesktop` SÍ tiene
+   * receta, el valor calculado del manifiesto (ver resolveAssetPosition)
+   * gana siempre — así el encuadre no puede quedar desincronizado del
+   * recorte real. */
   photoPosition?: string;
   /** Panel only: larger card (individual page) — 52px title, 960px copy max-width. */
   panelLarge?: boolean;
@@ -46,7 +50,7 @@ interface Props {
 }
 
 import Img from './Img.astro';
-import { resolveAsset } from '../lib/resolve-asset';
+import { resolveAsset, resolveAssetPosition } from '../lib/resolve-asset';
 
 const {
   eyebrow,
@@ -68,11 +72,17 @@ const {
 } = Astro.props;
 
 const mode = variant === 'auto' ? (photo ? 'cinema' : 'panel') : variant;
+
+// El manifiesto (calculado en cada build desde tools/hero-crops.config.mjs)
+// manda sobre la prop `photoPosition`: nace del mismo extract que generó el
+// recorte, así que no puede quedar desincronizado de él. `photoPosition`
+// solo se usa como respaldo si `photoDesktop` no está o no tiene receta.
+const resolvedPhotoPosition = (photoDesktop && resolveAssetPosition(photoDesktop)) || photoPosition;
 ---
 
 {mode === 'cinema' ? (
   <section class="site-header site-header--cinema zone-dark">
-    <div class="site-header__cinema-photo" style={photoPosition ? `--photo-pos:${photoPosition};` : ''}>
+    <div class="site-header__cinema-photo" style={resolvedPhotoPosition ? `--photo-pos:${resolvedPhotoPosition};` : ''}>
       {/* minWidth=768: en mobile (412 CSS px × DSF 1.75 ≈ 722px físicos) el
           candidato ideal es el de 768w; 960 lo pasaba de largo y desperdiciaba
           ~21 KiB. sizes="100vw" es incondicional (no depende de un breakpoint

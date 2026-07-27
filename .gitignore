@@ -35,3 +35,9 @@ pnpm-debug.log*
 public/uploads/responsive/
 public/fonts/responsive/
 src/styles/fonts.generated.css
+
+# recortes fijos del hero cinema (home, sobre-mí): ahora se generan en cada
+# build desde sus masters según la receta en tools/hero-crops.config.mjs
+# (ver generateHeroCrops en tools/generate-responsive-images.mjs) — la
+# receta es la fuente de verdad versionada, estos archivos son su salida.
+public/uploads/hero-crops/

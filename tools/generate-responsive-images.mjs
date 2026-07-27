@@ -40,12 +40,14 @@ import {
   FONTS_OUT_DIR,
   FONTS_CSS_PATH,
 } from './responsive-config.mjs';
+import { HERO_CROPS, HERO_CROPS_DIR } from './hero-crops.config.mjs';
 
 const ROOT = path.resolve(fileURLToPath(import.meta.url), '../..');
 const UPLOADS = path.join(ROOT, 'public', 'uploads');
 const OUT_ABS = path.join(UPLOADS, OUT_DIR);
 const FONTS_ABS = path.join(ROOT, FONTS_DIR);
 const FONTS_OUT_ABS = path.join(FONTS_ABS, FONTS_OUT_DIR);
+const HERO_CROPS_ABS = path.join(UPLOADS, HERO_CROPS_DIR);
 
 /** sha256 de un Buffer, truncado a HASH_LENGTH chars hex. */
 function hashOf(buf) {
@@ -99,8 +101,62 @@ async function sweep(dirAbs, keepNames) {
   return removed;
 }
 
+/** Formatea una fracción [0,1] como porcentaje CSS, hasta 4 decimales, sin
+ * ceros colgantes (0.75 -> "75%", 0.333333.. -> "33.3333%"). Más precisión
+ * que el 33.333% escrito a mano antes, nunca menos — no es una regresión
+ * visual, es el mismo número con más cifras. */
+function formatPercent(fraction) {
+  const pct = Math.round(fraction * 1_000_000) / 10_000; // hasta 4 decimales
+  return `${pct}%`;
+}
+
+/** Genera los recortes fijos del hero cinema (home, sobre-mí) desde sus
+ * masters según tools/hero-crops.config.mjs, y devuelve un mapa
+ * publicPath -> objectPosition CSS ("center Y%") calculado de la receta.
+ *
+ * POR QUÉ AQUÍ Y NO A MANO: el recorte (extract) y su object-position (f)
+ * salen de LOS MISMOS NÚMEROS (eyesY, top, height) en un solo lugar — no
+ * pueden desincronizarse porque no hay dos sitios donde vivan por separado.
+ * Si alguien cambia la caja de extracción en hero-crops.config.mjs, el
+ * object-position se recalcula solo en el siguiente build. */
+async function generateHeroCrops() {
+  await fs.mkdir(HERO_CROPS_ABS, { recursive: true });
+  const objectPositions = {};
+
+  for (const entry of HERO_CROPS) {
+    const masterAbs = path.join(UPLOADS, entry.master);
+    const { left, top, width, height } = entry.extract;
+    const ext = path.extname(entry.outName).toLowerCase();
+
+    let pipeline = sharp(masterAbs).extract({ left, top, width, height });
+    if (ext === '.webp') pipeline = pipeline.webp({ quality: QUALITY });
+    else if (ext === '.jpg' || ext === '.jpeg') pipeline = pipeline.jpeg({ quality: QUALITY });
+    else throw new Error(`hero-crops: extensión no soportada en ${entry.outName}`);
+
+    const buf = await pipeline.toBuffer();
+    const meta = await sharp(buf).metadata();
+    if (meta.width !== width || meta.height !== height) {
+      // No debería pasar nunca: si pasa, la receta y el extract ya no
+      // concuerdan (p.ej. la caja se sale del master) y es mejor tronar el
+      // build que servir un recorte con dimensiones inesperadas.
+      throw new Error(
+        `hero-crops: ${entry.outName} salió ${meta.width}x${meta.height}, se esperaba ${width}x${height}`
+      );
+    }
+
+    const outAbs = path.join(HERO_CROPS_ABS, entry.outName);
+    await fs.writeFile(outAbs, buf);
+
+    const f = (entry.eyesY - top) / height;
+    objectPositions[entry.publicPath] = `center ${formatPercent(f)}`;
+  }
+
+  return objectPositions;
+}
+
 async function main() {
   await fs.mkdir(OUT_ABS, { recursive: true });
+  const heroCropPositions = await generateHeroCrops();
   const files = (await collectFiles(UPLOADS)).sort();
   const manifest = {};
   const keepUploads = new Set();
@@ -158,6 +214,13 @@ async function main() {
       srcset.push({ w: intrinsicW, url: masterUrl });
 
       manifest[publicUrl] = { width: intrinsicW, height: intrinsicH, srcset, src: masterUrl };
+      // Recortes del hero cinema: adjunta el object-position calculado de
+      // la receta (ver generateHeroCrops) para que SiteHeader.astro no
+      // tenga que recibirlo a mano por prop — nace del mismo extract que
+      // generó el archivo, así que nunca queda desincronizado.
+      if (heroCropPositions[publicUrl]) {
+        manifest[publicUrl].objectPosition = heroCropPositions[publicUrl];
+      }
     } else if (COPY_EXT.has(ext)) {
       // svg/mp4/webm: hash-por-copia, sin transcodificar.
       const buf = await fs.readFile(abs);
