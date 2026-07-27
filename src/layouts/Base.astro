@@ -109,7 +109,8 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
        críticas para el primer render; el resto se resuelve por @font-face. -->
   <link rel="preload" as="font" type="font/woff2" href="/fonts/mulish-var.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/bitter-var.woff2" crossorigin>
-  <!-- GA loads conditionally via CookieConsent component -->
+  <!-- GA se carga incondicional más abajo (ver <body>): el banner de
+       CookieConsent está pausado, así que ya no hay gate de consentimiento. -->
 </head>
 <body>
   {!hideNav && <Navbar locale={locale} variant={nav} />}
@@ -122,6 +123,27 @@ const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
   {/* Pausado temporalmente a pedido del usuario — el componente y su lógica
       de localStorage/GA siguen intactos, solo se dejó de montar. */}
   {/* <CookieConsent locale={locale} /> */}
+  {/* El banner de cookies sigue pausado (arriba), pero Analytics debe seguir
+      corriendo: como loadGA() vivía DENTRO de CookieConsent.astro, al no
+      montar ese componente GA dejó de cargar por completo. Este bloque carga
+      GA de forma incondicional, sin esperar consentimiento. Si algún día se
+      vuelve a montar <CookieConsent />, HAY QUE QUITAR este script: si se
+      deja, GA cargaría antes del consentimiento y el banner quedaría de
+      adorno. */}
+  <script is:inline>
+    (function() {
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LWCY1M4Y9T';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LWCY1M4Y9T');
+    })();
+  </script>
   <RevealOnScroll />
   <ParallaxImages />
   {/* El toggle de tema ya no flota aparte — vive dentro de los menús de
