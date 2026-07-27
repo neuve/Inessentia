@@ -380,6 +380,9 @@ body {
 }
 .label-section--on-dark { color: var(--gold); }   /* rótulo dorado; flipa a vino en tema claro para contraste */
 .label-section--on-dark::before { background: var(--gold); }
+/* Rótulo dentro de una tarjeta o bloque: hereda tamaño, peso y color del
+   sistema pero sin la raya del ::before, que ahí compite con el contenido. */
+.label-section--plain::before { content: none; }
 .body-text {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
