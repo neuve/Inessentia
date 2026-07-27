@@ -118,9 +118,9 @@ const searchBlogEntries = {
   :global(body.menu-open) .navbar.navbar--photo .nav-ham span { background: var(--heading); }
 
   .navbar__inner {
-    max-width: var(--container-w); margin: 0 auto; padding: 0 40px;
+    max-width: var(--container-pad-w); margin: 0 auto; padding: 0 var(--gutter);
     min-height: var(--nav-h);
-    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+    display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 24px;
   }
   .navbar__logo { grid-column: 1; justify-self: start; display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .navbar__logo-icon { height: 60px; width: auto; display: block; flex: none; }
