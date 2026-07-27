@@ -14,7 +14,7 @@ const columns = [col1, col2];
 let idx = 0;
 ---
 
-<div id="menu-overlay" class="menu-overlay on-light" aria-hidden="true">
+<div id="menu-overlay" class="menu-overlay" aria-hidden="true">
   <div class="menu-overlay__inner">
     <a href={`/${locale}/`} class="menu-overlay__logo">
       <img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" width="64" height="64" />
@@ -75,10 +75,12 @@ let idx = 0;
 <style>
   .menu-overlay {
     position: fixed; inset: 0; z-index: 210;
-    /* var(--bg), no var(--cream-2): --cream-2 "flipa" con el tema (queda
-       morado oscuro en dark, ver global.css) — este overlay siempre debe
-       verse crema/claro (misma lógica que #mob-menu), y --bg es lo que
-       .on-light ya redefine para forzar ese contexto claro. */
+    /* var(--bg), no var(--cream-2): --cream-2 "flipa" con el tema de un
+       modo confuso (queda morado oscuro en dark, ver global.css) — --bg es
+       el token correcto para "el fondo de página en el tema activo",
+       oscuro o claro según lo que el usuario haya elegido. El contraste de
+       los íconos de RRSS contra ese fondo se resuelve en .menu-overlay__social
+       img (más abajo), no forzando el contexto a uno solo con .on-light. */
     background: var(--bg);
     opacity: 0; pointer-events: none;
     transition: opacity .8s cubic-bezier(.22,1,.36,1);

@@ -11,7 +11,7 @@ const [col1, col2] = menuColumns(locale, Astro.url.pathname);
 const links = [...col1, ...col2];
 ---
 
-<div id="mob-menu" class="on-light">
+<div id="mob-menu">
   <button id="mob-close" aria-label={i.nav.closeMenu}>×</button>
   {links.map(link => (
     link.cta

@@ -612,6 +612,13 @@ form .btn, .form-wrap .btn, .form-field .btn {
    las fuentes no cuadradas. Mismo caso que el footer y el menú overlay. */
 .mob-social img { width: 20px; height: 20px; display: block; object-fit: contain; }
 .mob-social button { font-size: 18px; color: var(--heading); line-height: 1; }
+/* Los archivos de ícono (RRSS) no son negros de origen — el footer los fuerza
+   a negro con brightness(0) para el fondo crema. En tema oscuro el menú
+   (móvil y overlay de desktop) se queda con SU fondo morado (no lo forzamos
+   a claro), así que aquí hace falta lo contrario: forzarlos a blanco para
+   que se vean sobre ese fondo oscuro. */
+:root[data-theme="dark"] .mob-social img,
+:root[data-theme="dark"] .menu-overlay__social img { filter: brightness(0) invert(1); }
 
 /* Mobile general */
 @media (max-width: 600px) {
