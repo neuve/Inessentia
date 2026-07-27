@@ -14,7 +14,7 @@ const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
 
 <section class="section">
   <div class="container" style="max-width:var(--container-w);">
-    <div style="text-align:center;margin-bottom:clamp(40px,5vw,60px);">
+    <div style="margin-bottom:clamp(40px,5vw,60px);">
       <p data-reveal class="label-section">{i.testimonials.label}</p>
       <h2 data-reveal class="heading-section">{i.testimonials.title}</h2>
     </div>
@@ -24,7 +24,7 @@ const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
       <div class="home-t-slot" style="transition:opacity .6s ease;opacity:1;"></div>
     </div>
     <div id="home-t-dots" style="display:flex;gap:9px;justify-content:center;margin-top:28px;"></div>
-    <div style="text-align:center;margin-top:40px;">
+    <div style="margin-top:40px;">
       <a data-reveal href={testimonialsPath} class="link-underline">{i.testimonials.more}</a>
     </div>
   </div>

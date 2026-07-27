@@ -333,7 +333,9 @@ body {
 .section--purple { background: transparent; }
 .section--purple-d { background: transparent; }
 .container { max-width: var(--container-w); margin: 0 auto; }
-.container--narrow { max-width: 1000px; margin: 0 auto; }
+/* Alineado al mismo margen izquierdo que .container (no centrado aparte):
+   el estándar del sitio es texto a la izquierda, nunca bloques centrados. */
+.container--narrow { max-width: 1000px; margin: 0 auto 0 max(0px, calc((100% - var(--container-w)) / 2)); }
 .container--blog { max-width: 820px; margin: 0 auto; }
 .container--read { max-width: 760px; margin: 0 auto; }   /* lectura legal / byline blog */
 
