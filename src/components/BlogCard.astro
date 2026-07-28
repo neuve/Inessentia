@@ -11,7 +11,7 @@
 //                                   Si se omite y hay `color`, se muestra el tile de color en su lugar.
 // - imageAlt   (string, opcional)   Alt de la imagen. Requerido en la práctica si pasas `image`.
 // - imagePosition (string, opcional) object-position del <Img>. Default: "center".
-// - imageSizes (string, opcional)   atributo sizes del <Img>. Default: "(max-width:640px) 100vw, 380px".
+// - imageSizes (string, opcional)   atributo sizes del <Img>. Ver el default abajo.
 // - category   (string, opcional)   Eyebrow/categoría sobre el título.
 // - date       (string, opcional)   Fecha o meta corta, se muestra junto a category si hay ambos.
 // - excerpt    (string, opcional)   Bajada / resumen debajo del título.
@@ -50,7 +50,18 @@ const {
   image,
   imageAlt = '',
   imagePosition = 'center',
-  imageSizes = '(max-width:640px) 100vw, 380px',
+  // OJO: este valor debe seguir al ancho REAL de la tarjeta, no al que tenía
+  // cuando se escribió. El grid es de 3 columnas dentro de --container-w
+  // (clamp(1040px,86vw,1600px)) con gap de 26px, así que la tarjeta mide
+  // ~(86vw-52)/3 ≈ 28vw en pantallas grandes y ~47vw cuando cae a 2 columnas.
+  // El "380px" anterior se quedó obsoleto al ensanchar --container-w: la
+  // tarjeta pasó a medir 471px y el navegador seguía bajando la variante de
+  // 768 para un hueco que en pantalla 2× pide 942 → se veía borrosa. Como
+  // `sizes` no puede leer variables CSS (lo lee el preload scanner antes del
+  // CSSOM), esto hay que mantenerlo a mano: si cambias --container-w o el
+  // número de columnas, ACTUALIZA ESTO. Ante la duda, declara de más: pasarse
+  // cuesta unos KB, quedarse corto se ve.
+  imageSizes = '(max-width:640px) 100vw, (max-width:1071px) 47vw, 28vw',
   category,
   date,
   excerpt,
