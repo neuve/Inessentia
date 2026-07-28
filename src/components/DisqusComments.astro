@@ -8,11 +8,13 @@ interface Props {
 const { identifier, url, language = 'es' } = Astro.props;
 ---
 
-<section class="section" style="padding-top:0;">
-  <div class="container--blog">
-    <div id="disqus_thread"></div>
-  </div>
-</section>
+<!-- Sin wrapper propio: BlogPost.astro ya aporta la sección (padding) y el
+     .container--read (tope de ancho). Antes este componente metía su propio
+     <section class="section"> + .container--blog (820px) DENTRO del
+     .container--read (760px) del layout, lo que sumaba un --gutter extra de
+     padding lateral por cada lado sin ganar nada (760 < 820, el tope ancho
+     nunca llegaba a mandar). -->
+<div id="disqus_thread"></div>
 
 <script is:inline define:vars={{ identifier, url, language }}>
   var disqus_config = function () {

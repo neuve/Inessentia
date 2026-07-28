@@ -146,8 +146,14 @@ const authorSchema = personSchema(locale);
     <div class="container--read blog-content" style="display:flex;flex-direction:column;gap:22px;">
       <slot />
 
+      <!-- font-size:15px en el contenedor de "siguiente entrada" a propósito:
+           es un enlace SUELTO de navegación, no texto corrido, pero vive
+           dentro de .blog-content, cuya regla `a` ahora hereda el tamaño del
+           padre; sin este 15px explícito heredaría el 16px del body y se
+           saldría del tamaño fijo que le toca a .link-underline (ver
+           global.css, "Links"). -->
       {nextPost && (
-        <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:16px;flex-wrap:wrap;">
+        <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:16px;flex-wrap:wrap;font-size:15px;">
           <a href={nextPost.href} class="link-underline">{nextPost.label}</a>
         </div>
       )}
@@ -155,7 +161,19 @@ const authorSchema = personSchema(locale);
   </section>
 
   <!-- COMMENTS -->
-  <section style="padding:clamp(48px,6vw,80px) 32px;background:var(--cream-2);">
+  <!-- Antes esta sección llevaba background:var(--cream-2) inline, opaca. En
+       oscuro --cream-2 = #362849 (morado), pero a esta altura del scroll el
+       --page-grad ya va en naranja/arena (72%→86%): era el ÚNICO bloque
+       opaco entre dos secciones transparentes y producía un salto de color.
+       Se quita el fondo (transparente sobre el lienzo, como .section--cream
+       y .section--purple) y se declara zone-light: el tramo de aquí en
+       adelante es claro en ambos temas (mismo tratamiento que la sección CTA
+       de abajo). color:var(--on-canvas) se hereda hasta #disqus_thread para
+       que el auto-detector de tema de Disqus (que lee el color de texto
+       heredado, no el fondo) elija su esquema claro — si no, heredaría
+       var(--text) del body, que en tema oscuro es claro y le haría elegir
+       esquema oscuro pese a que el lienzo ya aclaró. -->
+  <section class="zone-light" style="padding:clamp(48px,6vw,80px) 32px;color:var(--on-canvas);">
     <div class="container--read">
       <DisqusComments
         identifier={disqusIdentifier}
