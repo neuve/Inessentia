@@ -89,9 +89,8 @@
   --canvas-top: #26143C;
   --veil-purple: 38,20,60;  /* = --canvas-top en triplete; usar como rgba(var(--veil-purple),.55) en veils de hero */
 
-  /* Spacing (base 4) */
+  /* Spacing (base 4) — sp-6/8/10/12 se retiraron (PAQUETE 3b): 0 usos reales en el repo */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
-  --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
   --section-pad: clamp(64px, 9vw, 120px);
   --gutter: 32px;           /* padding lateral canónico (unifica el 40px ad-hoc) */
 
@@ -446,8 +445,13 @@ body {
 .link-inline:hover { opacity: .65; }
 /* <button> que debe leerse como enlace dentro de un párrafo (p.ej. el opt-out
    de cookies del aviso de privacidad). Resetea SÓLO el cromo del botón: el
-   color, el peso y el tamaño los sigue poniendo .link-underline, así que no
-   se vuelve a estilar a mano y coincide con los enlaces de alrededor. */
+   color, el peso y el tamaño los pone la clase de enlace con la que se
+   combina, así que no se vuelve a estilar a mano y coincide con los enlaces
+   de alrededor. Al ir incrustado a media oración se combina con
+   .link-inline (no .link-underline): un <button> NO hereda font-size del
+   párrafo por defecto —el UA le impone ~13px— y el `font-size: inherit` de
+   .link-inline es justamente lo que lo devuelve al tamaño del texto que lo
+   rodea. */
 .link-underline--button {
   background: none;
   border: 0;
@@ -457,9 +461,10 @@ body {
 }
 .link-underline--button:disabled { opacity: .5; cursor: default; }
 
-/* Buttons — base única `.btn` + modificadores. `.btn-primary`/`.btn-white`
-   quedan como ALIAS (misma apariencia) para no romper páginas aún sin migrar. */
-.btn, .btn-primary, .btn-white {
+/* Buttons — base única `.btn` + modificadores. `.btn-primary`
+   queda como ALIAS (misma apariencia) para no romper páginas aún sin migrar.
+   `.btn-white`/`.btn--white` se retiraron (PAQUETE 3b): 0 usos reales en el repo. */
+.btn, .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -480,26 +485,6 @@ body {
   transform: translateY(-2px);
   box-shadow: var(--sh-btn);
   background: var(--purple-d);
-}
-.btn--white, .btn-white { background: #fff; color: var(--purple); }
-.btn--white:hover, .btn-white:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0,0,0,.25);
-}
-/* Sobre el lienzo CLARO, blanco-sobre-blanco se pierde: se invierte a morado
-   sólido con texto blanco. Dentro de una isla .on-dark (fondo morado fijo)
-   vuelve siempre a blanca con texto morado. */
-:root[data-theme="light"] .btn--white, :root[data-theme="light"] .btn-white {
-  background: var(--purple);
-  color: #fff;
-}
-/* Especificidad: debe ganar a la regla :root[data-theme="light"] de arriba,
-   por eso repite el selector de tema. */
-.on-dark .btn--white, .on-dark .btn-white,
-:root[data-theme="light"] .on-dark .btn--white,
-:root[data-theme="light"] .on-dark .btn-white {
-  background: #fff;
-  color: var(--purple);
 }
 .btn--wine { background: var(--wine); color: #fff; }
 .btn--wine:hover { transform: translateY(-2px); box-shadow: var(--sh-btn); }

@@ -72,6 +72,6 @@ válidas y **cada una usa un token distinto** — confundirlas es el bug que ya 
 Exentos por legibilidad (conservan su tope angosto): `.container--blog` (820) y
 `.container--read` (760), usados en blog, términos y privacidad.
 
-Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`/`--plain`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--white`/`--wine`/`--gold`/`--secondary`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline`, `.icon-disc`.
+Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`/`--plain`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--wine`/`--gold`/`--secondary`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline` (enlace suelto, 15px fijo) / `.link-inline` (enlace incrustado en un párrafo, hereda tamaño), `.icon-disc`.
 
 Fonts: **Mulish** (body), **Bitter 700** (headings) — both self-hosted woff2 in `public/fonts/`. GA: G-LWCY1M4Y9T. Disqus shortname: inessentia.
