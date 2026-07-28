@@ -77,7 +77,17 @@
      --cream-2 (que flipa con el tema) con --cream (constante), y en oscuro
      producía un salto violeta→crema no intencionado. */
   --grad-disc: linear-gradient(160deg,#1b1550 0%,#8e3a5c 45%,#d9b27a 100%);
-  --veil-purple: 38,20,60;  /* usar como rgba(var(--veil-purple),.55) en veils de hero */
+  /* Color de arranque UNIFICADO de todo el sitio: antes convivían cuatro
+     morados/azules distintos en el primer instante de cada página (el
+     lienzo abría en #0a0c28 azul noche, el velo de los heroes con foto en
+     #26143C, el header del mapa en #46276E, supervision.astro con su propio
+     azul). Se homologa sobre #26143C porque es el morado que YA llevaban
+     los heroes con foto (no se movieron ellos; se movió el lienzo hacia
+     ellos). --canvas-top es el mismo color que --veil-purple, sólo que éste
+     va expresado como triplete para poder usarse en rgba(): si se retoca
+     uno, hay que retocar el otro o quedan desincronizados. */
+  --canvas-top: #26143C;
+  --veil-purple: 38,20,60;  /* = --canvas-top en triplete; usar como rgba(var(--veil-purple),.55) en veils de hero */
 
   /* Spacing (base 4) */
   --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
@@ -140,12 +150,19 @@
   --on-dark-faint: rgba(255,255,255,.7);
   --accent: var(--wine);
   --gold: var(--sand);   /* dorado brillante sobre fondo oscuro */
-  /* Lienzo continuo (oscuro) — viaje NOCHE → AMANECER: arranca en navy
-     profundo (tramo generoso: el hero es transparente y lo deja ver),
+  /* Lienzo continuo (oscuro) — viaje NOCHE → AMANECER: arranca en
+     --canvas-top (el mismo morado de los heroes con foto, ver arriba),
      cruza índigo/violeta/morado/vino y ATERRIZA en arena y crema clara al
      100%, para que el cierre de página (CTA final, footer) quede legible
-     con texto oscuro. Ver .zone-dark / .zone-light más abajo. */
-  --page-grad: linear-gradient(180deg,#0a0c28 0%,#1b1550 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#b4744f 72%,#d9b27a 86%,#EAE5D9 100%);
+     con texto oscuro. Ver .zone-dark / .zone-light más abajo.
+     OJO con el primer tramo (0%→24%): el stop de 12% (#1b1550) era AZUL,
+     más frío que el nuevo arranque morado (#26143C), así que cambiar solo
+     el 0% hacía que el degradado retrocediera a azul y volviera a morado
+     en el siguiente stop — una banda visible. El stop de 12% se recalculó
+     como interpolación RGB exacta entre 0% (38,20,60) y 24% (51,32,107) →
+     (44.5,26,83.5) → #2d1a54, así que R/G/B avanzan monótonos todo el
+     tramo. De 24% en adelante no se tocó nada. */
+  --page-grad: linear-gradient(180deg,var(--canvas-top) 0%,#2d1a54 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#b4744f 72%,#d9b27a 86%,#EAE5D9 100%);
   /* Punto del recorrido a partir del cual el lienzo ya aclaró lo suficiente
      como para que la barra deba amanecer (velo crema + contenido oscuro).
      Vive junto al gradiente a propósito: si se retocan las paradas, este
@@ -166,7 +183,13 @@
      crema → arena dorada tibia al cierre. Variación de TONO real, no solo
      de luminosidad. Al quedar pálido en todo el recorrido, el tramo
      "oscuro" del inicio también usa texto oscuro (ver override de
-     .zone-dark en tema claro, más abajo). */
+     .zone-dark en tema claro, más abajo).
+     NO se homologa este arranque a --canvas-top: en tema claro los heroes
+     con foto son islas OSCURAS deliberadas (.on-dark) flotando sobre un
+     lienzo claro; forzar aquí un arranque morado oscuro rompería ese
+     contraste a propósito. La unificación de arranque es un asunto del
+     tema OSCURO (arriba), donde lienzo y heroes comparten el mismo tramo
+     de color. */
   --page-grad: linear-gradient(180deg,#EDEAF7 0%,#F0E4EE 12%,#F2E5E8 24%,#F4E6DD 36%,#F5E8D0 48%,#F3E4C0 60%,#F0DCAE 72%,#EAD59A 86%,#E9D19C 100%);
   /* En tema claro el lienzo es claro DESDE ARRIBA, así que la barra debe
      amanecer en cuanto se despega del hero: umbral 0. */
@@ -394,7 +417,16 @@ body {
 }
 .body-text--on-dark { color: var(--on-dark-soft); }
 
-/* Links */
+/* Links — dos categorías, según dónde vive el enlace:
+   - .link-underline: enlace SUELTO (no dentro de un párrafo de texto
+     corrido) — índices, costos, términos, TestimonialCarousel, el "leer
+     más" de BlogPost. Su tamaño de 15px es FIJO a propósito: ahí no hay un
+     párrafo cuyo ritmo de lectura seguir.
+   - .link-inline: enlace DENTRO de un párrafo de texto corrido fuera del
+     blog (el blog ya se resuelve aparte con `.blog-content a`, ver abajo).
+     Hereda tamaño y altura de línea del párrafo que lo contiene para no
+     achicarse ni desalinear la línea. Úsala en vez de .link-underline
+     cualquier vez que el enlace vaya incrustado a media oración. */
 .link-underline {
   color: var(--accent-canvas);
   font-weight: 700;
@@ -403,6 +435,15 @@ body {
   transition: opacity .2s;
 }
 .link-underline:hover { opacity: .65; }
+.link-inline {
+  color: var(--accent-canvas);
+  font-weight: 700;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.link-inline:hover { opacity: .65; }
 /* <button> que debe leerse como enlace dentro de un párrafo (p.ej. el opt-out
    de cookies del aviso de privacidad). Resetea SÓLO el cromo del botón: el
    color, el peso y el tamaño los sigue poniendo .link-underline, así que no
@@ -684,6 +725,16 @@ form .btn, .form-wrap .btn, .form-field .btn {
   color: var(--wine);
   font-weight: 700;
   text-decoration: none;
+  /* .link-underline (241 enlaces de blog, todos con esa clase) declara
+     font-size: 15px ABSOLUTO — un valor declarado gana siempre al heredado
+     sin importar especificidad, así que dentro de un párrafo en --fs-body
+     (clamp 16-18px) el enlace salía hasta 17% más chico que el texto que
+     lo rodea. .blog-content a (0,1,1) sí gana por especificidad a
+     .link-underline (0,1,0): basta con heredar tamaño y altura de línea
+     aquí para arreglar los 241 de un golpe, sin tocar un solo .astro, y
+     cualquier enlace de blog futuro nace correcto. */
+  font-size: inherit;
+  line-height: inherit;
 }
 .blog-content a:hover {
   opacity: .65;

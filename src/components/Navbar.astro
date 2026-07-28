@@ -110,7 +110,15 @@ const searchBlogEntries = {
      morada sólida debajo; ahí la barra sí debe ser un bloque continuo con
      esa UI, no un cristal sobre el lienzo. */
   .navbar.navbar--dark {
-    background: var(--purple);
+    /* Antes var(--purple) (#46276E): se homologa a --canvas-top (#26143C),
+       el arranque canónico del lienzo, para que la barra entre con el mismo
+       color que el resto del sitio en vez de un morado suelto.
+       Esta regla SÍ está activa: red-terapeutica.astro y therapist-network.astro
+       pasan nav="dark" y no usan hideNav, así que Base.astro:123 monta este
+       Navbar con la variante. La barra de filtros que va justo debajo, dentro
+       de esas páginas, se homologa al mismo token para que las dos franjas
+       lean como un solo bloque. */
+    background: var(--canvas-top);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
