@@ -7,12 +7,26 @@ interface Props {
   start?: number;
   /** small credit line shown below the video (source, date, etc.) */
   caption?: string;
+  /** proporción del marco, ej. "16/9" (default) o "9/16" para YouTube Shorts */
+  ratio?: string;
+  /** Tope de ancho del marco. Existe por los vídeos verticales: con `ratio`
+   *  distinto de 16/9 el ALTO lo manda el ancho, así que un 9/16 a la anchura
+   *  de su columna se dispara y descuadra la fila entera. Medido en la retícula
+   *  de "Cómo trabajo en sesión" (columna de 252px): los 16/9 miden 142px de
+   *  alto y el 9/16 se iba a 448px — 306px más, dejando a las otras tres
+   *  tarjetas con un hueco enorme.
+   *  Se acota en PORCENTAJE y no en px a propósito: el porcentaje es estable
+   *  entre anchos de pantalla, así que la proporción de alturas entre un
+   *  vertical y sus vecinos horizontales se mantiene en cualquier viewport.
+   *  La fórmula, por si hay que recalcularlo: un vertical con max-width p mide
+   *  3.16·p veces el alto de un 16/9 hermano. Con p=50% queda en ~1.6×. */
+  maxWidth?: string;
 }
-const { videoId, title, style = '', start, caption } = Astro.props;
+const { videoId, title, style = '', start, caption, ratio = '16/9', maxWidth = '320px' } = Astro.props;
 ---
 
-<div style={`max-width:320px;${style}`}>
-  <div class="video-embed" data-video-id={videoId} data-start={start} style="position:relative;width:100%;border-radius:10px;overflow:hidden;aspect-ratio:16/9;">
+<div style={`max-width:${maxWidth};${style}`}>
+  <div class="video-embed" data-video-id={videoId} data-start={start} style={`position:relative;width:100%;border-radius:10px;overflow:hidden;aspect-ratio:${ratio};`}>
     <button type="button" class="video-embed-trigger" aria-label={title} style="all:unset;position:absolute;inset:0;cursor:pointer;display:block;width:100%;height:100%;">
       <img src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`} alt="" width="320" height="180" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.25);">
