@@ -16,8 +16,16 @@ const items = testimonials[locale];
 >
 
   <!-- HEADER -->
-  <header class="page-header--soft zone-dark">
-    <div class="container--read">
+  <!-- .container--read (760, centrado) desalineaba el H1 respecto al borde
+       canónico del sitio (x=106 a 1512px): .page-header--soft ya aporta el
+       padding lateral (patrón anidado sección>contenedor), así que un hijo
+       de 760px se CENTRA en el hueco en vez de pegarse al borde. Se anula
+       ese padding heredado (padding-left/right:0, gana por especificidad de
+       inline sobre la clase) y el div interno pasa al patrón de una sola
+       caja (max-width + padding en el MISMO elemento) que ya usan las
+       secciones 2 y 3 de esta misma página — ver CLAUDE.md "Márgenes". -->
+  <header class="page-header--soft zone-dark" style="padding-left:0;padding-right:0;">
+    <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <p class="label-section">Experiencias</p>
       <h1 style="margin:0 0 22px;text-wrap:balance;color:var(--heading-canvas);">Personas reales, cambios reales</h1>
       <p class="body-text" style="margin:0;max-width:54ch;color:var(--on-canvas);">Lo que cuentan quienes han hecho su proceso conmigo. Cada historia es distinta — esto es solo una muestra.</p>

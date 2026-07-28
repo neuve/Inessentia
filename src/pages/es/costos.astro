@@ -13,11 +13,19 @@ const termsPath = sitePath(locale, 'terms');
 >
 
   <!-- HEADER -->
-  <header class="page-header--soft zone-dark">
-    <div class="container--read">
+  <!-- ver es/testimonios.astro: .container--read (760, centrado) desalineaba
+       el H1 del borde canónico; se anula el padding de .page-header--soft y
+       se pasa al patrón de una sola caja (max-width + padding) que ya usan
+       las secciones de esta página (ver costos-grid más abajo). -->
+  <header class="page-header--soft zone-dark" style="padding-left:0;padding-right:0;">
+    <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <p class="label-section">Costos</p>
       <h1>Invierte en tu proceso</h1>
-      <p class="body-text" style="margin:20px 0 0;">Tarifas claras para acompañarte, ya sea que empieces hoy o sostengas tu proceso con continuidad.</p>
+      <!-- max-width:54ch: al salir de .container--read (760) la caja pasó a
+           --container-pad-w (hasta 1600), y sin tope la entradilla se estiraba
+           a una línea de lectura demasiado larga. Mismo tope que ya usa la
+           entradilla de testimonios.astro. -->
+      <p class="body-text" style="margin:20px 0 0;max-width:54ch;">Tarifas claras para acompañarte, ya sea que empieces hoy o sostengas tu proceso con continuidad.</p>
     </div>
   </header>
 

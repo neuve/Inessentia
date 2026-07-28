@@ -16,8 +16,12 @@ const items = testimonials[locale];
 >
 
   <!-- HEADER -->
-  <header class="page-header--soft zone-dark">
-    <div class="container--read">
+  <!-- ver es/testimonios.astro: .container--read (760, centrado) desalineaba
+       el H1 del borde canónico; se anula el padding de .page-header--soft y
+       se pasa al patrón de una sola caja (max-width + padding) que ya usan
+       las secciones 2 y 3 de esta página. -->
+  <header class="page-header--soft zone-dark" style="padding-left:0;padding-right:0;">
+    <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <p class="label-section">Experiences</p>
       <h1 style="margin:0 0 22px;text-wrap:balance;color:var(--heading-canvas);">Real people, real change</h1>
       <p class="body-text" style="margin:0;max-width:54ch;color:var(--on-canvas);">What those who have gone through their process with me have to say. Every story is different -- this is just a sample.</p>
