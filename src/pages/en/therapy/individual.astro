@@ -142,7 +142,9 @@ const schema = [
         <p class="label-section label-section--on-dark">Approaches</p>
         <h2 class="heading-section heading-section--on-dark">How I work in session</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
+      <!-- .three-two-grid: 5 tarjetas, 3 arriba + 2 abajo desde 1024px. Reparto fijo porque
+           con 5 (impar) el auto-fit deja la última huérfana. El porqué, en global.css. -->
+      <div class="three-two-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
         <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Somatic Experiencing (SE)</h3>
           <p class="body-text body-text--on-dark" style="margin:0 0 16px;">A trauma-aware therapeutic model. It pays attention to your nervous system responses to help you regulate what your body holds, respecting the rhythm your physical experience sets for us.</p>
@@ -154,14 +156,19 @@ const schema = [
           <VideoEmbed videoId="DdZZ7sTX840" title="Watch video: What is Internal Family Systems (IFS)?" style="margin-top:auto;" />
         </div>
         <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Core Energetics</h3>
+          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Views the person as an integration of body, emotions, thoughts and intentions. Works with movement and breath to access deeper layers. Offers an evolutionary and transpersonal perspective.</p>
+          <VideoEmbed videoId="WUdo-ENIn7U" title="Watch video: What is Core Energetics?" ratio="9/16" maxWidth="min(50%, 160px)" style="margin-top:auto;" />
+        </div>
+        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Systemic Family Therapy</h3>
+          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">It doesn't see you as an isolated individual, but as part of a system of relationships with a structure that can be described and worked with. It seeks a shift in thinking before a shift in behavior. It's the base of my approach.</p>
+          <VideoEmbed videoId="ZjkefczM7Ag" start={650} title="Watch video: What is Systemic Family Therapy?" style="margin-top:auto;" />
+        </div>
+        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Tapping (EFT)</h3>
           <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Combines gentle tapping on specific body points with verbal processing. Useful for releasing "stuck" emotions. It pairs the stimulation of acupuncture points with gradual exposure to the memory and a safety signal to the nervous system.</p>
           <VideoEmbed videoId="4ZDjAhuo_6Y" title="Watch video: What is Tapping (EFT)?" style="margin-top:auto;" />
-        </div>
-        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
-          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Core Energetics</h3>
-          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Views the person as an integration of body, emotions, thoughts and intentions. Works with movement and breath to access deeper layers. Offers an evolutionary and transpersonal perspective.</p>
-          <VideoEmbed videoId="WUdo-ENIn7U" title="Watch video: What is Core Energetics?" ratio="9/16" maxWidth="50%" style="margin-top:auto;" />
         </div>
       </div>
     </div>

@@ -677,6 +677,20 @@ form .btn, .form-wrap .btn, .form-field .btn {
 }
 @media (max-width: 768px) { .two-col { grid-template-columns: 1fr !important; } }
 
+/* .three-two-grid: retícula de "Cómo trabajo en sesión" en terapia individual (5 tarjetas).
+   Se deja auto-fit en móvil/tablet (igual que hoy), pero desde 1024px se fija a mano una
+   retícula de 6 columnas: las tarjetas 1-3 ocupan 2 columnas (fila superior, tres tarjetas)
+   y las tarjetas 4-5 ocupan 3 columnas (fila inferior, dos tarjetas a media anchura).
+   Es DETERMINISTA a propósito y no auto-fit: con 5 elementos (número impar) auto-fit deja
+   la quinta tarjeta huérfana en su propia fila tanto en 1280px como en 1512px.
+   El !important es necesario porque la base (display:grid + auto-fit) vive en el `style`
+   inline del .astro, igual que hace .two-col aquí arriba. */
+@media (min-width: 1024px) {
+  .three-two-grid { grid-template-columns: repeat(6, 1fr) !important; }
+  .three-two-grid > *:nth-child(-n+3) { grid-column: span 2; }
+  .three-two-grid > *:nth-child(n+4) { grid-column: span 3; }
+}
+
 /* Blog post content */
 .blog-content h2 {
   font-family: var(--ff-head);

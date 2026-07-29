@@ -142,7 +142,9 @@ const schema = [
         <p class="label-section label-section--on-dark">Aproximaciones</p>
         <h2 class="heading-section heading-section--on-dark">Cómo trabajo en sesión</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
+      <!-- .three-two-grid: 5 tarjetas, 3 arriba + 2 abajo desde 1024px. Reparto fijo porque
+           con 5 (impar) el auto-fit deja la última huérfana. El porqué, en global.css. -->
+      <div class="three-two-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:22px;">
         <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Experiencia Somática (SE)</h3>
           <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Modelo terapéutico con consciencia de trauma. Pone atención a las respuestas del sistema nervioso para acompañarte a regular lo que tu cuerpo guarda, respetando el ritmo que tu experiencia física nos va marcando.</p>
@@ -154,14 +156,19 @@ const schema = [
           <VideoEmbed videoId="DdZZ7sTX840" title="Ver video: ¿Qué son los Sistemas Familiares Internos (IFS)?" style="margin-top:auto;" />
         </div>
         <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Core Energética</h3>
+          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Mira a la persona como integración de cuerpo, emociones, pensamientos e intenciones. Trabaja con el movimiento y la respiración para acceder a niveles profundos. Ofrece una mirada evolutiva y transpersonal.</p>
+          <VideoEmbed videoId="WUdo-ENIn7U" title="Ver video: ¿Qué es Core Energética?" ratio="9/16" maxWidth="min(50%, 160px)" style="margin-top:auto;" />
+        </div>
+        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
+          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Terapia Familiar Sistémica</h3>
+          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">No te mira como un individuo aislado, sino como parte de un sistema de relaciones con una estructura que puede describirse e intervenirse. Busca un cambio en la forma de pensar antes que en la conducta. Es la base de mi aproximación.</p>
+          <VideoEmbed videoId="ZjkefczM7Ag" start={650} title="Ver video: ¿Qué es la Terapia Familiar Sistémica?" style="margin-top:auto;" />
+        </div>
+        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Tapping (EFT)</h3>
           <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Combina estímulos suaves en puntos específicos del cuerpo con la palabra. Útil para destrabar emociones "atoradas". Une la estimulación de puntos de acupuntura con la exposición gradual al recuerdo y una señal de seguridad al sistema nervioso.</p>
           <VideoEmbed videoId="4ZDjAhuo_6Y" title="Ver video: ¿Qué es el Tapping (EFT)?" style="margin-top:auto;" />
-        </div>
-        <div data-reveal style="background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px 28px;display:flex;flex-direction:column;">
-          <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--gold);font-size:19px;margin:0 0 12px;">Core Energética</h3>
-          <p class="body-text body-text--on-dark" style="margin:0 0 16px;">Mira a la persona como integración de cuerpo, emociones, pensamientos e intenciones. Trabaja con el movimiento y la respiración para acceder a niveles profundos. Ofrece una mirada evolutiva y transpersonal.</p>
-          <VideoEmbed videoId="WUdo-ENIn7U" title="Ver video: ¿Qué es Core Energética?" ratio="9/16" maxWidth="50%" style="margin-top:auto;" />
         </div>
       </div>
     </div>

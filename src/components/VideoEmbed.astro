@@ -15,11 +15,18 @@ interface Props {
    *  de "Cómo trabajo en sesión" (columna de 252px): los 16/9 miden 142px de
    *  alto y el 9/16 se iba a 448px — 306px más, dejando a las otras tres
    *  tarjetas con un hueco enorme.
-   *  Se acota en PORCENTAJE y no en px a propósito: el porcentaje es estable
-   *  entre anchos de pantalla, así que la proporción de alturas entre un
-   *  vertical y sus vecinos horizontales se mantiene en cualquier viewport.
-   *  La fórmula, por si hay que recalcularlo: un vertical con max-width p mide
-   *  3.16·p veces el alto de un 16/9 hermano. Con p=50% queda en ~1.6×. */
+   *  Hacen falta LOS DOS topes a la vez, `min(porcentaje, px)`, y aquí está el
+   *  porqué: mientras la columna es estrecha, el hermano 16/9 la llena y el
+   *  porcentaje mantiene la proporción entre ambos en cualquier viewport. Pero
+   *  en cuanto la columna supera los 320px, el hermano SE TOPA en su default de
+   *  320 y deja de crecer, mientras el vertical seguiría creciendo al 50% — y
+   *  la proporción se dispara. Medido tras pasar la retícula a 3+2: con solo el
+   *  50% el vertical llegaba a 2.06× el alto de su hermano a 1710px (1.78× a
+   *  1512px) en vez del 1.58× de diseño.
+   *  Las fórmulas, por si hay que recalcularlo: con la columna estrecha, un
+   *  vertical con max-width p mide 3.16·p veces el alto de un 16/9 hermano
+   *  (p=50% → 1.58×). Con el hermano ya topado en 320px (alto 180px), el tope
+   *  en px del vertical sale de 180·1.58·9/16 ≈ 160px. */
   maxWidth?: string;
 }
 const { videoId, title, style = '', start, caption, ratio = '16/9', maxWidth = '320px' } = Astro.props;
