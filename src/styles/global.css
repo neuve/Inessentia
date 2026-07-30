@@ -9,6 +9,9 @@
 @import './fonts.generated.css';
 
 :root {
+  /* Modo claro desactivado: el sitio es oscuro fijo (ver Base.astro). Esto
+     alinea los controles nativos del navegador (scrollbars, campos, selects). */
+  color-scheme: dark;
   --purple: #46276E;
   --purple-d: #3C1F5E;
   --wine: #8E2B5D;

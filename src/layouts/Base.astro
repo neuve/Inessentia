@@ -70,16 +70,14 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Tema: OSCURO por defecto, adaptable al dispositivo (si prefiere claro),
-       preferencia guardada gana. Se resuelve antes del render para evitar parpadeo. -->
+  <!-- Tema: OSCURO FIJO. El modo claro quedó desactivado a pedido del usuario:
+       ya no se consulta prefers-color-scheme ni la preferencia guardada
+       ('iness-theme'), y el toggle salió de los menús. La capa
+       :root[data-theme="light"] de global.css se conserva intacta (queda
+       inerte) para poder reactivarlo revirtiendo solo este bloque, el script
+       del toggle al final del body y los botones de los menús. -->
   <script is:inline>
-    (function(){
-      try{
-        var saved=localStorage.getItem('iness-theme');
-        var theme=saved||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
-        document.documentElement.setAttribute('data-theme',theme);
-      }catch(e){ document.documentElement.setAttribute('data-theme','dark'); }
-    })();
+    document.documentElement.setAttribute('data-theme','dark');
   </script>
   <title>{title}</title>
   <meta name="description" content={description}>
@@ -160,25 +158,9 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
   </script>
   <RevealOnScroll />
   <ParallaxImages />
-  {/* El toggle de tema ya no flota aparte — vive dentro de los menús de
-      navegación (MobileMenu.astro y MenuOverlay.astro, cada uno con su
-      propio [data-theme-toggle]; solo uno es visible a la vez según el
-      breakpoint). La lógica se queda acá, centralizada, y engancha a
-      TODAS las instancias del botón que haya en el DOM. */}
-  <script is:inline>
-    (function(){
-      var KEY='iness-theme';
-      var saved=localStorage.getItem(KEY);
-      if(saved){document.documentElement.setAttribute('data-theme',saved);}
-      document.querySelectorAll('[data-theme-toggle]').forEach(function(b){
-        b.addEventListener('click',function(){
-          var next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
-          document.documentElement.setAttribute('data-theme',next);
-          localStorage.setItem(KEY,next);
-        });
-      });
-    })();
-  </script>
+  {/* El toggle de tema vivía acá (enganchaba todos los [data-theme-toggle] de
+      MobileMenu.astro y MenuOverlay.astro). Se quitó junto con los botones al
+      desactivar el modo claro; el tema se fija en el <head>. */}
   <script>
     import '../scripts/video-embed.js';
   </script>
