@@ -22,7 +22,7 @@ interface Props {
   scaleSteps?: ScaleStep[];
   scaleNote?: string;
   subline?: string;
-  quote: string;
+  quote?: string;
   quoteTag?: string;
   footnote?: string;
 }
@@ -71,10 +71,12 @@ function formatThousands(n: number): string {
 
     {subline && <p class="stats-band__subline" data-reveal>{subline}</p>}
 
-    <div class="stats-band__quote-wrap" data-reveal>
-      <p class="stats-band__quote">{quote}</p>
-      {quoteTag && <p class="stats-band__quote-tag">{quoteTag}</p>}
-    </div>
+    {quote && (
+      <div class="stats-band__quote-wrap" data-reveal>
+        <p class="stats-band__quote">{quote}</p>
+        {quoteTag && <p class="stats-band__quote-tag">{quoteTag}</p>}
+      </div>
+    )}
 
     {footnote && <p class="stats-band__footnote" data-reveal>{footnote}</p>}
   </div>
