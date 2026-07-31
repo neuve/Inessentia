@@ -14,7 +14,7 @@ interface Props {
   subline?: string;
   quote: string;
   quoteTag?: string;
-  footnote: string;
+  footnote?: string;
 }
 
 const { eyebrow, stats, subline, quote, quoteTag, footnote } = Astro.props;
@@ -49,14 +49,14 @@ function formatThousands(n: number): string {
       {quoteTag && <p class="stats-band__quote-tag">{quoteTag}</p>}
     </div>
 
-    <p class="stats-band__footnote" data-reveal>{footnote}</p>
+    {footnote && <p class="stats-band__footnote" data-reveal>{footnote}</p>}
   </div>
 </section>
 
 <style>
   .stats-band__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     row-gap: 24px;
   }
   .stats-band__cell {
@@ -64,7 +64,7 @@ function formatThousands(n: number): string {
     border-left: none;
   }
   @media (min-width: 821px) {
-    .stats-band__cell:not(:nth-child(4n+1)) {
+    .stats-band__cell:not(:nth-child(5n+1)) {
       padding-left: 28px;
       border-left: 1px solid color-mix(in srgb, var(--on-canvas) 22%, transparent);
     }
