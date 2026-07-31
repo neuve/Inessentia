@@ -8,16 +8,24 @@ interface Stat {
   label: string;
 }
 
+interface ScaleStep {
+  name: string;
+  time: string;
+}
+
 interface Props {
   eyebrow: string;
   stats: Stat[];
+  scaleTitle?: string;
+  scaleSteps?: ScaleStep[];
+  scaleNote?: string;
   subline?: string;
   quote: string;
   quoteTag?: string;
   footnote?: string;
 }
 
-const { eyebrow, stats, subline, quote, quoteTag, footnote } = Astro.props;
+const { eyebrow, stats, scaleTitle, scaleSteps, scaleNote, subline, quote, quoteTag, footnote } = Astro.props;
 
 function formatThousands(n: number): string {
   return n.toLocaleString('en-US');
@@ -28,7 +36,7 @@ function formatThousands(n: number): string {
   <div class="container">
     <p data-reveal class="label-section">{eyebrow}</p>
 
-    <div class="stats-band__grid">
+    <div class="stats-band__grid" style={`--cols:${stats.length}`}>
       {stats.map((s) => {
         const target = s.count ?? s.value;
         return (
@@ -41,6 +49,21 @@ function formatThousands(n: number): string {
         );
       })}
     </div>
+
+    {scaleSteps && scaleSteps.length > 0 && (
+      <div class="stats-band__scale" data-reveal>
+        {scaleTitle && <p class="label-section label-section--plain stats-band__scale-title">{scaleTitle}</p>}
+        <div class="stats-band__scale-grid">
+          {scaleSteps.map((step) => (
+            <div class="stats-band__scale-step">
+              <p class="stats-band__scale-name">{step.name}</p>
+              <p class="stats-band__scale-time">{step.time}</p>
+            </div>
+          ))}
+        </div>
+        {scaleNote && <p class="stats-band__scale-note">{scaleNote}</p>}
+      </div>
+    )}
 
     {subline && <p class="stats-band__subline" data-reveal>{subline}</p>}
 
@@ -56,7 +79,7 @@ function formatThousands(n: number): string {
 <style>
   .stats-band__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(var(--cols, 4), 1fr);
     row-gap: 24px;
   }
   .stats-band__cell {
@@ -64,10 +87,49 @@ function formatThousands(n: number): string {
     border-left: none;
   }
   @media (min-width: 821px) {
-    .stats-band__cell:not(:nth-child(5n+1)) {
+    .stats-band__cell:not(:first-child),
+    .stats-band__scale-step:not(:first-child) {
       padding-left: 28px;
       border-left: 1px solid color-mix(in srgb, var(--on-canvas) 22%, transparent);
     }
+  }
+
+  .stats-band__scale {
+    margin-top: clamp(36px, 5vw, 56px);
+  }
+  .stats-band__scale-title {
+    margin: 0 0 18px;
+  }
+  .stats-band__scale-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+  }
+  .stats-band__scale-step {
+    padding: 4px 28px 4px 0;
+  }
+  .stats-band__scale-name {
+    margin: 0 0 6px;
+    font-family: var(--ff-body);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--on-canvas);
+  }
+  .stats-band__scale-time {
+    margin: 0;
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: clamp(22px, 2.4vw, 30px);
+    line-height: 1.1;
+    color: var(--accent-canvas);
+  }
+  .stats-band__scale-note {
+    margin: 18px 0 0;
+    font-family: var(--ff-body);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--on-canvas-soft);
+    max-width: 60ch;
   }
   .stats-band__figure {
     margin: 0 0 8px;
@@ -124,6 +186,10 @@ function formatThousands(n: number): string {
 
   @media (max-width: 820px) and (min-width: 561px) {
     .stats-band__grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-band__scale-step:not(:first-child) {
+      padding-left: 28px;
+      border-left: 1px solid color-mix(in srgb, var(--on-canvas) 22%, transparent);
+    }
     .stats-band__cell {
       padding: 4px 28px 4px 0;
       border-left: none;
@@ -136,7 +202,9 @@ function formatThousands(n: number): string {
 
   @media (max-width: 560px) {
     .stats-band__grid { grid-template-columns: 1fr; row-gap: 24px; }
-    .stats-band__cell {
+    .stats-band__scale-grid { grid-template-columns: 1fr; }
+    .stats-band__cell,
+    .stats-band__scale-step {
       padding: 4px 0;
       border-left: none;
     }
