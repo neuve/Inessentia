@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import StatsBand from '../../components/StatsBand.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -34,6 +35,20 @@ const schema = personSchema(locale);
     <p><strong>Feel at home in yourself.</strong></p>
     <p>I help you reconnect with your intuition and your capacity to self-regulate, through an approach that integrates mind, emotion, and body.</p>
   </SiteHeader>
+
+  <StatsBand
+    eyebrow="Nine years in practice · as of July 2026"
+    stats={[
+      { value: 3100, suffix: '+', label: 'sessions held' },
+      { value: 300, suffix: '+', label: 'people accompanied' },
+      { value: 2, suffix: '½ years', label: 'average length of a long-term process' },
+      { value: 48, label: 'people have returned for a second season of work' },
+    ]}
+    subline="10 years accompanying individual processes · 6 years with couples · 2 years with families"
+    quote="Processes don't always end; sometimes they rest."
+    quoteTag="The door stays open."
+    footnote="Figures as of July 2026, calculated from the practice's real calendar. Aggregates only: no individual data."
+  />
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }
@@ -135,20 +150,8 @@ const schema = personSchema(locale);
         </div>
 
         <div data-reveal>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:20px;margin:0 0 22px;padding-bottom:12px;border-bottom:2px solid var(--accent-canvas);">Clinical experience</h3>
+          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:20px;margin:0 0 22px;padding-bottom:12px;border-bottom:2px solid var(--accent-canvas);">Teaching and facilitation</h3>
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">10</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">years working with adolescents and adults in individual therapy</p>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">6</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">years working with couples in relational therapy</p>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">2</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">years working with families in systemic therapy</p>
-            </div>
             <ul style="margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:5px;list-style:disc;">
               <li style="font-size:14px;color:var(--on-canvas-soft);line-height:1.5;">Lead instructor at Instituto Corpore since 2026</li>
               <li style="font-size:14px;color:var(--on-canvas-soft);line-height:1.5;">Group facilitator since 2018</li>

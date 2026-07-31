@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import StatsBand from '../../components/StatsBand.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -34,6 +35,20 @@ const schema = personSchema(locale);
     <p><strong>Siéntete en casa contigo.</strong></p>
     <p>Te acompaño a recuperar la conexión con tu intuición y tu capacidad de autorregularte, desde un enfoque que integra mente, emoción y cuerpo.</p>
   </SiteHeader>
+
+  <StatsBand
+    eyebrow="Nueve años de consulta · corte julio 2026"
+    stats={[
+      { value: 3100, suffix: '+', label: 'sesiones acompañadas' },
+      { value: 300, suffix: '+', label: 'personas atendidas' },
+      { value: 2, suffix: '½ años', label: 'dura en promedio un proceso largo' },
+      { value: 48, label: 'personas han regresado a una segunda temporada' },
+    ]}
+    subline="10 años acompañando procesos individuales · 6 años con parejas · 2 años con familias"
+    quote="Los procesos no siempre terminan; a veces descansan."
+    quoteTag="La puerta queda abierta."
+    footnote="Cifras al corte de julio de 2026, calculadas del calendario real de la práctica. Solo agregados: ningún dato individual."
+  />
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }
@@ -135,20 +150,8 @@ const schema = personSchema(locale);
         </div>
 
         <div data-reveal>
-          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:20px;margin:0 0 22px;padding-bottom:12px;border-bottom:2px solid var(--accent-canvas);">Experiencia clínica</h3>
+          <h3 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:20px;margin:0 0 22px;padding-bottom:12px;border-bottom:2px solid var(--accent-canvas);">Docencia y facilitación</h3>
           <div style="display:flex;flex-direction:column;gap:14px;">
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">10</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">años acompañando a adolescentes y adultos en proceso individual</p>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">6</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">años acompañando a parejas en terapia relacional</p>
-            </div>
-            <div style="display:flex;align-items:flex-start;gap:14px;">
-              <span style="font-family:'Bitter',serif;font-weight:700;font-size:32px;color:var(--heading-canvas);line-height:1;flex:none;">2</span>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.5;">años acompañando familias con terapia sistémica</p>
-            </div>
             <ul style="margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:5px;list-style:disc;">
               <li style="font-size:14px;color:var(--on-canvas-soft);line-height:1.5;">Maestro titular Instituto Córpore desde 2026</li>
               <li style="font-size:14px;color:var(--on-canvas-soft);line-height:1.5;">Facilitador de grupos desde 2018</li>
