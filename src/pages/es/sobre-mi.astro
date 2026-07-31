@@ -38,6 +38,7 @@ const schema = personSchema(locale);
 
   <StatsBand
     eyebrow="La práctica en números"
+    lede="9 años acompañando procesos individuales · 6 años con parejas · 2 años con familias"
     stats={[
       { value: 3100, suffix: '+', label: 'sesiones acompañadas' },
       { value: 135, label: 'personas se han quedado a trabajar en proceso, de las más de 300 que han llegado a primera consulta' },
@@ -45,12 +46,11 @@ const schema = personSchema(locale);
     ]}
     scaleTitle="¿Cuánto se invierte?"
     scaleSteps={[
-      { name: 'Un temita', time: '4–6 meses' },
-      { name: 'Un tema serio', time: '≈ 1 año' },
-      { name: 'Crecer de fondo', time: '≈ 2 años' },
+      { name: 'Un temita', time: '4–6 meses', evidence: 'aquí cerraron 61 de los 135 procesos' },
+      { name: 'Un tema serio', time: '≈ 1 año', evidence: 'otros 24 cerraron entre los 7 y los 14 meses' },
+      { name: 'Crecer de fondo', time: '≈ 2 años', evidence: '26 más, entre el año y los dos y medio' },
     ]}
-    scaleNote="Más allá hay procesos de años — esos no se proponen; suceden."
-    subline="9 años acompañando procesos individuales · 6 años con parejas · 2 años con familias"
+    scaleNote="Los otros 24 fueron más allá de los dos años y medio — el más largo lleva ocho, por temporadas. Esos procesos no se proponen; suceden."
     quote="Los procesos no siempre terminan; a veces descansan."
     quoteTag="La puerta queda abierta."
   />

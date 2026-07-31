@@ -11,10 +11,12 @@ interface Stat {
 interface ScaleStep {
   name: string;
   time: string;
+  evidence?: string;
 }
 
 interface Props {
   eyebrow: string;
+  lede?: string;
   stats: Stat[];
   scaleTitle?: string;
   scaleSteps?: ScaleStep[];
@@ -25,7 +27,7 @@ interface Props {
   footnote?: string;
 }
 
-const { eyebrow, stats, scaleTitle, scaleSteps, scaleNote, subline, quote, quoteTag, footnote } = Astro.props;
+const { eyebrow, lede, stats, scaleTitle, scaleSteps, scaleNote, subline, quote, quoteTag, footnote } = Astro.props;
 
 function formatThousands(n: number): string {
   return n.toLocaleString('en-US');
@@ -35,6 +37,7 @@ function formatThousands(n: number): string {
 <section class="section zone-dark stats-band">
   <div class="container">
     <p data-reveal class="label-section">{eyebrow}</p>
+    {lede && <p class="stats-band__lede" data-reveal>{lede}</p>}
 
     <div class="stats-band__grid" style={`--cols:${stats.length}`}>
       {stats.map((s) => {
@@ -58,6 +61,7 @@ function formatThousands(n: number): string {
             <div class="stats-band__scale-step">
               <p class="stats-band__scale-name">{step.name}</p>
               <p class="stats-band__scale-time">{step.time}</p>
+              {step.evidence && <p class="stats-band__scale-evidence">{step.evidence}</p>}
             </div>
           ))}
         </div>
@@ -77,6 +81,17 @@ function formatThousands(n: number): string {
 </section>
 
 <style>
+  .stats-band__lede {
+    margin: 14px 0 0;
+    font-family: var(--ff-body);
+    font-weight: 600;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: var(--on-canvas);
+  }
+  .stats-band__lede + .stats-band__grid {
+    margin-top: clamp(28px, 4vw, 40px);
+  }
   .stats-band__grid {
     display: grid;
     grid-template-columns: repeat(var(--cols, 4), 1fr);
@@ -122,6 +137,13 @@ function formatThousands(n: number): string {
     font-size: clamp(22px, 2.4vw, 30px);
     line-height: 1.1;
     color: var(--accent-canvas);
+  }
+  .stats-band__scale-evidence {
+    margin: 6px 0 0;
+    font-family: var(--ff-body);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--on-canvas-soft);
   }
   .stats-band__scale-note {
     margin: 18px 0 0;
