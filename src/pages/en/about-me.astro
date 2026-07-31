@@ -47,14 +47,17 @@ const schema = personSchema(locale);
     ]}
   >
     <PermanenceCurve
-      title="How much do you invest?"
-      barTitle={(pct, month) => `${pct}% of processes were still active at month ${month}`}
-      summary="Permanence curve across 4 stages over 97 months of follow-up: Isolated themes, up to 2 months, 59%; Brief processes, 2–10 months, 21%; Complex themes, 10–18 months, 8%; A life path, beyond 18 months, 12%."
+      title="How long I work with the people I see"
+      axisY="Number of processes that reached each session"
+      axisX="Session number →"
+      bandLabel="2 out of 3 processes live here: between session 5 and 34"
+      barTitle={(processes, session) => `${processes} process${processes === 1 ? '' : 'es'} reached session ${session}`}
+      summary="Permanence curve: of 136 processes, Isolated themes, 4–11 sessions, 48%; Brief processes, 12–23 sessions, 24%; Complex themes, 24–47 sessions, 18%; A life path, 48 sessions or more, 10%. The middle two thirds live between sessions 5 and 34."
       legend={[
-        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: 'up to 2 months', pct: 59 },
-        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '2–10 months', pct: 21 },
-        { name: 'Complex themes', range: '10–18 months', pct: 8 },
-        { name: 'A life path', range: 'beyond 18 months', pct: 12 },
+        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: '4–11 sessions', pct: 48, time: 'about 3 months' },
+        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '12–23 sessions', pct: 24, time: 'half a year' },
+        { name: 'Complex themes', range: '24–47 sessions', pct: 18, time: 'close to 2 years' },
+        { name: 'A life path', range: '48 sessions or more', pct: 10, time: '3 years and beyond' },
       ]}
     />
   </StatsBand>
