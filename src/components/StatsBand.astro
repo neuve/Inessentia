@@ -69,6 +69,8 @@ function formatThousands(n: number): string {
       </div>
     )}
 
+    <slot />
+
     {subline && <p class="stats-band__subline" data-reveal>{subline}</p>}
 
     {quote && (

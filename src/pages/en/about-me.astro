@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import PermanenceCurve from '../../components/PermanenceCurve.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -44,13 +45,19 @@ const schema = personSchema(locale);
       { value: 2983, label: 'sessions make up those processes' },
       { value: 6, suffix: '–30 sessions', label: 'make up the average process (20th–80th percentile)' },
     ]}
-    scaleTitle="How much do you invest?"
-    scaleSteps={[
-      { name: 'Isolated events or themes', time: '4–6 months', evidence: '58 of the 136 processes closed here' },
-      { name: 'Life experiences — the average process', time: '≈ 1 year', evidence: 'another 34, between 7 and 14 months' },
-      { name: 'Deep transformation', time: '≈ 2 years', evidence: '21 more, between one and two and a half years' },
-    ]}
-  />
+  >
+    <PermanenceCurve
+      title="How much do you invest?"
+      barTitle={(pct, month) => `${pct}% of processes were still active at month ${month}`}
+      summary="Permanence curve across 4 stages over 97 months of follow-up: Isolated themes, up to 2 months, 59%; Brief processes, 2–10 months, 21%; Complex themes, 10–18 months, 8%; A life path, beyond 18 months, 12%."
+      legend={[
+        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: 'up to 2 months', pct: 59 },
+        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '2–10 months', pct: 21 },
+        { name: 'Complex themes', range: '10–18 months', pct: 8 },
+        { name: 'A life path', range: 'beyond 18 months', pct: 12 },
+      ]}
+    />
+  </StatsBand>
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }

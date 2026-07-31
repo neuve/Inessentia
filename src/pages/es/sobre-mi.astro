@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import PermanenceCurve from '../../components/PermanenceCurve.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -44,13 +45,18 @@ const schema = personSchema(locale);
       { value: 2983, label: 'sesiones componen esos procesos' },
       { value: 6, suffix: '–30 sesiones', label: 'componen el proceso promedio (percentiles 20 a 80)' },
     ]}
-    scaleTitle="¿Cuánto se invierte?"
-    scaleSteps={[
-      { name: 'Eventos o temas aislados', time: '4–6 meses', evidence: 'aquí cerraron 58 de los 136 procesos' },
-      { name: 'Experiencias de vida — el proceso promedio', time: '≈ 1 año', evidence: 'otros 34, entre los 7 y los 14 meses' },
-      { name: 'Transformación profunda', time: '≈ 2 años', evidence: '21 más, entre el año y los dos y medio' },
-    ]}
-  />
+  >
+    <PermanenceCurve
+      title="¿Cuánto se invierte?"
+      legend={[
+        { name: 'Temas aislados', examples: 'primeras entrevistas, accidentes, lesiones, asesorías', range: 'hasta 2 meses', pct: 59 },
+        { name: 'Temas breves', examples: 'integración, lesiones, rupturas', range: '2–10 meses', pct: 21 },
+        { name: 'Temas complejos', range: '10–18 meses', pct: 8 },
+        { name: 'Camino de vida', range: 'más de 18 meses', pct: 12 },
+      ]}
+    />
+  </StatsBand>
+
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }
