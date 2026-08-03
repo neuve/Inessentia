@@ -30,22 +30,24 @@ interface Props {
 const { title, legend, axisX, axisY, bandLabel, summary, barTitle } = Astro.props;
 
 // Serie hardcodeada desde cadencia.db (solo lectura). serie[i] = cuántos de
-// los 136 procesos de 4+ sesiones llegaron a la sesión i+1. Las cuatro
-// primeras valen 136 por definición del universo.
+// los 138 procesos de 4+ sesiones llegaron a la sesión i+1. Las cuatro
+// primeras valen 138 por definición del universo.
+// Snapshot: 2026-08-02. Excluye las sesiones ya agendadas a futuro — el
+// universo es lo que ya ocurrió, no lo que está en el calendario.
 const serie = [
-  136, 136, 136, 136, 125, 111, 103, 95, 86, 79, 76, 71, 63, 59, 56, 54, 52, 49, 47, 47, 46, 43, 40, 39, 37, 34, 34,
-  32, 32, 28, 26, 24, 23, 23, 23, 23, 22, 21, 21, 19, 19, 17, 17, 17, 17, 15, 15, 14, 14, 14, 13, 13, 11, 11, 11, 11,
-  11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 10, 9, 9, 9, 9, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-  5, 5, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1,
+  138, 138, 138, 138, 130, 116, 106, 96, 88, 85, 77, 73, 63, 60, 55, 54, 54, 52, 50, 46, 46, 44, 42, 41, 40, 35, 33,
+  33, 32, 30, 27, 26, 24, 23, 23, 23, 23, 22, 22, 22, 22, 20, 19, 19, 19, 17, 17, 16, 16, 14, 14, 14, 13, 13, 13,
+  13, 13, 12, 12, 12, 12, 12, 12, 12, 12, 12, 10, 9, 9, 9, 9, 9, 9, 9, 8, 8, 8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 6,
+  6, 6, 6, 5, 5, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1,
 ];
 
 const TOTAL = serie[0];
 // Los 2/3 centrales de los procesos viven entre estas dos sesiones
 // (percentiles 16.7 y 83.3 del número de sesiones).
-const BAND_FROM = 5;
-const BAND_TO = 34;
+const BAND_FROM = 6;
+const BAND_TO = 33;
 
 // Fronteras de tramo, en número de sesión: 4–11, 12–23, 24–47, 48+.
 function zoneOf(sesion: number): 1 | 2 | 3 | 4 {

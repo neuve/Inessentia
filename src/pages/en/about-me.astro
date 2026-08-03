@@ -41,8 +41,8 @@ const schema = personSchema(locale);
     eyebrow="My practice in numbers"
     lede="9 years accompanying individual processes · 6 years with couples · 2 years with families"
     stats={[
-      { value: 136, label: 'people have taken a process of 4 or more sessions' },
-      { value: 2983, label: 'sessions make up those processes' },
+      { value: 138, label: 'people have taken a process of 4 or more sessions' },
+      { value: 3180, label: 'sessions make up those processes' },
       { value: 6, suffix: '–30 sessions', label: 'make up the average process (20th–80th percentile)' },
     ]}
   >
@@ -50,14 +50,14 @@ const schema = personSchema(locale);
       title="How long I work with the people I see"
       axisY="Number of processes that reached each session"
       axisX="Session number →"
-      bandLabel="2 out of 3 processes live here: between session 5 and 34"
+      bandLabel="2 out of 3 processes live here: between session 6 and 33"
       barTitle={(processes, session) => `${processes} process${processes === 1 ? '' : 'es'} reached session ${session}`}
-      summary="Permanence curve: of 136 processes, Isolated themes, 4–11 sessions, 48%; Brief processes, 12–23 sessions, 24%; Complex themes, 24–47 sessions, 18%; A life path, 48 sessions or more, 10%. The middle two thirds live between sessions 5 and 34."
+      summary="Permanence curve: of 138 processes, Isolated themes, 4–11 sessions, 47%; Brief processes, 12–23 sessions, 23%; Complex themes, 24–47 sessions, 18%; A life path, 48 sessions or more, 12%. The middle two thirds live between sessions 6 and 33."
       legend={[
-        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: '4–11 sessions', pct: 48, time: 'about 3 months' },
-        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '12–23 sessions', pct: 24, time: 'half a year' },
-        { name: 'Complex themes', range: '24–47 sessions', pct: 18, time: 'close to 2 years' },
-        { name: 'A life path', range: '48 sessions or more', pct: 10, time: '3 years and beyond' },
+        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: '4–11 sessions', pct: 47, time: 'about 3 months' },
+        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '12–23 sessions', pct: 23, time: 'about 8 months' },
+        { name: 'Complex themes', range: '24–47 sessions', pct: 18, time: 'a year and a half' },
+        { name: 'A life path', range: '48 sessions or more', pct: 12, time: 'two and a half years' },
       ]}
     />
   </StatsBand>
