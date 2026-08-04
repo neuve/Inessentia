@@ -303,28 +303,52 @@
     ],
     "src": "/uploads/responsive/facebook-icon.acbe557d.png"
   },
-  "/uploads/hero-crops/patricio-ruiz-retrato-2-hero-cinema.jpg": {
-    "width": 810,
-    "height": 650,
+  "/uploads/hero-crops/patricio-ruiz-retrato-2-hero-cinema.webp": {
+    "width": 1193,
+    "height": 957,
     "srcset": [
       {
-        "w": 810,
-        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.bbe5f8f4.jpg"
+        "w": 1193,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.391ef937.webp"
       }
     ],
-    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.bbe5f8f4.jpg",
-    "objectPosition": "center 75%"
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-cinema.391ef937.webp",
+    "objectPosition": "center 33.3333%"
   },
-  "/uploads/hero-crops/patricio-ruiz-retrato-hero-cinema-1300x1089.webp": {
-    "width": 1300,
-    "height": 1089,
+  "/uploads/hero-crops/patricio-ruiz-retrato-2-hero-movil.webp": {
+    "width": 1193,
+    "height": 1730,
     "srcset": [
       {
-        "w": 1300,
-        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema-1300x1089.6b364014.webp"
+        "w": 1193,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil.c49b367e.webp"
       }
     ],
-    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema-1300x1089.6b364014.webp",
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil.c49b367e.webp",
+    "objectPosition": "center 33.3526%"
+  },
+  "/uploads/hero-crops/patricio-ruiz-retrato-hero-cinema.webp": {
+    "width": 1287,
+    "height": 1078,
+    "srcset": [
+      {
+        "w": 1287,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema.532a0415.webp"
+      }
+    ],
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-cinema.532a0415.webp",
+    "objectPosition": "center 33.3024%"
+  },
+  "/uploads/hero-crops/patricio-ruiz-retrato-hero-movil.webp": {
+    "width": 1287,
+    "height": 1866,
+    "srcset": [
+      {
+        "w": 1287,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil.09395583.webp"
+      }
+    ],
+    "src": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil.09395583.webp",
     "objectPosition": "center 33.3333%"
   },
   "/uploads/icono-terapia-familiar.webp": {
@@ -1135,91 +1159,99 @@
     ],
     "src": "/uploads/responsive/patricio-mandala-brand.f243bd81.webp"
   },
-  "/uploads/patricio-ruiz-retrato-2.jpg": {
-    "width": 1066,
-    "height": 1600,
+  "/uploads/patricio-ruiz-retrato-2.webp": {
+    "width": 1684,
+    "height": 2528,
     "srcset": [
       {
         "w": 96,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-96.fefcdff9.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-96.35bf4f0a.webp"
       },
       {
         "w": 192,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-192.2d50210a.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-192.0f9adb02.webp"
       },
       {
         "w": 320,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-320.032cb315.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-320.e659944c.webp"
       },
       {
         "w": 480,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-480.07e4514b.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-480.7cd00405.webp"
       },
       {
         "w": 640,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-640.e122d006.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-640.86f56572.webp"
       },
       {
         "w": 768,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-768.9d0206f3.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-768.e6f9c72b.webp"
       },
       {
         "w": 960,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2-960.b8c54e0e.webp"
-      },
-      {
-        "w": 1066,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-2.b915b2eb.jpg"
-      }
-    ],
-    "src": "/uploads/responsive/patricio-ruiz-retrato-2.b915b2eb.jpg"
-  },
-  "/uploads/patricio-ruiz-retrato.webp": {
-    "width": 1707,
-    "height": 2560,
-    "srcset": [
-      {
-        "w": 96,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-96.71a844c4.webp"
-      },
-      {
-        "w": 192,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-192.16496248.webp"
-      },
-      {
-        "w": 320,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-320.e18977e9.webp"
-      },
-      {
-        "w": 480,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-480.5f9e1433.webp"
-      },
-      {
-        "w": 640,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-640.c66f4789.webp"
-      },
-      {
-        "w": 768,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-768.cd0d70c9.webp"
-      },
-      {
-        "w": 960,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-960.02f9db54.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-960.dffe2fda.webp"
       },
       {
         "w": 1200,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-1200.84f7a5a7.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-1200.7956e4a8.webp"
       },
       {
         "w": 1600,
-        "url": "/uploads/responsive/patricio-ruiz-retrato-1600.5331acfa.webp"
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2-1600.2067d12b.webp"
       },
       {
-        "w": 1707,
-        "url": "/uploads/responsive/patricio-ruiz-retrato.738649b5.webp"
+        "w": 1684,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-2.28c220af.webp"
       }
     ],
-    "src": "/uploads/responsive/patricio-ruiz-retrato.738649b5.webp"
+    "src": "/uploads/responsive/patricio-ruiz-retrato-2.28c220af.webp"
+  },
+  "/uploads/patricio-ruiz-retrato.webp": {
+    "width": 1686,
+    "height": 2528,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-96.0ce175a3.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-192.3b409d64.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-320.14b76dc5.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-480.bd20020f.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-640.836f9ca9.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-768.200cf7d7.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-960.f412338b.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1200.e1fc38ff.webp"
+      },
+      {
+        "w": 1600,
+        "url": "/uploads/responsive/patricio-ruiz-retrato-1600.b1c70629.webp"
+      },
+      {
+        "w": 1686,
+        "url": "/uploads/responsive/patricio-ruiz-retrato.30b05b4e.webp"
+      }
+    ],
+    "src": "/uploads/responsive/patricio-ruiz-retrato.30b05b4e.webp"
   },
   "/uploads/placeholder-ansiedad-somatica.svg": {
     "src": "/uploads/responsive/placeholder-ansiedad-somatica.50aa4c64.svg"

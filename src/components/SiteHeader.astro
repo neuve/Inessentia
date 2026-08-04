@@ -78,11 +78,23 @@ const mode = variant === 'auto' ? (photo ? 'cinema' : 'panel') : variant;
 // recorte, así que no puede quedar desincronizado de él. `photoPosition`
 // solo se usa como respaldo si `photoDesktop` no está o no tiene receta.
 const resolvedPhotoPosition = (photoDesktop && resolveAssetPosition(photoDesktop)) || photoPosition;
+
+// Lo mismo para móvil, donde el <picture> sirve `photo` y no `photoDesktop`.
+// Cuando `photo` es un recorte con receta, su object-position sale del mismo
+// extract que lo generó — si no la tiene (una página con foto suelta), cae al
+// default del CSS y todo sigue como antes.
+const resolvedPhotoPositionMobile = photo && resolveAssetPosition(photo);
 ---
 
 {mode === 'cinema' ? (
   <section class="site-header site-header--cinema zone-dark">
-    <div class="site-header__cinema-photo" style={resolvedPhotoPosition ? `--photo-pos:${resolvedPhotoPosition};` : ''}>
+    <div
+      class="site-header__cinema-photo"
+      style={[
+        resolvedPhotoPosition ? `--photo-pos:${resolvedPhotoPosition};` : '',
+        resolvedPhotoPositionMobile ? `--photo-pos-mobile:${resolvedPhotoPositionMobile};` : '',
+      ].join('')}
+    >
       {/* minWidth=768: en mobile (412 CSS px × DSF 1.75 ≈ 722px físicos) el
           candidato ideal es el de 768w; 960 lo pasaba de largo y desperdiciaba
           ~21 KiB. sizes="100vw" es incondicional (no depende de un breakpoint
