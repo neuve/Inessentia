@@ -130,11 +130,14 @@
 
 /* ══════════════════════════════════════════════════════════════════
    CAPA DE TEMA — fundación. Redefine SOLO tokens semánticos (no las
-   constantes de marca). Decisión: oscuro por defecto, pero el default
-   se mantiene CLARO hasta terminar la tokenización de los ~210 colores
-   inline (si no, se rompería). El toggle deja ver el avance en oscuro.
-   Cuando la tokenización esté lista, se activa @media dark + se puede
-   quitar este candado. ══════════════════════════════════════════════ */
+   constantes de marca). El sitio es OSCURO FIJO: Base.astro fija
+   data-theme="dark" en el <head> sin consultar prefers-color-scheme ni
+   preferencia guardada, y el toggle salió de los menús. La capa
+   [data-theme="light"] de abajo queda INERTE a propósito: es lo que
+   permite reactivar el modo claro revirtiendo solo ese bloque del head,
+   su script y los botones de los menús. Al tocar un token semántico hay
+   que actualizar LAS DOS capas, o el modo claro se rompe en silencio.
+   ══════════════════════════════════════════════════════════════════ */
 :root[data-theme="dark"] {
   --bg: #221735;
   /* Tarjetas translúcidas: velo sobre el lienzo en vez de morado sólido. */
