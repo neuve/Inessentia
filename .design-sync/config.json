@@ -1,0 +1,6 @@
+{
+  "projectId": "57339fb5-baec-4d08-bbf0-6f2f8d66d961",
+  "projectName": "Inessentia Design System",
+  "scope": "tokens-only",
+  "note": "This repo (inessentia-astro-sandbox) has no React components/Storybook — see NOTES.md. Only token values in tokens/spacing.css, tokens/typography.css, tokens/base.css were synced against src/styles/global.css. Components, production-kit, guidelines, and ui_kits in the project predate this repo and were not touched."
+}
