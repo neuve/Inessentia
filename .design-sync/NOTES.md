@@ -25,41 +25,90 @@ of the site's self-hosted woff2 — needed for previews to render fonts),
 `tokens/theme.css`, all of `components/`, `production-kit/`, `guidelines/`,
 `ui_kits/`, `design_handoff_encabezado_estandar/`, `assets/`, `uploads/`.
 
-### OUTSTANDING — contradictions this run introduced, not yet fixed
+### 2026-08-06 — follow-up run: fixed the contradictions above
 
-Leaving the files above alone was NOT neutral. The token edits were pushed
-without first checking their consumers, and several of those consumers
-hardcode the old values, so the project currently disagrees with itself.
-A code review after the upload found:
+The OUTSTANDING list below (from the first run) is now resolved. A sonnet
+multi-agent fan-out staged 19 files locally, each verified by direct read
+against the exact spec before upload, then uploaded via
+`finalize_plan`/`write_files` (sentinel → 19 files → sentinel), then
+re-verified by re-fetching the highest-risk files (`SiteHeader.jsx`,
+`TestimonialCard.jsx`, `production-kit/src/tokens.css`,
+`guidelines/radius.html`) from the remote project post-upload.
 
-- `production-kit/src/tokens.css` is an independent SECOND copy of the same
-  decisions and is now stale on the exact three points this run "fixed":
-  `.iness-btn-primary` still `font-size:14px; letter-spacing:.06em;
-  text-transform:uppercase` (L38-40), `.iness-label-section` still uppercase
-  (L96), `.iness-heading-section` still `line-height:1.08` (L87). This is
-  the layer named "production" — an engineer copying it gets the all-caps
-  and the diacritic-collision line-height back.
-- `guidelines/radius.html` hardcodes and labels the OLD radii: swatch
-  `border-radius:22px` "22 card" (L11), `9px` "9 input" (L13), and the
-  `@dsCard` subtitle "Cards 22 · images 18 · inputs 9 · pill 999" (L1).
-  Tokens are now 20 and 10.
-- `guidelines/type-scale.html` shows `font-size:26px` "h3 26" (L12); `--fs-h3`
-  is now `clamp(24px,3vw,34px)`, i.e. 34px at desktop.
-- `guidelines/radius.html` `.pill` (L8) is still `text-transform:uppercase`
-  with tracking — the very treatment removed from the buttons because
-  `theme.css` forbids it.
-- Docstrings state the old radii: `components/content/Card.jsx` L4 says
-  "22px radius", `components/forms/Input.jsx` L6 says "9px radius". These
-  feed the design agent's understanding of each component's contract.
+**Tier A — docs/literals corrected**, split "safe" vs "fixed a real
+contradiction":
+- `guidelines/radius.html`: subtitle, both swatches (22→20, 9→10), and
+  `.pill` uppercase/tracking removed.
+- `guidelines/type-scale.html`: h3 row 26px → 34px (matches the clamp
+  ceiling, same convention as the section/blog-h2 rows).
+- `guidelines/elevation.html`: `.card` border-radius 22px → 20px (this one
+  was missed by the original review — found by the follow-up audit).
+- `guidelines/type-display.html`: `--fs-hero` caption clamp(36→62px) →
+  clamp(40→80px) (also missed originally).
+- `guidelines/type-body.html`: eyebrow caption "13px · .16em · uppercase"
+  → "14px · Title Case".
+- `components/content/Card.d.ts` / `Card.jsx`: "22px radius" → "20px
+  radius" (doc + docstring).
+- `components/forms/Input.jsx`: "9px radius" → "10px radius" (docstring).
+- `components/content/Eyebrow.d.ts`, `buttons/Button.d.ts`,
+  `buttons/Button.prompt.md`, `layout/SiteHeader.d.ts`: "uppercase" →
+  "Title Case" in prose (these feed the design agent's understanding of
+  each component's contract).
+- `components/content/tags.card.html`: caption font-size 13px → 14px
+  (both occurrences).
+- `production-kit/src/tokens.css`: patched in place (kept standalone, not
+  rewritten to import `tokens/*.css` — see rationale below).
+  `.iness-btn-primary/.iness-btn-white` font-size 14→15,
+  letter-spacing .06em→0, text-transform uppercase→none;
+  `.iness-heading-section` line-height 1.08→1.15;
+  `.iness-label-section` font-size 13→14, letter-spacing .16em→0,
+  text-transform uppercase→none.
+- `production-kit/src/Button.tsx.txt`, `Typography.tsx.txt`: "uppercase"
+  → "Title Case" in docstrings.
 
-Fixing these means editing files this run declared out of scope, so it was
-left for an explicit decision rather than done silently. Until then, treat
-`tokens/*.css` as the source of truth and the above as known-stale.
+**Tier B — real rendered-code violations, not just docs.** These change
+what actually renders:
+- `components/layout/SiteHeader.jsx` `PrimaryBtn` — the site's main CTA
+  (`primaryLabel` defaults to "Agenda tu primera cita"): fontSize 14→15,
+  letterSpacing '.05em'→'normal', textTransform 'uppercase'→'none'.
+- `components/layout/SiteHeader.jsx` `eyebrowEl`: letterSpacing
+  '.16em'→'normal', textTransform 'uppercase'→'none'. fontSize kept at 13
+  (matches the real `Eyebrow.jsx`; raising it to 14 would have invented a
+  new inconsistency rather than removed one).
+- `components/content/TestimonialCard.jsx` context-tag pill: same
+  letterSpacing/textTransform fix, aligning it with `Tag.jsx`/
+  `Tag.prompt.md`, which already forbid all-caps.
+- `components/layout/siteheader.card.html` `.tag` preview-chrome caption:
+  same fix — preview-only, but it renders inside the picker and was
+  modeling the forbidden look right next to the real component.
 
-Also unverified: `--space-5` was changed 18px → 20px purely by index
-alignment with the site's `--sp-5`. No consumer of `var(--space-5)` was
-located (the spacing-scale guideline ramp skips 18 and 20 entirely), so
-whether 18px was a deliberate value is still unknown.
+**`production-kit` was patched, not rewritten**, because it's deliberately
+standalone: its own README says "Archived... not separately maintained",
+source files are `.txt`-suffixed specifically so the compiler won't bundle
+them, and it re-declares its own `:root` colors and `@font-face
+src:local()` rather than importing the parent stylesheet. `readme.md`
+promises "the archived kit read identical token values, so a design
+translates 1:1" — patching restores that promise without touching its
+intentional self-containment.
+
+**`--space-5` 18→20 confirmed safe.** A dedicated audit found no file
+anywhere consuming `var(--space-5)`. The only literal 18 in a spacing
+context in the whole project is an incidental `margin:18px` in
+`guidelines/type-display.html` (unrelated layout margin, left alone).
+
+**Deliberately left unchanged, with reasons:**
+- `SiteHeader.jsx` L127 `maxWidth: 1200` on the split-layout hero — reads
+  as a chosen hero width (the monolith variant uses 960, the stat ribbon
+  1120), not a `--container` reference. Swapping in the fluid
+  `clamp(1040px,86vw,1600px)` would widen the hero to 1600px on a guess,
+  not a confirmed fix.
+- `borderRadius: 18/20/999` literals scattered through `SiteHeader.jsx`
+  and `Blockquote.jsx`'s `lineHeight: 1.7` — these already render
+  correctly by coincidence; tokenizing them is drift-proofing, not a fix,
+  and was out of scope for this run.
+- `guidelines/spacing-scale.html`'s ramp still skips steps 20 and 26 —
+  incomplete, but it never displayed a wrong value, so it's an
+  enhancement, not a correction.
 
 ### Known gap — NOT ported, needs a real design pass if wanted
 
