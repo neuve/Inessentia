@@ -29,6 +29,7 @@ const sitePaths = {
   resources: { es: '/es/recursos/', en: '/en/resources/' },
   testimonials: { es: '/es/testimonios/', en: '/en/testimonials/' },
   costs: { es: '/es/costos/', en: '/en/costs/' },
+  tenYears: { es: '/es/diez-anos/', en: '/en/ten-years/' },
 } as const;
 
 /** Locale-aware path for the handful of standalone pages referenced by
@@ -102,6 +103,7 @@ export function menuColumns(locale: Locale, pathname: string): [MenuLink[], Menu
     link(i.nav.resources, `${base}/${resources}/`),
     link(i.menu.framing, sitePath(locale, 'terms')),
     link(i.nav.network, `${base}/${network}/`),
+    link(i.nav.tenYears, sitePath(locale, 'tenYears')),
   ];
   const col2: MenuLink[] = [
     link(i.menu.individual, `${base}/${therapy}/individual/`),

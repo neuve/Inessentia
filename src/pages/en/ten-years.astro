@@ -1,0 +1,472 @@
+---
+import Base from '../../layouts/Base.astro';
+import {
+  hero, bandas, mesesDelAnio, horarios, modalidad, piramide, duracionPorGrupo,
+  excluidos, corte, duracionCorta, mesesCortos, diasSemana, diasSemanaLargo,
+  etiqueta, BANDAS_ORDEN, BANDAS_COLOR,
+} from '../../lib/diez-anos';
+
+// Prosa provisional: el handoff de diseño va a reescribir esta página, así
+// que la traducción aquí prioriza que la ruta exista y sea coherente sobre
+// pulir cada frase — ver el plan de integración.
+const locale = 'en' as const;
+const h = hero();
+const b = bandas();
+const m = mesesDelAnio();
+const hor = horarios();
+const mod = modalidad();
+const pir = piramide();
+const dur = duracionPorGrupo();
+const exc = excluidos();
+
+const MESES = mesesCortos(locale);
+const DIAS = diasSemana(locale);
+const DIA_LARGO = diasSemanaLargo(locale);
+
+const BANDA_META: Record<string, { lbl: string; rango: string; desc: string }> = {
+  inicial: { lbl: 'Initial work', rango: '1 to 3 sessions', desc: 'A consultation, a second opinion, something that never quite started.' },
+  basico: { lbl: 'Basic work', rango: '4 to 7 sessions', desc: 'A focused issue that gets worked through and closed: already a process, still a short one.' },
+  profundo: { lbl: 'Deep work', rango: '8 to 21 sessions', desc: 'From a couple of months to a year. The ground where most of the real work happens.' },
+  vida: { lbl: 'A life’s path', rango: '22 sessions or more', desc: 'Years-long processes, with seasons and returns. Few people, a great many sessions.' },
+};
+
+const bandasTxt = `A process is measured on two axes at once: how many sessions, and how much time. Of the ${b.total} people over the decade, half stay above ${b.medianaGeneral.mediana_sesiones} sessions and ${duracionCorta(b.medianaGeneral.mediana_dias, locale)}, and the other half below. The four bands below cover everyone, with no one excluded, and the smallest one carries the most weight: the ${b.vidaN} people who passed twenty-two sessions —${b.vidaPct}% of the people— account for ${b.sesVidaPct}% of the ${b.sesionesTotales} sessions. The time medians leave out the ${b.personasUnaSesion} people who came only once: their process lasts zero days by definition.`;
+
+const llenosLbl = m.llenos.map((i) => MESES[i]).join(', ');
+const flacosLbl = m.flacos.map((i) => MESES[i]).join(', ');
+const anioTxt = `The practice isn’t even across the year. The months with the most sessions are ${llenosLbl}; the quietest, ${flacosLbl}. A quiet month is a month with fewer sessions, not a month with missing data: these are counted over ${m.anioDesde}–${m.anioHasta}, the only four years with a complete calendar. Below, the same question at another scale: on which day and at what time of the week those sessions fall.`;
+
+const horTxt = `The single busiest hour of the decade is ${hor.picoH}:00 on ${DIA_LARGO[hor.picoWd]}, with ${hor.picoN} sessions. The purple intensifies with the square root of the count, not linearly: uncompressed, the peak hours would leave the rest of the grid blank.`;
+const horFoot = `${hor.totalSched} of ${hor.totalAll} sessions with a recorded time` + (hor.faltan > 0 ? ` · ${hor.faltan} without a recorded time.` : ' — all of them.');
+
+const mayor = mod.mayorPresencial ? 'in person' : 'online';
+const modTxt = `Of ${mod.conDato} processes with a recorded setting, ${mod.presencial} were in person and ${mod.online} online; ${mod.hibrido} combined both. The practice remains mostly ${mayor}. ` +
+  (mod.sinDato ? `${mod.sinDato} processes with no setting recorded are left out, along with the ones that ` : 'Left out are the processes that ') +
+  'never reached three sessions: in one or two visits, no one chooses a way of working — you take whatever was available that day.';
+
+const pirTxt = `This practice is sought mostly by women: ${pir.totM} of the ${pir.dentro} people in the portrait, ${pir.dentro ? Math.round((100 * pir.totM) / pir.dentro) : 0}%, against ${pir.totH} men. The age shown is the one they had at their FIRST session, not today: someone who arrived at fifteen in 2019 still counts as a teenager — that’s what makes ten years of people comparable.`;
+const pirCap = (pir.adoTotal
+  ? `Teenagers, 17 or under on arrival: ${pir.adoTotal} in total, ${pir.adoM} ${pir.adoM === 1 ? 'girl' : 'girls'} and ${pir.adoH} ${pir.adoH === 1 ? 'boy' : 'boys'}. `
+  : 'There are no teenagers in the portrait. ') +
+  `The figure shows ${pir.dentro} of the ${pir.personasTotal} people who sustain a process of three sessions or more. The other ${pir.fuera} don’t appear because their gender or birth year is missing: that’s a gap in the record, not a trait, which is why it’s counted here instead of drawn as if it were a group.` +
+  // Sin esta frase los números del pie no cuadran: dibujadas + sin clasificar
+  // se quedaba corto justo en las que la supresión de celda chica quitó.
+  (pir.suprimidas > 0
+    ? ` ${pir.suprimidas} more fall into an age-and-gender cell with fewer than five people: they are left out of the drawing so no one can be singled out.`
+    : '');
+
+const durNota = 'Each row is the median of its group on the two axes a process is measured by: calendar days between the first and last session, and number of sessions. The median, not the mean, because a few years-long processes would pull the average well above what most people experience. These are PROCESSES, not people — a couple’s process is one, classified by whoever opened the file — so these totals won’t match the pyramid above, which counts both people separately.';
+const durCap = `Over ${dur.n_base3_total} processes of three sessions or more. Groups under ten people are shown paler: the bar still measures what it measures, but a median of five cases doesn’t hold up a conclusion.` +
+  (dur.procesos_suprimidos > 0
+    ? ` ${dur.procesos_suprimidos} ${dur.procesos_suprimidos === 1 ? 'process is' : 'processes are'} left out of these three tables for falling into a group of fewer than five: a median over that few cases would come close to identifying the person.`
+    : '');
+
+const bloques = [
+  { h3: 'By gender', grupos: dur.por_genero },
+  { h3: 'By age on arrival', grupos: dur.por_edad },
+  { h3: 'By type of process', grupos: dur.por_tipo_proceso },
+].filter((bl) => bl.grupos.length);
+
+function maxDias(grupos: { mediana_dias: number | null }[]): number {
+  return Math.max(1, ...grupos.map((g) => g.mediana_dias ?? 0));
+}
+---
+
+<Base
+  title="Ten Years in Numbers | InEssentia"
+  description={`A decade of practice, in numbers: ${h.personas} people seen, ${h.sesiones} sessions held. How long processes last, when and where they happen, and who comes.`}
+  altPath="/diez-anos/"
+>
+  <!-- HERO -->
+  <header class="page-header--soft zone-dark">
+    <div class="container">
+      <p class="label-section label-section--plain" data-reveal>InEssentia · {h.primerAnio} – {h.corteAnio}</p>
+      <h1 data-reveal style="max-width:20ch;">Ten years in numbers</h1>
+      <div class="rprt-kpi" data-reveal>
+        <div class="card on-light"><b>{h.personas}</b><span>people seen</span></div>
+        <div class="card on-light"><b>{h.sesiones}</b><span>sessions held</span></div>
+        <div class="card on-light"><b>{h.anios}</b><span>years in practice ({h.primerAnio}–{h.corteAnio})</span></div>
+        <div class="card on-light"><b>{h.enCursoHoy}</b><span>ongoing today — session in the last two months</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 · HOW LONG PROCESSES LAST -->
+  <section class="section zone-dark">
+    <div class="container">
+      <p class="label-section" data-reveal>01 · The processes</p>
+      <h2 class="heading-section" data-reveal>How long processes last</h2>
+      <p class="body-text rprt-measure" data-reveal>{bandasTxt}</p>
+      <div class="bandas" data-reveal>
+        {BANDAS_ORDEN.map((id) => {
+          const banda = b.lista.find((x) => x.id === id);
+          const meta = BANDA_META[id];
+          if (!banda) return null;
+          const pct = banda.pct;
+          return (
+            <div class="banda card on-light" style={`border-top-color:${BANDAS_COLOR[id]}`}>
+              <div class="b-n">{banda.n}</div>
+              <div class="b-pct">{pct}% of people</div>
+              <div class="b-lbl">{meta.lbl}</div>
+              <div class="b-rango">{meta.rango}</div>
+              <div class="b-desc">{meta.desc}</div>
+              {banda.n_mediana > 0 && (
+                <div class="b-rango" style="margin-top:6px;color:var(--purple);">
+                  Typically spans {duracionCorta(banda.mediana_dias, locale)}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div class="bandas-bar-panel card on-light" data-reveal>
+        <div class="bandas-bar">
+          {BANDAS_ORDEN.map((id) => {
+            const banda = b.lista.find((x) => x.id === id);
+            const meta = BANDA_META[id];
+            if (!banda) return null;
+            return (
+              <i
+                style={`width:${((100 * banda.n) / (b.total || 1)).toFixed(1)}%;background:${BANDAS_COLOR[id]}`}
+                title={`${meta.lbl} (${meta.rango}) · ${banda.n}`}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · WHEN -->
+  <section class="section zone-dark">
+    <div class="container">
+      <p class="label-section" data-reveal>02 · When</p>
+      <h2 class="heading-section" style="margin-bottom:24px" data-reveal>When sessions happen most</h2>
+
+      <div class="anio-panel card on-light" data-reveal>
+        <div class="anio-bars">
+          {m.conteo.map((n, i) => (
+            <div>
+              <i
+                style={`height:${Math.round((96 * n) / m.maxS)}px;background:${m.llenos.includes(i) ? 'var(--purple)' : m.flacos.includes(i) ? 'var(--sand-d)' : 'rgba(70,39,110,.28)'}`}
+                title={`${MESES[i]} · ${n} sessions`}
+              />
+            </div>
+          ))}
+        </div>
+        <div class="anio-axis">
+          {m.conteo.map((n, i) => (
+            <div>
+              <div class="anio-m" style={m.flacos.includes(i) ? 'color:var(--sand-d)' : 'color:var(--ink)'}>{MESES[i]}</div>
+              <div class="anio-s">{n}</div>
+            </div>
+          ))}
+        </div>
+        <div class="anio-leyenda">
+          <span><i style="background:var(--purple)"/>The three busiest months</span>
+          <span><i style="background:rgba(70,39,110,.28)"/>Rest of the year</span>
+          <span><i style="background:var(--sand-d)"/>The three quietest</span>
+        </div>
+        <div class="anio-kpis">
+          <div><div class="anio-kpi-l">Busiest months</div><div class="anio-kpi-v">{llenosLbl}</div></div>
+          <div><div class="anio-kpi-l">Quietest months</div><div class="anio-kpi-v" style="color:var(--sand-d)">{flacosLbl}</div></div>
+        </div>
+        <p class="anio-nota">{anioTxt}</p>
+      </div>
+
+      <div class="sub-sep">
+        <p class="body-text rprt-measure" data-reveal>{horTxt}</p>
+        <div class="hor-panel card on-light" data-reveal>
+          <div class="hor-wrap">
+            <div id="horGrid">
+              <div></div>
+              {DIAS.map((d) => <div class="hor-cell hor-head">{d}</div>)}
+              {Array.from({ length: hor.hMax - hor.hMin + 1 }, (_, k) => hor.hMin + k).map((hh) => (
+                <>
+                  <div class="hor-cell hor-hour">{hh}:00</div>
+                  {Array.from({ length: 7 }, (_, wd) => {
+                    const n = hor.grid[wd][hh];
+                    const alpha = n > 0 ? (0.08 + (0.82 * Math.sqrt(n)) / Math.sqrt(hor.max)).toFixed(3) : null;
+                    return (
+                      <div
+                        class={`hor-cell hor-day${n > 0 ? '' : ' hor-empty'}`}
+                        style={n > 0 ? `background:rgba(70,39,110,${alpha})` : undefined}
+                        title={`${DIAS[wd]} ${hh}:00 — ${n} ${n === 1 ? 'session' : 'sessions'}`}
+                      />
+                    );
+                  })}
+                </>
+              ))}
+            </div>
+          </div>
+          <p class="hor-foot">{horFoot}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · WHERE -->
+  <section class="section zone-dark">
+    <div class="container">
+      <p class="label-section" data-reveal>03 · Where</p>
+      <h2 class="heading-section" data-reveal>Online and in person</h2>
+      <p class="body-text rprt-measure" data-reveal>{modTxt}</p>
+      <div class="modpp-bar" data-reveal>
+        <i style={`width:${mod.pctPresencial}%;background:rgba(255,255,255,.5)`} title={`In person · ${mod.presencial}`} />
+        <i style={`width:${mod.pctOnline}%;background:var(--sand)`} title={`Online · ${mod.online}`} />
+        <i style={`width:${mod.pctHibrido}%;background:var(--wine)`} title={`Hybrid · ${mod.hibrido}`} />
+      </div>
+      <div class="modpp-leg">
+        <span><i style="background:rgba(255,255,255,.5)"/>In person · {mod.presencial} ({mod.pctPresencial}%)</span>
+        <span><i style="background:var(--sand)"/>Online · {mod.online} ({mod.pctOnline}%)</span>
+        <span><i style="background:var(--wine)"/>Hybrid · {mod.hibrido} ({mod.pctHibrido}%)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · WHO -->
+  <section class="section zone-dark">
+    <div class="container">
+      <p class="label-section" data-reveal>04 · Who</p>
+      <h2 class="heading-section" style="margin-bottom:8px" data-reveal>Who comes, at what age, and how long they stay</h2>
+      <p class="body-text rprt-measure" data-reveal>{pirTxt}</p>
+      <div class="pir-panel card on-light" data-reveal>
+        <div class="pir">
+          <div class="pir-head">
+            <span class="ph-l">Women</span><span class="ph-c">Age on arrival</span><span class="ph-r">Men</span>
+          </div>
+          {pir.filas.map((f) => (
+            <div class={`pir-row${f.tramo === '17 o menos' ? ' pir-ado' : ''}`} title={`${etiqueta(f.tramo, locale)} · ${f.mujer} women, ${f.hombre} men`}>
+              <div class="pir-side pir-l">
+                <i style={`width:${f.mujer ? Math.max(2, Math.round((100 * f.mujer) / pir.max)) : 0}%`} />
+                <b>{f.mujer ? f.mujer : ''}</b>
+              </div>
+              <div class="pir-lbl">{etiqueta(f.tramo, locale)}</div>
+              <div class="pir-side pir-r">
+                <b>{f.hombre ? f.hombre : ''}</b>
+                <i style={`width:${f.hombre ? Math.max(2, Math.round((100 * f.hombre) / pir.max)) : 0}%`} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="quien-cap">{pirCap}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04b · HOW LONG PROCESSES LAST, BY WHO (mismo bloque "04 · Who"; sección
+       aparte porque para cuando el degradado llega aquí ya aclaró a
+       arena/dorado claro — necesita texto oscuro, no el claro del resto de
+       "04". Confirmado viendo capturas reales en la versión ES: con
+       zone-dark el aviso final (durCap) caía en cream translúcido sobre
+       fondo arena, casi invisible. Debe replicarse igual aquí. -->
+  <section class="section zone-light">
+    <div class="container">
+      <div class="dur-panel card on-light" data-reveal>
+      <h3 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 4px;">How long processes last, by who</h3>
+      <p class="rprt-nota-chica">{durNota}</p>
+      <div id="durPanel">
+        {bloques.map((bl) => {
+          const max = maxDias(bl.grupos);
+          return (
+            <div class="dur-bloque">
+              <p class="quien-h3">{bl.h3}</p>
+              <div class="dur-fila dur-head">
+                <span></span><span style="text-align:right">Median duration</span>
+                <span style="text-align:right">Days</span><span style="text-align:right">Sessions</span><span style="text-align:right">People</span>
+              </div>
+              {bl.grupos.map((g) => (
+                <div class="dur-fila" title={`${etiqueta(g.lbl, locale)} · ${g.n} ${g.n === 1 ? 'person' : 'people'} · median ${g.mediana_dias} days and ${g.mediana_sesiones} sessions`}>
+                  <span class="dur-lbl">{etiqueta(g.lbl, locale)}</span>
+                  <span class="dur-track"><i style={`width:${Math.max(1, Math.round((100 * (g.mediana_dias ?? 0)) / max))}%;opacity:${g.n < 10 ? '.42' : '1'}`} /></span>
+                  <span class="dur-dias">{g.mediana_dias} d</span>
+                  <span class="dur-ses">{g.mediana_sesiones}</span>
+                  <span class="dur-n">n = {g.n}</span>
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+      <p class="quien-cap">{durCap}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING · CTA -->
+  <section class="section zone-light">
+    <div class="container">
+      <div class="rprt-cta" data-reveal>
+        <p class="body-text" style="margin:0 0 22px;">Every process starts with a conversation.</p>
+        <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--primary">
+          Book your first session<span class="btn__dot"></span>
+        </a>
+      </div>
+
+      <p class="rprt-next">
+        Data as of: {corte}. {exc.procesos_menos_de_3_sesiones} processes of one or two sessions are left out of the
+        setting, age/gender, and duration-by-group figures (they’re counted above, in the "Initial work" band).
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Esta página es un reporte de datos: sus tarjetas (KPI, bandas, paneles de
+     gráficas, bloques de duración) son islas de papel de fondo claro fijo
+     (.on-light) flotando sobre el lienzo continuo del sitio — así los
+     números en tinta/morado/vino de las gráficas (calibrados para un fondo
+     claro) siguen leyéndose igual sin importar en qué tramo del degradado
+     caiga la sección ni qué tema tenga el sitio. Ver CLAUDE.md: ".on-light"
+     es justo la clase pensada para fragmentos, no para páginas enteras —
+     aquí se usa como se pretende: por tarjeta, no por página. Debe ser
+     idéntico byte a byte al bloque <style> de es/diez-anos.astro. */
+
+  .page-header--soft h1 {
+    letter-spacing: -.015em;
+  }
+
+  .rprt-measure { max-width: 70ch; }
+  .rprt-nota-chica { margin: 0 0 14px; max-width: 62ch; font: 400 12.5px/1.6 var(--ff-body); color: var(--on-canvas-faint); }
+
+  .rprt-kpi {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px; margin-top: 30px;
+  }
+  .rprt-kpi > .card { padding: 22px 16px; }
+  .rprt-kpi b {
+    display: block; font-family: var(--ff-head); font-weight: 700;
+    font-size: clamp(26px, 4vw, 34px); color: var(--purple); line-height: 1;
+  }
+  .rprt-kpi span { display: block; margin-top: 8px; font: 400 12.5px/1.45 var(--ff-body); color: var(--text-muted); }
+
+  .bandas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 6px; }
+  .banda { border-top: 4px solid var(--border-card); padding: 18px 20px 20px; }
+  .banda .b-n { font-family: var(--ff-head); font-weight: 700; font-size: 34px; line-height: 1; color: var(--purple); }
+  .banda .b-pct { font: 700 12.5px var(--ff-body); color: var(--wine); margin-top: 6px; }
+  .banda .b-lbl { font: 700 11px var(--ff-body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); margin-top: 10px; }
+  .banda .b-rango { font: 400 11.5px var(--ff-body); color: var(--text-muted); margin-top: 3px; }
+  .banda .b-desc { font: 400 12px/1.55 var(--ff-body); color: var(--text-muted); margin-top: 8px; }
+
+  .bandas-bar-panel { padding: 22px 26px; margin-top: 26px; }
+  .bandas-bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; background: rgba(70, 39, 110, .06); }
+  .bandas-bar > i { display: block; }
+
+  .anio-panel { padding: 26px 28px 24px; margin-top: 6px; }
+  .anio-bars { display: flex; gap: 12px; align-items: flex-end; height: 96px; }
+  .anio-bars > div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
+  .anio-bars i { display: block; width: 100%; border-radius: 4px 4px 0 0; }
+  .anio-axis { display: flex; gap: 12px; margin-top: 9px; border-top: 1px solid var(--purple); padding-top: 9px; }
+  .anio-axis > div { flex: 1; text-align: center; }
+  .anio-m { font: 700 12px var(--ff-body); }
+  .anio-s { font: 400 11px var(--ff-body); color: var(--text-muted); margin-top: 2px; }
+  .anio-kpis {
+    display: flex; gap: 44px; margin-top: 26px; flex-wrap: wrap;
+    border-top: 1px solid var(--border-card); padding-top: 22px;
+  }
+  .anio-kpis > div { min-width: 200px; }
+  .anio-kpi-l { font: 700 11px var(--ff-body); letter-spacing: .13em; text-transform: uppercase; color: var(--text-muted); }
+  .anio-kpi-v { font-family: var(--ff-head); font-weight: 700; font-size: 20px; color: var(--purple); margin-top: 6px; }
+  .anio-nota { margin: 20px 0 0; font: 400 12px var(--ff-body); color: var(--text-muted); }
+  .anio-leyenda { display: flex; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
+  .anio-leyenda span { display: flex; gap: 7px; align-items: center; font: 400 12px var(--ff-body); color: var(--text); }
+  .anio-leyenda i { width: 11px; height: 11px; border-radius: 2px; display: block; }
+
+  .modpp-bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: rgba(255, 255, 255, .1); margin-top: 14px; }
+  .modpp-bar > i { display: block; }
+  .modpp-leg { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; font: 400 12px var(--ff-body); color: var(--on-canvas-soft); }
+  .modpp-leg span { display: flex; gap: 7px; align-items: center; }
+  .modpp-leg i { width: 11px; height: 11px; border-radius: 2px; display: block; }
+
+  .hor-panel { padding: 24px 26px 22px; }
+  .hor-wrap { overflow-x: auto; }
+  #horGrid { display: grid; grid-template-columns: 46px repeat(7, minmax(34px, 1fr)); gap: 3px; min-width: 480px; }
+  .hor-head {
+    font: 700 10px var(--ff-body); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--text-muted); text-align: center; padding: 0 0 6px;
+  }
+  .hor-hour {
+    font: 600 10.5px var(--ff-body); color: var(--text-muted);
+    display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;
+  }
+  .hor-day { height: 19px; border-radius: 2px; }
+  .hor-empty { background: rgba(70, 39, 110, .025); border: 1px solid rgba(70, 39, 110, .06); }
+  .hor-foot { margin: 14px 0 0; font: 400 12px var(--ff-body); color: var(--text-muted); }
+
+  .quien-h3 { font-family: var(--ff-head); font-weight: 700; font-size: 18px; color: var(--purple); margin: 0 0 4px; }
+  /* Los pies de figura viven DENTRO de su panel blanco (.pir-panel /
+     .dur-panel), no sueltos sobre el lienzo: en la franja terracota del
+     degradado (~60–86% de esta página) ni el texto claro ni el oscuro
+     alcanzan contraste AA — medido, el peor caso quedaba en 1.4:1. Sobre el
+     panel fijo, --text-muted da 5.8:1. Por eso .quien-cap usa --text-muted
+     (color de superficie clara) y no --on-canvas-faint (color de lienzo). */
+  .quien-cap { margin: 12px 0 0; max-width: 60ch; font: 400 12.5px/1.6 var(--ff-body); color: var(--text-muted); }
+
+  /* Un solo panel para todo el bloque de duración (encabezado + nota + las
+     tres tablas + pie), igual que .anio-panel agrupa toda la figura del año.
+     Las tablas dejan de ser tarjetas sueltas y pasan a ser bloques separados
+     por un filete, para no anidar tarjeta dentro de tarjeta. */
+  .dur-panel { padding: 24px 26px; }
+  .dur-bloque + .dur-bloque { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border-card); }
+  .dur-fila {
+    display: grid; grid-template-columns: 152px minmax(120px, 420px) 86px 78px 62px;
+    gap: 14px; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid var(--border-card); font-variant-numeric: tabular-nums;
+  }
+  .dur-head { border-bottom: 1px solid var(--purple); padding-bottom: 8px; }
+  .dur-head span { font: 700 10px var(--ff-body); letter-spacing: .13em; text-transform: uppercase; color: var(--text-muted); }
+  .dur-lbl { font: 600 12.5px var(--ff-body); color: var(--ink); }
+  .dur-track { height: 11px; background: rgba(70, 39, 110, .06); border-radius: 999px; overflow: hidden; }
+  .dur-track > i { display: block; height: 100%; border-radius: 999px; background: var(--purple); }
+  .dur-dias { font: 700 12.5px var(--ff-body); color: var(--purple); text-align: right; }
+  .dur-ses { font: 600 12px var(--ff-body); color: var(--text); text-align: right; }
+  .dur-n { font: 600 11.5px var(--ff-body); color: var(--wine); text-align: right; }
+
+  .rprt-cta { text-align: center; }
+  .rprt-cta .btn { justify-content: center; }
+
+  .rprt-next {
+    margin: 48px 0 0; padding-top: 22px;
+    border-top: 1px solid color-mix(in srgb, var(--on-canvas) 20%, transparent);
+    font: 400 12px var(--ff-body);
+    /* --on-canvas, no --on-canvas-faint: aquí el lienzo va en arena clara y
+       el gris tenue se quedaba en 3.4:1. El tono pleno da ~6:1 y el tamaño
+       (12px) ya lo mantiene subordinado sin necesidad de aclarar el color. */
+    color: var(--on-canvas);
+  }
+
+  .pir-panel { padding: 24px 26px; margin-top: 6px; }
+  .pir-head, .pir-row { display: grid; grid-template-columns: 1fr 104px 1fr; gap: 10px; align-items: center; }
+  .pir-head { margin-bottom: 12px; }
+  .pir-head span { font: 700 10px var(--ff-body); letter-spacing: .14em; text-transform: uppercase; }
+  .pir-head .ph-l { text-align: right; color: var(--wine); }
+  .pir-head .ph-c { text-align: center; color: var(--text-muted); }
+  .pir-head .ph-r { text-align: left; color: var(--purple); }
+  .pir-row { margin-bottom: 7px; }
+  .pir-side { display: flex; align-items: center; gap: 8px; min-height: 24px; }
+  .pir-l { justify-content: flex-end; }
+  .pir-r { justify-content: flex-start; flex-direction: row-reverse; }
+  .pir-side i { display: block; height: 21px; border-radius: 3px; }
+  .pir-l i { background: var(--wine); }
+  .pir-r i { background: var(--purple); }
+  .pir-side b { font: 700 12px var(--ff-body); color: var(--text); }
+  .pir-lbl { text-align: center; font: 700 11.5px var(--ff-body); color: var(--ink); }
+  .pir-ado .pir-lbl { color: var(--wine); }
+
+  .sub-sep {
+    margin-top: 40px; padding-top: 30px;
+    border-top: 1px solid color-mix(in srgb, var(--on-canvas) 20%, transparent);
+  }
+
+  @media (max-width: 900px) {
+    .anio-bars, .anio-axis { gap: 4px; }
+    .anio-m, .anio-s { font-size: 9.5px; }
+    .dur-fila { grid-template-columns: 1fr 62px 54px 46px; gap: 8px; }
+    .dur-fila > .dur-track, .dur-head span:nth-child(2) { display: none; }
+  }
+  @media (max-width: 560px) {
+    .pir-head, .pir-row { grid-template-columns: 1fr 78px 1fr; gap: 6px; }
+    .pir-side b { font-size: 11px; }
+    .bandas-bar-panel, .anio-panel, .hor-panel, .pir-panel, .dur-panel { padding: 18px 18px 16px; }
+  }
+</style>
