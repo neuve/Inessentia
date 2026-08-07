@@ -2,9 +2,19 @@
 import { t, sitePath, type Locale } from '../i18n/utils';
 import { testimonials, homeTeaserIds } from '../data/testimonials';
 
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+  /* .zone-dark--warm es POSICIONAL (ver la regla en global.css): sólo pasa
+     AA si el bloque cae por debajo de ~50% del documento, donde el lienzo ya
+     se calentó y el dorado pleno deja de pasar. En las dos home este bloque
+     cae al ~52-56% y sí lo necesita — de ahí el default `true`. Un mount
+     futuro más arriba en la página (p.ej. un landing corto) debe pasar
+     `warm={false}` explícito, o el rótulo y el "ver más" saldrían en un
+     dorado pálido innecesario sobre un lienzo que todavía es navy oscuro. */
+  warm?: boolean;
+}
 
-const { locale } = Astro.props;
+const { locale, warm = true } = Astro.props;
 const i = t(locale);
 const testimonialsPath = sitePath(locale, 'testimonials');
 
@@ -12,11 +22,7 @@ const byId = new Map(testimonials[locale].map(item => [item.id, item]));
 const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
 ---
 
-{/* zone-dark--warm: este bloque sólo se monta en las dos home, y ahí cae al
-    ~52-56% del documento — el tramo donde el lienzo ya se calentó y el acento
-    dorado deja de pasar AA (su rótulo y su enlace "ver más" iban en dorado).
-    Ver la regla del acento posicional en global.css. */}
-<section class="section zone-dark zone-dark--warm">
+<section class={`section zone-dark${warm ? ' zone-dark--warm' : ''}`}>
   <div class="container">
     <div style="margin-bottom:clamp(40px,5vw,60px);">
       <p data-reveal class="label-section">{i.testimonials.label}</p>

@@ -95,7 +95,11 @@ export function diasSemanaLargo(locale: Locale): string[] {
  * `duracionCorta()` en `front/publico.html`. */
 export function duracionCorta(dias: number | null, locale: Locale): string {
   if (dias === null || dias === undefined || isNaN(dias)) return '—';
-  if (dias < 60) return locale === 'es' ? `${dias} días` : `${dias} days`;
+  if (dias < 60) {
+    return locale === 'es'
+      ? `${dias} ${dias === 1 ? 'día' : 'días'}`
+      : `${dias} ${dias === 1 ? 'day' : 'days'}`;
+  }
   const meses = Math.round(dias / 30.44);
   if (meses < 18) return locale === 'es' ? `${meses} meses` : `${meses} months`;
   const anios = Math.floor(meses / 12);

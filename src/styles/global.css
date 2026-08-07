@@ -903,7 +903,16 @@ form .btn, .form-wrap .btn, .form-field .btn {
   color: var(--text-soft);
 }
 .blog-content a {
-  color: var(--wine);
+  /* --gold, no --wine: el cuerpo del blog (h2/p/ul/blockquote arriba) ya usa
+     --heading/--text/--text-soft, que FLIPAN con el tema y por eso siguen
+     siendo legibles sobre el lienzo oscuro del tema forzado (Base.astro).
+     --wine es un hex de marca fijo que NO flipa, así que el enlace quedaba
+     vino oscuro sobre un lienzo igual de oscuro — medido, 1.10–1.70:1 en el
+     tramo 24–60% del documento, casi invisible. --gold sí flipa (dark theme
+     -> --sand, claro sobre oscuro; light theme -> --wine, oscuro sobre
+     claro), que es exactamente el mismo criterio que ya rige el resto del
+     bloque. */
+  color: var(--gold);
   font-weight: 700;
   text-decoration: none;
   /* .link-underline (241 enlaces de blog, todos con esa clase) declara

@@ -79,10 +79,12 @@ const schema = personSchema(locale);
        OSCURO (la trayectoria cae ~64-77% del documento), y --bronze es un
        dorado profundo pensado para superficie CLARA — ahí daría ~1.5:1.
        --sand-d daba 2.26:1 contra el lienzo de esa altura; --accent-canvas
-       (= --sand en .zone-dark) sube a 3.18:1 y, de paso, iguala a los
-       rótulos hermanos de las otras dos columnas, que ya lo traían inline.
-       Sigue por debajo de 4.5:1: es el problema general del dorado sobre
-       lienzo oscuro, que se resuelve aparte (ver global.css, --bronze). */
+       iguala a los rótulos hermanos de las otras dos columnas, que ya lo
+       traían inline. La sección #formacion (línea ~125) lleva además
+       .zone-dark--warm porque cae por debajo del ~50% del documento, donde
+       el dorado pleno ya no pasa AA (ver la regla en global.css): eso baja
+       --accent-canvas a #E3DCC2 (≥4.5:1) y estos rótulos lo heredan solos,
+       sin tocar nada aquí. */
     .meta-label {
       margin: 0 0 3px;
       font-weight: 700;
