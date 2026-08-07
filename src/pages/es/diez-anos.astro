@@ -27,7 +27,7 @@ const BANDA_META: Record<string, { lbl: string; rango: string; desc: string }> =
   vida: { lbl: 'Camino de vida', rango: '22 sesiones o más', desc: 'Procesos de años, con temporadas y regresos. Pocas personas, muchísimas sesiones.' },
 };
 
-const bandasTxt = `Un proceso se mide en dos ejes a la vez: cuántas sesiones y cuánto tiempo. De las ${b.total} personas de la década, la mitad se queda por encima de ${b.medianaGeneral.mediana_sesiones} sesiones y ${duracionCorta(b.medianaGeneral.mediana_dias, locale)}, y la otra mitad por debajo. Las cuatro bandas de abajo cubren a todas, sin excluir a nadie, y la más chica es la que carga el trabajo: las ${b.vidaN} personas que pasaron de veintidós sesiones —el ${b.vidaPct}% de la gente— concentran el ${b.sesVidaPct}% de las ${b.sesionesTotales} sesiones. Las medianas de tiempo dejan fuera a las ${b.personasUnaSesion} personas que vinieron una sola vez: su proceso dura cero días por definición.`;
+const bandasTxt = `Proceso se compone de dos variables: número de sesiones (mayor a 1) y periodo de tiempo. De las ${b.total} personas de la década, la mitad rebasa las ${b.medianaGeneral.mediana_sesiones} sesiones y al menos asiste por ${duracionCorta(b.medianaGeneral.mediana_dias, locale)}.  Para esta estadística las medianas de tiempo dejan fuera ${b.personasUnaSesion} personas que asistieron una sola vez.`;
 
 const llenosLbl = m.llenos.map((i) => MESES[i]).join(', ');
 const flacosLbl = m.flacos.map((i) => MESES[i]).join(', ');
@@ -77,8 +77,8 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   <!-- HERO -->
   <header class="page-header--soft zone-dark">
     <div class="container">
-      <p class="label-section label-section--plain" data-reveal>InEssentia · {h.primerAnio} – {h.corteAnio}</p>
-      <h1 data-reveal style="max-width:20ch;">Diez años en números</h1>
+      <p class="label-section label-section--plain" data-reveal>Estadística · {h.primerAnio} – {h.corteAnio}</p>
+      <h1 data-reveal style="max-width:20ch;">Diez años de consultas</h1>
       <div class="rprt-kpi" data-reveal>
         <div class="card on-light"><b>{h.personas}</b><span>personas atendidas</span></div>
         <div class="card on-light"><b>{h.sesiones}</b><span>sesiones acompañadas</span></div>
@@ -154,7 +154,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         <div class="anio-axis">
           {m.conteo.map((n, i) => (
             <div>
-              <div class="anio-m" style={m.flacos.includes(i) ? 'color:var(--sand-d)' : 'color:var(--ink)'}>{MESES[i]}</div>
+              <div class="anio-m" style={m.flacos.includes(i) ? 'color:var(--bronze)' : 'color:var(--ink)'}>{MESES[i]}</div>
               <div class="anio-s">{n}</div>
             </div>
           ))}
@@ -166,7 +166,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         </div>
         <div class="anio-kpis">
           <div><div class="anio-kpi-l">Meses llenos</div><div class="anio-kpi-v">{llenosLbl}</div></div>
-          <div><div class="anio-kpi-l">Meses flacos</div><div class="anio-kpi-v" style="color:var(--sand-d)">{flacosLbl}</div></div>
+          <div><div class="anio-kpi-l">Meses flacos</div><div class="anio-kpi-v" style="color:var(--bronze)">{flacosLbl}</div></div>
         </div>
         <p class="anio-nota">{anioTxt}</p>
       </div>
@@ -203,7 +203,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   </section>
 
   <!-- 03 · DÓNDE -->
-  <section class="section zone-dark">
+  <section class="section zone-dark zone-dark--warm">
     <div class="container">
       <p class="label-section" data-reveal>03 · Dónde</p>
       <h2 class="heading-section" data-reveal>Online y presencial</h2>
@@ -222,7 +222,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   </section>
 
   <!-- 04 · QUIÉNES -->
-  <section class="section zone-dark">
+  <section class="section zone-dark zone-dark--warm">
     <div class="container">
       <p class="label-section" data-reveal>04 · Quiénes</p>
       <h2 class="heading-section" style="margin-bottom:8px" data-reveal>Quién llega, con qué edad, y cuánto se queda</h2>
@@ -248,16 +248,18 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         </div>
         <p class="quien-cap">{pirCap}</p>
       </div>
-    </div>
-  </section>
 
-  <!-- 04b · CUÁNTO DURAN, SEGÚN QUIÉN (mismo bloque "04 · Quiénes"; sección
-       aparte porque para cuando el degradado llega aquí ya aclaró a
-       arena/dorado claro — necesita texto oscuro, no el claro del resto de
-       "04". Confirmado viendo capturas reales: con zone-dark el aviso final
-       (durCap) caía en cream translúcido sobre fondo arena, casi invisible. -->
-  <section class="section zone-light">
-    <div class="container">
+      <!-- 04b · CUÁNTO DURAN, SEGÚN QUIÉN — vuelve a ser parte de "04", no
+           una sección aparte. Estuvo partida en dos porque con las paradas
+           viejas el degradado ya había aclarado a arena aquí y el bloque
+           necesitaba texto oscuro (zone-light) mientras el resto de "04"
+           seguía en claro; el corte era para esquivar la franja, no una
+           decisión de contenido. Con el cruce en 79→84 la sección entera
+           cae del lado oscuro: medido, el último texto de "04" sobre lienzo
+           termina en 59.2% (1280px) / 62.2% (375px). Lo que sí se conserva
+           es lo que de verdad daba el contraste: los dos paneles siguen
+           siendo .card.on-light, o sea superficie blanca fija, y los pies
+           de figura viven DENTRO de ellos. -->
       <div class="dur-panel card on-light" data-reveal>
       <h3 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 4px;">Cuánto duran los procesos, según quién</h3>
       <p class="rprt-nota-chica">{durNota}</p>
@@ -401,7 +403,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
      tres tablas + pie), igual que .anio-panel agrupa toda la figura del año.
      Las tablas dejan de ser tarjetas sueltas y pasan a ser bloques separados
      por un filete, para no anidar tarjeta dentro de tarjeta. */
-  .dur-panel { padding: 24px 26px; }
+  .dur-panel { padding: 24px 26px; margin-top: 26px; }   /* separa los dos paneles de "04" ahora que comparten sección */
   .dur-bloque + .dur-bloque { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border-card); }
   .dur-fila {
     display: grid; grid-template-columns: 152px minmax(120px, 420px) 86px 78px 62px;

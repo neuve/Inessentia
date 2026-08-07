@@ -165,9 +165,14 @@ const searchBlogEntries = {
     background: transparent; color: var(--nav-fg);
     padding: 10px 20px; border-radius: 12px;
     position: relative;
-    transition: color .5s ease, opacity .25s ease, transform .25s cubic-bezier(.22,1,.36,1);
+    transition: color .5s ease, transform .25s cubic-bezier(.22,1,.36,1);
   }
-  .navbar__cta:hover { transform: scale(.955); opacity: .72; }
+  /* Vira al dorado igual que sus hermanos de la barra (.navbar__link): los
+     tres son enlaces de nav y deben responder igual. Antes sólo bajaba la
+     opacidad, y junto al encogimiento se leía como que el CTA se apagaba
+     mientras los otros dos se encendían. El gesto de encoger se conserva:
+     es lo que lo distingue como CTA, y no compite con el color. */
+  .navbar__cta:hover { transform: scale(.955); color: var(--nav-fg-hover); }
 
   /* El contorno vive en un pseudo-elemento en vez de en box-shadow directo:
      un box-shadow no se puede animar como trazo progresivo, pero clip-path
@@ -272,9 +277,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // La barra queda siempre fija y visible (degradado permanente); solo se le
   // agrega sombra tras un pequeño scroll para separarla del contenido.
   // La barra flota sobre TODO el viaje del lienzo (navy arriba → crema abajo),
-  // así que además de la sombra calcula EN QUÉ TRAMO está: pasado ~72% del
-  // documento el gradiente ya aclaró, y la barra cambia a su versión amanecer
-  // (velo crema + contenido oscuro) para no quedar negra sobre un fondo claro.
+  // así que además de la sombra calcula EN QUÉ TRAMO está: pasado el cruce del
+  // gradiente (79%→84% del documento, ver --page-grad en global.css) el lienzo
+  // ya aclaró, y la barra cambia a su versión amanecer (velo crema + contenido
+  // oscuro) para no quedar negra sobre un fondo claro.
   function syncNav() {
     if (!nav) return;
     var doc = document.documentElement;
@@ -301,9 +307,16 @@ document.addEventListener('DOMContentLoaded', function() {
   // únicamente cuando ambos están fuera de vista. Se acota a `main
   // section.zone-light` porque el <footer> también usa `zone-light` y no debe
   // observarse (varias páginas ocultan el footer).
+  // [data-nav-close] es la vía de escape para los cierres que NO son
+  // zone-light: en /es/testimonios/ el CTA final vive tan arriba del documento
+  // (51.5% a 1280px) que el lienzo detrás sigue siendo morado, así que es
+  // zone-dark. Sin este gancho la página se quedaba sin closeEl y, al no tener
+  // tampoco hero observable, el contorno arrancaba armado de entrada.
+  // Devolver null sigue siendo válido y esperado en /es/costos/ y en las
+  // páginas de mapa: abajo se observa sólo si existe.
   if (nav) {
     var heroEl = document.querySelector('.site-header, [data-nav-overlay]');
-    var closeEl = document.querySelector('main section.zone-light');
+    var closeEl = document.querySelector('main section.zone-light, main [data-nav-close]');
     if ('IntersectionObserver' in window) {
       var heroVisible = false;
       var closeVisible = false;

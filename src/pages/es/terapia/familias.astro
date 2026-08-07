@@ -101,7 +101,7 @@ const i = t(locale);
   </section>
 
   <!-- PRIMERA SESIÓN + COSTO -->
-  <section id="primera-sesion" class="section zone-dark">
+  <section id="primera-sesion" class="section zone-dark zone-dark--warm">
     <div class="container">
         <p data-reveal class="label-section">Tu primera sesión</p>
         <h2 data-reveal style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;">Paso a paso</h2>
@@ -124,6 +124,11 @@ const i = t(locale);
           </div>
         </div>
         <div style="background:var(--cream-2);border-radius:18px;padding:28px 28px;margin-top:40px;">
+          <!-- El rótulo va en --sand-d, NO en --bronze: esta caja usa
+             background:var(--cream-2), y --cream-2 FLIPA con el tema — en
+             oscuro vale #362849, o sea que la caja es una isla OSCURA, no
+             crema. Medido sobre ese fondo: --sand-d 4.72:1, --bronze 2.29:1.
+             --bronze es sólo para superficie clara de verdad. -->
           <p style="margin:0 0 6px;font-size:13px;font-weight:700;letter-spacing:0;text-transform:none;color:var(--sand-d);">Testimonio</p>
           <p style="font-size:16px;line-height:1.65;color:var(--text);margin:0 0 14px;">Si bien nuestra relación era buena en general, ahora es de una apertura hermosa. El andar las crisis de la adolescencia contigo acompañándonos ha sido de los procesos más hermosos que hemos vivido.</p>
           <p style="margin:0;font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:16px;">Paloma Tovar</p>
@@ -132,7 +137,7 @@ const i = t(locale);
   </section>
 
   <!-- ABORDAJES -->
-  <section class="section section--purple zone-dark">
+  <section class="section section--purple zone-dark zone-dark--warm">
     <div class="container">
       <div data-reveal class="section-header">
         <p class="label-section label-section--on-dark">Aproximaciones</p>
@@ -162,7 +167,7 @@ const i = t(locale);
         <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20saber%20m%C3%A1s%20sobre%20terapia%20familiar.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn btn--secondary">Agenda una primera sesión familiar</a>
         <a href="/es/costos/" class="link-underline">Consulta los costos</a>
       </div>
-      <p style="margin:30px 0 10px;color:var(--on-canvas-faint);font-size:15px;">¿Estás pensando en un proceso de pareja?</p>
+      <p style="margin:30px 0 10px;color:var(--on-canvas-soft);font-size:15px;">¿Estás pensando en un proceso de pareja?</p>
       <a href="/es/terapia/pareja/" class="link-underline">Conoce mi acompañamiento para parejas</a>
     </div>
   </section>

@@ -61,6 +61,8 @@ const grid = getResourcesGrid().map((p, k) => {
   description="Readings to support your therapeutic process and to get to know my philosophy and my approaches."
   altPath="/recursos/"
   nav="photo"
+  {/* El CTA de cierre ya aterriza en crema (ver el comentario del CTA, abajo); el footer sólo la continúa. */}
+  footerLanding="cont"
 >
 
   <!-- CINEMATIC HERO: intro (top) + rotating featured (bottom) over a full-bleed banner -->
@@ -152,7 +154,9 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;">
+  <!-- canvas-landing — ver es/recursos.astro para las mediciones: el texto de
+       este bloque cae dentro del cruce 79→84 a 1280px. -->
+  <section class="zone-light canvas-landing" style="padding:clamp(64px,9vw,118px) 32px;">
     <div class="container">
       <div data-reveal style="max-width:760px;">
         <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>

@@ -213,7 +213,14 @@ const PRICING = {
     </section>
 
     <!-- PARA QUIÉN -->
-    <section class="section">
+    <!-- zone-dark explícito (antes: sin zona). Estas secciones caían al
+         default de :root[data-theme="dark"], que hoy coincide con .zone-dark
+         por casualidad — no por declaración. Medido: todo el texto sobre
+         lienzo de esta página termina en 74.8% (1280px) / 71.7% (375px), o
+         sea del lado oscuro del cruce 79→84; el amanecer no llega hasta las
+         dos secciones de cierre, que sí traen zone-light. Declararlo evita
+         que un cambio en el default de tema las voltee en silencio. -->
+    <section class="section zone-dark">
       <div class="container--narrow" style="max-width:820px;">
         <p class="label-section">¿Para quién es esto?</p>
         <h2 class="heading-section" style="margin:0 0 24px;">Un espacio para sostener y profundizar tu práctica en comunidad</h2>
@@ -223,7 +230,7 @@ const PRICING = {
     </section>
 
     <!-- PILARES -->
-    <section class="section section--cream gl-bordered">
+    <section class="section section--cream gl-bordered zone-dark">
       <div class="container">
         <div style="max-width:640px;margin-bottom:48px;">
           <p class="label-section">Lo esencial</p>
@@ -244,7 +251,7 @@ const PRICING = {
     </section>
 
     <!-- PROGRAMA -->
-    <section id="programa" class="section">
+    <section id="programa" class="section zone-dark">
       <div class="container">
       <div style="max-width:680px;margin-bottom:14px;">
         <p class="label-section">¿Qué haremos?</p>
@@ -302,7 +309,7 @@ const PRICING = {
     </section>
 
     <!-- FECHAS -->
-    <section id="fechas" class="section section--cream gl-bordered">
+    <section id="fechas" class="section section--cream gl-bordered zone-dark zone-dark--warm">
       <div class="container--narrow">
         <div style="max-width:680px;margin-bottom:40px;">
           <p class="label-section">Fechas y logística</p>
@@ -352,7 +359,7 @@ const PRICING = {
     </section>
 
     <!-- INVERSIÓN -->
-    <section id="inversion" class="section">
+    <section id="inversion" class="section zone-dark zone-dark--warm">
       <div class="container">
       <div style="max-width:680px;margin-bottom:44px;">
         <p class="label-section">{PRICING.eyebrow}</p>

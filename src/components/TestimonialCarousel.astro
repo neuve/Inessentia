@@ -12,7 +12,11 @@ const byId = new Map(testimonials[locale].map(item => [item.id, item]));
 const items = homeTeaserIds.map(id => byId.get(id)).filter(Boolean);
 ---
 
-<section class="section">
+{/* zone-dark--warm: este bloque sólo se monta en las dos home, y ahí cae al
+    ~52-56% del documento — el tramo donde el lienzo ya se calentó y el acento
+    dorado deja de pasar AA (su rótulo y su enlace "ver más" iban en dorado).
+    Ver la regla del acento posicional en global.css. */}
+<section class="section zone-dark zone-dark--warm">
   <div class="container">
     <div style="margin-bottom:clamp(40px,5vw,60px);">
       <p data-reveal class="label-section">{i.testimonials.label}</p>

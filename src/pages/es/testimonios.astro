@@ -13,6 +13,11 @@ const items = testimonials[locale];
   title="Testimonios | Experiencias reales en terapia con Patricio Ruiz"
   description="Personas reales comparten su experiencia en terapia individual, de pareja y familiar con Patricio Ruiz Abrin, desde un enfoque de base somática."
   altPath="/testimonials/"
+  {/* Página corta: el footer arranca en 69.9% del documento a 1280px y en
+      47.4% a 375px, muy por delante del cruce 79→84 — sobre lienzo morado.
+      Como es .zone-light (texto oscuro), caía a 1.04:1. Ver .canvas-landing
+      en global.css. */}
+  footerLanding="fade"
 >
 
   <!-- HEADER -->
@@ -45,7 +50,12 @@ const items = testimonials[locale];
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="background:transparent;padding:clamp(56px,8vw,100px) 0;">
+  <!-- zone-DARK (antes zone-light): medido, este bloque cae en 51.5→58.3% del
+       documento a 1280px y en 37.1→40.3% a 375px, o sea muy por encima del
+       cruce 79→84 — el lienzo ahí sigue siendo morado/vino. Con zone-light su
+       titular daba 1.04:1. El footer, que sí llega abajo, se resuelve aparte
+       con footerLanding (arriba). -->
+  <section class="zone-dark" data-nav-close style="background:transparent;padding:clamp(56px,8vw,100px) 0;">
     <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="max-width:640px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,4vw,46px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Tu historia puede ser la siguiente</h2>

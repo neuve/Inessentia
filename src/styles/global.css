@@ -19,6 +19,20 @@
   --cream-2: #F4F0E6;
   --sand: #C2B07E;
   --sand-d: #A8945C;
+  /* Dorado COMO TEXTO sobre superficie clara (tarjeta blanca, panel crema).
+     --sand (L=0.446) y --sand-d (L=0.303) son colores de RELLENO: barras,
+     bordes, filetes, viñetas de leyenda. Como texto chico sobre blanco dan
+     2.36:1 y 2.98:1 — reprueban AA por mucho. Para que un dorado alcance
+     4.5:1 sobre blanco su luminancia relativa tiene que ser L ≤ 0.183.
+     --bronze #776229 mide L=0.1282 (calculado, no estimado) y da:
+       blanco #ffffff  5.89:1 · --cream-2 #F4F0E6  5.18:1 · --cream #EAE5D9  4.69:1
+     Conserva el matiz de la familia (hue 43.8°, el mismo de --sand/--sand-d),
+     así que lee como el mismo dorado, sólo que profundo.
+     OJO: es un color de TEXTO SOBRE CLARO. Sobre el lienzo oscuro da ~1.5:1
+     (peor que --sand-d); ahí el dorado correcto sigue siendo --accent-canvas.
+     Y NO sustituye a --sand/--sand-d en gráficas: la codificación de datos no
+     cambia de color, sólo las etiquetas que se leen como texto. */
+  --bronze: #776229;
   --ink: #262321;
   --warm: #FCFBF6;
   --nav-h: 84px;
@@ -157,19 +171,78 @@
      cruza índigo/violeta/morado/vino y ATERRIZA en arena y crema clara al
      100%, para que el cierre de página (CTA final, footer) quede legible
      con texto oscuro. Ver .zone-dark / .zone-light más abajo.
+
+     ── LA REGLA QUE MANDA: LA FRANJA INSERVIBLE ──────────────────────────
+     El lienzo sólo tiene DOS colores de texto (los de las zonas), así que
+     cada parada tiene que caer de un lado o del otro. Medido en luminancia
+     relativa WCAG (L) y contra los dos textos reales:
+       · texto CLARO  (.zone-dark,  #EAE5D9, L=0.785) → 4.5:1 si L ≤ 0.136
+       · texto OSCURO (.zone-light, #3f3a36, L=0.043) → 4.5:1 si L ≥ 0.371
+     Entre L=0.136 y L=0.371 NO EXISTE color de texto que pase AA: ahí ni el
+     blanco puro (3.90:1) ni el casi-negro (3.85:1) alcanzan. Esa franja no
+     se puede "arreglar" con otro color de letra; sólo se puede CRUZAR RÁPIDO.
+     Antes se cruzaba con una parada dentro de ella (#b4744f al 72%, L=0.228)
+     y el tránsito ocupaba ~16% de cada página: dieciséis por ciento de texto
+     ilegible por construcción (home 6 fallos, sobre-mí 15, supervisión 5).
+     Ahora la terracota vive DENTRO del cruce, no como parada.
+
+     ── DÓNDE SE CRUZA: 79% → 84% ─────────────────────────────────────────
+     No es un número redondo, es el hueco medido. Cada página tiene una
+     "ventana libre" entre donde termina su último texto .zone-dark y donde
+     empieza su primer texto .zone-light (medido a 1280 y a 375, con la
+     intersección de ambos, ignorando lo que va sobre tarjeta o isla):
+       terapia/individual 79.0→87.3 · home 72.7→84.5 · diez-años 61.8→84.2
+       terapia/familias 73.1→84.6 · terapia/pareja 74.5→85.2
+       supervisión 46.6→87.7 · blog 7.1→94.5
+     79→84 es el único tramo de 5% que cabe en las siete a la vez.
+
+     Las que NO caben son páginas CORTAS, donde el cierre (CTA + footer) pesa
+     tanto en el documento que empieza mucho antes del 79%: testimonios (texto
+     .zone-light desde 60.3% en escritorio / 59.0% en móvil), costos (76.3% /
+     67.7% — no tiene CTA de cierre, el footer ES la zona clara) y recursos
+     (77.2% en escritorio; en móvil 84.4% ya cumple). Y sobre-mí sólo en móvil
+     (su CTA arranca en 79.4%, dentro del cruce; en escritorio pasa porque el
+     titular es texto grande y le basta 3:1). Correrles el cruce a ellas
+     rompería a las siete largas, así que se arreglan en la página (más aire
+     antes del cierre, o una isla .on-light bajo el bloque), no aquí.
+
+     ── PARADAS Y SU LUMINANCIA (calculadas, no estimadas) ────────────────
+       0%  #26143C L=0.0124 · 12% #2d1a54 L=0.0194 · 24% #33206b L=0.0280
+      36%  #4d2472 L=0.0405 · 48% #6b2a68 L=0.0578 · 60% #8e3a5c L=0.0955
+      79%  #9a4534 L=0.1137  ← última parada del lado oscuro (5.10:1)
+      84%  #d9b27a L=0.4800  ← primera del lado claro       (5.67:1)
+     100%  #EAE5D9 L=0.7854
+     Barrido cada 0.25%: peor contraste real 5.10:1 (texto claro, 78.25%) y
+     5.67:1 (texto oscuro, 84%). Ninguna violación fuera del cruce.
+     Si tocas una parada, RECALCULA su L; el ojo no distingue 0.13 de 0.15.
+
      OJO con el primer tramo (0%→24%): el stop de 12% (#1b1550) era AZUL,
      más frío que el nuevo arranque morado (#26143C), así que cambiar solo
      el 0% hacía que el degradado retrocediera a azul y volviera a morado
      en el siguiente stop — una banda visible. El stop de 12% se recalculó
      como interpolación RGB exacta entre 0% (38,20,60) y 24% (51,32,107) →
      (44.5,26,83.5) → #2d1a54, así que R/G/B avanzan monótonos todo el
-     tramo. De 24% en adelante no se tocó nada. */
-  --page-grad: linear-gradient(180deg,var(--canvas-top) 0%,#2d1a54 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#b4744f 72%,#d9b27a 86%,#EAE5D9 100%);
+     tramo. De 24% a 60% no se ha tocado nunca nada.
+
+     PENDIENTE: el gradiente de tema claro (abajo) no se revisó con este
+     criterio — el tema está fijo en oscuro (Base.astro). Si se reactiva el
+     toggle, hay que medirle la franja igual que a éste. */
+  --page-grad: linear-gradient(180deg,var(--canvas-top) 0%,#2d1a54 12%,#33206b 24%,#4d2472 36%,#6b2a68 48%,#8e3a5c 60%,#9a4534 79%,#d9b27a 84%,#EAE5D9 100%);
   /* Punto del recorrido a partir del cual el lienzo ya aclaró lo suficiente
      como para que la barra deba amanecer (velo crema + contenido oscuro).
      Vive junto al gradiente a propósito: si se retocan las paradas, este
-     número se ajusta en el mismo sitio. Lo lee el script de Navbar.astro. */
-  --dawn-at: .60;
+     número se ajusta en el mismo sitio. Lo lee el script de Navbar.astro.
+     .82 = dentro del cruce 79→84, donde el lienzo ya viró a arena.
+     OJO, y esto es a propósito: el punto de referencia es el BORDE INFERIOR
+     de la barra (Navbar.astro), que al estar pegada arriba nunca pasa del
+     ~85% del documento — siempre queda un viewport por debajo. Así que el
+     amanecer de la barra ocurre en el tramo final del scroll, no a mitad de
+     página. Es lo correcto: la barra debe responder a la franja de lienzo
+     que tiene DETRÁS, no a lo que se ve en el resto de la pantalla. El .60
+     anterior hacía amanecer la barra sobre un lienzo todavía vino oscuro
+     (contradecía su propio comentario); si alguien la ve "amanecer tarde",
+     ese es el motivo — no es un bug. */
+  --dawn-at: .82;
 }
 :root[data-theme="light"] {
   --bg: var(--warm); --surface: #ffffff; --text: #3f3a36; --text-soft: #5a544e;
@@ -231,7 +304,16 @@
      En tema claro ese mismo tramo queda pálido (lavanda), así que se
      sobreescribe más abajo. */
   --on-canvas: #EAE5D9;
-  --on-canvas-soft: rgba(234,229,217,.82);
+  /* .92 y no .82: el lienzo oscuro sólo da 5.10:1 de margen a plena crema en
+     su punto más claro (79%, L=0.114), así que atenuar cuesta caro. Medido
+     ahí: α.82 → 3.98:1 (reprueba), α.88 → 4.33 (reprueba), α.92 → 4.58 ✓.
+     Arriba del todo sobra margen; la cota la pone el final del tramo. */
+  --on-canvas-soft: rgba(234,229,217,.92);
+  /* OJO — --on-canvas-faint NO es para texto suelto sobre el lienzo: α.62 da
+     2.94–3.14:1 en el tramo 60–79%. Es para texto secundario DENTRO de una
+     superficie propia (.card/.on-light/.on-dark), donde el fondo es fijo y
+     sí alcanza. Si necesitas atenuar sobre el lienzo, usa --on-canvas-soft;
+     si necesitas atenuar más, el bloque va sobre panel. */
   --on-canvas-faint: rgba(234,229,217,.62);
   --heading-canvas: #EAE5D9;
   --accent-canvas: var(--sand);
@@ -240,19 +322,94 @@
   --field-bg-focus: rgba(0,0,0,.34);
   --field-border: rgba(234,229,217,.30);
 }
+/* ── EL DORADO SE APAGA CUANDO EL LIENZO SE CALIENTA ─────────────────────
+   --accent-canvas es --sand (#C2B07E, L=0.446) y sobre el lienzo su
+   contraste cae según el lienzo aclara. Medido contra el degradado real:
+     0%  L=0.012 → 7.4:1 ✓   ·  48% L=0.058 → 4.59:1 ✓  (aquí aguanta)
+     60% L=0.096 → 3.41:1 ✗  ·  79% L=0.114 → 2.99:1 ✗  (aquí ya no)
+   El dorado deja de pasar AA a partir de ~50% del documento. No es que el
+   dorado esté mal elegido: es que el lienzo, al calentarse, se le acerca.
+
+   Por eso el acento es POSICIONAL, no global: se conserva el dorado donde
+   funciona —la mayoría de los rótulos del sitio, que viven en la mitad
+   alta— y sólo en las secciones que caen tarde se cambia por una arena
+   pálida. #E3DCC2 mide 4.67–5.11:1 en todo el tramo 60–79% y conserva el
+   matiz de la familia (no es crema plana), así que el rótulo se sigue
+   leyendo como acento y no como un titular más.
+
+   Cómo se usa: añade .zone-dark--warm JUNTO a .zone-dark en las secciones
+   cuyo contenido cae por debajo de ~50% del documento. Si dudas, mídelo: el
+   umbral es del lienzo, no de la maquetación. */
+.zone-dark--warm {
+  --accent-canvas: #E3DCC2;
+  --gold: #E3DCC2;   /* .label-section--on-dark y demás usos de --gold */
+}
 .zone-light {
   /* Tramo de cierre (crema/arena) — es claro en AMBOS temas porque los
      dos gradientes aterrizan en crema/arena, así que no necesita override
      por tema. */
   --on-canvas: #3f3a36;
-  --on-canvas-soft: #5a544e;
+  /* #554f49 y no #5a544e: el lienzo del cierre no es crema plena todavía
+     (a ~89% va en arena, L≈0.55), y ahí #5a544e se quedaba en 4.37–4.45 —
+     rozando el 4.5 sin alcanzarlo. Este tono lo cruza sin oscurecer el gris
+     de forma perceptible. Simétrico a lo que pasa en .zone-dark: atenuar
+     sobre el lienzo cuesta más de lo que parece. */
+  --on-canvas-soft: #554f49;
+  /* Mismo aviso que en .zone-dark: --on-canvas-faint NO es para texto suelto
+     sobre el lienzo (sobre la arena del cierre da ~3.6:1). Va dentro de una
+     superficie propia; sobre el lienzo, usa --on-canvas-soft. */
   --on-canvas-faint: #6a6460;
   --heading-canvas: var(--purple);
-  --accent-canvas: var(--wine);
+  /* Vino apenas más profundo que --wine (#8E2B5D), y SÓLO como acento del
+     lienzo: sobre la arena del cierre (~88%) el vino de marca se quedaba en
+     4.46:1, a un pelo del 4.5. No se toca --wine —es color de marca y se
+     sigue usando tal cual en rellenos, bordes y superficies—; lo que se
+     ajusta es el acento del LIENZO, que es el único que depende de un fondo
+     que cambia con el scroll. */
+  --accent-canvas: #872757;
   --field-bg: #fff;
   --field-bg-focus: #fff;
   --field-border: #D8D2C4;
 }
+/* ── ATERRIZAJE: superficie clara propia para el cierre ──────────────────
+   Se usa junto con .zone-light, y sólo en las páginas CORTAS. Motivo, con
+   números: el cierre (CTA final + footer) mide más o menos lo mismo en px
+   en todas las páginas, así que en un documento corto ocupa una FRACCIÓN
+   enorme. Medido: el footer arranca en 71.6% del documento en /es/costos/
+   a 1280px y en 47.4% en /es/testimonios/ a 375px — muy por encima del
+   cruce 79→84, donde el lienzo todavía es vino oscuro. El footer es
+   .zone-light (texto oscuro) porque en las páginas largas aterriza sobre
+   crema; ahí caía a 1.04:1.
+   Eso NO se arregla moviendo el cruce ni cambiando la clase de zona:
+     · correr el cruce antes rompe las siete páginas largas (ver el
+       comentario del degradado, arriba);
+     · un cruce por página tampoco: en /es/costos/ las ventanas libres de
+       1280 y 375 ni se tocan (68.1→76.3 contra 60.7→67.7), y además las
+       tarjetas de precio son --surface translúcido (rgba(255,255,255,.055))
+       — o sea que su legibilidad TAMBIÉN depende del lienzo de atrás;
+     · "más aire antes del cierre" es matemáticamente imposible: empujar el
+       cierre hacia abajo alarga el documento en la misma medida, así que su
+       porcentaje casi no se mueve (para llevar el footer de costos al 84%
+       harían falta ~1200px de vacío).
+   Queda una sola salida: que el bloque deje de depender del lienzo y traiga
+   su propia superficie — la misma crema en la que el degradado aterriza al
+   100%, así que abajo el empalme es exacto. La entrada se difumina en 48px:
+   medido, el primer texto de cada bloque que aterriza cae a 72px del borde
+   superior en el peor caso (el footer a 1280px; en móvil son 142px, y en los
+   CTA 90-141px), así que quedan 24px de margen y ningún texto pisa el
+   degradado de entrada. Si alguien alarga el difuminado, vuelve a medir esa
+   distancia antes. */
+.canvas-landing {
+  background-image: linear-gradient(180deg, rgba(234,229,217,0) 0, var(--cream) 48px, var(--cream) 100%);
+}
+/* Continuación: cuando el bloque de ARRIBA ya aterrizó (el CTA de cierre) y
+   el footer sigue pegado a él, repetir la entrada difuminada dejaría ver una
+   franja de lienzo oscuro de 48px entre los dos. Aquí la crema sólo sigue. */
+/* Crema plana, pero por el canal background-IMAGE y no background-color: el
+   <style> con ámbito de Astro de Footer.astro declara `background-color:
+   transparent` sobre .footer2, y al llevar el atributo de ámbito gana en
+   especificidad a esta clase global. */
+.canvas-landing--cont { background-image: linear-gradient(var(--cream), var(--cream)); }
 :root[data-theme="dark"] {
   /* Default sin zona = zone-dark, porque el tema oscuro arranca navy. */
   --on-canvas: #EAE5D9;
@@ -419,6 +576,27 @@ body {
 }
 .body-text--on-dark { color: var(--on-dark-soft); }
 
+/* ══════════════════════════════════════════════════════════════════
+   ENLACES: NUNCA UN SUBRAYADO, Y EL HOVER ES DE COLOR
+   Regla del sitio, sin excepciones de página. Dos partes:
+
+   1. Un enlace NO se subraya jamás — ni con text-decoration ni con
+      border-bottom, ni en reposo ni al pasar el puntero, ni siquiera
+      cuando ya va en color de acento. Si algún día ves una línea bajo un
+      enlace, es un bug, no una variante.
+   2. El realce del hover es de COLOR, no de línea y NO de opacidad: el
+      enlace vira al acento de su zona (--accent-canvas → dorado sobre el
+      lienzo oscuro, vino sobre el claro). Bajar la opacidad se lee como
+      "deshabilitado" o como que el enlace se ensucia, no como respuesta
+      al puntero; por eso los enlaces que YA van en acento se ACLARAN
+      (brightness) en vez de apagarse.
+
+   El guard de abajo cubre cualquier <a> del sitio, incluidos los que
+   traiga un componente nuevo; las clases de enlace sólo definen el color.
+   ══════════════════════════════════════════════════════════════════ */
+a, a:hover, a:focus-visible { text-decoration: none; }
+a:hover { border-bottom-color: transparent; }
+
 /* Links — dos categorías, según dónde vive el enlace:
    - .link-underline: enlace SUELTO (no dentro de un párrafo de texto
      corrido) — índices, costos, términos, TestimonialCarousel, el "leer
@@ -434,18 +612,19 @@ body {
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  transition: opacity .2s;
+  transition: filter .2s;
 }
-.link-underline:hover { opacity: .65; }
+/* Ya va en acento: se aclara, no se apaga (ver la regla de enlaces arriba). */
+.link-underline:hover { filter: brightness(1.18); }
 .link-inline {
   color: var(--accent-canvas);
   font-weight: 700;
   font-size: inherit;
   line-height: inherit;
   text-decoration: none;
-  transition: opacity .2s;
+  transition: filter .2s;
 }
-.link-inline:hover { opacity: .65; }
+.link-inline:hover { filter: brightness(1.18); }
 /* <button> que debe leerse como enlace dentro de un párrafo (p.ej. el opt-out
    de cookies del aviso de privacidad). Resetea SÓLO el cromo del botón: el
    color, el peso y el tamaño los pone la clase de enlace con la que se
@@ -739,7 +918,7 @@ form .btn, .form-wrap .btn, .form-field .btn {
   line-height: inherit;
 }
 .blog-content a:hover {
-  opacity: .65;
+  filter: brightness(1.18);
 }
 
 /* Print */

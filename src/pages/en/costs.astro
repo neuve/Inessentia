@@ -10,6 +10,8 @@ const termsPath = sitePath(locale, 'terms');
   title="Costs | Inessentia"
   description="Clear rates to support you. Individual, couples, and family therapy share the same cost and duration. See the per-session price and the continuity pack."
   altPath="/costos/"
+  {/* Página corta — ver es/costos.astro para las mediciones. */}
+  footerLanding="fade"
 >
 
   <!-- HEADER -->
@@ -79,10 +81,10 @@ const termsPath = sitePath(locale, 'terms');
        one, the canvas is still wine/magenta at this scroll depth, not crema;
        the light-theme override forces dark text anyway, so zone-dark is the
        safe choice in both cases. -->
-  <section class="zone-dark" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
+  <section class="zone-dark zone-dark--warm" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
     <div data-reveal style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="border-top:1px solid var(--border-hair);padding-top:22px;max-width:78ch;">
-        <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-faint);">* Payments are processed by bank transfer or Stripe. Paying in advance confirms your slot; you can also pay in cash on the day of your session.</p>
+        <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-soft);">* Payments are processed by bank transfer or Stripe. Paying in advance confirms your slot; you can also pay in cash on the day of your session.</p>
         <p style="margin:0;font-size:14px;line-height:1.65;color:var(--on-canvas-soft);">See more details in the <a href={termsPath} class="link-inline">terms of service</a>.</p>
       </div>
     </div>

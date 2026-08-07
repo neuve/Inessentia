@@ -157,7 +157,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         <div class="anio-axis">
           {m.conteo.map((n, i) => (
             <div>
-              <div class="anio-m" style={m.flacos.includes(i) ? 'color:var(--sand-d)' : 'color:var(--ink)'}>{MESES[i]}</div>
+              <div class="anio-m" style={m.flacos.includes(i) ? 'color:var(--bronze)' : 'color:var(--ink)'}>{MESES[i]}</div>
               <div class="anio-s">{n}</div>
             </div>
           ))}
@@ -169,7 +169,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         </div>
         <div class="anio-kpis">
           <div><div class="anio-kpi-l">Busiest months</div><div class="anio-kpi-v">{llenosLbl}</div></div>
-          <div><div class="anio-kpi-l">Quietest months</div><div class="anio-kpi-v" style="color:var(--sand-d)">{flacosLbl}</div></div>
+          <div><div class="anio-kpi-l">Quietest months</div><div class="anio-kpi-v" style="color:var(--bronze)">{flacosLbl}</div></div>
         </div>
         <p class="anio-nota">{anioTxt}</p>
       </div>
@@ -206,7 +206,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   </section>
 
   <!-- 03 · WHERE -->
-  <section class="section zone-dark">
+  <section class="section zone-dark zone-dark--warm">
     <div class="container">
       <p class="label-section" data-reveal>03 · Where</p>
       <h2 class="heading-section" data-reveal>Online and in person</h2>
@@ -225,7 +225,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   </section>
 
   <!-- 04 · WHO -->
-  <section class="section zone-dark">
+  <section class="section zone-dark zone-dark--warm">
     <div class="container">
       <p class="label-section" data-reveal>04 · Who</p>
       <h2 class="heading-section" style="margin-bottom:8px" data-reveal>Who comes, at what age, and how long they stay</h2>
@@ -251,17 +251,18 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         </div>
         <p class="quien-cap">{pirCap}</p>
       </div>
-    </div>
-  </section>
 
-  <!-- 04b · HOW LONG PROCESSES LAST, BY WHO (mismo bloque "04 · Who"; sección
-       aparte porque para cuando el degradado llega aquí ya aclaró a
-       arena/dorado claro — necesita texto oscuro, no el claro del resto de
-       "04". Confirmado viendo capturas reales en la versión ES: con
-       zone-dark el aviso final (durCap) caía en cream translúcido sobre
-       fondo arena, casi invisible. Debe replicarse igual aquí. -->
-  <section class="section zone-light">
-    <div class="container">
+      <!-- 04b · HOW LONG PROCESSES LAST, BY WHO — vuelve a ser parte de "04", no
+           una sección aparte. Estuvo partida en dos porque con las paradas
+           viejas el degradado ya había aclarado a arena aquí y el bloque
+           necesitaba texto oscuro (zone-light) mientras el resto de "04"
+           seguía en claro; el corte era para esquivar la franja, no una
+           decisión de contenido. Con el cruce en 79→84 la sección entera
+           cae del lado oscuro: medido, el último texto de "04" sobre lienzo
+           termina en 59.2% (1280px) / 62.2% (375px). Lo que sí se conserva
+           es lo que de verdad daba el contraste: los dos paneles siguen
+           siendo .card.on-light, o sea superficie blanca fija, y los pies
+           de figura viven DENTRO de ellos. -->
       <div class="dur-panel card on-light" data-reveal>
       <h3 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 4px;">How long processes last, by who</h3>
       <p class="rprt-nota-chica">{durNota}</p>
@@ -406,7 +407,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
      tres tablas + pie), igual que .anio-panel agrupa toda la figura del año.
      Las tablas dejan de ser tarjetas sueltas y pasan a ser bloques separados
      por un filete, para no anidar tarjeta dentro de tarjeta. */
-  .dur-panel { padding: 24px 26px; }
+  .dur-panel { padding: 24px 26px; margin-top: 26px; }   /* separa los dos paneles de "04" ahora que comparten sección */
   .dur-bloque + .dur-bloque { margin-top: 22px; padding-top: 22px; border-top: 1px solid var(--border-card); }
   .dur-fila {
     display: grid; grid-template-columns: 152px minmax(120px, 420px) 86px 78px 62px;

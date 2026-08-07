@@ -19,6 +19,9 @@ interface Props {
   schema?: object;
   extraSchemas?: object[];
   hideFooter?: boolean;
+  /* Ver Footer.astro y .canvas-landing (global.css): sólo para páginas cortas,
+     donde el footer cae antes de que el lienzo amanezca. */
+  footerLanding?: 'fade' | 'cont';
   noindex?: boolean;
   // Navbar background variant: 'gradient' (default, cristal translúcido
   // adaptado al scroll), 'photo' (igual que gradient, pero conserva una
@@ -45,6 +48,7 @@ const {
   schema,
   extraSchemas,
   hideFooter = false,
+  footerLanding,
   noindex = false,
   nav = 'gradient',
   hideNav = false,
@@ -124,7 +128,7 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
   <main>
     <slot />
   </main>
-  {!hideFooter && <Footer locale={locale} />}
+  {!hideFooter && <Footer locale={locale} landing={footerLanding} />}
   {/* Pausado temporalmente a pedido del usuario — el componente y su lógica
       de localStorage/GA siguen intactos, solo se dejó de montar. */}
   {/* <CookieConsent locale={locale} /> */}

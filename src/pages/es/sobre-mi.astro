@@ -19,6 +19,8 @@ const schema = personSchema(locale);
   ogImage="/uploads/og/sobre-mi.webp"
   schema={schema}
   nav="photo"
+  {/* El CTA de cierre ya aterriza en crema (ver el comentario del CTA, abajo); el footer sólo la continúa. */}
+  footerLanding="cont"
 >
 
   <!-- HERO -->
@@ -72,13 +74,21 @@ const schema = personSchema(locale);
       padding: 8px 18px;
       border-radius: var(--r-pill);
     }
+    /* Dorado del lienzo, NO --bronze: estos rótulos viven sobre el lienzo
+       OSCURO (la trayectoria cae ~64-77% del documento), y --bronze es un
+       dorado profundo pensado para superficie CLARA — ahí daría ~1.5:1.
+       --sand-d daba 2.26:1 contra el lienzo de esa altura; --accent-canvas
+       (= --sand en .zone-dark) sube a 3.18:1 y, de paso, iguala a los
+       rótulos hermanos de las otras dos columnas, que ya lo traían inline.
+       Sigue por debajo de 4.5:1: es el problema general del dorado sobre
+       lienzo oscuro, que se resuelve aparte (ver global.css, --bronze). */
     .meta-label {
       margin: 0 0 3px;
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0;
       text-transform: none;
-      color: var(--sand-d);
+      color: var(--accent-canvas);
     }
   </style>
 
@@ -111,7 +121,7 @@ const schema = personSchema(locale);
   </section>
 
   <!-- FORMACION -->
-  <section id="formacion" class="section zone-dark">
+  <section id="formacion" class="section zone-dark zone-dark--warm">
     <div class="container">
       <p data-reveal class="label-section">Trayectoria</p>
       <h2 data-reveal class="heading-section" style="margin-bottom:48px;color:var(--heading-canvas);">Mi formación y experiencia</h2>
@@ -184,7 +194,14 @@ const schema = personSchema(locale);
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="position:relative;overflow:hidden;background:transparent;padding:clamp(64px,9vw,112px) 32px;">
+    <!-- canvas-landing: medido, a 375px el texto de este bloque cae en
+       79.8→82.8% del documento — dentro del cruce 79→84, la franja donde
+       ningún color de texto pasa AA (daba 2.27:1 el titular y 1.99:1 el
+       párrafo). A 1280px cae en 82.9→85.7% y pasa por poco. Empujarlo hacia
+       abajo no sirve: alargar la página corre el cierre y su porcentaje casi
+       no se mueve. Trae su propia crema y el footer la continúa
+       (footerLanding="cont"). Ver global.css. -->
+  <section class="zone-light canvas-landing" style="position:relative;overflow:hidden;padding:clamp(64px,9vw,112px) 32px;">
     <div class="container">
       <div data-reveal style="position:relative;max-width:700px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">¿Quieres dar el primer paso?</h2>

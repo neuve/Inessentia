@@ -4,9 +4,19 @@ import pkg from '../../package.json';
 import Img from './Img.astro';
 import { resolveAsset } from '../lib/resolve-asset';
 
-interface Props { locale: Locale; }
+interface Props {
+  locale: Locale;
+  /* Páginas CORTAS: el footer arranca tan arriba del documento que el lienzo
+     todavía no ha amanecido detrás de él, y este footer es .zone-light (texto
+     oscuro). Con landing trae su propia crema. Ver .canvas-landing en
+     global.css para por qué no se arregla con la zona ni con el degradado.
+       'fade' → el footer es el primer bloque que aterriza (entra difuminado)
+       'cont' → el bloque de arriba ya aterrizó; aquí la crema sólo continúa */
+  landing?: 'fade' | 'cont';
+}
 
-const { locale } = Astro.props;
+const { locale, landing } = Astro.props;
+const landingClass = landing === 'cont' ? ' canvas-landing canvas-landing--cont' : landing ? ' canvas-landing' : '';
 const i = t(locale);
 const currentYear = new Date().getFullYear();
 const siteVersion = pkg.version;
@@ -37,7 +47,7 @@ const legalLinks = [
 ];
 ---
 
-<footer class="footer2 zone-light">
+<footer class={`footer2 zone-light${landingClass}`}>
   <div class="footer2__inner">
 
     <div class="footer2__cols">
@@ -106,8 +116,12 @@ const legalLinks = [
 </footer>
 
 <style>
+  /* background-COLOR, no el atajo `background`: el atajo también pone
+     background-image:none y, al ser un estilo con ámbito de Astro (gana en
+     especificidad a las clases globales), anulaba el degradado de crema de
+     .canvas-landing. */
   .footer2 {
-    position: relative; overflow: hidden; background: transparent;
+    position: relative; overflow: hidden; background-color: transparent;
     color: var(--on-canvas); padding: clamp(56px,7vw,72px) var(--gutter) 30px;
   }
   .footer2__inner { position: relative; max-width: var(--container-w); margin: 0 auto; }

@@ -61,6 +61,8 @@ const grid = getResourcesGrid().map((p, k) => {
   description="Lecturas para apoyar tu proceso terapéutico y conocer mi filosofía y mis aproximaciones."
   altPath="/resources/"
   nav="photo"
+  {/* El CTA de cierre ya aterriza en crema (ver el comentario del CTA, abajo); el footer sólo la continúa. */}
+  footerLanding="cont"
 >
 
   <!-- HERO CINEMÁTICO: intro (arriba) + destacado rotativo (abajo) sobre banner full-bleed -->
@@ -152,7 +154,14 @@ const grid = getResourcesGrid().map((p, k) => {
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="background:transparent;padding:clamp(64px,9vw,118px) 32px;">
+  <!-- canvas-landing: medido, el texto de este bloque cae en 78.0→82.5% del
+       documento a 1280px — justo DENTRO del cruce 79→84, la franja donde
+       ningún color de texto pasa AA (daba 1.59:1 y 1.82:1). En móvil el
+       documento es mucho más alto (8189px contra 3529px) y el mismo bloque
+       cae en 84.7→87.1%, ya del lado claro. Como no hay zona que sirva a los
+       dos anchos, el bloque deja de depender del lienzo y trae su crema; el
+       footer la continúa con footerLanding="cont". Ver global.css. -->
+  <section class="zone-light canvas-landing" style="padding:clamp(64px,9vw,118px) 32px;">
     <div class="container">
       <div data-reveal style="max-width:760px;">
         <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>

@@ -13,6 +13,8 @@ const items = testimonials[locale];
   title="Testimonials | Real therapy experiences with Patricio Ruiz"
   description="Real people share their experience in individual, couples and family therapy with Patricio Ruiz Abrin, from a somatic approach."
   altPath="/testimonios/"
+  {/* Página corta — ver es/testimonios.astro para las mediciones. */}
+  footerLanding="fade"
 >
 
   <!-- HEADER -->
@@ -41,7 +43,10 @@ const items = testimonials[locale];
   </section>
 
   <!-- CTA -->
-  <section class="zone-light" style="background:transparent;padding:clamp(56px,8vw,100px) 0;">
+  <!-- zone-DARK (antes zone-light) — ver es/testimonios.astro: este bloque cae
+       en 51.5→58.3% del documento a 1280px y en 37.1→40.3% a 375px, o sea muy
+       por encima del cruce 79→84, con el lienzo todavía morado/vino. -->
+  <section class="zone-dark" data-nav-close style="background:transparent;padding:clamp(56px,8vw,100px) 0;">
     <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="max-width:640px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,4vw,46px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Your story could be next</h2>

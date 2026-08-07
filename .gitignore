@@ -41,3 +41,8 @@ src/styles/fonts.generated.css
 # (ver generateHeroCrops en tools/generate-responsive-images.mjs) — la
 # receta es la fuente de verdad versionada, estos archivos son su salida.
 public/uploads/hero-crops/
+
+# staging de una corrida de `design-sync` (copia del design system remoto para
+# comparar); es salida de herramienta, no fuente. `.design-sync/config.json` y
+# `NOTES.md` sí se versionan.
+.design-sync/ds-update/

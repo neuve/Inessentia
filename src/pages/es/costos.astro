@@ -10,6 +10,12 @@ const termsPath = sitePath(locale, 'terms');
   title="Costos | Inessentia"
   description="Tarifas claras para acompañarte. Individual, pareja y familia comparten el mismo costo y duración. Consulta el precio por sesión y el paquete de continuidad."
   altPath="/costs/"
+  {/* Página corta: el footer arranca en 71.6% del documento a 1280px y en
+      61.9% a 375px — mucho antes del cruce 79→84, o sea sobre lienzo vino.
+      Como es .zone-light (texto oscuro), ahí caía a 1.10:1. No hay cruce que
+      sirva a los dos anchos: las ventanas libres ni se tocan (68.1→76.3
+      contra 60.7→67.7). Ver .canvas-landing en global.css. */}
+  footerLanding="fade"
 >
 
   <!-- HEADER -->
@@ -79,10 +85,10 @@ const termsPath = sitePath(locale, 'terms');
        esta, a esta altura el lienzo TODAVÍA es vino/magenta, no crema; en
        tema claro el override fuerza texto oscuro igual, así que zone-dark es
        la opción segura en ambos casos. -->
-  <section class="zone-dark" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
+  <section class="zone-dark zone-dark--warm" style="background:transparent;padding:14px 0 clamp(56px,8vw,80px);">
     <div data-reveal style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="border-top:1px solid var(--border-hair);padding-top:22px;max-width:78ch;">
-        <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-faint);">* Los pagos se procesan por transferencia bancaria (SPEI) o Stripe. El pago anticipado confirma tu lugar; también puedes cubrirlo en efectivo el día de tu sesión.</p>
+        <p style="margin:0 0 8px;font-size:14px;line-height:1.65;color:var(--on-canvas-soft);">* Los pagos se procesan por transferencia bancaria (SPEI) o Stripe. El pago anticipado confirma tu lugar; también puedes cubrirlo en efectivo el día de tu sesión.</p>
         <p style="margin:0;font-size:14px;line-height:1.65;color:var(--on-canvas-soft);">Consulta más detalles en los <a href={termsPath} class="link-inline">términos del servicio</a>.</p>
       </div>
     </div>

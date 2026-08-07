@@ -388,7 +388,8 @@ const resolvedPhotoPositionMobile = photo && resolveAssetPosition(photo);
   .site-header__lead--panel :global(p:last-child) { margin-bottom: 0; }
   .site-header--panel .site-header__meta--panel { color: var(--on-canvas-faint); }
   .site-header--panel .site-header__link--panel { color: var(--accent-canvas); text-decoration: none; border-bottom: none; }
-  .site-header--panel .site-header__link--panel:hover { color: var(--accent-canvas); text-decoration: none; border-bottom: none; opacity: .75; }
+  /* Ya va en acento: se aclara, no se apaga (regla de enlaces, global.css). */
+  .site-header--panel .site-header__link--panel:hover { color: var(--accent-canvas); text-decoration: none; border-bottom: none; filter: brightness(1.18); }
   @media (max-width: 860px) {
     .site-header__panel-inner { grid-template-columns: 1fr; padding-left: 32px; }
     .site-header__panel-copy { max-width: 100%; grid-row: 2; }
@@ -412,8 +413,11 @@ const resolvedPhotoPositionMobile = photo && resolveAssetPosition(photo);
   /* Aire balanceado alrededor del pill: ~30px arriba (meta) y ~34px abajo. */
   .site-header__actions { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; margin-bottom: 34px; }
   /* Tertiary CTA: quiet text link so it doesn't compete with the primary gold pill */
-  .site-header__link { color: var(--on-canvas-faint); font-weight: 600; font-size: 14px; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 1px; transition: color .2s, border-color .2s; }
-  .site-header__link:hover { color: var(--on-canvas); border-bottom-color: currentColor; }
+  /* Sin border-bottom: los enlaces del sitio NO se subrayan nunca, tampoco
+     con un borde que haga las veces de subrayado (ver la regla de enlaces en
+     global.css). El hover vira al acento de la zona, no dibuja una línea. */
+  .site-header__link { color: var(--on-canvas-soft); font-weight: 600; font-size: 14px; text-decoration: none; transition: color .2s; }
+  .site-header__link:hover { color: var(--accent-canvas); }
 
 </style>
 
