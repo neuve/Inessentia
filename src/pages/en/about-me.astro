@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
-import PermanenceCurve from '../../components/PermanenceCurve.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -41,31 +40,25 @@ const schema = personSchema(locale);
 
   <StatsBand
     eyebrow="My practice in numbers"
-    lede="9 years accompanying individual processes · 6 years with couples · 2 years with families"
+    lede="10 years accompanying individual processes · 5 years with couples · 2 years with families"
     stats={[
-      { value: 138, label: 'people have taken a process of 4 or more sessions' },
-      { value: 3180, label: 'sessions make up those processes' },
-      { value: 6, suffix: '–30 sessions', label: 'make up the average process (20th–80th percentile)' },
+      { value: 12, suffix: ' sessions', label: 'make up the middle process — half run between 7 and 28' },
+      { value: 8, suffix: ' months', label: 'is how long it usually lasts — half, between 3 and 17' },
+      { value: 71, suffix: '%', label: 'of those who pass 3 sessions reach session 8' },
     ]}
+    footnote="Based on the 148 processes of between 4 and 134 sessions, as of 8 August 2026. It leaves out consultations that never passed three sessions, and three exceptionally long processes."
   >
-    <PermanenceCurve
-      title="How long I work with the people I see"
-      axisY="Number of processes that reached each session"
-      axisX="Session number →"
-      bandLabel="2 out of 3 processes live here: between session 6 and 33"
-      barTitle={(processes, session) => `${processes} process${processes === 1 ? '' : 'es'} reached session ${session}`}
-      summary="Permanence curve: of 138 processes, Isolated themes, 4–11 sessions, 47%; Brief processes, 12–23 sessions, 23%; Complex themes, 24–47 sessions, 18%; A life path, 48 sessions or more, 12%. The middle two thirds live between sessions 6 and 33."
-      legend={[
-        { name: 'Isolated themes', examples: 'first interviews, accidents, injuries, one-off guidance', range: '4–11 sessions', pct: 47, time: 'about 3 months' },
-        { name: 'Brief processes', examples: 'integration, injuries, breakups', range: '12–23 sessions', pct: 23, time: 'about 8 months' },
-        { name: 'Complex themes', range: '24–47 sessions', pct: 18, time: 'a year and a half' },
-        { name: 'A life path', range: '48 sessions or more', pct: 12, time: 'two and a half years' },
-      ]}
-    />
+    <p class="stats-link">
+      <a class="link-underline" href="/en/ten-years/">Read the statistics from my first 10 years of practice</a>
+    </p>
   </StatsBand>
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }
+
+    /* Enlace suelto al final de la banda de números: separa del grid sin
+       competir con la nota al pie que va debajo. */
+    .stats-link { margin: clamp(28px, 4vw, 40px) 0 0; }
 
     .technique-pill {
       background: var(--purple);

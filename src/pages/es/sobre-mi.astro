@@ -2,7 +2,6 @@
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
-import PermanenceCurve from '../../components/PermanenceCurve.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
 
@@ -41,30 +40,26 @@ const schema = personSchema(locale);
 
   <StatsBand
     eyebrow="Mi práctica en números"
-    lede="9 años acompañando procesos individuales · 6 años con parejas · 2 años con familias"
+    lede="10 años acompañando procesos individuales · 5 años con parejas · 2 años con familias"
     stats={[
-      { value: 138, label: 'personas han tomado un proceso de 4 sesiones o más' },
-      { value: 3180, label: 'sesiones componen esos procesos' },
-      { value: 6, suffix: '–30 sesiones', label: 'componen el proceso promedio (percentiles 20 a 80)' },
+      { value: 12, suffix: ' sesiones', label: 'tiene el proceso de en medio — la mitad va de 7 a 28' },
+      { value: 8, suffix: ' meses', label: 'es lo que suele durar — la mitad, entre 3 y 17' },
+      { value: 71, suffix: '%', label: 'de quienes pasan de 3 sesiones llegan a la sesión 8' },
     ]}
+    footnote="Sobre los 148 procesos de entre 4 y 134 sesiones, al corte del 8 de agosto de 2026. Quedan fuera las consultas que no pasaron de tres sesiones y tres procesos excepcionalmente largos."
   >
-    <PermanenceCurve
-      title="Cuánto tiempo trabajo con mis consultantes"
-      axisY="Cantidad de procesos que llegaron a cada sesión"
-      axisX="Número de sesión →"
-      bandLabel="Aquí viven 2 de cada 3 procesos: entre la sesión 6 y la 33"
-      legend={[
-        { name: 'Temas aislados', examples: 'primeras entrevistas, accidentes, lesiones, asesorías', range: '4–11 sesiones', pct: 47, time: 'unos 3 meses' },
-        { name: 'Temas breves', examples: 'integración, lesiones, rupturas', range: '12–23 sesiones', pct: 23, time: 'unos 8 meses' },
-        { name: 'Temas complejos', range: '24–47 sesiones', pct: 18, time: 'año y medio' },
-        { name: 'Camino de vida', range: '48 sesiones o más', pct: 12, time: 'dos años y medio' },
-      ]}
-    />
+    <p class="stats-link">
+      <a class="link-underline" href="/es/diez-anos/">Lee las estadísticas de mis primeros 10 años de consultas</a>
+    </p>
   </StatsBand>
 
 
   <style>
     :global(.site-header__lead strong) { color: #E6D2B4; }
+
+    /* Enlace suelto al final de la banda de números: separa del grid sin
+       competir con la nota al pie que va debajo. */
+    .stats-link { margin: clamp(28px, 4vw, 40px) 0 0; }
 
     .technique-pill {
       background: var(--purple);

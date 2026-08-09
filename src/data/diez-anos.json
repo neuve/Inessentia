@@ -3,153 +3,153 @@
     "bandas": [
       {
         "id": "inicial",
-        "mediana_dias": 21,
+        "mediana_dias": 22,
         "mediana_sesiones": 2,
-        "n": 138,
-        "n_mediana": 60,
-        "pct": 50
+        "n": 143,
+        "n_mediana": 65,
+        "pct": 49
       },
       {
         "id": "basico",
-        "mediana_dias": 69,
+        "mediana_dias": 70,
         "mediana_sesiones": 5,
-        "n": 39,
-        "n_mediana": 39,
-        "pct": 14
+        "n": 44,
+        "n_mediana": 44,
+        "pct": 15
       },
       {
         "id": "profundo",
-        "mediana_dias": 165,
-        "mediana_sesiones": 11,
-        "n": 49,
-        "n_mediana": 49,
-        "pct": 18
+        "mediana_dias": 189,
+        "mediana_sesiones": 12,
+        "n": 56,
+        "n_mediana": 56,
+        "pct": 19
       },
       {
         "id": "vida",
         "mediana_dias": 738,
-        "mediana_sesiones": 33,
+        "mediana_sesiones": 36,
         "n": 51,
         "n_mediana": 51,
-        "pct": 18
+        "pct": 17
       }
     ],
     "mediana_general": {
-      "mediana_dias": 116,
-      "mediana_sesiones": 8,
-      "n_mediana": 199
+      "mediana_dias": 123,
+      "mediana_sesiones": 7,
+      "n_mediana": 216
     },
     "personas_una_sesion": 78,
-    "sesiones_banda_vida": 2540,
-    "sesiones_totales": 3567,
-    "total_procesos": 277
+    "sesiones_banda_vida": 2577,
+    "sesiones_totales": 3730,
+    "total_procesos": 294
   },
-  "corte": "2026-07-31",
+  "corte": "2026-08-08",
   "duracion_por_grupo": {
-    "n_base3_total": 163,
+    "n_base3_total": 175,
     "por_edad": [
       {
         "lbl": "17 o menos",
-        "mediana_dias": 316,
+        "mediana_dias": 260,
         "mediana_sesiones": 13,
-        "n": 14
+        "n": 17
       },
       {
         "lbl": "18 a 25",
         "mediana_dias": 301,
         "mediana_sesiones": 17,
-        "n": 23
+        "n": 24
       },
       {
         "lbl": "26 a 35",
-        "mediana_dias": 350,
-        "mediana_sesiones": 22,
-        "n": 25
+        "mediana_dias": 373,
+        "mediana_sesiones": 16,
+        "n": 29
       },
       {
         "lbl": "36 a 45",
-        "mediana_dias": 260,
-        "mediana_sesiones": 18,
-        "n": 33
+        "mediana_dias": 268,
+        "mediana_sesiones": 21,
+        "n": 34
       },
       {
         "lbl": "46 o más",
-        "mediana_dias": 259,
-        "mediana_sesiones": 25,
-        "n": 16
+        "mediana_dias": 286,
+        "mediana_sesiones": 17,
+        "n": 19
       }
     ],
     "por_genero": [
       {
         "lbl": "Mujer",
-        "mediana_dias": 234,
+        "mediana_dias": 239,
         "mediana_sesiones": 10,
-        "n": 107
+        "n": 115
       },
       {
         "lbl": "Hombre",
-        "mediana_dias": 163,
-        "mediana_sesiones": 9,
-        "n": 54
+        "mediana_dias": 165,
+        "mediana_sesiones": 8,
+        "n": 57
       }
     ],
     "por_tipo_proceso": [
       {
         "lbl": "Individual",
-        "mediana_dias": 208,
-        "mediana_sesiones": 10,
-        "n": 152
+        "mediana_dias": 213,
+        "mediana_sesiones": 9,
+        "n": 161
       },
       {
         "lbl": "Pareja",
-        "mediana_dias": 239,
-        "mediana_sesiones": 18,
-        "n": 10
+        "mediana_dias": 106,
+        "mediana_sesiones": 12,
+        "n": 13
       }
     ],
     "procesos_suprimidos": 1
   },
   "excluidos": {
-    "procesos_menos_de_3_sesiones": 114
+    "procesos_menos_de_3_sesiones": 119
   },
   "hero_kpis": {
     "anios_practica": 10,
-    "en_curso_hoy": 41,
-    "personas_atendidas": 277,
+    "en_curso_hoy": 38,
+    "personas_atendidas": 294,
     "primer_anio": 2017,
-    "sesiones_acompanadas": 3567
+    "sesiones_acompanadas": 3730
   },
   "modalidad_barra": {
-    "hibrido": 17,
-    "n_procesos_base3": 163,
-    "online": 46,
-    "presencial": 100,
+    "hibrido": 19,
+    "n_procesos_base3": 175,
+    "online": 51,
+    "presencial": 105,
     "sin_dato": 0
   },
   "piramide_edad_genero": {
-    "personas_sin_clasificar": 54,
+    "personas_sin_clasificar": 56,
     "personas_suprimidas": 4,
-    "personas_total": 174,
+    "personas_total": 189,
     "piramide": {
       "17 o menos": {
-        "hombre": 8,
+        "hombre": 10,
         "mujer": 5
       },
       "18 a 25": {
         "hombre": 10,
-        "mujer": 13
+        "mujer": 14
       },
       "26 a 35": {
-        "hombre": 8,
-        "mujer": 20
+        "hombre": 10,
+        "mujer": 23
       },
       "36 a 45": {
-        "hombre": 13,
-        "mujer": 25
+        "hombre": 14,
+        "mujer": 26
       },
       "46 o más": {
         "hombre": 0,
-        "mujer": 14
+        "mujer": 17
       }
     }
   },
@@ -164,19 +164,19 @@
         0,
         0,
         0,
-        7,
-        44,
-        16,
-        49,
+        8,
+        54,
+        17,
+        51,
         59,
-        18,
+        21,
         0,
         15,
-        68,
-        95,
-        162,
-        86,
-        25,
+        73,
+        101,
+        163,
+        92,
+        26,
         0,
         0,
         0
@@ -191,17 +191,17 @@
         0,
         0,
         8,
-        90,
-        38,
-        63,
-        80,
-        20,
-        0,
-        60,
         92,
-        122,
-        139,
-        56,
+        38,
+        64,
+        81,
+        23,
+        0,
+        63,
+        97,
+        129,
+        133,
+        68,
         13,
         6,
         0,
@@ -219,16 +219,16 @@
         28,
         39,
         42,
-        45,
+        43,
         43,
         18,
         0,
         10,
-        66,
-        93,
-        102,
-        49,
-        17,
+        68,
+        97,
+        106,
+        53,
+        20,
         0,
         0,
         0
@@ -243,17 +243,17 @@
         0,
         0,
         45,
-        152,
+        154,
         60,
-        84,
-        51,
-        22,
+        78,
+        53,
+        23,
         0,
-        13,
-        85,
-        124,
+        17,
+        88,
+        127,
         160,
-        96,
+        103,
         24,
         0,
         0,
@@ -268,17 +268,17 @@
         0,
         0,
         0,
-        72,
-        46,
-        34,
-        60,
-        75,
-        27,
+        73,
+        61,
+        36,
+        79,
+        76,
+        28,
         0,
-        7,
-        80,
-        59,
-        46,
+        13,
+        74,
+        65,
+        49,
         12,
         0,
         0,
@@ -295,10 +295,10 @@
         0,
         0,
         13,
-        39,
+        48,
         28,
-        24,
-        19,
+        26,
+        21,
         0,
         0,
         0,
@@ -338,26 +338,26 @@
         0
       ]
     ],
-    "sesiones_suprimidas": 27,
-    "total_con_horario": 3567,
-    "total_sesiones": 3567
+    "sesiones_suprimidas": 34,
+    "total_con_horario": 3730,
+    "total_sesiones": 3730
   },
   "sesiones_por_mes": {
     "anio_desde": 2022,
     "anio_hasta": 2025,
     "sesiones_por_mes": [
-      112,
-      193,
-      175,
-      191,
-      195,
-      160,
-      185,
-      140,
-      136,
-      144,
-      167,
-      161
+      116,
+      197,
+      184,
+      197,
+      209,
+      181,
+      199,
+      170,
+      158,
+      164,
+      181,
+      176
     ]
   }
 }
