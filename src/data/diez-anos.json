@@ -44,7 +44,7 @@
     "sesiones_totales": 3730,
     "total_procesos": 294
   },
-  "corte": "2026-08-08",
+  "corte": "2026-08-09",
   "duracion_por_grupo": {
     "n_base3_total": 175,
     "por_edad": [
@@ -152,6 +152,28 @@
         "mujer": 17
       }
     }
+  },
+  "practica_resumen": {
+    "anios_por_tipo": {
+      "familiar": 2,
+      "individual": 10,
+      "pareja": 5
+    },
+    "dias_p25": 97,
+    "dias_p50": 251,
+    "dias_p75": 511,
+    "excluidos_abajo": 143,
+    "excluidos_arriba": 3,
+    "hito_base": 151,
+    "hito_n": 107,
+    "hito_pct": 71,
+    "hito_sesion": 8,
+    "max_sesiones": 134,
+    "min_sesiones": 4,
+    "n_procesos": 148,
+    "sesiones_p25": 7,
+    "sesiones_p50": 12,
+    "sesiones_p75": 28
   },
   "rejilla_dia_hora": {
     "grid": [

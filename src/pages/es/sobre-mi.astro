@@ -4,11 +4,16 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
+import { practica, corte } from '../../lib/diez-anos';
 
 const locale = 'es';
 const i = t(locale);
 
 const schema = personSchema(locale);
+
+// Las cifras de la banda salen del mismo agregado que /diez-anos/ — no se
+// escriben a mano aquí (ver `practica()` y `npm run data:diez-anos`).
+const p = practica();
 ---
 
 <Base
@@ -40,13 +45,13 @@ const schema = personSchema(locale);
 
   <StatsBand
     eyebrow="Mi práctica en números"
-    lede="10 años acompañando procesos individuales · 5 años con parejas · 2 años con familias"
+    lede={`${p.anios.individual} años acompañando procesos individuales · ${p.anios.pareja} años con parejas · ${p.anios.familiar} años con familias`}
     stats={[
-      { value: 12, suffix: ' sesiones', label: 'tiene el proceso de en medio — la mitad va de 7 a 28' },
-      { value: 8, suffix: ' meses', label: 'es lo que suele durar — la mitad, entre 3 y 17' },
-      { value: 71, suffix: '%', label: 'de quienes pasan de 3 sesiones llegan a la sesión 8' },
+      { value: p.sesiones.p50, suffix: ' sesiones', label: `tiene el proceso de en medio — la mitad va de ${p.sesiones.p25} a ${p.sesiones.p75}` },
+      { value: p.meses.p50, suffix: ' meses', label: `es lo que suele durar — la mitad, entre ${p.meses.p25} y ${p.meses.p75}` },
+      { value: p.hito.pct, suffix: '%', label: `de quienes pasan de ${p.minSesiones - 1} sesiones llegan a la sesión ${p.hito.sesion}` },
     ]}
-    footnote="Sobre los 148 procesos de entre 4 y 134 sesiones, al corte del 8 de agosto de 2026. Quedan fuera las consultas que no pasaron de tres sesiones y tres procesos excepcionalmente largos."
+    footnote={`Sobre los ${p.nProcesos} procesos de entre ${p.minSesiones} y ${p.maxSesiones} sesiones. Quedan fuera ${p.excluidosAbajo} consultas que no pasaron de ${p.minSesiones - 1} sesiones, y ${p.excluidosArriba} procesos excepcionalmente largos. Corte de datos: ${corte}.`}
   >
     <p class="stats-link">
       <a class="link-underline" href="/es/diez-anos/">Lee las estadísticas de mis primeros 10 años de consultas</a>

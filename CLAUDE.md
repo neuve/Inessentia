@@ -12,7 +12,30 @@ Bilingual (ES/EN) therapy website for Patricio Ruiz Abrín at inessentia.mx. Bui
 npm run dev      # Start dev server (localhost:4321)
 npm run build    # Build static site to dist/
 npm run preview  # Preview built site locally
+
+npm run data:diez-anos            # Refresca las estadísticas desde Cadencia
+npm run data:diez-anos -- --check # Falla si el archivo quedó atrás (no escribe)
 ```
+
+## Estadísticas: `src/data/diez-anos.json` es GENERADO
+
+Ese archivo **no se edita a mano**. Lo produce `build_agregados_publico()` en
+`cadencia/export.py`, del repo hermano `cadencia-inessentia`, que reduce del lado
+del servidor para que ningún microdato por persona cruce la frontera del repo:
+aquí sólo llegan conteos, medianas y percentiles. `npm run data:diez-anos` corre
+ese export y copia el resultado (`CADENCIA_REPO=` si el repo no está en `../`).
+
+Lo consume `src/lib/diez-anos.ts`, que **no recalcula nada** — sólo reordena y da
+forma. Dos páginas lo usan:
+
+- `/es/diez-anos/` y `/en/ten-years/` — el informe completo.
+- La banda «Mi práctica en números» de `/es/sobre-mi/` y `/en/about-me/`, vía
+  `practica()`. Sus cifras salen del agregado, **no se escriben en el `.astro`**:
+  antes vivían a mano ahí y se quedaban en el corte viejo en cada refresco.
+
+`practica()` devuelve números; la redacción vive en cada página, porque cambia con
+el idioma. Si el export gana un campo, el tipo `Agregados` de `src/lib/diez-anos.ts`
+es el único lugar que hay que tocar para que TypeScript lo vea.
 
 ## Architecture
 

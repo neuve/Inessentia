@@ -58,6 +58,24 @@ interface Agregados {
     procesos_suprimidos: number;
   };
   excluidos: { procesos_menos_de_3_sesiones: number };
+  practica_resumen: {
+    min_sesiones: number;
+    max_sesiones: number;
+    n_procesos: number;
+    excluidos_abajo: number;
+    excluidos_arriba: number;
+    sesiones_p25: number;
+    sesiones_p50: number;
+    sesiones_p75: number;
+    dias_p25: number;
+    dias_p50: number;
+    dias_p75: number;
+    hito_sesion: number;
+    hito_n: number;
+    hito_base: number;
+    hito_pct: number;
+    anios_por_tipo: Record<string, number>;
+  };
 }
 
 export const agregados = raw as Agregados;
@@ -219,6 +237,40 @@ export function duracionPorGrupo() {
 
 export function excluidos() {
   return agregados.excluidos;
+}
+
+/** Las cifras de la banda «Mi práctica en números» de /sobre-mi/ y
+ * /about-me/. Vivían escritas a mano en esas dos páginas y se quedaban en el
+ * corte anterior cada vez que `npm run data:diez-anos` traía uno nuevo.
+ *
+ * Devuelve NÚMEROS, no frases: la redacción es distinta en cada idioma y vive
+ * en cada página, igual que en el resto de este módulo (`duracionCorta` y
+ * `etiqueta` son las únicas dos piezas que sí saben de idioma). Lo único que
+ * se convierte aquí son los días a meses, porque es aritmética, no redacción.
+ *
+ * El universo NO es el de las otras figuras: recorta por los dos extremos
+ * (ver `_RESUMEN_MIN_SESIONES` / `_RESUMEN_MAX_SESIONES` en cadencia/export.py).
+ * Por eso `nProcesos` no coincide con ningún otro total del JSON, y por eso la
+ * nota al pie de la banda tiene que decir de dónde sale. */
+export function practica() {
+  const p = agregados.practica_resumen;
+  const meses = (dias: number) => Math.round(dias / 30.44);
+  return {
+    minSesiones: p.min_sesiones,
+    maxSesiones: p.max_sesiones,
+    nProcesos: p.n_procesos,
+    excluidosAbajo: p.excluidos_abajo,
+    excluidosArriba: p.excluidos_arriba,
+    sesiones: { p25: p.sesiones_p25, p50: p.sesiones_p50, p75: p.sesiones_p75 },
+    meses: { p25: meses(p.dias_p25), p50: meses(p.dias_p50), p75: meses(p.dias_p75) },
+    hito: { sesion: p.hito_sesion, n: p.hito_n, base: p.hito_base, pct: p.hito_pct },
+    // Años calendario por modalidad, ya contados en el export. Las claves son
+    // las del catálogo de `tipo` en Cadencia (individual / pareja / familiar):
+    // si aparece una nueva, la página la ignora hasta que alguien le escriba
+    // su frase, que es justo lo que se quiere — una modalidad nueva merece
+    // redacción, no aparecer sola a media línea.
+    anios: p.anios_por_tipo,
+  };
 }
 
 export const corte = agregados.corte;

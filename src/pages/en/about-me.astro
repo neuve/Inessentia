@@ -4,11 +4,16 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import { t } from '../../i18n/utils';
 import { personSchema } from '../../data/person';
+import { practica, corte } from '../../lib/diez-anos';
 
 const locale = 'en';
 const i = t(locale);
 
 const schema = personSchema(locale);
+
+// Las cifras de la banda salen del mismo agregado que /ten-years/ — no se
+// escriben a mano aquí (ver `practica()` y `npm run data:diez-anos`).
+const p = practica();
 ---
 
 <Base
@@ -40,13 +45,13 @@ const schema = personSchema(locale);
 
   <StatsBand
     eyebrow="My practice in numbers"
-    lede="10 years accompanying individual processes · 5 years with couples · 2 years with families"
+    lede={`${p.anios.individual} years accompanying individual processes · ${p.anios.pareja} years with couples · ${p.anios.familiar} years with families`}
     stats={[
-      { value: 12, suffix: ' sessions', label: 'make up the middle process — half run between 7 and 28' },
-      { value: 8, suffix: ' months', label: 'is how long it usually lasts — half, between 3 and 17' },
-      { value: 71, suffix: '%', label: 'of those who pass 3 sessions reach session 8' },
+      { value: p.sesiones.p50, suffix: ' sessions', label: `make up the middle process — half run between ${p.sesiones.p25} and ${p.sesiones.p75}` },
+      { value: p.meses.p50, suffix: ' months', label: `is how long it usually lasts — half, between ${p.meses.p25} and ${p.meses.p75}` },
+      { value: p.hito.pct, suffix: '%', label: `of those who pass ${p.minSesiones - 1} sessions reach session ${p.hito.sesion}` },
     ]}
-    footnote="Based on the 148 processes of between 4 and 134 sessions, as of 8 August 2026. It leaves out consultations that never passed three sessions, and three exceptionally long processes."
+    footnote={`Based on the ${p.nProcesos} processes of between ${p.minSesiones} and ${p.maxSesiones} sessions. It leaves out ${p.excluidosAbajo} consultations that never passed ${p.minSesiones - 1} sessions, and ${p.excluidosArriba} exceptionally long processes. Data as of: ${corte}.`}
   >
     <p class="stats-link">
       <a class="link-underline" href="/en/ten-years/">Read the statistics from my first 10 years of practice</a>

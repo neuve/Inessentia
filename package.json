@@ -11,7 +11,8 @@
     "build": "node tools/generate-responsive-images.mjs && astro build && node tools/check-immutable-urls.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "i18n:diff": "node tools/i18n-diff.mjs"
+    "i18n:diff": "node tools/i18n-diff.mjs",
+    "data:diez-anos": "node tools/sync-diez-anos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
