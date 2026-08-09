@@ -392,23 +392,36 @@
        porcentaje casi no se mueve (para llevar el footer de costos al 84%
        harían falta ~1200px de vacío).
    Queda una sola salida: que el bloque deje de depender del lienzo y traiga
-   su propia superficie — la misma crema en la que el degradado aterriza al
-   100%, así que abajo el empalme es exacto. La entrada se difumina en 48px:
-   medido, el primer texto de cada bloque que aterriza cae a 72px del borde
-   superior en el peor caso (el footer a 1280px; en móvil son 142px, y en los
-   CTA 90-141px), así que quedan 24px de margen y ningún texto pisa el
-   degradado de entrada. Si alguien alarga el difuminado, vuelve a medir esa
-   distancia antes. */
+   su propia superficie. Pero NO una crema plana: el degradado no aterriza de
+   golpe en crema, pasa antes por la ARENA (#d9b27a, su parada del 84%) y sólo
+   al 100% llega a #EAE5D9. Pintar crema plana directamente sobre el tramo
+   rojizo dejaba una losa clarísima cortada a cuchillo — se veía como un
+   bloque pegado encima, no como el cierre de la página. El aterrizaje
+   reproduce ese mismo tramo final (arena → crema), así que el cierre de una
+   página CORTA se ve igual que el de una larga, que es la referencia.
+   La entrada se difumina en 48px: medido, el primer texto de cada bloque que
+   aterriza cae a 72px del borde superior en el peor caso (el footer a 1280px;
+   en móvil son 142px, y en los CTA 90-141px), así que quedan 24px de margen y
+   ningún texto pisa el degradado de entrada. Si alguien alarga el difuminado,
+   vuelve a medir esa distancia antes.
+   Contraste: la arena #d9b27a (L=0.480) es la MISMA parada sobre la que ya se
+   valida .zone-light en las páginas largas — el texto oscuro da 5.67:1 ahí,
+   así que aterrizar en arena en vez de en crema no baja el contraste por
+   debajo de lo ya medido. */
 .canvas-landing {
-  background-image: linear-gradient(180deg, rgba(234,229,217,0) 0, var(--cream) 48px, var(--cream) 100%);
+  background-image: linear-gradient(180deg, rgba(217,178,122,0) 0, #d9b27a 48px, var(--cream) 100%);
 }
 /* Continuación: cuando el bloque de ARRIBA ya aterrizó (el CTA de cierre) y
    el footer sigue pegado a él, repetir la entrada difuminada dejaría ver una
-   franja de lienzo oscuro de 48px entre los dos. Aquí la crema sólo sigue. */
-/* Crema plana, pero por el canal background-IMAGE y no background-color: el
-   <style> con ámbito de Astro de Footer.astro declara `background-color:
-   transparent` sobre .footer2, y al llevar el atributo de ámbito gana en
-   especificidad a esta clase global. */
+   franja de lienzo oscuro de 48px entre los dos.
+   Crema PLANA, no otro tramo arena → crema: el bloque de arriba ya terminó en
+   crema (su rampa llega a var(--cream) al 100%), así que volver a arrancar en
+   arena aquí sería un salto hacia atrás — se vería una banda más oscura justo
+   debajo de la parte más clara. Plana empalma exacto. */
+/* Por el canal background-IMAGE y no background-color: el <style> con ámbito
+   de Astro de Footer.astro declara `background-color: transparent` sobre
+   .footer2, y al llevar el atributo de ámbito gana en especificidad a esta
+   clase global. */
 .canvas-landing--cont { background-image: linear-gradient(var(--cream), var(--cream)); }
 :root[data-theme="dark"] {
   /* Default sin zona = zone-dark, porque el tema oscuro arranca navy. */
