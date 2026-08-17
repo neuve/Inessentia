@@ -47,11 +47,11 @@ const p = practica();
     eyebrow="Mi práctica en números"
     lede={`${p.anios.individual} años acompañando procesos individuales · ${p.anios.pareja} años con parejas · ${p.anios.familiar} años con familias`}
     stats={[
-      { value: p.sesiones.p50, suffix: ' sesiones', label: `tiene el proceso de en medio — la mitad va de ${p.sesiones.p25} a ${p.sesiones.p75}` },
-      { value: p.meses.p50, suffix: ' meses', label: `es lo que suele durar — la mitad, entre ${p.meses.p25} y ${p.meses.p75}` },
+      { value: p.sesiones.p50, suffix: ' sesiones', label: 'tiene el proceso promedio' },
+      { value: p.meses.p50, suffix: ' meses', label: 'es lo que suele durar — la persona promedio trabajando conmigo' },
       { value: p.hito.pct, suffix: '%', label: `de quienes pasan de ${p.minSesiones - 1} sesiones llegan a la sesión ${p.hito.sesion}` },
     ]}
-    footnote={`Sobre los ${p.nProcesos} procesos de entre ${p.minSesiones} y ${p.maxSesiones} sesiones. Quedan fuera ${p.excluidosAbajo} consultas que no pasaron de ${p.minSesiones - 1} sesiones, y ${p.excluidosArriba} procesos excepcionalmente largos. Corte de datos: ${corte}.`}
+    footnote={`Corte de datos: ${corte}.`}
   >
     <p class="stats-link">
       <a class="link-underline" href="/es/diez-anos/">Lee las estadísticas de mis primeros 10 años de consultas</a>
@@ -158,7 +158,7 @@ const p = practica();
             </div>
             <div>
               <p class="meta-label" style="margin:0 0 2px;color:var(--accent-canvas);">2022-24</p>
-              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.4;"><a href="https://portal.traumahealing.org/s/searchdirectory" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;">Somatic Experiencing Practitioner</a> — <a href="https://experienciasomaticamexico.com/terapeutas/patricio-michel-ruiz-abrin/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;">Experiencia Somática México</a></p>
+              <p style="margin:0;font-size:15px;color:var(--on-canvas);line-height:1.4;"><a href="https://portal.traumahealing.org/s/find-a-practitioner?c__profile=patricio-michel-ruiz-abr%C3%ADn-88953c342a57" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;">Somatic Experiencing Practitioner</a> — <a href="https://experienciasomaticamexico.com/terapeutas/patricio-michel-ruiz-abrin/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;font-weight:600;">Experiencia Somática México</a></p>
             </div>
             <div>
               <p class="meta-label" style="margin:0 0 2px;color:var(--accent-canvas);">Estudios continuos</p>
