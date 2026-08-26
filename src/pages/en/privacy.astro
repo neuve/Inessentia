@@ -36,6 +36,8 @@ const locale = 'en';
           <li class="body-text" style="line-height:1.7;"><strong>Contact data:</strong> name, email, and phone number.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Scheduling data:</strong> appointment date and time, session format (in-person or online).</li>
           <li class="body-text" style="line-height:1.7;"><strong>Billing data</strong> (when applicable): tax ID and billing name.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Patient portal access data:</strong> to identify you when you book or follow up on appointments, an access identifier tied to your record is generated. It is not a password and is not stored in readable form.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Conversations with the scheduling assistant:</strong> if you use the portal's automated assistant to arrange an appointment, the text you write is stored temporarily so I can follow up on your request.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Sensitive data:</strong> in the therapeutic context, information related to your physical and mental health is collected. This data receives special protection under the LFPDPPP and is used solely for therapeutic purposes, with your express consent.</li>
         </ul>
       </div>
@@ -44,7 +46,7 @@ const locale = 'en';
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Purposes of processing</h2>
         <p class="body-text" style="margin:0 0 14px;"><strong>Primary purposes</strong> (necessary for the service):</p>
         <ul style="margin:0 0 14px;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
-          <li class="body-text" style="line-height:1.7;">Coordinating and following up on appointments.</li>
+          <li class="body-text" style="line-height:1.7;">Coordinating and following up on appointments, including through the patient portal and its scheduling assistant.</li>
           <li class="body-text" style="line-height:1.7;">Providing therapeutic care.</li>
           <li class="body-text" style="line-height:1.7;">Issuing invoices upon request.</li>
         </ul>
@@ -60,8 +62,19 @@ const locale = 'en';
 
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Data transfers</h2>
-        <p class="body-text" style="margin:0 0 14px;">Your personal data <strong>is not shared with third parties</strong>, except where a legal obligation requires it.</p>
-        <p class="body-text" style="margin:0;">To provide the service, I use third-party platforms such as Zoom (online sessions) and Google Calendar (scheduling). These platforms operate under their own privacy policies, which I recommend reviewing directly.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>I do not sell or share your personal data with third parties for commercial purposes</strong>, and I do not hand it to anyone except where a legal obligation requires it.</p>
+        <p class="body-text" style="margin:0 0 14px;">To provide the service I do rely on third-party platforms, which necessarily process some of your data: Zoom (online sessions), Google Calendar (scheduling), and Anthropic (the patient portal's automated scheduling assistant). Each operates under its own privacy policy, which I recommend reviewing directly.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>About Google Calendar:</strong> every booked appointment creates a Google Calendar invitation with you as a guest. That invitation reaches you directly from Google by email and is recorded in your own Google account. Once sent, that copy is in your hands and Google's, not mine: if you later ask me to delete your data, I can remove the event from my calendar, but not the copy already sitting in yours.</p>
+        <p class="body-text" style="margin:0;"><strong>About the scheduling assistant:</strong> the text you write in that conversation is sent to Anthropic in order to generate a reply. Your name, email, and payment details are not sent. It is an administrative tool, meant for coordinating times — it is not a clinical channel and it does not carry health-data certifications such as HIPAA. For that reason I ask you not to share clinical or sensitive information there: that is what I am for, through the channels we already use.</p>
+      </div>
+
+      <div>
+        <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">How long I keep your data</h2>
+        <p class="body-text" style="margin:0 0 14px;">I don't keep everything for the same length of time:</p>
+        <ul style="margin:0;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
+          <li class="body-text" style="line-height:1.7;"><strong>Conversations with the scheduling assistant:</strong> automatically deleted after 30 days. If you want one deleted sooner, write to me and I'll do it.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Appointment requests:</strong> kept for at least 14 days after the appointment date, and deleted afterwards in the normal course of operation.</li>
+        </ul>
       </div>
 
       <div>
@@ -73,7 +86,8 @@ const locale = 'en';
           <li class="body-text" style="line-height:1.7;"><strong>Cancellation:</strong> request that I delete your data when it's no longer needed.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Objection:</strong> object to the processing of your data for specific purposes.</li>
         </ul>
-        <p class="body-text" style="margin:0;">To exercise any of these rights, write to me at <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> stating your full name and the right you wish to exercise. I'll respond within a maximum of <strong>20 business days</strong>, as established by the LFPDPPP.</p>
+        <p class="body-text" style="margin:0 0 14px;">To exercise any of these rights, write to me at <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> stating your full name and the right you wish to exercise. I'll respond within a maximum of <strong>20 business days</strong>, as established by the LFPDPPP.</p>
+        <p class="body-text" style="margin:0;">An honest note about the limits: there are two things I cannot undo, even if you ask. The copy of a calendar invitation Google has already delivered to your account, and text that has already travelled to the assistant in a past conversation. In both cases I can delete what sits on my side, and I'll confirm that to you in writing.</p>
       </div>
 
       <div>
@@ -88,7 +102,7 @@ const locale = 'en';
         <p class="body-text" style="margin:0;">Any modification to this privacy notice will be published on this same page along with the corresponding update date. I recommend reviewing it occasionally.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: July 14, 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: August 26, 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/en/terms/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Terms of service</a>

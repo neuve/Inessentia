@@ -36,6 +36,8 @@ const locale = 'es';
           <li class="body-text" style="line-height:1.7;"><strong>Datos de contacto:</strong> nombre, correo electrónico y teléfono.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos de agenda:</strong> fecha y hora de citas, modalidad de sesión (presencial o en línea).</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos de facturación</strong> (cuando aplica): RFC y razón social.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Datos de acceso al portal de pacientes:</strong> para identificarte cuando agendas o das seguimiento a tus citas, se genera un identificador de acceso vinculado a tu registro. No es una contraseña y no se guarda de forma legible.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Conversación con el asistente de agenda:</strong> si usas el asistente automatizado del portal para coordinar una cita, el texto que escribes se guarda temporalmente para poder darle seguimiento a tu solicitud.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos sensibles:</strong> en el contexto terapéutico, se recaba información relacionada con tu salud física y mental. Estos datos tienen protección especial bajo la LFPDPPP y únicamente se usan con fines terapéuticos, con tu consentimiento expreso.</li>
         </ul>
       </div>
@@ -44,7 +46,7 @@ const locale = 'es';
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Finalidades del tratamiento</h2>
         <p class="body-text" style="margin:0 0 14px;"><strong>Finalidades primarias</strong> (necesarias para el servicio):</p>
         <ul style="margin:0 0 14px;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
-          <li class="body-text" style="line-height:1.7;">Coordinar y dar seguimiento a las citas.</li>
+          <li class="body-text" style="line-height:1.7;">Coordinar y dar seguimiento a las citas, incluido el uso del portal de pacientes y su asistente de agenda.</li>
           <li class="body-text" style="line-height:1.7;">Brindar atención terapéutica.</li>
           <li class="body-text" style="line-height:1.7;">Emitir facturas cuando se solicite.</li>
         </ul>
@@ -60,8 +62,19 @@ const locale = 'es';
 
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Transferencias de datos</h2>
-        <p class="body-text" style="margin:0 0 14px;">Tus datos personales <strong>no se comparten con terceros</strong>, salvo que exista una obligación legal que lo requiera.</p>
-        <p class="body-text" style="margin:0;">Para prestar el servicio, utilizo plataformas de terceros como Zoom (sesiones en línea) y Google Calendar (agenda). Estas plataformas operan bajo sus propias políticas de privacidad, que te recomiendo consultar directamente.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>No vendo ni comparto tus datos personales con terceros con fines comerciales</strong>, ni los entrego a nadie salvo que exista una obligación legal que lo requiera.</p>
+        <p class="body-text" style="margin:0 0 14px;">Para prestar el servicio sí me apoyo en plataformas de terceros, que necesariamente procesan algunos de tus datos: Zoom (sesiones en línea), Google Calendar (agenda) y Anthropic (el asistente automatizado de agenda del portal de pacientes). Cada una opera bajo su propia política de privacidad, que te recomiendo consultar directamente.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>Sobre Google Calendar:</strong> cada cita agendada genera una invitación de Google Calendar en la que apareces como invitada. Esa invitación te llega directamente de Google por correo y queda registrada en tu propia cuenta de Google. Una vez enviada, esa copia está en tus manos y en las de Google, no en las mías: si más adelante me pides que borre tus datos, puedo eliminar el evento de mi calendario, pero no la copia que ya quedó en el tuyo.</p>
+        <p class="body-text" style="margin:0;"><strong>Sobre el asistente de agenda:</strong> el texto que escribes en esa conversación se envía a Anthropic para poder generar una respuesta. No se envía tu nombre, tu correo ni tus datos de pago. Es una herramienta administrativa, pensada para coordinar horarios — no es un canal clínico y no cuenta con certificaciones de protección de datos de salud como HIPAA. Por eso te pido que no compartas ahí información clínica o sensible: para eso estoy yo, por los canales que ya usamos.</p>
+      </div>
+
+      <div>
+        <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Conservación de tus datos</h2>
+        <p class="body-text" style="margin:0 0 14px;">No conservo todo por el mismo tiempo:</p>
+        <ul style="margin:0;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
+          <li class="body-text" style="line-height:1.7;"><strong>Conversaciones con el asistente de agenda:</strong> se eliminan automáticamente a los 30 días. Si quieres que borre alguna antes, escríbeme y lo hago.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Solicitudes de cita:</strong> se conservan al menos 14 días después de la fecha de la cita y se eliminan después, en el curso normal de la operación.</li>
+        </ul>
       </div>
 
       <div>
@@ -73,7 +86,8 @@ const locale = 'es';
           <li class="body-text" style="line-height:1.7;"><strong>Cancelación:</strong> solicitar que elimine tus datos cuando ya no sean necesarios.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Oposición:</strong> oponerte al tratamiento de tus datos para finalidades específicas.</li>
         </ul>
-        <p class="body-text" style="margin:0;">Para ejercer cualquiera de estos derechos, escríbeme a <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> indicando tu nombre completo y el derecho que deseas ejercer. Responderé en un plazo máximo de <strong>20 días hábiles</strong>, conforme a lo establecido en la LFPDPPP.</p>
+        <p class="body-text" style="margin:0 0 14px;">Para ejercer cualquiera de estos derechos, escríbeme a <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> indicando tu nombre completo y el derecho que deseas ejercer. Responderé en un plazo máximo de <strong>20 días hábiles</strong>, conforme a lo establecido en la LFPDPPP.</p>
+        <p class="body-text" style="margin:0;">Una nota honesta sobre los límites: hay dos cosas que no puedo deshacer aunque me las pidas. La copia de una invitación de calendario que Google ya envió a tu cuenta, y el texto que ya viajó al asistente en una conversación pasada. En ambos casos puedo eliminar lo que está de mi lado, y te lo confirmo por escrito.</p>
       </div>
 
       <div>
@@ -88,7 +102,7 @@ const locale = 'es';
         <p class="body-text" style="margin:0;">Cualquier modificación a este aviso de privacidad se publicará en esta misma página con la fecha de actualización correspondiente. Te recomiendo revisarlo ocasionalmente.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 14 de julio de 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 26 de agosto de 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/es/terminos/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Términos de servicio</a>
