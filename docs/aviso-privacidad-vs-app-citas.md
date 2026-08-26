@@ -15,6 +15,45 @@ Fuentes:
 
 ---
 
+## 0. Decisiones de Patricio (2026-08-26, posteriores al análisis inicial)
+
+Esta sección resume lo que Patricio decidió al revisar el documento. Son decisiones suyas como
+responsable del tratamiento, no asesoría legal de este chip — donde una decisión dependía de
+criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
+
+1. **Retención de `personas` tras la baja**: en vez de quedarse indefinida como hoy, decide que el
+   registro se **anonimice** — conservar sólo lo necesario para las reglas de frecuencia, borrar
+   nombre/correo/ficha/notas. Ver borrador de párrafo en la sección 3. **No está construido
+   todavía** — es una decisión de producto pendiente de implementación en el otro repo.
+2. **Transcripciones**: Patricio indica que **sí existe** una forma de borrarlas a mano desde el
+   panel — un botón que el inventario que leí no documenta. Esto contradice, en apariencia, lo que
+   dice `privacidad-y-borrado.md` (*"no hay forma de borrar la transcripción de alguien a petición
+   antes de los 60 días"*). No pude verificar esto en el código — este chip sólo tiene acceso de
+   lectura a un archivo de ese repo, no al código fuente de la app. Recomendable confirmarlo ahí y,
+   si existe, actualizar el inventario del otro repo para que no quede desactualizado.
+3. **Plazo de "Cancelación" (20 días hábiles)**: decide mantenerlo tal como está publicado, aunque
+   la ruta técnica para cumplirlo en todas las categorías no exista todavía.
+4. **Aviso antes de seguir creciendo**: en vez de pausar altas, está integrando un **banner de
+   consentimiento de un solo uso** en el portal de pacientes que bloquea el uso hasta aceptar el
+   aviso. Texto que ya redactó para ese banner:
+
+   > Al hacer uso de esta plataforma aceptas que tus datos serán tratados conforme al aviso de
+   > privacidad para fines administrativos y de comunicación de ofertas de mi trabajo (link) y al
+   > hacer uso del bot, comprendes que la información que intercambies con el chatbot será
+   > manejada por Anthropic Inc. conforme a sus reglas de operación (link a la privacidad del API
+   > de Claude).
+
+   Ese banner vive en el portal de pacientes (otro repo, fuera del alcance de este chip), pero
+   enlaza directamente a este aviso — por lo que el aviso necesita cubrir lo que el banner promete
+   (el asistente, y a Anthropic por nombre) para que los dos textos no se contradigan.
+5. **Consentimiento explícito para el asistente de IA**: decide que sí, aparte del aviso general —
+   se avisa en el primer load de la pantalla de agenda (consistente con el banner del punto 4).
+6. **Dato nuevo, no resuelto**: Patricio menciona que, a la fecha, Anthropic no le ha dado una
+   garantía tipo HIPAA/PHI (protección de información de salud) para este uso. No es algo que este
+   documento resuelva — queda como pregunta nueva para abogado en la sección 4.
+
+---
+
 ## 1. ¿El aviso cubre cada categoría de dato que guarda la app?
 
 ### `personas` — nombre, correo, huella de token; sin caducidad
@@ -93,14 +132,20 @@ del aviso, siguiendo su mismo tono.
 
 > **Conversación con el asistente de agenda:** si usas el asistente automatizado del portal de
 > pacientes para coordinar una cita, el texto que escribes se guarda temporalmente para poder darle
-> seguimiento a tu solicitud, y se elimina automáticamente pasado un plazo determinado.
+> seguimiento a tu solicitud, y se elimina automáticamente pasado un plazo determinado. También
+> puede borrarse antes, a solicitud tuya, desde el panel administrativo.
 
-**Para "Transferencias de datos"** — ampliar el párrafo de plataformas de terceros:
+La última oración depende de que se confirme el punto 2 de la sección 0 (el botón de borrado
+manual que Patricio menciona) en el código de la app — si no se confirma, hay que quitarla antes
+de publicar, para no prometer algo que no existe.
+
+**Para "Transferencias de datos"** — ampliar el párrafo de plataformas de terceros, nombrando a
+Anthropic por su nombre (como ya hace el banner en desarrollo, sección 0 punto 4):
 
 > Para prestar el servicio, utilizo plataformas de terceros como Zoom (sesiones en línea), Google
-> Calendar (agenda) y un proveedor de inteligencia artificial (para operar el asistente
-> automatizado de agenda del portal de pacientes). Estas plataformas operan bajo sus propias
-> políticas de privacidad, que te recomiendo consultar directamente.
+> Calendar (agenda) y Anthropic (para operar el asistente automatizado de agenda del portal de
+> pacientes). Estas plataformas operan bajo sus propias políticas de privacidad, que te recomiendo
+> consultar directamente.
 
 Y, específicamente sobre Google Calendar, un párrafo aparte que explique el mecanismo real:
 
@@ -108,13 +153,18 @@ Y, específicamente sobre Google Calendar, un párrafo aparte que explique el me
 > Esa invitación te llega directamente de Google por correo y queda registrada en tu propia cuenta
 > de Google, fuera de mi control una vez enviada.
 
-**Sobre retención** — el aviso hoy no tiene ninguna sección de "cuánto tiempo se conservan tus
-datos". Antes de escribir ese párrafo hace falta resolver la pregunta 1 de la sección 4 más abajo
-(cuánto debe durar `personas` después de una baja), porque prometer un plazo en el aviso que el
-sistema no cumple sería peor que no prometer nada. Con esa decisión tomada, el párrafo tendría
-que cubrir, como mínimo, tres plazos distintos (contacto y ficha, solicitudes de cita,
-conversaciones con el asistente) — no uno solo, porque hoy son tres mecanismos distintos con
-comportamientos distintos.
+**Sobre retención** — con la decisión de la sección 0 (anonimizar `personas` al dar de baja), este
+sería el borrador del párrafo — pero **sólo para publicarse cuando esa anonimización ya esté
+construida** en el otro repo; hoy no existe ninguna ruta que la haga, y publicarlo antes repetiría
+el mismo problema que ya tiene "Cancelación" (sección 4): prometer algo que el sistema no cumple.
+
+> Conservo tus datos de contacto y de práctica mientras estés en activo. Si te das de baja,
+> anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de
+> frecuencia, y elimino tu nombre, correo y cualquier nota asociada.
+
+Ese párrafo cubre `personas`. Quedan dos plazos más por cubrir, en el mismo bloque o en uno
+aparte — solicitudes de cita (mínimo 14 días tras la cita) y conversaciones con el asistente (60
+días) — porque hoy son tres mecanismos distintos con comportamientos distintos.
 
 ---
 
@@ -140,10 +190,12 @@ datos que la app guarda:
 - **`solicitudes`**: no hay borrado a petición. Se purgan solas, pero sólo después de un mínimo de
   14 días tras la cita, y sólo cuando alguien abre el panel — no hay un botón que las borre antes
   si una paciente lo pide.
-- **`transcripciones`**: tampoco hay borrado a petición. El propio inventario lo dice sin
-  rodeos: *"no hay forma de borrar la transcripción de alguien a petición antes de los 60 días. Se
-  decidió a conciencia"*. Es la única categoría con caducidad automática — pero automática a 60
-  días, no al pedirlo.
+- **`transcripciones`**: el inventario dice sin rodeos que *"no hay forma de borrar la
+  transcripción de alguien a petición antes de los 60 días. Se decidió a conciencia"* — pero
+  Patricio indica que sí existe un botón manual en el panel para hacerlo (sección 0, punto 2). No
+  verificado en el código por este chip; si se confirma, esta es la única categoría donde ya
+  existe una vía de borrado a petición, aunque manual y no automatizada desde el flujo de la
+  paciente.
 - **Eventos ya escritos en Google Calendar**: no existe, dentro del código de la app, ninguna ruta
   que borre el evento de la cuenta de Google de la paciente — borrar el evento de la agenda de la
   clínica no borra la copia que Google ya le envió a ella. El inventario deja explícitamente como
@@ -152,39 +204,56 @@ datos que la app guarda:
   ninguna vía, sólo que el código de la app no la tiene.
 - **Lo que ya viajó a Anthropic**: una vez enviado, queda fuera del control de ambos repos.
 
-En resumen: el aviso promete una "Cancelación" que hoy, para cuatro de las cinco categorías de
-esta lista, no tiene ninguna implementación detrás. Lo único que existe es `activa: false`, que
+En resumen: el aviso promete una "Cancelación" que hoy, para al menos tres de las cinco categorías
+de esta lista (`personas`, eventos ya escritos en Google, lo ya enviado a Anthropic), no tiene
+ninguna implementación a petición. Para `transcripciones`, la existencia de una vía manual está
+pendiente de confirmar (ver arriba). Lo único verificado en el código es `activa: false`, que
 apaga el acceso de la paciente al portal — no borra un solo byte de lo que la app tiene de ella.
 
 ### Preguntas para abogado (no las contesta este documento)
 
-Estas ya estaban planteadas en `privacidad-y-borrado.md` (sección 5) y son las que le dan forma
-legal a las decisiones de producto e ingeniería pendientes:
+Estas ya estaban planteadas en `privacidad-y-borrado.md` (sección 5). Donde Patricio ya tomó una
+postura como responsable del tratamiento (sección 0), lo anoto, sin que sustituya una opinión
+legal si él decide buscarla más adelante:
 
 1. ¿Existe una obligación de poder cumplir "Cancelación" en un plazo dado, y qué tan literal tiene
-   que ser esa capacidad técnica frente a lo que el aviso promete hoy?
+   que ser esa capacidad técnica frente a lo que el aviso promete hoy? — **Postura de Patricio:**
+   mantener el compromiso de 20 días hábiles tal como está publicado (sección 0, punto 3).
 2. Si alguien pide borrarse, ¿qué hay que hacer con los eventos que Google ya le mandó a su propia
-   cuenta? ¿Basta con borrar la copia de la clínica?
+   cuenta? ¿Basta con borrar la copia de la clínica? — sin resolver.
 3. ¿Es aceptable que el aviso, o la práctica real, tarden hasta 60 días en borrar una conversación
-   con el asistente aunque la paciente lo pida antes?
+   con el asistente aunque la paciente lo pida antes? — depende de si se confirma el botón manual
+   de la sección 0, punto 2; si existe, la pregunta cambia de "no hay vía" a "la vía es manual, no
+   automática desde el flujo de la paciente" — sigue sin resolver si eso basta.
 4. Dado que se trata de un consultorio de psicoterapia — que alguien vaya a terapia, con qué
    frecuencia y desde cuándo son datos personales sensibles — ¿el aviso actual, redactado antes de
    que existiera el portal de pacientes con asistente automatizado, sigue siendo suficiente para
-   cubrir ese portal, o hace falta actualizarlo (o darlo a conocer de nuevo) antes de seguir
-   dándolo de alta a más personas?
+   cubrir ese portal, o hace falta actualizarlo antes de seguir dándolo de alta a más personas? —
+   **Postura de Patricio:** no pausar altas; en desarrollo un banner de consentimiento de un solo
+   uso que bloquea el acceso hasta aceptar el aviso (sección 0, punto 4). Eso no resuelve por sí
+   solo si el *contenido* del aviso está completo — sigue dependiendo de que cubra lo que el
+   banner promete.
 5. ¿El uso de un asistente de IA para conversar con pacientes sobre su agenda necesita un
    consentimiento informado explícito y separado del resto del aviso, dado que el texto que
-   escriben puede rozar lo clínico?
+   escriben puede rozar lo clínico? — **Postura de Patricio:** sí, aparte del aviso general; se
+   avisa en el primer load de la pantalla de agenda (sección 0, punto 5).
+6. **Nueva, no estaba en el inventario original:** Patricio menciona que, a la fecha, Anthropic no
+   le ha dado una garantía tipo HIPAA/PHI (protección de información de salud) para este uso.
+   Dado que se trata de datos de salud mental, ¿es relevante esa ausencia para el aviso, para el
+   consentimiento del banner, o para la relación contractual con Anthropic? — sin resolver, y es
+   la pregunta con más peso de las seis por el tipo de dato involucrado.
 
 ---
 
 ## Resumen
 
-| Categoría | ¿Cubierta en el aviso? |
-|---|---|
-| `personas` (nombre, correo, token, sin caducidad) | Parcial — nombre/correo sí, token y "no caduca nunca" no |
-| `solicitudes` (fecha, hora, estado, retención 14 días) | Parcial — fecha/hora sí, retención no; "estado" sin confirmar en el inventario técnico |
-| `transcripciones` (texto libre, 60 días, sin borrado a petición) | No aparece |
-| Google Calendar (invitada real, correo, copia en su cuenta) | Mencionado genéricamente, mecanismo no |
-| Anthropic (proveedor de IA) | No aparece |
-| Promesa de "Cancelación" en 20 días hábiles | Existe en el aviso, pero sin ruta técnica que la cumpla para 4 de 5 categorías |
+| Categoría | ¿Cubierta en el aviso hoy? | Estado tras esta conversación |
+|---|---|---|
+| `personas` (nombre, correo, token, sin caducidad) | Parcial — nombre/correo sí, token y "no caduca nunca" no | Decisión: anonimizar al dar de baja. Falta construirlo y redactar el párrafo (sección 3) |
+| `solicitudes` (fecha, hora, estado, retención 14 días) | Parcial — fecha/hora sí, retención no; "estado" sin confirmar en el inventario técnico | Sin cambios |
+| `transcripciones` (texto libre, 60 días, sin borrado a petición) | No aparece | Patricio indica que sí hay borrado manual — pendiente verificar en código |
+| Google Calendar (invitada real, correo, copia en su cuenta) | Mencionado genéricamente, mecanismo no | Sin cambios; párrafo propuesto en sección 3 |
+| Anthropic (proveedor de IA) | No aparece | Banner en desarrollo ya lo nombra; falta que el aviso también lo haga (párrafo en sección 3) |
+| Promesa de "Cancelación" en 20 días hábiles | Existe en el aviso, sin ruta técnica que la cumpla para varias categorías | Patricio decide mantener el plazo tal cual |
+| Consentimiento explícito para el asistente de IA | No existía | Patricio decide agregarlo — banner en el primer load de la agenda |
+| Garantía HIPAA/PHI de Anthropic | No aplicaba | Dato nuevo, sin resolver (pregunta 6, sección 4) |
