@@ -49,8 +49,20 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
 5. **Consentimiento explícito para el asistente de IA**: decide que sí, aparte del aviso general —
    se avisa en el primer load de la pantalla de agenda (consistente con el banner del punto 4).
 6. **Dato nuevo, no resuelto**: Patricio menciona que, a la fecha, Anthropic no le ha dado una
-   garantía tipo HIPAA/PHI (protección de información de salud) para este uso. No es algo que este
-   documento resuelva — queda como pregunta nueva para abogado en la sección 4.
+   garantía tipo HIPAA/PHI (protección de información de salud) para este uso.
+7. **Eventos de Google al pedir borrarse**: decide borrar sólo la copia de la clínica. La copia
+   que Google ya le mandó a la paciente, y la que quedó en su propia cuenta, se quedan fuera de
+   esta acción.
+8. **Borrado manual de transcripciones, ¿basta?**: decide que sí — si alguien pide que se borre
+   antes de los 60 días, él o Diana lo hacen desde el panel (una vez confirmado que ese botón
+   existe, sección 0 punto 2). No construye un flujo self-service para que la paciente lo pida o
+   lo haga directamente.
+9. **Urgencia del hueco HIPAA/PHI**: no bloqueante. Su postura: depende de Anthropic resolverlo, y
+   además considera que HIPAA no es un requisito en México. Su mitigación es notificar a las
+   personas usuarias que el asistente se ofrece para fines administrativos, que no cuenta con
+   HIPAA, y pedirles explícitamente que no compartan información sensible ahí. (La frase "no es
+   necesario en México" es su lectura, no una afirmación de este documento — si quiere apoyarse en
+   ella para el aviso, es exactamente el tipo de cosa que vale la pena confirmar con abogado.)
 
 ---
 
@@ -147,6 +159,13 @@ Anthropic por su nombre (como ya hace el banner en desarrollo, sección 0 punto 
 > pacientes). Estas plataformas operan bajo sus propias políticas de privacidad, que te recomiendo
 > consultar directamente.
 
+Y, siguiendo la mitigación que Patricio propone para el hueco HIPAA/PHI (sección 0, punto 9), un
+párrafo aparte junto a la mención de Anthropic:
+
+> El asistente de agenda es una herramienta administrativa, no un canal clínico. No cuenta con
+> certificaciones de protección de datos de salud tipo HIPAA. Te pido que no compartas ahí
+> información clínica o sensible — para eso, usa los canales que ya conoces conmigo directamente.
+
 Y, específicamente sobre Google Calendar, un párrafo aparte que explique el mecanismo real:
 
 > Cada cita agendada genera una invitación de Google Calendar en la que apareces como invitada.
@@ -220,11 +239,14 @@ legal si él decide buscarla más adelante:
    que ser esa capacidad técnica frente a lo que el aviso promete hoy? — **Postura de Patricio:**
    mantener el compromiso de 20 días hábiles tal como está publicado (sección 0, punto 3).
 2. Si alguien pide borrarse, ¿qué hay que hacer con los eventos que Google ya le mandó a su propia
-   cuenta? ¿Basta con borrar la copia de la clínica? — sin resolver.
+   cuenta? ¿Basta con borrar la copia de la clínica? — **Postura de Patricio:** sí, basta con
+   borrar la copia de la clínica; la que ya tiene la paciente en su propia cuenta de Google queda
+   fuera de esta acción (sección 0, punto 7).
 3. ¿Es aceptable que el aviso, o la práctica real, tarden hasta 60 días en borrar una conversación
-   con el asistente aunque la paciente lo pida antes? — depende de si se confirma el botón manual
-   de la sección 0, punto 2; si existe, la pregunta cambia de "no hay vía" a "la vía es manual, no
-   automática desde el flujo de la paciente" — sigue sin resolver si eso basta.
+   con el asistente aunque la paciente lo pida antes? — **Postura de Patricio:** sí, con el matiz
+   de que el borrado anticipado es manual (él o Diana lo hacen desde el panel al recibir la
+   petición), no un flujo directo para la paciente (sección 0, punto 8). Sigue condicionado a que
+   se confirme en código que ese botón manual existe de verdad.
 4. Dado que se trata de un consultorio de psicoterapia — que alguien vaya a terapia, con qué
    frecuencia y desde cuándo son datos personales sensibles — ¿el aviso actual, redactado antes de
    que existiera el portal de pacientes con asistente automatizado, sigue siendo suficiente para
@@ -240,8 +262,13 @@ legal si él decide buscarla más adelante:
 6. **Nueva, no estaba en el inventario original:** Patricio menciona que, a la fecha, Anthropic no
    le ha dado una garantía tipo HIPAA/PHI (protección de información de salud) para este uso.
    Dado que se trata de datos de salud mental, ¿es relevante esa ausencia para el aviso, para el
-   consentimiento del banner, o para la relación contractual con Anthropic? — sin resolver, y es
-   la pregunta con más peso de las seis por el tipo de dato involucrado.
+   consentimiento del banner, o para la relación contractual con Anthropic? — **Postura de
+   Patricio:** no bloqueante; considera que HIPAA no es un requisito en México y que, mientras
+   Anthropic no lo resuelva, la mitigación es avisar a las personas usuarias que el asistente es
+   para fines administrativos, sin HIPAA, y pedirles que no compartan información sensible ahí
+   (sección 0, punto 9). Sigue siendo la pregunta con más peso de las seis por el tipo de dato
+   involucrado — y la lectura de que HIPAA "no es necesario en México" es precisamente el tipo de
+   afirmación que vale la pena confirmar con abogado antes de apoyarse en ella para el aviso.
 
 ---
 
@@ -256,4 +283,6 @@ legal si él decide buscarla más adelante:
 | Anthropic (proveedor de IA) | No aparece | Banner en desarrollo ya lo nombra; falta que el aviso también lo haga (párrafo en sección 3) |
 | Promesa de "Cancelación" en 20 días hábiles | Existe en el aviso, sin ruta técnica que la cumpla para varias categorías | Patricio decide mantener el plazo tal cual |
 | Consentimiento explícito para el asistente de IA | No existía | Patricio decide agregarlo — banner en el primer load de la agenda |
-| Garantía HIPAA/PHI de Anthropic | No aplicaba | Dato nuevo, sin resolver (pregunta 6, sección 4) |
+| Eventos ya escritos en Google, al pedir borrarse | Sin ruta en el código de la app | Patricio decide: basta con borrar la copia de la clínica |
+| Borrado anticipado de transcripciones, ¿self-service? | No existe flujo directo para la paciente | Patricio decide: el manual (él/Diana) basta, no construye self-service |
+| Garantía HIPAA/PHI de Anthropic | No aplicaba | No bloqueante para Patricio; propone avisar "uso administrativo, sin HIPAA" (párrafo en sección 3) — lectura legal sin confirmar |
