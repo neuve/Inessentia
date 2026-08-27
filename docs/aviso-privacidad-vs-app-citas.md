@@ -34,8 +34,12 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    (invariante de `rotarToken`); un anonimizado no se puede reactivar ni recibir escrituras de
    ficha/categoría/política. `CONTRATO.md` §8.2 y §8.3.7 enmendados. 2750 pruebas en verde.
 
-   Lo que falta para publicar el párrafo ya no es esto, sino la caducidad de los respaldos (ver
-   el hueco marcado en la sección 3) y el despliegue.
+   La caducidad de los respaldos que faltaba también quedó resuelta y fusionada: commit `bbeb146`,
+   30 días, mismo número que las transcripciones (ver sección 3). `main` de la app está en
+   `bbeb146`.
+
+   **Lo único que falta para publicar el párrafo es el despliegue**, que a la fecha de esta línea
+   no se ha hecho: `origin/main` sigue en `ac18623` mientras el `main` local va en `bbeb146`.
 2. **Transcripciones — resuelto, con una condición**: confirmado desde el repo de la app
    (`inessentia-clientes-r2`, rama `arreglo-erafirme`): el botón de borrado manual de una
    transcripción archivada **ya está implementado** en el panel de admin, y la retención general
@@ -192,22 +196,40 @@ Y, específicamente sobre Google Calendar, un párrafo aparte que explique el me
 sería el borrador del párrafo. La anonimización **ya está construida** (sección 0, punto 1), pero
 sigue sin fusionar ni desplegar, así que el párrafo todavía no puede publicarse.
 
+**Redacción recomendada** (corregida el 2026-08-27, ver abajo por qué la primera versión no
+servía):
+
 > Conservo tus datos de contacto y de práctica mientras estés en activo. Si te das de baja,
 > anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de
-> frecuencia, y elimino tu nombre, correo y cualquier nota asociada.
+> frecuencia, y elimino tu nombre, tu correo y cualquier nota asociada. Las copias de seguridad y
+> el historial de conversaciones con el asistente caducan a los 30 días, así que ése es el plazo
+> máximo en que tus datos desaparecen por completo.
 
-**⚠️ Hueco detectado al terminar la implementación — este párrafo, tal como está, todavía no es
-del todo cierto.** `bin/respaldar-personas.mjs` genera respaldos que conservan nombre y correo, y
-anonimizar el store vivo **no toca ninguna copia ya generada**. Nadie ha definido rotación ni
-caducidad de esos respaldos. Mientras eso siga así, "elimino tu nombre, correo" es más de lo que
-el sistema hace: lo borra de donde se opera, no de donde se respalda. Es exactamente la clase de
-promesa que este documento entero existe para evitar. Hay que resolverlo (definiendo rotación) o
-ajustar la redacción antes de publicar.
+**Por qué cambió.** La primera versión decía sólo *"elimino tu nombre, correo y cualquier nota
+asociada"*, y eso **prometía inmediatez que el sistema no daba**. Al construir la anonimización
+apareció el hueco: `bin/respaldar-personas.mjs` generaba respaldos cifrados que conservaban nombre
+y correo **sin caducidad**, y anonimizar el store vivo no alcanza ninguna copia ya generada —
+viven fuera del sistema, en el gestor de contraseñas, y ningún código sabe cuántas hay ni dónde.
 
-Un segundo hueco, menor y acotado: el nombre de la persona puede seguir apareciendo **dentro del
-texto** de una transcripción archivada hasta 30 días, porque el borrado de transcripciones es por
-conversación, no por persona, y anonimizar no dispara nada ahí. Ya está divulgado por el párrafo
-de conservación del asistente, y se resuelve solo con el tiempo.
+Eso se resolvió: commit `bbeb146` les puso caducidad de **30 días**, deliberadamente el mismo
+número que la retención de transcripciones, para que el aviso pueda decir **un solo plazo** en vez
+de dos. La cadencia de respaldo es semanal, así que 30 días dejan cuatro copias de margen.
+
+Con eso, las dos ventanas en que un nombre sobrevive a su anonimización (la copia de seguridad, y
+el nombre escrito dentro del texto de una transcripción) caen bajo el mismo plazo, y la frase es
+cumplible.
+
+**Alternativa mínima**, si prefieres no mencionar copias de seguridad a las pacientes:
+
+> …elimino tu nombre, tu correo y cualquier nota asociada, en un plazo máximo de 30 días.
+
+Lo que **no** se sostiene es la frase sin plazo alguno.
+
+**Un caso que queda fuera, y conviene saberlo:** la purga de respaldos es un comando que alguien
+tiene que correr (`--purgar --ejecutar`); no se dispara sola. El script imprime el recordatorio
+justo al crear una copia nueva, que es el único momento en que Patricio está mirando. Si no se
+corre, el archivo sigue ahí. La mitad estructural está resuelta; la mitad humana no puede estarlo
+desde el código.
 
 Ese párrafo cubre `personas`. Quedan dos plazos más por cubrir, en el mismo bloque o en uno
 aparte — solicitudes de cita (mínimo 14 días tras la cita) y conversaciones con el asistente (30
