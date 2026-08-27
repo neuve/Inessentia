@@ -25,14 +25,17 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    registro se **anonimice** — conservar sólo lo necesario para las reglas de frecuencia, borrar
    nombre/correo/ficha/notas. Ver borrador de párrafo en la sección 3.
 
-   **Estado (2026-08-27): construido, sin fusionar.** Implementado en `inessentia-clientes-r2`,
-   rama `claude/anonimizacion-personas`, commit `ce8874b` sobre `main` (`ac18623`). Verificado
+   **Estado (2026-08-27): construido y fusionado a `main`.** Implementado en
+   `inessentia-clientes-r2`, commit `ce8874b`, fusionado por fast-forward (`main` pasó de
+   `ac18623` a `ce8874b`; sin empujar). Verificado
    por esta sesión leyendo el código: `anonimizarPersona()` borra nombre, correo, ficha, nota
    operativa, involucrados y correos adicionales; conserva `persona`, `huellaToken`, `activa`,
    `categoria`, `reglas` y `alta`; escribe el registro antes de matar la entrada del índice
    (invariante de `rotarToken`); un anonimizado no se puede reactivar ni recibir escrituras de
    ficha/categoría/política. `CONTRATO.md` §8.2 y §8.3.7 enmendados. 2750 pruebas en verde.
-   **No fusionado a `main`, no desplegado** — ese sigue siendo el gate para publicar el párrafo.
+
+   Lo que falta para publicar el párrafo ya no es esto, sino la caducidad de los respaldos (ver
+   el hueco marcado en la sección 3) y el despliegue.
 2. **Transcripciones — resuelto, con una condición**: confirmado desde el repo de la app
    (`inessentia-clientes-r2`, rama `arreglo-erafirme`): el botón de borrado manual de una
    transcripción archivada **ya está implementado** en el panel de admin, y la retención general
