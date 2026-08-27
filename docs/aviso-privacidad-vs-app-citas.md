@@ -32,8 +32,8 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    el frontend). El cambio incluyó una enmienda a `CONTRATO.md` §20.5, que era donde vivía la
    decisión contraria. Con esto, la contradicción que este documento señalaba queda cerrada.
 
-   **La condición:** ese cambio **todavía no está commiteado** — queda staged, a la espera de que
-   Patricio decida integrarlo. Mientras no esté integrado y desplegado, el aviso actualizado no
+   **La condición:** ese cambio está commiteado (`1ad1405`) en varias ramas, pero **no está en
+   `main`** — verificado con `git branch --contains`. Mientras no esté integrado y desplegado, el aviso actualizado no
    debe publicarse: prometería 30 días y borrado a petición cuando lo que corre en producción
    sigue siendo 60 días sin botón. Es el mismo error que este documento le reprocha a
    "Cancelación", y sería peor cometerlo a sabiendas. **Orden correcto: primero integrar y
