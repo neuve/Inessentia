@@ -196,7 +196,10 @@ Y, específicamente sobre Google Calendar, un párrafo aparte que explique el me
 sería el borrador del párrafo. La anonimización **ya está construida** (sección 0, punto 1), pero
 sigue sin fusionar ni desplegar, así que el párrafo todavía no puede publicarse.
 
-**Redacción recomendada** (corregida el 2026-08-27, ver abajo por qué la primera versión no
+**✅ PUBLICADO el 2026-08-27.** Este párrafo ya está en el aviso vivo, en ambos idiomas, una vez
+desplegada la app (`origin/main` en `bbeb146`). Fue lo último que quedaba fuera.
+
+**Redacción publicada** (corregida el 2026-08-27, ver abajo por qué la primera versión no
 servía):
 
 > Conservo tus datos de contacto y de práctica mientras estés en activo. Si te das de baja,

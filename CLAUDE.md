@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## No le pases a Patricio comandos que no lo necesitan
+
+Si algo lo puedes correr tú, córrelo. No termines un turno con un bloque `bash` para que él lo
+pegue, salvo que la acción **requiera** su criterio (aprobar un gasto, decidir si algo sale
+público) o su acceso (una credencial que tú no tienes).
+
+Si una herramienta te bloquea —el clasificador de permisos negando un `git push`, por ejemplo—
+la salida **no** es pedirle que corra el comando en tu lugar: es decirle qué acción quedó
+bloqueada y ofrecerle añadir la regla de permiso correspondiente, para que la próxima vez no
+haga falta. Pedirle el comando convierte un problema de configuración en trabajo manual suyo,
+cada vez.
+
 ## Project
 
 Bilingual (ES/EN) therapy website for Patricio Ruiz Abrín at inessentia.mx. Built with Astro v7, deployed to GitHub Pages.
