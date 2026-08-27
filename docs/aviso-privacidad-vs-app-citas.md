@@ -23,8 +23,16 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
 
 1. **Retención de `personas` tras la baja**: en vez de quedarse indefinida como hoy, decide que el
    registro se **anonimice** — conservar sólo lo necesario para las reglas de frecuencia, borrar
-   nombre/correo/ficha/notas. Ver borrador de párrafo en la sección 3. **No está construido
-   todavía** — es una decisión de producto pendiente de implementación en el otro repo.
+   nombre/correo/ficha/notas. Ver borrador de párrafo en la sección 3.
+
+   **Estado (2026-08-27): construido, sin fusionar.** Implementado en `inessentia-clientes-r2`,
+   rama `claude/anonimizacion-personas`, commit `ce8874b` sobre `main` (`ac18623`). Verificado
+   por esta sesión leyendo el código: `anonimizarPersona()` borra nombre, correo, ficha, nota
+   operativa, involucrados y correos adicionales; conserva `persona`, `huellaToken`, `activa`,
+   `categoria`, `reglas` y `alta`; escribe el registro antes de matar la entrada del índice
+   (invariante de `rotarToken`); un anonimizado no se puede reactivar ni recibir escrituras de
+   ficha/categoría/política. `CONTRATO.md` §8.2 y §8.3.7 enmendados. 2750 pruebas en verde.
+   **No fusionado a `main`, no desplegado** — ese sigue siendo el gate para publicar el párrafo.
 2. **Transcripciones — resuelto, con una condición**: confirmado desde el repo de la app
    (`inessentia-clientes-r2`, rama `arreglo-erafirme`): el botón de borrado manual de una
    transcripción archivada **ya está implementado** en el panel de admin, y la retención general
@@ -178,13 +186,25 @@ Y, específicamente sobre Google Calendar, un párrafo aparte que explique el me
 > de Google, fuera de mi control una vez enviada.
 
 **Sobre retención** — con la decisión de la sección 0 (anonimizar `personas` al dar de baja), este
-sería el borrador del párrafo — pero **sólo para publicarse cuando esa anonimización ya esté
-construida** en el otro repo; hoy no existe ninguna ruta que la haga, y publicarlo antes repetiría
-el mismo problema que ya tiene "Cancelación" (sección 4): prometer algo que el sistema no cumple.
+sería el borrador del párrafo. La anonimización **ya está construida** (sección 0, punto 1), pero
+sigue sin fusionar ni desplegar, así que el párrafo todavía no puede publicarse.
 
 > Conservo tus datos de contacto y de práctica mientras estés en activo. Si te das de baja,
 > anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de
 > frecuencia, y elimino tu nombre, correo y cualquier nota asociada.
+
+**⚠️ Hueco detectado al terminar la implementación — este párrafo, tal como está, todavía no es
+del todo cierto.** `bin/respaldar-personas.mjs` genera respaldos que conservan nombre y correo, y
+anonimizar el store vivo **no toca ninguna copia ya generada**. Nadie ha definido rotación ni
+caducidad de esos respaldos. Mientras eso siga así, "elimino tu nombre, correo" es más de lo que
+el sistema hace: lo borra de donde se opera, no de donde se respalda. Es exactamente la clase de
+promesa que este documento entero existe para evitar. Hay que resolverlo (definiendo rotación) o
+ajustar la redacción antes de publicar.
+
+Un segundo hueco, menor y acotado: el nombre de la persona puede seguir apareciendo **dentro del
+texto** de una transcripción archivada hasta 30 días, porque el borrado de transcripciones es por
+conversación, no por persona, y anonimizar no dispara nada ahí. Ya está divulgado por el párrafo
+de conservación del asistente, y se resuelve solo con el tiempo.
 
 Ese párrafo cubre `personas`. Quedan dos plazos más por cubrir, en el mismo bloque o en uno
 aparte — solicitudes de cita (mínimo 14 días tras la cita) y conversaciones con el asistente (30
