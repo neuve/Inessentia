@@ -333,6 +333,12 @@ legal si él decide buscarla más adelante:
    (sección 0, punto 9). Sigue siendo la pregunta con más peso de las seis por el tipo de dato
    involucrado — y la lectura de que HIPAA "no es necesario en México" es precisamente el tipo de
    afirmación que vale la pena confirmar con abogado antes de apoyarse en ella para el aviso.
+7. **Nueva (2026-08-28), aún sin postura:** el cobro con Stripe (sección 6) va a mandar el correo
+   de cada paciente a **Estados Unidos** — una transferencia internacional, figura distinta de
+   todo lo anterior. ¿Cambia eso lo que el aviso tiene que decir, o cómo hay que recabar el
+   consentimiento? Y por separado, la que más me preocupa: si el `Customer` de Stripe no se puede
+   borrar a petición, el párrafo de anonimización **que ya está publicado** deja de ser exacto en
+   cuanto Stripe entre en operación.
 
 ---
 
@@ -595,6 +601,71 @@ mecánicas del análisis:
 3. **El disclaimer de HIPAA** está redactado como límite de la herramienta y petición a la
    paciente, no como afirmación sobre lo que la ley mexicana exige — consistente con tu postura
    (sección 0, punto 9) sin apoyarse en la parte que sigue sin confirmar.
+
+---
+
+## 6. Cambio anunciado y todavía NO publicado: cobros con Stripe
+
+**Estado: redactado, fuera del aviso.** Avisado el 2026-08-28 por la sesión de cobros
+(`inessentia-clientes-r2-9e`), que está construyendo el cobro con tarjeta y SPEI en
+`inessentia-clientes`. **No está desplegado y no hay fecha.** Por eso el texto de abajo está
+escrito pero no publicado — mismo criterio que se aplicó al párrafo de anonimización: el aviso
+describe lo que el sistema hace, no lo que va a hacer.
+
+### Lo que cambia, según esa sesión
+
+- **Tercero nuevo:** Stripe, Inc., con **transferencia internacional** (EE. UU.). Es la primera
+  vez que un dato de contacto de una paciente sale del sistema de Diana.
+- **Qué viaja:** correo electrónico y un identificador interno seudónimo. **No** viaja el nombre,
+  ni la descripción de la sesión, ni la fecha u hora de la cita — el concepto del cobro dirá
+  «Sesión» a secas, para que nada clínico aparezca en el recibo.
+- **Por qué es obligatorio y no una comodidad:** Stripe exige un objeto `Customer` preexistente
+  para aceptar SPEI en Checkout, y sin correo en ese objeto no se puede ni crear un reembolso.
+- **Efecto lateral que hay que declarar:** Stripe le manda correos a la paciente por su cuenta —
+  el recibo del pago, y recordatorios si hubiera saldos sin conciliar.
+
+### Borrador para "Transferencias de datos" — ES
+
+> Para prestar el servicio sí me apoyo en plataformas de terceros, que necesariamente procesan
+> algunos de tus datos: Zoom (sesiones en línea), Google Calendar (agenda), Anthropic (el
+> asistente automatizado de agenda del portal de pacientes) y Stripe (el cobro con tarjeta y
+> transferencia). Cada una opera bajo su propia política de privacidad, que te recomiendo
+> consultar directamente.
+>
+> **Sobre los pagos:** para cobrarte con tarjeta o transferencia, tu correo electrónico y un
+> identificador interno se registran en Stripe, Inc., empresa con sede en Estados Unidos — es
+> decir, ese dato sale de México. Es un requisito de su sistema, no una elección mía: sin ese
+> registro no se puede procesar una transferencia ni emitir una devolución. **No se envía tu
+> nombre ni ningún detalle de tu sesión**; el concepto del cobro dice únicamente «Sesión», para
+> que nada de tu proceso terapéutico aparezca en un recibo. Stripe te enviará por su cuenta el
+> comprobante del pago, y recordatorios si quedara algún saldo pendiente.
+
+### Borrador para "Data transfers" — EN
+
+> To provide the service I do rely on third-party platforms, which necessarily process some of
+> your data: Zoom (online sessions), Google Calendar (scheduling), Anthropic (the patient portal's
+> automated scheduling assistant), and Stripe (card and bank-transfer payments). Each operates
+> under its own privacy policy, which I recommend reviewing directly.
+>
+> **About payments:** to charge you by card or transfer, your email address and an internal
+> identifier are recorded with Stripe, Inc., a company based in the United States — meaning that
+> data leaves Mexico. This is a requirement of their system, not a choice of mine: without that
+> record a transfer cannot be processed and a refund cannot be issued. **Your name and any detail
+> of your session are not sent**; the charge description reads only "Session", so that nothing
+> about your therapeutic process appears on a receipt. Stripe will send you the payment receipt
+> directly, and reminders if any balance remains outstanding.
+
+### Lo que hay que resolver antes de publicarlo
+
+1. **Está desplegado?** Mismo gate que todo lo demás. No publicar antes.
+2. **Retención.** La sección "Conservación de tus datos" no dice nada de Stripe. ¿Cuánto conserva
+   Stripe el `Customer`, y qué pasa con él cuando alguien se anonimiza? Hoy `anonimizarPersona()`
+   no sabe nada de Stripe — si el correo se borra aquí pero sobrevive allá, el párrafo de
+   anonimización deja de ser cierto y volvemos al problema que acabamos de cerrar. **Esto es lo
+   más importante de esta lista.**
+3. **Derechos ARCO.** La "nota honesta sobre los límites" enumera dos cosas que no se pueden
+   deshacer (la invitación de Google, el texto que ya viajó al asistente). Si el `Customer` de
+   Stripe tampoco se puede borrar a petición, son tres y hay que decirlo.
 
 ---
 
