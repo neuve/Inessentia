@@ -91,9 +91,20 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
 9. **Urgencia del hueco HIPAA/PHI**: no bloqueante. Su postura: depende de Anthropic resolverlo, y
    además considera que HIPAA no es un requisito en México. Su mitigación es notificar a las
    personas usuarias que el asistente se ofrece para fines administrativos, que no cuenta con
-   HIPAA, y pedirles explícitamente que no compartan información sensible ahí. (La frase "no es
-   necesario en México" es su lectura, no una afirmación de este documento — si quiere apoyarse en
-   ella para el aviso, es exactamente el tipo de cosa que vale la pena confirmar con abogado.)
+   HIPAA, y pedirles explícitamente que no compartan información sensible ahí.
+10. **HIPAA, cerrado (2026-08-28)**: lo da por resuelto — HIPAA es ley estadounidense y no rige a
+    un consultorio mexicano. Sin consulta legal, como decisión suya. Nótese que el aviso publicado
+    no afirma nada sobre lo que la ley exige: sólo dice que la herramienta no tiene la
+    certificación y pide no compartir información clínica ahí.
+11. **Stripe, transferencia a EE. UU. (2026-08-28)**: se declara en el aviso remitiendo a las
+    políticas de Stripe (`https://stripe.com/mx/privacy`), sin paso de consentimiento aparte.
+12. **Stripe, retención tras supresión (2026-08-28)**: basta con "conserva cierta información de
+    la transacción", sin plazo. Stripe no publica un número, y dar uno inventado sería peor que
+    la vaguedad.
+
+**Con esto las siete preguntas de la sección 4 quedan con postura.** Ninguna pasó por un abogado:
+todas son decisiones de Patricio como responsable del tratamiento, y este documento sigue sin
+afirmar qué exige la ley.
 
 ---
 
@@ -330,15 +341,27 @@ legal si él decide buscarla más adelante:
    Patricio:** no bloqueante; considera que HIPAA no es un requisito en México y que, mientras
    Anthropic no lo resuelva, la mitigación es avisar a las personas usuarias que el asistente es
    para fines administrativos, sin HIPAA, y pedirles que no compartan información sensible ahí
-   (sección 0, punto 9). Sigue siendo la pregunta con más peso de las seis por el tipo de dato
-   involucrado — y la lectura de que HIPAA "no es necesario en México" es precisamente el tipo de
-   afirmación que vale la pena confirmar con abogado antes de apoyarse en ella para el aviso.
-7. **Nueva (2026-08-28), aún sin postura:** el cobro con Stripe (sección 6) va a mandar el correo
-   de cada paciente a **Estados Unidos** — una transferencia internacional, figura distinta de
-   todo lo anterior. ¿Cambia eso lo que el aviso tiene que decir, o cómo hay que recabar el
-   consentimiento? Y por separado, la que más me preocupa: si el `Customer` de Stripe no se puede
-   borrar a petición, el párrafo de anonimización **que ya está publicado** deja de ser exacto en
-   cuanto Stripe entre en operación.
+   (sección 0, punto 9). **CERRADA el 2026-08-28:** Patricio la da por resuelta — HIPAA es una ley
+   estadounidense y no rige a un consultorio mexicano. El aviso publicado, en todo caso, no afirma
+   nada sobre lo que la ley exige: sólo dice que la herramienta no tiene esa certificación y pide
+   no compartir información clínica ahí, que es un hecho verificable. (Cuestión distinta, y no
+   planteada: si algo del marco mexicano impone requisitos propios para datos de salud. El aviso
+   ya trata esos datos como sensibles desde su versión original.)
+7. **Nueva (2026-08-28), CERRADA el mismo día.** El cobro con Stripe (sección 6) mandará el correo
+   de cada paciente a **Estados Unidos** — la primera transferencia internacional del aviso.
+
+   **7a — cómo se trata la transferencia.** *Postura de Patricio:* declararla en el aviso,
+   remitiendo a las políticas de Stripe (`https://stripe.com/mx/privacy`), sin paso de
+   consentimiento aparte. Ya incorporado a los borradores de la sección 6, en ambos idiomas.
+
+   **7b — la retención de Stripe tras una supresión.** *Postura de Patricio:* basta con decir que
+   "conserva cierta información de la transacción", sin prometer plazo. Es lo honesto: Stripe no
+   publica un número, y dar uno inventado sería peor que la vaguedad.
+
+   Lo que **no** está cerrado por estas dos respuestas es el hecho técnico de la sección 6: el
+   párrafo de anonimización ya publicado pierde exactitud en cuanto exista el primer cobro. Eso no
+   se resuelve con una postura sino con el cambio de redacción ya preparado, y por eso sigue
+   vigente la regla de acoplamiento (aviso y despliegue de Stripe, el mismo día).
 
 ---
 
@@ -635,10 +658,12 @@ describe lo que el sistema hace, no lo que va a hacer.
 > **Sobre los pagos:** para cobrarte con tarjeta o transferencia, tu correo electrónico y un
 > identificador interno se registran en Stripe, Inc., empresa con sede en Estados Unidos — es
 > decir, ese dato sale de México. Es un requisito de su sistema, no una elección mía: sin ese
-> registro no se puede procesar una transferencia ni emitir una devolución. **No se envía tu
-> nombre ni ningún detalle de tu sesión**; el concepto del cobro dice únicamente «Sesión», para
-> que nada de tu proceso terapéutico aparezca en un recibo. Stripe te enviará por su cuenta el
-> comprobante del pago, y recordatorios si quedara algún saldo pendiente.
+> registro no se puede procesar una transferencia ni emitir una devolución. El tratamiento de
+> esos datos se rige por las políticas de Stripe, que puedes consultar en
+> [stripe.com/mx/privacy](https://stripe.com/mx/privacy). **No se envía tu nombre ni ningún
+> detalle de tu sesión**; el concepto del cobro dice únicamente «Sesión», para que nada de tu
+> proceso terapéutico aparezca en un recibo. Stripe te enviará por su cuenta el comprobante del
+> pago, y recordatorios si quedara algún saldo pendiente.
 
 ### Borrador para "Data transfers" — EN
 
@@ -650,10 +675,12 @@ describe lo que el sistema hace, no lo que va a hacer.
 > **About payments:** to charge you by card or transfer, your email address and an internal
 > identifier are recorded with Stripe, Inc., a company based in the United States — meaning that
 > data leaves Mexico. This is a requirement of their system, not a choice of mine: without that
-> record a transfer cannot be processed and a refund cannot be issued. **Your name and any detail
-> of your session are not sent**; the charge description reads only "Session", so that nothing
-> about your therapeutic process appears on a receipt. Stripe will send you the payment receipt
-> directly, and reminders if any balance remains outstanding.
+> record a transfer cannot be processed and a refund cannot be issued. The handling of that data
+> is governed by Stripe's own policies, which you can review at
+> [stripe.com/mx/privacy](https://stripe.com/mx/privacy). **Your name and any detail of your
+> session are not sent**; the charge description reads only "Session", so that nothing about your
+> therapeutic process appears on a receipt. Stripe will send you the payment receipt directly, and
+> reminders if any balance remains outstanding.
 
 ### ⚠️ Stripe rompe la promesa de borrado ya publicada — verificado
 
