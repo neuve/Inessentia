@@ -34,6 +34,17 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    (invariante de `rotarToken`); un anonimizado no se puede reactivar ni recibir escrituras de
    ficha/categoría/política. `CONTRATO.md` §8.2 y §8.3.7 enmendados. 2750 pruebas en verde.
 
+   **Verificado en producción el 2026-08-28**, contra el almacén real y no sólo con pruebas. Se
+   creó un registro desechable (`p_b1640143`, «Prueba Anonimizar»), se confirmó que su correo
+   estaba en el almacén, se pulsó Anonimizar en el panel vivo, y se confirmó que el correo dejó
+   de estar. Se comprobó además que `bin/exportar-personas-r2.mjs` no filtra registros
+   anonimizados, así que la desaparición es borrado real y no la bandera escondiendo el dato.
+   Esto importa porque el README del repo de la app advierte que las pruebas inyectan su
+   `getStore` y nunca cargan `@netlify/blobs` — estar en verde no decía nada sobre producción.
+
+   Queda en producción un registro fantasma anonimizado (`p_b1640143`): sólo fechas y categoría,
+   sin nombre ni correo. No hay ruta de borrado, por diseño, así que no se puede quitar.
+
    La caducidad de los respaldos que faltaba también quedó resuelta y fusionada: commit `bbeb146`,
    30 días, mismo número que las transcripciones (ver sección 3). `main` de la app está en
    `bbeb146`.
