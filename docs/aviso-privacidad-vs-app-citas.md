@@ -25,9 +25,8 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    registro se **anonimice** — conservar sólo lo necesario para las reglas de frecuencia, borrar
    nombre/correo/ficha/notas. Ver borrador de párrafo en la sección 3.
 
-   **Estado (2026-08-27): construido y fusionado a `main`.** Implementado en
-   `inessentia-clientes-r2`, commit `ce8874b`, fusionado por fast-forward (`main` pasó de
-   `ac18623` a `ce8874b`; sin empujar). Verificado
+   **Estado: construido, fusionado y desplegado.** Implementado en
+   `inessentia-clientes-r2`, commit `ce8874b`, fusionado por fast-forward y desplegado. Verificado
    por esta sesión leyendo el código: `anonimizarPersona()` borra nombre, correo, ficha, nota
    operativa, involucrados y correos adicionales; conserva `persona`, `huellaToken`, `activa`,
    `categoria`, `reglas` y `alta`; escribe el registro antes de matar la entrada del índice
@@ -49,8 +48,8 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    30 días, mismo número que las transcripciones (ver sección 3). `main` de la app está en
    `bbeb146`.
 
-   **Lo único que falta para publicar el párrafo es el despliegue**, que a la fecha de esta línea
-   no se ha hecho: `origin/main` sigue en `ac18623` mientras el `main` local va en `bbeb146`.
+   **Cerrado.** La app se desplegó y el párrafo está publicado en el aviso vivo desde el
+   2026-08-27, en ambos idiomas. Ya no queda ninguna condición pendiente para él.
 2. **Transcripciones — resuelto, con una condición**: confirmado desde el repo de la app
    (`inessentia-clientes-r2`, rama `arreglo-erafirme`): el botón de borrado manual de una
    transcripción archivada **ya está implementado** en el panel de admin, y la retención general
@@ -58,12 +57,12 @@ criterio legal, se le presentó como tal y él eligió cómo proceder por ahora.
    el frontend). El cambio incluyó una enmienda a `CONTRATO.md` §20.5, que era donde vivía la
    decisión contraria. Con esto, la contradicción que este documento señalaba queda cerrada.
 
-   **La condición:** ese cambio está commiteado (`1ad1405`) en varias ramas, pero **no está en
-   `main`** — verificado con `git branch --contains`. Mientras no esté integrado y desplegado, el aviso actualizado no
-   debe publicarse: prometería 30 días y borrado a petición cuando lo que corre en producción
-   sigue siendo 60 días sin botón. Es el mismo error que este documento le reprocha a
-   "Cancelación", y sería peor cometerlo a sabiendas. **Orden correcto: primero integrar y
-   desplegar el cambio de la app, después publicar el aviso.**
+   **La condición, ya cumplida:** el cambio (`1ad1405`) tardó en llegar a `main`, y mientras no
+   estuvo el aviso no se publicó — habría prometido 30 días y borrado a petición cuando producción
+   seguía en 60 sin botón. Es el mismo error que este documento le reprocha a "Cancelación", y
+   habría sido peor cometerlo a sabiendas. Se respetó el orden: primero desplegar la app, después
+   publicar el aviso. Verificado el 2026-08-27 con `git merge-base --is-ancestor`, y
+   `RETENCION_TRANSCRIPCIONES_DIAS = 30` confirmado en `main`.
 3. **Plazo de "Cancelación" (20 días hábiles)**: decide mantenerlo tal como está publicado, aunque
    la ruta técnica para cumplirlo en todas las categorías no exista todavía.
 4. **Aviso antes de seguir creciendo**: en vez de pausar altas, está integrando un **banner de
