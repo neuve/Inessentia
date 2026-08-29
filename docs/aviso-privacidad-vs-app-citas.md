@@ -655,17 +655,73 @@ describe lo que el sistema hace, no lo que va a hacer.
 > about your therapeutic process appears on a receipt. Stripe will send you the payment receipt
 > directly, and reminders if any balance remains outstanding.
 
-### Lo que hay que resolver antes de publicarlo
+### ⚠️ Stripe rompe la promesa de borrado ya publicada — verificado
 
-1. **Está desplegado?** Mismo gate que todo lo demás. No publicar antes.
-2. **Retención.** La sección "Conservación de tus datos" no dice nada de Stripe. ¿Cuánto conserva
-   Stripe el `Customer`, y qué pasa con él cuando alguien se anonimiza? Hoy `anonimizarPersona()`
-   no sabe nada de Stripe — si el correo se borra aquí pero sobrevive allá, el párrafo de
-   anonimización deja de ser cierto y volvemos al problema que acabamos de cerrar. **Esto es lo
-   más importante de esta lista.**
-3. **Derechos ARCO.** La "nota honesta sobre los límites" enumera dos cosas que no se pueden
-   deshacer (la invitación de Google, el texto que ya viajó al asistente). Si el `Customer` de
-   Stripe tampoco se puede borrar a petición, son tres y hay que decirlo.
+Consultado el 2026-08-28 con la sesión de cobros, contra la documentación de Stripe:
+
+1. `DELETE /v1/customers/:id` existe y es permanente, **pero deja un tombstone** consultable, y
+   los cargos siguen recuperables por `customer=cus_...`.
+2. **El correo no vive sólo en el `Customer`.** Queda en `Charge.billing_details.email`, en
+   `receipt_email` del cargo y del PaymentIntent, en los recibos ya enviados y en los registros de
+   saldo. Son campos inmutables de esos objetos: borrar el `Customer` **no los toca**.
+3. Quitarlos exige un **Redaction Job**, con tres frenos: sólo redacta transacciones **90 días
+   después** de creadas (no 30), deja los objetos inservibles (una transacción redactada se pierde
+   automáticamente en una disputa y no se puede reembolsar), y **las facturas no se pueden
+   redactar en absoluto**. Además está en preview y hay que pedir acceso.
+4. Stripe declara que **puede retener datos por obligación legal incluso después de redactar**, y
+   no publica un plazo numérico. (Los "30 días" que aparecen en su documentación son la duración
+   del proceso de redacción, no el fin de la retención — es fácil confundirlos.)
+5. Paliativo que sí sirve: **vaciar `email` y `name` del `Customer` antes de borrarlo** — un
+   `Customer` ya borrado no admite updates, así que el orden importa. Limpia el `Customer`; no
+   limpia los cargos ni los recibos.
+
+**Consecuencia:** el «por completo» y el plazo cerrado de 30 días **no se pueden sostener** para
+la parte de pagos. Exigir "sin cobros pendientes" no ayuda: el problema son los cobros **pasados**,
+que existen justamente en la paciente que lleva más tiempo.
+
+**Hoy la frase publicada sigue siendo cierta** — no existe ni un `Customer`. Deja de serlo con el
+primer cobro.
+
+### La regla de acoplamiento
+
+El cambio del aviso y el despliegue de Stripe **son el mismo evento**. No antes: la redacción
+nueva habla de "mi procesador de pagos", que hoy no existe, y publicarla ahora describiría un
+tratamiento inexistente — el mismo error en espejo. No después: sería dejar viva una promesa
+falsa. La sesión de cobros lo tiene anotado como bloqueante de despliegue de su fase (b).
+
+### Redacción para cuando Stripe salga — sustituye a la actual
+
+En "Conservación de tus datos", la frase de cierre deja de ser universal y se acota:
+
+> Las copias de seguridad y el historial de conversaciones con el asistente caducan a los 30 días.
+> Los datos de un cobro son la excepción: mi procesador de pagos conserva parte de ellos —el
+> correo al que envió un recibo, por ejemplo— y no puede eliminarlos todos ni de inmediato.
+
+Y el punto de anonimización pierde el "por completo":
+
+> …anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de
+> frecuencia, y elimino tu nombre, tu correo y cualquier nota asociada. Si has hecho algún pago,
+> además pido a mi procesador que suprima los datos que le constan, aunque él conserva cierta
+> información de la transacción.
+
+En inglés, respectivamente:
+
+> Backups and your assistant conversation history expire after 30 days. Payment data is the
+> exception: my payment processor keeps some of it — the address a receipt was sent to, for
+> instance — and cannot delete all of it, or delete it immediately.
+
+> …I anonymize your record: I keep only the dates my internal scheduling rules need, and delete
+> your name, your email, and any associated notes. If you have made a payment, I also ask my
+> processor to delete what it holds, though it retains certain transaction information.
+
+**Nota de redacción:** la propuesta original de la sesión de cobros decía "con las excepciones que
+la ley fiscal y antifraude le imponen". Lo cambié a describir lo que Stripe *hace*, no lo que la
+ley *exige* — este documento no afirma qué exige la ley, y el aviso publicado tampoco debería.
+
+### Y la "nota honesta sobre los límites"
+
+Hoy enumera dos cosas que no se pueden deshacer (la invitación de Google, el texto que ya viajó al
+asistente). Con Stripe **son tres**, y la tercera hay que añadirla ahí también.
 
 ---
 
