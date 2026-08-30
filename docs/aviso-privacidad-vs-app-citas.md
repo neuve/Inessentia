@@ -635,15 +635,35 @@ mecánicas del análisis:
 escrito pero no publicado — mismo criterio que se aplicó al párrafo de anonimización: el aviso
 describe lo que el sistema hace, no lo que va a hacer.
 
-### Lo que cambia, según esa sesión
+### Lo que cambia — verificado por esta sesión contra la rama `cobro-b3`
 
-- **Tercero nuevo:** Stripe, Inc., con **transferencia internacional** (EE. UU.). Es la primera
-  vez que un dato de contacto de una paciente sale del sistema de Diana.
-- **Qué viaja:** correo electrónico y un identificador interno seudónimo. **No** viaja el nombre,
-  ni la descripción de la sesión, ni la fecha u hora de la cita — el concepto del cobro dirá
-  «Sesión» a secas, para que nada clínico aparezca en el recibo.
-- **Por qué es obligatorio y no una comodidad:** Stripe exige un objeto `Customer` preexistente
-  para aceptar SPEI en Checkout, y sin correo en ese objeto no se puede ni crear un reembolso.
+**Corrección importante.** La primera versión de esta sección decía que **no** viajaba el nombre.
+**Es falso**, y la afirmación venía de la sesión de cobros en su primer aviso. Leyendo
+`netlify/functions/lib/stripe.mjs` en `cobro-b3`, líneas 379-380, el `Customer` se crea con
+`email` **y** `name`. Lo corrigió la sesión integradora de ramas, y lo confirmé en el código: si
+esto se hubiera publicado sin verificar, el aviso habría dicho una mentira sobre un dato sensible.
+
+Los hechos, ya verificados:
+
+- **Tarjeta: no sale nada.** `crearSesionDeCobro` **no** crea `Customer`. La lista blanca ni
+  siquiera acepta `customer_email` (línea 194). Quien paga con tarjeta no manda su correo ni su
+  nombre a Stripe. Según la propia cabecera del archivo, son nueve de cada diez pacientes.
+- **Transferencia (SPEI): sale nombre y correo.** Es la **única excepción** al "nada identificable
+  viaja" de todo ese archivo, y está documentada como deliberada: Stripe exige un `Customer`
+  preexistente para ofrecer SPEI en Checkout, y no hay forma de cobrar por esa vía sin que salgan.
+- **El concepto del cobro dice «Sesión» a secas** en ambas vías (línea 237) — sin fecha, sin nada
+  que revele que es psicoterapia.
+- **Sí existe limpieza, y está enganchada:** `anonimizarClienteStripe` está conectada a
+  `admin-anonimizar`; vacía `email` y `name` del `Customer` y **después** lo borra (ese orden
+  importa: un `Customer` borrado ya no admite updates).
+- **Lo que la limpieza NO alcanza**, escrito en la cabecera del propio código (líneas 482-484):
+  `Charge.billing_details.email` de los cargos ya hechos, `receipt_email` de esos cargos, y los
+  recibos que Stripe ya envió. Quitarlos exige un Redaction Job, que es un trámite manual con
+  ventana de 90 días y que **este código no dispara**.
+- **Datos nuevos en el almacén propio:** `ficha.cobro.stripeCustomer` (un id `cus_…`) dentro del
+  store `personas` — cuya fila en el inventario del otro repo todavía dice «Ninguna. No caduca ni
+  se purga nunca» — y un store `pagos` nuevo, con claves `sesion`, `solicitud`, `cuando`,
+  `estado`.
 - **Efecto lateral que hay que declarar:** Stripe le manda correos a la paciente por su cuenta —
   el recibo del pago, y recordatorios si hubiera saldos sin conciliar.
 
@@ -655,15 +675,26 @@ describe lo que el sistema hace, no lo que va a hacer.
 > transferencia). Cada una opera bajo su propia política de privacidad, que te recomiendo
 > consultar directamente.
 >
-> **Sobre los pagos:** para cobrarte con tarjeta o transferencia, tu correo electrónico y un
-> identificador interno se registran en Stripe, Inc., empresa con sede en Estados Unidos — es
-> decir, ese dato sale de México. Es un requisito de su sistema, no una elección mía: sin ese
-> registro no se puede procesar una transferencia ni emitir una devolución. El tratamiento de
-> esos datos se rige por las políticas de Stripe, que puedes consultar en
-> [stripe.com/mx/privacy](https://stripe.com/mx/privacy). **No se envía tu nombre ni ningún
-> detalle de tu sesión**; el concepto del cobro dice únicamente «Sesión», para que nada de tu
-> proceso terapéutico aparezca en un recibo. Stripe te enviará por su cuenta el comprobante del
-> pago, y recordatorios si quedara algún saldo pendiente.
+> **Sobre los pagos.** Depende de cómo pagues, y la diferencia importa:
+>
+> **Si pagas con tarjeta**, tus datos no llegan a mi procesador de pagos. Ni tu nombre ni tu
+> correo salen de mi sistema.
+>
+> **Si pagas por transferencia (SPEI)**, sí: para poder ofrecerte esa vía, Stripe exige registrar
+> antes un cliente con tu **nombre y tu correo electrónico**, así que esos dos datos se guardan en
+> Stripe, Inc., empresa con sede en Estados Unidos — es decir, salen de México. Es un requisito de
+> su sistema, no una elección mía: no hay forma de cobrar por transferencia sin eso. El
+> tratamiento de esos datos se rige por las políticas de Stripe, que puedes consultar en
+> [stripe.com/mx/privacy](https://stripe.com/mx/privacy).
+>
+> En los dos casos, **el concepto del cobro dice únicamente «Sesión»**: ni la fecha, ni la
+> modalidad, ni nada que revele de qué se trata aparece en un recibo. Stripe te enviará por su
+> cuenta el comprobante del pago, y recordatorios si quedara algún saldo pendiente.
+>
+> Si más adelante me pides que borre tus datos, elimino también ese registro de cliente en Stripe.
+> Lo que **no** puedo eliminar son los datos de los cobros ya hechos —el correo al que se envió un
+> recibo, por ejemplo—: ésos quedan del lado de Stripe, su supresión es un trámite aparte y no
+> puedo garantizarla.
 
 ### Borrador para "Data transfers" — EN
 
@@ -672,15 +703,26 @@ describe lo que el sistema hace, no lo que va a hacer.
 > automated scheduling assistant), and Stripe (card and bank-transfer payments). Each operates
 > under its own privacy policy, which I recommend reviewing directly.
 >
-> **About payments:** to charge you by card or transfer, your email address and an internal
-> identifier are recorded with Stripe, Inc., a company based in the United States — meaning that
-> data leaves Mexico. This is a requirement of their system, not a choice of mine: without that
-> record a transfer cannot be processed and a refund cannot be issued. The handling of that data
-> is governed by Stripe's own policies, which you can review at
-> [stripe.com/mx/privacy](https://stripe.com/mx/privacy). **Your name and any detail of your
-> session are not sent**; the charge description reads only "Session", so that nothing about your
-> therapeutic process appears on a receipt. Stripe will send you the payment receipt directly, and
-> reminders if any balance remains outstanding.
+> **About payments.** It depends on how you pay, and the difference matters:
+>
+> **If you pay by card**, your details never reach my payment processor. Neither your name nor
+> your email leaves my system.
+>
+> **If you pay by bank transfer (SPEI)**, they do: to offer you that option, Stripe requires a
+> customer record created beforehand with your **name and email address**, so those two details
+> are stored with Stripe, Inc., a company based in the United States — meaning they leave Mexico.
+> This is a requirement of their system, not a choice of mine: there is no way to accept a
+> transfer without it. The handling of that data is governed by Stripe's own policies, which you
+> can review at [stripe.com/mx/privacy](https://stripe.com/mx/privacy).
+>
+> In both cases, **the charge description reads only "Session"**: no date, no format, nothing that
+> reveals what it is for appears on a receipt. Stripe will send you the payment receipt directly,
+> and reminders if any balance remains outstanding.
+>
+> If you later ask me to delete your data, I also delete that customer record at Stripe. What I
+> **cannot** delete is the data from payments already made — the address a receipt was sent to,
+> for instance: that stays on Stripe's side, its removal is a separate process, and I cannot
+> guarantee it.
 
 ### ⚠️ Stripe rompe la promesa de borrado ya publicada — verificado
 
