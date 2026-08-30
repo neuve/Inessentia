@@ -783,6 +783,85 @@ asistente). Con Stripe **son tres**, y la tercera hay que añadirla ahí tambié
 
 ---
 
+## 7. Cambio anunciado y NO publicado: medición propia de recorridos en el portal
+
+**Estado: redactado, fuera del aviso.** La mitad no-visual está construida en
+`claude/admiring-boyd-db5722` (commit `63e5adb`), sin fusionar y **sin desplegar**. La interfaz
+espera el diseño que Patricio está haciendo en Claude Design. Se publica el día que se despliegue,
+no antes — misma regla que Stripe.
+
+### Lo que se registra — verificado por esta sesión en el código
+
+Store `eventos-recorrido`, lista blanca cerrada (`CLAVES_EVENTO_RECORRIDO`, `almacen.mjs:1995`).
+**Cuatro campos y nada más:**
+
+- `persona` — el id opaco interno (`p_xxxx`), el mismo que ya usan `solicitudes` y
+  `transcripciones`. No identifica por sí solo.
+- `paso` — de un catálogo **cerrado** de ocho valores (`PASOS_RECORRIDO`, línea 1979):
+  `portal_reservas`, `portal_agendar`, `portal_asistente`, `cita_agendada`, `cita_cancelada`,
+  `cita_reprogramada`, `pago_iniciado`, `pago_completado`.
+- `visita` — opcional; un id opaco que generará el navegador (**cookie**) para agrupar los pasos
+  de una misma visita. Todavía no lo manda nadie: se instrumenta junto con el banner.
+- `cuando` — lo pone el servidor, nunca el navegador.
+
+**Retención: 30 días** (`RETENCION_EVENTOS_RECORRIDO_DIAS`), alineada a propósito con las
+transcripciones, para que el aviso siga manejando un solo número.
+
+**Sin terceros.** Ninguna llamada sale del repo. No hay Google Analytics en el portal, y por eso
+tampoco hizo falta tocar la CSP (`default-src 'none'`).
+
+**La restricción que decidía todo, cumplida:** la ruta del portal es `/p/:token`, así que
+`location.pathname` es la credencial. Ningún campo la lleva, ni nada derivado de ella. Está
+verificado con pruebas y comentado en el código (línea 1932).
+
+**Decisión de Patricio, ya tomada:** con cookies y **sin opt-out** — usar la agenda es el opt-in.
+Consecuencia para la redacción: el aviso carga todo el peso, porque no hay interruptor que lo
+suavice. Por eso los borradores de abajo dicen qué se mide con nombres concretos en vez de
+generalidades.
+
+### Borrador — ES
+
+Nuevo punto en «Datos personales que se recaban»:
+
+> **Uso del portal de pacientes:** registro en qué pantalla del portal estuviste y qué acciones
+> hiciste en él —agendar, cancelar o reprogramar una cita, iniciar o completar un pago—, para
+> entender cómo se usa y poder mejorarlo. No se guarda lo que escribes ni el contenido de nada:
+> sólo el paso, la fecha y un identificador de visita.
+
+Nuevo punto en «Conservación de tus datos»:
+
+> **Registro de uso del portal:** se elimina automáticamente a los 30 días.
+
+Y en «Cookies y tecnologías de seguimiento», un párrafo aparte:
+
+> El portal de pacientes usa una cookie propia, distinta de las de este sitio: agrupa los pasos de
+> una misma visita para que el registro anterior tenga sentido. No se comparte con nadie, no sirve
+> para reconocerte fuera del portal, y en el portal no hay analítica de terceros. A diferencia de
+> las cookies de este sitio, ésta no se puede desactivar por separado: forma parte del portal, y
+> usarlo es opcional.
+
+### Borrador — EN
+
+> **Patient portal usage:** I record which screen of the portal you were on and what you did there
+> — booking, cancelling or rescheduling an appointment, starting or completing a payment — to
+> understand how it is used and improve it. What you write is not stored, nor the content of
+> anything: only the step, the date, and a visit identifier.
+
+> **Portal usage records:** automatically deleted after 30 days.
+
+> The patient portal uses a cookie of its own, different from this site's: it groups the steps of
+> a single visit so the record above makes sense. It is not shared with anyone, it cannot
+> recognize you outside the portal, and there is no third-party analytics in the portal. Unlike
+> this site's cookies, it cannot be turned off separately: it is part of the portal, and using the
+> portal is optional.
+
+### Pendiente y ajeno a este documento
+
+El enlace del portal al aviso sigue sin existir, y el banner de consentimiento tampoco. Van en el
+mismo chip, bloqueados por el diseño.
+
+---
+
 ## Resumen
 
 | Categoría | ¿Cubierta en el aviso hoy? | Estado tras esta conversación |
