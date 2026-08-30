@@ -675,26 +675,17 @@ Los hechos, ya verificados:
 > transferencia). Cada una opera bajo su propia política de privacidad, que te recomiendo
 > consultar directamente.
 >
-> **Sobre los pagos.** Depende de cómo pagues, y la diferencia importa:
+**APROBADO por Patricio el 2026-08-30**, en esta versión corta. Es la que se publica.
+
+> **Sobre los pagos.** Si pagas con tarjeta, ni tu nombre ni tu correo salen de mi sistema. Si
+> pagas por transferencia (SPEI), Stripe exige registrar antes un cliente con tu **nombre y tu
+> correo**, así que esos dos datos se guardan en Stripe, Inc., en Estados Unidos, bajo
+> [sus políticas de privacidad](https://stripe.com/mx/privacy). En ambos casos el concepto del
+> cobro dice únicamente «Sesión», y Stripe te envía el comprobante por su cuenta.
 >
-> **Si pagas con tarjeta**, tus datos no llegan a mi procesador de pagos. Ni tu nombre ni tu
-> correo salen de mi sistema.
->
-> **Si pagas por transferencia (SPEI)**, sí: para poder ofrecerte esa vía, Stripe exige registrar
-> antes un cliente con tu **nombre y tu correo electrónico**, así que esos dos datos se guardan en
-> Stripe, Inc., empresa con sede en Estados Unidos — es decir, salen de México. Es un requisito de
-> su sistema, no una elección mía: no hay forma de cobrar por transferencia sin eso. El
-> tratamiento de esos datos se rige por las políticas de Stripe, que puedes consultar en
-> [stripe.com/mx/privacy](https://stripe.com/mx/privacy).
->
-> En los dos casos, **el concepto del cobro dice únicamente «Sesión»**: ni la fecha, ni la
-> modalidad, ni nada que revele de qué se trata aparece en un recibo. Stripe te enviará por su
-> cuenta el comprobante del pago, y recordatorios si quedara algún saldo pendiente.
->
-> Si más adelante me pides que borre tus datos, elimino también ese registro de cliente en Stripe.
-> Lo que **no** puedo eliminar son los datos de los cobros ya hechos —el correo al que se envió un
-> recibo, por ejemplo—: ésos quedan del lado de Stripe, su supresión es un trámite aparte y no
-> puedo garantizarla.
+> Si me pides que borre tus datos, elimino también ese registro de cliente. Lo que no puedo
+> eliminar son los datos de los cobros ya hechos —el correo al que se envió un recibo, por
+> ejemplo—: ésos quedan del lado de Stripe.
 
 ### Borrador para "Data transfers" — EN
 
@@ -703,26 +694,15 @@ Los hechos, ya verificados:
 > automated scheduling assistant), and Stripe (card and bank-transfer payments). Each operates
 > under its own privacy policy, which I recommend reviewing directly.
 >
-> **About payments.** It depends on how you pay, and the difference matters:
+> **About payments.** If you pay by card, neither your name nor your email leaves my system. If
+> you pay by bank transfer (SPEI), Stripe requires a customer record created beforehand with your
+> **name and email**, so those two details are stored with Stripe, Inc., in the United States,
+> under [their privacy policy](https://stripe.com/mx/privacy). In both cases the charge
+> description reads only "Session", and Stripe sends you the receipt directly.
 >
-> **If you pay by card**, your details never reach my payment processor. Neither your name nor
-> your email leaves my system.
->
-> **If you pay by bank transfer (SPEI)**, they do: to offer you that option, Stripe requires a
-> customer record created beforehand with your **name and email address**, so those two details
-> are stored with Stripe, Inc., a company based in the United States — meaning they leave Mexico.
-> This is a requirement of their system, not a choice of mine: there is no way to accept a
-> transfer without it. The handling of that data is governed by Stripe's own policies, which you
-> can review at [stripe.com/mx/privacy](https://stripe.com/mx/privacy).
->
-> In both cases, **the charge description reads only "Session"**: no date, no format, nothing that
-> reveals what it is for appears on a receipt. Stripe will send you the payment receipt directly,
-> and reminders if any balance remains outstanding.
->
-> If you later ask me to delete your data, I also delete that customer record at Stripe. What I
-> **cannot** delete is the data from payments already made — the address a receipt was sent to,
-> for instance: that stays on Stripe's side, its removal is a separate process, and I cannot
-> guarantee it.
+> If you ask me to delete your data, I also delete that customer record. What I cannot delete is
+> the data from payments already made — the address a receipt was sent to, for instance: that
+> stays on Stripe's side.
 
 ### ⚠️ Stripe rompe la promesa de borrado ya publicada — verificado
 
@@ -751,12 +731,21 @@ que existen justamente en la paciente que lleva más tiempo.
 **Hoy la frase publicada sigue siendo cierta** — no existe ni un `Customer`. Deja de serlo con el
 primer cobro.
 
-### La regla de acoplamiento
+### El orden — decidido por Patricio el 2026-08-30
 
-El cambio del aviso y el despliegue de Stripe **son el mismo evento**. No antes: la redacción
-nueva habla de "mi procesador de pagos", que hoy no existe, y publicarla ahora describiría un
-tratamiento inexistente — el mismo error en espejo. No después: sería dejar viva una promesa
-falsa. La sesión de cobros lo tiene anotado como bloqueante de despliegue de su fase (b).
+Se dio un empate: la sesión integradora no desplegaba hasta que el aviso estuviera listo, y este
+documento no publicaba hasta que el despliegue existiera. **Patricio decidió que desplieguen
+primero** y que el aviso salga enseguida.
+
+Conviene dejar escrito el riesgo que eso acepta, porque se le presentó y lo eligió igual:
+entre el despliegue y la publicación hay una ventana en la que puede haber cobros por
+transferencia —con nombre y correo saliendo a Stripe— que el aviso todavía no declara. La
+mitigación es que el texto ya está aprobado y commiteado: publicarlo es un solo paso, y se les
+pidió avisar **en el momento** del despliegue, no al final del día. La ventana debería medirse en
+minutos.
+
+La alternativa descartada era publicar primero, que tenía el defecto inverso —el aviso hablaría de
+un procesador de pagos inexistente— y que es el menor de los dos, pero no el elegido.
 
 ### Redacción para cuando Stripe salga — sustituye a la actual
 
