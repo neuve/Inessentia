@@ -63,8 +63,9 @@ const locale = 'es';
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Transferencias de datos</h2>
         <p class="body-text" style="margin:0 0 14px;"><strong>No vendo ni comparto tus datos personales con terceros con fines comerciales</strong>, ni los entrego a nadie salvo que exista una obligación legal que lo requiera.</p>
-        <p class="body-text" style="margin:0 0 14px;">Para prestar el servicio sí me apoyo en plataformas de terceros, que necesariamente procesan algunos de tus datos: Zoom (sesiones en línea), Google Calendar (agenda) y Anthropic (el asistente automatizado de agenda del portal de pacientes). Cada una opera bajo su propia política de privacidad, que te recomiendo consultar directamente.</p>
+        <p class="body-text" style="margin:0 0 14px;">Para prestar el servicio sí me apoyo en plataformas de terceros, que necesariamente procesan algunos de tus datos: Zoom (sesiones en línea), Google Calendar (agenda), Anthropic (el asistente automatizado de agenda del portal de pacientes) y Stripe (el cobro con tarjeta y transferencia). Cada una opera bajo su propia política de privacidad, que te recomiendo consultar directamente.</p>
         <p class="body-text" style="margin:0 0 14px;"><strong>Sobre Google Calendar:</strong> cada cita agendada genera una invitación de Google Calendar en la que apareces como invitada. Esa invitación te llega directamente de Google por correo y queda registrada en tu propia cuenta de Google. Una vez enviada, esa copia está en tus manos y en las de Google, no en las mías: si más adelante me pides que borre tus datos, puedo eliminar el evento de mi calendario, pero no la copia que ya quedó en el tuyo.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>Sobre los pagos:</strong> si pagas con tarjeta, ni tu nombre ni tu correo salen de mi sistema. Si pagas por transferencia (SPEI), Stripe exige registrar antes un cliente con tu <strong>nombre y tu correo</strong>, así que esos dos datos se guardan en Stripe, Inc., en Estados Unidos, bajo <a href="https://stripe.com/mx/privacy" class="link-inline" target="_blank" rel="noopener">sus políticas de privacidad</a>. En ambos casos el concepto del cobro dice únicamente «Sesión», y Stripe te envía el comprobante por su cuenta. Si me pides que borre tus datos, elimino también ese registro de cliente. Lo que no puedo eliminar son los datos de los cobros ya hechos —el correo al que se envió un recibo, por ejemplo—: ésos quedan del lado de Stripe.</p>
         <p class="body-text" style="margin:0;"><strong>Sobre el asistente de agenda:</strong> el texto que escribes en esa conversación se envía a Anthropic para poder generar una respuesta. No se envía tu nombre, tu correo ni tus datos de pago. Es una herramienta administrativa, pensada para coordinar horarios — no es un canal clínico y no cuenta con certificaciones de protección de datos de salud como HIPAA. Por eso te pido que no compartas ahí información clínica o sensible: para eso estoy yo, por los canales que ya usamos.</p>
       </div>
 
@@ -76,7 +77,7 @@ const locale = 'es';
           <li class="body-text" style="line-height:1.7;"><strong>Solicitudes de cita:</strong> se conservan al menos 14 días después de la fecha de la cita y se eliminan después, en el curso normal de la operación.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos de contacto y de tu práctica:</strong> los conservo mientras estés en activo. Si te das de baja y me lo pides, anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de frecuencia, y elimino tu nombre, tu correo y cualquier nota asociada.</li>
         </ul>
-        <p class="body-text" style="margin:14px 0 0;">Las copias de seguridad de todo lo anterior caducan a los 30 días, así que ése es el plazo máximo en que tus datos desaparecen por completo.</p>
+        <p class="body-text" style="margin:14px 0 0;">Las copias de seguridad de todo lo anterior caducan a los 30 días. La excepción son los datos de un cobro ya hecho: ésos quedan del lado de mi procesador de pagos, y su supresión no depende de mí.</p>
       </div>
 
       <div>
@@ -89,7 +90,7 @@ const locale = 'es';
           <li class="body-text" style="line-height:1.7;"><strong>Oposición:</strong> oponerte al tratamiento de tus datos para finalidades específicas.</li>
         </ul>
         <p class="body-text" style="margin:0 0 14px;">Para ejercer cualquiera de estos derechos, escríbeme a <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> indicando tu nombre completo y el derecho que deseas ejercer. Responderé en un plazo máximo de <strong>20 días hábiles</strong>, conforme a lo establecido en la LFPDPPP.</p>
-        <p class="body-text" style="margin:0;">Una nota honesta sobre los límites: hay dos cosas que no puedo deshacer aunque me las pidas. La copia de una invitación de calendario que Google ya envió a tu cuenta, y el texto que ya viajó al asistente en una conversación pasada. En ambos casos puedo eliminar lo que está de mi lado, y te lo confirmo por escrito.</p>
+        <p class="body-text" style="margin:0;">Una nota honesta sobre los límites: hay tres cosas que no puedo deshacer aunque me las pidas. La copia de una invitación de calendario que Google ya envió a tu cuenta, el texto que ya viajó al asistente en una conversación pasada, y los datos de un cobro que ya pasó por mi procesador de pagos. En los tres casos puedo eliminar lo que está de mi lado, y te lo confirmo por escrito.</p>
       </div>
 
       <div>
@@ -104,7 +105,7 @@ const locale = 'es';
         <p class="body-text" style="margin:0;">Cualquier modificación a este aviso de privacidad se publicará en esta misma página con la fecha de actualización correspondiente. Te recomiendo revisarlo ocasionalmente.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 27 de agosto de 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 30 de agosto de 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/es/terminos/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Términos de servicio</a>

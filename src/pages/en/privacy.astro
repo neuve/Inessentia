@@ -63,8 +63,9 @@ const locale = 'en';
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Data transfers</h2>
         <p class="body-text" style="margin:0 0 14px;"><strong>I do not sell or share your personal data with third parties for commercial purposes</strong>, and I do not hand it to anyone except where a legal obligation requires it.</p>
-        <p class="body-text" style="margin:0 0 14px;">To provide the service I do rely on third-party platforms, which necessarily process some of your data: Zoom (online sessions), Google Calendar (scheduling), and Anthropic (the patient portal's automated scheduling assistant). Each operates under its own privacy policy, which I recommend reviewing directly.</p>
+        <p class="body-text" style="margin:0 0 14px;">To provide the service I do rely on third-party platforms, which necessarily process some of your data: Zoom (online sessions), Google Calendar (scheduling), Anthropic (the patient portal's automated scheduling assistant), and Stripe (card and bank-transfer payments). Each operates under its own privacy policy, which I recommend reviewing directly.</p>
         <p class="body-text" style="margin:0 0 14px;"><strong>About Google Calendar:</strong> every booked appointment creates a Google Calendar invitation with you as a guest. That invitation reaches you directly from Google by email and is recorded in your own Google account. Once sent, that copy is in your hands and Google's, not mine: if you later ask me to delete your data, I can remove the event from my calendar, but not the copy already sitting in yours.</p>
+        <p class="body-text" style="margin:0 0 14px;"><strong>About payments:</strong> if you pay by card, neither your name nor your email leaves my system. If you pay by bank transfer (SPEI), Stripe requires a customer record created beforehand with your <strong>name and email</strong>, so those two details are stored with Stripe, Inc., in the United States, under <a href="https://stripe.com/mx/privacy" class="link-inline" target="_blank" rel="noopener">their privacy policy</a>. In both cases the charge description reads only &ldquo;Session&rdquo;, and Stripe sends you the receipt directly. If you ask me to delete your data, I also delete that customer record. What I cannot delete is the data from payments already made &mdash; the address a receipt was sent to, for instance: that stays on Stripe&rsquo;s side.</p>
         <p class="body-text" style="margin:0;"><strong>About the scheduling assistant:</strong> the text you write in that conversation is sent to Anthropic in order to generate a reply. Your name, email, and payment details are not sent. It is an administrative tool, meant for coordinating times — it is not a clinical channel and it does not carry health-data certifications such as HIPAA. For that reason I ask you not to share clinical or sensitive information there: that is what I am for, through the channels we already use.</p>
       </div>
 
@@ -76,7 +77,7 @@ const locale = 'en';
           <li class="body-text" style="line-height:1.7;"><strong>Appointment requests:</strong> kept for at least 14 days after the appointment date, and deleted afterwards in the normal course of operation.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Contact data and your practice history:</strong> kept while you are an active client. If you stop coming and ask me to, I anonymize your record: I keep only the dates my internal scheduling rules need, and delete your name, your email, and any associated notes.</li>
         </ul>
-        <p class="body-text" style="margin:14px 0 0;">Backups of all of the above expire after 30 days, so that is the maximum window in which your data disappears completely.</p>
+        <p class="body-text" style="margin:14px 0 0;">Backups of all of the above expire after 30 days. Payment data is the exception: data from a completed charge stays with my payment processor, and its removal is not up to me.</p>
       </div>
 
       <div>
@@ -89,7 +90,7 @@ const locale = 'en';
           <li class="body-text" style="line-height:1.7;"><strong>Objection:</strong> object to the processing of your data for specific purposes.</li>
         </ul>
         <p class="body-text" style="margin:0 0 14px;">To exercise any of these rights, write to me at <a href="mailto:patricio@inessentia.mx" class="link-inline">patricio@inessentia.mx</a> stating your full name and the right you wish to exercise. I'll respond within a maximum of <strong>20 business days</strong>, as established by the LFPDPPP.</p>
-        <p class="body-text" style="margin:0;">An honest note about the limits: there are two things I cannot undo, even if you ask. The copy of a calendar invitation Google has already delivered to your account, and text that has already travelled to the assistant in a past conversation. In both cases I can delete what sits on my side, and I'll confirm that to you in writing.</p>
+        <p class="body-text" style="margin:0;">An honest note about the limits: there are three things I cannot undo, even if you ask. The copy of a calendar invitation Google has already delivered to your account, text that has already travelled to the assistant in a past conversation, and the data from a payment that has already gone through my payment processor. In all three cases I can delete what sits on my side, and I&#39;ll confirm that to you in writing.</p>
       </div>
 
       <div>
@@ -104,7 +105,7 @@ const locale = 'en';
         <p class="body-text" style="margin:0;">Any modification to this privacy notice will be published on this same page along with the corresponding update date. I recommend reviewing it occasionally.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: August 27, 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: August 30, 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/en/terms/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Terms of service</a>
