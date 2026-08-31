@@ -38,6 +38,7 @@ const locale = 'es';
           <li class="body-text" style="line-height:1.7;"><strong>Datos de facturación</strong> (cuando aplica): RFC y razón social.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos de acceso al portal de pacientes:</strong> para identificarte cuando agendas o das seguimiento a tus citas, se genera un identificador de acceso vinculado a tu registro. No es una contraseña y no se guarda de forma legible.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Conversación con el asistente de agenda:</strong> si usas el asistente automatizado del portal para coordinar una cita, el texto que escribes se guarda temporalmente para poder darle seguimiento a tu solicitud.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Uso del portal de pacientes:</strong> si aceptas el aviso al entrar, registro en qué pantalla del portal estuviste y qué acciones hiciste —agendar, cancelar o reprogramar una cita, iniciar un pago—, para entender cómo se usa y poder mejorarlo. No se guarda lo que escribes ni el contenido de nada: sólo el paso, la fecha y un identificador de visita. Si no aceptas, no se registra nada.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos sensibles:</strong> en el contexto terapéutico, se recaba información relacionada con tu salud física y mental. Estos datos tienen protección especial bajo la LFPDPPP y únicamente se usan con fines terapéuticos, con tu consentimiento expreso.</li>
         </ul>
       </div>
@@ -75,6 +76,7 @@ const locale = 'es';
         <ul style="margin:0;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
           <li class="body-text" style="line-height:1.7;"><strong>Conversaciones con el asistente de agenda:</strong> se eliminan automáticamente a los 30 días. Si quieres que borre alguna antes, escríbeme y lo hago.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Solicitudes de cita:</strong> se conservan al menos 14 días después de la fecha de la cita y se eliminan después, en el curso normal de la operación.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Registros de uso del portal:</strong> se eliminan a los 30 días.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Datos de contacto y de tu práctica:</strong> los conservo mientras estés en activo. Si te das de baja y me lo pides, anonimizo tu registro: conservo únicamente las fechas necesarias para mis reglas internas de frecuencia, y elimino tu nombre, tu correo y cualquier nota asociada.</li>
         </ul>
         <p class="body-text" style="margin:14px 0 0;">Las copias de seguridad de todo lo anterior caducan a los 30 días. La excepción son los datos de un cobro ya hecho: ésos quedan del lado de mi procesador de pagos, y su supresión no depende de mí.</p>
@@ -96,6 +98,7 @@ const locale = 'es';
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Cookies y tecnologías de seguimiento</h2>
         <p class="body-text" style="margin:0 0 14px;">Este sitio utiliza cookies de análisis de Google Analytics, que se cargan automáticamente al visitar el sitio, para conocer el comportamiento general de visita de forma agregada y anónima. No se recaban datos personales identificables a través de estas cookies.</p>
+        <p class="body-text" style="margin:0 0 14px;">En el portal de pacientes uso además una cookie propia, que no es de análisis de terceros: guarda un identificador de visita para agrupar los pasos de una misma sesión de uso, y otra que recuerda que ya aceptaste este aviso para no volver a mostrártelo. No se comparten con nadie y no te identifican fuera del portal.</p>
         <p class="body-text" style="margin:0 0 14px;">Si no quieres que se utilicen, puedes <button type="button" id="cookie-optout" class="link-inline link-underline--button">desactivarlas aquí</button>. También puedes bloquearlas o borrarlas desde la configuración de tu navegador en cualquier momento.</p>
         <p class="form-msg ok body-text" id="cookie-optout-msg" role="status" hidden style="margin:0;">Las cookies de análisis quedaron desactivadas en este navegador.</p>
       </div>
@@ -105,7 +108,7 @@ const locale = 'es';
         <p class="body-text" style="margin:0;">Cualquier modificación a este aviso de privacidad se publicará en esta misma página con la fecha de actualización correspondiente. Te recomiendo revisarlo ocasionalmente.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 30 de agosto de 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Última actualización: 31 de agosto de 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/es/terminos/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Términos de servicio</a>

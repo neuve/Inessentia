@@ -38,6 +38,7 @@ const locale = 'en';
           <li class="body-text" style="line-height:1.7;"><strong>Billing data</strong> (when applicable): tax ID and billing name.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Patient portal access data:</strong> to identify you when you book or follow up on appointments, an access identifier tied to your record is generated. It is not a password and is not stored in readable form.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Conversations with the scheduling assistant:</strong> if you use the portal's automated assistant to arrange an appointment, the text you write is stored temporarily so I can follow up on your request.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Patient portal usage:</strong> if you accept the notice on entering, I record which screen of the portal you were on and what actions you took &mdash; booking, cancelling or rescheduling an appointment, starting a payment &mdash; to understand how it is used and improve it. What you write is not stored, nor the content of anything: only the step, the date, and a visit identifier. If you do not accept, nothing is recorded.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Sensitive data:</strong> in the therapeutic context, information related to your physical and mental health is collected. This data receives special protection under the LFPDPPP and is used solely for therapeutic purposes, with your express consent.</li>
         </ul>
       </div>
@@ -75,6 +76,7 @@ const locale = 'en';
         <ul style="margin:0;padding-left:24px;display:flex;flex-direction:column;gap:8px;">
           <li class="body-text" style="line-height:1.7;"><strong>Conversations with the scheduling assistant:</strong> automatically deleted after 30 days. If you want one deleted sooner, write to me and I'll do it.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Appointment requests:</strong> kept for at least 14 days after the appointment date, and deleted afterwards in the normal course of operation.</li>
+          <li class="body-text" style="line-height:1.7;"><strong>Portal usage records:</strong> deleted after 30 days.</li>
           <li class="body-text" style="line-height:1.7;"><strong>Contact data and your practice history:</strong> kept while you are an active client. If you stop coming and ask me to, I anonymize your record: I keep only the dates my internal scheduling rules need, and delete your name, your email, and any associated notes.</li>
         </ul>
         <p class="body-text" style="margin:14px 0 0;">Backups of all of the above expire after 30 days. Payment data is the exception: data from a completed charge stays with my payment processor, and its removal is not up to me.</p>
@@ -96,6 +98,7 @@ const locale = 'en';
       <div>
         <h2 class="heading-section" style="font-size:var(--fs-h4);margin:0 0 16px;">Cookies and tracking technologies</h2>
         <p class="body-text" style="margin:0 0 14px;">This site uses Google Analytics cookies, which load automatically when you visit, to understand general visit behavior in an aggregated, anonymous way. No personally identifiable data is collected through these cookies.</p>
+        <p class="body-text" style="margin:0 0 14px;">In the patient portal I also use a first-party cookie, not third-party analytics: it stores a visit identifier to group the steps of a single session of use, and another that remembers you have already accepted this notice so it is not shown again. Neither is shared with anyone, and they do not identify you outside the portal.</p>
         <p class="body-text" style="margin:0 0 14px;">If you would rather not be measured, you can <button type="button" id="cookie-optout" class="link-inline link-underline--button">turn them off here</button>. You can also block or delete them through your browser settings at any time.</p>
         <p class="form-msg ok body-text" id="cookie-optout-msg" role="status" hidden style="margin:0;">Analytics cookies are now turned off in this browser.</p>
       </div>
@@ -105,7 +108,7 @@ const locale = 'en';
         <p class="body-text" style="margin:0;">Any modification to this privacy notice will be published on this same page along with the corresponding update date. I recommend reviewing it occasionally.</p>
       </div>
 
-      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: August 30, 2026.</p>
+      <p style="font-size:14px;color:var(--text-muted);margin:0;font-style:italic;">Last updated: August 31, 2026.</p>
 
       <div style="padding-top:16px;border-top:1px solid var(--cream);display:flex;gap:24px;flex-wrap:wrap;">
         <a href="/en/terms/" class="link-underline" style="display:inline-flex;align-items:center;gap:8px;">Terms of service</a>
