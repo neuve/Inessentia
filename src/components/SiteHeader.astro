@@ -370,7 +370,7 @@ const resolvedPhotoPositionMobile = photo && resolveAssetPosition(photo);
     display: flex; align-items: center; justify-content: center;
     width: clamp(240px, 24vw, 300px); aspect-ratio: 1; border-radius: 50%;
     background: var(--grad-disc);
-    box-shadow: inset 0 0 0 1px rgba(70,39,110,.05);
+    box-shadow: inset 0 0 0 1px rgba(var(--purple-rgb),.05);
   }
   /* Panel text colours must beat the shared white/sand rules below, which
      have equal specificity but come later in source order. Prefix with the

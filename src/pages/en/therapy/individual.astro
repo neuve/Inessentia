@@ -47,7 +47,7 @@ const schema = [
         <h2 class="heading-section">Is this therapy right for you?</h2>
       </div>
       <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
-        <div data-reveal class="card" style="padding:34px 32px;">
+        <div data-reveal class="card card--pad-a">
           <p class="label-section label-section--plain" style="color:var(--heading);margin:0 0 20px;">It's for you if...</p>
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div style="display:flex;gap:12px;"><span style="color:var(--heading);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p class="body-text" style="margin:0;">You live with anxiety, panic episodes, or your body is constantly on high alert.</p></div>
@@ -58,7 +58,7 @@ const schema = [
             <div style="display:flex;gap:12px;"><span style="color:var(--heading);font-weight:700;font-size:18px;flex:none;line-height:1.4;">✓</span><p class="body-text" style="margin:0;">You know or sense that you have the power to change your life.</p></div>
           </div>
         </div>
-        <div data-reveal class="card" style="padding:34px 32px;">
+        <div data-reveal class="card card--pad-a">
           <p class="label-section label-section--plain" style="margin:0 0 20px;">It's not for you if...</p>
           <div style="display:flex;flex-direction:column;gap:14px;">
             <div style="display:flex;gap:12px;"><span style="color:var(--accent-canvas);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p class="body-text" style="margin:0;">You have an emergency or crisis that requires medical or psychiatric attention first. In that case, I'll guide you to the right resource.</p></div>
@@ -90,17 +90,17 @@ const schema = [
         <h2 class="heading-section">What changes as the process unfolds</h2>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:24px;">
-        <div data-reveal class="card" style="padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+        <div data-reveal class="card card--pad-b">
           <span style="font-family:var(--ff-head);font-weight:700;font-size:48px;color:var(--cream);line-height:1;">1</span>
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:22px;margin:0;">Slowing down and listening</h3>
           <p class="body-text" style="margin:0;">You learn to settle into a slower rhythm that makes inner listening possible. You'll be able to answer more easily: what do I feel in my body? The foundation is always stabilization through a sense of safety in the present moment.</p>
         </div>
-        <div data-reveal class="card" style="padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+        <div data-reveal class="card card--pad-b">
           <span style="font-family:var(--ff-head);font-weight:700;font-size:48px;color:var(--cream);line-height:1;">2</span>
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:22px;margin:0;">From urgency to strategy</h3>
           <p class="body-text" style="margin:0;">You reach a feeling of stability more quickly. We'll develop tools to reduce the rush and anxiety, and we'll recognize the patterns that sustain your pain or confusion. Urgency gives way to curiosity.</p>
         </div>
-        <div data-reveal class="card" style="padding:36px 30px;display:flex;flex-direction:column;gap:16px;">
+        <div data-reveal class="card card--pad-b">
           <span style="font-family:var(--ff-head);font-weight:700;font-size:48px;color:var(--cream);line-height:1;">3</span>
           <h3 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:22px;margin:0;">Self-knowledge as transformation</h3>
           <p class="body-text" style="margin:0;">Problems become a doorway to self-knowledge. You recognize your inner strengths and manage stress more effectively. Your tolerance for frustration grows, and so does your confidence and connection with life.</p>
@@ -116,19 +116,19 @@ const schema = [
         <h2 data-reveal style="font-family:var(--ff-head);font-weight:700;color:var(--heading);font-size:clamp(26px,3.5vw,40px);line-height:1.1;margin:0 0 28px;text-wrap:balance;">Step by step</h2>
         <div data-reveal style="display:flex;flex-direction:column;gap:0;">
           <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
-            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">1</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <div class="step-circle-wrap"><span class="step-circle">1</span><span class="step-connector"></span></div>
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">Send me a message on WhatsApp. My assistant will answer any questions about scheduling and payments. You'll receive a confirmation 48 hours before your session.</p>
           </div>
           <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
-            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">2</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <div class="step-circle-wrap"><span class="step-circle">2</span><span class="step-connector"></span></div>
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">The first session is a mutual interview: you ask any questions you need, and I explain how I work. Together we define your therapeutic goals.</p>
           </div>
           <div style="display:flex;gap:16px;padding-bottom:22px;position:relative;">
-            <div style="flex:none;display:flex;flex-direction:column;align-items:center;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none;">3</span><span style="flex:1;width:2px;background:var(--cream);min-height:20px;margin-top:6px;"></span></div>
+            <div class="step-circle-wrap"><span class="step-circle">3</span><span class="step-connector"></span></div>
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">The first 3 to 6 sessions are an adjustment period: we calibrate comfort and depth.</p>
           </div>
           <div style="display:flex;gap:16px;">
-            <div style="flex:none;"><span style="width:32px;height:32px;border-radius:50%;background:var(--purple);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;">4</span></div>
+            <span class="step-circle">4</span>
             <p style="margin:0;font-size:15px;line-height:1.65;color:var(--text);padding-top:5px;">If we decide to continue, we schedule in two-month blocks with clear goals and constantly review progress.</p>
           </div>
         </div>

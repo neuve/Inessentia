@@ -84,8 +84,13 @@
   --bg: var(--warm);        /* fondo de página */
   --heading: var(--purple); /* color de titulares */
 
+  /* Estado de éxito (antes hex sueltos en .form-msg.ok, duplicados también en
+     .tag-idioma de red-terapeutica.astro / therapist-network.astro) */
+  --success-bg: #EFF4EF;
+  --success-text: #3A5A3A;
+  --success-border: #BFD4BF;
+
   /* Gradientes de marca (antes duplicados literal en Navbar/SiteHeader/supervision) */
-  --grad-brand: linear-gradient(100deg,#341A54 0%,#46276E 30%,#7E4E77 56%,#C2B07E 83%,#EAE5D9 100%);
   --grad-rail: linear-gradient(180deg,#8E2B5D 0%,#46276E 55%,#C2B07E 100%);
   --grad-btn-gold: linear-gradient(100deg,#EBD08A 0%,#C2B07E 58%,#B0975E 100%);
   /* Disco detrás del icono de modalidad (tarjetas de home + hero de terapia).
@@ -105,21 +110,24 @@
      uno, hay que retocar el otro o quedan desincronizados. */
   --canvas-top: #26143C;
   --veil-purple: 38,20,60;  /* = --canvas-top en triplete; usar como rgba(var(--veil-purple),.55) en veils de hero */
+  --purple-rgb: 70,39,110;  /* = --purple en triplete; usar como rgba(var(--purple-rgb),alpha) en vez de repetir el literal */
 
   /* Spacing (base 4) — sp-6/8/10/12 se retiraron (PAQUETE 3b): 0 usos reales en el repo */
-  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
+  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px; --sp-5: 20px;
   --section-pad: clamp(64px, 9vw, 120px);
   --gutter: 32px;           /* padding lateral canónico (unifica el 40px ad-hoc) */
 
   /* Radios (colapsa 22/20/18 → card; 99/999 → pill) */
   --r-card: 20px;
+  --r-card-md: 22px;  /* supervision.astro: gl-card, gl-photo-frame, gl-table-wrap, gl-price-card, gl-corpore-callout, gl-supervisor */
+  --r-card-lg: 24px;  /* costos.astro / costs.astro: shell de la tarjeta de precio (.pricing-card) */
   --r-panel: 18px;
   --r-pill: 999px;
   --r-field: 10px;
 
   /* Sombras */
-  --sh-card: 0 22px 48px rgba(70,39,110,.12);
-  --sh-btn: 0 12px 28px rgba(70,39,110,.30);
+  --sh-card: 0 22px 48px rgba(var(--purple-rgb),.12);
+  --sh-btn: 0 12px 28px rgba(var(--purple-rgb),.30);
 
   /* Type-scale con roles (consolida 5 escalas H1 + 2 body).
      Familias: Bitter=titulares, Mulish=cuerpo (CANÓNICO; CLAUDE.md decía Zilla). */
@@ -530,7 +538,7 @@ body {
 }
 
 /* Section helpers */
-.section { padding: clamp(64px, 9vw, 120px) var(--gutter); }
+.section { padding: var(--section-pad) var(--gutter); }
 /* Lienzo continuo: las secciones ya no cortan el fondo — se vuelven
    transparentes y flotan sobre el gradiente del body. Su contenido sigue
    legible (texto claro sobre el gradiente oscuro). */
@@ -540,7 +548,6 @@ body {
 /* Alineado al mismo margen izquierdo que .container (no centrado aparte):
    el estándar del sitio es texto a la izquierda, nunca bloques centrados. */
 .container--narrow { max-width: 1000px; margin: 0 auto 0 max(0px, calc((100% - var(--container-w)) / 2)); }
-.container--blog { max-width: 820px; margin: 0 auto; }
 .container--read { max-width: 760px; margin: 0 auto; }   /* lectura legal / byline blog */
 
 /* Encabezado de sección: agrupa el par eyebrow + heading repetido ~40× */
@@ -656,10 +663,9 @@ a:hover { border-bottom-color: transparent; }
 }
 .link-underline--button:disabled { opacity: .5; cursor: default; }
 
-/* Buttons — base única `.btn` + modificadores. `.btn-primary`
-   queda como ALIAS (misma apariencia) para no romper páginas aún sin migrar.
+/* Buttons — base única `.btn` + modificadores.
    `.btn-white`/`.btn--white` se retiraron (PAQUETE 3b): 0 usos reales en el repo. */
-.btn, .btn-primary {
+.btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -675,8 +681,8 @@ a:hover { border-bottom-color: transparent; }
   cursor: pointer;
   transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
-.btn--primary, .btn-primary { background: var(--purple); color: #fff; }
-.btn--primary:hover, .btn-primary:hover {
+.btn--primary { background: var(--purple); color: #fff; }
+.btn--primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--sh-btn);
   background: var(--purple-d);
@@ -717,12 +723,12 @@ a:hover { border-bottom-color: transparent; }
   align-self: flex-start;
   background: var(--purple-d);
   color: #fff;
-  box-shadow: 0 10px 22px rgba(70,39,110,.22);
+  box-shadow: 0 10px 22px rgba(var(--purple-rgb),.22);
 }
 .btn--secondary:hover {
   transform: translateY(-2px);
   background: var(--wine);
-  box-shadow: 0 14px 28px rgba(70,39,110,.3);
+  box-shadow: 0 14px 28px rgba(var(--purple-rgb),.3);
 }
 /* Un .btn dentro de un <form> nunca debe estirarse a todo el ancho del
    campo aunque el layout del formulario use flex/grid con stretch. */
@@ -753,6 +759,80 @@ form .btn, .form-wrap .btn, .form-field .btn {
   transform: translateY(-6px);
   box-shadow: var(--sh-card);
 }
+/* Padding modifiers de .card — antes repetidos como style="" inline en cada
+   consumidor. --pad-a: bloques "es/no es para ti" de terapia/* (sin flex
+   propio). --pad-b: tarjetas "3 transformaciones" de terapia/* (flex-column,
+   gap 16). --pad-c: tarjetas de modalidad de la home (flex-column, gap 18). */
+.card--pad-a { padding: 34px 32px; }
+.card--pad-b { padding: 36px 30px; display: flex; flex-direction: column; gap: 16px; }
+.card--pad-c { padding: 38px 32px; display: flex; flex-direction: column; gap: 18px; }
+
+/* Step marker — círculo numerado + línea conectora, repetido a mano en el
+   "paso a paso" de terapia/* (4 pasos por página, el último sin conector).
+   .step-circle ya trae flex:none, así que el último paso no necesita el
+   wrapper: basta <span class="step-circle">N</span> suelto. */
+.step-circle-wrap { flex: none; display: flex; flex-direction: column; align-items: center; }
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--purple);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.step-connector { flex: 1; width: 2px; background: var(--cream); min-height: 20px; margin-top: 6px; }
+
+/* Pricing card (costos.astro / costs.astro) — shell + composición de precio
+   "antes tachado + ahora grande + sufijo". .price-was y .price-now consumen
+   --text-faint/--heading, que YA flipan dentro de .on-dark (aplicada hoy a
+   la tarjeta "4 sesiones"), así que no hacen falta overrides de tema para
+   ellos; sólo el sufijo necesita uno porque ningún alias existente resuelve
+   ya a --sand. El rgb del box-shadow de .pricing-card es el triplete de
+   --purple-d (60,31,94), no el de --purple: se deja literal a propósito, sin
+   forzarlo a --purple-rgb, porque cambiaría el color exacto ya en producción. */
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--r-card-lg);
+  padding: clamp(32px, 4vw, 44px) clamp(28px, 3.5vw, 40px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 54px rgba(60,31,94,.10);
+}
+.pricing-card--featured {
+  position: relative;
+  background: var(--purple);
+  border: none;
+  box-shadow: 0 30px 64px rgba(60,31,94,.28);
+}
+.price-was {
+  font-family: var(--ff-head);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1;
+  text-decoration: line-through;
+  color: var(--text-faint);
+  margin: 0;
+}
+.price-now {
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: clamp(42px, 5vw, 52px);
+  line-height: 1;
+  color: var(--heading);
+  margin: 0;
+}
+.price-now__suffix {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-faint);
+}
+.on-dark .price-now__suffix { color: var(--gold); }
 
 /* Header ligero para páginas legales / hard-data (NO es el hero grande) */
 .page-header--soft {
@@ -808,7 +888,7 @@ form .btn, .form-wrap .btn, .form-field .btn {
   background: var(--field-bg-focus, var(--field-bg, #fff));
 }
 .form-msg { border-radius: var(--r-field); padding: var(--sp-3) var(--sp-4); }
-.form-msg.ok  { background: #EFF4EF; color: #3A5A3A; border: 1px solid #BFD4BF; }
+.form-msg.ok  { background: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
 .form-msg.err { background: #FBEDED; color: #8E2B2B; border: 1px solid #E4BFBF; }
 
 /* Mobile nav: se ocultan los links inline; el sandwich (#nav-ham) abre el
@@ -850,7 +930,7 @@ form .btn, .form-wrap .btn, .form-field .btn {
    menú móvil; se oculta la × redundante para no duplicar el control de cierre. */
 #mob-close { display: none; }
 .mob-social { position: absolute; bottom: 40px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 16px; }
-.mob-social a, .mob-social button { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(70,39,110,.07); border: 1px solid rgba(70,39,110,.16); padding: 0; cursor: pointer; }
+.mob-social a, .mob-social button { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(var(--purple-rgb),.07); border: 1px solid rgba(var(--purple-rgb),.16); padding: 0; cursor: pointer; }
 /* object-fit:contain: el hueco es fijo (20x20) y el `fill` por defecto deforma
    las fuentes no cuadradas. Mismo caso que el footer y el menú overlay. */
 .mob-social img { width: 20px; height: 20px; display: block; object-fit: contain; }
@@ -865,8 +945,6 @@ form .btn, .form-wrap .btn, .form-field .btn {
 
 /* Mobile general */
 @media (max-width: 600px) {
-  .hero-row { flex-direction: column !important; }
-  .hero-img { display: none !important; }
   .modal-grid { grid-template-columns: 1fr !important; }
   .blog-grid { grid-template-columns: 1fr !important; }
 }

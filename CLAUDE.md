@@ -104,8 +104,8 @@ válidas y **cada una usa un token distinto** — confundirlas es el bug que ya 
   come por dentro, así que hay que usar **`--container-pad-w`**; con `--container-w` el
   contenido queda un gutter más adentro. Referencia viva: `.navbar__inner` en `Navbar.astro`.
 
-Exentos por legibilidad (conservan su tope angosto): `.container--blog` (820) y
-`.container--read` (760), usados en blog, términos y privacidad.
+Exento por legibilidad (conserva su tope angosto): `.container--read` (760),
+usado en blog, términos y privacidad.
 
 Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`/`--plain`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--wine`/`--gold`/`--secondary`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline` (enlace suelto, 15px fijo) / `.link-inline` (enlace incrustado en un párrafo, hereda tamaño), `.icon-disc`.
 

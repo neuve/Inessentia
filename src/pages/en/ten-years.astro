@@ -148,7 +148,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
           {m.conteo.map((n, i) => (
             <div>
               <i
-                style={`height:${Math.round((96 * n) / m.maxS)}px;background:${m.llenos.includes(i) ? 'var(--purple)' : m.flacos.includes(i) ? 'var(--sand-d)' : 'rgba(70,39,110,.28)'}`}
+                style={`height:${Math.round((96 * n) / m.maxS)}px;background:${m.llenos.includes(i) ? 'var(--purple)' : m.flacos.includes(i) ? 'var(--sand-d)' : 'rgba(var(--purple-rgb),.28)'}`}
                 title={`${MESES[i]} · ${n} sessions`}
               />
             </div>
@@ -164,7 +164,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
         </div>
         <div class="anio-leyenda">
           <span><i style="background:var(--purple)"/>The three busiest months</span>
-          <span><i style="background:rgba(70,39,110,.28)"/>Rest of the year</span>
+          <span><i style="background:rgba(var(--purple-rgb),.28)"/>Rest of the year</span>
           <span><i style="background:var(--sand-d)"/>The three quietest</span>
         </div>
         <div class="anio-kpis">
@@ -190,7 +190,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
                     return (
                       <div
                         class={`hor-cell hor-day${n > 0 ? '' : ' hor-empty'}`}
-                        style={n > 0 ? `background:rgba(70,39,110,${alpha})` : undefined}
+                        style={n > 0 ? `background:rgba(var(--purple-rgb),${alpha})` : undefined}
                         title={`${DIAS[wd]} ${hh}:00 — ${n} ${n === 1 ? 'session' : 'sessions'}`}
                       />
                     );
@@ -350,7 +350,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   .banda .b-desc { font: 400 12px/1.55 var(--ff-body); color: var(--text-muted); margin-top: 8px; }
 
   .bandas-bar-panel { padding: 22px 26px; margin-top: 26px; }
-  .bandas-bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; background: rgba(70, 39, 110, .06); }
+  .bandas-bar { display: flex; height: 16px; border-radius: 999px; overflow: hidden; background: rgba(var(--purple-rgb), .06); }
   .bandas-bar > i { display: block; }
 
   .anio-panel { padding: 26px 28px 24px; margin-top: 6px; }
@@ -391,7 +391,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
     display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;
   }
   .hor-day { height: 19px; border-radius: 2px; }
-  .hor-empty { background: rgba(70, 39, 110, .025); border: 1px solid rgba(70, 39, 110, .06); }
+  .hor-empty { background: rgba(var(--purple-rgb), .025); border: 1px solid rgba(var(--purple-rgb), .06); }
   .hor-foot { margin: 14px 0 0; font: 400 12px var(--ff-body); color: var(--text-muted); }
 
   .quien-h3 { font-family: var(--ff-head); font-weight: 700; font-size: 18px; color: var(--purple); margin: 0 0 4px; }
@@ -417,7 +417,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
   .dur-head { border-bottom: 1px solid var(--purple); padding-bottom: 8px; }
   .dur-head span { font: 700 10px var(--ff-body); letter-spacing: .13em; text-transform: uppercase; color: var(--text-muted); }
   .dur-lbl { font: 600 12.5px var(--ff-body); color: var(--ink); }
-  .dur-track { height: 11px; background: rgba(70, 39, 110, .06); border-radius: 999px; overflow: hidden; }
+  .dur-track { height: 11px; background: rgba(var(--purple-rgb), .06); border-radius: 999px; overflow: hidden; }
   .dur-track > i { display: block; height: 100%; border-radius: 999px; background: var(--purple); }
   .dur-dias { font: 700 12.5px var(--ff-body); color: var(--purple); text-align: right; }
   .dur-ses { font: 600 12px var(--ff-body); color: var(--text); text-align: right; }
