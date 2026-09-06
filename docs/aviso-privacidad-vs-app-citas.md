@@ -862,6 +862,70 @@ mismo chip, bloqueados por el diseño.
 
 ---
 
+## 8. Cambio anunciado y NO publicado: facturación con FacturaGorila
+
+**Estado: redactado, fuera del aviso.** Avisado el 2026-09-05 por S1; lo construye la sesión
+`70a894` en `inessentia-clientes-r2`. **No desplegado.**
+
+### Lo que ya está cubierto y lo que no
+
+El aviso **ya declara** la finalidad («Emitir facturas cuando se solicite») y parte del dato
+(«Datos de facturación (cuando aplica): RFC y razón social»). El hueco es más chico de lo que
+parecía. Falta:
+
+- **FacturaGorila por su nombre**, en la lista de terceros.
+- **Los campos extra**: régimen fiscal, domicilio fiscal, uso de CFDI. ⚠️ **Sin confirmar campo
+  por campo con `70a894`** — vienen del mensaje de S1, que avisó de que no los tenía medidos.
+- **Dónde y cuánto**, que sí confirmó Patricio (ver abajo).
+
+### Verificado por esta sesión
+
+- **La app no guarda hoy ningún dato fiscal**: cero apariciones de `rfc`, `razonSocial`, `regimen`
+  o `cfdi` en `almacen.mjs` de `origin/main`. Lo de guardarlos «si es necesario» es futuro.
+- `CAMPOS_QUE_BORRA_ANONIMIZAR` incluye `ficha`, así que si los datos fiscales acaban ahí,
+  la anonimización los borra.
+
+### ⚠️ Corrección a lo que dijo Patricio
+
+Dijo que se borran «con el resto de la info cuando se dan de baja». **Darse de baja no borra
+nada** — es justo la distinción que este aviso ya hace explícita. Lo que borra es la
+anonimización, que exige baja **y** petición expresa. El borrador dice «cuando anonimizo tu
+registro».
+
+### Borrador — añadir a la lista de terceros
+
+> …Anthropic (el asistente automatizado de agenda del portal de pacientes), Stripe (el cobro con
+> tarjeta y transferencia) y FacturaGorila (la emisión de facturas).
+
+### Borrador — párrafo nuevo en «Transferencias de datos» (ES)
+
+> **Sobre la facturación:** si me pides factura, los datos fiscales que hagan falta —RFC, razón
+> social, régimen fiscal, domicilio fiscal y uso de CFDI— se envían a FacturaGorila, la plataforma
+> con la que emito los comprobantes, y se guardan ahí bajo
+> [sus términos](https://app.facturagorila.com/Public/terms.aspx) y su
+> [aviso de privacidad](https://www.facturagorila.com/privacidad.aspx). Si además llego a
+> guardarlos de mi lado, se eliminan cuando anonimizo tu registro, igual que el resto de tus datos.
+
+### Borrador — EN
+
+> **About invoicing:** if you ask me for an invoice, the tax details required — tax ID, legal name,
+> tax regime, fiscal address and CFDI use — are sent to FacturaGorila, the platform I issue
+> receipts through, and are stored there under
+> [their terms](https://app.facturagorila.com/Public/terms.aspx) and
+> [privacy notice](https://www.facturagorila.com/privacidad.aspx). If I also end up keeping them on
+> my side, they are deleted when I anonymize your record, like the rest of your data.
+
+### Antes de publicar
+
+1. **Confirmar los campos exactos con `70a894`.** Si la lista real es distinta, el párrafo miente
+   en una dirección o en la otra. Es lo mismo que pasó con el nombre viajando a Stripe.
+2. **Desplegado**, como siempre: el aviso y la facturación salen el mismo día.
+3. Ojo: la lista de «Datos personales que se recaban» dice hoy sólo «RFC y razón social». Si los
+   campos se confirman, esa línea también se amplía.
+
+
+---
+
 ## Resumen
 
 | Categoría | ¿Cubierta en el aviso hoy? | Estado tras esta conversación |
