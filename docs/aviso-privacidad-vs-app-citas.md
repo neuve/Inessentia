@@ -10,7 +10,7 @@ sección 4.
 
 Fuentes:
 - Aviso publicado: [`src/pages/es/privacidad.astro`](../src/pages/es/privacidad.astro), última
-  actualización declarada 14 de julio de 2026.
+  actualización declarada 6 de septiembre de 2026.
 - Inventario de la app de citas: `privacidad-y-borrado.md` del repo `inessentia-clientes-r2`.
 
 ---
@@ -999,15 +999,34 @@ donde tiene que estar la guarda.
 
 ## Resumen
 
-| Categoría | ¿Cubierta en el aviso hoy? | Estado tras esta conversación |
+Estado al **2026-09-06**, verificado contra el aviso vivo (`src/pages/es/privacidad.astro` y
+`en/privacy.astro`, ambos con fecha de actualización 6 de septiembre de 2026), no contra las
+secciones de este documento. Las secciones 3 y 5–8 conservan los borradores tal como se
+escribieron: son el rastro de cómo se llegó aquí, no el estado de hoy.
+
+| Categoría | ¿Cubierta en el aviso hoy? | Estado |
 |---|---|---|
-| `personas` (nombre, correo, token, sin caducidad) | Parcial — nombre/correo sí, token y "no caduca nunca" no | Decisión: anonimizar al dar de baja. Falta construirlo y redactar el párrafo (sección 3) |
-| `solicitudes` (fecha, hora, estado, retención 14 días) | Parcial — fecha/hora sí, retención no; "estado" sin confirmar en el inventario técnico | Sin cambios |
-| `transcripciones` (texto libre, ahora 30 días, con borrado manual) | No aparece | Confirmado en código: botón implementado y plazo bajado a 30 días. Pendiente integrar/desplegar |
-| Google Calendar (invitada real, correo, copia en su cuenta) | Mencionado genéricamente, mecanismo no | Sin cambios; párrafo propuesto en sección 3 |
-| Anthropic (proveedor de IA) | No aparece | Banner en desarrollo ya lo nombra; falta que el aviso también lo haga (párrafo en sección 3) |
-| Promesa de "Cancelación" en 20 días hábiles | Existe en el aviso, sin ruta técnica que la cumpla para varias categorías | Patricio decide mantener el plazo tal cual |
-| Consentimiento explícito para el asistente de IA | No existía | Patricio decide agregarlo — banner en el primer load de la agenda |
-| Eventos ya escritos en Google, al pedir borrarse | Sin ruta en el código de la app | Patricio decide: basta con borrar la copia de la clínica |
-| Borrado anticipado de transcripciones, ¿self-service? | No existe flujo directo para la paciente | Patricio decide: el manual (él/Diana) basta, no construye self-service |
-| Garantía HIPAA/PHI de Anthropic | No aplicaba | No bloqueante para Patricio; propone avisar "uso administrativo, sin HIPAA" (párrafo en sección 3) — lectura legal sin confirmar |
+| `personas` (nombre, correo, token, retención) | Sí | El token se declara como «identificador de acceso… no se guarda de forma legible». La retención indefinida ya no existe: el aviso describe la anonimización al darse de baja. Publicado desde el 2026-08-27 en ambos idiomas, con el código desplegado antes y **verificado en producción** (registro desechable `p_b1640143`, no sólo con pruebas) |
+| `solicitudes` (fecha, hora, estado, retención 14 días) | Casi — falta «estado» | Fecha, hora, modalidad y la retención de 14 días están declaradas. El **estado** de la solicitud sigue sin nombrarse en el aviso; era «sin confirmar en el inventario técnico» y sigue sin confirmarse |
+| `transcripciones` (texto libre, 30 días, borrado manual a petición) | Sí | Declarado en «Conservación», con la vía de borrado a petición. La app se desplegó primero (`1ad1405` en `main`, `RETENCION_TRANSCRIPCIONES_DIAS = 30`) y el aviso después |
+| Google Calendar (invitada real, correo, copia en su cuenta) | Sí, con mecanismo | Párrafo propio que explica la invitación y dice de frente que la copia en la cuenta de la paciente no se puede borrar |
+| Anthropic (proveedor de IA) | Sí, por nombre y con enlace | Párrafo propio: qué viaja, qué no (nombre, correo, datos de pago), y la petición de no compartir información clínica |
+| Uso del portal (medición de recorridos) | Sí | Declarada como pantalla, acción, fecha e identificador de visita — sin contenido —, condicionada a que la paciente acepte, y con retención de 30 días |
+| Stripe (cobro con tarjeta y SPEI) | Sí | Publicado el mismo día del despliegue. Declara la transferencia a EE. UU. para SPEI (nombre y correo), enlaza a `stripe.com/mx/privacy`, y dice sin plazo que los datos de un cobro hecho quedan de su lado |
+| FacturaGorila / Bisimplex (facturación) | Sí, los cuatro campos | RFC, razón social, código postal del domicilio fiscal y régimen fiscal. Nombrado como tercero receptor, con enlace a sus términos y al aviso de Bisimplex — ambos comprobados vivos (200) el 2026-09-06 |
+| Promesa de «Cancelación» en 20 días hábiles | Sí, con sus límites declarados | Patricio mantiene el plazo. El hueco se estrechó: `personas` ya tiene anonimización real. Lo que no se puede deshacer —copia de Google, lo ya enviado a Anthropic, cobros pasados— está dicho en el aviso, en la «nota honesta sobre los límites», en vez de quedar como promesa sin respaldo |
+| Consentimiento explícito para el asistente de IA | Sí del lado del aviso | El banner vive en el portal (otro repo). `r2-3f` lo está fundiendo en un onboarding de primer uso y la clave sube a `inessentia_consentimiento_v2`, así que se le vuelve a pedir a todas |
+| Garantía HIPAA/PHI de Anthropic | Sí, como hecho, no como lectura legal | El aviso dice que la herramienta no tiene esa certificación y pide no compartir información clínica ahí. No afirma qué exige la ley. Patricio la dio por cerrada el 2026-08-28, sin consulta legal |
+
+### Lo que sigue abierto
+
+- La **fase 1 de facturación** (la pantalla donde la paciente teclea sus datos fiscales) no existe
+  todavía; está bloqueada por una ApiKey que da de alta Patricio. No cambia quién recibe los
+  datos, así que el aviso ya es correcto y no hay nada que coordinar cuando llegue.
+- La guarda de `CONTRATO.md` §8.3.1 **depende de que alguien lea la sección**: el aviso vive en
+  otro repositorio y ninguna prueba de aquella suite lo vigila. La propuesta de preflight de la
+  sección 8 cerraría el hueco; no está construida.
+- `tools/check-terceros.mjs` corre en cada build de este repo, pero **no atrapa** un tercero
+  nombrado sin enlace, y sólo salta cuando se publica desde aquí.
+- **Ninguna de las siete preguntas de la sección 4 pasó por un abogado.** Todas son decisiones de
+  Patricio como responsable del tratamiento, y está dicho así a propósito.
