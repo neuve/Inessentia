@@ -948,14 +948,51 @@ comercial —a quién se le cobra automáticamente— que pertenece a los térmi
 aviso de privacidad. Meterlo aquí confundiría las dos cosas. Si Patricio prefiere declararlo, cabe
 en una frase.
 
+### El disparador: la fase 1, NO la integración de `s99-credencial-fg`
+
+**Corregido el 2026-09-05 por S1, y tenían razón.** Mi primera versión decía «publicar el mismo
+día que se despliegue la rama». Eso ata la cuerda donde no hace falta y la deja floja donde sí.
+
+Verificado por esta sesión: `s99-credencial-fg` **no toca una sola línea de `publico/`**, y
+`fiscal.mjs` es puro —los dos aciertos de `fetch`/`process.env` que encontré son comentarios—.
+Define la *forma* del registro fiscal **sin recogerlo**: no hay ruta que lo reciba ni pantalla que
+lo pida. Se puede integrar y desplegar sin que ninguna paciente teclee un RFC. Publicar contra ese
+momento sería publicar contra un instante que no significa nada.
+
+**El momento que importa es la fase 1**: la pantalla donde la paciente mete sus datos fiscales.
+Ése es el primer instante en que se recaba. Hoy no existe en ninguna rama, y sigue bloqueada
+porque hace falta dar de alta una ApiKey de FacturaGorila en la cuenta real de Patricio.
+
+Queda escrito además en `CONTRATO.md` §8.3.1, ya en `main`: *«La fase 1 no se despliega antes de
+que el aviso publicado cubra estos cuatro campos y nombre a FacturaGorila como tercero receptor.»*
+
 ### Antes de publicar
 
-1. **Revalidar contra `main`** cuando la rama se integre. S1 avisó de que da lo que el código dice
-   hoy, no una garantía de que no se mueva — y tiene razón en avisarlo.
-2. **No afirmar conservación ni plazos** mientras no exista almacén. Hoy sería inventar.
-3. **Desplegado**, como siempre: el aviso y la facturación salen el mismo día.
+1. **Revalidar** el texto cuando entre `s99-credencial-fg`, para tener el párrafo exacto y listo.
+2. **Publicar contra la fase 1**, no contra esa integración.
+3. **No afirmar conservación ni plazos** mientras no exista almacén. Hoy sería inventar.
 4. La línea «Datos de facturación (cuando aplica): RFC y razón social» también se amplía a los
    cuatro campos.
+
+### El hueco que S1 admite, y una forma de cerrarlo
+
+§8.3.1 reconoce lo que no puede resolver: **el aviso vive en otro repositorio, así que ninguna
+prueba de esa suite lo vigila.** La condición depende de que quien construya la fase 1 lea la
+sección. Eso no truena solo; se olvida solo.
+
+**Propuesta, para quien la quiera tomar** (no está construida): ese repo ya tiene `bin/` con
+preflights — `preflight-config.mjs`, y ahora `comprobar-facturagorila.mjs`. Un preflight de
+despliegue puede cerrar el hueco sin salir de su lado:
+
+- Detecta si el código de la fase 1 existe (una ruta o pantalla que reciba datos fiscales).
+- Si existe, pide `https://inessentia.mx/es/privacidad/` y comprueba que el HTML contenga
+  «FacturaGorila».
+- Si no lo contiene, **falla el despliegue**.
+
+Pedir red en un preflight es aceptable —es una puerta de despliegue, no una prueba unitaria— y
+falla cerrado si el sitio no responde, que es la dirección correcta. Convierte una convención
+escrita en algo que truena. Es cross-repo, pero corre desde donde ocurre el despliegue, que es
+donde tiene que estar la guarda.
 
 
 ---
