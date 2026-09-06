@@ -870,27 +870,48 @@ mismo chip, bloqueados por el diseño.
 ### Lo que ya está cubierto y lo que no
 
 El aviso **ya declara** la finalidad («Emitir facturas cuando se solicite») y parte del dato
-(«Datos de facturación (cuando aplica): RFC y razón social»). El hueco es más chico de lo que
-parecía. Falta:
+(«Datos de facturación (cuando aplica): RFC y razón social»). Falta nombrar a **FacturaGorila** y
+ampliar los campos.
 
-- **FacturaGorila por su nombre**, en la lista de terceros.
-- **Los campos extra**: régimen fiscal, domicilio fiscal, uso de CFDI. ⚠️ **Sin confirmar campo
-  por campo con `70a894`** — vienen del mensaje de S1, que avisó de que no los tenía medidos.
-- **Dónde y cuánto**, que sí confirmó Patricio (ver abajo).
+### Los campos reales — verificados por esta sesión el 2026-09-05
 
-### Verificado por esta sesión
+`netlify/functions/lib/fiscal.mjs`, rama `s99-credencial-fg`, línea 287. **Lista cerrada**:
+`validarRegistroFiscal` rechaza cualquier clave que no esté en ella.
 
-- **La app no guarda hoy ningún dato fiscal**: cero apariciones de `rfc`, `razonSocial`, `regimen`
-  o `cfdi` en `almacen.mjs` de `origin/main`. Lo de guardarlos «si es necesario» es futuro.
-- `CAMPOS_QUE_BORRA_ANONIMIZAR` incluye `ficha`, así que si los datos fiscales acaban ahí,
-  la anonimización los borra.
+    const CLAVES_FISCAL = Object.freeze(["rfc", "nombre", "codigoPostal", "regimen"]);
 
-### ⚠️ Corrección a lo que dijo Patricio
+| campo | qué es |
+|---|---|
+| `rfc` | RFC del receptor (13 posiciones persona física, 12 moral) |
+| `nombre` | la razón social exacta de la Constancia de Situación Fiscal |
+| `codigoPostal` | cinco dígitos, del domicilio fiscal — **sólo el CP** |
+| `regimen` | clave del catálogo `c_RegimenFiscal` del SAT |
 
-Dijo que se borran «con el resto de la info cuando se dan de baja». **Darse de baja no borra
-nada** — es justo la distinción que este aviso ya hace explícita. Lo que borra es la
-anonimización, que exige baja **y** petición expresa. El borrador dice «cuando anonimizo tu
-registro».
+### ⚠️ Dos errores del primer borrador, ya corregidos
+
+La primera versión de esta sección, escrita con la lista que dio S1 antes de medirla, decía
+**«domicilio fiscal»** y **«uso de CFDI»**. Las dos eran falsas y las dos habrían salido publicadas:
+
+1. **No se recoge el domicilio fiscal, sólo el código postal.** Decir «domicilio fiscal» declara
+   que se piden calle, número y colonia. Es una promesa de más en el documento donde más caro sale.
+2. **No se recoge el uso de CFDI.** El propio archivo lo dice: *«`usoCfdi` NO es una quinta
+   clave»*. Lo **deriva el código** de una tabla congelada régimen → usos
+   (`USOS_POR_REGIMEN`, `usoDeCfdiParaAsesoria()`). Listarlo como dato recabado afirmaría que la
+   paciente aporta algo que no aporta.
+
+Es la tercera vez que una descripción de buena fe habría metido un dato falso en el aviso, y la
+tercera que se caza yendo al código. Las anteriores: el nombre viajando a Stripe, y el octavo paso
+de la medición.
+
+### Verificado además
+
+- **Hoy no se guarda en ninguna parte.** Fuera de `fiscal.mjs` y `cfdi-emisor.mjs` no hay una sola
+  referencia en `netlify/functions/`: no hay almacén, ni ruta que lo reciba, ni pantalla que lo
+  pida. `fiscal.mjs` es puro y sólo define la *forma* del dato. **Cualquier plazo de conservación
+  que el aviso afirmara hoy estaría inventado.**
+- **Ni una línea de `publico/`**: la paciente todavía no ve nada.
+- La rama **no está en `main`** (`9520e17` a esta fecha). Puede cambiar.
+- La app sigue sin guardar datos fiscales en `main`.
 
 ### Borrador — añadir a la lista de terceros
 
@@ -899,29 +920,42 @@ registro».
 
 ### Borrador — párrafo nuevo en «Transferencias de datos» (ES)
 
-> **Sobre la facturación:** si me pides factura, los datos fiscales que hagan falta —RFC, razón
-> social, régimen fiscal, domicilio fiscal y uso de CFDI— se envían a FacturaGorila, la plataforma
-> con la que emito los comprobantes, y se guardan ahí bajo
+> **Sobre la facturación:** si me pides factura, los datos fiscales necesarios para emitirla —tu
+> RFC, tu razón social, el código postal de tu domicilio fiscal y tu régimen fiscal— se envían a
+> FacturaGorila, la plataforma con la que timbro los comprobantes, y se guardan ahí bajo
 > [sus términos](https://app.facturagorila.com/Public/terms.aspx) y su
 > [aviso de privacidad](https://www.facturagorila.com/privacidad.aspx). Si además llego a
 > guardarlos de mi lado, se eliminan cuando anonimizo tu registro, igual que el resto de tus datos.
 
 ### Borrador — EN
 
-> **About invoicing:** if you ask me for an invoice, the tax details required — tax ID, legal name,
-> tax regime, fiscal address and CFDI use — are sent to FacturaGorila, the platform I issue
-> receipts through, and are stored there under
+> **About invoicing:** if you ask me for an invoice, the tax details needed to issue it — your tax
+> ID, your legal name, the postal code of your registered tax address, and your tax regime — are
+> sent to FacturaGorila, the platform I issue receipts through, and are stored there under
 > [their terms](https://app.facturagorila.com/Public/terms.aspx) and
 > [privacy notice](https://www.facturagorila.com/privacidad.aspx). If I also end up keeping them on
 > my side, they are deleted when I anonymize your record, like the rest of your data.
 
+### Un dato inferido, y por qué NO va al aviso
+
+De la longitud del RFC (12 vs 13) el código deduce si es persona moral, y de ahí cuelga una
+decisión de negocio: que el cobro automático sea sólo para personas físicas. Es una inferencia, no
+un dato recabado.
+
+Mi criterio, revisable: **no ponerlo en el aviso.** El RFC ya está declarado, la inferencia es
+aritmética sobre un dato que la propia paciente aportó, y lo que cuelga de ella es una regla
+comercial —a quién se le cobra automáticamente— que pertenece a los términos de servicio, no al
+aviso de privacidad. Meterlo aquí confundiría las dos cosas. Si Patricio prefiere declararlo, cabe
+en una frase.
+
 ### Antes de publicar
 
-1. **Confirmar los campos exactos con `70a894`.** Si la lista real es distinta, el párrafo miente
-   en una dirección o en la otra. Es lo mismo que pasó con el nombre viajando a Stripe.
-2. **Desplegado**, como siempre: el aviso y la facturación salen el mismo día.
-3. Ojo: la lista de «Datos personales que se recaban» dice hoy sólo «RFC y razón social». Si los
-   campos se confirman, esa línea también se amplía.
+1. **Revalidar contra `main`** cuando la rama se integre. S1 avisó de que da lo que el código dice
+   hoy, no una garantía de que no se mueva — y tiene razón en avisarlo.
+2. **No afirmar conservación ni plazos** mientras no exista almacén. Hoy sería inventar.
+3. **Desplegado**, como siempre: el aviso y la facturación salen el mismo día.
+4. La línea «Datos de facturación (cuando aplica): RFC y razón social» también se amplía a los
+   cuatro campos.
 
 
 ---
