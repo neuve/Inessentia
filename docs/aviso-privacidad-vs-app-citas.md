@@ -1018,6 +1018,20 @@ escribieron: son el rastro de cómo se llegó aquí, no el estado de hoy.
 | Consentimiento explícito para el asistente de IA | Sí del lado del aviso | El banner vive en el portal (otro repo). `r2-3f` lo está fundiendo en un onboarding de primer uso y la clave sube a `inessentia_consentimiento_v2`, así que se le vuelve a pedir a todas |
 | Garantía HIPAA/PHI de Anthropic | Sí, como hecho, no como lectura legal | El aviso dice que la herramienta no tiene esa certificación y pide no compartir información clínica ahí. No afirma qué exige la ley. Patricio la dio por cerrada el 2026-08-28, sin consulta legal |
 
+### La infraestructura de Google no se sale de la ecuación (2026-09-06)
+
+Quedaba abierto —lo preguntó S99 en su `CONTRATO.md` §39.b— si el correo propio, cuando existan
+las confirmaciones, **se suma** al de Google o lo **sustituye**. Importaba porque el párrafo «Sobre
+Google Calendar» ya está publicado y diría algo falso si Google dejara de intervenir.
+
+**Postura de Patricio:** una confirmación puede llegar por Google o por Resend, pero **en los dos
+casos toca la infraestructura de Google**, porque el calendario vive ahí y los `.ics` salen de
+allá. No hay un escenario en el que Google desaparezca de la ecuación.
+
+Consecuencia para el aviso: el párrafo publicado **sigue siendo cierto en ambos caminos** y no hay
+que reescribirlo. Lo que puede cambiar es que se sume un correo nuestro además del suyo, y eso ya
+lo cubre el párrafo «Sobre los correos que te envío».
+
 ### Lo que sigue abierto
 
 - La **fase 1 de facturación** (la pantalla donde la paciente teclea sus datos fiscales) no existe
@@ -1026,7 +1040,11 @@ escribieron: son el rastro de cómo se llegó aquí, no el estado de hoy.
 - La guarda de `CONTRATO.md` §8.3.1 **depende de que alguien lea la sección**: el aviso vive en
   otro repositorio y ninguna prueba de aquella suite lo vigila. La propuesta de preflight de la
   sección 8 cerraría el hueco; no está construida.
-- `tools/check-terceros.mjs` corre en cada build de este repo, pero **no atrapa** un tercero
-  nombrado sin enlace, y sólo salta cuando se publica desde aquí.
+- `tools/check-terceros.mjs` corre en cada build de este repo. Desde el 2026-09-06 tiene dos
+  mitades: la reactiva (los dominios que el portal enlaza tienen que estar en el aviso) y un
+  **piso** de terceros obligatorios que no depende del portal — nació porque Resend recibe datos
+  sin que el portal enlace su política, y la mitad reactiva le pasaba por debajo. **Lo que sigue
+  sin cubrir:** Zoom y Google Calendar, que se nombran en prosa y sin enlace, así que ningún
+  dominio los detecta. Y la guarda sólo salta cuando se publica desde aquí.
 - **Ninguna de las siete preguntas de la sección 4 pasó por un abogado.** Todas son decisiones de
   Patricio como responsable del tratamiento, y está dicho así a propósito.
