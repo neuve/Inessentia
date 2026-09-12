@@ -38,8 +38,8 @@ const KNOWS_ABOUT: Record<Locale, string[]> = {
 };
 
 const DESCRIPTION: Record<Locale, string> = {
-  es: 'Terapeuta de base somática, en formación sistémica, en CDMX y en línea. Somatic Experiencing Practitioner (SE) y maestrante en Terapia Familiar Sistémica.',
-  en: 'Somatic-based therapist, training in systemic therapy, in Mexico City and online. Somatic Experiencing Practitioner (SE) and a graduate student in Systemic Family Therapy.',
+  es: 'Terapeuta de base somática con perspectiva sistémica familiar, en CDMX y en línea. Somatic Experiencing Practitioner (SE), con maestría concluida en Terapia Familiar Sistémica y especialización en Terapia de Parejas en curso.',
+  en: 'Somatic-based therapist with a systemic family perspective, in Mexico City and online. Somatic Experiencing Practitioner (SE), with a completed master\'s in Systemic Family Therapy and an ongoing specialization in Couples Therapy.',
 };
 
 const org = (name: string) => ({ '@type': 'EducationalOrganization', name });
@@ -84,6 +84,10 @@ export function personSchema(locale: Locale) {
       credential(
         isEs ? 'Somatic Experiencing Practitioner (SE)' : 'Somatic Experiencing Practitioner (SE)',
         'Experiencia Somática México',
+      ),
+      credential(
+        isEs ? 'Training Assistant y Personal Session Provider (nivel intermedio)' : 'Training Assistant and Personal Session Provider (intermediate level)',
+        'Somatic Experiencing International',
       ),
       credential('Core Energetics Practitioner', 'Instituto Córpore'),
       credential(
