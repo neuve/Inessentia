@@ -175,6 +175,9 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
       document.head.appendChild(s);
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Expuesto en window: el listener de conversiones (abajo) y los scripts
+      // de formularios lo llaman desde fuera de esta función.
+      window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', 'G-LWCY1M4Y9T');
     })();
