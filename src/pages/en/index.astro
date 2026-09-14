@@ -144,6 +144,9 @@ const authorSchema = personSchema(locale);
         form.style.display = 'none';
         var thanks = document.getElementById('podcast-thanks');
         if (thanks) thanks.style.display = 'block';
+        // Not a therapy lead (someone asking to be on the podcast), so its
+        // own event name instead of generate_lead.
+        if (window.inessentiaEvento) window.inessentiaEvento('podcast_solicitud', { formulario: 'podcast' });
       }).catch(function() {
         if (btn) { btn.disabled = false; btn.textContent = originalText; }
         if (errMsg) errMsg.style.display = 'block';

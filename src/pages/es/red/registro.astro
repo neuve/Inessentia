@@ -233,6 +233,8 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
             show('ok', '¡Gracias! Recibimos tu registro. Patricio lo revisará y en breve aparecerás en el mapa de la Red Inessentia.');
             form.reset();
             subWrap.style.display = '';
+            // Registro de terapeuta a la Red: sí cuenta como lead.
+            if (window.inessentiaEvento) window.inessentiaEvento('generate_lead', { formulario: 'red_registro' });
           } else {
             show('err', 'No se pudo enviar el registro. Intenta de nuevo o escríbenos por WhatsApp.');
           }

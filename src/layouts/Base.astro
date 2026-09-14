@@ -145,6 +145,11 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
       adorno. */}
   <script is:inline>
     (function() {
+      // Sólo en producción: `npm run dev` (localhost) se estaba contando como
+      // tráfico real — la mitad de las vistas de los últimos 90 días eran del
+      // propio servidor de desarrollo, no de visitantes.
+      var host = location.hostname;
+      if (host !== 'inessentia.mx' && host !== 'www.inessentia.mx') return;
       try {
         if (localStorage.getItem('cookie-consent') === 'essential') return;
       } catch (e) { /* localStorage bloqueado: seguimos con el comportamiento por defecto */ }
@@ -158,6 +163,44 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-LWCY1M4Y9T');
+    })();
+  </script>
+  {/* Eventos de conversión. window.inessentiaEvento() es el helper que usan
+      los <script> de cada formulario al confirmar un envío exitoso (fetch
+      resuelto con éxito, no el submit crudo). El listener de clics es
+      delegado en document y no depende de que GA haya cargado: si
+      window.gtag no existe (localhost, opt-out) no hace nada y no truena. */}
+  <script is:inline>
+    (function() {
+      window.inessentiaEvento = function(nombre, params) {
+        if (typeof window.gtag !== 'function') return;
+        window.gtag('event', nombre, params || {});
+      };
+
+      function ubicacionDe(a) {
+        if (a.closest('#site-nav')) return 'navbar';
+        if (a.closest('#menu-overlay')) return 'menu';
+        if (a.closest('#mob-menu')) return 'menu_movil';
+        if (a.closest('.footer2')) return 'footer';
+        return 'cuerpo';
+      }
+
+      document.addEventListener('click', function(e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var href = a.href || '';
+        var evento = null;
+        if (/wa\.me|api\.whatsapp\.com/.test(href)) evento = 'contacto_whatsapp';
+        else if (/buy\.stripe\.com|checkout\.stripe\.com/.test(href)) evento = 'pago_stripe';
+        if (!evento) return;
+        if (typeof window.gtag !== 'function') return;
+        var params = { link_url: href, ubicacion: ubicacionDe(a) };
+        // target=_blank abre pestaña nueva: no hace falta beacon. En la misma
+        // pestaña, sin beacon el evento puede perderse porque la navegación
+        // corta la petición antes de que salga.
+        if (a.target !== '_blank') params.transport_type = 'beacon';
+        window.gtag('event', evento, params);
+      });
     })();
   </script>
   <RevealOnScroll />

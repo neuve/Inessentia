@@ -121,6 +121,10 @@ const isEs = locale === 'es';
   });
 
   function loadGA() {
+    // Misma guarda que Base.astro: si este componente se vuelve a montar, que
+    // no reviva el conteo de tráfico de localhost.
+    var host = location.hostname;
+    if (host !== 'inessentia.mx' && host !== 'www.inessentia.mx') return;
     if (window.__gaLoaded) return;
     window.__gaLoaded = true;
     var s = document.createElement('script');

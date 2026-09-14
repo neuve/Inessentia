@@ -128,6 +128,9 @@ import { RI_API, RI_TOKEN } from '../../../data/red-config';
             show('ok', '¡Gracias de corazón! Recibimos tu testimonio. Patricio lo revisará y en breve aparecerá publicado.');
             form.reset();
             count.textContent = '0';
+            // No es un lead (no busca terapia, comparte una experiencia ya
+            // vivida): nombre de evento propio, no generate_lead.
+            if (window.inessentiaEvento) window.inessentiaEvento('testimonio_enviado', { formulario: 'testimonio' });
           } else {
             show('err', 'No se pudo enviar. Intenta de nuevo o escríbenos por WhatsApp.');
           }
