@@ -34,10 +34,8 @@ interface Props {
   hideNav?: boolean;
   noAltLocale?: boolean;
   // Override para hreflang="x-default". Por default es la versión ES de la
-  // página (idioma por defecto del sitio). Las tres páginas de home
-  // (index.astro raíz, es/index.astro, en/index.astro) lo fijan en
-  // "https://inessentia.mx/" porque ese es el URL que Google de hecho indexa
-  // para las búsquedas sin idioma marcado.
+  // página (idioma por defecto del sitio). La home NO lo usa: la raíz "/"
+  // declara canonical /es/, y un x-default a "/" contradiría ese canonical.
   xDefault?: string;
 }
 
