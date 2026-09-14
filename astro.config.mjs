@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import redireccionesViejas from './tools/generar-redirecciones-viejas.mjs';
 
 export default defineConfig({
   site: 'https://inessentia.mx',
@@ -30,5 +31,10 @@ export default defineConfig({
         !page.includes('/testimonios/nuevo') &&
         !page.includes('/testimonials/new'),
     }),
+    // Escribe dist/<url-vieja>.html (archivo plano, no carpeta) por cada par
+    // en src/data/redirecciones-viejas.mjs — ver el comentario en ese
+    // archivo y en tools/generar-redirecciones-viejas.mjs para el porqué de
+    // no usar el bloque `redirects` de arriba para estas URLs .html.
+    redireccionesViejas(),
   ],
 });
