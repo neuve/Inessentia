@@ -33,6 +33,12 @@ interface Props {
   nav?: 'gradient' | 'photo' | 'dark';
   hideNav?: boolean;
   noAltLocale?: boolean;
+  // Override para hreflang="x-default". Por default es la versión ES de la
+  // página (idioma por defecto del sitio). Las tres páginas de home
+  // (index.astro raíz, es/index.astro, en/index.astro) lo fijan en
+  // "https://inessentia.mx/" porque ese es el URL que Google de hecho indexa
+  // para las búsquedas sin idioma marcado.
+  xDefault?: string;
 }
 
 const locale = getLocale(Astro.url);
@@ -53,6 +59,7 @@ const {
   nav = 'gradient',
   hideNav = false,
   noAltLocale = false,
+  xDefault,
 } = Astro.props;
 
 const altHref = altPath
@@ -60,6 +67,14 @@ const altHref = altPath
   : `/${altLocale}/`;
 const altHrefAbsolute = `https://inessentia.mx${altHref}`;
 const currentHref = `https://inessentia.mx${Astro.url.pathname}`;
+// hreflang self-reference: usa `canonical` (no el pathname literal de
+// Astro.url) porque la home raíz ("/") sirve el mismo contenido que /es/ bajo
+// una URL distinta — su canonical ya apunta a /es/, y hreflang="es" debe
+// coincidir con eso, no con "/". Para el resto de páginas canonical y
+// currentHref son el mismo valor.
+const esHrefAbsolute = locale === 'es' ? canonical : altHrefAbsolute;
+const enHrefAbsolute = locale === 'en' ? canonical : altHrefAbsolute;
+const xDefaultAbsolute = xDefault ?? esHrefAbsolute;
 // og:image/twitter:image y los <link preload as=font> son atributos crudos
 // (no pasan por <Img>): resolverlos aquí es lo que evita que og/*.webp y los
 // woff2 queden sirviendo bytes viejos bajo su nombre estable una vez
@@ -91,8 +106,9 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="canonical" href={canonical}>
-  {!noAltLocale && <link rel="alternate" hreflang={locale} href={currentHref}>}
-  {!noAltLocale && <link rel="alternate" hreflang={altLocale} href={altHrefAbsolute}>}
+  {!noAltLocale && <link rel="alternate" hreflang="es" href={esHrefAbsolute}>}
+  {!noAltLocale && <link rel="alternate" hreflang="en" href={enHrefAbsolute}>}
+  {!noAltLocale && <link rel="alternate" hreflang="x-default" href={xDefaultAbsolute}>}
   <meta property="og:type" content="website">
   <meta property="og:title" content={title}>
   <meta property="og:description" content={description}>
