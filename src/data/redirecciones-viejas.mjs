@@ -78,23 +78,23 @@ export const redireccionesViejas = [
   { from: '/blog-tipos-de-terapia.html', to: '/es/blog/tipos-de-terapia/', fuente: 'disqus' },
   { from: '/en/blog-types-of-therapy.html', to: '/en/blog/types-of-therapy/', fuente: 'disqus' },
 
-  // Páginas sueltas confirmadas en Search Console ("Not found (404)"). El
-  // índice CDX de Wayback Machine no tiene NINGUNA captura de inessentia.mx
-  // (comprobado: matchType=domain/prefix y url=inessentia.mx/* devuelven [] de
-  // forma consistente en 5+ intentos, con control positivo contra wikipedia.org
-  // en el mismo endpoint que sí trae datos reales — así que el [] no es la
-  // API caída, es la ausencia real de capturas). Sin Wayback, esta lista NO es
-  // necesariamente completa: cubre solo los pares que Search Console mostró
-  // como ejemplo (12 de las 21 URLs marcadas 404; quedan ~9 sin identificar).
+  // Páginas sueltas: la lista completa de "Not found (404)" de Search Console
+  // (21 URLs, leída el 14 sep 2026). Quedan fuera /cdn-cgi/l/email-protection
+  // (artefacto de Cloudflare) y blog.inessentia.mx (otro host). El índice de
+  // Wayback Machine no tiene capturas de inessentia.mx, así que ésta es la
+  // única fuente para las páginas que no son posts.
   { from: '/sobre-mi.html', to: '/es/sobre-mi/', fuente: 'search-console' },
   { from: '/privacidad.html', to: '/es/privacidad/', fuente: 'search-console' },
   { from: '/testimonios.html', to: '/es/testimonios/', fuente: 'search-console' },
   { from: '/terapia-de-pareja.html', to: '/es/terapia/pareja/', fuente: 'search-console' },
   { from: '/terapia-individual.html', to: '/es/terapia/individual/', fuente: 'search-console' },
+  { from: '/terapia-familiar.html', to: '/es/terapia/familias/', fuente: 'search-console' },
+  { from: '/recursos.html', to: '/es/recursos/', fuente: 'search-console' },
   { from: '/red-inessentia.html', to: '/es/red-terapeutica/', fuente: 'search-console' },
+  { from: '/inessentia-network.html', to: '/en/therapist-network/', fuente: 'search-console' },
   { from: '/en/inessentia-network.html', to: '/en/therapist-network/', fuente: 'search-console' },
-  // .dc.html y mayúscula inicial delatan un artefacto de CMS viejo (Dreamweaver
-  // Contribute). Sin Wayback no hay forma de ver qué contenía — se manda al
-  // equivalente más cercano por nombre. APROXIMADA.
-  { from: '/Pareja.dc.html', to: '/es/terapia/pareja/', fuente: 'search-console', aproximada: true },
+  // Los .dc.html son lienzos de diseño que alguna vez quedaron publicados en el
+  // sitio (siguen en el historial de git con esos nombres).
+  { from: '/Pareja.dc.html', to: '/es/terapia/pareja/', fuente: 'search-console' },
+  { from: '/Blog-Primera-Cita.dc.html', to: '/es/blog/primera-cita/', fuente: 'search-console' },
 ];

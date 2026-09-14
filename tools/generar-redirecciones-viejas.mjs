@@ -16,10 +16,10 @@
 // Cada página generada lleva meta-refresh (funciona sin JS, que es el caso
 // común de un crawler o un navegador viejo siguiendo un enlace indexado),
 // canonical al destino (para que un motor de búsqueda transfiera la señal
-// de la URL vieja a la nueva) y noindex (para que la propia página de
-// redirección no compita en el índice). Se agrega location.replace() como
-// respaldo: en el fantástico caso de un user-agent que ejecute JS pero
-// ignore el meta-refresh, igual termina en el destino, y con replace() no
+// de la URL vieja a la nueva). Sin noindex: junto al canonical manda señales
+// contradictorias, y Google ya trata un meta-refresh de 0 s como redirección.
+// Se agrega location.replace() como respaldo: en el caso de un user-agent
+// que ejecute JS pero ignore el meta-refresh, igual termina en el destino, y con replace() no
 // deja la URL vieja en el historial de "atrás".
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -36,7 +36,6 @@ function paginaRedireccion(destino) {
 <meta charset="utf-8">
 <title>Redirigiendo…</title>
 <meta http-equiv="refresh" content="0; url=${destino}">
-<meta name="robots" content="noindex">
 <link rel="canonical" href="${destinoAbsoluta}">
 <script>location.replace(${JSON.stringify(destino)});</script>
 </head>
