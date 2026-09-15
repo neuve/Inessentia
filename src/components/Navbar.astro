@@ -348,12 +348,25 @@ document.addEventListener('DOMContentLoaded', function() {
   // --- Overlay / menú -------------------------------------------------------
   function openDesktop() {
     document.body.classList.add('menu-open');
-    if (overlay) overlay.classList.add('open');
+    if (overlay) {
+      overlay.classList.add('open');
+      // El aria-hidden inicial del .astro es fijo ("true"): al abrir hay que
+      // apagarlo, o los ~10 <a> de adentro (logo, links, email, RRSS) quedan
+      // marcados como ocultos para lectores de pantalla mientras están
+      // visibles y enfocables — justo al revés de lo que dice el atributo.
+      overlay.setAttribute('aria-hidden', 'false');
+    }
     if (ham) ham.setAttribute('aria-expanded', 'true');
   }
   function closeDesktop() {
     document.body.classList.remove('menu-open');
-    if (overlay) overlay.classList.remove('open');
+    if (overlay) {
+      overlay.classList.remove('open');
+      // Vuelve al estado de arranque: cerrado, invisible (opacity:0 sin
+      // display:none) y por eso los <a> de adentro siguen alcanzables con Tab
+      // si no se re-marcan como ocultos aquí.
+      overlay.setAttribute('aria-hidden', 'true');
+    }
     if (ham) ham.setAttribute('aria-expanded', 'false');
   }
   function openMobile() {
