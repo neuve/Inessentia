@@ -350,11 +350,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('menu-open');
     if (overlay) {
       overlay.classList.add('open');
-      // El aria-hidden inicial del .astro es fijo ("true"): al abrir hay que
-      // apagarlo, o los ~10 <a> de adentro (logo, links, email, RRSS) quedan
-      // marcados como ocultos para lectores de pantalla mientras están
-      // visibles y enfocables — justo al revés de lo que dice el atributo.
+      // El aria-hidden + inert iniciales del .astro son fijos ("true" /
+      // presente): al abrir hay que quitar los dos, o los ~10 <a> de adentro
+      // (logo, links, email, RRSS) quedan marcados como ocultos para
+      // lectores de pantalla Y fuera del tabulador mientras están visibles
+      // — justo al revés de lo que dicen esos atributos. `inert` es el que
+      // de verdad saca los enlaces del tabulador; `aria-hidden` solo era
+      // cosmético sin él (el contenedor sigue en `opacity:0`, no
+      // `display:none`, así que Tab llegaba igual a enlaces invisibles).
       overlay.setAttribute('aria-hidden', 'false');
+      overlay.inert = false;
     }
     if (ham) ham.setAttribute('aria-expanded', 'true');
   }
@@ -363,9 +368,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (overlay) {
       overlay.classList.remove('open');
       // Vuelve al estado de arranque: cerrado, invisible (opacity:0 sin
-      // display:none) y por eso los <a> de adentro siguen alcanzables con Tab
-      // si no se re-marcan como ocultos aquí.
+      // display:none) y con sus enlaces fuera del tabulador via `inert`.
       overlay.setAttribute('aria-hidden', 'true');
+      overlay.inert = true;
     }
     if (ham) ham.setAttribute('aria-expanded', 'false');
   }
