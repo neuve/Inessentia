@@ -154,6 +154,12 @@ async function generateHeroCrops() {
   return objectPositions;
 }
 
+// Nombres de recorte de hero (ver hero-crops.config.mjs) que SÍ deben llevar
+// escalera de anchos aunque vivan en hero-crops/ (NO_VARIANT_DIRS): son los
+// que un <Img> consume con srcset, a diferencia de los cinema de un solo
+// candidato que sirve un <picture><source>.
+const HERO_RESPONSIVE_NAMES = new Set(HERO_CROPS.filter((e) => e.srcset).map((e) => e.outName));
+
 async function main() {
   await fs.mkdir(OUT_ABS, { recursive: true });
   const heroCropPositions = await generateHeroCrops();
@@ -198,7 +204,8 @@ async function main() {
       const masterUrl = `/uploads/${OUT_DIR}/${masterName}`;
 
       const srcset = [];
-      const skipVariants = topDir && NO_VARIANT_DIRS.has(topDir);
+      const skipVariants =
+        topDir && NO_VARIANT_DIRS.has(topDir) && !HERO_RESPONSIVE_NAMES.has(parts[parts.length - 1]);
       if (!skipVariants) {
         const targets = WIDTHS.filter((w) => w >= MIN_VARIANT_WIDTH && w < intrinsicW);
         for (const w of targets) {

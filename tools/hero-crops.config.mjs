@@ -96,11 +96,24 @@ const SOBRE_MI = {
 // object-position. Si el recorte fuera más apaisado que la caja se invertiría:
 // ajustaría por alto, recortaría de ancho y el eje se saldría del tercio en
 // los teléfonos más altos.
+// `srcset: true` — a diferencia de los cinema (arriba), estos recortes NO se
+// consumen por un <source> de tamaño fijo: SiteHeader.astro los sirve con
+// <Img sizes="100vw" minWidth={768}>, el mismo componente que arma una
+// escalera de anchos para el resto del sitio. Sin esta marca, NO_VARIANT_DIRS
+// los trataba igual que los cinema (un solo candidato, el recorte completo),
+// así que un teléfono siempre bajaba el archivo entero sin importar su ancho
+// real — medido con Lighthouse: ~128 KiB de más en un Moto G Power. La marca
+// no cambia el recorte ni la caja de extracción (mismos left/top/width/height
+// de siempre): sólo le dice a generate-responsive-images.mjs que, además del
+// recorte a tamaño completo, redimensione ESE MISMO buffer ya recortado a la
+// escalera de WIDTHS normal — el encuadre no puede desalinearse porque nace
+// del mismo extract, sólo se reescala hacia abajo.
 const HOME_MOVIL = {
   master: 'patricio-ruiz-retrato.webp',
   outName: 'patricio-ruiz-retrato-hero-movil.webp',
   extract: { left: 0, top: 371, width: 1287, height: 1866 },
   eyesY: 993,
+  srcset: true,
 };
 
 const SOBRE_MI_MOVIL = {
@@ -108,6 +121,7 @@ const SOBRE_MI_MOVIL = {
   outName: 'patricio-ruiz-retrato-2-hero-movil.webp',
   extract: { left: 0, top: 491, width: 1193, height: 1730 },
   eyesY: 1068,
+  srcset: true,
 };
 
 // Rutas públicas (bajo public/uploads/) que consumen las páginas vía

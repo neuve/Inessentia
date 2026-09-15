@@ -320,6 +320,34 @@
     "height": 1730,
     "srcset": [
       {
+        "w": 96,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-96.d777932d.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-192.8c992429.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-320.7d6c8226.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-480.e75f3317.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-640.4f203324.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-768.dbea20c9.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil-960.b74e0010.webp"
+      },
+      {
         "w": 1193,
         "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-2-hero-movil.c49b367e.webp"
       }
@@ -343,6 +371,38 @@
     "width": 1287,
     "height": 1866,
     "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-96.06f6ec1b.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-192.aa75a0c1.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-320.9334b355.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-480.0348339e.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-640.a592ab9c.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-768.c9eb0153.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-960.9e53d9e7.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil-1200.8a8c5cc9.webp"
+      },
       {
         "w": 1287,
         "url": "/uploads/responsive/hero-crops-patricio-ruiz-retrato-hero-movil.09395583.webp"
