@@ -1,7 +1,7 @@
 {
   "site": {
-    "title": "Somatic-based therapy in Mexico City & Online | Patricio Ruiz",
-    "description": "Somatic-based therapy in Mexico City and online, with nervous-system regulation as the foundation. Individual, couples and family, in Spanish or English."
+    "title": "Body-centered therapy in Mexico City & Online | Patricio Ruiz",
+    "description": "Body-centered therapy in Mexico City and online, with nervous-system regulation as the foundation. Individual, couples and family, in Spanish or English."
   },
   "nav": {
     "home": "Home",
@@ -28,8 +28,8 @@
     "searchPlaceholder": "Search the site…"
   },
   "hero": {
-    "label": "Trauma-sensitive body-based therapy",
-    "title": "Come home to peace.",
+    "label": "Trauma-informed body-centered therapy",
+    "title": "Come back home in peace.",
     "subtitle": "I support teens and adults in somatically transforming stress, anxiety, and physical symptoms.",
     "meta": "In person in Mexico City, Nápoles · Online",
     "cta": "Book Your First Session",
@@ -37,14 +37,14 @@
   },
   "approach": {
     "label": "The approach",
-    "title": "What is somatic-based therapy and how can it help you?",
-    "p1": "Somatic-based therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
+    "title": "What is body-centered therapy and how can it help you?",
+    "p1": "Body-centered therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
     "p2": "My work helps you gain clarity of thought, emotion, and action, reduce anxiety levels, and better manage the stress that accumulates in your body. My ultimate goal is to empower you so that you don't depend on therapy to stay self-regulated.",
     "link": "Learn about the approaches I use"
   },
   "modalities": {
     "label": "How I work",
-    "title": "A space for every bond",
+    "title": "A space for every relationship",
     "individual": {
       "title": "Individual Therapy",
       "desc": "Teens and adults. Processes to reconnect with your body, listen to and process your emotions, and support you in deciding and taking action from a clearer place.",
@@ -68,7 +68,7 @@
   },
   "podcast": {
     "label": "A gift for you",
-    "title": "Listen to my podcast: what somatic-based therapy is all about",
+    "title": "Listen to my podcast: what body-centered therapy is all about",
     "desc": "An episode that explains in depth what my therapeutic approach focuses on and how it works.",
     "namePlaceholder": "What's your name?",
     "nameLabel": "Your name",
