@@ -819,6 +819,16 @@ form .btn, .form-wrap .btn, .form-field .btn {
   color: var(--text-faint);
   margin: 0;
 }
+/* Precio en otra moneda junto al principal: mismo peso que .price-was, sin
+   tachar — no es un "antes", es la cifra equivalente para pagar con tarjeta. */
+.price-alt {
+  font-family: var(--ff-head);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-faint);
+  margin: 0;
+}
 .price-now {
   font-family: var(--ff-head);
   font-weight: 700;
