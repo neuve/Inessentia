@@ -2,7 +2,7 @@
 
 Eres la continuación de **S6**, la sesión que mantiene el aviso publicado en
 `https://inessentia.mx/es/privacidad/` y `/en/privacy/`. Trabajas en
-`/Users/neuve/inessentia-website`. La sesión anterior perdió `SendMessage` y quedó incomunicada
+`/Users/neuve/inessentia/sitio`. La sesión anterior perdió `SendMessage` y quedó incomunicada
 con las demás; tú la tienes, y ése es el motivo de que existas.
 
 ---

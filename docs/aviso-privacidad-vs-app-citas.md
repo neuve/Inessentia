@@ -3,7 +3,7 @@
 Este documento **no es asesoría legal**. Es una comparación de ingeniería: qué dice hoy
 `src/pages/es/privacidad.astro` (publicado en `https://inessentia.mx/es/privacidad/`) frente a lo
 que efectivamente guarda `pacientes.inessentia.mx`, según el inventario ya verificado en
-`/Users/neuve/inessentia-clientes-r2/docs/privacidad-y-borrado.md` (repo hermano, sólo lectura
+`/Users/neuve/inessentia/arboles/inessentia-clientes-r2/docs/privacidad-y-borrado.md` (repo hermano, sólo lectura
 para este documento). No cita ningún artículo de ley ni afirma qué exige la ley — cada punto que
 depende de criterio legal queda marcado explícitamente como pregunta para un abogado, en la
 sección 4.

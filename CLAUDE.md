@@ -136,13 +136,19 @@ Por eso S1 no empuja a `origin/main` sin la autorización de Patricio **de esa v
 en su propio canal, con lo que va a salir delante (commits y páginas tocadas). Integrar y
 verificar en local no la necesita.
 
+`deploy.yml` no filtra rutas: una rama que sólo toca `CLAUDE.md` o `docs/` también dispara un
+deploy, que republica el mismo sitio. Ese run verde no significa que cambió algo en producción.
+
 ### 13.b S1 verifica REHACIENDO
 
-1. **Worktree propio desde `origin/main` fresco**; nunca el árbol de otra sesión.
+1. **La puerta se corre en un worktree limpio desde `origin/main` fresco**, nunca en el árbol de
+   otra sesión ni en `~/inessentia/sitio` (puede tener cambios sin comitear que ensucian el build).
+   `~/inessentia/sitio` es donde S1 mueve y empuja `main`.
 2. `git fetch`; `origin/main` tiene que ser ancestro de la rama. Si no, rebasa S1 y vuelve a verificar.
 3. **Rehace la medición**: `npm run build` (lee el veredicto entero), diff contra `main`, y mira
    cada página tocada **en `/es/` y en `/en/`**. Si la rama toca estadísticas,
    `npm run data:diez-anos -- --check`. Todo con control positivo (CLAUDE.md global §3).
+   Si la rama sólo toca `CLAUDE.md` o `docs/`, basta build + diff.
 4. Si encuentra algo que arreglar, se lo manda a quien escribió la rama con archivo y línea; no lo
    escribe S1 salvo que sea de una línea y nadie vaya a volver por la rama (y lo dice como hallazgo suyo).
 5. Lo normativo —un texto que lee una paciente o un posible paciente, precios, privacidad, datos
