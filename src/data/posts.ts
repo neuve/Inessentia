@@ -380,7 +380,7 @@ export const posts: PostEntry[] = [
     slugEs: 'presencia-alianza-mirada-permiso',
     heroImage: '/uploads/supervision-grupo-sala.webp',
     heroAlt: {
-      es: 'Cinco personas conversan en semicírculo en una sala con lámparas cálidas, alfombra de colores y una pila de libros en el centro; varias toman notas',
+      es: 'Imagen generada con IA: un grupo de supervisión terapéutica conversa en semicírculo sobre un caso clínico, en una sala con lámparas cálidas; varias personas toman notas.',
     },
     heroPosition: 'center 62%',
     es: { title: 'Presencia, alianza, mirada y permiso', description: 'Una introducción a la supervisión grupal: los cuatro niveles de un arco terapéutico y lo que nos ofrecemos entre terapeutas al supervisar.', category: 'Proceso terapéutico', disqusIdentifier: '/blog-presencia-alianza-mirada-permiso.html' },
