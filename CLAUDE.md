@@ -66,6 +66,7 @@ es el único lugar que hay que tocar para que TypeScript lo vea.
 - Internal links must use locale-prefixed paths: `/es/terapia/individual/`, `/en/therapy/individual/`.
 - Blog post Disqus identifiers use the OLD URL paths (e.g., `/blog-que-esperar-de-la-terapia.html`) to preserve comment threads.
 - Images live in `public/uploads/` and are referenced as `/uploads/filename.webp`.
+- Originals of published images (full-size, not served) live in `originales/`, outside `public/`.
 - The `data-reveal` attribute triggers scroll-based reveal animations via `RevealOnScroll.astro`.
 
 ## Design Tokens
@@ -136,8 +137,9 @@ Por eso S1 no empuja a `origin/main` sin la autorización de Patricio **de esa v
 en su propio canal, con lo que va a salir delante (commits y páginas tocadas). Integrar y
 verificar en local no la necesita.
 
-`deploy.yml` no filtra rutas: una rama que sólo toca `CLAUDE.md` o `docs/` también dispara un
-deploy, que republica el mismo sitio. Ese run verde no significa que cambió algo en producción.
+`deploy.yml` ignora los push que sólo tocan `CLAUDE.md`, `docs/` u `originales/` (decisión de
+Patricio, 2026-09-29): esos no disparan deploy, así que no hay run que esperar. Un push que mezcla
+esas rutas con otras sí despliega.
 
 ### 13.b S1 verifica REHACIENDO
 
@@ -148,7 +150,7 @@ deploy, que republica el mismo sitio. Ese run verde no significa que cambió alg
 3. **Rehace la medición**: `npm run build` (lee el veredicto entero), diff contra `main`, y mira
    cada página tocada **en `/es/` y en `/en/`**. Si la rama toca estadísticas,
    `npm run data:diez-anos -- --check`. Todo con control positivo (CLAUDE.md global §3).
-   Si la rama sólo toca `CLAUDE.md` o `docs/`, basta build + diff.
+   Si la rama sólo toca `CLAUDE.md`, `docs/` u `originales/`, basta build + diff, y no habrá deploy.
 4. Si encuentra algo que arreglar, se lo manda a quien escribió la rama con archivo y línea; no lo
    escribe S1 salvo que sea de una línea y nadie vaya a volver por la rama (y lo dice como hallazgo suyo).
 5. Lo normativo —un texto que lee una paciente o un posible paciente, precios, privacidad, datos

@@ -3,6 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+    # Lo que no cambia el sitio no lo republica (CLAUDE.md §13.a).
+    paths-ignore:
+      - "CLAUDE.md"
+      - "docs/**"
+      - "originales/**"
   workflow_dispatch:
 
 permissions:
