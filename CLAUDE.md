@@ -111,44 +111,89 @@ Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--b
 
 Fonts: **Mulish** (body), **Bitter 700** (headings) — both self-hosted woff2 in `public/fonts/`. GA: G-LWCY1M4Y9T. Disqus shortname: inessentia.
 
-## §13. La flota
+## §13. La flota y la integradora (S1)
+
+Adaptado de `agenda` (CLAUDE.md §13–§14, `origin/main` 43696d42), a la escala de este repo.
 
 | Rol | Qué hace |
 |---|---|
-| 🧭 S0 | Dirige: decide qué se publica y qué significa una norma ante un caso ambiguo; redacta encargos con la decisión ya tomada; engendra lo caro. Sólo hay una. |
-| 🧠 S1 | Integra: **la única que mueve `main`**. Verifica rehaciendo (build, diff, mirar la página), no leyendo reportes. Sólo hay una. |
-| 👀 SX | Sightseer: coordina un plan de varias piezas. |
+| 🧭 S0 | Dirige: decide el producto y el ORDEN del trabajo, contesta lo normativo preguntándole a Patricio en su propio canal, redacta encargos con la decisión ya tomada, aplica el filtro de modelo (§14). No integra ni empuja a `main`. Sólo hay una. |
+| 🧠 S1 | Integra: **la única que mueve `main`**. Verifica rehaciendo, no leyendo reportes. Sólo hay una, en Opus. |
+| 👀 SX | Sightseer: coordina un plan de varias piezas; no integra. |
 | 👾 AX | Drone: una tarea, una rama, un reporte. |
 | 🫅 QX | La reina: sólo engendra, en Sonnet, y pone números. **Hoy no hay una viva** (§14). |
 
-- **`main` es producción.** `deploy.yml` publica inessentia.mx en cada push a `main`. Por eso
-  S1 no empuja a `origin/main` sin la autorización de Patricio **de esa vez**, con lo que va a
-  salir delante (commits y páginas tocadas). Integrar localmente y verificar no la necesita.
-  Tras empujar, S1 confirma el SHA remoto y que el despliegue terminó verde.
+Ninguna sesión que no sea S1 empuja a `main` ni borra una rama remota ajena. Nadie decide cuándo
+se para el trabajo: eso es de Patricio.
+
+### 13.a `main` es producción
+
+`.github/workflows/deploy.yml` publica inessentia.mx (GitHub Pages) en **cada push a `main`**.
+No hay Netlify ni Cloudflare en este repo; si aparece una dependencia de Netlify, está vetada
+(decisión de Patricio, 2026-09-29) y se migra a Cloudflare.
+
+Por eso S1 no empuja a `origin/main` sin la autorización de Patricio **de esa vez**, preguntada
+en su propio canal, con lo que va a salir delante (commits y páginas tocadas). Integrar y
+verificar en local no la necesita.
+
+### 13.b S1 verifica REHACIENDO
+
+1. **Worktree propio desde `origin/main` fresco**; nunca el árbol de otra sesión.
+2. `git fetch`; `origin/main` tiene que ser ancestro de la rama. Si no, rebasa S1 y vuelve a verificar.
+3. **Rehace la medición**: `npm run build` (lee el veredicto entero), diff contra `main`, y mira
+   cada página tocada **en `/es/` y en `/en/`**. Si la rama toca estadísticas,
+   `npm run data:diez-anos -- --check`. Todo con control positivo (CLAUDE.md global §3).
+4. Si encuentra algo que arreglar, se lo manda a quien escribió la rama con archivo y línea; no lo
+   escribe S1 salvo que sea de una línea y nadie vaya a volver por la rama (y lo dice como hallazgo suyo).
+5. Lo normativo —un texto que lee una paciente o un posible paciente, precios, privacidad, datos
+   de la práctica— se pregunta a Patricio en el canal de S1, aunque otra sesión relate que él ya
+   dijo que sí. Un permiso relatado no es una autorización.
+
+### 13.c Integrar, verificar el despliegue, cerrar
+
+    git push origin <SHA-exacto>:refs/heads/main
+    git fetch origin && git rev-parse --short origin/main     # comprueba que se movió
+
+No se dice «desplegado» hasta que el workflow de Pages concluya en verde:
+
+    gh run list --workflow deploy.yml --limit 3
+    gh api repos/neuve/Inessentia/commits/<SHA>/check-runs --jq '.check_runs[] | "\(.name) \(.conclusion)"'
+
+Una rama remota se borra sólo si su CONTENIDO ya está en `main`, nunca por ancestría de SHA.
+Tras cada integración, S1 contesta a quien le mandó la rama con el SHA de `main`.
+
+### 13.d Reglas comunes
+
 - **Serie de números de este repo: empieza en A1** (S2 para Sightseers). Independiente de agenda
-  y de casos.
-- **Cada sesión abre su propio árbol**: `git worktree add -b <rama> ../sitio-<rama> main`.
-  Nadie trabaja en el árbol de otra, ni en `~/inessentia/sitio`, que es de S1.
-- **Los reportes se dirigen con el nombre completo** tal como lo imprime ListAgents, nunca «a S1».
-  Un reporte de rama lleva: rama, SHA, lo medido (con qué), lo que falta.
+  y de casos. Un número gastado no se recicla aunque su sesión esté archivada.
+- **Cada sesión abre su propio árbol**: `git worktree add -b <rama> ../sitio-<rama> origin/main`.
+  `~/inessentia/sitio` es de S1.
+- **Los reportes se dirigen con el nombre completo** que imprime ListAgents, nunca «a S1». Llevan
+  SHA exacto y separan lo medido, lo inferido y lo recomendado.
+- Subagente (`Agent`) para lo que se resuelve dentro de un turno y no deja rama; sesión aparte
+  (`spawn_task`) para todo lo que deja rama o necesita una decisión de Patricio en el camino.
 
 ## §14. El filtro del modelo (se hace ANTES de engendrar)
 
+Una sesión **hereda el modelo de quien la engendra**, y eso no se escribe en ningún sitio. El
+fallo no es elegir mal: es no elegir. Por eso, antes de picar:
+
 ¿La tarea tiene una decisión difícil adentro? (qué se dice en público de la práctica, si un texto
-toca privacidad o datos de pacientes, cómo se reparte un rediseño, si algo contradice el sistema
-de diseño)
+toca privacidad, cómo se reparte un rediseño, si algo contradice el sistema de diseño)
 
 - **SÍ** → la engendra S0 o S1, en Opus, con la razón escrita en el encargo.
 - **NO, y se resuelve en un turno** (leer, comparar, auditar) → subagente `Agent` con
   `model: "sonnet"`: sólo lectura, toda afirmación con `archivo:línea`, que quien lo lanzó comprueba.
-- **NO, y produce rama** → sin reina viva: S0 pica la sesión, que nace en Opus porque hereda; el
-  encargo trae «Al nacer, comprueba tu modelo. Si no es Sonnet, detente y avísale a S0; no
-  trabajes.»; S0 le baja el modelo con `set_session_model` y la reanuda. Si se pican seguido, se
-  levanta una 🫅 QX en Sonnet.
+- **NO, y produce rama** → sin reina viva: S0 pica la sesión con la línea «Al nacer, comprueba tu
+  modelo. Si no es Sonnet, detente y avísale a S0 por SendMessage; no trabajes.»; S0 le baja el
+  modelo con `set_session_model` y la reanuda. Si se pican seguido, se levanta una 🫅 QX en Sonnet.
+
+Un Drone que no ve modelo en su encargo no lo sube por su cuenta; si cree que necesita más, lo
+argumenta en su reporte.
 
 **Números.** Mientras no hay reina los pone S0, y sólo S0: lee `list_sessions` con
-`include_archived: true` (y `ListAgents`) **justo antes de picar**, toma el siguiente de la serie
-y no recicla uno gastado.
+`include_archived: true` (y `ListAgents`) **justo antes de picar**. Sin padrón `.tsv` por ahora:
+con un solo asignador no hay carrera.
 
 **Tope de 7.** Cuentan AX y SX de este repo en cualquier estado, `idle` incluido, y el chip ya
 picado que aún no arranca. No cuentan S0, S1, QX ni otros repos. Una cuenta baja no abre ranura;
