@@ -378,11 +378,11 @@ export const posts: PostEntry[] = [
     // Sólo en español (decisión de Patricio, 2026-09-29): sin slugEn ni en.
     cardBlurb: { es: 'Los cuatro niveles de un arco terapéutico, y lo que nos toca mirar en supervisión.' },
     slugEs: 'presencia-alianza-mirada-permiso',
-    heroImage: '/uploads/supervision-grupo-conversacion.webp',
+    heroImage: '/uploads/supervision-grupo-sala.webp',
     heroAlt: {
-      es: 'Conversación de supervisión entre practicantes en Inessentia',
+      es: 'Cinco personas conversan en semicírculo en una sala con lámparas cálidas, alfombra de colores y una pila de libros en el centro; varias toman notas',
     },
-    heroPosition: 'center 30%',
+    heroPosition: 'center 62%',
     es: { title: 'Presencia, alianza, mirada y permiso', description: 'Una introducción a la supervisión grupal: los cuatro niveles de un arco terapéutico y lo que nos ofrecemos entre terapeutas al supervisar.', category: 'Proceso terapéutico', disqusIdentifier: '/blog-presencia-alianza-mirada-permiso.html' },
     next: null,
   },

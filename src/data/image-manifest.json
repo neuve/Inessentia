@@ -1584,6 +1584,57 @@
     ],
     "src": "/uploads/responsive/supervision-grupo-conversacion.d5d1fff0.webp"
   },
+  "/uploads/supervision-grupo-sala.webp": {
+    "width": 2000,
+    "height": 1123,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/supervision-grupo-sala-96.bcf61a60.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/supervision-grupo-sala-192.5208d460.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/supervision-grupo-sala-320.75f037e6.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/supervision-grupo-sala-480.1cec0b08.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/supervision-grupo-sala-640.af6e9823.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/supervision-grupo-sala-768.8246f3a7.webp"
+      },
+      {
+        "w": 960,
+        "url": "/uploads/responsive/supervision-grupo-sala-960.483a05bd.webp"
+      },
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/supervision-grupo-sala-1200.d0a3b9f4.webp"
+      },
+      {
+        "w": 1600,
+        "url": "/uploads/responsive/supervision-grupo-sala-1600.4bceefd2.webp"
+      },
+      {
+        "w": 1920,
+        "url": "/uploads/responsive/supervision-grupo-sala-1920.32e271bb.webp"
+      },
+      {
+        "w": 2000,
+        "url": "/uploads/responsive/supervision-grupo-sala.ba956d93.webp"
+      }
+    ],
+    "src": "/uploads/responsive/supervision-grupo-sala.ba956d93.webp"
+  },
   "/uploads/supervision-grupos-trabajando.webp": {
     "width": 1800,
     "height": 1290,
