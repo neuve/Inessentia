@@ -110,3 +110,49 @@ usado en blog, términos y privacidad.
 Shared classes: `.section`(+`--cream`/`--purple`), `.container`(+`--narrow`/`--blog`/`--read`), `.section-header`, `.heading-section`(+`--on-dark`), `.label-section`(+`--on-dark`/`--plain`), `.body-text`(+`--on-dark`), `.btn`(+`--primary`/`--wine`/`--gold`/`--secondary`), `.card`, `.page-header--soft`, `.form-*`, `.link-underline` (enlace suelto, 15px fijo) / `.link-inline` (enlace incrustado en un párrafo, hereda tamaño), `.icon-disc`.
 
 Fonts: **Mulish** (body), **Bitter 700** (headings) — both self-hosted woff2 in `public/fonts/`. GA: G-LWCY1M4Y9T. Disqus shortname: inessentia.
+
+## §13. La flota
+
+| Rol | Qué hace |
+|---|---|
+| 🧭 S0 | Dirige: decide qué se publica y qué significa una norma ante un caso ambiguo; redacta encargos con la decisión ya tomada; engendra lo caro. Sólo hay una. |
+| 🧠 S1 | Integra: **la única que mueve `main`**. Verifica rehaciendo (build, diff, mirar la página), no leyendo reportes. Sólo hay una. |
+| 👀 SX | Sightseer: coordina un plan de varias piezas. |
+| 👾 AX | Drone: una tarea, una rama, un reporte. |
+| 🫅 QX | La reina: sólo engendra, en Sonnet, y pone números. **Hoy no hay una viva** (§14). |
+
+- **`main` es producción.** `deploy.yml` publica inessentia.mx en cada push a `main`. Por eso
+  S1 no empuja a `origin/main` sin la autorización de Patricio **de esa vez**, con lo que va a
+  salir delante (commits y páginas tocadas). Integrar localmente y verificar no la necesita.
+  Tras empujar, S1 confirma el SHA remoto y que el despliegue terminó verde.
+- **Serie de números de este repo: empieza en A1** (S2 para Sightseers). Independiente de agenda
+  y de casos.
+- **Cada sesión abre su propio árbol**: `git worktree add -b <rama> ../sitio-<rama> main`.
+  Nadie trabaja en el árbol de otra, ni en `~/inessentia/sitio`, que es de S1.
+- **Los reportes se dirigen con el nombre completo** tal como lo imprime ListAgents, nunca «a S1».
+  Un reporte de rama lleva: rama, SHA, lo medido (con qué), lo que falta.
+
+## §14. El filtro del modelo (se hace ANTES de engendrar)
+
+¿La tarea tiene una decisión difícil adentro? (qué se dice en público de la práctica, si un texto
+toca privacidad o datos de pacientes, cómo se reparte un rediseño, si algo contradice el sistema
+de diseño)
+
+- **SÍ** → la engendra S0 o S1, en Opus, con la razón escrita en el encargo.
+- **NO, y se resuelve en un turno** (leer, comparar, auditar) → subagente `Agent` con
+  `model: "sonnet"`: sólo lectura, toda afirmación con `archivo:línea`, que quien lo lanzó comprueba.
+- **NO, y produce rama** → sin reina viva: S0 pica la sesión, que nace en Opus porque hereda; el
+  encargo trae «Al nacer, comprueba tu modelo. Si no es Sonnet, detente y avísale a S0; no
+  trabajes.»; S0 le baja el modelo con `set_session_model` y la reanuda. Si se pican seguido, se
+  levanta una 🫅 QX en Sonnet.
+
+**Números.** Mientras no hay reina los pone S0, y sólo S0: lee `list_sessions` con
+`include_archived: true` (y `ListAgents`) **justo antes de picar**, toma el siguiente de la serie
+y no recicla uno gastado.
+
+**Tope de 7.** Cuentan AX y SX de este repo en cualquier estado, `idle` incluido, y el chip ya
+picado que aún no arranca. No cuentan S0, S1, QX ni otros repos. Una cuenta baja no abre ranura;
+sólo una que llegue a 7 cierra. Ante duda, no se pica.
+
+Todo encargo lleva además: compactar al ~66 % sin esperar el aviso, y dirección de reporte con
+nombre completo.
