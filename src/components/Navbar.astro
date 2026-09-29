@@ -1,6 +1,6 @@
 ---
 import { t, barLinks, type Locale } from '../i18n/utils';
-import { posts, postHref } from '../data/posts';
+import { postsIn, postHref } from '../data/posts';
 import Img from './Img.astro';
 
 interface Props {
@@ -22,8 +22,8 @@ const links = barLinks(locale);
 // Blog entries for the site search index, generated from the single source
 // of truth in data/posts.ts so a new post can never be missing from search.
 const searchBlogEntries = {
-  es: posts.map(p => ({ title: p.es.title, desc: p.cardBlurb?.es ?? p.es.description, href: postHref('es', p.id) })),
-  en: posts.map(p => ({ title: p.en.title, desc: p.cardBlurb?.en ?? p.en.description, href: postHref('en', p.id) })),
+  es: postsIn("es").map(p => ({ title: p.es.title, desc: p.cardBlurb?.es ?? p.es.description, href: postHref('es', p.id) })),
+  en: postsIn("en").map(p => ({ title: p.en!.title, desc: p.cardBlurb?.en ?? p.en!.description, href: postHref('en', p.id) })),
 };
 ---
 

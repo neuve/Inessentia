@@ -10,14 +10,15 @@ export interface PostLocaleMeta {
 export interface PostEntry {
   id: string;
   slugEs: string;
-  slugEn: string;
+  /** sin slugEn/en la entrada es sólo en español: no existe en /en/, no entra al índice ni a la búsqueda del inglés */
+  slugEn?: string;
   heroImage: string;
-  heroAlt: { es: string; en: string };
+  heroAlt: { es: string; en?: string };
   heroPosition: string;
   /** small credit/caption line shown under the hero image on the full post view only */
   heroCaption?: { es: string; en: string };
   /** short teaser shown on the resources/recursos card grid (distinct from the meta description) */
-  cardBlurb?: { es: string; en: string };
+  cardBlurb?: { es: string; en?: string };
   /** overrides heroPosition just for the card thumbnail, when the card crop differs from the post's own hero crop */
   cardHeroPosition?: { es?: string; en?: string };
   /** overrides heroAlt just for the card thumbnail, when it differs from the post's own hero alt */
@@ -27,7 +28,7 @@ export interface PostEntry {
   /** looping muted clip that plays over the card thumbnail on hover */
   cardVideo?: { mp4: string; webm: string };
   es: PostLocaleMeta;
-  en: PostLocaleMeta;
+  en?: PostLocaleMeta;
   /** id of the post this one links to via "read next", or null for standalone hub posts */
   next: string | null;
 }
@@ -372,10 +373,32 @@ export const posts: PostEntry[] = [
     en: { title: 'Many ways in: the approaches I integrate in session', description: 'An overview of the approaches I integrate — Somatic Experiencing, IFS, Tapping/EFT and Core Energetics — and how I choose among them in each process.', category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-types-of-therapy.html' },
     next: null,
   },
+  {
+    id: 'presencia-alianza-mirada-permiso',
+    // Sólo en español (decisión de Patricio, 2026-09-29): sin slugEn ni en.
+    cardBlurb: { es: 'Los cuatro niveles de un arco terapéutico, y lo que nos toca mirar en supervisión.' },
+    slugEs: 'presencia-alianza-mirada-permiso',
+    heroImage: '/uploads/supervision-grupo-conversacion.webp',
+    heroAlt: {
+      es: 'Conversación de supervisión entre practicantes en Inessentia',
+    },
+    heroPosition: 'center 30%',
+    es: { title: 'Presencia, alianza, mirada y permiso', description: 'Una introducción a la supervisión grupal: los cuatro niveles de un arco terapéutico y lo que nos ofrecemos entre terapeutas al supervisar.', category: 'Proceso terapéutico', disqusIdentifier: '/blog-presencia-alianza-mirada-permiso.html' },
+    next: null,
+  },
 ];
 
 export function getPost(id: string): PostEntry | undefined {
   return posts.find(p => p.id === id);
+}
+
+/** ¿La entrada existe en este idioma? (las entradas sólo en español no tienen par en inglés) */
+export function hasLocale(p: PostEntry, locale: Locale): boolean {
+  return locale === 'es' ? true : Boolean(p.en && p.slugEn);
+}
+
+export function postsIn(locale: Locale): PostEntry[] {
+  return posts.filter(p => hasLocale(p, locale));
 }
 
 export function getPostBySlug(locale: Locale, slug: string): PostEntry | undefined {
@@ -385,6 +408,7 @@ export function getPostBySlug(locale: Locale, slug: string): PostEntry | undefin
 export function postHref(locale: Locale, id: string): string {
   const p = getPost(id);
   if (!p) return '#';
+  if (!hasLocale(p, locale)) return '#';
   const slug = locale === 'es' ? p.slugEs : p.slugEn;
   return `/${locale}/blog/${slug}/`;
 }
@@ -393,8 +417,8 @@ export function nextPostFor(id: string, locale: Locale): { href: string; label: 
   const p = getPost(id);
   if (!p || !p.next) return null;
   const n = getPost(p.next);
-  if (!n) return null;
-  return { href: postHref(locale, n.id), label: n[locale].title };
+  if (!n || !hasLocale(n, locale)) return null;
+  return { href: postHref(locale, n.id), label: n[locale]!.title };
 }
 
 // Display order for the /recursos/ and /resources/ card grid, excluding
@@ -420,10 +444,11 @@ export const resourcesGridOrder: string[] = [
   'terapia-individual-o-pareja',
   'terapia-presencial-vs-online',
   'trauma-sin-diagnosticar',
+  'presencia-alianza-mirada-permiso',
 ];
 
-export function getResourcesGrid(): PostEntry[] {
-  return resourcesGridOrder.map(id => getPost(id)!).filter(Boolean);
+export function getResourcesGrid(locale: Locale): PostEntry[] {
+  return resourcesGridOrder.map(id => getPost(id)!).filter(Boolean).filter(p => hasLocale(p, locale));
 }
 
 // --- Tag taxonomy for the resources filter -------------------------------
@@ -469,6 +494,7 @@ export const postTags: Record<string, string[]> = {
   'terapia-presencial-vs-online':    ['start'],
   'psicologo-psicoterapeuta-psiquiatra': ['start'],
   'tipos-de-terapia':                ['approaches', 'start'],
+  'presencia-alianza-mirada-permiso': ['approaches'],
 };
 
 export function tagKeysFor(id: string): string[] {

@@ -130,6 +130,14 @@ for (const file of files) {
     seenInFile.add(url);
     if (ALLOWLIST.has(url)) continue;
     if (isHashed(url)) continue;
+    // Ruta que es sólo la cola de una URL de OTRO sitio (p. ej. el PDF de una
+    // referencia en pathwork.org/wp-content/uploads/...): el regex la ve como
+    // /uploads/, pero no es un archivo nuestro ni lo sirve nuestro CDN.
+    if (!/^https?:/.test(url)) {
+      const before = content.slice(Math.max(0, match.index - 300), match.index);
+      const host = before.match(/https?:\/\/([a-zA-Z0-9.-]+)[^\s"'<>()]*$/);
+      if (host && host[1] !== 'inessentia.mx' && host[1] !== 'www.inessentia.mx') continue;
+    }
     violations.push({ file: path.relative(ROOT, file), url });
   }
 }

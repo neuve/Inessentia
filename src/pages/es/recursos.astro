@@ -18,8 +18,8 @@ const featured = featuredIds
     href: postHref(locale, p.id),
     img: p.heroImage,
     pos: p.heroPosition,
-    cat: p[locale].category,
-    title: p[locale].title,
+    cat: p[locale]!.category,
+    title: p[locale]!.title,
   }));
 
 // Filtro por categoría editorial (orden 1b). "Todos" + las 5 categorías reales.
@@ -35,17 +35,17 @@ const tilePalettes = [
 ];
 let tileIdx = 0;
 
-const grid = getResourcesGrid().map((p, k) => {
+const grid = getResourcesGrid(locale).map((p, k) => {
   const photo = !p.heroImage.endsWith('.svg');
   const pal = photo ? null : tilePalettes[tileIdx++ % tilePalettes.length];
   return {
     href: postHref(locale, p.id),
     img: p.cardImage ?? p.heroImage,
     pos: p.cardHeroPosition?.[locale] ?? p.heroPosition,
-    cat: p[locale].category,
-    title: p[locale].title,
-    blurb: p.cardBlurb?.[locale] ?? p[locale].description,
-    alt: p.cardAlt?.[locale] ?? p.heroAlt[locale],
+    cat: p[locale]!.category,
+    title: p[locale]!.title,
+    blurb: p.cardBlurb?.[locale] ?? p[locale]!.description,
+    alt: p.cardAlt?.[locale] ?? p.heroAlt[locale]!,
     // cardVideo se consume en <source src=...> crudo (fuera de <Img>), así que
     // hay que resolverlo aquí para que apunte a la copia hasheada.
     video: p.cardVideo ? { mp4: resolveAsset(p.cardVideo.mp4), webm: resolveAsset(p.cardVideo.webm) } : undefined,

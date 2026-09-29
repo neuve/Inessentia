@@ -32,6 +32,8 @@ interface Props {
   disqusIdentifier: string;
   nextPost?: { href: string; label: string };
   videos?: VideoSchema[];
+  /** entrada sin par en el otro idioma: no emite hreflang cruzado */
+  noAltLocale?: boolean;
 }
 
 const {
@@ -50,6 +52,7 @@ const {
   disqusIdentifier,
   nextPost,
   videos,
+  noAltLocale = false,
 } = Astro.props;
 
 // min-height + object-fit cubren el caso de imágenes muy panorámicas que en
@@ -92,7 +95,7 @@ const schema = {
 const authorSchema = personSchema(locale);
 ---
 
-<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} ogImage={ogImage} schema={schema} nav="solid" extraSchemas={[
+<Base title={`${title} | Blog Inessentia`} description={description} altPath={altPath} ogImage={ogImage} schema={schema} nav="solid" noAltLocale={noAltLocale} extraSchemas={[
   authorSchema,
   ...(videos?.map(v => ({
     "@context": "https://schema.org",
