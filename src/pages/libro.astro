@@ -31,6 +31,7 @@ import { LIBRO_API } from '../data/libro-config';
     .lb-err{display:none;font-size:.78rem;color:#E4A0A0;margin-top:6px}
     .lb-err.on{display:block}
     .form-input[readonly]{opacity:.7;cursor:default}
+    .lb-nota{font-size:var(--fs-small);color:var(--text-faint);line-height:var(--lh-body);margin:0 0 var(--sp-4)}
     .lb-count{font-size:.72rem;color:var(--text-faint);text-align:right;margin-top:4px}
     .lb-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .form-msg{display:none;margin:0 0 var(--sp-5);font-size:.88rem;line-height:1.5}
@@ -160,6 +161,8 @@ import { LIBRO_API } from '../data/libro-config';
           <div class="lb-count"><span id="ref-count">0</span>/50</div>
           <div class="lb-err" data-err="referencias"></div>
         </div>
+
+        <p class="lb-nota">Usaremos tus datos sólo para enviarte el libro; después del envío los borraremos.</p>
 
         <button type="submit" class="btn btn--wine" id="lb-submit">Registrar mi pedido</button>
       </form>
