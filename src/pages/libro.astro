@@ -3,7 +3,7 @@
 // Sólo en español: vive fuera de /es/ y no declara hreflang (noAltLocale).
 import Base from '../layouts/Base.astro';
 import Img from '../components/Img.astro';
-import { LIBRO_API } from '../data/libro-config';
+import { LIBRO_API, LIBRO_PRECIO } from '../data/libro-config';
 ---
 
 <Base
@@ -44,6 +44,10 @@ import { LIBRO_API } from '../data/libro-config';
     .lb-err.on{display:block}
     .form-input[readonly]{opacity:.7;cursor:default}
     .lb-nota{font-size:var(--fs-small);color:var(--text-faint);line-height:var(--lh-body);margin:0 0 var(--sp-4)}
+    .lb-est{display:none;margin:0 0 var(--sp-5);padding:var(--sp-4) var(--sp-5);border:1px solid rgba(234,229,217,.18);border-radius:var(--r-field);font-size:.92rem;line-height:1.6;color:var(--text-soft)}
+    .lb-est.on{display:block}
+    .lb-est strong{color:var(--heading)}
+    .lb-est small{display:block;margin-top:4px;font-size:.78rem;color:var(--text-faint)}
     .lb-count{font-size:.72rem;color:var(--text-faint);text-align:right;margin-top:4px}
     .lb-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .form-msg{display:none;margin:0 0 var(--sp-5);font-size:.88rem;line-height:1.5}
@@ -170,6 +174,8 @@ import { LIBRO_API } from '../data/libro-config';
           <div class="lb-count"><span id="ref-count">0</span>/50</div>
           <div class="lb-err" data-err="referencias"></div>
         </div>
+
+        <div class="lb-est" id="lb-est" aria-live="polite"></div>
 
         <p class="lb-nota">Usaremos tus datos sólo para enviarte el libro; después del envío los borraremos.</p>
 
@@ -336,6 +342,60 @@ import { LIBRO_API } from '../data/libro-config';
           btn.disabled = false; btn.textContent = 'Registrar mi pedido';
         });
       });
+    })();
+  </script>
+
+  <script is:inline define:vars={{ LIBRO_API, LIBRO_PRECIO }}>
+    // Estimado del envío. Es sólo informativo: nunca bloquea el pedido, y si
+    // falla se queda en el precio de los libros.
+    (function () {
+      var cp = document.getElementById('f-cp');
+      var cant = document.getElementById('f-cantidad');
+      var box = document.getElementById('lb-est');
+      var espera = null, turno = 0;
+      var mx = function (n) { return '$' + Number(n).toLocaleString('es-MX'); };
+      var AVISO = 'El envío es un estimado; el total se confirma cuando te contactemos.';
+
+      function pinta(html) { box.innerHTML = html; box.classList.toggle('on', !!html); }
+      function soloLibros(n) {
+        return 'Libro' + (n > 1 ? 's' : '') + ' <strong>' + mx(LIBRO_PRECIO * n) + '</strong>' +
+          (n > 1 ? ' (' + mx(LIBRO_PRECIO) + ' c/u)' : '') +
+          '<small>Más el envío, que te confirmamos al contactarte.</small>';
+      }
+
+      function cotiza() {
+        var v = cp.value, n = Number(cant.value);
+        clearTimeout(espera);
+        var mio = ++turno;
+        if (!/^\d{5}$/.test(v) || !Number.isInteger(n) || n < 1) { pinta(''); return; }
+        // Al instante: que no quede a la vista un monto de la cantidad anterior.
+        pinta('Calculando el envío…');
+        espera = setTimeout(function () {
+          fetch(LIBRO_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ accion: 'cotizar', cp: v, cantidad: String(n) })
+          }).then(function (r) { return r.json(); }).then(function (res) {
+            if (mio !== turno) return;
+            if (res && res.ok && res.envio) {
+              var e = res.envio;
+              pinta('Libro' + (n > 1 ? 's' : '') + ' ' + mx(res.libros) +
+                ' · Envío estimado ' + mx(e.precio) + ' (' + e.paqueteria + (e.dias ? ', ' + e.dias : '') + ')' +
+                ' · <strong>Total aproximado ' + mx(res.total) + '</strong><small>' + AVISO + '</small>');
+              return;
+            }
+            var m = res && res.motivo;
+            if (m === 'cp' || m === 'cantidad') { pinta(''); return; }
+            if (m === 'sinPaquete') {
+              pinta('Libros <strong>' + mx(LIBRO_PRECIO * n) + '</strong><small>El costo de envío para esa cantidad te lo confirmamos al contactarte.</small>');
+              return;
+            }
+            pinta(soloLibros(n));
+          }).catch(function () { if (mio === turno) pinta(soloLibros(n)); });
+        }, 500);
+      }
+      cp.addEventListener('input', cotiza);
+      cant.addEventListener('input', cotiza);
     })();
   </script>
 </Base>
