@@ -1,16 +1,20 @@
 ---
 // Página OCULTA: noindex, fuera del sitemap y del menú. Compartir sólo por link directo.
 // Sólo en español: vive fuera de /es/ y no declara hreflang (noAltLocale).
+// Sin marca del sitio (hideNav, sin «Inessentia» en el título): es la página del
+// libro, no una puerta de entrada a la práctica.
 import Base from '../layouts/Base.astro';
 import Img from '../components/Img.astro';
 import { LIBRO_API, LIBRO_PRECIO } from '../data/libro-config';
 ---
 
 <Base
-  title="Preventa: Viaje al centro del cuerpo y la mente — Inessentia"
+  title="Preventa: Viaje al centro del cuerpo y la mente"
   description="Formulario de pedido para la preventa del libro de Jorge Galindo."
   noindex
   noAltLocale
+  hideNav
+  ogImage="/uploads/libro-viaje-portada.webp"
   hideFooter
 >
   <style is:global>
