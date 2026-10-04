@@ -13,6 +13,18 @@ import { LIBRO_API } from '../data/libro-config';
   noAltLocale
   hideFooter
 >
+  <style is:global>
+    /* Lienzo sólo NOCHE en esta página. El formulario llega hasta el final del
+       documento (sin footer ni CTA de cierre), así que con el --page-grad normal
+       sus últimos campos, el botón y la confirmación caen en el cruce 79→84 y en
+       el crema, donde el texto claro no se lee. Se cortan las paradas en la última
+       del lado oscuro (ver la regla de la franja en global.css) y la barra nunca
+       amanece. */
+    html:root[data-theme="dark"]{
+      --page-grad: linear-gradient(180deg,var(--canvas-top) 0%,#2d1a54 16%,#33206b 32%,#4d2472 48%,#6b2a68 64%,#8e3a5c 80%,#9a4534 100%);
+      --dawn-at: 2;
+    }
+  </style>
   <style>
     .lb-head{display:flex;gap:var(--sp-5);align-items:flex-start;margin-bottom:calc(var(--sp-5) * 2)}
     .lb-cover{flex:0 0 180px;border-radius:var(--r-field);overflow:hidden;box-shadow:var(--sh-card)}
@@ -36,9 +48,6 @@ import { LIBRO_API } from '../data/libro-config';
     .lb-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .form-msg{display:none;margin:0 0 var(--sp-5);font-size:.88rem;line-height:1.5}
     .form-msg.ok,.form-msg.err{display:block}
-    /* La confirmación es corta: sin este alto, el degradado del fondo llega al crema
-       detrás del texto y lo vuelve ilegible. */
-    .lb-wrap{min-height:110svh}
     .lb-done{display:none;text-align:center;padding:calc(var(--sp-5) * 2) 0 0;border-top:1px solid rgba(234,229,217,.15)}
     .lb-done.on{display:block}
     .lb-done h2{font-family:var(--ff-head);color:var(--heading);font-size:1.6rem;margin:0 0 var(--sp-3)}
@@ -49,7 +58,7 @@ import { LIBRO_API } from '../data/libro-config';
     }
   </style>
 
-  <div class="form-wrap zone-dark lb-wrap">
+  <div class="form-wrap zone-dark">
     <div class="lb-head">
       <div class="lb-cover">
         <Img src="/uploads/libro-viaje-portada.webp" alt="Portada del libro Viaje al centro del cuerpo y la mente" sizes="200px" />
