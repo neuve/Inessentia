@@ -1,0 +1,329 @@
+---
+// Página OCULTA: noindex, fuera del sitemap y del menú. Compartir sólo por link directo.
+// Sólo en español: vive fuera de /es/ y no declara hreflang (noAltLocale).
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import { LIBRO_API } from '../data/libro-config';
+---
+
+<Base
+  title="Preventa: Viaje al centro del cuerpo y la mente — Inessentia"
+  description="Formulario de pedido para la preventa del libro de Jorge Galindo."
+  noindex
+  noAltLocale
+  hideFooter
+>
+  <style>
+    .lb-head{display:flex;gap:var(--sp-5);align-items:flex-start;margin-bottom:calc(var(--sp-5) * 2)}
+    .lb-cover{flex:0 0 180px;border-radius:var(--r-field);overflow:hidden;box-shadow:var(--sh-card)}
+    .lb-cover img{display:block;width:100%;height:auto}
+    .lb-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;font-weight:700}
+    .lb-title{font-family:var(--ff-head);font-size:1.7rem;line-height:var(--lh-tight);color:var(--heading);font-weight:700;margin:0 0 8px}
+    .lb-meta{font-size:.9rem;color:var(--text-faint);line-height:1.6;margin:0}
+    .lb-sub{font-size:.95rem;color:var(--text-soft);line-height:1.65;margin:0 0 calc(var(--sp-5) * 2)}
+    .lb-row{display:flex;gap:14px;flex-wrap:wrap}
+    .lb-row>.form-field{flex:1;min-width:180px}
+    .lb-row>.form-field--sm{flex:0 1 140px;min-width:120px}
+    .lb-legend{font-family:var(--ff-head);font-size:1.1rem;color:var(--heading);margin:calc(var(--sp-5) * 2) 0 var(--sp-4);padding:0}
+    .lb-check{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-soft);margin-top:8px;cursor:pointer;user-select:none}
+    .lb-check input{accent-color:var(--wine)}
+    .lb-hint{font-size:.75rem;color:var(--text-faint);margin-top:4px;min-height:1em}
+    .lb-err{display:none;font-size:.78rem;color:#E4A0A0;margin-top:6px}
+    .lb-err.on{display:block}
+    .form-input[readonly]{opacity:.7;cursor:default}
+    .lb-count{font-size:.72rem;color:var(--text-faint);text-align:right;margin-top:4px}
+    .lb-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .form-msg{display:none;margin:0 0 var(--sp-5);font-size:.88rem;line-height:1.5}
+    .form-msg.ok,.form-msg.err{display:block}
+    /* La confirmación es corta: sin este alto, el degradado del fondo llega al crema
+       detrás del texto y lo vuelve ilegible. */
+    .lb-wrap{min-height:110svh}
+    .lb-done{display:none;text-align:center;padding:calc(var(--sp-5) * 2) 0 0;border-top:1px solid rgba(234,229,217,.15)}
+    .lb-done.on{display:block}
+    .lb-done h2{font-family:var(--ff-head);color:var(--heading);font-size:1.6rem;margin:0 0 var(--sp-3)}
+    .lb-done p{color:var(--text-soft);line-height:1.65;margin:0 auto var(--sp-3);max-width:480px}
+    @media (max-width:560px){
+      .lb-head{flex-direction:column;align-items:center;text-align:center}
+      .lb-cover{flex-basis:auto;width:200px}
+    }
+  </style>
+
+  <div class="form-wrap zone-dark lb-wrap">
+    <div class="lb-head">
+      <div class="lb-cover">
+        <Img src="/uploads/libro-viaje-portada.webp" alt="Portada del libro Viaje al centro del cuerpo y la mente" sizes="200px" />
+      </div>
+      <div>
+        <p class="lb-label">Preventa · 2.ª edición</p>
+        <h1 class="lb-title">Viaje al centro del cuerpo y la mente</h1>
+        <p class="lb-meta">Psicoterapia corporal y sistemas de carácter<br>Mtro. Jorge Galindo · Instituto Córpore</p>
+      </div>
+    </div>
+
+    <div id="lb-pedido">
+      <p class="lb-sub">
+        Con este formulario registramos tu pedido. Cuando tengamos el total de libros
+        solicitados, te escribiremos con el monto de tu pedido y te explicaremos cómo hacer el pago.
+      </p>
+
+      <div class="form-msg" id="lb-msg" role="alert"></div>
+
+      <form id="lb-form" novalidate>
+        <div class="lb-trap" aria-hidden="true">
+          <label for="f-sitio">No llenes este campo</label>
+          <input id="f-sitio" name="sitio" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-nombre">Nombre completo *</label>
+          <input class="form-input" id="f-nombre" autocomplete="name" required>
+          <div class="lb-err" data-err="nombre"></div>
+        </div>
+
+        <div class="lb-row">
+          <div class="form-field">
+            <label class="form-label" for="f-correo">Correo *</label>
+            <input class="form-input" id="f-correo" type="email" autocomplete="email" required>
+            <div class="lb-err" data-err="correo"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-telefono">Teléfono *</label>
+            <input class="form-input" id="f-telefono" type="tel" inputmode="numeric" autocomplete="tel" placeholder="10 dígitos" required>
+            <label class="lb-check"><input type="checkbox" id="f-extranjero"> Mi teléfono es extranjero</label>
+            <div class="lb-err" data-err="telefono"></div>
+          </div>
+        </div>
+
+        <div class="form-field form-field--sm">
+          <label class="form-label" for="f-cantidad">¿Cuántos libros? *</label>
+          <input class="form-input" id="f-cantidad" type="number" inputmode="numeric" min="1" step="1" value="1" required style="max-width:140px">
+          <div class="lb-err" data-err="cantidad"></div>
+        </div>
+
+        <h2 class="lb-legend">Dirección de envío</h2>
+
+        <div class="lb-row">
+          <div class="form-field form-field--sm">
+            <label class="form-label" for="f-cp">Código postal *</label>
+            <input class="form-input" id="f-cp" inputmode="numeric" maxlength="5" autocomplete="postal-code" required>
+            <div class="lb-hint" id="cp-hint"></div>
+            <div class="lb-err" data-err="cp"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-colonia">Colonia *</label>
+            <select class="form-select" id="f-colonia" required disabled>
+              <option value="">Escribe primero tu código postal</option>
+            </select>
+            <div class="lb-err" data-err="colonia"></div>
+          </div>
+        </div>
+
+        <div class="form-field" id="otra-wrap" hidden>
+          <label class="form-label" for="f-coloniaOtra">¿Cuál es tu colonia? *</label>
+          <input class="form-input" id="f-coloniaOtra" maxlength="50">
+          <div class="lb-err" data-err="coloniaOtra"></div>
+        </div>
+
+        <div class="lb-row">
+          <div class="form-field">
+            <label class="form-label" for="f-ciudad">Ciudad</label>
+            <input class="form-input" id="f-ciudad" readonly tabindex="-1">
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-estado">Estado</label>
+            <input class="form-input" id="f-estado" readonly tabindex="-1">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-calle">Calle <small>— sin número</small> *</label>
+          <input class="form-input" id="f-calle" autocomplete="address-line1" required>
+          <div class="lb-err" data-err="calle"></div>
+        </div>
+
+        <div class="lb-row">
+          <div class="form-field">
+            <label class="form-label" for="f-numExt">Número exterior *</label>
+            <input class="form-input" id="f-numExt" maxlength="20" required>
+            <div class="lb-err" data-err="numExt"></div>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="f-numInt">Número interior <small>— opcional</small></label>
+            <input class="form-input" id="f-numInt" maxlength="20">
+            <div class="lb-err" data-err="numInt"></div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="f-referencias">Referencias <small>— opcional: entre qué calles, color de la fachada…</small></label>
+          <input class="form-input" id="f-referencias" maxlength="50">
+          <div class="lb-count"><span id="ref-count">0</span>/50</div>
+          <div class="lb-err" data-err="referencias"></div>
+        </div>
+
+        <button type="submit" class="btn btn--wine" id="lb-submit">Registrar mi pedido</button>
+      </form>
+    </div>
+
+    <div class="lb-done" id="lb-done" role="status" tabindex="-1">
+      <h2>¡Recibimos tu pedido!</h2>
+      <p>Gracias. Cuando cerremos la preventa te escribiremos al correo <strong id="done-correo"></strong> con el monto y la forma de pago.</p>
+      <p>No necesitas hacer nada más por ahora.</p>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ LIBRO_API }}>
+    (function () {
+      var OTRA = 'Otra colonia';
+      var $ = function (id) { return document.getElementById(id); };
+      var form = $('lb-form'), btn = $('lb-submit'), msg = $('lb-msg');
+      var cp = $('f-cp'), col = $('f-colonia'), otraWrap = $('otra-wrap');
+      var tel = $('f-telefono'), ext = $('f-extranjero');
+      var ref = $('f-referencias');
+      var cpValido = false, cpPedido = '';
+
+      function setErr(campo, texto) {
+        var el = form.querySelector('[data-err="' + campo + '"]');
+        if (!el) return false;
+        el.textContent = texto || '';
+        el.classList.toggle('on', !!texto);
+        return true;
+      }
+      function limpiar() {
+        form.querySelectorAll('.lb-err').forEach(function (el) { el.textContent = ''; el.classList.remove('on'); });
+        msg.className = 'form-msg'; msg.textContent = '';
+      }
+      function general(texto) { msg.className = 'form-msg err'; msg.textContent = texto; }
+
+      ref.addEventListener('input', function () { $('ref-count').textContent = ref.value.length; });
+      ext.addEventListener('change', function () {
+        tel.inputMode = ext.checked ? 'tel' : 'numeric';
+        tel.placeholder = ext.checked ? 'Con lada internacional' : '10 dígitos';
+      });
+      col.addEventListener('change', function () {
+        otraWrap.hidden = col.value !== OTRA;
+        if (!otraWrap.hidden) $('f-coloniaOtra').focus();
+      });
+
+      function normalizaTel(v) {
+        var d = v.replace(/[\s\-().]/g, '');
+        if (d.indexOf('+52') === 0) d = d.slice(3);
+        return d;
+      }
+
+      function resetColonias(texto) {
+        col.innerHTML = '';
+        var o = document.createElement('option'); o.value = ''; o.textContent = texto;
+        col.appendChild(o);
+        col.disabled = true; otraWrap.hidden = true;
+        $('f-ciudad').value = ''; $('f-estado').value = '';
+      }
+
+      cp.addEventListener('input', function () {
+        cp.value = cp.value.replace(/\D/g, '').slice(0, 5);
+        var v = cp.value;
+        setErr('cp', '');
+        if (v.length < 5) { cpValido = false; cpPedido = ''; $('cp-hint').textContent = ''; resetColonias('Escribe primero tu código postal'); return; }
+        if (v === cpPedido) return;
+        cpPedido = v; cpValido = false;
+        $('cp-hint').textContent = 'Buscando…';
+        fetch('https://geocodes.envia.com/zipcode/MX/' + v).then(function (r) {
+          if (!r.ok) throw new Error('http ' + r.status);
+          return r.json();
+        }).then(function (data) {
+          if (cp.value !== v) return;
+          $('cp-hint').textContent = '';
+          if (Array.isArray(data) && data.length === 0) {
+            resetColonias('—');
+            setErr('cp', 'No encontramos ese código postal. Revísalo, por favor.');
+            return;
+          }
+          var d = Array.isArray(data) ? data[0] : data;
+          var vistas = {};
+          var subs = (d.suburbs || []).filter(function (s) { if (!s || vistas[s]) return false; vistas[s] = 1; return true; });
+          col.innerHTML = '';
+          var p = document.createElement('option'); p.value = ''; p.textContent = 'Elige tu colonia';
+          col.appendChild(p);
+          subs.forEach(function (s) { var o = document.createElement('option'); o.value = s; o.textContent = s; col.appendChild(o); });
+          var o2 = document.createElement('option'); o2.value = OTRA; o2.textContent = OTRA; col.appendChild(o2);
+          col.disabled = false;
+          if (subs.length === 1) col.value = subs[0];
+          $('f-ciudad').value = d.locality || '';
+          $('f-estado').value = (d.state && d.state.name) || '';
+          cpValido = true;
+        }).catch(function () {
+          if (cp.value !== v) return;
+          // Sin catálogo no bloqueamos: la persona escribe su colonia y el servidor revalida.
+          $('cp-hint').textContent = 'No pudimos consultar el catálogo; escribe tu colonia.';
+          resetColonias('—');
+          var o = document.createElement('option'); o.value = OTRA; o.textContent = OTRA; col.appendChild(o);
+          col.disabled = false; col.value = OTRA; otraWrap.hidden = false;
+          cpValido = true;
+        });
+      });
+
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        limpiar();
+        var datos = {
+          nombre: $('f-nombre').value.trim(),
+          correo: $('f-correo').value.trim(),
+          telefono: ext.checked ? tel.value.trim() : normalizaTel(tel.value),
+          telefonoExtranjero: ext.checked,
+          cp: cp.value,
+          colonia: col.value,
+          coloniaOtra: col.value === OTRA ? $('f-coloniaOtra').value.trim() : '',
+          calle: $('f-calle').value.trim(),
+          numExt: $('f-numExt').value.trim(),
+          numInt: $('f-numInt').value.trim(),
+          referencias: ref.value.trim(),
+          cantidad: Number($('f-cantidad').value),
+          sitio: $('f-sitio').value
+        };
+
+        var malos = 0;
+        function mal(c, t) { setErr(c, t); malos++; }
+        if (!datos.nombre) mal('nombre', 'Escribe tu nombre.');
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(datos.correo)) mal('correo', 'Revisa tu correo.');
+        if (datos.telefonoExtranjero ? datos.telefono.length < 6 : !/^\d{10}$/.test(datos.telefono)) mal('telefono', datos.telefonoExtranjero ? 'Escribe tu teléfono.' : 'Escribe 10 dígitos.');
+        if (!Number.isInteger(datos.cantidad) || datos.cantidad < 1) mal('cantidad', 'Al menos 1 libro.');
+        if (!/^\d{5}$/.test(datos.cp)) mal('cp', 'El código postal lleva 5 dígitos.');
+        else if (!cpValido) mal('cp', 'No encontramos ese código postal. Revísalo, por favor.');
+        if (cpValido && !datos.colonia) mal('colonia', 'Elige tu colonia.');
+        if (datos.colonia === OTRA && !datos.coloniaOtra) mal('coloniaOtra', 'Escribe tu colonia.');
+        if (!datos.calle) mal('calle', 'Escribe tu calle.');
+        if (!datos.numExt) mal('numExt', 'Escribe el número exterior.');
+        if (malos) {
+          general('Revisa los campos marcados.');
+          var p = form.querySelector('.lb-err.on'); if (p) p.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        btn.disabled = true; btn.textContent = 'Enviando…';
+        fetch(LIBRO_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(datos)
+        }).then(function (r) { return r.json(); }).then(function (res) {
+          if (res && res.ok) {
+            $('done-correo').textContent = datos.correo;
+            $('lb-pedido').hidden = true;
+            var done = $('lb-done'); done.classList.add('on'); done.focus();
+            done.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (window.inessentiaEvento) window.inessentiaEvento('pedido_libro', { formulario: 'libro', cantidad: datos.cantidad });
+            return;
+          }
+          var errs = (res && res.errores) || {};
+          var sinLugar = [];
+          Object.keys(errs).forEach(function (k) { if (k !== 'general' && !setErr(k, errs[k])) sinLugar.push(errs[k]); });
+          general(errs.general || sinLugar.join(' ') || 'Revisa los campos marcados.');
+          msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }).catch(function () {
+          general('No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
+        }).finally(function () {
+          btn.disabled = false; btn.textContent = 'Registrar mi pedido';
+        });
+      });
+    })();
+  </script>
+</Base>

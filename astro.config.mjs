@@ -29,7 +29,8 @@ export default defineConfig({
         page !== 'https://inessentia.mx/' &&
         !page.includes('/red/registro') &&
         !page.includes('/testimonios/nuevo') &&
-        !page.includes('/testimonials/new'),
+        !page.includes('/testimonials/new') &&
+        page !== 'https://inessentia.mx/libro/',
     }),
     // Escribe dist/<url-vieja>.html (archivo plano, no carpeta) por cada par
     // en src/data/redirecciones-viejas.mjs — ver el comentario en ese

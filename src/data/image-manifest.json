@@ -518,6 +518,41 @@
   "/uploads/instagram-icon.svg": {
     "src": "/uploads/responsive/instagram-icon.521148cb.svg"
   },
+  "/uploads/libro-viaje-portada.webp": {
+    "width": 900,
+    "height": 900,
+    "srcset": [
+      {
+        "w": 96,
+        "url": "/uploads/responsive/libro-viaje-portada-96.10f0a630.webp"
+      },
+      {
+        "w": 192,
+        "url": "/uploads/responsive/libro-viaje-portada-192.476f5ba3.webp"
+      },
+      {
+        "w": 320,
+        "url": "/uploads/responsive/libro-viaje-portada-320.1e075a3e.webp"
+      },
+      {
+        "w": 480,
+        "url": "/uploads/responsive/libro-viaje-portada-480.c28c1bfe.webp"
+      },
+      {
+        "w": 640,
+        "url": "/uploads/responsive/libro-viaje-portada-640.4ebd480b.webp"
+      },
+      {
+        "w": 768,
+        "url": "/uploads/responsive/libro-viaje-portada-768.a3fd573c.webp"
+      },
+      {
+        "w": 900,
+        "url": "/uploads/responsive/libro-viaje-portada.54ba582f.webp"
+      }
+    ],
+    "src": "/uploads/responsive/libro-viaje-portada.54ba582f.webp"
+  },
   "/uploads/linkedin-icon.png": {
     "width": 80,
     "height": 80,
