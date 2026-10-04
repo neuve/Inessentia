@@ -15,6 +15,9 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  // Medidas reales del ogImage. El default (/uploads/og/*.webp) es 1200×630.
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   altPath?: string; // path in the OTHER locale (e.g. /about-me/ when current is /es/sobre-mi/)
   schema?: object;
   extraSchemas?: object[];
@@ -48,6 +51,8 @@ const {
   description = i.site.description,
   canonical = Astro.url.href,
   ogImage = '/uploads/og/default.webp',
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
   altPath,
   schema,
   extraSchemas,
@@ -112,9 +117,9 @@ const bitterFontUrl = resolveAsset('/fonts/bitter-var.woff2');
   <meta property="og:description" content={description}>
   <meta property="og:url" content={currentHref}>
   <meta property="og:image" content={ogImageUrl}>
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content={String(ogImageWidth)}>
+  <meta property="og:image:height" content={String(ogImageHeight)}>
+  <meta property="og:image:type" content={/\.jpe?g$/i.test(ogImage) ? 'image/jpeg' : /\.png$/i.test(ogImage) ? 'image/png' : 'image/webp'}>
   <meta property="og:image:alt" content={title}>
   <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_US'}>
   <meta property="og:site_name" content="Inessentia">

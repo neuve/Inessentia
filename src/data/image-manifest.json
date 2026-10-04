@@ -1127,6 +1127,17 @@
     ],
     "src": "/uploads/responsive/og-home-es.3f4d29e7.webp"
   },
+  "/uploads/og/libro-viaje.jpg": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-libro-viaje.e3291d7a.jpg"
+      }
+    ],
+    "src": "/uploads/responsive/og-libro-viaje.e3291d7a.jpg"
+  },
   "/uploads/og/sobre-mi.webp": {
     "width": 1200,
     "height": 630,
