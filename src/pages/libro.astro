@@ -354,6 +354,7 @@ import { LIBRO_API, LIBRO_PRECIO } from '../data/libro-config';
       var box = document.getElementById('lb-est');
       var espera = null, turno = 0;
       var mx = function (n) { return '$' + Number(n).toLocaleString('es-MX'); };
+      var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); };
       var AVISO = 'El envío es un estimado; el total se confirma cuando te contactemos.';
 
       function pinta(html) { box.innerHTML = html; box.classList.toggle('on', !!html); }
@@ -380,7 +381,7 @@ import { LIBRO_API, LIBRO_PRECIO } from '../data/libro-config';
             if (res && res.ok && res.envio) {
               var e = res.envio;
               pinta('Libro' + (n > 1 ? 's' : '') + ' ' + mx(res.libros) +
-                ' · Envío estimado ' + mx(e.precio) + ' (' + e.paqueteria + (e.dias ? ', ' + e.dias : '') + ')' +
+                ' · Envío estimado ' + mx(e.precio) + ' (' + esc(e.paqueteria) + (e.dias ? ', ' + esc(e.dias) : '') + ')' +
                 ' · <strong>Total aproximado ' + mx(res.total) + '</strong><small>' + AVISO + '</small>');
               return;
             }
