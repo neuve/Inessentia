@@ -85,7 +85,7 @@ Gradients: --grad-brand (100deg brand)  --grad-rail (panel rail)
 Layout:  --container-w clamp(1040px,86vw,1600px)   ← tope de ancho del contenido
          --container-pad-w = --container-w + 2×--gutter  (ver "Márgenes" abajo)
          --gutter 32px  ← ÚNICO gutter lateral del sitio  --section-pad clamp(64px,9vw,120px)
-Spacing: --sp-1..12 (4→48)
+Spacing: --sp-2 8  --sp-3 12  --sp-4 16  --sp-5 20   (sólo existen esos cuatro)
 Radii:   --r-card 20  --r-panel 18  --r-pill 999  --r-field 10
 Shadows: --sh-card  --sh-btn
 Type:    --ff-head 'Bitter',serif  --ff-body 'Mulish',sans-serif
