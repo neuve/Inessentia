@@ -1,0 +1,44 @@
+---
+// Llamado a sumarse al grupo. Isla morada con superficie propia: se lee igual
+// en cualquier tramo del lienzo. El texto vive en src/data/supervision.ts.
+import { LLAMADO, SUPERVISION_WA, SUPERVISION_PATH } from '../../data/supervision';
+
+interface Props {
+  /** En la página del grupo no hace falta el enlace «Conoce el grupo». */
+  conEnlaceAlGrupo?: boolean;
+}
+const { conEnlaceAlGrupo = true } = Astro.props;
+---
+
+<aside class="sl on-dark">
+  <p class="sl-rotulo">{LLAMADO.rotulo}</p>
+  <h2 class="sl-titulo">{LLAMADO.titulo}</h2>
+  <p class="sl-texto">{LLAMADO.texto}</p>
+  <div class="sl-acciones">
+    <a href={SUPERVISION_WA} target="_blank" rel="noopener" class="btn btn--gold">{LLAMADO.boton}<span class="btn__dot"></span></a>
+    {conEnlaceAlGrupo && <a href={`${SUPERVISION_PATH}#inversion`} class="sl-enlace">Programa, fechas e inversión</a>}
+  </div>
+</aside>
+
+<style>
+  .sl {
+    background: linear-gradient(135deg, var(--purple-d) 0%, var(--purple) 55%, var(--wine) 100%);
+    border: 1px solid rgba(194,176,126,.45);
+    border-radius: var(--r-card);
+    padding: clamp(28px, 5vw, 48px);
+    box-shadow: var(--sh-card);
+  }
+  .sl-rotulo { margin: 0 0 10px; font-weight: 800; font-size: 13px; color: var(--sand); }
+  .sl-titulo {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-head);
+    color: #fff;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+  .sl-texto { font-size: 17px; line-height: var(--lh-body); color: rgba(255,255,255,.92); margin: 0 0 26px; max-width: 56ch; }
+  .sl-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 26px; }
+  .sl-enlace { color: #fff; font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--sand); }
+</style>

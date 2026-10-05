@@ -5,6 +5,9 @@
   "/fonts/mulish-var.woff2": {
     "src": "/fonts/responsive/mulish-var.14cc0eab.woff2"
   },
+  "/uploads/audio/supervision-sesion-1-resumen.mp3": {
+    "src": "/uploads/responsive/audio-supervision-sesion-1-resumen.4d4790cc.mp3"
+  },
   "/uploads/buen-momento-pareja.webp": {
     "width": 900,
     "height": 900,
@@ -1148,6 +1151,17 @@
       }
     ],
     "src": "/uploads/responsive/og-sobre-mi.d9436704.webp"
+  },
+  "/uploads/og/supervision-sesion-1.webp": {
+    "width": 1200,
+    "height": 630,
+    "srcset": [
+      {
+        "w": 1200,
+        "url": "/uploads/responsive/og-supervision-sesion-1.385cac44.webp"
+      }
+    ],
+    "src": "/uploads/responsive/og-supervision-sesion-1.385cac44.webp"
   },
   "/uploads/og/supervision.webp": {
     "width": 1200,

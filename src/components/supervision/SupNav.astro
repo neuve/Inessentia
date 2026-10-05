@@ -1,0 +1,115 @@
+---
+// Barra del entorno de supervisión: la comparten la página del grupo, las
+// memorias de cada sesión y la lectura, para que se sientan una sola cosa.
+import Img from '../Img.astro';
+import { SUPERVISION_WA, SUPERVISION_PATH } from '../../data/supervision';
+
+interface Props {
+  links: { href: string; label: string }[];
+  /** En la página del grupo la marca no enlaza (ya estás ahí). */
+  brandHref?: string;
+}
+const { links, brandHref } = Astro.props;
+const Brand = brandHref ? 'a' : 'div';
+---
+
+<nav id="gl-nav" class="gl-nav">
+  <div class="gl-nav-inner">
+    <Brand class="gl-nav-brand" href={brandHref} aria-label={brandHref ? 'Grupo de Actualización en Terapia Corporal' : undefined}>
+      <Img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" sizes="70px" />
+      <span class="gl-nav-word">Patricio<br>Ruiz</span>
+    </Brand>
+    <div class="gl-nav-right">
+      <div class="gl-nav-links">
+        {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+      <a href={SUPERVISION_WA} target="_blank" rel="noopener" class="gl-nav-cta">Inscríbete</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.getElementById('gl-nav');
+  const onScroll = () => {
+    if (window.scrollY > 60) {
+      nav?.classList.add('is-scrolled');
+    } else {
+      nav?.classList.remove('is-scrolled');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+
+<style>
+  /* Esta barra (.gl-nav) mide ~114px, más que --nav-h (84px) que fija
+     global.css; sin este override los anclajes aterrizan debajo de la barra
+     fija. */
+  :global(html) { scroll-padding-top: 114px; }
+
+  .gl-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: blur(6px);
+    transition: background .3s ease, box-shadow .3s ease;
+  }
+  .gl-nav.is-scrolled {
+    background: rgba(52,26,84,.96);
+    box-shadow: 0 8px 28px rgba(var(--veil-purple),.28);
+  }
+  .gl-nav-inner {
+    max-width: var(--container-pad-w);
+    margin: 0 auto;
+    padding: 22px var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: padding .3s ease;
+  }
+  .gl-nav.is-scrolled .gl-nav-inner {
+    padding: 12px var(--gutter);
+  }
+  .gl-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+    text-decoration: none;
+  }
+  .gl-nav-brand :global(img) { height: 70px; width: auto; display: block; }
+  .gl-nav-word {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .gl-nav-right { display: flex; align-items: center; gap: 28px; }
+  .gl-nav-links { display: flex; align-items: center; gap: 28px; }
+  .gl-nav-links a {
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: rgba(255,255,255,.9);
+    text-decoration: none;
+  }
+  .gl-nav-cta {
+    background: #fff;
+    color: var(--purple);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 12px 22px;
+    border-radius: var(--r-pill);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  @media (max-width: 680px) {
+    .gl-nav-links { display: none; }
+  }
+</style>

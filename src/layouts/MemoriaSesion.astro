@@ -1,0 +1,252 @@
+---
+// Memoria pública de una sesión del Grupo de Actualización en Terapia
+// Corporal. Los datos (título, fecha, audio, lectura) salen de
+// src/data/supervision.ts; la página de cada sesión sólo escribe la prosa:
+//
+//   <MemoriaSesion n={1}>
+//     <Fragment slot="sintesis">   …de qué hablamos…            </Fragment>
+//     <Fragment slot="transcripcion"> …texto del audio…         </Fragment>   (opcional)
+//     <Fragment slot="lectura">    …para qué se leyó…           </Fragment>   (opcional)
+//     <Fragment slot="para-llevar"> …preguntas de cierre…       </Fragment>   (opcional)
+//   </MemoriaSesion>
+//
+// Una sección sin datos ni slot no se pinta, y el índice de arriba se ajusta.
+// La regla de privacidad de lo que se escribe aquí está en supervision.ts.
+import SupervisionDoc from './SupervisionDoc.astro';
+import AudioResumen from '../components/supervision/AudioResumen.astro';
+import { resolveAsset } from '../lib/resolve-asset';
+import { personRef } from '../data/person';
+import { getSesion, sesiones, memoriaPath, minutos, SUPERVISION_NOMBRE, SUPERVISION_PATH } from '../data/supervision';
+
+interface Props { n: number; }
+const { n } = Astro.props;
+
+const s = getSesion(n);
+if (!s.memoria) throw new Error(`MemoriaSesion: la sesión ${n} no tiene bloque «memoria» en supervision.ts`);
+const m = s.memoria;
+
+const hayLectura = !!s.lectura;
+const hayAudio = !!s.audio;
+const hayTranscripcion = Astro.slots.has('transcripcion');
+const hayParaLlevar = Astro.slots.has('para-llevar');
+
+const indice = [
+  { href: '#de-que-hablamos', label: 'De qué hablamos' },
+  hayAudio && { href: '#resumen-en-audio', label: `Resumen en audio · ${minutos(s.audio!.segundos)}` },
+  hayLectura && { href: '#la-lectura', label: 'La lectura' },
+  hayParaLlevar && { href: '#para-llevarte', label: 'Para llevarte' },
+].filter(Boolean) as { href: string; label: string }[];
+
+const anterior = sesiones.find((x) => x.n === n - 1 && x.memoria);
+const siguiente = sesiones.find((x) => x.n === n + 1);
+
+const url = `https://inessentia.mx${memoriaPath(n)}`;
+const titulo = `Sesión ${n}: ${m.titulo}`;
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: titulo,
+  description: m.bajada,
+  inLanguage: 'es',
+  datePublished: m.publicada,
+  author: personRef,
+  mainEntityOfPage: url,
+  isPartOf: { '@type': 'EducationEvent', name: SUPERVISION_NOMBRE, url: `https://inessentia.mx${SUPERVISION_PATH}` },
+  ...(s.audio && {
+    audio: {
+      '@type': 'AudioObject',
+      name: s.audio.titulo,
+      contentUrl: `https://inessentia.mx${resolveAsset(s.audio.src)}`,
+      encodingFormat: 'audio/mpeg',
+      duration: `PT${Math.floor(s.audio.segundos / 60)}M${s.audio.segundos % 60}S`,
+    },
+  }),
+};
+---
+
+<SupervisionDoc
+  title={`${titulo} | Memoria — ${SUPERVISION_NOMBRE}`}
+  description={`Memoria de la sesión ${n} del ${SUPERVISION_NOMBRE}. ${m.bajada}`}
+  ogImage={m.ogImage}
+  schema={schema}
+  eyebrow={`Memoria · Sesión ${n} de ${sesiones.length} · ${s.tema}`}
+  h1={m.titulo}
+  bajada={m.bajada}
+  meta={[s.fecha, 'Con Patricio Ruiz']}
+  sesionActual={n}
+>
+  <nav slot="hero-acciones" class="ms-indice" aria-label="En esta memoria">
+    {indice.map((i) => <a href={i.href}>{i.label}</a>)}
+  </nav>
+
+  <section class="ms-sec" id="de-que-hablamos">
+    <div class="container--read">
+      <p class="label-section">De qué hablamos</p>
+      <div class="blog-content ms-prosa">
+        <slot name="sintesis" />
+      </div>
+      <p class="ms-nota-privacidad">Esta memoria recoge las ideas de la sesión, no sus historias: lo que comparten las participantes y lo que ocurre en las sesiones en vivo se queda en el grupo.</p>
+    </div>
+  </section>
+
+  {hayAudio && (
+    <section class="ms-sec" id="resumen-en-audio">
+      <div class="container--read">
+        <p class="label-section">Resumen en audio</p>
+        <h2 class="ms-h2">Para repasar con calma</h2>
+        <p class="ms-entrada">Un repaso de la sesión en voz de Patricio, para escuchar de camino o volver a él antes del siguiente encuentro.</p>
+        <AudioResumen audio={s.audio!} />
+        {hayTranscripcion && (
+          <details class="ms-transcripcion">
+            <summary>Leer la transcripción del audio</summary>
+            <div class="blog-content ms-prosa">
+              <slot name="transcripcion" />
+            </div>
+          </details>
+        )}
+      </div>
+    </section>
+  )}
+
+  {hayLectura && (
+    <section class="ms-sec" id="la-lectura">
+      <div class="container--read">
+        <p class="label-section">La lectura</p>
+        <a class="ms-lectura" href={s.lectura!.href}>
+          <span class="ms-lectura-rotulo">Texto de preparación</span>
+          <span class="ms-lectura-titulo">{s.lectura!.titulo}</span>
+          <span class="ms-lectura-nota">{s.lectura!.nota}</span>
+          <span class="ms-lectura-ir">Leer el texto completo →</span>
+        </a>
+        {Astro.slots.has('lectura') && (
+          <div class="blog-content ms-prosa ms-prosa--tras-tarjeta">
+            <slot name="lectura" />
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  {hayParaLlevar && (
+    <section class="ms-sec" id="para-llevarte">
+      <div class="container--read">
+        <p class="label-section">Para llevarte</p>
+        <div class="blog-content ms-prosa">
+          <slot name="para-llevar" />
+        </div>
+      </div>
+    </section>
+  )}
+
+  <nav class="ms-sec ms-vecinas" aria-label="Sesión anterior y siguiente">
+    <div class="container--read ms-vecinas-fila">
+      {anterior
+        ? <a href={memoriaPath(anterior.n)} class="link-underline">← Sesión {anterior.n}: {anterior.memoria!.titulo}</a>
+        : <span></span>}
+      {siguiente && (
+        siguiente.memoria
+          ? <a href={memoriaPath(siguiente.n)} class="link-underline">Sesión {siguiente.n}: {siguiente.memoria.titulo} →</a>
+          : <span class="ms-proxima">Sigue: sesión {siguiente.n} · {siguiente.tema} · {siguiente.fecha.toLowerCase()}</span>
+      )}
+    </div>
+  </nav>
+</SupervisionDoc>
+
+<style>
+  .ms-indice { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .ms-indice a {
+    font-size: 13.5px; font-weight: 700;
+    color: var(--on-canvas);
+    text-decoration: none;
+    padding: 9px 16px;
+    border: 1px solid rgba(234,229,217,.35);
+    border-radius: var(--r-pill);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .ms-indice a:hover { background: rgba(234,229,217,.12); border-color: var(--accent-canvas); }
+
+  .ms-sec { padding: clamp(32px, 5vw, 56px) var(--gutter); }
+  .ms-h2 {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: var(--fs-h3);
+    line-height: var(--lh-head);
+    color: var(--heading-canvas);
+    margin: 0 0 12px;
+  }
+  .ms-entrada { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--on-canvas-soft); margin: 0 0 26px; }
+
+  /* Prosa de los slots: hereda .blog-content (global) y aquí sólo se ajusta lo
+     propio de la memoria. Va con :global porque el contenido llega por slot. */
+  .ms-prosa :global(> :first-child) { margin-top: 0; }
+  .ms-prosa :global(h2) { margin-top: 48px; }
+  .ms-prosa :global(h3), .ms-prosa :global(h4) {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    color: var(--heading);
+    font-size: var(--fs-h4);
+    line-height: var(--lh-head);
+    margin: 34px 0 12px;
+  }
+  .ms-prosa :global(.ms-frase) {
+    font-family: var(--ff-head);
+    font-style: normal;
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.25;
+    color: var(--heading);
+    border-left: 4px solid var(--sand);
+    padding: 6px 0 6px 22px;
+    margin: 40px 0;
+    text-wrap: balance;
+  }
+  .ms-prosa--tras-tarjeta { margin-top: 26px; }
+
+  .ms-nota-privacidad {
+    margin: 36px 0 0;
+    padding-top: 18px;
+    border-top: 1px solid rgba(234,229,217,.2);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--on-canvas-soft);
+  }
+
+  .ms-transcripcion {
+    margin-top: 18px;
+    border: 1px solid rgba(234,229,217,.22);
+    border-radius: var(--r-panel);
+    padding: 0 clamp(18px, 3vw, 28px);
+  }
+  .ms-transcripcion summary {
+    cursor: pointer;
+    padding: 16px 0;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--on-canvas);
+  }
+  .ms-transcripcion[open] summary { border-bottom: 1px solid rgba(234,229,217,.18); margin-bottom: 24px; }
+  .ms-transcripcion[open] { padding-bottom: 10px; }
+
+  .ms-lectura {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-left: 4px solid var(--sand);
+    border-radius: var(--r-card);
+    padding: clamp(22px, 4vw, 34px);
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .ms-lectura:hover { transform: translateY(-2px); box-shadow: var(--sh-card); }
+  .ms-lectura-rotulo { font-size: 12.5px; font-weight: 800; color: var(--gold); }
+  .ms-lectura-titulo { font-family: var(--ff-head); font-weight: 700; font-size: var(--fs-h3); line-height: var(--lh-head); color: var(--heading); }
+  .ms-lectura-nota { font-size: 16px; line-height: 1.6; color: var(--text-soft); }
+  .ms-lectura-ir { margin-top: 8px; font-size: 15px; font-weight: 700; color: var(--gold); }
+
+  .ms-vecinas { padding-top: 8px; padding-bottom: 8px; }
+  .ms-vecinas-fila { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 15px; }
+  .ms-proxima { font-weight: 700; color: var(--on-canvas-soft); }
+</style>

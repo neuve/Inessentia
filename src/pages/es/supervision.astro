@@ -2,10 +2,15 @@
 import Base from '../../layouts/Base.astro';
 import Img from '../../components/Img.astro';
 import { personRef, BUSINESS_ID } from '../../data/person';
+import SupNav from '../../components/supervision/SupNav.astro';
+import SupFooter from '../../components/supervision/SupFooter.astro';
+import SesionesRail from '../../components/supervision/SesionesRail.astro';
+import { sesiones, memoriaPath, minutos, SUPERVISION_WA as WA, LLAMADO } from '../../data/supervision';
 
 const CANONICAL = 'https://inessentia.mx/es/supervision/';
 
-const WA = 'https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20el%20Grupo%20de%20Actualizaci%C3%B3n%20en%20Terapia%20Corporal.%20%C2%BFMe%20cuentas%20m%C3%A1s%3F';
+// Memorias ya publicadas, la más reciente primero.
+const memorias = sesiones.filter((x) => x.memoria).reverse();
 
 const eventSchema = {
   "@context": "https://schema.org",
@@ -45,10 +50,9 @@ const eventSchema = {
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "MXN",
-    "lowPrice": 9500,
-    "highPrice": 12720,
+    "lowPrice": 1500,
+    "highPrice": 11130,
     "availability": "https://schema.org/LimitedAvailability",
-    "validThrough": "2026-09-17",
     "url": CANONICAL
   },
   "url": CANONICAL
@@ -86,61 +90,33 @@ const pilares = [
   },
 ];
 
-const recorridoBase = [
-  { n: '0', label: 'Introducción' },
-  { n: '1', label: 'Dinero' },
-  { n: '2', label: 'Sexualidad' },
-  { n: '3', label: 'Poder' },
-  { n: '4', label: 'Amor' },
-  { n: '5', label: 'Verdad' },
-  { n: '6', label: 'Insight' },
-  { n: '7', label: 'Unidad' },
-  { n: '8', label: 'Cierre' },
-];
+// El recorrido y el calendario salen de src/data/supervision.ts. La sesión n
+// trata el tema n-1 del libro (la 1 es la introducción, la 9 el cierre).
+const recorridoBase = sesiones.map((x) => ({ n: String(x.n - 1), label: x.tema }));
 const recorrido = recorridoBase.map((s, i, arr) => ({
   ...s,
   arrow: i < arr.length - 1,
   extreme: i === 0 || i === arr.length - 1,
 }));
 
-const fechas = [
-  { n: 1, fecha: 'Sábado 3 de octubre de 2026', nota: 'Inicio' },
-  { n: 2, fecha: 'Sábado 17 de octubre de 2026', nota: '' },
-  { n: 3, fecha: 'Sábado 31 de octubre de 2026', nota: '' },
-  { n: 4, fecha: 'Sábado 14 de noviembre de 2026', nota: '' },
-  { n: 5, fecha: 'Sábado 5 de diciembre de 2026', nota: '2ª exhibición del plan en 2 pagos' },
-  { n: 6, fecha: 'Sábado 12 de diciembre de 2026', nota: '' },
-  { n: 7, fecha: 'Sábado 9 de enero de 2027', nota: 'Reanuda' },
-  { n: 8, fecha: 'Sábado 16 de enero de 2027', nota: '' },
-  { n: 9, fecha: 'Sábado 6 de febrero de 2027', nota: 'Cierre' },
-];
+const fechas = sesiones.map((x) => ({ n: x.n, fecha: x.fecha, nota: x.nota }));
 
 const PRICING = {
   eyebrow: 'Inversión',
   titulo: 'Tu lugar en el grupo',
-  subtitulo: 'El ciclo completo incluye las 9 sesiones, de octubre de 2026 a febrero de 2027. Los precios destacados son pagando en efectivo o transferencia; con tarjeta de crédito aplica el precio de lista (tachado).',
+  subtitulo: 'El ciclo ya empezó y todavía puedes sumarte. El ciclo completo incluye las 9 sesiones, de octubre de 2026 a febrero de 2027. El precio destacado es pagando en efectivo o transferencia; con tarjeta de crédito aplica el precio de lista (tachado).',
   planes: [
     {
-      tag: 'Precio especial hasta el 1 de septiembre',
+      tag: null,
       titulo: 'Pago único',
       subtitulo: 'Un solo pago por el ciclo completo',
-      precioTachado: '$10,070 con tarjeta',
-      precioGrande: '$9,500',
-      notaPrecio: 'Efectivo o transferencia · Inscribiéndote antes del 1 de septiembre.',
-      textoLibre: 'Después del 1 de septiembre y hasta el cierre de inscripciones, el pago único es de $10,500 en efectivo o transferencia ($11,130 con tarjeta).',
-    },
-    {
-      tag: null,
-      titulo: 'Plan en 2 exhibiciones',
-      subtitulo: 'Dos pagos: 19 de septiembre y 5 de diciembre',
-      precioTachado: '$6,360 c/u con tarjeta',
-      precioGrande: '$6,000 c/u',
-      notaPrecio: 'Efectivo o transferencia · $12,000 en total',
-      textoLibre: 'Disponible también como suscripción con tarjeta de crédito, cargos automáticos en esas dos fechas.',
+      precioTachado: '$11,130 con tarjeta',
+      precioGrande: '$10,500',
+      notaPrecio: 'Efectivo o transferencia',
+      textoLibre: null,
     },
   ],
-  notaApartado: 'Apartado de lugar: $2,000, abonables al total, reembolsables hasta el 12 de septiembre.',
-  notaCierre: 'Cierre de inscripciones: 17 de septiembre. El grupo abre al alcanzar el cupo mínimo de 7 personas (máximo 12).',
+  notaCupo: 'El grupo abre al alcanzar el cupo mínimo de 7 personas (máximo 12).',
   corpore: {
     titulo: 'Estudiantes del Instituto Córpore',
     texto: 'Para quienes están en proceso de certificación. Se integran por sesión suelta o por bloque de 5 (la introducción + 4 sesiones). Solo efectivo o transferencia — no se acepta tarjeta de crédito. Si no se integran desde la primera sesión, es necesaria una entrevista previa y ver el video de introducción para comprender el encuadre.',
@@ -164,23 +140,12 @@ const PRICING = {
 >
   <div class="gl-page">
 
-    <!-- NAV -->
-    <nav id="gl-nav" class="gl-nav">
-      <div class="gl-nav-inner">
-        <div class="gl-nav-brand">
-          <Img src="/uploads/logo-icon.webp" alt="Patricio Ruiz" sizes="70px" />
-          <span class="gl-nav-word">Patricio<br>Ruiz</span>
-        </div>
-        <div class="gl-nav-right">
-          <div class="gl-nav-links">
-            <a href="#programa">Programa</a>
-            <a href="#fechas">Fechas</a>
-            <a href="#inversion">Inversión</a>
-          </div>
-          <a href={WA} target="_blank" rel="noopener" class="gl-nav-cta">Inscríbete</a>
-        </div>
-      </div>
-    </nav>
+    <SupNav links={[
+      { href: '#programa', label: 'Programa' },
+      { href: '#memorias', label: 'Memorias' },
+      { href: '#fechas', label: 'Fechas' },
+      { href: '#inversion', label: 'Inversión' },
+    ]} />
 
     <!-- HERO -->
     <section class="gl-hero zone-dark">
@@ -208,6 +173,12 @@ const PRICING = {
         <div class="gl-hero-bottom">
           <h1 class="gl-h1">Grupo de Actualización en Terapia Corporal</h1>
           <p class="gl-subtitle">Supervisión de casos + ética del acompañamiento</p>
+          {memorias[0] && (
+            <a class="gl-hero-aviso" href={memoriaPath(memorias[0].n)}>
+              <span class="gl-hero-aviso-tag">Ya empezamos</span>
+              <span>Lee la memoria de la sesión {memorias[0].n} y escucha el resumen →</span>
+            </a>
+          )}
         </div>
       </div>
     </section>
@@ -293,6 +264,35 @@ const PRICING = {
       </div>
     </section>
 
+    <!-- MEMORIAS -->
+    <section id="memorias" class="section zone-dark">
+      <div class="container">
+        <div style="max-width:680px;margin-bottom:36px;">
+          <p class="label-section">Memorias del ciclo</p>
+          <h2 class="heading-section" style="margin:0 0 18px;">Lo que vamos trabajando, sesión a sesión</h2>
+          <p class="body-text" style="font-size:17px;">Después de cada encuentro publico una memoria con las ideas que trabajamos, el texto que leímos y un resumen en audio para repasar. Sirve a quienes están en el grupo y a quienes quieren asomarse antes de sumarse.</p>
+        </div>
+
+        {memorias.map((x) => (
+          <a class="gl-memoria" href={memoriaPath(x.n)}>
+            <span class="gl-memoria-n">Sesión {x.n} · {x.tema} · {x.fecha.toLowerCase()}</span>
+            <span class="gl-memoria-titulo">{x.memoria!.titulo}</span>
+            <span class="gl-memoria-bajada">{x.memoria!.bajada}</span>
+            <span class="gl-memoria-incluye">
+              <span>Memoria</span>
+              {x.audio && <span>Resumen en audio · {minutos(x.audio.segundos)}</span>}
+              {x.lectura && <span>Lectura: {x.lectura.titulo}</span>}
+            </span>
+            <span class="gl-memoria-ir">Leer la memoria →</span>
+          </a>
+        ))}
+
+        <div style="margin-top:28px;">
+          <SesionesRail />
+        </div>
+      </div>
+    </section>
+
     <!-- COMUNIDAD -->
     <section class="section zone-dark">
       <div class="container">
@@ -352,8 +352,8 @@ const PRICING = {
             <div class="gl-mini-card-value">Mínimo 7 · Máximo 12 personas</div>
           </div>
           <div class="gl-mini-card">
-            <div class="gl-mini-card-label">Cierre de inscripciones</div>
-            <div class="gl-mini-card-value">17 de septiembre de 2026</div>
+            <div class="gl-mini-card-label">Inscripciones</div>
+            <div class="gl-mini-card-value">Abiertas: el ciclo ya empezó y todavía puedes sumarte</div>
           </div>
         </div>
       </div>
@@ -370,7 +370,7 @@ const PRICING = {
 
       <div class="gl-grid-2">
         {PRICING.planes.map((plan, i) => (
-          <div class:list={['gl-price-card', { 'gl-price-card--featured': i === 0 }]}>
+          <div class:list={['gl-price-card', 'on-dark', { 'gl-price-card--featured': i === 0 }]}>
             {plan.tag && <span class="gl-price-tag">{plan.tag}</span>}
             <h3 class="gl-card-title" style="font-size:22px;">{plan.titulo}</h3>
             <p class="gl-price-subtitle">{plan.subtitulo}</p>
@@ -383,11 +383,13 @@ const PRICING = {
       </div>
 
       <div class="gl-notes-box">
-        <p><strong>Apartado de lugar:</strong> {PRICING.notaApartado.replace('Apartado de lugar: ', '')}</p>
-        <p><strong>Cierre de inscripciones:</strong> {PRICING.notaCierre.replace('Cierre de inscripciones: ', '')}</p>
+        <p><strong>Cupo:</strong> {PRICING.notaCupo}</p>
       </div>
 
-      <div class="gl-corpore-callout">
+      <!-- on-dark en las tarjetas de precio y en este recuadro: quedan en el cruce
+           79→84 del lienzo, y la --surface del tema es translúcida, así que
+           sin superficie propia su texto claro caía sobre arena. -->
+      <div class="gl-corpore-callout on-dark">
         <h3 class="gl-card-title" style="font-size:21px;">{PRICING.corpore.titulo}</h3>
         <p class="body-text" style="margin:0 0 22px;">{PRICING.corpore.texto}</p>
         <div class="gl-corpore-tiers">
@@ -425,110 +427,20 @@ const PRICING = {
     <!-- CTA FINAL -->
     <section class="section section--purple zone-light">
       <div class="container--narrow" style="max-width:820px;">
-        <h2 class="heading-section">Reserva tu lugar</h2>
-        <p style="font-size:18px;line-height:1.7;color:var(--on-canvas-soft);margin:0 0 34px;max-width:52ch;">Cupo limitado a 12 personas. El apartado de $2,000 es reembolsable hasta el 12 de septiembre.</p>
-        <a href={WA} target="_blank" rel="noopener" class="btn btn--gold">Quiero inscribirme<span class="btn__dot"></span></a>
+        <h2 class="heading-section">{LLAMADO.titulo}</h2>
+        <p style="font-size:18px;line-height:1.7;color:var(--on-canvas-soft);margin:0 0 34px;max-width:52ch;">{LLAMADO.texto} Cupo limitado a 12 personas.</p>
+        <a href={WA} target="_blank" rel="noopener" class="btn btn--gold">{LLAMADO.boton}<span class="btn__dot"></span></a>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="gl-footer on-dark">
-      <div class="gl-footer-inner">
-        <p>Inessentia · Grupo de Actualización en Terapia Corporal</p>
-        <p><a href={WA} target="_blank" rel="noopener">wa.me/patriciomx</a></p>
-      </div>
-    </footer>
+    <SupFooter />
 
   </div>
-
-  <script>
-    const nav = document.getElementById('gl-nav');
-    const onScroll = () => {
-      if (window.scrollY > 60) {
-        nav?.classList.add('is-scrolled');
-      } else {
-        nav?.classList.remove('is-scrolled');
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  </script>
 </Base>
 
 <style>
-  /* La barra de esta página (.gl-nav) mide ~114px, más que --nav-h (84px)
-     que fija global.css; sin este override los anclajes (#programa, #fechas,
-     #inversion) aterrizan debajo de la barra fija. */
-  :global(html) { scroll-padding-top: 114px; }
-
   .gl-page {
     width: 100%;
-  }
-
-  /* NAV */
-  .gl-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 50;
-    background: transparent;
-    box-shadow: none;
-    backdrop-filter: blur(6px);
-    transition: background .3s ease, box-shadow .3s ease;
-  }
-  .gl-nav.is-scrolled {
-    background: rgba(52,26,84,.96);
-    box-shadow: 0 8px 28px rgba(var(--veil-purple),.28);
-  }
-  .gl-nav-inner {
-    max-width: var(--container-pad-w);
-    margin: 0 auto;
-    padding: 22px var(--gutter);
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    transition: padding .3s ease;
-  }
-  .gl-nav.is-scrolled .gl-nav-inner {
-    padding: 12px var(--gutter);
-  }
-  .gl-nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-  }
-  .gl-nav-brand img { height: 70px; width: auto; display: block; }
-  .gl-nav-word {
-    font-family: var(--ff-head);
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1.1;
-    color: #fff;
-  }
-  .gl-nav-right { display: flex; align-items: center; gap: 28px; }
-  .gl-nav-links { display: flex; align-items: center; gap: 28px; }
-  .gl-nav-links a {
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0;
-    text-transform: none;
-    color: rgba(255,255,255,.9);
-    text-decoration: none;
-  }
-  .gl-nav-cta {
-    background: #fff;
-    color: var(--purple);
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 0;
-    text-transform: none;
-    padding: 12px 22px;
-    border-radius: var(--r-pill);
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  @media (max-width: 680px) {
-    .gl-nav-links { display: none; }
   }
 
   /* HERO — vive sobre el lienzo continuo (--page-grad): no pinta su propio
@@ -909,18 +821,59 @@ const PRICING = {
     .gl-supervisor { grid-template-columns: 1fr; padding: 30px 24px; }
   }
 
-  /* La banda oscura va a sangre: el fondo debe llegar a los dos bordes. Por eso
-     el tope de ancho NO va aquí (con max-width el footer se convertía en una caja
-     flotante con el fondo de la página asomando a los lados). Se usa el patrón
-     anidado de CLAUDE.md: el padding lo pone esta caja, el tope lo pone la de
-     dentro con --container-w, y así el texto cae en el mismo borde que el resto. */
-  .gl-footer {
-    background: var(--ink);
-    color: rgba(255,255,255,.6);
-    padding: 38px var(--gutter);
+  /* Aviso del hero: el ciclo ya empezó y hay memoria que leer. */
+  .gl-hero-aviso {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-top: 26px;
+    padding: 10px 18px 10px 10px;
+    border: 1px solid rgba(234,229,217,.4);
+    border-radius: var(--r-pill);
+    background: rgba(var(--veil-purple),.55);
+    color: var(--on-canvas);
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color .2s ease, background .2s ease;
   }
-  .gl-footer-inner { max-width: var(--container-w); margin: 0 auto; }
-  .gl-footer p { font-size: 14px; margin: 0 0 6px; }
-  .gl-footer p:last-child { margin: 0; }
-  .gl-footer a { color: rgba(255,255,255,.85); text-decoration: none; }
+  .gl-hero-aviso:hover { border-color: var(--accent-canvas); background: rgba(var(--veil-purple),.8); }
+  .gl-hero-aviso-tag {
+    background: var(--sand);
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: var(--r-pill);
+  }
+  @media (max-width: 560px) {
+    .gl-hero-aviso { border-radius: var(--r-panel); padding: 12px 14px; }
+  }
+
+  /* Tarjeta de una memoria publicada. */
+  .gl-memoria {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-left: 4px solid var(--sand);
+    border-radius: var(--r-card-md);
+    padding: clamp(24px, 4vw, 38px);
+    text-decoration: none;
+    max-width: 860px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .gl-memoria + .gl-memoria { margin-top: 16px; }
+  .gl-memoria:hover { transform: translateY(-2px); box-shadow: var(--sh-card); }
+  .gl-memoria-n { font-size: 13px; font-weight: 800; color: var(--gold); }
+  .gl-memoria-titulo { font-family: var(--ff-head); font-weight: 700; font-size: var(--fs-h3); line-height: var(--lh-head); color: var(--heading); }
+  .gl-memoria-bajada { font-size: 17px; line-height: 1.6; color: var(--text-soft); max-width: 60ch; }
+  .gl-memoria-incluye { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .gl-memoria-incluye span {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    padding: 6px 12px; border: 1px solid var(--border-card); border-radius: var(--r-pill);
+  }
+  .gl-memoria-ir { margin-top: 8px; font-size: 15px; font-weight: 700; color: var(--gold); }
 </style>

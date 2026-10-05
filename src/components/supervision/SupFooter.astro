@@ -1,0 +1,27 @@
+---
+import { SUPERVISION_WA, SUPERVISION_NOMBRE } from '../../data/supervision';
+---
+
+<footer class="gl-footer on-dark">
+  <div class="gl-footer-inner">
+    <p>Inessentia · {SUPERVISION_NOMBRE}</p>
+    <p><a href={SUPERVISION_WA} target="_blank" rel="noopener">wa.me/patriciomx</a></p>
+  </div>
+</footer>
+
+<style>
+  /* La banda oscura va a sangre: el fondo debe llegar a los dos bordes. Por eso
+     el tope de ancho NO va aquí (con max-width el footer se convertía en una caja
+     flotante con el fondo de la página asomando a los lados). Se usa el patrón
+     anidado de CLAUDE.md: el padding lo pone esta caja, el tope lo pone la de
+     dentro con --container-w, y así el texto cae en el mismo borde que el resto. */
+  .gl-footer {
+    background: var(--ink);
+    color: rgba(255,255,255,.6);
+    padding: 38px var(--gutter);
+  }
+  .gl-footer-inner { max-width: var(--container-w); margin: 0 auto; }
+  .gl-footer p { font-size: 14px; margin: 0 0 6px; }
+  .gl-footer p:last-child { margin: 0; }
+  .gl-footer a { color: rgba(255,255,255,.85); text-decoration: none; }
+</style>

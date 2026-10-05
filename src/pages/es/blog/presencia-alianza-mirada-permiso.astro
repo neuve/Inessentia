@@ -1,98 +1,162 @@
 ---
-import BlogPost from '../../../layouts/BlogPost.astro';
-import { getPost, nextPostFor } from '../../../data/posts';
+import SupervisionDoc from '../../../layouts/SupervisionDoc.astro';
+import DisqusComments from '../../../components/DisqusComments.astro';
+import { getPost } from '../../../data/posts';
+import { personSchema, personRef } from '../../../data/person';
+import { resolveAsset } from '../../../lib/resolve-asset';
+import { memoriaPath, SUPERVISION_PATH } from '../../../data/supervision';
 
 const post = getPost('presencia-alianza-mirada-permiso')!;
-const locale = 'es';
 // Entrada sólo en español (decisión de Patricio, 2026-09-29): no hay par en
-// /en/blog/, así que se apaga el hreflang cruzado y `altPath` queda inerte.
+// /en/blog/. Es la lectura de entrada del Grupo de Actualización en Terapia
+// Corporal, así que viste el entorno de supervisión (SupervisionDoc) y no el
+// del blog: misma barra, mismo cierre y mismo llamado que las memorias.
+// Conserva su URL, su tarjeta en el blog y su hilo de Disqus.
+const SESION = 1;
+
+// Mismo Article que emitía BlogPost.astro para esta URL.
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.es.title,
+  "image": `https://inessentia.mx${resolveAsset(post.heroImage)}`,
+  "inLanguage": "es",
+  "author": personRef,
+  "publisher": {
+    "@type": "Organization",
+    "name": "Inessentia",
+    "logo": { "@type": "ImageObject", "url": "https://inessentia.mx/uploads/logo-patricio-ruiz.webp" }
+  },
+  "mainEntityOfPage": `https://inessentia.mx${Astro.url.pathname}`
+};
 ---
 
-<BlogPost
-  locale={locale}
-  title={post.es.title}
+<SupervisionDoc
+  title={`${post.es.title} | Blog Inessentia`}
   description={post.es.description}
-  altPath="/"
-  noAltLocale
-  category={post.es.category}
-  heroImage={post.heroImage}
   ogImage="/uploads/og/supervision.webp"
+  schema={schema}
+  extraSchemas={[personSchema('es')]}
+  eyebrow={`Lectura de entrada · Sesión ${SESION}`}
+  h1={post.es.title}
+  bajada="Una introducción a la supervisión grupal."
+  meta={['Por Patricio Ruiz', 'Lectura de media hora']}
+  heroImage={post.heroImage}
   heroAlt={post.heroAlt.es}
   heroPosition={post.heroPosition}
-  disqusIdentifier={post.es.disqusIdentifier}
-  nextPost={nextPostFor(post.id, locale)}
+  sesionActual={SESION}
 >
-  <p data-reveal><em>Una introducción a la supervisión grupal.</em></p>
+  <section class="lec-sec">
+    <div class="container--read">
+      <a class="lec-aviso" href={memoriaPath(SESION)}>
+        <span>Este texto se leyó para preparar la sesión {SESION} del grupo.</span>
+        <strong>Lee la memoria y escucha el resumen →</strong>
+      </a>
+      <div class="blog-content lec-prosa">
+        <h2 data-reveal>¿Cómo leer este texto?</h2>
+        <p data-reveal>Procura tener una media hora para que puedas ir haciendo pausas en cada sección y escribiendo a mano tus reflexiones, preguntándote y respondiendo:</p>
+        <ul data-reveal>
+          <li>¿A dónde me lleva esto?</li>
+          <li>¿A qué historia en mis propios procesos terapéuticos me recordó?</li>
+          <li>¿Esto me remite a alguna vivencia en mis experiencias formativas?</li>
+        </ul>
 
-  <h2 data-reveal>¿Cómo leer este texto?</h2>
-  <p data-reveal>Procura tener una media hora para que puedas ir haciendo pausas en cada sección y escribiendo a mano tus reflexiones, preguntándote y respondiendo:</p>
-  <ul data-reveal>
-    <li>¿A dónde me lleva esto?</li>
-    <li>¿A qué historia en mis propios procesos terapéuticos me recordó?</li>
-    <li>¿Esto me remite a alguna vivencia en mis experiencias formativas?</li>
-  </ul>
+        <h2 data-reveal>¿Para qué hacemos terapia?</h2>
+        <p data-reveal>De inicio, podríamos decir que la terapia ofrece muchas posibilidades. Desde la mirada de quien consulta, lo típico es ir a terapia cuando "necesitamos ayuda". En la línea de la terapia corporal, esa ayuda normalmente busca resolver un problema psicosomático: una emoción que no deja de aparecer, o un malestar físico que la medicina, los remedios y la propia consultante con sus recursos no han podido sanar. Si estamos en la línea del duelo y de la tanatología, a veces trabajaremos con dolores y malestares que por definición no se van a acabar hasta que la vida se acabe.</p>
+        <p data-reveal>Incluso cuando el dolor no se va a acabar, la consultante puede decidir algo sobre cómo lo vive. Siendo terapeutas existenciales y evolutivas, partimos de ahí: quien nos consulta tiene poder para transformar su realidad. Tiene en sus manos cierto nivel de injerencia sobre lo que le pasa, aunque llegue sin sentirlo. Nuestro trabajo es volvernos innecesarias: ayudarla a reconocer esa injerencia, acrecentarla y fortalecerla. De ahí se desprende una postura. Si el poder de cambio está en la consultante, no nos toca ocupar el lugar de quien tiene las respuestas. Nos toca ser curiosas y hacer preguntas que la acerquen a sus propias respuestas.</p>
+        <p data-reveal>Esta es una postura ética. Cada vez que ofrecemos una solución o le decimos a la consultante quién es, perdemos la oportunidad de explorar cómo podría resolver, cómo podría afirmarse y definirse; perdemos la posibilidad de que experimente su poder en la terapia. En el trabajo somático esto se vuelve más crítico. Trabajamos con el cuerpo, con la energía y con frecuencia en estados de conciencia no ordinarios, donde es más fácil tropezar con nuestras propias transferencias: proyectar nuestras carencias, anhelos, creencias y sesgos. Además, el diferencial de poder que nos confiere el título de terapeutas vuelve a la consultante más vulnerable a nuestra influencia. Los textos de Kylea Taylor sobre la ética del cuidado nos acompañan para mirar esta pregunta de fondo: ¿dónde está el poder en esta relación y qué hacemos con él?</p>
 
-  <h2 data-reveal>¿Para qué hacemos terapia?</h2>
-  <p data-reveal>De inicio, podríamos decir que la terapia ofrece muchas posibilidades. Desde la mirada de quien consulta, lo típico es ir a terapia cuando "necesitamos ayuda". En la línea de la terapia corporal, esa ayuda normalmente busca resolver un problema psicosomático: una emoción que no deja de aparecer, o un malestar físico que la medicina, los remedios y la propia consultante con sus recursos no han podido sanar. Si estamos en la línea del duelo y de la tanatología, a veces trabajaremos con dolores y malestares que por definición no se van a acabar hasta que la vida se acabe.</p>
-  <p data-reveal>Incluso cuando el dolor no se va a acabar, la consultante puede decidir algo sobre cómo lo vive. Siendo terapeutas existenciales y evolutivas, partimos de ahí: quien nos consulta tiene poder para transformar su realidad. Tiene en sus manos cierto nivel de injerencia sobre lo que le pasa, aunque llegue sin sentirlo. Nuestro trabajo es volvernos innecesarias: ayudarla a reconocer esa injerencia, acrecentarla y fortalecerla. De ahí se desprende una postura. Si el poder de cambio está en la consultante, no nos toca ocupar el lugar de quien tiene las respuestas. Nos toca ser curiosas y hacer preguntas que la acerquen a sus propias respuestas.</p>
-  <p data-reveal>Esta es una postura ética. Cada vez que ofrecemos una solución o le decimos a la consultante quién es, perdemos la oportunidad de explorar cómo podría resolver, cómo podría afirmarse y definirse; perdemos la posibilidad de que experimente su poder en la terapia. En el trabajo somático esto se vuelve más crítico. Trabajamos con el cuerpo, con la energía y con frecuencia en estados de conciencia no ordinarios, donde es más fácil tropezar con nuestras propias transferencias: proyectar nuestras carencias, anhelos, creencias y sesgos. Además, el diferencial de poder que nos confiere el título de terapeutas vuelve a la consultante más vulnerable a nuestra influencia. Los textos de Kylea Taylor sobre la ética del cuidado nos acompañan para mirar esta pregunta de fondo: ¿dónde está el poder en esta relación y qué hacemos con él?</p>
+        <h2 data-reveal>El proceso terapéutico como una serie de arcos</h2>
+        <p data-reveal>Un proceso terapéutico rara vez es lineal. Prefiero visualizarlo como una serie de arcos narrativos que se repiten a distintas escalas: en un momento de la sesión, en la sesión completa y a lo largo de todo el proceso.</p>
+        <blockquote data-reveal>Pensemos en una consultante que llega a terapia por el shock de la muerte de un familiar. Ese es el primer arco. Pero en las sesiones aparecen otros: su miedo recurrente a la confrontación, la influencia negativa y persistente de las mujeres de su sistema familiar, su preocupación por su bajo peso. Día a día cultivamos la fortaleza interna y la seguridad para que emerjan los límites en sus relaciones más cercanas, y para que la historia que se va desenvolviendo sea de libertad, independencia y permiso de contacto con el gozo; en consecuencia, una autonutrición más orientada al deseo que al deber-comer. Al trabajar en un arco, los otros no siempre están explícitos; en la mirada global del proceso, se vuelven visibles.</blockquote>
+        <p data-reveal>Para supervisar nuestro quehacer como terapeutas, propongo pensar cada arco en cuatro niveles. En cada uno ofrecemos algo distinto, la consultante recupera una parte de su poder y nosotras corremos un riesgo propio. Cada nivel se apoya en el anterior.</p>
 
-  <h2 data-reveal>El proceso terapéutico como una serie de arcos</h2>
-  <p data-reveal>Un proceso terapéutico rara vez es lineal. Prefiero visualizarlo como una serie de arcos narrativos que se repiten a distintas escalas: en un momento de la sesión, en la sesión completa y a lo largo de todo el proceso.</p>
-  <blockquote data-reveal>Pensemos en una consultante que llega a terapia por el shock de la muerte de un familiar. Ese es el primer arco. Pero en las sesiones aparecen otros: su miedo recurrente a la confrontación, la influencia negativa y persistente de las mujeres de su sistema familiar, su preocupación por su bajo peso. Día a día cultivamos la fortaleza interna y la seguridad para que emerjan los límites en sus relaciones más cercanas, y para que la historia que se va desenvolviendo sea de libertad, independencia y permiso de contacto con el gozo; en consecuencia, una autonutrición más orientada al deseo que al deber-comer. Al trabajar en un arco, los otros no siempre están explícitos; en la mirada global del proceso, se vuelven visibles.</blockquote>
-  <p data-reveal>Para supervisar nuestro quehacer como terapeutas, propongo pensar cada arco en cuatro niveles. En cada uno ofrecemos algo distinto, la consultante recupera una parte de su poder y nosotras corremos un riesgo propio. Cada nivel se apoya en el anterior.</p>
+        <h2 data-reveal>Nivel 1: presencia</h2>
+        <p data-reveal>En <em>El proceso de convertirse en persona</em>, Carl Rogers (1961) plantea que la calidad humana y la cualidad y calidad de la presencia de quien ayuda determinan fuertemente el resultado de la terapia. Por eso la base de nuestro trabajo no está en lo que hacemos, sino en la presencia que traemos.</p>
+        <p data-reveal>Lo que la consultante recibe aquí es la experiencia de no estar sola frente a lo que le aqueja. Tres frases (que ya son clichés de nuestro quehacer) lo resumen:</p>
+        <blockquote data-reveal>"Estoy contigo"<br>"Aquí estoy"<br>"Te acompaño"</blockquote>
+        <p data-reveal>Justo porque se han vuelto lugar común, casi nunca hace falta decirlas: si nuestra presencia es palpable, las frases sobran. Las decimos en voz alta solo cuando la consultante entra en un estado abrumador de agobio, desconexión o terror, con poco contacto con la realidad y con su entorno.</p>
+        <p data-reveal>Mientras la relación se fundamenta, empezamos a registrar las cualidades y los recursos de la consultante: de dónde reunió las fuerzas para llegar viva a nuestro consultorio, aunque sea en crisis. Guardamos ese registro, porque a él regresaremos al final del arco.</p>
 
-  <h2 data-reveal>Nivel 1: presencia</h2>
-  <p data-reveal>En <em>El proceso de convertirse en persona</em>, Carl Rogers (1961) plantea que la calidad humana y la cualidad y calidad de la presencia de quien ayuda determinan fuertemente el resultado de la terapia. Por eso la base de nuestro trabajo no está en lo que hacemos, sino en la presencia que traemos.</p>
-  <p data-reveal>Lo que la consultante recibe aquí es la experiencia de no estar sola frente a lo que le aqueja. Tres frases (que ya son clichés de nuestro quehacer) lo resumen:</p>
-  <blockquote data-reveal>"Estoy contigo"<br>"Aquí estoy"<br>"Te acompaño"</blockquote>
-  <p data-reveal>Justo porque se han vuelto lugar común, casi nunca hace falta decirlas: si nuestra presencia es palpable, las frases sobran. Las decimos en voz alta solo cuando la consultante entra en un estado abrumador de agobio, desconexión o terror, con poco contacto con la realidad y con su entorno.</p>
-  <p data-reveal>Mientras la relación se fundamenta, empezamos a registrar las cualidades y los recursos de la consultante: de dónde reunió las fuerzas para llegar viva a nuestro consultorio, aunque sea en crisis. Guardamos ese registro, porque a él regresaremos al final del arco.</p>
+        <h2 data-reveal>Nivel 2: alianza</h2>
+        <p data-reveal>Sobre esa presencia, escuchamos la queja. Buscamos un entendimiento básico del problema, a partir de la voz de la consultante: ¿Qué piensas que está pasando? ¿Qué piensas que debiéramos atender hoy? ¿Qué creencias sostienen lo que me cuentas?</p>
+        <p data-reveal>Lo que la consultante recupera aquí es su voz en el proceso. Cuando ella decide qué atendemos, deja de ser espectadora y se vuelve copartícipe. El cambio sucede donde y por lo que a ella le interesa, y ella lo elige paso a paso.</p>
+        <p data-reveal>El riesgo de este nivel es el secuestro narrativo. La consultante suele oscilar entre culpar a los demás y culparse a sí misma. En una variante, el problema es que ella no puede cambiar, que no da el ancho. O el problema es que los otros no cambian, no aceptan la manera de ser que ella les trata de imponer. Si nos atrapa ese relato, nos volvemos cómplices de la culpa, en una dirección o en la otra. La alianza que buscamos es con la consultante y con su deseo de transformar su realidad, no con la exigencia de que ella o los otros hagan, puedan o den más.</p>
 
-  <h2 data-reveal>Nivel 2: alianza</h2>
-  <p data-reveal>Sobre esa presencia, escuchamos la queja. Buscamos un entendimiento básico del problema, a partir de la voz de la consultante: ¿Qué piensas que está pasando? ¿Qué piensas que debiéramos atender hoy? ¿Qué creencias sostienen lo que me cuentas?</p>
-  <p data-reveal>Lo que la consultante recupera aquí es su voz en el proceso. Cuando ella decide qué atendemos, deja de ser espectadora y se vuelve copartícipe. El cambio sucede donde y por lo que a ella le interesa, y ella lo elige paso a paso.</p>
-  <p data-reveal>El riesgo de este nivel es el secuestro narrativo. La consultante suele oscilar entre culpar a los demás y culparse a sí misma. En una variante, el problema es que ella no puede cambiar, que no da el ancho. O el problema es que los otros no cambian, no aceptan la manera de ser que ella les trata de imponer. Si nos atrapa ese relato, nos volvemos cómplices de la culpa, en una dirección o en la otra. La alianza que buscamos es con la consultante y con su deseo de transformar su realidad, no con la exigencia de que ella o los otros hagan, puedan o den más.</p>
+        <h2 data-reveal>Nivel 3: mirada crítica</h2>
+        <p data-reveal>Una vez que hay alianza, podemos escuchar lo que la consultante no reporta. Es lo que la Terapia Sistémica (Watzlawick, 2011), la Core Energética y la Experiencia Somática proponen con diferentes términos: "escuchar con otros oídos".</p>
+        <p data-reveal>Escuchamos en dos registros que se entrelazan. El primero es el cuerpo y el sistema nervioso: los impulsos y las reacciones instintivas, donde quedan inscritas las huellas del trauma y los impulsos del desarrollo que definen nuestra capacidad de vincularnos. El segundo son los guiones: las creencias, razonamientos y preceptos socioculturales con los que la consultante intenta ordenar esos impulsos y darle sentido a su vida relacional.</p>
+        <p data-reveal>Al sostener esta doble escucha, la pregunta terapéutica se transforma de raíz: ya no indagamos qué le pasa a la consultante, sino cómo participa en aquello que le acontece. Nos invita a explorar qué parte de su propia queja coconstruye y qué paso hacia la responsabilidad relacional está lista para dar. Todo esto, necesariamente, situado en su ecosistema: quién es, de dónde viene y bajo qué condiciones físicas, sociales, culturales, familiares y de género respira. Después de todo, nadie construye su realidad en el vacío.</p>
+        <p data-reveal>Lo que la consultante recupera aquí es la posibilidad de apropiarse de su participación y, al responsabilizarse de ella, la capacidad de actuar y encaminarse hacia un resultado distinto. De ahí que nuestras intervenciones (que también han derivado en lugares comunes) son ensayos de lo que quiere hacer afuera del consultorio:</p>
+        <blockquote data-reveal>"Date cuenta"<br>"Arráigate"<br>"Pon límites"<br>"No te colapses"<br>"Hazte presente"<br>"Dale voz"<br>"Nombra tu verdad"</blockquote>
+        <p data-reveal>Detrás de cada una podríamos hallar preguntas que apunten hacia la consciencia, movimientos que invitan al arraigo y ejercicios que movilizan energía. Estas intervenciones valen en la medida en que sean ensayos que la consultante elige, no consignas impuestas por una autoridad externa. Y mientras estamos en la experimentación, nos estamos preguntando qué suele hacer la consultante y qué otras posibilidades querría elegir, y junto con nuestra consultante vamos definiendo el rumbo frente a todas las opciones para explorar que nos ofrece una intervención terapéutica psicocorporal.</p>
+        <p data-reveal>Los mapas —de carácter, del ciclo de la experiencia, de los eneatipos, de las respuestas de supervivencia— son lentes útiles para este nivel. Un nuevo riesgo aparece cuando sustituyen la mirada. Entonces nos volvemos recetarios, y nuestra tendencia a resolver y aliviar toma el control: tú llegas con un problema, yo te digo qué hacer y se te quita la molestia. Volvemos a quedarnos con el poder de la consultante. Aquí aparece otro riesgo más sutil: leer en el cuerpo de la otra nuestras propias carencias, anhelos y sesgos. Nuestras transferencias también pueden cegar nuestra mirada.</p>
 
-  <h2 data-reveal>Nivel 3: mirada crítica</h2>
-  <p data-reveal>Una vez que hay alianza, podemos escuchar lo que la consultante no reporta. Es lo que la Terapia Sistémica (Watzlawick, 2011), la Core Energética y la Experiencia Somática proponen con diferentes términos: "escuchar con otros oídos".</p>
-  <p data-reveal>Escuchamos en dos registros que se entrelazan. El primero es el cuerpo y el sistema nervioso: los impulsos y las reacciones instintivas, donde quedan inscritas las huellas del trauma y los impulsos del desarrollo que definen nuestra capacidad de vincularnos. El segundo son los guiones: las creencias, razonamientos y preceptos socioculturales con los que la consultante intenta ordenar esos impulsos y darle sentido a su vida relacional.</p>
-  <p data-reveal>Al sostener esta doble escucha, la pregunta terapéutica se transforma de raíz: ya no indagamos qué le pasa a la consultante, sino cómo participa en aquello que le acontece. Nos invita a explorar qué parte de su propia queja coconstruye y qué paso hacia la responsabilidad relacional está lista para dar. Todo esto, necesariamente, situado en su ecosistema: quién es, de dónde viene y bajo qué condiciones físicas, sociales, culturales, familiares y de género respira. Después de todo, nadie construye su realidad en el vacío.</p>
-  <p data-reveal>Lo que la consultante recupera aquí es la posibilidad de apropiarse de su participación y, al responsabilizarse de ella, la capacidad de actuar y encaminarse hacia un resultado distinto. De ahí que nuestras intervenciones (que también han derivado en lugares comunes) son ensayos de lo que quiere hacer afuera del consultorio:</p>
-  <blockquote data-reveal>"Date cuenta"<br>"Arráigate"<br>"Pon límites"<br>"No te colapses"<br>"Hazte presente"<br>"Dale voz"<br>"Nombra tu verdad"</blockquote>
-  <p data-reveal>Detrás de cada una podríamos hallar preguntas que apunten hacia la consciencia, movimientos que invitan al arraigo y ejercicios que movilizan energía. Estas intervenciones valen en la medida en que sean ensayos que la consultante elige, no consignas impuestas por una autoridad externa. Y mientras estamos en la experimentación, nos estamos preguntando qué suele hacer la consultante y qué otras posibilidades querría elegir, y junto con nuestra consultante vamos definiendo el rumbo frente a todas las opciones para explorar que nos ofrece una intervención terapéutica psicocorporal.</p>
-  <p data-reveal>Los mapas —de carácter, del ciclo de la experiencia, de los eneatipos, de las respuestas de supervivencia— son lentes útiles para este nivel. Un nuevo riesgo aparece cuando sustituyen la mirada. Entonces nos volvemos recetarios, y nuestra tendencia a resolver y aliviar toma el control: tú llegas con un problema, yo te digo qué hacer y se te quita la molestia. Volvemos a quedarnos con el poder de la consultante. Aquí aparece otro riesgo más sutil: leer en el cuerpo de la otra nuestras propias carencias, anhelos y sesgos. Nuestras transferencias también pueden cegar nuestra mirada.</p>
+        <h2 data-reveal>Nivel 4: permiso</h2>
+        <p data-reveal>El último nivel responde al riesgo del anterior. Tomando la frase “Let Go, Let God” (Suelta y permite a Dios) del Pathwork (Pierrakos, 1973) y de muchas tradiciones ancestrales, partimos de que la semilla divina está en cada una de nosotras. Nuestra racionalidad, nuestra aprensión y nuestro condicionamiento limitan su expresión, y cuando intentamos controlar el proceso para que salga como creemos correcto, encontramos fricción, frustración y distorsión.</p>
+        <p data-reveal>Aquí volvemos a lo que registramos en el nivel 1: las fortalezas de la consultante, sus cualidades y sus valores. Desde la misma colaboración del nivel 2, buscamos que recupere el contacto con esa fuente, de manera consciente y voluntaria.</p>
+        <p data-reveal>Lo que la consultante regenera aquí es una expresión más íntegra de su ser. Y lo que nos toca a nosotras es, sobre todo, permitir que el propio proceso se desenvuelva (por encima del hacer), modelándole confianza en el proceso y permiso para ser y estar presente con lo que acontece. Estos suelen ser espacios de pocas palabras, de claridad y de certeza.</p>
 
-  <h2 data-reveal>Nivel 4: permiso</h2>
-  <p data-reveal>El último nivel responde al riesgo del anterior. Tomando la frase “Let Go, Let God” (Suelta y permite a Dios) del Pathwork (Pierrakos, 1973) y de muchas tradiciones ancestrales, partimos de que la semilla divina está en cada una de nosotras. Nuestra racionalidad, nuestra aprensión y nuestro condicionamiento limitan su expresión, y cuando intentamos controlar el proceso para que salga como creemos correcto, encontramos fricción, frustración y distorsión.</p>
-  <p data-reveal>Aquí volvemos a lo que registramos en el nivel 1: las fortalezas de la consultante, sus cualidades y sus valores. Desde la misma colaboración del nivel 2, buscamos que recupere el contacto con esa fuente, de manera consciente y voluntaria.</p>
-  <p data-reveal>Lo que la consultante regenera aquí es una expresión más íntegra de su ser. Y lo que nos toca a nosotras es, sobre todo, permitir que el propio proceso se desenvuelva (por encima del hacer), modelándole confianza en el proceso y permiso para ser y estar presente con lo que acontece. Estos suelen ser espacios de pocas palabras, de claridad y de certeza.</p>
+        <h2 data-reveal>El arco completo</h2>
+        <p data-reveal>Así se cierra el arco: la presencia sostiene, la alianza invita la voz de la consultante, la mirada crítica le devuelve su parte en la corresponsabilidad y el permitir le ayuda a recordar el origen de su existencia para que conscientemente contacte y se permita arraigar en su experiencia humana el flujo de lo divino. En cada nivel, su injerencia sobre su propia vida crece.</p>
+        <p data-reveal>Estos niveles no se exploran y superan de una vez por todas. Vamos y venimos entre ellos dentro de una sesión, y un proceso terapéutico maduro los recorre muchas veces; una terapeuta madura podría considerar que una crisis nos puede regresar al nivel 1; así como una pregunta bien formulada y sostenida puede llevarnos del 1 al 4 en instantes. Inclusive podríamos hacer terapia quedándonos en la totalidad del proceso en el nivel 3, si es que las creencias y requerimientos de la persona no dan puerta a contactar con la espiritualidad.</p>
+        <p data-reveal>No hay un recorrido ideal, excepto el que aun con sus vaivenes nos permite ir construyendo nueva información, nuevos y más complejos puntos de vista para la consultante y, en consecuencia, le permite continuamente generar respuestas que se adaptan a sus condiciones actuales de vida, en presencia y en presente.</p>
 
-  <h2 data-reveal>El arco completo</h2>
-  <p data-reveal>Así se cierra el arco: la presencia sostiene, la alianza invita la voz de la consultante, la mirada crítica le devuelve su parte en la corresponsabilidad y el permitir le ayuda a recordar el origen de su existencia para que conscientemente contacte y se permita arraigar en su experiencia humana el flujo de lo divino. En cada nivel, su injerencia sobre su propia vida crece.</p>
-  <p data-reveal>Estos niveles no se exploran y superan de una vez por todas. Vamos y venimos entre ellos dentro de una sesión, y un proceso terapéutico maduro los recorre muchas veces; una terapeuta madura podría considerar que una crisis nos puede regresar al nivel 1; así como una pregunta bien formulada y sostenida puede llevarnos del 1 al 4 en instantes. Inclusive podríamos hacer terapia quedándonos en la totalidad del proceso en el nivel 3, si es que las creencias y requerimientos de la persona no dan puerta a contactar con la espiritualidad.</p>
-  <p data-reveal>No hay un recorrido ideal, excepto el que aun con sus vaivenes nos permite ir construyendo nueva información, nuevos y más complejos puntos de vista para la consultante y, en consecuencia, le permite continuamente generar respuestas que se adaptan a sus condiciones actuales de vida, en presencia y en presente.</p>
+        <h2 data-reveal>La supervisión</h2>
+        <p data-reveal>Lo que ofrecemos a nuestras consultantes es lo que nos ofrecemos entre nosotras en la supervisión: presencia, alianza, mirada crítica y permiso. Nos apoyamos en la mirada de las demás para ver en qué nivel nos movemos con cada consultante, dónde nos secuestró la narrativa, dónde nos volvimos recetario y dónde quisimos controlar lo que pedía ser permitido. Y practicamos, entre nosotras, el acompañar a otras personas que se están formando como terapeutas. Buscamos esa fluidez que nos permita reponernos cuando nos estancamos y generar nuevas intervenciones para acompañar a nuestras consultantes de manera creativa.</p>
+        <p data-reveal>En las supervisiones que doy, nos apoyamos en el trabajo de Kylea Taylor: <em>The Ethics of Caring: Finding Right Relationship with Clients</em> (2017) y <em>Peer Consultation Groups and Ethical Awareness Tools for Psychedelic Practitioners</em> (2024).</p>
 
-  <h2 data-reveal>La supervisión</h2>
-  <p data-reveal>Lo que ofrecemos a nuestras consultantes es lo que nos ofrecemos entre nosotras en la supervisión: presencia, alianza, mirada crítica y permiso. Nos apoyamos en la mirada de las demás para ver en qué nivel nos movemos con cada consultante, dónde nos secuestró la narrativa, dónde nos volvimos recetario y dónde quisimos controlar lo que pedía ser permitido. Y practicamos, entre nosotras, el acompañar a otras personas que se están formando como terapeutas. Buscamos esa fluidez que nos permita reponernos cuando nos estancamos y generar nuevas intervenciones para acompañar a nuestras consultantes de manera creativa.</p>
-  <p data-reveal>En las supervisiones que doy, nos apoyamos en el trabajo de Kylea Taylor: <em>The Ethics of Caring: Finding Right Relationship with Clients</em> (2017) y <em>Peer Consultation Groups and Ethical Awareness Tools for Psychedelic Practitioners</em> (2024).</p>
+        <h2 data-reveal>Para llevarte de aquí</h2>
+        <p data-reveal>Una vez que hayas reflexionado sobre los niveles presentados arriba y sobre tu experiencia terapéutica previa, piensa en un proceso que hayas podido sacar adelante y en uno donde te hayas sentido atorada.</p>
+        <ul data-reveal>
+          <li>¿En qué nivel te sientes más firme como acompañante?</li>
+          <li>¿En cuál te sientes estancada con más frecuencia?</li>
+          <li>¿En qué momento de ese proceso difícil te quedaste, sin darte cuenta, con el poder de la consultante?</li>
+        </ul>
+        <p data-reveal>Con esas respuestas, elige un siguiente paso para tu crecimiento como terapeuta y anótalo.</p>
+        <p data-reveal>Si quieres llevar ese paso a una práctica compartida, con la mirada de otras colegas, conoce el <a href={SUPERVISION_PATH} class="link-underline">grupo de supervisión</a>: todavía puedes sumarte.</p>
 
-  <h2 data-reveal>Para llevarte de aquí</h2>
-  <p data-reveal>Una vez que hayas reflexionado sobre los niveles presentados arriba y sobre tu experiencia terapéutica previa, piensa en un proceso que hayas podido sacar adelante y en uno donde te hayas sentido atorada.</p>
-  <ul data-reveal>
-    <li>¿En qué nivel te sientes más firme como acompañante?</li>
-    <li>¿En cuál te sientes estancada con más frecuencia?</li>
-    <li>¿En qué momento de ese proceso difícil te quedaste, sin darte cuenta, con el poder de la consultante?</li>
-  </ul>
-  <p data-reveal>Con esas respuestas, elige un siguiente paso para tu crecimiento como terapeuta y anótalo.</p>
-  <p data-reveal>Si quieres llevar ese paso a una práctica compartida, con la mirada de otras colegas, conoce el <a href="/es/supervision/" class="link-underline">grupo de supervisión</a>.</p>
+        <p data-reveal>Patricio Ruiz Abrín, MTFS, SEP, CEP</p>
 
-  <p data-reveal>Patricio Ruiz Abrín, MTFS, SEP, CEP</p>
+        <h2 data-reveal>Referencias</h2>
+        <p data-reveal>Rogers, C. R. (1961). <em>On Becoming a Person: A Therapist's View of Psychotherapy</em>. Boston: Houghton Mifflin. [Ed. en español: <em>El proceso de convertirse en persona</em>. Paidós.]</p>
+        <p data-reveal>Watzlawick, P., Beavin Bavelas, J., &amp; Jackson, D. D. (2011). <em>Teoría de la comunicación humana: Interacciones, patologías y paradojas</em>. Herder Editorial.</p>
+        <p data-reveal>Pierrakos, E. B. (1973). <em>The spiritual and the practical meaning of "Let go, let God"</em> (Pathwork Guide Lecture No. 213). The Pathwork Foundation. <a href="https://pathwork.org/wp-content/uploads/lectures/pdf/E213.PDF" class="link-inline" target="_blank" rel="noopener">pathwork.org/wp-content/uploads/lectures/pdf/E213.PDF</a></p>
+        <p data-reveal>Taylor, K. (2017). <em>The Ethics of Caring: Finding Right Relationship with Clients</em>. Hanford Mead Publishers.</p>
+        <p data-reveal>Taylor, K. (2024). <em>Peer Consultation Groups and Ethical Awareness Tools for Psychedelic Practitioners</em>. Hanford Mead Publishers.</p>
+      </div>
+    </div>
+  </section>
 
-  <h2 data-reveal>Referencias</h2>
-  <p data-reveal>Rogers, C. R. (1961). <em>On Becoming a Person: A Therapist's View of Psychotherapy</em>. Boston: Houghton Mifflin. [Ed. en español: <em>El proceso de convertirse en persona</em>. Paidós.]</p>
-  <p data-reveal>Watzlawick, P., Beavin Bavelas, J., &amp; Jackson, D. D. (2011). <em>Teoría de la comunicación humana: Interacciones, patologías y paradojas</em>. Herder Editorial.</p>
-  <p data-reveal>Pierrakos, E. B. (1973). <em>The spiritual and the practical meaning of "Let go, let God"</em> (Pathwork Guide Lecture No. 213). The Pathwork Foundation. <a href="https://pathwork.org/wp-content/uploads/lectures/pdf/E213.PDF" class="link-inline" target="_blank" rel="noopener">pathwork.org/wp-content/uploads/lectures/pdf/E213.PDF</a></p>
-  <p data-reveal>Taylor, K. (2017). <em>The Ethics of Caring: Finding Right Relationship with Clients</em>. Hanford Mead Publishers.</p>
-  <p data-reveal>Taylor, K. (2024). <em>Peer Consultation Groups and Ethical Awareness Tools for Psychedelic Practitioners</em>. Hanford Mead Publishers.</p>
-</BlogPost>
+  <section class="lec-sec">
+    <div class="container--read">
+      <DisqusComments
+        identifier={post.es.disqusIdentifier}
+        url={`https://inessentia.mx${post.es.disqusIdentifier}`}
+        language="es"
+      />
+    </div>
+  </section>
+</SupervisionDoc>
+
+<style>
+  .lec-sec { padding: clamp(28px, 5vw, 56px) var(--gutter); }
+  .lec-aviso {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    align-items: baseline;
+    margin: 0 0 40px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-left: 4px solid var(--sand);
+    border-radius: var(--r-panel);
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .lec-aviso strong { color: var(--gold); }
+  .lec-prosa { display: flex; flex-direction: column; gap: 22px; }
+</style>

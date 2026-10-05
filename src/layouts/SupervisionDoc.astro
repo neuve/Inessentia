@@ -1,0 +1,153 @@
+---
+// Entorno de lectura del Grupo de Actualización en Terapia Corporal: la misma
+// barra, el mismo lienzo y el mismo cierre para las memorias de cada sesión y
+// para la lectura de entrada. La página del grupo (/es/supervision/) comparte
+// barra, navegación de sesiones, llamado y pie con este layout.
+import Base from './Base.astro';
+import Img from '../components/Img.astro';
+import SupNav from '../components/supervision/SupNav.astro';
+import SupFooter from '../components/supervision/SupFooter.astro';
+import SupLlamado from '../components/supervision/SupLlamado.astro';
+import SesionesRail from '../components/supervision/SesionesRail.astro';
+import { SUPERVISION_PATH, SUPERVISION_NOMBRE } from '../data/supervision';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+  schema?: object;
+  extraSchemas?: object[];
+  /** Rótulo dorado sobre el título: «Memoria · Sesión 1 de 9». */
+  eyebrow: string;
+  h1: string;
+  bajada?: string;
+  /** Datos cortos bajo el título (fecha, duración…). */
+  meta?: string[];
+  heroImage?: string;
+  heroAlt?: string;
+  heroPosition?: string;
+  /** Sesión que se marca en la navegación del cierre. */
+  sesionActual?: number;
+}
+
+const {
+  title, description, ogImage, schema, extraSchemas,
+  eyebrow, h1, bajada, meta = [],
+  heroImage, heroAlt = '', heroPosition = 'center 40%',
+  sesionActual,
+} = Astro.props;
+
+const links = [
+  { href: SUPERVISION_PATH, label: 'El grupo' },
+  { href: `${SUPERVISION_PATH}#memorias`, label: 'Memorias' },
+  { href: `${SUPERVISION_PATH}#inversion`, label: 'Inversión' },
+];
+---
+
+<Base hideNav hideFooter noAltLocale title={title} description={description} ogImage={ogImage} schema={schema} extraSchemas={extraSchemas}>
+  <style is:global>
+    /* Lienzo sólo NOCHE (mismo recurso que libro.astro). Estas páginas son
+       prosa larga de largo variable —es la plantilla de nueve memorias— y
+       todo su texto va en claro: con el --page-grad normal, lo que cayera en
+       el cruce 79→84 o después quedaría ilegible, y dónde cae depende de
+       cuánto mida cada memoria. Se cortan las paradas en la última del lado
+       oscuro (ver la regla de la franja en global.css). */
+    html:root[data-theme="dark"]{
+      --page-grad: linear-gradient(180deg,var(--canvas-top) 0%,#2d1a54 16%,#33206b 32%,#4d2472 48%,#6b2a68 64%,#8e3a5c 80%,#9a4534 100%);
+      --dawn-at: 2;
+    }
+  </style>
+
+  <SupNav links={links} brandHref={SUPERVISION_PATH} />
+
+  <header class:list={['sd-hero', 'zone-dark', { 'sd-hero--foto': !!heroImage }]}>
+    {heroImage && (
+      <Fragment>
+        <Img src={heroImage} alt={heroAlt} loading="eager" fetchpriority="high" minWidth={960} sizes="100vw" class="sd-hero-img" style={`object-position:${heroPosition};`} />
+        <div class="sd-hero-veil"></div>
+      </Fragment>
+    )}
+    <div class="sd-hero-inner container--read">
+      <p class="sd-migas"><a href={SUPERVISION_PATH}>{SUPERVISION_NOMBRE}</a></p>
+      <p class="sd-eyebrow">{eyebrow}</p>
+      <h1 class="sd-h1">{h1}</h1>
+      {bajada && <p class="sd-bajada">{bajada}</p>}
+      {meta.length > 0 && (
+        <p class="sd-meta">
+          {meta.map((m, i) => <Fragment>{i > 0 && <span class="sd-dot" aria-hidden="true"></span>}<span>{m}</span></Fragment>)}
+        </p>
+      )}
+      <slot name="hero-acciones" />
+    </div>
+  </header>
+
+  <main class="zone-dark">
+    <slot />
+  </main>
+
+  <section class="sd-cierre zone-dark">
+    <div class="container">
+      <p class="label-section">El ciclo, sesión a sesión</p>
+      <SesionesRail actual={sesionActual} />
+    </div>
+    <div class="container--read sd-cierre-llamado">
+      <SupLlamado />
+    </div>
+  </section>
+
+  <SupFooter />
+</Base>
+
+<style>
+  .sd-hero {
+    position: relative;
+    padding: clamp(150px, 16vw, 190px) var(--gutter) clamp(36px, 5vw, 56px);
+    overflow: hidden;
+  }
+  .sd-hero--foto {
+    min-height: clamp(520px, 62vw, 700px);
+    display: flex;
+    align-items: flex-end;
+    mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 82%, transparent 100%);
+  }
+  .sd-hero :global(.sd-hero-img) {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .sd-hero-veil {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(var(--veil-purple),.9) 0%, rgba(var(--veil-purple),.55) 34%, rgba(var(--veil-purple),.78) 62%, rgba(var(--veil-purple),.95) 100%);
+  }
+  .sd-hero-inner { position: relative; z-index: 2; width: 100%; }
+  .sd-migas { margin: 0 0 22px; font-size: 13.5px; font-weight: 700; }
+  .sd-migas a { color: var(--on-canvas-soft); text-decoration: none; }
+  .sd-migas a::before { content: '←'; margin-right: 8px; color: var(--accent-canvas); }
+  .sd-migas a:hover { text-decoration: underline; }
+  .sd-eyebrow { margin: 0 0 14px; font-weight: 800; font-size: 13px; color: var(--accent-canvas); }
+  .sd-h1 {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: clamp(34px, 5.4vw, 58px);
+    line-height: 1.05;
+    color: var(--heading-canvas);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .sd-bajada {
+    font-family: var(--ff-head);
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 23px);
+    line-height: 1.45;
+    color: var(--accent-canvas);
+    margin: 18px 0 0;
+    max-width: 46ch;
+  }
+  .sd-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: 24px 0 0; font-size: 14px; font-weight: 600; color: var(--on-canvas); }
+  .sd-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-canvas); }
+
+  .sd-cierre { padding: clamp(40px, 6vw, 72px) var(--gutter) clamp(64px, 9vw, 110px); }
+  .sd-cierre-llamado { margin-top: clamp(40px, 6vw, 64px); }
+</style>

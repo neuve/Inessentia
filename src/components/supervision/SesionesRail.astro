@@ -1,0 +1,92 @@
+---
+// Las 9 sesiones del ciclo, como navegación. Una sesión con memoria publicada
+// enlaza a ella; las demás muestran su fecha. Va sobre tarjetas con superficie
+// propia, así que se puede colocar en cualquier tramo del lienzo.
+import { sesiones, memoriaPath, fechaCorta } from '../../data/supervision';
+
+interface Props {
+  /** Sesión que se está leyendo (se marca y no enlaza). */
+  actual?: number;
+}
+const { actual } = Astro.props;
+---
+
+<ol class="sr on-dark" aria-label="Sesiones del ciclo">
+  {sesiones.map((s) => {
+    const esActual = s.n === actual;
+    const publicada = !!s.memoria;
+    const Tag = publicada && !esActual ? 'a' : 'div';
+    return (
+      <li>
+        <Tag
+          class:list={['sr-item', { 'sr-item--on': publicada, 'sr-item--actual': esActual }]}
+          href={publicada && !esActual ? memoriaPath(s.n) : undefined}
+          aria-current={esActual ? 'page' : undefined}
+        >
+          <span class="sr-n">{s.n}</span>
+          <span class="sr-tema">{s.tema}</span>
+          <span class="sr-estado">{publicada ? (esActual ? 'Estás aquí' : 'Leer memoria') : fechaCorta(s)}</span>
+        </Tag>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .sr {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+    gap: 10px;
+  }
+  .sr-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+    padding: 14px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-radius: var(--r-panel);
+    text-decoration: none;
+  }
+  .sr-item--on { border-color: var(--sand); }
+  a.sr-item { transition: transform .2s ease, box-shadow .2s ease; }
+  a.sr-item:hover { transform: translateY(-2px); box-shadow: var(--sh-card); }
+  .sr-item--actual { background: var(--purple); border-color: var(--sand); }
+  .sr-n {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #fff;
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .sr-item--on .sr-n { background: var(--sand); color: var(--ink); }
+  .sr-tema {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+    color: var(--heading);
+    hyphens: auto;
+  }
+  .sr-item--actual .sr-tema { color: #fff; }
+  .sr-estado { font-size: 12.5px; font-weight: 700; color: var(--text-muted); margin-top: auto; }
+  .sr-item--on .sr-estado { color: var(--gold); }
+  .sr-item--actual .sr-estado { color: var(--sand); }
+
+  @media (max-width: 560px) {
+    .sr { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  }
+  @media (max-width: 420px) {
+    .sr-item { padding: 12px 10px; }
+    .sr-tema { font-size: 13px; }
+  }
+</style>

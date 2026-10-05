@@ -35,7 +35,9 @@ export const RASTER_EXT = new Set(['.webp', '.png', '.jpg', '.jpeg']);
 
 // Extensiones que se hashean POR COPIA, sin transcodificar: no tiene sentido
 // "redimensionar" un svg (vectorial) ni reencodear video con este pipeline.
-export const COPY_EXT = new Set(['.svg', '.mp4', '.webm']);
+// El .mp3 (resúmenes en audio de las memorias de supervisión) entra por la misma
+// razón que el video: va bajo /uploads/, así que necesita URL hasheada.
+export const COPY_EXT = new Set(['.svg', '.mp4', '.webm', '.mp3']);
 
 // Se salta por completo: es la salida del propio script, no un input.
 // OJO: 'og' YA NO se salta (antes sí) — las tarjetas sociales también deben
