@@ -7,21 +7,17 @@ import { minutos, type AudioResumen } from '../../data/supervision';
 interface Props { audio: AudioResumen; }
 const { audio } = Astro.props;
 const src = resolveAsset(audio.src);
-const mb = (audio.bytes / 1_000_000).toFixed(1);
 ---
 
 <div class="ar on-dark">
   <div class="ar-head">
-    <span class="ar-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-    </span>
     <div>
       <p class="ar-titulo">{audio.titulo}</p>
       <p class="ar-meta">Patricio Ruiz · {minutos(audio.segundos)} · audio</p>
     </div>
   </div>
-  <audio class="ar-audio" controls preload="none" src={src}>
-    Tu navegador no reproduce audio incrustado. <a href={src}>Descarga el MP3</a>.
+  <audio class="ar-audio" controls controlsList="nodownload" preload="none" src={src}>
+    Tu navegador no reproduce audio incrustado.
   </audio>
   <div class="ar-foot">
     <div class="ar-vel" role="group" aria-label="Velocidad de reproducción">
@@ -29,7 +25,6 @@ const mb = (audio.bytes / 1_000_000).toFixed(1);
       <button type="button" data-vel="1.25" aria-pressed="false">1.25×</button>
       <button type="button" data-vel="1.5" aria-pressed="false">1.5×</button>
     </div>
-    <a class="ar-descarga" href={src} download>Descargar MP3 ({mb} MB)</a>
   </div>
 </div>
 
@@ -52,18 +47,11 @@ const mb = (audio.bytes / 1_000_000).toFixed(1);
     padding: clamp(20px, 3.5vw, 30px);
     box-shadow: var(--sh-card);
   }
-  .ar-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
-  .ar-icon {
-    flex: none;
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 48px; height: 48px; border-radius: 50%;
-    background: var(--grad-btn-gold, var(--sand));
-    color: var(--purple-d);
-  }
+  .ar-head { margin-bottom: 18px; }
   .ar-titulo { font-family: var(--ff-head); font-weight: 700; font-size: 19px; line-height: 1.25; color: var(--heading); margin: 0 0 4px; }
   .ar-meta { font-size: 13.5px; color: var(--text-muted); margin: 0; }
   .ar-audio { display: block; width: 100%; color-scheme: dark; }
-  .ar-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; margin-top: 16px; }
+  .ar-foot { margin-top: 16px; }
   .ar-vel { display: flex; gap: 6px; }
   .ar-vel button {
     font: inherit; font-size: 13px; font-weight: 700;
@@ -72,6 +60,4 @@ const mb = (audio.bytes / 1_000_000).toFixed(1);
     cursor: pointer;
   }
   .ar-vel button[aria-pressed="true"] { background: var(--sand); color: var(--ink); border-color: var(--sand); }
-  .ar-descarga { font-size: 13.5px; font-weight: 700; color: var(--gold); text-decoration: none; }
-  .ar-descarga:hover { text-decoration: underline; }
 </style>
