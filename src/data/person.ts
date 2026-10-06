@@ -14,7 +14,7 @@ export const PERSON_ALT_NAME = 'Patricio Ruiz Abrín';
 
 const KNOWS_ABOUT: Record<Locale, string[]> = {
   es: [
-    'Experiencia Somática (SE)',
+    'Experiencia Somática (ES)',
     'Teoría polivagal',
     'Sistemas Familiares Internos (IFS)',
     'Terapia familiar sistémica',

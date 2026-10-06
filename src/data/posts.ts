@@ -152,7 +152,7 @@ export const posts: PostEntry[] = [
     heroPosition: '40% 58%',
     heroCaption: {
       es: 'Mi Generación, la 8a, en Córpore: 2015-2017',
-      en: 'My Generation, the 8th, at Corpore: 2015-2017',
+      en: 'My Generation, the 8th, at Córpore: 2015-2017',
     },
     es: { title: 'Core Energética: el cuerpo como archivo de tu historia', description: 'Core Energética trabaja con cuerpo, energía y psique para explorar los patrones que la coraza muscular guarda desde la historia personal.', category: 'Aproximaciones terapéuticas', disqusIdentifier: '/blog-core-energetica.html' },
     en: { title: 'Core Energetics: the body as an archive of your history', description: 'Core Energetics works with the body, energy, and psyche to release emotional patterns held in muscular tension, posture, and breath.', category: 'Therapeutic approaches', disqusIdentifier: '/en/blog-core-energetics.html' },
