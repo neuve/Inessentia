@@ -92,7 +92,7 @@ export const sesiones: Sesion[] = [
   { n: 6, tema: 'Verdad', fechaISO: '2026-12-12', fecha: 'Sábado 12 de diciembre de 2026', nota: '' },
   { n: 7, tema: 'Insight', fechaISO: '2027-01-09', fecha: 'Sábado 9 de enero de 2027', nota: 'Reanuda' },
   { n: 8, tema: 'Unidad', fechaISO: '2027-01-16', fecha: 'Sábado 16 de enero de 2027', nota: '' },
-  { n: 9, tema: 'Cierre', fechaISO: '2027-02-06', fecha: 'Sábado 6 de febrero de 2027', nota: 'Cierre' },
+  { n: 9, tema: 'Cierre', fechaISO: '2027-02-13', fecha: 'Sábado 13 de febrero de 2027', nota: 'Cierre' },
 ];
 
 export function getSesion(n: number): Sesion {
