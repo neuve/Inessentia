@@ -3,13 +3,3 @@ import EsHome from './es/index.astro';
 ---
 
 <EsHome canonical="https://inessentia.mx/es/" />
-
-<script is:inline>
-  (function() {
-    var saved = localStorage.getItem('preferred-lang');
-    var lang = saved || (navigator.language || navigator.userLanguage || 'es').slice(0, 2).toLowerCase();
-    if (lang === 'en') {
-      window.location.replace('/en/');
-    }
-  })();
-</script>

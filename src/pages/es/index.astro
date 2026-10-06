@@ -3,6 +3,7 @@ import { waGenerico } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
+import AvisoIdioma from '../../components/AvisoIdioma.astro';
 import Img from '../../components/Img.astro';
 import BlogCard from '../../components/BlogCard.astro';
 import { t } from '../../i18n/utils';
@@ -22,6 +23,8 @@ const authorSchema = personSchema(locale);
 ---
 
 <Base title={i.site.title} description={i.site.description} canonical={canonical} altPath="/" ogImage="/uploads/og/home-es.webp" schema={schema} extraSchemas={[authorSchema]} nav="photo">
+
+  <AvisoIdioma />
 
   <!-- HERO -->
   <SiteHeader

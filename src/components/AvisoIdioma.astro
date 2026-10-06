@@ -1,0 +1,80 @@
+---
+// Aviso para leer el sitio en inglés. Sólo en la portada (/ y /es/).
+// Nace oculto (atributo hidden): sin JS no se ve. El script lo destapa si el
+// navegador está en inglés y el visitante no lo cerró antes. No redirige nada.
+// Va fijo abajo: al aparecer no empuja el layout, y no tapa la navbar ni el
+// título del hero, que viven arriba.
+---
+
+<div class="aviso-idioma" id="aviso-idioma" lang="en" hidden>
+  <a class="aviso-idioma__link" href="/en/">Prefer English? Read this site in English&nbsp;→</a>
+  <button type="button" class="aviso-idioma__cerrar" aria-label="Close">×</button>
+</div>
+
+<script is:inline>
+  (function() {
+    var aviso = document.getElementById('aviso-idioma');
+    if (!aviso) return;
+    var lang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (lang.indexOf('en') !== 0) return;
+    try {
+      if (localStorage.getItem('aviso-idioma') === 'cerrado') return;
+    } catch (e) {}
+    aviso.hidden = false;
+
+    aviso.querySelector('.aviso-idioma__link').addEventListener('click', function() {
+      if (window.inessentiaEvento) window.inessentiaEvento('cambio_idioma', { desde: location.pathname });
+      try { localStorage.setItem('preferred-lang', 'en'); } catch (e) {}
+    });
+    aviso.querySelector('.aviso-idioma__cerrar').addEventListener('click', function() {
+      aviso.hidden = true;
+      try { localStorage.setItem('aviso-idioma', 'cerrado'); } catch (e) {}
+    });
+  })();
+</script>
+
+<style>
+  .aviso-idioma {
+    position: fixed;
+    left: var(--sp-4);
+    right: var(--sp-4);
+    bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+    z-index: 150; /* debajo de #mob-menu (200) y del overlay (210) */
+    max-width: 520px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+    padding: var(--sp-2) var(--sp-2) var(--sp-2) var(--sp-5);
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border-hair);
+    border-radius: var(--r-pill);
+    box-shadow: var(--sh-card);
+    font-family: var(--ff-body);
+    font-size: var(--fs-small);
+  }
+  .aviso-idioma[hidden] { display: none; }
+  .aviso-idioma__link {
+    flex: 1;
+    color: var(--heading);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .aviso-idioma__link:hover,
+  .aviso-idioma__link:focus-visible { text-decoration: underline; }
+  .aviso-idioma__cerrar {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--r-pill);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .aviso-idioma__cerrar:hover,
+  .aviso-idioma__cerrar:focus-visible { color: var(--text); }
+</style>
