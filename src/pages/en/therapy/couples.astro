@@ -3,9 +3,72 @@ import { waLink } from '../../../data/contacto';
 import Base from '../../../layouts/Base.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import { t } from '../../../i18n/utils';
+import { BUSINESS_ID } from '../../../data/person';
 
 const locale = 'en';
 const i = t(locale);
+
+const WA_COUPLES = waLink("Hi Patricio, I'm interested in scheduling a first couples session. Can we talk?");
+const PAGE_URL = 'https://inessentia.mx/en/therapy/couples/';
+
+// Preguntas frecuentes: el mismo arreglo pinta la sección y el FAQPage del
+// schema, para que nunca digan cosas distintas. Sólo datos que dio Patricio.
+const faqs = [
+  {
+    q: 'Where do sessions take place?',
+    a: 'In person in Nápoles, Mexico City, or online by video call.',
+  },
+  {
+    q: 'Can we do couples therapy in English?',
+    a: 'Yes. Sessions are in English or Spanish, whichever feels more natural to the two of you.',
+  },
+  {
+    q: 'Do you work with international couples or couples who have relocated to Mexico?',
+    a: 'Yes. I work with multicultural and international couples, and with couples going through a move or relocation: what it does to the relationship when one partner followed the other, when family is far away, or when two cultures meet in everyday life.',
+  },
+  {
+    q: 'Do you work with LGBTQ+ and neurodivergent couples?',
+    a: 'Yes. I work with LGBTQ+ couples and with couples where one or both partners are neurodivergent. We look at how each of you experiences the relationship, rather than measuring it against a single model of how a couple should be.',
+  },
+  {
+    q: 'How often do we meet, and for how long?',
+    a: 'Sessions are typically biweekly and last about one hour. During times of crisis we can consider weekly sessions.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'Fees for couples sessions are listed on the costs page.',
+    link: { href: '/en/costs/', label: 'See the costs' },
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      '@id': `${PAGE_URL}#service`,
+      'name': 'Couples therapy',
+      'serviceType': 'Couples therapy',
+      'url': PAGE_URL,
+      'provider': { '@id': BUSINESS_ID },
+      'areaServed': [
+        { '@type': 'City', 'name': 'Mexico City' },
+        { '@type': 'Place', 'name': 'Online' },
+      ],
+      'availableLanguage': ['en', 'es'],
+      'audience': { '@type': 'Audience', 'audienceType': 'Couples' },
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${PAGE_URL}#faq`,
+      'mainEntity': faqs.map((f) => ({
+        '@type': 'Question',
+        'name': f.q,
+        'acceptedAnswer': { '@type': 'Answer', 'text': f.a },
+      })),
+    },
+  ],
+};
 ---
 
 <Base
@@ -13,6 +76,7 @@ const i = t(locale);
   description="Support for couples: communication, bonding and conflict from a relational and body-centered approach. In-person sessions in Mexico City and online."
   altPath="/terapia/pareja/"
   ogImage="/uploads/og/therapy-couples.webp"
+  schema={schema}
 >
 
   <!-- HERO -->
@@ -24,7 +88,7 @@ const i = t(locale);
     iconSize="clamp(132px, 10vw, 175px)"
     title="A safe space to reconnect with your life partner."
     ctaLabel="Book your first couples session"
-    ctaHref={waLink("Hi Patricio, I'm interested in scheduling a first couples session. Can we talk?")}
+    ctaHref={WA_COUPLES}
     secondaryLabel="What is the first session like?"
     secondaryHref="#primera-sesion"
   >
@@ -58,6 +122,23 @@ const i = t(locale);
             <div style="display:flex;gap:12px;"><span style="color:var(--accent-canvas);font-weight:700;font-size:18px;flex:none;line-height:1.4;">–</span><p class="body-text" style="margin:0;">There is active, recurring physical or psychological violence of a structural nature.</p></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO I WORK WITH -->
+  <section class="section zone-dark">
+    <div class="container--narrow">
+      <p data-reveal class="label-section">Who I work with</p>
+      <h2 data-reveal class="heading-section" style="margin-bottom:28px;">Couples therapy in English in Mexico City</h2>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <p data-reveal class="body-text" style="margin:0;">Sessions can be held in English or Spanish. Many of the couples I accompany live between two languages, two cultures or two countries, and the relationship carries that too.</p>
+        <ul data-reveal class="couples-who">
+          <li><strong>Multicultural and international couples</strong>, where each partner brings a different idea of family, closeness and how conflict is handled.</li>
+          <li><strong>Couples who have relocated</strong> to Mexico City, or are preparing to move: when one partner followed the other, when family and friends are far away, when everyday life has to be rebuilt from scratch.</li>
+          <li><strong>LGBTQ+ couples.</strong></li>
+          <li><strong>Neurodivergent couples</strong>, where one or both partners experience the world, and the relationship, in a different way.</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -168,12 +249,41 @@ const i = t(locale);
     </div>
   </section>
 
+  <!-- WHERE + FAQ -->
+  <section class="section zone-dark">
+    <div data-reveal class="container--narrow on-light couples-faq-panel">
+      <p class="label-section">Where we meet</p>
+      <h2 class="heading-section" style="margin-bottom:24px;">In Nápoles, Mexico City, or online</h2>
+      <div class="couples-where">
+        <div>
+          <h3>In person</h3>
+          <p class="body-text">My office is in the Nápoles neighborhood, in Mexico City. Being in the same room lets us work with what happens between you in the moment: posture, distance, the way you look at each other.</p>
+        </div>
+        <div>
+          <h3>Online</h3>
+          <p class="body-text">By video call, with the same depth. It works for couples outside Mexico City, for couples who are traveling or living apart for a while, and for those who simply prefer it.</p>
+        </div>
+      </div>
+
+      <p class="label-section" style="margin-top:48px;">Questions</p>
+      <h2 class="heading-section" style="margin-bottom:28px;">Frequently asked questions</h2>
+      <div class="couples-faq">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p class="body-text">{f.a}{f.link && <> <a href={f.link.href} class="link-inline">{f.link.label}</a>.</>}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- CTA + CROSS-SELL -->
   <section class="section section--purple zone-light">
     <div data-reveal class="container--narrow" style="max-width:700px;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,48px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-        <a href={waLink("Hi Patricio, I'm interested in scheduling a first couples session. Can we talk?")} target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
+        <a href={WA_COUPLES} target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
         <a href="/en/costs/" class="link-underline">See the costs</a>
       </div>
       <p style="margin:30px 0 10px;color:var(--on-canvas-soft);font-size:15px;">Thinking about an individual process?</p>
@@ -182,3 +292,26 @@ const i = t(locale);
   </section>
 
 </Base>
+
+<style>
+  /* Lugar + FAQ caen en el cruce 79→84 del lienzo (medido: FAQ sola en 76–87 % a 1280; Approaches en 78–80 % a 375 si «Where» iba arriba), donde
+     ningún color de texto pasa AA. Por eso va en isla .on-light con fondo
+     propio, como manda el comentario de --page-grad en global.css. */
+  .couples-faq-panel { background: var(--surface); border-radius: var(--r-panel); padding: clamp(28px, 4vw, 48px); box-shadow: var(--sh-card); }
+  .couples-who { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: var(--sp-3); }
+  .couples-who li { font-size: var(--fs-body); line-height: var(--lh-body); color: var(--text); }
+  .couples-who strong { color: var(--heading); }
+  .couples-where { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: var(--sp-5) 32px; }
+  .couples-where h3 { font-family: var(--ff-head); font-weight: 700; color: var(--heading); font-size: var(--fs-h4); line-height: var(--lh-head); margin: 0 0 var(--sp-2); }
+  .couples-where p { margin: 0; }
+  .couples-faq { display: flex; flex-direction: column; border-top: 1px solid var(--border-hair); }
+  .couples-faq details { border-bottom: 1px solid var(--border-hair); }
+  .couples-faq summary {
+    cursor: pointer; list-style: none; padding: var(--sp-5) 32px var(--sp-5) 0; position: relative;
+    font-family: var(--ff-head); font-weight: 700; color: var(--heading); font-size: var(--fs-h4); line-height: var(--lh-head);
+  }
+  .couples-faq summary::-webkit-details-marker { display: none; }
+  .couples-faq summary::after { content: '+'; position: absolute; right: 4px; top: var(--sp-5); color: var(--sand-d); font-family: var(--ff-body); }
+  .couples-faq details[open] summary::after { content: '–'; }
+  .couples-faq p { margin: 0 0 var(--sp-5); }
+</style>
