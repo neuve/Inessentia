@@ -19,6 +19,7 @@
     if (lang.indexOf('en') !== 0) return;
     try {
       if (localStorage.getItem('aviso-idioma') === 'cerrado') return;
+      if (localStorage.getItem('preferred-lang') === 'en') return;
     } catch (e) {}
     aviso.hidden = false;
 
