@@ -9,3 +9,4 @@ Registro de cambios visibles publicados en inessentia.mx, para que SStats parta 
 | 2026-10-06 | 546f5e8 | pareja-en-local (R7) | /en/therapy/couples/ suma «Who I work with», «Where we meet», seis preguntas frecuentes y schema Service + FAQPage | /en/therapy/couples/ |
 | 2026-10-06 | 7684238 | portada-sin-redireccion (R3) | La portada ya no redirige a /en/ por idioma del navegador; aviso «Prefer English?» con evento cambio_idioma | /, /es/ |
 | 2026-10-06 | — (Cloudflare) | C2, regla «Raiz a /es/» | https://inessentia.mx/ responde 301 a /es/ conservando el query string; www sigue 301 a la raíz | / |
+| 2026-10-06 | 125340b | s1-r6 (R6) | Título «Terapia somática en CDMX y en línea \| Patricio Ruiz Abrín» y descripción nueva en es.json | /, /es/ |
