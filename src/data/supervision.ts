@@ -18,11 +18,14 @@
 // (nombres, casos, motivos de consulta, anécdotas reconocibles). Las únicas
 // atribuciones son a maestros y a escuelas o corrientes.
 
+import { waLink } from './contacto';
+
 export const SUPERVISION_PATH = '/es/supervision/';
 export const SUPERVISION_NOMBRE = 'Grupo de Actualización en Terapia Corporal';
 
-export const SUPERVISION_WA =
-  'https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20el%20Grupo%20de%20Actualizaci%C3%B3n%20en%20Terapia%20Corporal.%20%C2%BFMe%20cuentas%20m%C3%A1s%3F';
+export const SUPERVISION_WA = waLink(
+  'Hola Patricio, me interesa el Grupo de Actualización en Terapia Corporal. ¿Me cuentas más?',
+);
 
 export interface Lectura {
   titulo: string;

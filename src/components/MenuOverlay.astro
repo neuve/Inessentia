@@ -1,4 +1,5 @@
 ---
+import { WA_BASE } from '../data/contacto';
 // Overlay editorial de menú (solo desktop). En móvil (<820px) se conserva el
 // MobileMenu actual; este overlay queda oculto. Abre/cierra desde el sandwich
 // flotante (#nav-ham) vía la clase body.menu-open, gestionada en Navbar.astro.
@@ -54,7 +55,7 @@ let idx = 0;
           <a href="https://www.facebook.com/neuve0/" target="_blank" rel="noopener" aria-label="Facebook">
             <img src={resolveAsset('/uploads/facebook-icon.png')} alt="Facebook" width="20" height="20" />
           </a>
-          <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <a href={WA_BASE} target="_blank" rel="noopener" aria-label="WhatsApp">
             <img src={resolveAsset('/uploads/whatsapp-icon.svg')} alt="WhatsApp" width="20" height="20" />
           </a>
           <a href="https://www.linkedin.com/in/patricioruiz/" target="_blank" rel="noopener" aria-label="LinkedIn">

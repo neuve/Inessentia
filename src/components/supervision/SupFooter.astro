@@ -1,11 +1,12 @@
 ---
+import { WA_VISIBLE } from '../../data/contacto';
 import { SUPERVISION_WA, SUPERVISION_NOMBRE } from '../../data/supervision';
 ---
 
 <footer class="gl-footer on-dark">
   <div class="gl-footer-inner">
     <p>Inessentia · {SUPERVISION_NOMBRE}</p>
-    <p><a href={SUPERVISION_WA} target="_blank" rel="noopener">wa.me/patriciomx</a></p>
+    <p><a href={SUPERVISION_WA} target="_blank" rel="noopener">{WA_VISIBLE}</a></p>
   </div>
 </footer>
 

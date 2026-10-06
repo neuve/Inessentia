@@ -1,4 +1,5 @@
 ---
+import { WA_BASE } from '../data/contacto';
 import Base from './Base.astro';
 import Img from '../components/Img.astro';
 import DisqusComments from '../components/DisqusComments.astro';
@@ -190,7 +191,7 @@ const authorSchema = personSchema(locale);
   <section class="zone-light" style="padding:clamp(56px,8vw,96px) 32px;">
     <div class="container--read">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,3.5vw,42px);line-height:1.1;margin:0 0 20px;text-wrap:balance;">{ctaTitle}</h2>
-      <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">{ctaButton}<span class="btn__dot"></span></a>
+      <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--gold">{ctaButton}<span class="btn__dot"></span></a>
     </div>
   </section>
 

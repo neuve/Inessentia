@@ -1,4 +1,5 @@
 ---
+import { WA_BASE } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import {
   hero, bandas, mesesDelAnio, horarios, modalidad, piramide, duracionPorGrupo,
@@ -296,7 +297,7 @@ function maxDias(grupos: { mediana_dias: number | null }[]): number {
     <div class="container">
       <div class="rprt-cta" data-reveal>
         <p class="body-text" style="margin:0 0 22px;">Cada proceso empieza con una conversación.</p>
-        <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--primary">
+        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--primary">
           Agenda tu primera cita<span class="btn__dot"></span>
         </a>
       </div>

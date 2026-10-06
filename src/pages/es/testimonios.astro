@@ -1,4 +1,5 @@
 ---
+import { WA_BASE } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
 import { testimonials } from '../../data/testimonials';
@@ -59,7 +60,7 @@ const items = testimonials[locale];
     <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="max-width:640px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,4vw,46px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Tu historia puede ser la siguiente</h2>
-        <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--gold">Agenda tu primera cita<span class="btn__dot"></span></a>
+        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--gold">Agenda tu primera cita<span class="btn__dot"></span></a>
       </div>
     </div>
   </section>

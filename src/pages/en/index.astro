@@ -1,4 +1,5 @@
 ---
+import { WA_BASE } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import TestimonialCarousel from '../../components/TestimonialCarousel.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
@@ -25,7 +26,7 @@ const authorSchema = personSchema(locale);
     photoDesktop="/uploads/hero-crops/patricio-ruiz-retrato-hero-cinema.webp"
     photoAlt="Portrait of Patricio Ruiz Abrín, therapist, a young adult with medium complexion and dark hair, with a calm expression and warm gaze"
     ctaLabel={i.hero.cta}
-    ctaHref="https://wa.me/patriciomx"
+    ctaHref={WA_BASE}
     secondaryLabel={i.hero.secondary}
     secondaryHref="/en/about-me/#formacion"
   >
@@ -207,7 +208,7 @@ const authorSchema = personSchema(locale);
       <div data-reveal style="position:relative;max-width:760px;">
         <h2 class="heading-section" style="margin:0 0 22px;text-wrap:balance;color:var(--heading-canvas);">{i.cta.title}</h2>
         <p class="body-text" style="margin:0 0 36px;max-width:52ch;color:var(--on-canvas);">{i.cta.desc}</p>
-        <a href="https://wa.me/patriciomx" target="_blank" rel="noopener" class="btn btn--secondary">{i.cta.button}</a>
+        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--secondary">{i.cta.button}</a>
       </div>
     </div>
   </section>

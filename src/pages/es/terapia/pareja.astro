@@ -1,4 +1,5 @@
 ---
+import { waLink } from '../../../data/contacto';
 import Base from '../../../layouts/Base.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import { t } from '../../../i18n/utils';
@@ -23,7 +24,7 @@ const i = t(locale);
     iconSize="clamp(132px, 10vw, 175px)"
     title="Un refugio seguro para reencontrarte con tu compañero/a de vida."
     ctaLabel="Agenda tu primera sesión de pareja"
-    ctaHref="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20de%20pareja.%20%C2%BFPodemos%20platicar%3F"
+    ctaHref={waLink("Hola Patricio, me interesa agendar una primera sesión de pareja. ¿Podemos platicar?")}
     secondaryLabel="¿Cómo es la primera sesión?"
     secondaryHref="#primera-sesion"
   >
@@ -172,7 +173,7 @@ const i = t(locale);
     <div data-reveal class="container--narrow" style="max-width:700px;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,48px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">¿Listos para agendar su primera sesión?</h2>
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-        <a href="https://wa.me/patriciomx?text=Hola%20Patricio%2C%20me%20interesa%20agendar%20una%20primera%20sesi%C3%B3n%20de%20pareja.%20%C2%BFPodemos%20platicar%3F" target="_blank" rel="noopener" class="btn btn--secondary">Agenda su primera cita de pareja</a>
+        <a href={waLink("Hola Patricio, me interesa agendar una primera sesión de pareja. ¿Podemos platicar?")} target="_blank" rel="noopener" class="btn btn--secondary">Agenda su primera cita de pareja</a>
         <a href="/es/costos/" class="link-underline">Consulta los costos</a>
       </div>
       <p style="margin:30px 0 10px;color:var(--on-canvas-soft);font-size:15px;">¿Estás pensando en un proceso individual?</p>

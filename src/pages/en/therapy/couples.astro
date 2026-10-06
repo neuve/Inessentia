@@ -1,4 +1,5 @@
 ---
+import { waLink } from '../../../data/contacto';
 import Base from '../../../layouts/Base.astro';
 import SiteHeader from '../../../components/SiteHeader.astro';
 import { t } from '../../../i18n/utils';
@@ -23,7 +24,7 @@ const i = t(locale);
     iconSize="clamp(132px, 10vw, 175px)"
     title="A safe space to reconnect with your life partner."
     ctaLabel="Book your first couples session"
-    ctaHref="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27m%20interested%20in%20scheduling%20a%20first%20couples%20session.%20Can%20we%20talk%3F"
+    ctaHref={waLink("Hi Patricio, I'm interested in scheduling a first couples session. Can we talk?")}
     secondaryLabel="What is the first session like?"
     secondaryHref="#primera-sesion"
   >
@@ -172,7 +173,7 @@ const i = t(locale);
     <div data-reveal class="container--narrow" style="max-width:700px;">
       <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,48px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Ready to book your first session?</h2>
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;">
-        <a href="https://wa.me/patriciomx?text=Hi%20Patricio%2C%20I%27m%20interested%20in%20scheduling%20a%20first%20couples%20session.%20Can%20we%20talk%3F" target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
+        <a href={waLink("Hi Patricio, I'm interested in scheduling a first couples session. Can we talk?")} target="_blank" rel="noopener" class="btn btn--secondary">Book your first couples session</a>
         <a href="/en/costs/" class="link-underline">See the costs</a>
       </div>
       <p style="margin:30px 0 10px;color:var(--on-canvas-soft);font-size:15px;">Thinking about an individual process?</p>
