@@ -30,7 +30,7 @@
   "hero": {
     "label": "Terapia corporal con sensibilidad al trauma",
     "title": "Habítate en paz.",
-    "subtitle": "Acompaño a adolescentes y adultos a transformar somáticamente el estrés, la ansiedad y los síntomas físicos.",
+    "subtitle": "Acompaño a adolescentes y adultos a transformar desde el cuerpo el estrés, la ansiedad y los síntomas físicos.",
     "meta": "Presencial CDMX, Col. Nápoles · Online",
     "cta": "Agenda tu primera cita",
     "secondary": "Conoce mi experiencia"
@@ -38,8 +38,8 @@
   "approach": {
     "label": "El enfoque",
     "title": "¿Qué es la terapia somática y cómo te puede ayudar?",
-    "p1": "La terapia somática o corporal se apoya en la relación entre cuerpo, corazón y mente — y cómo lo que vivimos se queda registrado en nosotros físicamente. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.",
-    "p2": "Mi trabajo te ayuda a alcanzar más claridad de pensamiento, emoción y acción, a reducir tus niveles de ansiedad y a gestionar mejor el estrés que se acumula en tu cuerpo. Mi meta última es empoderarte para que no dependas de la terapia para mantenerte autorregulad@.",
+    "p1": "La terapia somática o corporal se apoya en la relación entre cuerpo, corazón y mente — y en cómo lo que vivimos queda registrado en el cuerpo. En sesión exploramos y sanamos esa conexión con suavidad y precisión: cómo el sistema nervioso responde a lo que pasa, qué se guarda en el cuerpo y qué necesita procesarse para que vuelvas a sentirte en equilibrio.",
+    "p2": "Mi trabajo te ayuda a pensar, sentir y actuar con más claridad, a bajar la ansiedad y a manejar mejor el estrés que se acumula en tu cuerpo. Mi meta última es que no dependas de la terapia para autorregularte.",
     "link": "Conoce los abordajes que utilizo"
   },
   "modalities": {
@@ -47,17 +47,17 @@
     "title": "Un espacio para cada vínculo",
     "individual": {
       "title": "Terapia individual",
-      "desc": "Adolescentes y adultos. Procesos para reconectar con el cuerpo, escuchar y procesar tus emociones, y apoyarte a decidir y tomar acción desde un lugar más claro.",
+      "desc": "Adolescentes y adultos. Procesos para reconectar con el cuerpo, escuchar y procesar tus emociones, y para que decidas y actúes desde un lugar más claro.",
       "link": "Conoce más"
     },
     "couples": {
       "title": "Terapia de pareja",
-      "desc": "Ayudo a cada miembro a poner atención al vínculo desde la responsabilidad individual, mientras genera apertura para acoger la experiencia emocional —y el dolor— del otro. Un proceso que teje compasión con atención.",
+      "desc": "Ayudo a cada integrante a atender el vínculo desde su propia responsabilidad, mientras se abre a acoger la experiencia emocional —y el dolor— del otro. Un proceso que teje compasión con atención.",
       "link": "Conoce más"
     },
     "family": {
       "title": "Terapia familiar sistémica",
-      "desc": "Acompaño a las familias para que sus miembros se escuchen de manera más equilibrada y, desde dentro del sistema, puedan surgir nuevas soluciones a los retos compartidos.",
+      "desc": "Acompaño a las familias para que sus integrantes se escuchen de forma más equilibrada y, desde dentro del sistema, surjan nuevas soluciones a los retos compartidos.",
       "link": "Conoce más"
     }
   },
@@ -81,7 +81,7 @@
     "thanksEmoji": "🎙",
     "thanksTitle": "¡Listo! Aquí está el podcast",
     "thanksCta": "▶ Escucha ahora",
-    "thanksNote": "Te enviamos también el link a tu correo."
+    "thanksNote": "Te enviamos también el enlace a tu correo."
   },
   "blog": {
     "label": "Recursos",
@@ -92,12 +92,12 @@
   },
   "cta": {
     "title": "¿Quieres dar el primer paso?",
-    "desc": "Cada proceso es distinto y empieza con una conversación. Escríbeme tus inquietudes y revisamos si mi acompañamiento puede serte de ayuda.",
+    "desc": "Cada proceso es distinto y empieza con una conversación. Escríbeme lo que te inquieta y vemos si mi acompañamiento puede ayudarte.",
     "button": "Agenda tu primera cita"
   },
   "footer": {
     "contactTitle": "Contacto",
-    "contactDesc": "Si tienes alguna duda o quieres reservar una cita, contáctame. Escríbeme por correo o",
+    "contactDesc": "Si tienes alguna duda o quieres reservar una cita, escríbeme por correo o",
     "contactWhatsapp": "mándame un mensaje de WhatsApp",
     "privacy": "Aviso de privacidad",
     "copyright": "Aviso sobre derechos de autor",

@@ -5,23 +5,23 @@
   },
   "nav": {
     "home": "Home",
-    "about": "About Me",
+    "about": "About me",
     "individual": "Individual",
     "couples": "Couples",
     "family": "Families",
     "resources": "Resources",
-    "network": "Therapist Network",
-    "tenYears": "Ten Years in Numbers",
-    "cta": "I want to book",
+    "network": "Therapist network",
+    "tenYears": "Ten years in numbers",
+    "cta": "Book a session",
     "openMenu": "Open navigation menu",
     "closeMenu": "Close menu",
-    "therapyTypes": "Types of Therapy"
+    "therapyTypes": "Types of therapy"
   },
   "menu": {
     "individual": "Individual therapy",
     "framing": "T&C",
     "testimonials": "Testimonials",
-    "book": "Book a Session",
+    "book": "Book a session",
     "couplesShort": "Couples",
     "familyShort": "Family",
     "contact": "Contact",
@@ -30,16 +30,16 @@
   "hero": {
     "label": "Trauma-informed body-centered therapy",
     "title": "Come back home in peace.",
-    "subtitle": "I support teens and adults in somatically transforming stress, anxiety, and physical symptoms.",
+    "subtitle": "I work with teens and adults to transform stress, anxiety and physical symptoms through the body.",
     "meta": "In person in Mexico City, Nápoles · Online",
-    "cta": "Book Your First Session",
+    "cta": "Book your first session",
     "secondary": "See my experience"
   },
   "approach": {
     "label": "The approach",
     "title": "What is body-centered therapy and how can it help you?",
     "p1": "Body-centered therapy draws on the connection between body, heart, and mind — and how our experiences become physically stored within us. In session, we gently and precisely explore and heal that connection: how the nervous system responds, what the body holds on to, and what needs processing so you can feel balanced again.",
-    "p2": "My work helps you gain clarity of thought, emotion, and action, reduce anxiety levels, and better manage the stress that accumulates in your body. My ultimate goal is to empower you so that you don't depend on therapy to stay self-regulated.",
+    "p2": "My work helps you think, feel and act with more clarity, lower your anxiety and better manage the stress that builds up in your body. My ultimate goal is for you not to depend on therapy to stay regulated.",
     "link": "Learn about the approaches I use"
   },
   "modalities": {
@@ -47,17 +47,17 @@
     "title": "A space for every relationship",
     "individual": {
       "title": "Individual Therapy",
-      "desc": "Teens and adults. Processes to reconnect with your body, listen to and process your emotions, and support you in deciding and taking action from a clearer place.",
+      "desc": "Teens and adults. Work to reconnect with your body, listen to and process your emotions, and decide and act from a clearer place.",
       "link": "Learn more"
     },
     "couples": {
       "title": "Couples Therapy",
-      "desc": "I help each partner pay attention to the bond from a place of individual responsibility, while opening up to embrace the emotional experience — and pain — of the other. A process that weaves compassion with attention.",
+      "desc": "I help each partner tend to the relationship from their own responsibility, while opening up to the other's emotional experience — and pain. A process that weaves compassion with attention.",
       "link": "Learn more"
     },
     "family": {
       "title": "Systemic Family Therapy",
-      "desc": "I support families so their members can listen to each other more equitably, and from within the system, new solutions to shared challenges can emerge.",
+      "desc": "I work with families so that everyone can be heard more evenly and, from within the system, new solutions to shared challenges can emerge.",
       "link": "Learn more"
     }
   },
@@ -86,18 +86,18 @@
   "blog": {
     "label": "Resources",
     "title": "Writings from the consulting room",
-    "subtitle": "Here I share readings to support your therapeutic process and to meet your curiosity about my philosophy and my approaches.",
+    "subtitle": "Here I share readings to support your therapeutic process and to satisfy your curiosity about my philosophy and my approaches.",
     "seeAll": "See all posts",
     "readMore": "Read more"
   },
   "cta": {
-    "title": "Do you want to take the first step?",
-    "desc": "Every process is different and begins with a conversation. Share your concerns with me and we'll see if my support can be helpful.",
-    "button": "Book Your First Session"
+    "title": "Want to take the first step?",
+    "desc": "Every process is different and begins with a conversation. Write to me about what's on your mind and we'll see whether working together could help.",
+    "button": "Book your first session"
   },
   "footer": {
     "contactTitle": "Contact",
-    "contactDesc": "If you have any questions or want to book a session, get in touch. Email me or",
+    "contactDesc": "If you have any questions or want to book a session, email me or",
     "contactWhatsapp": "send me a WhatsApp message",
     "privacy": "Privacy Policy",
     "copyright": "Copyright Notice",

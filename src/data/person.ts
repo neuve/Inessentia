@@ -39,7 +39,7 @@ const KNOWS_ABOUT: Record<Locale, string[]> = {
 
 const DESCRIPTION: Record<Locale, string> = {
   es: 'Terapeuta de base somática con perspectiva sistémica familiar, en CDMX y en línea. Somatic Experiencing Practitioner (SE), maestro en Terapia Familiar Sistémica (titulado) y con especialización en Terapia de Parejas en curso.',
-  en: 'Body-centered therapist with a systemic family perspective, in Mexico City and online. Somatic Experiencing Practitioner (SE), holding a master\'s degree in Systemic Family Therapy and an ongoing specialization in Couples Therapy.',
+  en: 'Body-centered therapist with a systemic family perspective, in Mexico City and online. Somatic Experiencing Practitioner (SE), with a master\'s degree in Systemic Family Therapy and a specialization in Couples Therapy in progress.',
 };
 
 const org = (name: string) => ({ '@type': 'EducationalOrganization', name });
