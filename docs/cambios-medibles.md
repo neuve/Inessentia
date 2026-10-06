@@ -21,3 +21,4 @@ Registro de cambios visibles publicados en inessentia.mx, para que SStats parta 
 | 2026-10-06 | 50e9cea | estilo-tanda-10 | Erratas y concordancias en 12 artículos | /es/blog/* (12) |
 | 2026-10-06 | 2a8b75b | estilo-tanda-11 | « -- » → « — » | /en/therapy/* |
 | 2026-10-06 | bb69f13 | estilo-tanda-12 | Cupo de supervisión «máximo 12 personas» (se quita el mínimo de 7); dos frases de SFI | /es/supervision/, /es/blog/sistemas-familiares-internos/ |
+| 2026-10-06 | 43b8106 | estilo-tanda-13 | Supervisión: cupo «máximo 12» (sin mínimo 7); primera cita: sin llamada de 20 min, sesiones quincenales; «Córpore» con acento; «Experiencia Somática (ES)»; experiencia somática sin «Próximamente» | /es/supervision/, /es/blog/primera-cita/, /es/blog/experiencia-somatica/, core-energetica es/en, terapia/*, sobre-mi |
