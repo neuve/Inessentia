@@ -169,7 +169,7 @@ export const posts: PostEntry[] = [
       en: 'What to expect from therapy?',
     },
     heroPosition: 'center 20%',
-    es: { title: '¿Qué esperar de la terapia?', description: 'La terapia es un proceso de auto-transformación: revisamos qué versiones de ti siguen respondiendo a un mundo que ya no existe, y las actualizamos.', category: 'Proceso terapéutico', disqusIdentifier: '/blog-que-esperar-de-la-terapia.html' },
+    es: { title: '¿Qué esperar de la terapia?', description: 'La terapia es un proceso de autotransformación: revisamos qué versiones de ti siguen respondiendo a un mundo que ya no existe, y las actualizamos.', category: 'Proceso terapéutico', disqusIdentifier: '/blog-que-esperar-de-la-terapia.html' },
     en: { title: 'What to expect from therapy?', description: 'How the therapeutic relationship, approaches, and time come together in a real process.', category: 'Therapeutic process', disqusIdentifier: '/en/blog-what-to-expect.html' },
     next: 'primera-cita',
   },
