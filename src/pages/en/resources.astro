@@ -1,5 +1,5 @@
 ---
-import { WA_BASE } from '../../data/contacto';
+import { waGenerico } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import Img from '../../components/Img.astro';
 import BlogCard from '../../components/BlogCard.astro';
@@ -162,7 +162,7 @@ const grid = getResourcesGrid(locale).map((p, k) => {
       <div data-reveal style="max-width:760px;">
         <h2 style="font-family:var(--ff-head);font-weight:700;color:var(--heading-canvas);font-size:clamp(30px,4.6vw,54px);line-height:1.08;margin:0 0 22px;text-wrap:balance;">{i.cta.title}</h2>
         <p style="font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:var(--on-canvas-soft);margin:0 0 36px;max-width:52ch;">{i.cta.desc}</p>
-        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
+        <a href={waGenerico('en')} target="_blank" rel="noopener" class="btn btn--gold">{i.cta.button}<span class="btn__dot"></span></a>
       </div>
     </div>
   </section>

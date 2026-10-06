@@ -1,6 +1,6 @@
 import es from './es.json';
 import en from './en.json';
-import { WA_BASE } from '../data/contacto';
+import { waGenerico } from '../data/contacto';
 
 const translations: Record<string, typeof es> = { es, en };
 
@@ -72,7 +72,7 @@ export function barLinks(locale: Locale) {
   return [
     { label: i.nav.therapyTypes, href: `${base}/#${modalities}` },
     { label: i.nav.about, href: `${base}/${about}/` },
-    { label: i.nav.cta, href: WA_BASE },
+    { label: i.nav.cta, href: waGenerico(locale) },
   ];
 }
 
@@ -111,7 +111,7 @@ export function menuColumns(locale: Locale, pathname: string): [MenuLink[], Menu
     link(i.menu.couplesShort, `${base}/${therapy}/${locale === 'es' ? 'pareja' : 'couples'}/`),
     link(i.menu.familyShort, `${base}/${therapy}/${locale === 'es' ? 'familias' : 'family'}/`),
     link(i.menu.testimonials, sitePath(locale, 'testimonials')),
-    link(i.menu.book, WA_BASE, { cta: true, external: true }),
+    link(i.menu.book, waGenerico(locale), { cta: true, external: true }),
   ];
   return [col1, col2];
 }

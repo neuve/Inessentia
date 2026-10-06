@@ -1,5 +1,5 @@
 ---
-import { WA_BASE } from '../../data/contacto';
+import { waGenerico } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import StatsBand from '../../components/StatsBand.astro';
@@ -38,7 +38,7 @@ const p = practica();
     photoDesktop="/uploads/hero-crops/patricio-ruiz-retrato-2-hero-cinema.webp"
     photoAlt="Patricio Ruiz Abrín, therapist"
     ctaLabel="Book your first session"
-    ctaHref={WA_BASE}
+    ctaHref={waGenerico('en')}
   >
     <p><strong>Feel at home in yourself.</strong></p>
     <p>I help you reconnect with your intuition and your capacity to self-regulate, through an approach that integrates mind, emotion, and body.</p>
@@ -209,7 +209,7 @@ const p = practica();
       <div data-reveal style="position:relative;max-width:700px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(28px,4vw,50px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Do you want to take the first step?</h2>
         <p style="font-size:clamp(15px,1.1vw,18px);line-height:1.65;color:var(--on-canvas-soft);margin:0 0 32px;max-width:50ch;">Every process begins with a conversation. Reach out and let's see, with no commitment, if this accompaniment is right for you.</p>
-        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--secondary">Book your first session</a>
+        <a href={waGenerico('en')} target="_blank" rel="noopener" class="btn btn--secondary">Book your first session</a>
       </div>
     </div>
   </section>

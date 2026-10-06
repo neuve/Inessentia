@@ -1,5 +1,5 @@
 ---
-import { WA_BASE } from '../../data/contacto';
+import { waGenerico } from '../../data/contacto';
 import Base from '../../layouts/Base.astro';
 import { t } from '../../i18n/utils';
 import { testimonials } from '../../data/testimonials';
@@ -51,7 +51,7 @@ const items = testimonials[locale];
     <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);box-sizing:border-box;">
       <div style="max-width:640px;">
         <h2 style="font-family:'Bitter',serif;font-weight:700;color:var(--heading-canvas);font-size:clamp(26px,4vw,46px);line-height:1.08;margin:0 0 20px;text-wrap:balance;">Your story could be next</h2>
-        <a href={WA_BASE} target="_blank" rel="noopener" class="btn btn--gold">Book your first session<span class="btn__dot"></span></a>
+        <a href={waGenerico('en')} target="_blank" rel="noopener" class="btn btn--gold">Book your first session<span class="btn__dot"></span></a>
       </div>
     </div>
   </section>
