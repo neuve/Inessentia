@@ -62,7 +62,8 @@ es el único lugar que hay que tocar para que TypeScript lo vea.
 
 ## Key Patterns
 
-- When adding a page, create it in both `/es/` and `/en/` directories.
+- When adding a page, create it in both `/es/` and `/en/` directories — **except blog posts: the English blog is frozen** (Patricio, 2026-10-05): no new English translations. The English core (home, about, therapy, costs) stays maintained.
+- Analytics opt-out: there is no Patricio-specific exclusion; it is a per-browser button open to every visitor (also how he excludes his own devices). The "desactivarlas aquí" button in `src/pages/es/privacidad.astro:104` (EN: `privacy.astro:104`) writes `localStorage['cookie-consent']='essential'` (`privacidad.astro:168`), sets `window['ga-disable-G-LWCY1M4Y9T']` and clears GA cookies. `src/layouts/Base.astro:173` reads that key and skips loading GA. `CookieConsent.astro` is unmounted (`Base.astro:153`) but uses the same key.
 - Internal links must use locale-prefixed paths: `/es/terapia/individual/`, `/en/therapy/individual/`.
 - Blog post Disqus identifiers use the OLD URL paths (e.g., `/blog-que-esperar-de-la-terapia.html`) to preserve comment threads.
 - Images live in `public/uploads/` and are referenced as `/uploads/filename.webp`.
