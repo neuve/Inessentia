@@ -974,7 +974,19 @@ form .btn, .form-wrap .btn, .form-field .btn {
   .three-two-grid > *:nth-child(n+4) { grid-column: span 3; }
 }
 
-/* Blog post content */
+/* Blog post content.
+   El cuerpo del artículo es una ISLA .on-light (fondo fijo), no texto suelto
+   sobre el lienzo. Un artículo largo cruza el 79→84 % del lienzo (de vino
+   oscuro a arena) DENTRO de su propio texto —en experiencia somática el cruce
+   cae en las referencias— y ningún color de letra sirve en los dos lados
+   (global.css, "DÓNDE SE CRUZA"). Con fondo propio el contraste ya no depende
+   de cuánto mida el artículo. Medido 7 oct (tools/medir-contraste-blog.js):
+   los 43 artículos de /es/ y /en/ tenían texto bajo 4.5:1 a 1280 y 375 px. */
+.blog-content {
+  background: var(--bg);
+  border-radius: var(--r-panel);
+  padding: clamp(20px, 4vw, 40px);
+}
 .blog-content h2 {
   font-family: var(--ff-head);
   font-weight: 700;
@@ -1004,16 +1016,10 @@ form .btn, .form-wrap .btn, .form-field .btn {
   color: var(--text-soft);
 }
 .blog-content a {
-  /* --gold, no --wine: el cuerpo del blog (h2/p/ul/blockquote arriba) ya usa
-     --heading/--text/--text-soft, que FLIPAN con el tema y por eso siguen
-     siendo legibles sobre el lienzo oscuro del tema forzado (Base.astro).
-     --wine es un hex de marca fijo que NO flipa, así que el enlace quedaba
-     vino oscuro sobre un lienzo igual de oscuro — medido, 1.10–1.70:1 en el
-     tramo 24–60% del documento, casi invisible. --gold sí flipa (dark theme
-     -> --sand, claro sobre oscuro; light theme -> --wine, oscuro sobre
-     claro), que es exactamente el mismo criterio que ya rige el resto del
-     bloque. */
-  color: var(--gold);
+  /* Ya es isla .on-light: el acento de la isla (--accent-canvas, vino) es el
+     que contrasta sobre su fondo fijo. Antes iba --gold, que en tema oscuro es
+     arena y sólo servía sobre el lienzo oscuro. */
+  color: var(--accent-canvas);
   font-weight: 700;
   text-decoration: none;
   /* .link-underline (241 enlaces de blog, todos con esa clase) declara
