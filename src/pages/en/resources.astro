@@ -32,7 +32,7 @@ const tilePalettes = [
   { bg: 'var(--purple)', fg: '#fff', eb: '#E6D2B4', sub: 'rgba(255,255,255,.74)' },
   { bg: 'var(--purple-d)', fg: '#fff', eb: 'var(--sand)', sub: 'rgba(255,255,255,.72)' },
   { bg: 'var(--wine)', fg: '#fff', eb: '#EAD9C4', sub: 'rgba(255,255,255,.78)' },
-  { bg: 'var(--sand)', fg: '#2e1b12', eb: '#5a3a1e', sub: 'rgba(40,30,20,.72)' },
+  { bg: 'var(--sand)', fg: '#2e1b12', eb: '#5a3a1e', sub: 'rgba(40,30,20,.88)' },
 ];
 let tileIdx = 0;
 
@@ -113,7 +113,7 @@ const grid = getResourcesGrid(locale).map((p, k) => {
   </div>
 
   <!-- DENSE MOSAIC (masonry, 4 columns) -->
-  <section class="zone-dark" style="background:transparent;padding:34px 0 58px;">
+  <section class="zone-dark zone-dark--warm" style="background:transparent;padding:34px 0 58px;">
     <div style="max-width:var(--container-pad-w);margin:0 auto;padding:0 var(--gutter);">
       <div class="rec-grid">
         {grid.map(c => (
