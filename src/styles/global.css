@@ -840,7 +840,7 @@ form .btn, .form-wrap .btn, .form-field .btn {
 .price-now__suffix {
   font-weight: 700;
   font-size: 15px;
-  color: var(--text-faint);
+  color: var(--text-soft);   /* --text-faint medía 3.6:1 sobre la tarjeta a ~50 % del lienzo */
 }
 .on-dark .price-now__suffix { color: var(--gold); }
 
