@@ -6,6 +6,7 @@ import SiteHeader from '../../components/SiteHeader.astro';
 import AvisoIdioma from '../../components/AvisoIdioma.astro';
 import Img from '../../components/Img.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import { getPost } from '../../data/posts';
 import { t } from '../../i18n/utils';
 import { businessSchema, personSchema } from '../../data/person';
 
@@ -177,6 +178,20 @@ const authorSchema = personSchema(locale);
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;" class="blog-grid">
 
+        {/* SFI y experiencia somática primero: son los artículos que retienen
+            (R4, informe de SStats, 5 oct). Sus textos salen de posts.ts. */}
+        {['sistemas-familiares-internos', 'experiencia-somatica'].map(id => getPost(id)!).map(p => (
+          <BlogCard
+            href={`/es/blog/${p.slugEs}/`}
+            image={p.cardImage ?? p.heroImage}
+            imageAlt={p.cardAlt?.es ?? p.heroAlt.es}
+            imagePosition={p.cardHeroPosition?.es ?? p.heroPosition}
+            title={p.es.title}
+            excerpt={p.cardBlurb?.es}
+            readMoreLabel={i.blog.readMore}
+          />
+        ))}
+
         <BlogCard
           href="/es/blog/que-esperar-de-la-terapia/"
           image="/uploads/que-esperar-terapia.webp"
@@ -184,26 +199,6 @@ const authorSchema = personSchema(locale);
           imagePosition="center 20%"
           title="¿Qué esperar de la terapia?"
           excerpt="Cómo se conjugan la relación terapéutica, los abordajes y el tiempo en un proceso real."
-          readMoreLabel={i.blog.readMore}
-        />
-
-        <BlogCard
-          href="/es/blog/primera-cita/"
-          image="/uploads/primera-cita-terapia.webp"
-          imageAlt="Sala de terapia vacía con dos sillones uno frente al otro, luz cálida de tarde"
-          imagePosition="center 30%"
-          title="¿Cómo suele ser la primera cita?"
-          excerpt="Cuando me contactas por primera vez, así arrancamos: qué pasa, cuánto dura, qué llevarte."
-          readMoreLabel={i.blog.readMore}
-        />
-
-        <BlogCard
-          href="/es/blog/cuando-es-buen-momento/"
-          image="/uploads/buen-momento-pareja.webp"
-          imageAlt="Persona sentada junto a una ventana en la mañana sosteniendo una taza, ambiente contemplativo"
-          imagePosition="center 55%"
-          title="¿Cuándo es buen momento para empezar terapia?"
-          excerpt="Las señales que vale la pena escuchar — y por qué pedir ayuda no requiere tocar fondo."
           readMoreLabel={i.blog.readMore}
         />
 

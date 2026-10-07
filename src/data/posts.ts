@@ -424,14 +424,15 @@ export function nextPostFor(id: string, locale: Locale): { href: string; label: 
 // Display order for the /recursos/ and /resources/ card grid, excluding
 // 'que-esperar-de-la-terapia' which is shown separately as the featured post.
 export const resourcesGridOrder: string[] = [
+  // SFI y experiencia somática primero: son los dos que retienen (R4, informe de SStats, 5 oct)
+  'sistemas-familiares-internos',
+  'experiencia-somatica',
   'ease-caballos',
   'primera-cita',
   'cuando-es-buen-momento',
   'tipos-de-terapia',
   'terapia-corporal',
   'teoria-polivagal',
-  'experiencia-somatica',
-  'sistemas-familiares-internos',
   'tapping-eft',
   'core-energetica',
   'ansiedad-somatica',
@@ -499,4 +500,41 @@ export const postTags: Record<string, string[]> = {
 
 export function tagKeysFor(id: string): string[] {
   return postTags[id] ?? [];
+}
+
+// --- «Siguiente paso» al final del artículo (BlogPost.astro, antes de Disqus) --
+// Una invitación a la terapia que corresponde y dos artículos relacionados.
+// Sólo español: el blog en inglés está congelado (Patricio, 2026-10-05), así
+// que en /en/ el bloque no se pinta. Una entrada sin fila aquí no lleva bloque
+// y conserva el CTA genérico de WhatsApp después de los comentarios.
+// Textos aprobados por Patricio el 2026-10-05 (plan de S2, R4); cualquier
+// cambio de redacción vuelve a su mesa.
+export interface SiguientePaso {
+  terapia: { href: string; label: string };
+  relacionados: [string, string];
+}
+
+const INVITACION_INDIVIDUAL = {
+  href: '/es/terapia/individual/',
+  label: '¿Te resuena? Así trabajo en terapia individual →',
+};
+
+export const siguientePaso: Record<string, SiguientePaso> = {
+  'sistemas-familiares-internos': {
+    terapia: INVITACION_INDIVIDUAL,
+    relacionados: ['experiencia-somatica', 'teoria-polivagal'],
+  },
+  'experiencia-somatica': {
+    terapia: INVITACION_INDIVIDUAL,
+    relacionados: ['sistemas-familiares-internos', 'teoria-polivagal'],
+  },
+};
+
+/** El bloque del artículo cuyo disqusIdentifier es éste, o null (siempre null en inglés). */
+export function siguientePasoFor(disqusIdentifier: string, locale: Locale): (SiguientePaso & { posts: PostEntry[] }) | null {
+  if (locale !== 'es') return null;
+  const p = posts.find(x => x.es.disqusIdentifier === disqusIdentifier);
+  const s = p && siguientePaso[p.id];
+  if (!s) return null;
+  return { ...s, posts: s.relacionados.map(id => getPost(id)!).filter(Boolean) };
 }
