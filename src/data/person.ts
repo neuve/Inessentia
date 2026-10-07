@@ -129,7 +129,7 @@ export function businessSchema(locale: Locale, description: string) {
     'logo': 'https://inessentia.mx/uploads/logo-patricio-ruiz.webp',
     'telephone': '+525532020488',
     'email': 'patricio@inessentia.mx',
-    'priceRange': locale === 'es' ? '$1700–$2600 MXN' : '$90–$140 USD',
+    'priceRange': locale === 'es' ? '$1,700 MXN' : '$120 USD',
     'address': {
       '@type': 'PostalAddress',
       'streetAddress': 'Georgia 114, Oficina 303',
