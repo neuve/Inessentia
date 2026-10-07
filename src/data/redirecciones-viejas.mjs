@@ -77,6 +77,8 @@ export const redireccionesViejas = [
   // tipos-de-terapia
   { from: '/blog-tipos-de-terapia.html', to: '/es/blog/tipos-de-terapia/', fuente: 'disqus' },
   { from: '/en/blog-types-of-therapy.html', to: '/en/blog/types-of-therapy/', fuente: 'disqus' },
+  // presencia-alianza-mirada-permiso (sólo ES; Search Console la marcó 404 el 2 oct 2026)
+  { from: '/blog-presencia-alianza-mirada-permiso.html', to: '/es/blog/presencia-alianza-mirada-permiso/', fuente: 'disqus' },
 
   // Páginas sueltas: la lista completa de "Not found (404)" de Search Console
   // (21 URLs, leída el 14 sep 2026). Quedan fuera /cdn-cgi/l/email-protection
