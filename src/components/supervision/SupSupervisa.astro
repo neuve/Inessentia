@@ -1,0 +1,66 @@
+---
+// Quién supervisa: foto, credenciales y dos salidas (formación y cifras).
+// La tarjeta es isla con superficie propia (.on-light): se lee igual en el
+// tramo claro de la página del grupo y en el cierre oscuro de SupervisionDoc.
+// El rótulo también va dentro, por la misma razón.
+import Img from '../Img.astro';
+---
+
+<div class="ss">
+  <div class="ss-card on-light">
+    <Img
+      src="/uploads/patricio-ruiz-retrato.webp"
+      alt="Patricio Ruiz Abrín"
+      loading="lazy"
+      sizes="180px"
+      class="ss-photo"
+    />
+    <div>
+      <p class="label-section ss-rotulo">Supervisa</p>
+      <h3 class="ss-name">Patricio Ruiz</h3>
+      <p class="ss-bio">MTFS, SEP, CEP. Maestro titular del tercer año en el Instituto Córpore, asistente en Experiencia Somática México y Uruguay, y Maestro en Terapia Familiar Sistémica por el Instituto Crisol, con la especialización en terapia de pareja en curso. Trayectoria en Core Energética, Experiencia Somática y terapia familiar sistémica.</p>
+      <p class="ss-enlaces">
+        <a href="/es/sobre-mi/" class="link-underline">Mi formación y trayectoria →</a>
+        <a href="/es/diez-anos/" class="link-underline">Diez años de práctica en cifras →</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* El rótulo va DENTRO de la isla: sobre el lienzo caería en el cruce 79→84
+     (arena sobre malva, ~3.7:1) en las memorias. --accent-canvas no aplica aquí. */
+  .ss-rotulo { margin-bottom: 14px; color: var(--wine); }
+  .ss-rotulo::before { background: var(--wine); }
+  .ss-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 36px;
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border-card);
+    border-radius: var(--r-card-md);
+    padding: 38px;
+  }
+  .ss :global(.ss-photo) {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center 38%;
+  }
+  .ss-name {
+    font-family: var(--ff-head);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--heading);
+    margin: 0 0 12px;
+  }
+  .ss-bio { margin: 0; font-size: 16.5px; line-height: var(--lh-body); color: var(--text-soft); }
+  .ss-enlaces { display: flex; flex-wrap: wrap; gap: var(--sp-3) 28px; margin: var(--sp-5) 0 0; }
+  /* .link-underline toma --accent-canvas, que en zona oscura es arena: sobre la
+     tarjeta blanca no se leería. Dentro de la isla, vino fijo. */
+  .ss-enlaces a { color: var(--wine); }
+  @media (max-width: 560px) {
+    .ss-card { grid-template-columns: 1fr; padding: 30px 24px; }
+  }
+</style>

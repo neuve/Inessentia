@@ -9,6 +9,7 @@ import SupNav from '../components/supervision/SupNav.astro';
 import SupFooter from '../components/supervision/SupFooter.astro';
 import SupLlamado from '../components/supervision/SupLlamado.astro';
 import SesionesRail from '../components/supervision/SesionesRail.astro';
+import SupSupervisa from '../components/supervision/SupSupervisa.astro';
 import { SUPERVISION_PATH, SUPERVISION_NOMBRE } from '../data/supervision';
 
 interface Props {
@@ -90,6 +91,9 @@ const links = [
       <p class="label-section">El ciclo, sesión a sesión</p>
       <SesionesRail actual={sesionActual} />
     </div>
+    <div class="container--read sd-cierre-supervisa">
+      <SupSupervisa />
+    </div>
     <div class="container--read sd-cierre-llamado">
       <SupLlamado />
     </div>
@@ -149,5 +153,6 @@ const links = [
   .sd-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent-canvas); }
 
   .sd-cierre { padding: clamp(40px, 6vw, 72px) var(--gutter) clamp(64px, 9vw, 110px); }
+  .sd-cierre-supervisa { margin-top: clamp(40px, 6vw, 64px); }
   .sd-cierre-llamado { margin-top: clamp(40px, 6vw, 64px); }
 </style>

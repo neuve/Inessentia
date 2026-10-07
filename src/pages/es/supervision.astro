@@ -5,6 +5,7 @@ import { personRef, BUSINESS_ID } from '../../data/person';
 import SupNav from '../../components/supervision/SupNav.astro';
 import SupFooter from '../../components/supervision/SupFooter.astro';
 import SesionesRail from '../../components/supervision/SesionesRail.astro';
+import SupSupervisa from '../../components/supervision/SupSupervisa.astro';
 import { sesiones, memoriaPath, minutos, SUPERVISION_WA as WA, LLAMADO } from '../../data/supervision';
 
 const CANONICAL = 'https://inessentia.mx/es/supervision/';
@@ -407,20 +408,7 @@ const PRICING = {
     <!-- SUPERVISA -->
     <section class="section section--cream zone-light" style="border-top:1px solid var(--cream);">
       <div class="container--narrow">
-        <p class="label-section" style="margin-bottom:32px;">Supervisa</p>
-        <div class="gl-supervisor">
-          <Img
-            src="/uploads/patricio-ruiz-retrato.webp"
-            alt="Patricio Ruiz Abrín"
-            loading="lazy"
-            sizes="180px"
-            class="gl-supervisor-photo"
-          />
-          <div>
-            <h3 class="gl-supervisor-name">Patricio Ruiz</h3>
-            <p style="margin:0;font-size:16.5px;line-height:var(--lh-body);color:var(--on-canvas-soft);">MTFS, SEP, CEP. Maestro titular del tercer año en el Instituto Córpore, asistente en Experiencia Somática México y Uruguay, y Maestro en Terapia Familiar Sistémica por el Instituto Crisol, con la especialización en terapia de pareja en curso. Trayectoria en Core Energética, Experiencia Somática y terapia familiar sistémica.</p>
-          </div>
-        </div>
+        <SupSupervisa />
       </div>
     </section>
 
@@ -792,33 +780,6 @@ const PRICING = {
   }
   @media (max-width: 560px) {
     .gl-corpore-tier { flex-direction: column; align-items: flex-start; gap: 4px; }
-  }
-
-  .gl-supervisor {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 36px;
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--border-card);
-    border-radius: var(--r-card-md);
-    padding: 38px;
-  }
-  .gl-supervisor-photo {
-    width: 180px; height: 180px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center 38%;
-  }
-  .gl-supervisor-name {
-    font-family: var(--ff-head);
-    font-weight: 700;
-    font-size: 26px;
-    color: var(--heading-canvas);
-    margin: 0 0 12px;
-  }
-  @media (max-width: 560px) {
-    .gl-supervisor { grid-template-columns: 1fr; padding: 30px 24px; }
   }
 
   /* Aviso del hero: el ciclo ya empezó y hay memoria que leer. */
