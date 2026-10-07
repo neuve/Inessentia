@@ -143,7 +143,9 @@ const legalLinks = [
   .footer2__links { display: flex; flex-direction: column; gap: 12px; }
   .footer2__link { font-size: 15px; color: var(--on-canvas-soft); text-decoration: none; transition: color .2s; width: fit-content; }
   .footer2__link:hover { color: var(--accent-canvas); }
-  .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: var(--on-canvas-faint); }
+  .footer2__contactline { margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: var(--on-canvas-soft); }
+  /* --on-canvas-soft y no -faint: el pie cae sobre el lienzo (93–97 %), y -faint
+     medía 3.8–4.3:1 ahí; global.css avisa que -faint no es para texto suelto. */
   .footer2__email {
     display: inline-block; color: var(--heading-canvas); font-size: 16px; font-weight: 600; text-decoration: none;
     margin-bottom: 20px; transition: color .2s;
@@ -172,12 +174,12 @@ const legalLinks = [
     border-top: 1px solid var(--border-hair); padding-top: 22px;
     display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
   }
-  .footer2__copyright { margin: 0; font-size: 13px; color: var(--on-canvas-faint); }
+  .footer2__copyright { margin: 0; font-size: 13px; color: var(--on-canvas-soft); }
   .footer2__bottomright { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-  .footer2__legal { font-size: 13px; color: var(--on-canvas-faint); text-decoration: none; transition: color .2s; }
+  .footer2__legal { font-size: 13px; color: var(--on-canvas-soft); text-decoration: none; transition: color .2s; }
   .footer2__legal:hover { color: var(--accent-canvas); }
   .footer2__version {
-    font-size: 12px; color: var(--on-canvas-faint);
+    font-size: 12px; color: var(--on-canvas-soft);
     border: 1px solid var(--border-hair); padding: 3px 10px; border-radius: 99px; white-space: nowrap;
   }
   @media (max-width: 900px) {
