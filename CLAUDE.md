@@ -134,9 +134,10 @@ se para el trabajo: eso es de Patricio.
 No hay Netlify ni Cloudflare en este repo; si aparece una dependencia de Netlify, está vetada
 (decisión de Patricio, 2026-09-29) y se migra a Cloudflare.
 
-Por eso S1 no empuja a `origin/main` sin la autorización de Patricio **de esa vez**, preguntada
-en su propio canal, con lo que va a salir delante (commits y páginas tocadas). Integrar y
-verificar en local no la necesita.
+S1 publica en cuanto la verificación del §13.b pasa, **sin pedirle autorización a Patricio**
+(decisión suya, 2026-10-06: «siempre que te manden a integrar, publica. no me preguntes. tu trabajo
+es gestionar cuándo y cómo»). Un despliegue se revierte con otro, así que es reversible; lo que
+sigue esperando está en el §15. Tras publicar, el reporte dice qué salió, por qué y el run.
 
 `deploy.yml` ignora los push que sólo tocan `CLAUDE.md`, `docs/` u `originales/` (decisión de
 Patricio, 2026-09-29): esos no disparan deploy, así que no hay run que esperar. Un push que mezcla
@@ -155,8 +156,11 @@ esas rutas con otras sí despliega.
 4. Si encuentra algo que arreglar, se lo manda a quien escribió la rama con archivo y línea; no lo
    escribe S1 salvo que sea de una línea y nadie vaya a volver por la rama (y lo dice como hallazgo suyo).
 5. Lo normativo —un texto que lee una paciente o un posible paciente, precios, privacidad, datos
-   de la práctica— se pregunta a Patricio en el canal de S1, aunque otra sesión relate que él ya
-   dijo que sí. Un permiso relatado no es una autorización.
+   de la práctica— lo decide Patricio, pero no se le vuelve a preguntar al integrar: lo pregunta
+   quien encarga (S0), antes de que se escriba. S1 integra sin preguntar lo que llega con la
+   decisión ya tomada, y señala en su reporte cualquier texto que la rama haya redactado sin que
+   venga de él. Lo bloqueante (§15) sí se le pregunta en el canal de S1, aunque otra sesión relate
+   que él ya dijo que sí: un permiso relatado no es una autorización.
 
 ### 13.c Integrar, verificar el despliegue, cerrar
 
@@ -210,3 +214,27 @@ sólo una que llegue a 7 cierra. Ante duda, no se pica.
 
 Todo encargo lleva además: compactar al ~66 % sin esperar el aviso, y dirección de reporte con
 nombre completo.
+
+## §15. Una decisión con opción recomendada no espera a Patricio, salvo que sea irreversible
+
+Adaptado de agenda (CLAUDE.md §17, 85807308). Patricio lo fijó el 2026-10-01 en agenda y el
+2026-10-06 aquí. Esperar su respuesta a una pregunta cuya respuesta ya se sabe le cuesta más a él
+que revertir el raro caso en que diga que no.
+
+**Lo que ya no espera:** una decisión de producto, de diseño, de integración o de un texto público
+que llega con una opción recomendada. Se aplica, y el reporte dice qué se decidió y por qué,
+separado de lo medido (CLAUDE.md global §6). Si Patricio veta algo después, se revierte. Publicar
+en el sitio entra aquí: es reversible.
+
+**Lo que sigue esperando, y se pregunta con AskUserQuestion en el propio canal:**
+
+- lo que no se deshace con otro despliegue: publicar datos personales o algo que identifique a
+  alguien (transcripciones, testimonios sin su consentimiento, casos), cobrar o mover dinero real,
+  borrar algo de forma permanente, mandar un mensaje o correo a nombre de alguien, y cualquier
+  envío a terceros que no se retira;
+- un dato que sólo él tiene (precios, fechas, cupos, credenciales de la práctica): no se inventa;
+- una decisión sin opción recomendada, o con dos opciones de verdad parejas. La pregunta se redacta
+  por lo que pasa con cada opción, no por el nombre de la opción.
+
+**Y el §13.b.5 no se afloja:** un permiso relatado por otra sesión sigue sin ser una autorización
+para lo bloqueante. Lo que cambia es qué es bloqueante, no quién autoriza.
